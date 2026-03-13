@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proslambenomenos — The Added Tone</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]});"></script>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent2: #7ee787;
+    --accent3: #d2a8ff;
+    --accent4: #ffa657;
+    --red: #f85149;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(13,17,23,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1rem;
+    display: flex; gap: 1.2rem; align-items: center;
+    overflow-x: auto;
+  }
+  nav a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+    white-space: nowrap; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--accent); }
+  .container { max-width: 860px; margin: 0 auto; padding: 5rem 1.5rem 4rem; }
+  h1 { font-size: 2.2rem; margin-bottom: 0.3rem; color: var(--accent); }
+  h2 {
+    font-size: 1.5rem; margin: 3rem 0 1rem;
+    padding-bottom: 0.4rem; border-bottom: 1px solid var(--border);
+    color: var(--accent2);
+  }
+  h3 { font-size: 1.15rem; margin: 2rem 0 0.6rem; color: var(--accent3); }
+  p { margin-bottom: 1rem; }
+  .subtitle { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; }
+  .author { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2.5rem; }
+  blockquote {
+    border-left: 3px solid var(--accent3);
+    padding: 0.8rem 1.2rem; margin: 1.5rem 0;
+    background: var(--surface); border-radius: 0 6px 6px 0;
+    font-style: italic;
+  }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;
+  }
+  table {
+    width: 100%; border-collapse: collapse; margin: 1rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    padding: 0.6rem 0.8rem; text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  th { color: var(--accent); font-weight: 600; }
+  .chain {
+    font-family: 'Courier New', monospace;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;
+    font-size: 1rem; line-height: 2;
+    text-align: center;
+  }
+  .chain .arrow { color: var(--accent); }
+  .chain .label { color: var(--text-muted); font-size: 0.8rem; }
+  .tag {
+    display: inline-block; padding: 0.15rem 0.5rem; border-radius: 12px;
+    font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+  }
+  .tag-math { background: rgba(88,166,255,0.15); color: var(--accent); }
+  .tag-phys { background: rgba(126,231,135,0.15); color: var(--accent2); }
+  .tag-open { background: rgba(248,81,73,0.15); color: var(--red); }
+  .tag-closed { background: rgba(126,231,135,0.15); color: var(--accent2); }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .status-table td:first-child { font-weight: 500; }
+  .katex-display { margin: 1.2rem 0; overflow-x: auto; }
+  @media (max-width: 600px) {
+    .container { padding: 4.5rem 1rem 3rem; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#thesis"><strong>Proslambenomenos</strong></a>
+  <a href="#chain">The Chain</a>
+  <a href="#lyapunov">Lyapunov</a>
+  <a href="#renzo">Renzo's Rule</a>
+  <a href="#status">Status</a>
+  <a href="#companions">Companions</a>
+  <a href="https://github.com/nickjoven/proslambenomenos">GitHub</a>
+</nav>
+
+<div class="container">
+
+<h1>Proslambenomenos</h1>
+<p class="subtitle">The added tone: a fundamental reference frequency for synchronization gravity.</p>
+<p class="author">N. Joven — March 2026 — <a href="https://orcid.org/0009-0008-0679-0812">ORCID 0009-0008-0679-0812</a> — CC0 1.0</p>
+
+<!-- ===== THESIS ===== -->
+<h2 id="thesis">Thesis</h2>
+
+<p>In ancient Greek music theory, the <em>proslambenomenos</em> (προσλαμβανόμενος) was the lowest pitch in the Greater Perfect System — the reference from which every interval was measured. It did not belong to any tetrachord. It simply <em>was</em>.</p>
+
+<p>This repository proposes a physical analogue: the cosmological constant $\Lambda$ sets a fundamental oscillation frequency, and the MOND acceleration scale, the Hubble rate, and the galactic synchronization threshold are all overtones of this single reference. They are not independent coincidences — they are intervals measured from the proslambenomenos.</p>
+
+<blockquote>$\Lambda$, $H_0$, and $a_0$ are not three independent measurements. They are one frequency measured in three different units.</blockquote>
+
+<!-- ===== THE CHAIN ===== -->
+<h2 id="chain">The Chain: $\Lambda \to H_0 \to a_0$</h2>
+
+<p>The cosmological constant sets the vacuum's fundamental oscillation frequency:</p>
+
+$$\nu_\Lambda \;=\; c\,\sqrt{\Lambda/3} \;\approx\; 5.7 \times 10^{-18}\;\text{s}^{-1} \;\approx\; H_0$$
+
+<p>The MOND acceleration threshold is the product of this frequency and the coupling propagation speed, divided by $2\pi$ (the Kuramoto critical coupling normalization):</p>
+
+$$a_0 \;=\; \frac{c\,\nu_\Lambda}{2\pi} \;=\; \frac{c\,H_0}{2\pi} \;\approx\; 1.1 \times 10^{-10}\;\text{m\,s}^{-2}$$
+
+<div class="chain">
+  <span style="color:var(--accent3)">$\Lambda$</span>
+  <span class="arrow">&nbsp;→&nbsp;</span>
+  <span class="label">$c\sqrt{\cdot/3}$</span>
+  <span class="arrow">&nbsp;→&nbsp;</span>
+  <span style="color:var(--accent)">$\nu_\Lambda \approx H_0$</span>
+  <span class="arrow">&nbsp;→&nbsp;</span>
+  <span class="label">$c/2\pi$</span>
+  <span class="arrow">&nbsp;→&nbsp;</span>
+  <span style="color:var(--accent2)">$a_0$</span>
+  <br>
+  <span class="label">curvature → frequency → acceleration</span>
+  <br>
+  <span class="label">Three constants. One frequency. Zero free parameters.</span>
+</div>
+
+<div class="card">
+  <h3>Why $2\pi$?</h3>
+  <p>The $2\pi$ is not a fudge factor. It is the ratio of angular frequency to cycle frequency — the same $2\pi$ that appears in the Kuramoto critical coupling formula $K_c = 2/(\pi g(0))$. The proslambenomenos is a cycle frequency; the locking window is measured in angular frequency.</p>
+</div>
+
+<div class="card">
+  <h3>Sensitivity to $H_0$ tension</h3>
+  <table>
+    <tr><th>$H_0$ (km/s/Mpc)</th><th>$a_0^{\text{pred}}$ (m/s²)</th><th>Ratio to observed</th></tr>
+    <tr><td>67.4 (Planck)</td><td>$1.04 \times 10^{-10}$</td><td>0.87</td></tr>
+    <tr><td>70.0</td><td>$1.08 \times 10^{-10}$</td><td>0.90</td></tr>
+    <tr><td>73.0 (SH0ES)</td><td>$1.13 \times 10^{-10}$</td><td>0.94</td></tr>
+  </table>
+  <p style="color:var(--text-muted);font-size:0.9rem;">Robust to the Hubble tension. All values within 15% of observed $a_0$.</p>
+</div>
+
+<!-- ===== LYAPUNOV ===== -->
+<h2 id="lyapunov">Lyapunov Functional and Uniqueness</h2>
+
+<p>The <a href="https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md">Renzo's Rule derivation in 201</a> left uniqueness as an open problem after <a href="https://github.com/nickjoven/201/pull/7">PR #7</a> replaced the contraction mapping strategy with a Lyapunov approach. This repository closes that gap.</p>
+
+<blockquote>Uniqueness is not a mathematical property of the equilibrium — it is a physical property of the path.</blockquote>
+
+<h3>The functional</h3>
+
+<p>The Kuramoto model (finite, identical frequencies) admits:</p>
+
+$$V[\theta] = -\frac{K}{2N}\sum_{i,j}\cos(\theta_i - \theta_j), \qquad \frac{dV}{dt} = -\sum_i \dot{\theta}_i^2 \leq 0$$
+
+<p>The continuum extension under the Kuramoto–Einstein mapping becomes:</p>
+
+$$\mathcal{V}_{\text{KE}}[\gamma, \psi] = -\frac{1}{2}\iint G_\gamma(x,x')\cos[\psi(x') - \psi(x)]\sqrt{\gamma}\,\sqrt{\gamma'}\,d^3x\,d^3x'$$
+
+<p>In the synchronized limit, this reduces to the <strong>gravitational potential energy functional</strong> — the Lyapunov function of Newtonian gravity is the synchronized limit of the Kuramoto–Einstein Lyapunov function.</p>
+
+<h3>The dissipation argument</h3>
+
+<div class="card">
+  <p><strong>Phase 1 — Incoherent:</strong> $r \ll 1$. Coupling subcritical everywhere. Full MOND regime. $\mathcal{V}_{\text{KE}} \approx 0$.</p>
+  <p><strong>Phase 2 — Nucleation:</strong> Synchronization nucleates at the dense core. Coherent patches expand outward. $\mathcal{V}_{\text{KE}}$ falls.</p>
+  <p><strong>Phase 3 — Relaxation:</strong> System reaches unique fixed point. Rotation curve determined. $\mathcal{V}_{\text{KE}}$ at minimum.</p>
+</div>
+
+<p>The fixed point is unique because the path is dissipative. Even if the equilibrium equations admit multiple solutions, only one is reachable from physically reasonable initial conditions (desynchronized, approximately homogeneous) via monotone Lyapunov descent.</p>
+
+<table>
+  <tr><th>Thermodynamics</th><th>Kuramoto–Einstein</th></tr>
+  <tr><td>Entropy $S$</td><td>$-\mathcal{V}_{\text{KE}}$</td></tr>
+  <tr><td>Second law: $dS/dt \geq 0$</td><td>$d\mathcal{V}_{\text{KE}}/dt \leq 0$</td></tr>
+  <tr><td>Equilibrium: max $S$</td><td>min $\mathcal{V}_{\text{KE}}$</td></tr>
+  <tr><td>Arrow of time ← initial conditions</td><td>Arrow of formation ← initial coherence</td></tr>
+</table>
+
+<p>Full derivation: <a href="https://github.com/nickjoven/proslambenomenos/blob/main/lyapunov_uniqueness.md"><code>lyapunov_uniqueness.md</code></a></p>
+
+<!-- ===== RENZO'S RULE ===== -->
+<h2 id="renzo">Renzo's Rule from Kuramoto Self-Consistency</h2>
+
+<p>The <a href="https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md">ADM-side derivation in 201</a> proves Renzo's Rule from the Hamiltonian constraint. This repository provides the independent Kuramoto-side proof.</p>
+
+<h3>The mechanism</h3>
+
+<p>At the synchronization fixed point, the self-consistency equation is:</p>
+
+$$r(x) = \int K(x,x')\,\rho_b(x')\,P_{\text{lock}}[\rho_b(x'), r(x')]\,\cos\Delta\psi\;d^3x'$$
+
+<p>The baryonic density $\rho_b$ appears directly in the integrand because:</p>
+
+$$\omega(x) = \sqrt{4\pi G\,\rho_b(x)}$$
+
+<p>The baryonic distribution <strong>is</strong> the frequency distribution. Every spatial feature in $\rho_b$ modifies the locking condition, which modifies $r(x)$, which modifies the rotation curve.</p>
+
+<h3>Forward and inverse</h3>
+
+<div class="card">
+  <p><span class="tag tag-math">Forward</span> A localized perturbation $\delta\rho_b$ at radius $R_0$ produces $\delta v^2$ at $R_0$ through the linearized self-consistency equation. Baryonic features mirror in the rotation curve.</p>
+  <p><span class="tag tag-math">Inverse</span> The phantom density $\rho_{\text{phantom}} = \rho_{\text{crit}}(1 - r)$ is a convolution through the Green's function kernel — a low-pass filter. It cannot produce features sharper than those in $\rho_b$. Sharp rotation curve features must have baryonic origins.</p>
+</div>
+
+<h3>Two proofs complete the circle</h3>
+
+<table>
+  <tr><th>Property</th><th>ADM derivation (201)</th><th>Kuramoto derivation (here)</th></tr>
+  <tr><td>Forward Renzo's Rule</td><td>Hamiltonian constraint: algebraic, local</td><td>Self-consistency integral sourced by $\rho_b$</td></tr>
+  <tr><td>Inverse Renzo's Rule</td><td>Green's function kernel is smoothing</td><td>Same kernel, same smoothing</td></tr>
+  <tr><td>Uniqueness</td><td><span class="tag tag-open">Open</span></td><td><span class="tag tag-closed">Closed</span> Lyapunov dissipation</td></tr>
+  <tr><td>Origin of $a_0$</td><td><span class="tag tag-open">Input</span></td><td><span class="tag tag-closed">Derived</span> Proslambenomenos</td></tr>
+</table>
+
+<p>Full derivation: <a href="https://github.com/nickjoven/proslambenomenos/blob/main/renzos_rule_from_kuramoto.md"><code>renzos_rule_from_kuramoto.md</code></a></p>
+
+<!-- ===== STATUS ===== -->
+<h2 id="status">Status Map</h2>
+
+<table class="status-table">
+  <tr><th>Claim</th><th>Status</th><th>Source</th></tr>
+  <tr>
+    <td>$\nu_\Lambda = c\sqrt{\Lambda/3}$ is the vacuum reference frequency</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/proslambenomenos.md">proslambenomenos.md</a></td>
+  </tr>
+  <tr>
+    <td>$H_0 \approx \nu_\Lambda$ (same frequency, different units)</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/notebooks/01_proslambenomenos_derivation.ipynb">notebook 01</a></td>
+  </tr>
+  <tr>
+    <td>$a_0 = cH_0/2\pi$ from Kuramoto critical coupling</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/proslambenomenos.md">proslambenomenos.md §3</a></td>
+  </tr>
+  <tr>
+    <td>Kuramoto–Einstein Lyapunov functional exists</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/lyapunov_uniqueness.md">lyapunov_uniqueness.md §4</a></td>
+  </tr>
+  <tr>
+    <td>$d\mathcal{V}_{\text{KE}}/dt \leq 0$ along physical trajectories</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/lyapunov_uniqueness.md">lyapunov_uniqueness.md §5</a></td>
+  </tr>
+  <tr>
+    <td>Uniqueness of galactic fixed point from desynchronized IC</td>
+    <td><span class="tag tag-phys">Proved</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/lyapunov_uniqueness.md">lyapunov_uniqueness.md §6–7</a></td>
+  </tr>
+  <tr>
+    <td>Forward Renzo's Rule from Kuramoto self-consistency</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/renzos_rule_from_kuramoto.md">renzos_rule_from_kuramoto.md §5</a></td>
+  </tr>
+  <tr>
+    <td>Inverse Renzo's Rule from smoothing kernel</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/renzos_rule_from_kuramoto.md">renzos_rule_from_kuramoto.md §6</a></td>
+  </tr>
+  <tr>
+    <td>Synchronized limit of $\mathcal{V}_{\text{KE}}$ = Newtonian potential</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/lyapunov_uniqueness.md">lyapunov_uniqueness.md §4</a></td>
+  </tr>
+  <tr>
+    <td>Core synchronizes before outskirts (galaxy formation arrow)</td>
+    <td><span class="tag tag-phys">Numerical</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/notebooks/02_lyapunov_functional.ipynb">notebook 02, sim 4</a></td>
+  </tr>
+  <tr>
+    <td>Stribeck-weighted impedance in coupling kernel</td>
+    <td><span class="tag tag-open">Open</span></td>
+    <td>Needed for quantitative SPARC comparison</td>
+  </tr>
+  <tr>
+    <td>Full dynamical equivalence (numerical prefactors)</td>
+    <td><span class="tag tag-open">Open</span></td>
+    <td>Flagged in Kuramoto–Einstein mapping</td>
+  </tr>
+</table>
+
+<!-- ===== COMPANIONS ===== -->
+<h2 id="companions">Companion Repositories</h2>
+
+<div class="card">
+  <h3><a href="https://github.com/nickjoven/201">201</a> — The Unifying Framework</h3>
+  <p>Gravity as synchronization in a frictional medium. Kuramoto–Einstein mapping. Renzo's Rule from the ADM side. The walkthrough that started it.</p>
+</div>
+
+<div class="card">
+  <h3><a href="https://github.com/nickjoven/intersections">intersections</a> — Stick-Slip and Galaxy Rotation</h3>
+  <p>The physical mechanism. Stick-slip dynamics, Lagrangian relaxation, SPARC mode decomposition, CMB overtone comparison, Feigenbaum cascade. Interactive visualization.</p>
+</div>
+
+<div class="card">
+  <h3>This repository — Proslambenomenos</h3>
+  <p>The companion derivation. Closes the three gaps 201 left open: the origin of $a_0$, uniqueness via Lyapunov dissipation, and Renzo's Rule from the Kuramoto side.</p>
+</div>
+
+<hr style="border-color:var(--border); margin: 3rem 0;">
+<p style="color:var(--text-muted); font-size:0.85rem; text-align:center;">
+  CC0 1.0 — No rights reserved. — N. Joven, March 2026
+</p>
+
+</div>
+</body>
+</html>
