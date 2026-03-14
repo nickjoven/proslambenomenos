@@ -6,7 +6,7 @@ N. Joven — March 2026 — CC0 1.0
 
 ## 1. The problem
 
-The Kuramoto–Einstein framework maps gravitational equilibrium to a synchronization fixed point. The forward and inverse Renzo's Rule derivations ([ADM side](https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md), [Kuramoto side](renzos_rule_from_kuramoto.md)) show that at the fixed point, every baryonic feature is mirrored in the rotation curve and vice versa. But the fixed-point equations alone do not guarantee *uniqueness*.
+The Kuramoto–Einstein framework maps gravitational equilibrium to a synchronization fixed point. The forward and inverse Renzo's Rule derivations ([ADM side][renzos-adm], [Kuramoto side](renzos_rule_from_kuramoto.md)) show that at the fixed point, every baryonic feature is mirrored in the rotation curve and vice versa. But the fixed-point equations alone do not guarantee *uniqueness*.
 
 The Schrödinger equation is time-symmetric, yet we observe irreversibility. The arrow of time is not in the equation — it is in the low-entropy initial state. Similarly, if the Kuramoto–Einstein equations admit multiple fixed points, the physical one is selected not by the equilibrium conditions but by the dissipative history that produced it.
 
@@ -50,7 +50,7 @@ For identical frequencies ($\omega = 0$ in the rotating frame), this reduces to 
 
 ## 4. The Kuramoto–Einstein Lyapunov functional
 
-Under the Kuramoto–Einstein mapping ([companion document](https://github.com/nickjoven/201/blob/main/kuramoto_einstein_mapping.md)):
+Under the Kuramoto–Einstein mapping ([companion document](kuramoto_einstein_mapping.md)):
 
 | Kuramoto | Einstein (ADM) |
 |----------|---------------|
@@ -84,9 +84,9 @@ The interaction energy $\mathcal{V}[\theta] = -\frac{1}{2}\iint K\cos(\theta - \
 
 $$\frac{d\mathcal{V}}{dt} \;=\; -\int(\partial_t\theta - \omega)\,\partial_t\theta\,d^3x$$
 
-For non-identical frequencies ($\omega(x) \neq 0$), this has indefinite sign: the cross term $\int\omega\,\partial_t\theta\,d^3x$ can be positive. This is the **primal oscillation** around the saddle point in the Lagrangian relaxation picture ([intersections](https://github.com/nickjoven/intersections/blob/main/joven_stick_slip_dark_matter.md), §3.3). Tracking $\mathcal{V}[\theta]$ is tracking the wrong variable — the phases $\theta$ are unbounded for drifting oscillators.
+For non-identical frequencies ($\omega(x) \neq 0$), this has indefinite sign: the cross term $\int\omega\,\partial_t\theta\,d^3x$ can be positive. This is the **primal oscillation** around the saddle point in the Lagrangian relaxation picture ([intersections](https://github.com/nickjoven/intersections/blob/main/joven_stick_slip_dark_matter.md "Stick-Slip Dark Matter — Joven 2026"), §3.3). Tracking $\mathcal{V}[\theta]$ is tracking the wrong variable — the phases $\theta$ are unbounded for drifting oscillators.
 
-The correct variable is the order parameter $r(x,t) \in [0,1]$, which the [Kuramoto–Einstein mapping](https://github.com/nickjoven/201/blob/main/kuramoto_einstein_mapping.md) provides as a bounded quantity. For a Lorentzian frequency distribution with half-width $\gamma$, the Ott–Antonsen reduction (Ott & Antonsen, 2008) gives exact mean-field dynamics:
+The correct variable is the order parameter $r(x,t) \in [0,1]$, which the [Kuramoto–Einstein mapping](kuramoto_einstein_mapping.md) provides as a bounded quantity. For a Lorentzian frequency distribution with half-width $\gamma$, the Ott–Antonsen reduction (Ott & Antonsen, 2008) gives exact mean-field dynamics:
 
 $$\dot{r} \;=\; -\gamma\,r + \frac{K}{2}\,r(1 - r^2)$$
 
@@ -137,6 +137,10 @@ By LaSalle's invariance principle on the compact interval $[0,1]$, every traject
 | Arrow of time ← low-entropy initial state | Arrow of formation ← desynchronized initial state ($r \ll 1$) |
 | Order parameter (magnetization) | $r \in [0,1]$ (coherence) |
 
-The Ott–Antonsen potential $U(r)$ plays exactly the role of a Landau free energy: it is bounded, monotone along trajectories, and selects a unique equilibrium from symmetric initial conditions. The primal interaction energy $\mathcal{V}[\theta]$ oscillates — this is the saddle-point oscillation familiar from Lagrangian relaxation ([intersections](https://github.com/nickjoven/intersections/blob/main/joven_stick_slip_dark_matter.md), §3.3). The dual variable $r$ descends.
+The Ott–Antonsen potential $U(r)$ plays exactly the role of a Landau free energy: it is bounded, monotone along trajectories, and selects a unique equilibrium from symmetric initial conditions. The primal interaction energy $\mathcal{V}[\theta]$ oscillates — this is the saddle-point oscillation familiar from Lagrangian relaxation ([intersections](https://github.com/nickjoven/intersections/blob/main/joven_stick_slip_dark_matter.md "Stick-Slip Dark Matter — Joven 2026"), §3.3). The dual variable $r$ descends.
 
 The arrow of time is not in the Schrödinger equation. It is in the low-entropy initial state. The uniqueness of galactic structure is not in the fixed-point equations. It is in the gradient flow on $U(r)$ that produced the fixed point.
+
+---
+
+[renzos-adm]: https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md "Renzo's Rule derivation (ADM side) — Joven 2026"
