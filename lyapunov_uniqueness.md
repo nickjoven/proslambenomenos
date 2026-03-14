@@ -78,13 +78,32 @@ $$\mathcal{V}_{\text{KE}} \;\approx\; 0$$
 
 because the cosine averages to zero over incoherent phases. The system starts near zero and descends to the gravitational potential well. Galaxy formation *is* Lyapunov descent.
 
-## 5. Monotone decrease and the arrow of formation
+## 5. Why $\mathcal{V}_\text{KE}[\theta]$ oscillates — and what descends instead
 
-The central result. Along physical trajectories:
+The interaction energy $\mathcal{V}[\theta] = -\frac{1}{2}\iint K\cos(\theta - \theta')\,d^3x\,d^3x'$ has time derivative:
 
-$$\frac{d\mathcal{V}_{\text{KE}}}{dt} \;=\; -\int \left(\partial_t\psi - \sqrt{4\pi G\rho}\right)^2 \sqrt{\gamma}\,d^3x \;\leq\; 0$$
+$$\frac{d\mathcal{V}}{dt} \;=\; -\int(\partial_t\theta - \omega)\,\partial_t\theta\,d^3x$$
 
-This is the gravitational arrow of time for structure formation. A protogalactic cloud begins desynchronized and descends:
+For non-identical frequencies ($\omega(x) \neq 0$), this has indefinite sign: the cross term $\int\omega\,\partial_t\theta\,d^3x$ can be positive. This is the **primal oscillation** around the saddle point in the Lagrangian relaxation picture ([intersections](intersections/joven_stick_slip_dark_matter.md), §3.3). Tracking $\mathcal{V}[\theta]$ is tracking the wrong variable — the phases $\theta$ are unbounded for drifting oscillators.
+
+The correct variable is the order parameter $r(x,t) \in [0,1]$, which the [Kuramoto–Einstein mapping](201/kuramoto_einstein_mapping.md) provides as a bounded quantity. For a Lorentzian frequency distribution with half-width $\gamma$, the Ott–Antonsen reduction (Ott & Antonsen, 2008) gives exact mean-field dynamics:
+
+$$\dot{r} \;=\; -\gamma\,r + \frac{K}{2}\,r(1 - r^2)$$
+
+This is gradient flow $\dot{r} = -dU/dr$ on:
+
+$$\boxed{U(r) \;=\; \frac{\gamma}{2}\,r^2 - \frac{K}{4}\,r^2 + \frac{K}{8}\,r^4}$$
+
+with $\frac{dU}{dt} = -\left(\frac{dU}{dr}\right)^2 \leq 0$, equality only at fixed points. $U(r)$ is bounded below, defined on $r \in [0,1]$, and monotonically decreasing along trajectories. It is a strict Lyapunov function.
+
+For $K > K_c = 2\gamma$ (supercritical), $U$ has exactly two critical points: an unstable maximum at $r = 0$ and a global minimum at $r^* = \sqrt{1 - 2\gamma/K}$. All trajectories with $r(0) > 0$ converge to $r^*$. There are no local minima to trap the dynamics.
+
+The spatially extended version replaces $r$ with the coherence profile $r(x)$ and $U$ with the functional:
+
+$$\mathcal{U}[r] \;=\; \int\left[\frac{\gamma(x)}{2}\,r(x)^2 - \frac{1}{4}\int K(x,x')\,r(x)\,r(x')\,\cos[\psi(x') - \psi(x)]\,d^3x'\right]d^3x$$
+
+In the synchronized limit ($\psi \approx$ const), this reduces to $\mathcal{V}_\text{KE}$. In the desynchronized limit ($r \to 0$), $\mathcal{U} \to 0$. The descent from 0 to $\mathcal{U}(r^*)$ is the arrow of galaxy formation:
+
 
 **Phase 1 — Incoherent** ($r \ll 1$, high $\mathcal{V}_{\text{KE}}$):
 Oscillators are uncorrelated. Coupling is subcritical everywhere. The system is fully in the MOND regime. The synchronization deficit (dark matter phantom) compensates everywhere. Rotation curve is flat and featureless.
@@ -97,37 +116,27 @@ The system reaches its unique fixed point. Rotation curve, dark matter profile, 
 
 ## 6. Why uniqueness follows
 
-The Lyapunov functional is:
-- **Bounded below** (the cosine is bounded, the integral is finite for localized sources)
-- **Monotonically decreasing** along physical trajectories
-- **Coercive** in the relevant topology (desynchronized states have higher $\mathcal{V}_{\text{KE}}$ than synchronized ones)
+The Ott–Antonsen potential $U(r)$ satisfies:
+- **Bounded below:** $U(r) \geq U(r^*)$ for all $r \in [0,1]$
+- **Monotonically decreasing** along mean-field trajectories: $dU/dt = -(dU/dr)^2 \leq 0$
+- **No local minima:** For $K > K_c$, $U$ has exactly one minimum ($r^*$) and one maximum ($r = 0$)
 
-By LaSalle's invariance principle, every trajectory converges to the largest invariant set within $\{d\mathcal{V}_{\text{KE}}/dt = 0\}$. This set consists of fixed points where $\partial_t\psi = \omega(x)$ everywhere — i.e., all oscillators either locked or freely drifting at their natural frequency.
-
-**The physical initial condition selects the basin.** A protogalactic cloud starts desynchronized: $r(x,0) \ll 1$, density approximately homogeneous, no preexisting coherence structure. From this initial condition:
-
-- Local minima of $\mathcal{V}_{\text{KE}}$ that require preexisting coherence structure are **unreachable** — they are not in the basin of the physical initial condition.
-- Saddle points are **unstable** — the flow passes through them.
-- The global minimum is **the only attractor reachable from generic desynchronized initial data**.
-
-Therefore: for each baryonic distribution $\rho_b(x)$, the physical Lyapunov descent from homogeneous, desynchronized initial conditions produces a unique fixed point, and the rotation curve at that fixed point is uniquely determined.
+By LaSalle's invariance principle on the compact interval $[0,1]$, every trajectory with $r(0) > 0$ converges to the unique minimum $r^*$. There are no local traps, no saddle points on the interior, and no basin boundary to characterize — the entire interval $(0,1]$ is the basin of $r^*$.
 
 **Theorem (Lyapunov uniqueness).** Let $\rho_b(x)$ be a baryonic density distribution with finite total mass. Let the Kuramoto–Einstein system evolve from initial data with $r(x,0) \ll 1$ (desynchronized) and $\psi(x,0)$ approximately uniform. Then the $t \to \infty$ limit exists, is unique, and the corresponding rotation curve $v(R)$ satisfies Renzo's Rule: every feature in $\rho_b$ is mirrored in $v(R)$ and every feature in $v(R)$ has a baryonic origin.
 
-*Proof sketch.* $\mathcal{V}_{\text{KE}}$ is a strict Lyapunov function (bounded below, monotone decreasing, vanishing derivative only at fixed points). The basin of attraction of the global minimum contains all states with $r \ll 1$ (no preexisting coherence can trap the trajectory in a local minimum). By LaSalle, convergence to the global minimum. At the global minimum, the Kuramoto self-consistency equation and smoothing kernel yield Renzo's Rule ([companion derivation](renzos_rule_from_kuramoto.md)). $\square$
+*Proof sketch.* $U(r)$ is a strict Lyapunov function on $[0,1]$ (bounded below, monotone decreasing, vanishing derivative only at $r = 0$ and $r = r^*$). The maximum at $r = 0$ is unstable; any $r > 0$ flows to $r^*$. Desynchronized initial data has $r > 0$ (any finite matter distribution has nonzero coherence). By LaSalle, convergence to $r^*$. At $r^*$, the Kuramoto self-consistency equation and smoothing kernel yield Renzo's Rule ([companion derivation](renzos_rule_from_kuramoto.md)). $\square$
 
 ## 7. The analogy made precise
 
 | Thermodynamics | Kuramoto–Einstein |
 |---------------|-------------------|
-| Entropy $S$ | $-\mathcal{V}_{\text{KE}}$ |
-| Second law: $dS/dt \geq 0$ | $d\mathcal{V}_{\text{KE}}/dt \leq 0$ |
-| Equilibrium: max $S$ | min $\mathcal{V}_{\text{KE}}$ |
-| Arrow of time ← initial conditions | Arrow of formation ← initial coherence |
-| Boltzmann: $S = k\ln W$ | $\mathcal{V}_{\text{KE}} = -\tfrac{1}{2}\iint K\cos\Delta\psi$ |
+| Free energy $F$ | $U(r)$ (Ott–Antonsen potential) |
+| Second law: $dF/dt \leq 0$ | $dU/dt = -(dU/dr)^2 \leq 0$ |
+| Equilibrium: min $F$ | min $U$ at $r^*$ |
+| Arrow of time ← low-entropy initial state | Arrow of formation ← desynchronized initial state ($r \ll 1$) |
+| Order parameter (magnetization) | $r \in [0,1]$ (coherence) |
 
-If the Kuramoto–Einstein Lyapunov functional exists, it plays exactly the role entropy plays in thermodynamics: it does not tell you the equations are asymmetric (they are not — the Kuramoto fixed-point equations are symmetric). It tells you the *physics* is asymmetric, because dissipation breaks the degeneracy.
+The Ott–Antonsen potential $U(r)$ plays exactly the role of a Landau free energy: it is bounded, monotone along trajectories, and selects a unique equilibrium from symmetric initial conditions. The primal interaction energy $\mathcal{V}[\theta]$ oscillates — this is the saddle-point oscillation familiar from Lagrangian relaxation ([intersections](intersections/joven_stick_slip_dark_matter.md), §3.3). The dual variable $r$ descends.
 
-The arrow of time is not in the Schrödinger equation. It is in the low-entropy initial state. The uniqueness of galactic structure is not in the fixed-point equations. It is in the dynamics that produced the fixed point.
-
-You cannot derive it from the fixed-point equations alone because it is not there. It is in the dynamics.
+The arrow of time is not in the Schrödinger equation. It is in the low-entropy initial state. The uniqueness of galactic structure is not in the fixed-point equations. It is in the gradient flow on $U(r)$ that produced the fixed point.
