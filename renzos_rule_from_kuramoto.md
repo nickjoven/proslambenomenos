@@ -8,7 +8,7 @@ N. Joven — March 2026 — CC0 1.0
 
 This document derives Renzo's Rule — the observation that every feature in a galaxy's baryonic luminosity profile is mirrored in its rotation curve — directly from the Kuramoto self-consistency equation.
 
-The [companion derivation in 201](https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md) proves the same result from the ADM side (Einstein–Hilbert action, Hamiltonian constraint, KKT conditions). This derivation starts from the Kuramoto side and meets in the middle. The two proofs are independent: neither assumes the other's starting point.
+The [companion derivation][renzos-adm] proves the same result from the ADM side (Einstein–Hilbert action, Hamiltonian constraint, KKT conditions). This derivation starts from the Kuramoto side and meets in the middle. The two proofs are independent: neither assumes the other's starting point.
 
 ## 2. The Kuramoto self-consistency equation
 
@@ -142,9 +142,29 @@ $$\mu_{\text{RAR}}(x) = 1 - e^{-\sqrt{x}}$$
 - $x \gg 1$ (Newtonian): $\mu \to 1$, exponential suppression of excess coupling
 - $x \ll 1$ (deep MOND): $\mu \approx x^{1/2}$, giving $a_{\text{total}} = a_{\text{bary}}/\mu \approx a_{\text{bary}} \cdot x^{-1/2} = \sqrt{a_{\text{bary}} \cdot a_0}$
 
-The deep-MOND scaling $a_{\text{total}} = \sqrt{a_{\text{bary}} \cdot a_0}$ — which implies the baryonic Tully-Fisher relation $v^4 \propto M$ — emerges from the Stribeck exponent $\delta = 1/2$. This exponent is not fitted: it is the value at which the velocity-weakening branch of the Stribeck curve matches the square-root onset of the Kuramoto order parameter.
+The deep-MOND scaling $a_{\text{total}} = \sqrt{a_{\text{bary}} \cdot a_0}$ — which implies the baryonic Tully-Fisher relation $v^4 \propto M$ — emerges from the Stribeck exponent $\delta = 1/2$. This exponent is not fitted. It is determined by matching the Stribeck function to the Kuramoto order parameter at the critical point $x = 1$.
 
-The simple form $\mu = 1 - 1/x$ (from the bare Kuramoto sine coupling) and the RAR form $\mu = 1 - e^{-\sqrt{x}}$ (from the Stribeck-weighted coupling) agree in the supercritical regime and diverge only at $x \lesssim 1$, where the Stribeck function provides the physically correct continuation into the subcritical regime. The [201 SPARC-X API](https://github.com/nickjoven/201/blob/main/sparc_x/stribeck.py) implements and numerically verifies both forms.
+**Matching calculation.** The Kuramoto onset gives $\mu_K(x) = 1 - 1/x$ for $x > 1$. The Stribeck function gives $\mu_S(x) = 1 - e^{-x^\delta}$ for all $x$. At $x = 1$, both must agree in value and slope:
+
+*Value:* $\mu_K(1) = 0$ and $\mu_S(1) = 1 - e^{-1} \neq 0$ for any $\delta$. The Stribeck function smooths through the transition — exact agreement at $x = 1$ is not expected (one is singular, the other analytic). The matching condition is instead on the *leading behavior* as $x \to 1^+$.
+
+*Slope:* $\mu_K'(x) = 1/x^2$, so $\mu_K'(1) = 1$. Meanwhile $\mu_S'(x) = \delta\,x^{\delta - 1}\,e^{-x^\delta}$, so $\mu_S'(1) = \delta\,e^{-1}$.
+
+Setting $\mu_S'(1) = \mu_K'(1)$: $\delta = e \approx 2.72$, which is too steep.
+
+The correct matching is structural, not pointwise. The Kuramoto onset has $r^* \propto \sqrt{K - K_c} \propto (x - 1)^{1/2}$ near threshold — a **square-root** branch. The Stribeck function $\mu_S(x) = 1 - e^{-x^\delta}$ has leading behavior $\mu_S(x) \approx x^\delta$ for $x \ll 1$. In the deep-MOND regime, the two functions must produce compatible scaling. The Kuramoto square-root onset gives:
+
+$$a_{\text{total}} \;\propto\; \frac{a_{\text{bary}}}{r^{*2}} \;\propto\; \frac{a_{\text{bary}}}{(x-1)}$$
+
+which diverges at $x = 1$. The Stribeck continuation must resolve this divergence while preserving the square-root character. For $x < 1$, $\mu_S \approx x^\delta$ and so:
+
+$$a_{\text{total}} \;=\; \frac{a_{\text{bary}}}{\mu_S} \;\approx\; a_{\text{bary}} \cdot x^{-\delta} \;=\; a_{\text{bary}} \left(\frac{a_0}{a_{\text{bary}}}\right)^\delta \;=\; a_{\text{bary}}^{1-\delta}\,a_0^\delta$$
+
+The baryonic Tully-Fisher relation requires $a_{\text{total}} = \sqrt{a_{\text{bary}}\cdot a_0}$, which is $a_{\text{bary}}^{1/2}\,a_0^{1/2}$. Matching exponents: $1 - \delta = 1/2$, hence $\delta = 1/2$. $\square$
+
+This is the unique exponent that produces $v^4 \propto M$ in the deep-MOND regime while remaining compatible with the Kuramoto square-root onset in the supercritical regime.
+
+The simple form $\mu = 1 - 1/x$ (from the bare Kuramoto sine coupling) and the RAR form $\mu = 1 - e^{-\sqrt{x}}$ (from the Stribeck-weighted coupling) agree in the supercritical regime and diverge only at $x \lesssim 1$, where the Stribeck function provides the physically correct continuation into the subcritical regime. The [SPARC-X API][sparc-x] implements and numerically verifies both forms.
 
 ### 7.2. The two regimes
 
@@ -155,7 +175,7 @@ The transition is smooth: the Stribeck coupling function interpolates continuous
 
 ## 8. Completing the circle
 
-The ADM-side derivation in [201](https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md) proves Renzo's Rule from the Hamiltonian constraint: the algebraic, local coupling of baryonic density and geometry on each spatial slice.
+The [ADM-side derivation][renzos-adm] proves Renzo's Rule from the Hamiltonian constraint: the algebraic, local coupling of baryonic density and geometry on each spatial slice.
 
 This derivation proves the same result from the Kuramoto self-consistency equation: the integral coupling of baryonic density and coherence through the synchronization kernel.
 
@@ -169,3 +189,8 @@ The two proofs are independent. Their agreement is the consistency check. Their 
 | Source of $a_0$ | Not derived (input parameter) | Derived from [proslambenomenos](proslambenomenos.md) |
 
 The Kuramoto side closes the two gaps the ADM side left open: uniqueness and the origin of $a_0$.
+
+---
+
+[renzos-adm]: https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md "Renzo's Rule derivation (ADM side) — Joven 2026"
+[sparc-x]: https://github.com/nickjoven/201/blob/main/sparc_x/stribeck.py "SPARC-X API: Stribeck curve implementation"
