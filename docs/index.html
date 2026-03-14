@@ -107,8 +107,10 @@
   <a href="#thesis"><strong>Proslambenomenos</strong></a>
   <a href="#chain">The Chain</a>
   <a href="#lyapunov">Lyapunov</a>
+  <a href="#mapping">K-E Mapping</a>
   <a href="#renzo">Renzo's Rule</a>
   <a href="#status">Status</a>
+  <a href="#next">Next</a>
   <a href="#companions">Companions</a>
   <a href="https://github.com/nickjoven/proslambenomenos">GitHub</a>
 </nav>
@@ -170,6 +172,35 @@ $$a_0 \;=\; \frac{c\,\nu_\Lambda}{2\pi} \;=\; \frac{c\,H_0}{2\pi} \;\approx\; 1.
   </table>
   <p style="color:var(--text-muted);font-size:0.9rem;">Robust to the Hubble tension. All values within 15% of observed $a_0$.</p>
 </div>
+
+<!-- ===== K-E MAPPING ===== -->
+<h2 id="mapping">The Kuramoto–Einstein Dictionary</h2>
+
+<p>The mapping between synchronization dynamics and ADM gravity, written out derivative by derivative.</p>
+
+<table>
+  <tr><th>Kuramoto field</th><th>ADM field</th><th>Reading</th></tr>
+  <tr><td>$r(x,t)$ — coherence</td><td>$N$ — lapse function</td><td>Coherence is clock rate</td></tr>
+  <tr><td>$\partial_i\psi$ — phase gradient</td><td>$N_i$ — shift vector</td><td>Phase gradients are coordinate drift</td></tr>
+  <tr><td>$C_{ij}$ — coherence tensor</td><td>$\gamma_{ij}$ — spatial metric</td><td>Synchronization structure is geometry</td></tr>
+  <tr><td>$\omega(x) = \sqrt{4\pi G\rho}$</td><td>Jeans frequency</td><td>Matter sets the natural frequency</td></tr>
+  <tr><td>$K(x,x')$ — coupling kernel</td><td>$G_\gamma(x,x')$ — Green's function</td><td>Coupling propagates through geometry</td></tr>
+</table>
+
+<div class="card">
+  <h3>Extrinsic curvature = phase-weighted desynchronization</h3>
+  $$\mathcal{K}_{ij}(x,t) = \bigl\langle \partial_i \theta \, \cos(\psi - \theta) \, \partial_j \theta \bigr\rangle$$
+  <p>When $\theta \approx \psi$ (synchronized): $\mathcal{K}_{ij}$ reduces to phase gradient correlation. When $\theta \perp \psi$ (decoherent): $\mathcal{K}_{ij} = 0$. Extrinsic curvature measures misalignment with the mean field.</p>
+</div>
+
+<div class="card">
+  <h3>Geodesic equation = phase-gradient following</h3>
+  <p>In the Newtonian limit ($r \approx 1 + \Phi/c^2$):</p>
+  $$\frac{d^2 x^i}{dt^2} = -c^2\,\partial_i r$$
+  <p><strong>Gravitational acceleration is the gradient of coherence.</strong> Objects accelerate toward regions of higher synchronization. "Falling" is following the coherence gradient.</p>
+</div>
+
+<p>Full mapping with all time and spatial derivatives: <a href="https://github.com/nickjoven/proslambenomenos/blob/main/kuramoto_einstein_mapping.md"><code>kuramoto_einstein_mapping.md</code></a></p>
 
 <!-- ===== LYAPUNOV ===== -->
 <h2 id="lyapunov">Lyapunov Functional and Uniqueness</h2>
@@ -244,6 +275,16 @@ $$\omega(x) = \sqrt{4\pi G\,\rho_b(x)}$$
   <tr><td>Origin of $a_0$</td><td><span class="tag tag-open">Input</span></td><td><span class="tag tag-closed">Derived</span> Proslambenomenos</td></tr>
 </table>
 
+<h3>The MOND interpolation function</h3>
+
+<p>The Stribeck-weighted coupling with exponent $\delta = 1/2$ gives:</p>
+
+$$\mu(x) = 1 - e^{-\sqrt{x}}, \qquad x = a/a_0$$
+
+<div class="card">
+  <p><span class="tag tag-closed">Closed</span> The exponent $\delta = 1/2$ is derived, not fitted. In deep MOND, $\mu \approx x^\delta$ gives $a_{\text{total}} = a_{\text{bary}}^{1-\delta}\,a_0^\delta$. The baryonic Tully-Fisher relation ($v^4 \propto M$) requires $1-\delta = 1/2$, hence $\delta = 1/2$. One line of exponent matching.</p>
+</div>
+
 <p>Full derivation: <a href="https://github.com/nickjoven/proslambenomenos/blob/main/renzos_rule_from_kuramoto.md"><code>renzos_rule_from_kuramoto.md</code></a></p>
 
 <!-- ===== STATUS ===== -->
@@ -302,23 +343,71 @@ $$\omega(x) = \sqrt{4\pi G\,\rho_b(x)}$$
     <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/notebooks/02_lyapunov_functional.ipynb">notebook 02, sim 4</a></td>
   </tr>
   <tr>
-    <td>Stribeck-weighted impedance in coupling kernel</td>
-    <td><span class="tag tag-open">Open</span></td>
-    <td>Needed for quantitative SPARC comparison</td>
+    <td>$\gamma \sim \nu_\Lambda$ from cosmic density PDF</td>
+    <td><span class="tag tag-closed">Closed</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/proslambenomenos.md">proslambenomenos.md §3.1</a></td>
+  </tr>
+  <tr>
+    <td>$\delta = 1/2$ Stribeck exponent from Tully-Fisher matching</td>
+    <td><span class="tag tag-closed">Closed</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/renzos_rule_from_kuramoto.md">renzos_rule_from_kuramoto.md §7.1</a></td>
+  </tr>
+  <tr>
+    <td>Kuramoto–Einstein mapping (derivative-level dictionary)</td>
+    <td><span class="tag tag-math">Math</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/kuramoto_einstein_mapping.md">kuramoto_einstein_mapping.md</a></td>
   </tr>
   <tr>
     <td>Full dynamical equivalence (numerical prefactors)</td>
     <td><span class="tag tag-open">Open</span></td>
-    <td>Flagged in Kuramoto–Einstein mapping</td>
+    <td>Flagged in K-E mapping §7</td>
+  </tr>
+  <tr>
+    <td>Phase-plot visualization of stick-slip transition</td>
+    <td><span class="tag tag-open">Next</span></td>
+    <td>See <a href="#next">below</a></td>
   </tr>
 </table>
+
+<!-- ===== NEXT ===== -->
+<h2 id="next">Next: The Sheet Music</h2>
+
+<p>The framework has a natural visualization that hasn't been built yet: the <strong>phase-plot of the Ott–Antonsen reduction</strong> showing the stick-slip transition as a function of the Jeans frequency $\omega_J = \sqrt{4\pi G\rho}$.</p>
+
+<div class="card">
+  <h3>What it would show</h3>
+  <p>A phase portrait in $(r, \dot{r})$ space, parameterized by the local acceleration ratio $x = a/a_0$:</p>
+  <ul style="margin: 0.8rem 0 0.8rem 1.5rem; line-height: 2;">
+    <li><strong>$x \gg 1$ (Newtonian):</strong> Stable fixed point at $r^* = \sqrt{1 - 1/x} \approx 1$. Tight spiral. Full synchronization. Stars locked to the vacuum frequency.</li>
+    <li><strong>$x = 1$ (MOND boundary):</strong> The fixed point collides with $r = 0$. Bifurcation. The spiral opens.</li>
+    <li><strong>$x \ll 1$ (deep MOND):</strong> The bare Kuramoto fixed point vanishes ($r^* = 0$). The Stribeck excess coupling $\xi = e^{-\sqrt{x}}$ holds partial coherence — the system doesn't fully desynchronize. The "stick" in stick-slip.</li>
+  </ul>
+  <p>Sweeping $x$ from $10$ down to $0.01$ animates the transition from Newtonian gravity to MOND — the same transition a star experiences as it orbits from the dense core to the diffuse outskirts of a galaxy.</p>
+</div>
+
+<div class="card">
+  <h3>Why this is the "sheet music"</h3>
+  <p>The proslambenomenos is the reference pitch. The Jeans frequency at each radius is the local note. The phase portrait shows whether that note is <em>locked</em> to the reference (Newtonian regime) or <em>drifting</em> (MOND regime). The entire rotation curve of a galaxy is a score — each radius playing its own frequency, synchronized or not, against the cosmic ground tone $\nu_\Lambda$.</p>
+  <p>The visualization would be a single animated plot that encodes the entire theory.</p>
+</div>
+
+<div class="card" style="border-color: var(--accent4);">
+  <h3 style="color: var(--accent4);">Implementation sketch</h3>
+  <p>Stdlib Python (numpy + matplotlib). Three panels:</p>
+  <ol style="margin: 0.5rem 0 0 1.5rem; line-height: 2;">
+    <li><strong>Left:</strong> Phase portrait $(r, \dot{r})$ with the Ott-Antonsen flow field, swept by $x$. Fixed point trajectory traced as $x$ varies.</li>
+    <li><strong>Center:</strong> $\mu(x) = 1 - e^{-\sqrt{x}}$ with the current $x$ value highlighted. The interpolation function as a "tuning curve."</li>
+    <li><strong>Right:</strong> A radial profile of a real galaxy (e.g. NGC 2403 from SPARC) with $x(R)$ mapped to color — blue for locked, red for drifting. The rotation curve as a musical score.</li>
+  </ol>
+  <p style="color:var(--text-muted);font-size:0.9rem;">Target: <code>notebooks/04_phase_portrait.ipynb</code></p>
+</div>
 
 <!-- ===== COMPANIONS ===== -->
 <h2 id="companions">Companion Repositories</h2>
 
 <div class="card">
   <h3><a href="https://github.com/nickjoven/201">201</a> — The Unifying Framework</h3>
-  <p>Gravity as synchronization in a frictional medium. Kuramoto–Einstein mapping. Renzo's Rule from the ADM side. The walkthrough that started it.</p>
+  <p>Gravity as synchronization in a frictional medium. Renzo's Rule from the ADM side. SPARC-X numerical verification. The walkthrough that started it.</p>
 </div>
 
 <div class="card">
@@ -328,7 +417,7 @@ $$\omega(x) = \sqrt{4\pi G\,\rho_b(x)}$$
 
 <div class="card">
   <h3>This repository — Proslambenomenos</h3>
-  <p>The companion derivation. Closes the three gaps 201 left open: the origin of $a_0$, uniqueness via Lyapunov dissipation, and Renzo's Rule from the Kuramoto side.</p>
+  <p>The self-contained preprint. Derives $a_0$ from $\Lambda$, proves uniqueness via Lyapunov dissipation, derives Renzo's Rule from Kuramoto self-consistency, and includes the full Kuramoto–Einstein derivative-level dictionary.</p>
 </div>
 
 <hr style="border-color:var(--border); margin: 3rem 0;">
