@@ -144,7 +144,7 @@ $$\mu_{\text{RAR}}(x) = 1 - e^{-\sqrt{x}}$$
 
 The deep-MOND scaling $a_{\text{total}} = \sqrt{a_{\text{bary}} \cdot a_0}$ — which implies the baryonic Tully-Fisher relation $v^4 \propto M$ — emerges from the Stribeck exponent $\delta = 1/2$. This exponent is not fitted: it is the value at which the velocity-weakening branch of the Stribeck curve matches the square-root onset of the Kuramoto order parameter.
 
-The simple form $\mu = 1 - 1/x$ (from the bare Kuramoto sine coupling) and the RAR form $\mu = 1 - e^{-\sqrt{x}}$ (from the Stribeck-weighted coupling) agree in the supercritical regime and diverge only at $x \lesssim 1$, where the Stribeck function provides the physically correct continuation into the subcritical regime. The [201 SPARC-X API](201/sparc_x/stribeck.py) implements and numerically verifies both forms.
+The simple form $\mu = 1 - 1/x$ (from the bare Kuramoto sine coupling) and the RAR form $\mu = 1 - e^{-\sqrt{x}}$ (from the Stribeck-weighted coupling) agree in the supercritical regime and diverge only at $x \lesssim 1$, where the Stribeck function provides the physically correct continuation into the subcritical regime. The [201 SPARC-X API](https://github.com/nickjoven/201/blob/main/sparc_x/stribeck.py) implements and numerically verifies both forms.
 
 ### 7.2. The two regimes
 
