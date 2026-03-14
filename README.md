@@ -14,6 +14,37 @@ $$\nu_\Lambda \;=\; c\,\sqrt{\Lambda/3}$$
 
 and the MOND acceleration scale, the Hubble rate, and the galactic synchronization threshold are all overtones of this single reference. They are not independent coincidences — they are intervals measured from the proslambenomenos.
 
+## Positioning: from galaxies to global cosmic mechanics
+
+The MOND acceleration scale $a_0 \approx 1.2 \times 10^{-10}\;\text{m s}^{-2}$ has long been recognized as an empirical threshold below which Newtonian gravity underpredicts galactic rotation curves. The numerical coincidence $a_0 \approx cH_0 / 2\pi$ ties this galactic-scale phenomenon to the cosmological expansion rate, but MOND as traditionally formulated does not explain *why* such a connection exists.
+
+This framework provides the missing mechanism. The Kuramoto synchronization model, applied to self-gravitating matter on a manifold via the ADM decomposition of general relativity, produces the MOND transition as a phase transition in oscillator coherence:
+
+- **Above $a_0$**: coupling is supercritical, oscillators fully synchronize, and Newtonian gravity holds.
+- **Below $a_0$**: coupling is subcritical, coherence drops as $r \propto \sqrt{K - K_c}$, and the synchronization deficit appears as a dark-matter-like phantom in the rotation curve.
+
+The $2\pi$ factor in $a_0 = cH_0 / 2\pi$ is not a coincidence or a fit parameter — it is the ratio of angular frequency to cycle frequency that appears in the Kuramoto critical coupling formula $K_c = 2 / (\pi\, g(0))$, where $g(0)$ is the oscillator frequency distribution evaluated at its mean.
+
+The extrapolation from galactic phenomenology to global cosmic mechanics is therefore structural: $\Lambda$, $H_0$, and $a_0$ form a single chain
+
+$$\Lambda \;\xrightarrow{c\sqrt{\cdot/3}}\; \nu_\Lambda \;\xrightarrow{\div\sqrt{\Omega_\Lambda}}\; H_0 \;\xrightarrow{c/2\pi}\; a_0$$
+
+where the first arrow is the Friedmann equation (standard cosmology) and the second is the Kuramoto critical coupling (this framework). The cosmological constant is not merely correlated with the MOND scale — it *sets* it, through the synchronization mechanism.
+
+## Glossary
+
+- **$\Lambda$ (cosmological constant)**: A constant in Einstein's field equations representing the energy density of empty space. It drives the accelerating expansion of the universe.
+- **$\nu_\Lambda$ (proslambenomenos frequency)**: The fundamental oscillation frequency $c\sqrt{\Lambda/3}$ set by the cosmological constant. In a pure de Sitter universe (vacuum, no matter), this equals the Hubble rate exactly.
+- **$H_0$ (Hubble parameter)**: The present-day expansion rate of the universe, approximately $2.2 \times 10^{-18}\;\text{s}^{-1}$.
+- **$a_0$ (MOND acceleration scale)**: The acceleration threshold ($\approx 1.2 \times 10^{-10}\;\text{m s}^{-2}$) below which galactic dynamics deviate from Newtonian predictions. Empirically determined from galaxy rotation curves.
+- **MOND (Modified Newtonian Dynamics)**: A phenomenological framework (Milgrom 1983) that modifies Newtonian gravity below the acceleration scale $a_0$ to explain galaxy rotation curves without invoking dark matter.
+- **Kuramoto model**: A mathematical model of coupled oscillators (Kuramoto 1975) that exhibits a phase transition from incoherence to synchronization at a critical coupling strength $K_c$. The order parameter $r \in [0,1]$ measures the degree of coherence.
+- **ADM formalism**: The Arnowitt–Deser–Misner decomposition of general relativity, which splits spacetime into spatial slices evolving in time. The dynamical variables are the spatial metric $\gamma_{ij}$ (geometry of each slice), the lapse $N$ (clock rate), and the shift $N^i$ (coordinate drift between slices).
+- **Lyapunov function**: A function that decreases monotonically along the trajectories of a dynamical system, proving stability and convergence to an equilibrium.
+- **Ott–Antonsen reduction**: An exact dimensionality reduction (Ott & Antonsen 2008) for Kuramoto oscillators with Lorentzian frequency distributions, reducing the infinite-dimensional phase dynamics to a low-dimensional ODE on the order parameter $r$.
+- **Renzo's Rule**: The empirical observation (Sancisi 2004) that every feature in a galaxy's baryonic luminosity profile is mirrored in its rotation curve and vice versa — there are no unexplained kinematic features.
+- **Order parameter ($r$)**: In the Kuramoto model, the magnitude of the complex mean field of the oscillator phases. $r = 0$ means complete incoherence; $r = 1$ means perfect synchronization. In the Kuramoto–Einstein mapping, $r$ corresponds to the lapse function $N$.
+
 ## Contents
 
 | Document | Description |
@@ -21,32 +52,10 @@ and the MOND acceleration scale, the Hubble rate, and the galactic synchronizati
 | [`proslambenomenos.md`](proslambenomenos.md) | From $\Lambda$ to $a_0$: three constants, one frequency |
 | [`kuramoto_einstein_mapping.md`](kuramoto_einstein_mapping.md) | The Kuramoto–Einstein dictionary: explicit derivative mapping between synchronization and ADM gravity |
 | [`lyapunov_uniqueness.md`](lyapunov_uniqueness.md) | Lyapunov functional and the dissipation argument for uniqueness |
-| [`renzos_rule_from_kuramoto.md`](renzos_rule_from_kuramoto.md) | Renzo's Rule from Kuramoto self-consistency (companion to the [ADM derivation][renzos-adm]) |
+| [`renzos_rule_from_kuramoto.md`](renzos_rule_from_kuramoto.md) | Renzo's Rule from Kuramoto self-consistency |
 | [`notebooks/`](notebooks/) | Companion Jupyter notebooks (stdlib Python only) |
 | [`docs/`](docs/) | GitHub Pages walkthrough |
-
-## Companion repositories
-
-| Repository | Role |
-|-----------|------|
-| [intersections](https://github.com/nickjoven/intersections) | Stick-slip dynamics, galaxy rotation curves, Lagrangian relaxation |
-| [201](https://github.com/nickjoven/201) | Unifying framework, Renzo's Rule (ADM side), SPARC-X numerical verification |
-
-## What this closes
-
-The [unifying framework][unifying] and [Renzo's Rule derivation][renzos-adm] in 201 left three gaps open after [PR #7](https://github.com/nickjoven/201/pull/7):
-
-1. **Where does the coupling strength come from?** → The proslambenomenos: $\nu_\Lambda = c\sqrt{\Lambda/3}$ sets $K_c$ and therefore $a_0$.
-2. **Mathematical proof replacing empirical uniqueness** → Lyapunov functional for the Kuramoto–Einstein system; dissipation selects a unique basin.
-3. **Renzo's Rule from the synchronization side** → Derived from Kuramoto self-consistency, completing the circle with the ADM-side proof.
-
-> **Uniqueness is not a mathematical property of the equilibrium — it is a physical property of the path.**
 
 ## License
 
 [CC0 1.0 Universal](LICENSE) — No rights reserved.
-
----
-
-[renzos-adm]: https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md "Renzo's Rule derivation (ADM side) — Joven 2026"
-[unifying]: https://github.com/nickjoven/201/blob/main/joven_unifying_framework.md "Gravity as Synchronization in a Frictional Medium — Joven 2026"
