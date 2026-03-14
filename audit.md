@@ -273,4 +273,28 @@ Despite the issues above, several elements of the preprint are sound and potenti
 
 ---
 
-*This audit was conducted by independent numerical verification and derivation checking. No `.ket/` provenance directories were found; all claims were traced from the documents and verified against standard references (Kuramoto 1984, Strogatz 2000, Planck 2018, McGaugh 2016).*
+## 10. Resolution: The Lyapunov Functional on the Order Parameter
+
+The critical finding (§3.1) and the high-severity uniqueness gap (§3.2) are resolved in [`lyapunov_amendment.md`](lyapunov_amendment.md). Summary:
+
+**Root cause.** The original $\mathcal{V}[\theta]$ operates on the phase field $\theta(x,t)$, which is unbounded for drifting oscillators. The time derivative picks up a cross term $\int\omega\,\partial_t\theta$ of indefinite sign. This is the *primal* oscillation around the saddle point in the Lagrangian relaxation picture ([intersections](https://github.com/nickjoven/intersections), §3.3 table: "Subharmonic / Dual oscillation around saddle point").
+
+**Fix.** The framework's own bounded variables — $r(x,t) \in [0,1]$ from the [Kuramoto–Einstein mapping](https://github.com/nickjoven/201/blob/main/kuramoto_einstein_mapping.md) and $\lambda = \max(0, a_\text{obs} - a_\text{bary}) \geq 0$ from the [Lagrangian duality](https://github.com/nickjoven/intersections/blob/main/joven_stick_slip_dark_matter.md) — provide the right level of description. The Ott–Antonsen reduction to the order parameter yields:
+
+$$U(r) = \frac{\gamma}{2}r^2 - \frac{K}{4}r^2 + \frac{K}{8}r^4, \quad \frac{dU}{dt} = -\left(\frac{dU}{dr}\right)^2 \leq 0$$
+
+This is a strict Lyapunov function: bounded below, monotonically decreasing, unique minimum at $r^* = \sqrt{1 - 2\gamma/K}$. It works for non-identical frequencies ($\gamma > 0$ parameterizes the spread). Verified numerically: 0 violations in the continuum limit; 1/9 coarse-grained bins during the finite-$N$ transient.
+
+**Residual finding status after amendment:**
+
+| Finding | Original Severity | Post-Amendment |
+|---------|:-:|:-:|
+| Lyapunov time derivative is wrong for $\omega \neq 0$ | Critical | **Resolved** — replaced by $U(r)$ |
+| Uniqueness proof does not follow | High | **Resolved** — LaSalle applies to $U(r)$ on $[0,1]$ |
+| $g(0) \sim \mathcal{O}(1)$ is hidden parameter | High | **Partially resolved** — $g(0) = 1/(\pi\gamma)$; reduces to density contrast at nonlinear scale |
+| $\nu_\Lambda \approx H_0$ is Friedmann | Moderate | Unchanged — still warrants acknowledgment |
+| Notebook simulations | Moderate | Unchanged — demonstrations should be improved |
+
+---
+
+*This audit was conducted by independent numerical verification and derivation checking. The `.ket/` directory in the companion repository [201](https://github.com/nickjoven/201) contains only a `.gitkeep` placeholder; all claims were traced from the documents themselves and verified against standard references (Kuramoto 1984, Strogatz 2000, Ott & Antonsen 2008, Planck 2018, McGaugh 2016).*
