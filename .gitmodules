@@ -4,3 +4,6 @@
 [submodule "intersections"]
 	path = intersections
 	url = https://github.com/nickjoven/intersections.git
+[submodule "stribeck-optics"]
+	path = stribeck-optics
+	url = https://github.com/nickjoven/stribeck-optics.git
