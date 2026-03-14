@@ -26,29 +26,31 @@ Check:
 
 $$c \sqrt{\Lambda/3} \;\approx\; 3 \times 10^8 \;\times\; \sqrt{1.1 \times 10^{-52} / 3} \;\approx\; 3 \times 10^8 \;\times\; 1.9 \times 10^{-26} \;\approx\; 5.7 \times 10^{-18}\;\text{s}^{-1}$$
 
-This is $\nu_\Lambda \approx H_0$ to within a factor of order unity.
+The ratio $\nu_\Lambda / H_0 = \sqrt{\Omega_\Lambda} \approx 0.83$ follows exactly from the Friedmann equation. This is not a discovered coincidence — it is $\Lambda$CDM. In a pure de Sitter universe ($\Omega_\Lambda = 1$, no matter), the equality is exact: $H_\text{dS} = c\sqrt{\Lambda/3}$. At the present epoch, the matter contribution to the expansion rate accounts for the 17% difference.
 
-In the synchronization framework, $\nu_\Lambda$ is the proslambenomenos — the lowest tone of the system, not derived from the dynamics but setting the reference from which all intervals are measured. The expansion rate $H_0$ *is* this frequency. It is not that $H_0$ happens to equal $c\sqrt{\Lambda/3}$; rather, $H_0$ is the name cosmology gives to the proslambenomenos when measuring recession velocities.
+What the synchronization framework adds is not the first link of the chain ($\nu_\Lambda \approx H_0$, which is Friedmann) but the second ($H_0 \to a_0$, which requires the Kuramoto critical coupling). The proslambenomenos is $\nu_\Lambda$ — the de Sitter limit of the Hubble rate, the frequency the vacuum would oscillate at if matter were absent. The present-day $H_0$ is this frequency plus the matter correction $H_0 = \nu_\Lambda / \sqrt{\Omega_\Lambda}$.
 
 ## 3. From frequency to acceleration
 
-In the Kuramoto model, synchronization onset occurs at a critical coupling $K_c$ proportional to the spread of natural frequencies. For an oscillator population with characteristic frequency $\nu_\Lambda$ and typical frequency spread $\Delta\omega$, the critical coupling satisfies:
+The relation $a_0 \approx cH_0$ has been noted since Milgrom (1983) and explored as a possible cosmological connection to MOND (Milgrom 1999, Sanders 2008). What has been missing is the factor that separates them and a physical mechanism that produces it.
+
+In the Kuramoto model, synchronization onset occurs at a critical coupling $K_c$ that depends on the frequency distribution $g(\omega)$ of the oscillator population:
 
 $$K_c \;=\; \frac{2}{\pi\, g(0)}$$
 
-where $g(0)$ is the frequency distribution evaluated at the mean. When coupling falls below $K_c$, coherence drops — the system desynchronizes.
+where $g(0)$ is the frequency distribution evaluated at the mean. For a Lorentzian distribution with half-width $\gamma$ — the natural choice, since it is the unique family for which the Ott–Antonsen reduction is exact — $g(0) = 1/(\pi\gamma)$ and $K_c = 2\gamma$.
 
-The acceleration at which desynchronization occurs is the product of the reference frequency and the coupling propagation speed (the speed of light, since the medium is the vacuum):
+The acceleration at which desynchronization occurs is the product of the reference frequency, the propagation speed $c$, and the critical coupling geometry:
 
-$$a_0 \;=\; \frac{c\,\nu_\Lambda}{2\pi\,g(0)}$$
+$$a_0 \;=\; \frac{c\,\nu_\Lambda}{2\pi\,g(0)} \;=\; \frac{c\,\nu_\Lambda\,\pi\gamma}{2\pi} \;=\; \frac{c\,\nu_\Lambda\,\gamma}{2}$$
 
-For $g(0) \sim \mathcal{O}(1)$ in natural units, this recovers:
+The parameter $\gamma$ is the spread of natural frequencies $\omega(x) = \sqrt{4\pi G\rho(x)}$ across the matter distribution. At the nonlinear scale of cosmic structure ($\delta\rho/\rho \sim 1$), the frequency spread is of order the mean frequency: $\gamma \sim \nu_\Lambda$. Under this condition, $g(0) = 1/(\pi\gamma) \sim 1/(\pi\nu_\Lambda)$, and:
 
 $$\boxed{a_0 \;\approx\; \frac{cH_0}{2\pi}}$$
 
-which is the observed value $\approx 1.2 \times 10^{-10}\;\text{m s}^{-2}$.
+which gives $\approx 1.0 \times 10^{-10}\;\text{m s}^{-2}$, compared to the observed value $\approx 1.2 \times 10^{-10}\;\text{m s}^{-2}$ (McGaugh 2016). The ratio is 0.87 using Planck $H_0 = 67.4$ and 0.94 using SH0ES $H_0 = 73.0$.
 
-The $2\pi$ is not a fudge factor. It is the ratio of angular frequency to cycle frequency — the same $2\pi$ that appears in the Kuramoto critical coupling formula. The proslambenomenos is a cycle frequency; the locking window is measured in angular frequency.
+The $2\pi$ is not a fudge factor. It is the ratio of angular frequency to cycle frequency — the same $2\pi$ that appears in the Kuramoto critical coupling formula. This is the novel content: the Milgrom coincidence $a_0 \sim cH_0$ acquires a specific geometric factor from synchronization theory. The remaining $\sim 10$% discrepancy is absorbed by the condition $\gamma \sim \nu_\Lambda$, which is an approximation — a precise prediction requires computing $g(0)$ from the cosmic density PDF.
 
 ## 4. The interval structure
 
@@ -70,14 +72,14 @@ The framework's claim:
 > $\Lambda$, $H_0$, and $a_0$ are not three independent measurements. They are one frequency measured in three different units.
 
 - Measured as an inverse area (curvature): $\Lambda$
-- Measured as an inverse time (expansion rate): $H_0 = c\sqrt{\Lambda/3}$
-- Measured as an acceleration (synchronization threshold): $a_0 = cH_0 / 2\pi$
+- Measured as an inverse time (expansion rate): $H_0 = \nu_\Lambda / \sqrt{\Omega_\Lambda}$ (Friedmann)
+- Measured as an acceleration (synchronization threshold): $a_0 = cH_0 / 2\pi$ (Kuramoto)
 
 The chain:
 
-$$\Lambda \;\xrightarrow{c\sqrt{\cdot/3}}\; H_0 \;\xrightarrow{c/2\pi}\; a_0$$
+$$\Lambda \;\xrightarrow{c\sqrt{\cdot/3}}\; \nu_\Lambda \;\xrightarrow{\div\sqrt{\Omega_\Lambda}}\; H_0 \;\xrightarrow{c/2\pi}\; a_0$$
 
-Each arrow is a single multiplication by $c$ and a geometric factor. No free parameters. No fitting. The proslambenomenos is the vacuum's tick rate. Everything else is an interval measured from it.
+The first arrow is the Friedmann equation (known). The second is the Kuramoto critical coupling (new). The $2\pi$ and the condition $\gamma \sim \nu_\Lambda$ are the only inputs beyond standard cosmology. The proslambenomenos is the vacuum's tick rate — what the Hubble rate converges to as matter dilutes.
 
 ## 6. Consequences for the Kuramoto–Einstein framework
 

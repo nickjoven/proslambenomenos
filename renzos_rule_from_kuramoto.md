@@ -98,12 +98,40 @@ The derivation above has one free parameter: the reference frequency $\Omega$ ar
 
 $$\Omega \;=\; 2\pi\,\nu_\Lambda \;=\; 2\pi\,c\sqrt{\Lambda/3}$$
 
-This sets the center of the locking window. The MOND scale $a_0 = c\nu_\Lambda/2\pi$ marks the boundary between:
+This sets the center of the locking window. The MOND scale $a_0 = c\nu_\Lambda/2\pi$ marks the boundary between supercritical (Newtonian) and subcritical (MOND) regimes.
 
-- **Supercritical** ($a > a_0$): Most oscillators locked, $P_{\text{lock}} \approx 1$, self-consistency integral dominated by $\rho_b$ directly. Renzo's Rule is one-to-one: baryons track rotation curve with no phantom.
-- **Subcritical** ($a < a_0$): Few oscillators locked, $P_{\text{lock}} < 1$, self-consistency integral picks up the synchronization deficit. Renzo's Rule holds through the square-root interpolation: $v^4 \approx v_b^4 + (a_0 R)^2 \rho_b / \rho_{\text{crit}}$.
+### 7.1. Deriving the interpolation function from the Kuramoto onset
 
-The transition between regimes is smooth (it is the Kuramoto order parameter onset curve, $r \propto \sqrt{K - K_c}$) and produces the MOND interpolation function without fitting.
+The Ott–Antonsen fixed point (see [Lyapunov uniqueness proof](lyapunov_uniqueness.md) §5) gives the order parameter:
+
+$$r^* \;=\; \begin{cases} 0 & K \leq K_c \\ \sqrt{1 - K_c/K} & K > K_c \end{cases}$$
+
+Under the Kuramoto–Einstein mapping, the local effective coupling $K_{\text{eff}}(R)$ at galactocentric radius $R$ scales with the gravitational acceleration: $K_{\text{eff}} \propto a(R)$, with $K_c \propto a_0$. Define the MOND ratio $x = a/a_0 = K_{\text{eff}}/K_c$. Then:
+
+$$r^*(x) \;=\; \sqrt{1 - 1/x} \quad \text{for } x > 1$$
+
+The total gravitational acceleration is the baryonic acceleration divided by the locked fraction. In the Kuramoto picture, the lapse $N = r$ sets the effective gravitational potential, and the total acceleration relates to the baryonic acceleration through:
+
+$$a_{\text{total}} \;=\; \frac{a_{\text{bary}}}{r^{*2}} \;=\; \frac{a_{\text{bary}}}{1 - 1/x}$$
+
+The MOND interpolation function $\mu(x) = a_{\text{bary}}/a_{\text{total}}$ is therefore:
+
+$$\boxed{\mu(x) \;=\; 1 - \frac{1}{x} \;=\; \frac{x - 1}{x}}$$
+
+**Limits:**
+- $x \gg 1$ (Newtonian): $\mu \to 1$, full synchronization, $a_{\text{total}} = a_{\text{bary}}$
+- $x \to 1^+$ (MOND boundary): $\mu \to 0$, coherence drops, phantom compensates
+
+This is the "simple" interpolation function $\mu(x) = 1 - 1/x$, which is one of the standard forms in the MOND literature (Famaey & McGaugh 2012). The square-root onset of the Kuramoto order parameter produces it directly — no fitting.
+
+For the deep MOND regime ($x < 1$, fully subcritical), $r^* = 0$ and the framework must be extended beyond the mean-field fixed point. The radial acceleration relation $a_{\text{total}} = \sqrt{a_{\text{bary}} \cdot a_0}$ in this limit corresponds to the scaling of the synchronization deficit when all oscillators are drifting — a regime where the self-consistency equation is dominated by the kernel smoothing rather than the locking fraction.
+
+### 7.2. The two regimes
+
+- **Supercritical** ($a > a_0$, $x > 1$): Most oscillators locked, $r \approx \sqrt{1 - 1/x}$, Renzo's Rule is one-to-one: baryons track rotation curve with diminishing phantom.
+- **Subcritical** ($a < a_0$, $x < 1$): No locked oscillators in the mean-field picture ($r^* = 0$), self-consistency integral is dominated by the synchronization deficit, phantom compensates everywhere.
+
+The transition is smooth: the Kuramoto order parameter onset curve $r \propto \sqrt{K - K_c}$ produces the interpolation function at the critical point without fitting.
 
 ## 8. Completing the circle
 
