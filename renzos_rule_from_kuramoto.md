@@ -124,14 +124,34 @@ $$\boxed{\mu(x) \;=\; 1 - \frac{1}{x} \;=\; \frac{x - 1}{x}}$$
 
 This is the "simple" interpolation function $\mu(x) = 1 - 1/x$, which is one of the standard forms in the MOND literature (Famaey & McGaugh 2012). The square-root onset of the Kuramoto order parameter produces it directly — no fitting.
 
-For the deep MOND regime ($x < 1$, fully subcritical), $r^* = 0$ and the framework must be extended beyond the mean-field fixed point. The radial acceleration relation $a_{\text{total}} = \sqrt{a_{\text{bary}} \cdot a_0}$ in this limit corresponds to the scaling of the synchronization deficit when all oscillators are drifting — a regime where the self-consistency equation is dominated by the kernel smoothing rather than the locking fraction.
+For the deep MOND regime ($x < 1$, fully subcritical), $r^* = 0$ in the mean-field picture and the simple form diverges. The resolution comes from replacing the standard Kuramoto sine coupling $\sin(\psi - \theta)$ with a Stribeck-weighted coupling function.
+
+The classical Stribeck friction curve gives an excess coupling:
+
+$$\xi(v) = \exp\!\bigl[-(v/v_s)^\delta\bigr]$$
+
+which quantifies how far below the kinetic plateau the system is. Mapping $v/v_s \to x = a/a_0$ and identifying $\xi$ with the synchronization deficit gives a MOND interpolating function that works across both regimes:
+
+$$\boxed{\mu(x) = 1 - e^{-x^\delta}}$$
+
+With $\delta = 1/2$, this recovers the empirical RAR (McGaugh et al. 2016):
+
+$$\mu_{\text{RAR}}(x) = 1 - e^{-\sqrt{x}}$$
+
+**Limits:**
+- $x \gg 1$ (Newtonian): $\mu \to 1$, exponential suppression of excess coupling
+- $x \ll 1$ (deep MOND): $\mu \approx x^{1/2}$, giving $a_{\text{total}} = a_{\text{bary}}/\mu \approx a_{\text{bary}} \cdot x^{-1/2} = \sqrt{a_{\text{bary}} \cdot a_0}$
+
+The deep-MOND scaling $a_{\text{total}} = \sqrt{a_{\text{bary}} \cdot a_0}$ — which implies the baryonic Tully-Fisher relation $v^4 \propto M$ — emerges from the Stribeck exponent $\delta = 1/2$. This exponent is not fitted: it is the value at which the velocity-weakening branch of the Stribeck curve matches the square-root onset of the Kuramoto order parameter.
+
+The simple form $\mu = 1 - 1/x$ (from the bare Kuramoto sine coupling) and the RAR form $\mu = 1 - e^{-\sqrt{x}}$ (from the Stribeck-weighted coupling) agree in the supercritical regime and diverge only at $x \lesssim 1$, where the Stribeck function provides the physically correct continuation into the subcritical regime. The [201 SPARC-X API](201/sparc_x/stribeck.py) implements and numerically verifies both forms.
 
 ### 7.2. The two regimes
 
-- **Supercritical** ($a > a_0$, $x > 1$): Most oscillators locked, $r \approx \sqrt{1 - 1/x}$, Renzo's Rule is one-to-one: baryons track rotation curve with diminishing phantom.
-- **Subcritical** ($a < a_0$, $x < 1$): No locked oscillators in the mean-field picture ($r^* = 0$), self-consistency integral is dominated by the synchronization deficit, phantom compensates everywhere.
+- **Supercritical** ($a > a_0$, $x > 1$): Most oscillators locked, $r \approx \sqrt{1 - 1/x}$, Renzo's Rule is one-to-one: baryons track rotation curve with diminishing phantom. Both the simple and RAR interpolating functions agree.
+- **Subcritical** ($a < a_0$, $x < 1$): In the bare Kuramoto picture, $r^* = 0$ — all oscillators drift. With the Stribeck-weighted coupling, the excess coupling $\xi = e^{-\sqrt{x}}$ remains nonzero, giving $\mu = 1 - e^{-\sqrt{x}} \approx \sqrt{x}$. The synchronization deficit dominates and the phantom compensates everywhere, but the deficit scales as $\sqrt{a_{\text{bary}} \cdot a_0}$ — producing flat rotation curves and the baryonic Tully-Fisher relation.
 
-The transition is smooth: the Kuramoto order parameter onset curve $r \propto \sqrt{K - K_c}$ produces the interpolation function at the critical point without fitting.
+The transition is smooth: the Stribeck coupling function interpolates continuously between the supercritical Kuramoto onset and the subcritical velocity-weakening regime. The exponent $\delta = 1/2$ is the structural link — it is the Stribeck exponent that matches the Kuramoto square-root onset.
 
 ## 8. Completing the circle
 

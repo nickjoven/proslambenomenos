@@ -42,11 +42,11 @@ admits the continuum Lyapunov functional:
 
 $$\mathcal{V}[\theta] \;=\; -\frac{1}{2}\iint K(x,x')\,\cos[\theta(x') - \theta(x)]\,d^3x\,d^3x'$$
 
-with time derivative along solutions:
+The time derivative along solutions is:
 
-$$\frac{d\mathcal{V}}{dt} \;=\; -\int \left(\partial_t\theta - \omega\right)^2 d^3x \;\leq\; 0$$
+$$\frac{d\mathcal{V}}{dt} \;=\; -\int(\partial_t\theta - \omega)\,\partial_t\theta\,d^3x$$
 
-The continuum model is gradient flow on $\mathcal{V}$, modulo the natural frequency drift. The key property: **the interaction energy decreases monotonically.** Oscillators that are coupled always tend toward alignment; the only thing preventing full synchronization is the frequency spread $\omega(x)$.
+For identical frequencies ($\omega = 0$ in the rotating frame), this reduces to $-\int(\partial_t\theta)^2\,d^3x \leq 0$ and is a strict Lyapunov function. For non-identical frequencies, the cross term $\int\omega\,\partial_t\theta\,d^3x$ has indefinite sign — $\mathcal{V}[\theta]$ oscillates. This is not a failure of the dissipative structure but a consequence of tracking the wrong variable: the phases $\theta$ are unbounded for drifting oscillators. The correct Lyapunov function operates on the bounded order parameter $r \in [0,1]$ (see §5).
 
 ## 4. The Kuramoto–Einstein Lyapunov functional
 
