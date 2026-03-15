@@ -53,8 +53,21 @@ where the first arrow is the Friedmann equation (standard cosmology) and the sec
 | [`kuramoto_einstein_mapping.md`](kuramoto_einstein_mapping.md) | The Kuramoto–Einstein dictionary: explicit derivative mapping between synchronization and ADM gravity |
 | [`lyapunov_uniqueness.md`](lyapunov_uniqueness.md) | Lyapunov functional and the dissipation argument for uniqueness |
 | [`renzos_rule_from_kuramoto.md`](renzos_rule_from_kuramoto.md) | Renzo's Rule from Kuramoto self-consistency |
-| [`notebooks/`](notebooks/) | Companion Jupyter notebooks (stdlib Python only) |
+| [`notebooks/`](notebooks/) | Companion Jupyter notebooks |
 | [`docs/`](docs/) | GitHub Pages walkthrough |
+
+### Notebooks
+
+| Notebook | Description |
+|----------|-------------|
+| [`01_proslambenomenos_derivation.ipynb`](notebooks/01_proslambenomenos_derivation.ipynb) | Numerical chain: $\Lambda \to \nu_\Lambda \to H_0 \to a_0$ |
+| [`02_lyapunov_functional.ipynb`](notebooks/02_lyapunov_functional.ipynb) | Lyapunov descent, uniqueness from 10 random ICs, galaxy formation |
+| [`03_renzo_from_kuramoto.ipynb`](notebooks/03_renzo_from_kuramoto.ipynb) | Forward/inverse Renzo's Rule, MOND transition |
+| [`04_phase_portrait.ipynb`](notebooks/04_phase_portrait.ipynb) | Animated phase portrait: Newtonian → MOND sweep on NGC 2403 |
+
+## Walkthrough
+
+[**nickjoven.github.io/proslambenomenos**](https://nickjoven.github.io/proslambenomenos/) — interactive overview with status map and companion links.
 
 ## License
 
