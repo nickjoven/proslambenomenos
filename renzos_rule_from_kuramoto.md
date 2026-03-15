@@ -192,5 +192,4 @@ The Kuramoto side closes the two gaps the ADM side left open: uniqueness and the
 
 ---
 
-[renzos-adm]: https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md "Renzo's Rule derivation (ADM side) — Joven 2026"
-[sparc-x]: https://github.com/nickjoven/201/blob/main/sparc_x/stribeck.py "SPARC-X API: Stribeck curve implementation"
+[renzos-adm]: https://nickjoven.github.io/proslambenomenos-site/201/renzos_rule_derivation.html "Renzo's Rule derivation (ADM side) — Joven 2026"

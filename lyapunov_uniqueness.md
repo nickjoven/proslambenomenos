@@ -143,4 +143,4 @@ The arrow of time is not in the Schrödinger equation. It is in the low-entropy 
 
 ---
 
-[renzos-adm]: https://github.com/nickjoven/201/blob/main/renzos_rule_derivation.md "Renzo's Rule derivation (ADM side) — Joven 2026"
+[renzos-adm]: https://nickjoven.github.io/proslambenomenos-site/201/renzos_rule_derivation.html "Renzo's Rule derivation (ADM side) — Joven 2026"
