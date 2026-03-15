@@ -364,42 +364,39 @@ $$\mu(x) = 1 - e^{-\sqrt{x}}, \qquad x = a/a_0$$
   </tr>
   <tr>
     <td>Phase-plot visualization of stick-slip transition</td>
-    <td><span class="tag tag-open">Next</span></td>
-    <td>See <a href="#next">below</a></td>
+    <td><span class="tag tag-closed">Closed</span></td>
+    <td><a href="https://github.com/nickjoven/proslambenomenos/blob/main/notebooks/04_phase_portrait.ipynb">notebook 04</a></td>
   </tr>
 </table>
 
-<!-- ===== NEXT ===== -->
-<h2 id="next">Next: The Sheet Music</h2>
+<!-- ===== PHASE PORTRAIT ===== -->
+<h2 id="next">The Sheet Music</h2>
 
-<p>The framework has a natural visualization that hasn't been built yet: the <strong>phase-plot of the Ott–Antonsen reduction</strong> showing the stick-slip transition as a function of the Jeans frequency $\omega_J = \sqrt{4\pi G\rho}$.</p>
+<p>The Ott–Antonsen reduction gives a 1D flow on the coherence order parameter:</p>
+
+$$\dot{r} = \gamma\,r\,\bigl[x(1 - r^2) - 1\bigr], \qquad x = a/a_0$$
 
 <div class="card">
-  <h3>What it would show</h3>
+  <h3>The phase portrait</h3>
   <p>A phase portrait in $(r, \dot{r})$ space, parameterized by the local acceleration ratio $x = a/a_0$:</p>
   <ul style="margin: 0.8rem 0 0.8rem 1.5rem; line-height: 2;">
-    <li><strong>$x \gg 1$ (Newtonian):</strong> Stable fixed point at $r^* = \sqrt{1 - 1/x} \approx 1$. Tight spiral. Full synchronization. Stars locked to the vacuum frequency.</li>
-    <li><strong>$x = 1$ (MOND boundary):</strong> The fixed point collides with $r = 0$. Bifurcation. The spiral opens.</li>
-    <li><strong>$x \ll 1$ (deep MOND):</strong> The bare Kuramoto fixed point vanishes ($r^* = 0$). The Stribeck excess coupling $\xi = e^{-\sqrt{x}}$ holds partial coherence — the system doesn't fully desynchronize. The "stick" in stick-slip.</li>
+    <li><strong>$x \gg 1$ (Newtonian):</strong> Stable fixed point at $r^* = \sqrt{1 - 1/x} \approx 1$. Full synchronization. Stars locked to the vacuum frequency.</li>
+    <li><strong>$x = 1$ (MOND boundary):</strong> The fixed point collides with $r = 0$. Transcritical bifurcation.</li>
+    <li><strong>$x \ll 1$ (deep MOND):</strong> The fixed point vanishes ($r^* = 0$). Coherence drifts. The "stick" regime.</li>
   </ul>
-  <p>Sweeping $x$ from $10$ down to $0.01$ animates the transition from Newtonian gravity to MOND — the same transition a star experiences as it orbits from the dense core to the diffuse outskirts of a galaxy.</p>
+  <p>Sweeping $x$ from $10$ down to $0.05$ animates the transition from Newtonian gravity to MOND — the same transition a star experiences as it orbits from the dense core to the diffuse outskirts of a galaxy.</p>
 </div>
 
 <div class="card">
-  <h3>Why this is the "sheet music"</h3>
-  <p>The proslambenomenos is the reference pitch. The Jeans frequency at each radius is the local note. The phase portrait shows whether that note is <em>locked</em> to the reference (Newtonian regime) or <em>drifting</em> (MOND regime). The entire rotation curve of a galaxy is a score — each radius playing its own frequency, synchronized or not, against the cosmic ground tone $\nu_\Lambda$.</p>
-  <p>The visualization would be a single animated plot that encodes the entire theory.</p>
+  <h3>The galaxy as a musical score</h3>
+  <p>The proslambenomenos is the reference pitch. The Jeans frequency at each radius is the local note. The phase portrait shows whether that note is <em>locked</em> to the reference (Newtonian regime) or <em>drifting</em> (MOND regime). The rotation curve of NGC 2403 is plotted as a score — each radius colored by its regime.</p>
+  <p>Three linked panels: phase portrait $(r, \dot{r})$, interpolation function $\mu(x) = 1 - e^{-\sqrt{x}}$, and the galaxy rotation curve with regime coloring. An animated sweep connects all three.</p>
+  <p><strong>Implementation:</strong> <a href="https://github.com/nickjoven/proslambenomenos/blob/main/notebooks/04_phase_portrait.ipynb"><code>notebooks/04_phase_portrait.ipynb</code></a> (numpy + matplotlib, 120-frame animation on SPARC NGC 2403 data).</p>
 </div>
 
-<div class="card" style="border-color: var(--accent4);">
-  <h3 style="color: var(--accent4);">Implementation sketch</h3>
-  <p>Stdlib Python (numpy + matplotlib). Three panels:</p>
-  <ol style="margin: 0.5rem 0 0 1.5rem; line-height: 2;">
-    <li><strong>Left:</strong> Phase portrait $(r, \dot{r})$ with the Ott-Antonsen flow field, swept by $x$. Fixed point trajectory traced as $x$ varies.</li>
-    <li><strong>Center:</strong> $\mu(x) = 1 - e^{-\sqrt{x}}$ with the current $x$ value highlighted. The interpolation function as a "tuning curve."</li>
-    <li><strong>Right:</strong> A radial profile of a real galaxy (e.g. NGC 2403 from SPARC) with $x(R)$ mapped to color — blue for locked, red for drifting. The rotation curve as a musical score.</li>
-  </ol>
-  <p style="color:var(--text-muted);font-size:0.9rem;">Target: <code>notebooks/04_phase_portrait.ipynb</code></p>
+<div class="card">
+  <h3>The Ott–Antonsen potential</h3>
+  <p>The potential landscape $U(r) = \frac{\gamma}{2}r^2 - \frac{K}{4}r^2 + \frac{K}{8}r^4$ whose minimum is the fixed point. For $x > 1$, a well traps the system in synchronization. At $x = 1$, the well vanishes — the MOND boundary.</p>
 </div>
 
 <!-- ===== COMPANIONS ===== -->
