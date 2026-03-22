@@ -303,6 +303,10 @@ This mapping is kinematic — it identifies the fields and their derivatives. Wh
 
 4. **Gravitational waves.** Linearizing the mapping around flat space ($r = 1$, $\partial_i \theta = 0$) should produce wave equations for coherence perturbations that match the linearized Einstein equations (gravitational waves). The prediction: gravitational waves are propagating synchronization disturbances in the vacuum.
 
+### Cross-project progress
+
+The [harmonics](https://github.com/nickjoven/harmonics) repository introduces a synchronization cost framework that addresses the kinematic–dynamic gap from a variational direction. The [FRAMEWORK](https://github.com/nickjoven/harmonics/blob/main/sync_cost/FRAMEWORK.md) identifies the objective function (total synchronization cost: coupling + drift, subject to the Hamiltonian constraint) whose KKT conditions produce the dark-matter dual variable. This does not discharge the dynamical equivalence requirement (item 1) — prefactors remain unverified — but it provides the variational structure that was missing from the optimization side of the argument.
+
 ---
 
 *License: [CC0](LICENSE) — No rights reserved.*
