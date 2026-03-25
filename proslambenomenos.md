@@ -153,7 +153,6 @@ Above $a_0$: coupling supercritical, full synchronization, Newtonian gravity, no
 
 The vacuum is not empty. It oscillates at $\nu_\Lambda$. Gravity synchronizes matter to this oscillation. The proslambenomenos is the frequency at which the vacuum vibrates — and everything else is built on top of it.
 
-
 ---
 
 *Resolved.* The Lyapunov uniqueness theorem ([`lyapunov_uniqueness.md`](lyapunov_uniqueness.md) §6) completes this argument: the Ott–Antonsen potential $U(r)$ is a strict Lyapunov function on $[0,1]$ with a unique minimum at $r^*$, and LaSalle's invariance principle guarantees convergence from any desynchronized initial data. The synchronization cost framework ([harmonics](https://github.com/nickjoven/harmonics), [`03_a0_threshold.md`](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/03_a0_threshold.md)) provides a complementary uniqueness argument via convexity of the cost surface — at the $a_0$ threshold, the cost equality selects a unique minimum.
