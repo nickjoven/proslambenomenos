@@ -8,7 +8,7 @@ N. Joven — March 2026 — CC0 1.0
 
 This document derives Renzo's Rule — the observation that every feature in a galaxy's baryonic luminosity profile is mirrored in its rotation curve — directly from the Kuramoto self-consistency equation.
 
-The [companion derivation][renzos-adm] proves the same result from the ADM side (Einstein–Hilbert action, Hamiltonian constraint, KKT conditions). This derivation starts from the Kuramoto side and meets in the middle. The two proofs are independent: neither assumes the other's starting point.
+The [companion derivation][renzos-adm] proves the same result from the ADM side (Einstein–Hilbert action, Hamiltonian constraint, KKT conditions). This derivation starts from the Kuramoto side and meets in the middle. The two proofs proceed from different formalisms (ADM Hamiltonian constraint vs Kuramoto self-consistency integral) and their forward directions are independent. The inverse directions, however, share the Green's function smoothing property inherited from the Poisson equation, making the two proofs complementary rather than fully independent.
 
 ## 2. The Kuramoto self-consistency equation
 
@@ -179,7 +179,7 @@ The [ADM-side derivation][renzos-adm] proves Renzo's Rule from the Hamiltonian c
 
 This derivation proves the same result from the Kuramoto self-consistency equation: the integral coupling of baryonic density and coherence through the synchronization kernel.
 
-The two proofs are independent. Their agreement is the consistency check. Their shared conclusion:
+The forward directions are independent; the inverse directions share the Green's function smoothing property from the Poisson equation. Their convergence on the same conclusions is the consistency check:
 
 | Property | ADM derivation | Kuramoto derivation |
 |----------|---------------|-------------------|
