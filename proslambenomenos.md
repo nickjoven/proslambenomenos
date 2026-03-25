@@ -158,3 +158,9 @@ The vacuum is not empty. It oscillates at $\nu_\Lambda$. Gravity synchronizes ma
 The proslambenomenos identification gives us $a_0$ from $\Lambda$. But it does not, by itself, guarantee that the resulting galactic structure is unique. That requires a separate argument — the [Lyapunov dissipation proof](lyapunov_uniqueness.md) — which shows that the path to the fixed point, not the fixed point itself, enforces uniqueness.
 
 *Resolved.* The Lyapunov uniqueness theorem ([`lyapunov_uniqueness.md`](lyapunov_uniqueness.md) §6) completes this argument: the Ott–Antonsen potential $U(r)$ is a strict Lyapunov function on $[0,1]$ with a unique minimum at $r^*$, and LaSalle's invariance principle guarantees convergence from any desynchronized initial data. The synchronization cost framework ([harmonics](https://github.com/nickjoven/harmonics), [`03_a0_threshold.md`](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/03_a0_threshold.md)) provides a complementary uniqueness argument via convexity of the cost surface — at the $a_0$ threshold, the cost equality selects a unique minimum.
+
+---
+
+## Proof chain
+
+This derivation is Proposition B7 in [**Proof Chain C: The Bridge**](PROOF_C_bridge.md) — the end-to-end geometric proof connecting general relativity ([Proof A](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/PROOF_A_gravity.md)) and quantum mechanics ([Proof B](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/PROOF_B_quantum.md)) through the cosmological parameters.

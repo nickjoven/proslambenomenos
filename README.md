@@ -49,6 +49,7 @@ where the first arrow is the Friedmann equation (standard cosmology) and the sec
 
 | Document | Description |
 |----------|-------------|
+| [`PROOF_C_bridge.md`](PROOF_C_bridge.md) | **Proof Chain C: The Bridge** — end-to-end geometric proof from the polynomial to Ω_Λ = 13/19, R = 6×13⁵⁴, and a₀. Connects [Proof A (gravity)](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/PROOF_A_gravity.md) and [Proof B (quantum)](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/PROOF_B_quantum.md). |
 | [`proslambenomenos.md`](proslambenomenos.md) | From $\Lambda$ to $a_0$: three constants, one frequency |
 | [`kuramoto_einstein_mapping.md`](kuramoto_einstein_mapping.md) | The Kuramoto–Einstein dictionary: explicit derivative mapping between synchronization and ADM gravity |
 | [`lyapunov_uniqueness.md`](lyapunov_uniqueness.md) | Lyapunov functional and the dissipation argument for uniqueness |
