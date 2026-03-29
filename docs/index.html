@@ -113,20 +113,21 @@
   <a href="#next">Next</a>
   <a href="#companions">Companions</a>
   <a href="https://github.com/nickjoven/proslambenomenos">GitHub</a>
+  <a href="https://github.com/nickjoven">Author</a>
 </nav>
 
 <div class="container">
 
 <h1>Proslambenomenos</h1>
 <p class="subtitle">The added tone: a fundamental reference frequency for synchronization gravity.</p>
-<p class="author">N. Joven — March 2026 — <a href="https://orcid.org/0009-0008-0679-0812">ORCID 0009-0008-0679-0812</a> — CC0 1.0</p>
+<p class="author"><a href="https://github.com/nickjoven">N. Joven</a> — March 2026 — <a href="https://orcid.org/0009-0008-0679-0812">ORCID 0009-0008-0679-0812</a> — CC0 1.0</p>
 
 <!-- ===== THESIS ===== -->
 <h2 id="thesis">Thesis</h2>
 
-<p>In ancient Greek music theory, the <em>proslambenomenos</em> (προσλαμβανόμενος) was the lowest pitch in the Greater Perfect System — the reference from which every interval was measured. It did not belong to any tetrachord. It simply <em>was</em>.</p>
+<p>In ancient Greek music theory, the <em>proslambenomenos</em> (προσλαμβανόμενος) was the lowest pitch in the Greater Perfect System — the reference from which every interval was measured. It did not belong to any tetrachord. It simply anchored the system.</p>
 
-<p>This repository proposes a physical analogue: the cosmological constant $\Lambda$ sets a fundamental oscillation frequency, and the MOND acceleration scale, the Hubble rate, and the galactic synchronization threshold are all overtones of this single reference. They are not independent coincidences — they are intervals measured from the proslambenomenos.</p>
+<p>This repository proposes a physical analogue: the cosmological constant $\Lambda$ sets a fundamental oscillation frequency, and the Hubble rate, the MOND acceleration scale, and the galactic synchronization threshold are all overtones of this single reference. They are not independent coincidences — they are intervals measured from the proslambenomenos.</p>
 
 <blockquote>$\Lambda$, $H_0$, and $a_0$ are not three independent measurements. They are one frequency measured in three different units.</blockquote>
 
@@ -176,7 +177,7 @@ $$a_0 \;=\; \frac{c\,\nu_\Lambda}{2\pi} \;=\; \frac{c\,H_0}{2\pi} \;\approx\; 1.
 <!-- ===== K-E MAPPING ===== -->
 <h2 id="mapping">The Kuramoto–Einstein Dictionary</h2>
 
-<p>The mapping between synchronization dynamics and ADM gravity, written out derivative by derivative.</p>
+<p>The mapping between synchronization dynamics and ADM gravity, written out term by term.</p>
 
 <table>
   <tr><th>Kuramoto field</th><th>ADM field</th><th>Reading</th></tr>
@@ -384,6 +385,9 @@ $$\dot{r} = \gamma\,r\,\bigl[x(1 - r^2) - 1\bigr], \qquad x = a/a_0$$
     <li><strong>$x = 1$ (MOND boundary):</strong> The fixed point collides with $r = 0$. Transcritical bifurcation.</li>
     <li><strong>$x \ll 1$ (deep MOND):</strong> The fixed point vanishes ($r^* = 0$). Coherence drifts. The "stick" regime.</li>
   </ul>
+  <img src="img/phase_newtonian.png" alt="Phase portrait in the Newtonian regime showing stable synchronization fixed point near r=1" style="width:100%; border-radius:6px; margin-top:1rem;">
+  <img src="img/phase_boundary.png" alt="Phase portrait at the MOND boundary showing transcritical bifurcation where the fixed point collides with r=0" style="width:100%; border-radius:6px; margin-top:0.5rem;">
+  <img src="img/phase_deep_mond.png" alt="Phase portrait in deep MOND regime with vanished fixed point and drifting coherence" style="width:100%; border-radius:6px; margin-top:0.5rem;">
   <p>Sweeping $x$ from $10$ down to $0.05$ animates the transition from Newtonian gravity to MOND — the same transition a star experiences as it orbits from the dense core to the diffuse outskirts of a galaxy.</p>
 </div>
 
@@ -391,12 +395,14 @@ $$\dot{r} = \gamma\,r\,\bigl[x(1 - r^2) - 1\bigr], \qquad x = a/a_0$$
   <h3>The galaxy as a musical score</h3>
   <p>The proslambenomenos is the reference pitch. The Jeans frequency at each radius is the local note. The phase portrait shows whether that note is <em>locked</em> to the reference (Newtonian regime) or <em>drifting</em> (MOND regime). The rotation curve of NGC 2403 is plotted as a score — each radius colored by its regime.</p>
   <p>Three linked panels: phase portrait $(r, \dot{r})$, interpolation function $\mu(x) = 1 - e^{-\sqrt{x}}$, and the galaxy rotation curve with regime coloring. An animated sweep connects all three.</p>
+  <img src="img/ngc2403_score.png" alt="NGC 2403 rotation curve displayed as a musical score with Newtonian and MOND regime coloring at each radius" style="width:100%; border-radius:6px; margin-top:1rem;">
   <p><strong>Implementation:</strong> <a href="https://github.com/nickjoven/proslambenomenos/blob/main/notebooks/04_phase_portrait.ipynb"><code>notebooks/04_phase_portrait.ipynb</code></a> (numpy + matplotlib, 120-frame animation on SPARC NGC 2403 data).</p>
 </div>
 
 <div class="card">
   <h3>The Ott–Antonsen potential</h3>
   <p>The potential landscape $U(r) = \frac{\gamma}{2}r^2 - \frac{K}{4}r^2 + \frac{K}{8}r^4$ whose minimum is the fixed point. For $x > 1$, a well traps the system in synchronization. At $x = 1$, the well vanishes — the MOND boundary.</p>
+  <img src="img/oa_potential.png" alt="Ott-Antonsen potential landscape showing synchronization well depth versus acceleration ratio" style="width:100%; border-radius:6px; margin-top:1rem;">
 </div>
 
 <!-- ===== COMPANIONS ===== -->
