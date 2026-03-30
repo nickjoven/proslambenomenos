@@ -90,6 +90,16 @@ function darken(hex) {
 }
 
 // ── State ────────────────────────────────────────────────────────────────
+// Phase order: Night→Sun→Night→Sun→Night(+1/6)→Sun
+// Each phase has a fixed mode; clicking advances to the next phase+mode pair
+const PHASE_MODES = [
+  "dark",   // phase 0: 🌑 Night
+  "light",  // phase 1: 🌒 Sun
+  "dark",   // phase 2: 🌓 Night
+  "light",  // phase 3: 🌔 Sun
+  "dark",   // phase 4: 🌕 Night (+1/6 palette shift)
+  "light",  // phase 5: 🌖 Sun
+];
 let state = JSON.parse(localStorage.getItem("mobius-theme") || "null") || { phase: 0, mode: "dark" };
 
 function save() { localStorage.setItem("mobius-theme", JSON.stringify(state)); }
@@ -148,13 +158,9 @@ function createMoonToggle() {
   }
 
   btn.addEventListener("click", function(e) {
-    if (e.shiftKey) {
-      // Toggle dark/light
-      state.mode = state.mode === "dark" ? "light" : "dark";
-    } else {
-      // Next phase
-      state.phase = (state.phase + 1) % 6;
-    }
+    // Advance to next phase; mode follows the fixed sequence
+    state.phase = (state.phase + 1) % 6;
+    state.mode = PHASE_MODES[state.phase];
     save();
     applyPalette();
   });
