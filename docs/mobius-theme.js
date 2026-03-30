@@ -174,22 +174,29 @@ function createMoonToggle() {
 // Efficient: flat array, twist encoded as index arithmetic
 // After N nodes, index wraps with reversal: node[2N - 1 - i] is the twisted pair
 const MOBIUS_NODES = [
+  // ── Narrative arc ──
   { id: "thesis",      title: "Thesis",                   url: "https://nickjoven.github.io/201/#thesis",          site: "201" },
   { id: "chain",       title: "The Chain: \u039b\u2192H\u2080\u2192a\u2080", url: "https://nickjoven.github.io/proslambenomenos/#chain", site: "proslambenomenos" },
   { id: "ke-mapping",  title: "Kuramoto\u2013Einstein",   url: "https://nickjoven.github.io/proslambenomenos/#mapping", site: "proslambenomenos" },
   { id: "stick-slip",  title: "Stick-Slip Mechanism",     url: "https://nickjoven.github.io/intersections/#string-and-galaxy", site: "intersections" },
   { id: "stribeck",    title: "Stribeck \u2261 MOND",     url: "https://nickjoven.github.io/intersections/#stribeck-mond", site: "intersections" },
+  // ── Derivation chain ──
   { id: "alphabet",    title: "Minimum Alphabet",         url: "https://nickjoven.github.io/submediant-site/01_alphabet/10_minimum_alphabet.html", site: "submediant" },
   { id: "field-eq",    title: "Rational Field Equation",  url: "https://nickjoven.github.io/submediant-site/02_field_equation/11_rational_field_equation.html", site: "submediant" },
   { id: "einstein",    title: "Einstein from Kuramoto",   url: "https://nickjoven.github.io/submediant-site/03_einstein/13_einstein_from_kuramoto.html", site: "submediant" },
   { id: "schrodinger", title: "Schr\u00f6dinger (K<1)",   url: "https://nickjoven.github.io/submediant-site/04_schrodinger/04_schrodinger_intro.html", site: "submediant" },
+  // ── Dual proofs ──
   { id: "renzo-adm",   title: "Renzo\u2019s Rule (ADM)",  url: "https://nickjoven.github.io/201/#mechanism", site: "201" },
   { id: "renzo-k",     title: "Renzo\u2019s Rule (Kuramoto)", url: "https://nickjoven.github.io/proslambenomenos/#renzo", site: "proslambenomenos" },
   { id: "lyapunov",    title: "Lyapunov Uniqueness",      url: "https://nickjoven.github.io/proslambenomenos/#lyapunov", site: "proslambenomenos" },
+  // ── Predictions & evidence ──
   { id: "born",        title: "Born Rule",                url: "https://nickjoven.github.io/submediant-site/05_predictions/01_born_rule.html", site: "submediant" },
   { id: "tilt",        title: "Spectral Tilt",            url: "https://nickjoven.github.io/submediant-site/05_predictions/04_spectral_tilt_reframed.html", site: "submediant" },
   { id: "evidence",    title: "Evidence & SPARC",         url: "https://nickjoven.github.io/submediant-site/06_evidence/RESULTS.html", site: "submediant" },
-  { id: "graph",       title: "Derivation Graph",         url: "https://nickjoven.github.io/submediant-site/graph.html", site: "submediant" },
+  // ── Reference cluster: gallery, graph, glossary (adjacent for hierarchy) ──
+  { id: "gallery",     title: "Gallery",                  url: "https://nickjoven.github.io/submediant-site/graph.html", site: "submediant", group: "reference" },
+  { id: "graph",       title: "Derivation Graph",         url: "https://nickjoven.github.io/submediant-site/graph.html", site: "submediant", group: "reference" },
+  { id: "glossary",    title: "Glossary",                 url: "https://nickjoven.github.io/submediant-site/glossary.html", site: "submediant", group: "reference" },
 ];
 
 const N = MOBIUS_NODES.length;
@@ -206,6 +213,22 @@ function mobiusNeighbors(nodeId, radius) {
   radius = radius || 2;
   const idx = MOBIUS_NODES.findIndex(function(n) { return n.id === nodeId; });
   if (idx < 0) return [];
+
+  // If in the reference cluster, always show all reference siblings
+  var node = MOBIUS_NODES[idx];
+  if (node && node.group === "reference") {
+    var refs = [];
+    MOBIUS_NODES.forEach(function(n) {
+      if (n.group === "reference" && n.id !== nodeId) {
+        refs.push({ node: n, twisted: false });
+      }
+    });
+    // Plus a couple strip neighbors for context
+    var prev = mobiusAt(idx - 1);
+    if (prev.node.group !== "reference") refs.unshift(prev);
+    return refs;
+  }
+
   var result = [];
   for (var d = -radius; d <= radius; d++) {
     if (d === 0) continue;
