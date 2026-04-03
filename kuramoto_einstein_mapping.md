@@ -179,7 +179,7 @@ $${}^{(3)}R_{ij} \sim \partial^2 C \sim \partial^2 \langle \partial \theta \, \p
 
 This has the structure of a **phase stiffness tensor** — the cost of bending the synchronization pattern. Large ${}^{(3)}R_{ij}$ means the phase landscape is highly curved and resists deformation.
 
-$$\boxed{{}^{(3)}R_{ij} \quad \longleftrightarrow \quad \text{phase stiffness: } \partial_k \partial_l \langle \partial_i \theta \, \partial_j \theta \rangle}$$
+{% raw %}$$\boxed{{}^{(3)}R_{ij} \quad \longleftrightarrow \quad \text{phase stiffness: } \partial_k \partial_l \langle \partial_i \theta \, \partial_j \theta \rangle}$${% endraw %}
 
 **The $\mathcal{K}\mathcal{K}_{ij} - 2\mathcal{K}_{ik}\mathcal{K}^k{}_j$ terms** (extrinsic curvature self-interaction):
 
