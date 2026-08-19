@@ -98,7 +98,17 @@ Derived vocabulary (in order of precedence):
    referencing an existing claim id whose computed status supports it —
    and any commit touching `claims/*.yml` must tag every touched claim
    id, so the narrative layer cannot silently modify the evidence layer.
-5. **Routes are separable from problems.** Withdrawing a derivation
+5. **The law cannot change silently.** Every scripts/check_*.py,
+   run_all.py, and the fixture suite is hash-covered by LAWCHANGES.md
+   (append-only): any edit without a dated, directed
+   (strengthen/weaken/neutral), justified entry goes red. Amendments
+   are legal; silent ones are not.
+6. **Rulings cannot be unmade quietly.** DECLINED.md, LITCHECKS.md,
+   LAWCHANGES.md (and PREDICTIONS.md when created) are append-only
+   against git history: any commit removing a line goes red. Residual:
+   local history can still be rewritten by the owner — closed fully
+   only by a remote with protected history (trust rung 3).
+7. **Routes are separable from problems.** Withdrawing a derivation
    (DECLINED.md) never closes the underlying problem, and a plausible
    route never settles one. The decomposition — "X is derivable" versus
    "X holds" — is mandatory.
