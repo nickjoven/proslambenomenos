@@ -1,0 +1,19 @@
+id: gamma06-cusp-classification
+statement: >
+  For Gamma_0(6) acting on P^1(Q), gcd(q, 6) of the reduced
+  denominator is a complete orbit invariant: the cusps are exactly
+  {0, 1/2, 1/3, infinity} (one per divisor of 6), with widths 6, 3,
+  2, 1 summing to the index 12. In particular the orbit of 1/2 is
+  precisely {p/q reduced : gcd(q, 6) = 2}, as stated in v1
+  w_plus_formalization.md.
+premises: []
+evidence:
+  - kind: proof
+    ref: "notes/modular_koide_evaluation.md item 1 - q' = cp+dq with 6|c and ad = 1 mod 6 gives gcd(q',6) = gcd(q,6); completeness from the divisor classification of cusps"
+  - kind: computation
+    ref: "200 random Gamma_0(6) elements preserve the invariant on the orbit of 1/2; width/index arithmetic re-run 2026-08-19"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "cusps of Gamma_0(N): standard (Diamond-Shurman ch. 3)"
+status: proven

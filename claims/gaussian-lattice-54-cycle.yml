@@ -1,0 +1,20 @@
+id: gaussian-lattice-54-cycle
+statement: >
+  Claim (v1's, recorded for the refutation): the framework's
+  coarse-graining iteration visits each of the q2 * q3^3 = 54 gauge
+  cells exactly once, so the hierarchy exponent n = 54 is forced by
+  completeness of a single pass.
+premises: []
+evidence:
+  - kind: refutation
+    ref: >
+      notes/modular_koide_evaluation.md item 5: v1
+      hierarchy_gaussian_lattice.md exhibits no map whose orbit has
+      size 54 - the "complete pass" is presumed, not constructed; and
+      the framework's operative iteration integer 13 has
+      multiplicative order 9 both mod 27 and mod 54 (13^9 = 1, no
+      smaller power; computed 2026-08-19), so no 13-generated orbit
+      passes through 54 cells.
+novelty:
+  status: unchecked
+status: refuted

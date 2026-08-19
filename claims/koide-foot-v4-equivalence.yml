@@ -1,0 +1,21 @@
+id: koide-foot-v4-equivalence
+statement: >
+  The Koide relation (m_e + m_mu + m_tau) / (sqrt(m_e) + sqrt(m_mu)
+  + sqrt(m_tau))^2 = 2/3 is equivalent to each of: (a) the angle
+  between (sqrt(m_e), sqrt(m_mu), sqrt(m_tau)) and (1,1,1) having
+  cos^2 theta = 1/2 (Foot); (b) in the V4-decomposition of the
+  4-vector (sqrt(m_e), sqrt(m_mu), sqrt(m_tau), 0) under the
+  Hadamard basis, the trivial-representation fraction
+  |w_chi0|^2/|w|^2 = 3/8 (v1 koide iteration 5). PDG masses give
+  Q = 0.666661, fraction 0.375003, cos^2 theta = 0.500005.
+premises: []
+evidence:
+  - kind: proof
+    ref: "one-line algebra: (sum sqrt m)^2 / (3 sum m) = cos^2 theta and /4 gives the chi0 fraction; equivalences immediate"
+  - kind: computation
+    ref: "notes/modular_koide_evaluation.md item 2 - numeric verification with PDG masses, re-run 2026-08-19"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "R. Foot, hep-ph/9402242 (1994) for (a); (b) is the same statement padded to four dimensions"
+status: proven
