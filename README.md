@@ -1,17 +1,70 @@
-# harmonics-v2
+# proslambenomenos
 
-Rebuild from the beginning. The v1 corpus (`~/code/harmonics`) is retained
-as an archive and adversarial test bed; nothing enters v2 without passing
-the intake gate. v2 starts empty except for the mathematics that survived
-v1's audits.
+*Proslambanomenos*: in Greek music theory, the added lowest note — the
+tone beneath the Greater Perfect System that anchors the scale while
+belonging to no tetrachord. This repo begins with mathematics, at the
+bottom, and rises only as far as evidence carries.
+
+Successor to the harmonics corpus (`~/code/harmonics`, retained as
+archive and adversarial test bed). Everything here enters through the
+intake gate; nothing is grandfathered.
+
+## Strategy
+
+**Two tracks.**
+
+*Track 1 — the a₀ spine.* The one community-legitimate physics question
+the old corpus touched: does the MOND acceleration scale track cH(z), or
+sit constant? Held here exactly as the intake law prices it — a
+conjecture with a stated falsifier, the 2π declined and cited to Milgrom
+(DECLINED.md D-3). First deliverable: the discriminating-test note
+(which surveys, which mass range, what sample sizes separate cH(z)/2π
+from constant a₀ from (1+z)^¾). Contribution class: synthesis with a
+real audience, not new physics — and labeled so.
+
+*Track 2 — the drip.* The formerly numbered derivations, reworked from
+the lowest number up, one claim per release. Each release is the
+derivation's honest mathematical content only: correct, verifiable,
+in-literature welcome ("classical with citation" is a first-class
+label, not a demotion). The physics identifications that rode on each
+derivation stay where the disposition put them — declined, conjectured,
+or queued as solve-candidates — and never re-enter by adjacency. The
+drip queue with per-item reductions lives in QUEUE.md; the compendium
+page grows one section per drip, each with a Verify button that can
+fail.
+
+**Why a drip.** The old corpus outran its verification because claims
+entered in arcs — dozens of interdependent docs landing together, each
+lending unearned plausibility to its neighbors. A drip inverts that:
+one claim, one gate pass, one runnable verification, no load-bearing
+welds between releases. The corpus cannot grow faster than its
+checking, structurally.
+
+**What carries over from v1.** The audits (the reason anything here can
+be trusted), the compendium (the surviving math, runnable), DECLINED.md
+(seven closed routes with reopen conditions), LITCHECKS.md (the
+literature-check ledger), and the two solve-candidates (the XOR
+spectrum-to-tree translation; the two-anchor minimum). What does not
+carry over: any status, any framework vocabulary, any claim that has
+not individually re-entered through the gate.
+
+**ket: decoupled.** This repo runs on git plus the Python gates alone —
+no CAS layer, no sealing. At this scale git is the content-addressed
+store, and coupling the substrate in would recreate v1's
+apparatus-gravity (corpus serving tooling serving corpus). ket iterates
+separately, on its own roadmap (hardening branch, the read-as-formation
+memory experiment, the probe-ledger direction for latent
+representations). If this repo one day needs ket, that need enters as
+a recorded decision, not a default.
 
 ## The intake law
 
-**Statuses are computed, never declared.** A claim file records evidence
-artifacts; `scripts/check_claims.py` derives the status from fixed rules.
-A recorded status that disagrees with the computed one is a blocking
-error. There is no promotion, no demotion, no closure ceremony — to
-change a status you change the evidence, and the tool re-derives.
+**Statuses are computed, never declared.** A claim file records
+evidence artifacts; `scripts/check_claims.py` derives the status from
+fixed rules. A recorded status that disagrees with the computed one is
+a blocking error. There is no promotion, no demotion, no closure
+ceremony — to change a status you change the evidence, and the tool
+re-derives.
 
 Derived vocabulary (in order of precedence):
 
@@ -30,32 +83,31 @@ Derived vocabulary (in order of precedence):
 
 1. **Novelty is a field, not a vibe.** `novelty.status ∈ {unchecked,
    classical, folklore, checked-novel}`. `classical`/`folklore` require a
-   citation; `checked-novel` requires a `LITCHECKS.md` entry (date,
-   method, sources searched). While `unchecked`, novelty vocabulary is
-   banned in the claim statement.
+   citation; `checked-novel` requires a `LITCHECKS.md` entry. While
+   `unchecked`, novelty vocabulary is banned in the claim statement.
 2. **Pigeonhole gate.** Any claim asserting numeric agreement with a
    measured observable must carry `numeric_match.pigeonhole_p` from a
    permutation null; p ≥ 0.05 or absent ⇒ status capped at
-   `coincidence-unruled`. (v1's own commit 5f41c24 carried p = 0.13 and
-   closed the claim anyway. Never again, mechanically.)
+   `coincidence-unruled`.
 3. **Verification method is recorded.** Script evidence declares
    `method: rerun | reimplementation | external`; rerun-only derives the
    weaker `reproduced`, not `verified`.
 4. **The message layer is audited.** `scripts/check_messages.py` blocks
-   commit messages that use conclusive claim vocabulary ("proves",
-   "exactly", "confirms", "closes", "novel", "zero free parameters")
-   without referencing an existing claim id whose computed status
-   supports the language. v1's history reads as discovery at every claim
-   moment because nothing ever read the messages.
+   commit messages that use conclusive claim vocabulary without
+   referencing an existing claim id whose computed status supports it.
+5. **Routes are separable from problems.** Withdrawing a derivation
+   (DECLINED.md) never closes the underlying problem, and a plausible
+   route never settles one. The decomposition — "X is derivable" versus
+   "X holds" — is mandatory.
 
 ## Layout
 
-- `claims/*.yml` — one claim per file (schema in `check_claims.py` docstring)
+- `claims/*.yml` — one claim per file (schema in `check_claims.py`)
+- `QUEUE.md` — the drip queue: each old derivation's honest reduction
+- `DECLINED.md` — withdrawn routes, with reopen conditions (append-only)
 - `LITCHECKS.md` — literature-check ledger (append-only)
-- `scripts/check_claims.py` — the intake gate (blocking)
-- `scripts/check_messages.py` — commit-message claim-language gate
-- `scripts/run_all.py` — run everything; exit nonzero on any failure
-- `tests/test_checks.py` — red/green fixtures for every rule above
+- `compendium/index.html` — the public face: every claim, runnable
+- `scripts/` — the gates; `tests/` — red/green fixtures for every rule
 
 ## Trust boundary
 
