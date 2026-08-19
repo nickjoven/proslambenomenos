@@ -12,6 +12,9 @@ evidence:
   - kind: computation
     ref: "v1: 48/48-dimensional span completeness check; forbidden modes violate the boundary condition by O(1)"
     method: rerun
+  - kind: computation
+    ref: "compendium C7 - independent browser reimplementation: BC residuals < 1e-9 for allowed combinations, O(1) for forbidden, m in {0,1,2,1/2,3/2}, n in {0,1,2}"
+    method: reimplementation
 novelty:
   status: folklore
   citation: "special case of Miatello-Rossetti, Ann. Global Anal. Geom. 21 (2002); anti-invariant decomposition in Gordon-Rossetti arXiv:math/0111016; physics instances from Banach-Dowker, J. Phys. A 12 (1979). Litcheck LC-1."

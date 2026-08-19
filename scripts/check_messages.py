@@ -9,6 +9,12 @@ commit range and blocks messages that use conclusive vocabulary without a
 `[claim <id>]` tag naming a claim in claims/ whose status is one of
 proven/verified/refuted (refuted supports "refutes"-style language).
 
+Second rule (mechanical coverage): any commit whose diff touches
+claims/*.yml must carry a [claim <id>] tag for EVERY touched claim id
+(file stem = id), so the narrative layer cannot silently modify the
+evidence layer. Both rules live in check_commit(), which is unit-tested
+in tests/test_checks.py.
+
 Usage:
     check_messages.py                # checks HEAD only
     check_messages.py RANGE          # e.g. origin/main..HEAD
@@ -45,6 +51,42 @@ def claim_statuses() -> dict:
     return out
 
 
+def check_commit(sha, msg, touched_claim_ids, statuses):
+    """Both message rules on one commit; returns a list of violations.
+    Pure function of its inputs — unit-testable without git."""
+    violations = []
+    tags = TAG.findall(msg)
+    hits = sorted({m.group(0).lower() for m in CONCLUSIVE.finditer(msg)})
+    if hits:
+        if not tags:
+            violations.append(f"{sha}: uses {hits} with no [claim <id>] tag")
+        for t in tags:
+            if t not in statuses:
+                violations.append(f"{sha}: [claim {t}] names no claim")
+            elif statuses[t] not in SUPPORTING:
+                violations.append(
+                    f"{sha}: [claim {t}] has status {statuses[t]!r}, which "
+                    f"does not support conclusive language {hits}")
+    # coverage rule: every touched claim must be tagged
+    for cid in sorted(touched_claim_ids):
+        if cid not in tags:
+            violations.append(
+                f"{sha}: touches claims/{cid}.yml without a [claim {cid}] tag")
+    return violations
+
+
+def touched_claims(sha):
+    r = subprocess.run(
+        ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", sha],
+        capture_output=True, text=True, cwd=ROOT, check=False)
+    out = set()
+    for line in r.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("claims/") and line.endswith(".yml"):
+            out.add(line[len("claims/"):-len(".yml")])
+    return out
+
+
 def main() -> int:
     rng = sys.argv[1] if len(sys.argv) > 1 else "HEAD^..HEAD"
     r = subprocess.run(
@@ -64,22 +106,8 @@ def main() -> int:
         if "\x00" not in entry:
             continue
         sha, msg = entry.split("\x00", 1)
-        sha = sha.strip()[:9]
-        hits = sorted({m.group(0).lower() for m in CONCLUSIVE.finditer(msg)})
-        if not hits:
-            continue
-        tags = TAG.findall(msg)
-        if not tags:
-            violations.append(
-                f"{sha}: uses {hits} with no [claim <id>] tag")
-            continue
-        for t in tags:
-            if t not in statuses:
-                violations.append(f"{sha}: [claim {t}] names no claim")
-            elif statuses[t] not in SUPPORTING:
-                violations.append(
-                    f"{sha}: [claim {t}] has status {statuses[t]!r}, which "
-                    f"does not support conclusive language {hits}")
+        sha = sha.strip()
+        violations += check_commit(sha[:9], msg, touched_claims(sha), statuses)
     if violations:
         print(f"message gate: {len(violations)} violation(s)")
         for v in violations:

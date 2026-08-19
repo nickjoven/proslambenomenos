@@ -54,10 +54,49 @@ def main() -> int:
     # GREEN: pigeonhole p<0.05 does not cap
     e, _ = run_fixture({"a.yml": (
         "id: a\nstatement: x\n"
-        "evidence: [{kind: proof, ref: r}]\n"
+        "evidence: [{kind: proof, ref: r, machine: true}]\n"
         "numeric_match: {observable: o, pigeonhole_p: 0.001}\n"
         "status: proven\n")})
     ok &= expect(not e, "pigeonhole p<0.05 passes")
+
+    # RED: prose-only proof is argued, not proven
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: prose argument}]\n"
+        "status: proven\n")})
+    ok &= expect(any("recorded != computed (argued)" in x for x in e),
+                 "prose-only proof cannot claim proven")
+
+    # RED: proof + rerun-only computation is still argued
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: prose}, {kind: computation, ref: r, method: rerun}]\n"
+        "status: proven\n")})
+    ok &= expect(any("recorded != computed (argued)" in x for x in e),
+                 "proof + same-algorithm rerun cannot claim proven")
+
+    # GREEN: machine-checked proof is proven
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: lean, machine: true}]\n"
+        "status: proven\n")})
+    ok &= expect(not e, "machine-checked proof derives proven")
+
+    # GREEN: proof + independent reimplementation is proven
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: prose}, {kind: computation, ref: r, method: reimplementation}]\n"
+        "status: proven\n")})
+    ok &= expect(not e, "proof + reimplementation derives proven")
+
+    # RED: argued premise caps downstream proven at conditional
+    e, _ = run_fixture({
+        "a.yml": ("id: a\nstatement: x\n"
+                  "evidence: [{kind: proof, ref: prose}]\nstatus: argued\n"),
+        "b.yml": ("id: b\nstatement: y\npremises: [a]\n"
+                  "evidence: [{kind: proof, ref: lean, machine: true}]\nstatus: proven\n")})
+    ok &= expect(any("recorded != computed (conditional)" in x for x in e),
+                 "argued premise caps downstream proven")
 
     # RED: rerun-only computation is reproduced, not verified
     e, _ = run_fixture({"a.yml": (
@@ -104,6 +143,23 @@ def main() -> int:
         "a.yml": "id: a\nstatement: x\npremises: [b]\nstatus: asserted\n",
         "b.yml": "id: b\nstatement: y\npremises: [a]\nstatus: asserted\n"})
     ok &= expect(any("cycle" in x for x in e), "premise cycles detected")
+
+    # message gate rules (pure function, no git needed)
+    import check_messages as cm
+    statuses = {"good": "proven", "weak": "argued"}
+    v = cm.check_commit("abc", "routine refactor", set(), statuses)
+    ok &= expect(not v, "message gate: plain engineering message passes")
+    v = cm.check_commit("abc", "proves the theorem", set(), statuses)
+    ok &= expect(bool(v), "message gate: conclusive language without tag blocks")
+    v = cm.check_commit("abc", "proves it [claim weak]", set(), statuses)
+    ok &= expect(bool(v), "message gate: conclusive language on argued claim blocks")
+    v = cm.check_commit("abc", "proves it [claim good]", set(), statuses)
+    ok &= expect(not v, "message gate: conclusive language on proven claim passes")
+    v = cm.check_commit("abc", "tweak wording", {"good"}, statuses)
+    ok &= expect(any("touches claims/good.yml" in x for x in v),
+                 "message gate: touched claim without tag blocks")
+    v = cm.check_commit("abc", "tweak wording [claim good]", {"good"}, statuses)
+    ok &= expect(not v, "message gate: touched claim with tag passes")
 
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1

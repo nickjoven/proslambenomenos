@@ -73,7 +73,8 @@ Derived vocabulary (in order of precedence):
 | `refuted` | any refutation evidence exists (wins over everything) |
 | `conditional` | any premise resolves to a non-settled claim (caps all below) |
 | `coincidence-unruled` | claim asserts numeric agreement with an observable and its permutation-null p ≥ 0.05 or is missing (caps all below) |
-| `proven` | proof evidence, premises settled |
+| `proven` | proof evidence that is machine-checked OR corroborated by independent reimplementation/external computation, premises settled |
+| `argued` | proof evidence, prose-grade only — attested, not enforced; NOT settled for propagation |
 | `verified` | computational evidence with `method: reimplementation` or `external` |
 | `reproduced` | computational evidence, `method: rerun` only (same-algorithm rerun is not independent verification) |
 | `imported` | external citation evidence only |
@@ -94,7 +95,9 @@ Derived vocabulary (in order of precedence):
    weaker `reproduced`, not `verified`.
 4. **The message layer is audited.** `scripts/check_messages.py` blocks
    commit messages that use conclusive claim vocabulary without
-   referencing an existing claim id whose computed status supports it.
+   referencing an existing claim id whose computed status supports it —
+   and any commit touching `claims/*.yml` must tag every touched claim
+   id, so the narrative layer cannot silently modify the evidence layer.
 5. **Routes are separable from problems.** Withdrawing a derivation
    (DECLINED.md) never closes the underlying problem, and a plausible
    route never settles one. The decomposition — "X is derivable" versus

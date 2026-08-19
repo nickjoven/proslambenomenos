@@ -11,6 +11,9 @@ premises: []
 evidence:
   - kind: proof
     ref: "notes/topology_evaluation.md sec. 9 - winding is a homotopy invariant of the pair (map, boundary structure); the pi shift maps sin's stable zero to its unstable zero by sign reversal of the derivative"
+  - kind: computation
+    ref: "compendium C17 - winding census (all allowed windings in Z + 1/2; integer winding fails BC) and stability-swap check"
+    method: reimplementation
 novelty:
   status: classical
   citation: "degree theory for circle-valued maps; physically the antiperiodic XY / pi-junction ring ground-state structure"

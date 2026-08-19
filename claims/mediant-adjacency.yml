@@ -12,6 +12,9 @@ evidence:
     ref: "v1: sync_cost/derivations/mediant_derivation.md (Stern-Brocot theorem, audit-checked); curriculum module 05"
   - kind: citation
     ref: "Stern (1858), Brocot (1861); Graham-Knuth-Patashnik, Concrete Mathematics, sec. 4.5"
+  - kind: computation
+    ref: "compendium C1 - depth-12 exhaustive reimplementation: 4095 insertions, all reduced/unique, 8190 adjacent pairs with bc-ad=1, CF addressing spot checks"
+    method: reimplementation
 novelty:
   status: classical
   citation: "Stern 1858 / Brocot 1861; textbook treatment in Concrete Mathematics sec. 4.5"

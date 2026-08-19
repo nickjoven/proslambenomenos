@@ -8,6 +8,9 @@ premises: []
 evidence:
   - kind: proof
     ref: "one-line calculus: ln ratio = (q_a - q_b) ln K + const. v1 source beta_from_tongues.md:301-311"
+  - kind: computation
+    ref: "compendium C9 - measured circle-map instantiation: slope of ln(w_half/w_third) vs ln K = -0.95 toward -1"
+    method: reimplementation
 novelty:
   status: unchecked
 status: proven

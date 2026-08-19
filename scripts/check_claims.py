@@ -24,7 +24,14 @@ Derivation rules (fixed; changing them is a repo-law change):
     refuted        -- any refutation evidence
     conditional    -- any premise not in SETTLED statuses (cap)
     coincidence-unruled -- numeric_match with p >= 0.05 or missing (cap)
-    proven         -- proof evidence
+    proven         -- proof evidence that is machine-checked
+                      (proof entry carries machine: true) OR proof
+                      corroborated by computation with method
+                      reimplementation/external. A prose proof alone,
+                      or a proof backed only by same-algorithm rerun,
+                      derives `argued`, not `proven`.
+    argued         -- proof evidence, prose-grade only (attested, not
+                      enforced); NOT settled for premise propagation
     verified       -- computation evidence with method reimplementation/external
     reproduced     -- computation evidence, rerun only
     imported       -- citation evidence only
@@ -45,7 +52,7 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 
-SETTLED = {"proven", "verified", "imported"}
+SETTLED = {"proven", "verified", "imported"}  # argued is NOT settled
 EVIDENCE_KINDS = {"proof", "computation", "citation", "refutation"}
 METHODS = {"rerun", "reimplementation", "external"}
 NOVELTY = {"unchecked", "classical", "folklore", "checked-novel"}
@@ -109,9 +116,12 @@ def compute_status(doc: dict, claims: dict, errors: list, cid: str) -> str:
     if "refutation" in kinds:
         return "refuted"
 
-    # base status from evidence
+    # base status from evidence; prose proofs are graded down.
+    machine_proof = any((e or {}).get("kind") == "proof" and (e or {}).get("machine") is True
+                        for e in ev)
+    independent_comp = bool(methods & {"reimplementation", "external"})
     if "proof" in kinds:
-        base = "proven"
+        base = "proven" if (machine_proof or independent_comp) else "argued"
     elif "computation" in kinds:
         base = "verified" if methods & {"reimplementation", "external"} \
             else "reproduced"
@@ -136,7 +146,7 @@ def compute_status(doc: dict, claims: dict, errors: list, cid: str) -> str:
         # elsewhere to equal computed) to avoid recursion order issues,
         # then verify recorded==computed globally.
         if claims[pid].get("status") not in SETTLED:
-            return "conditional" if base in ("proven", "verified",
+            return "conditional" if base in ("proven", "argued", "verified",
                                              "reproduced") else base
     return base
 
