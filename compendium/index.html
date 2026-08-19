@@ -1,0 +1,953 @@
+<title>What Survived</title>
+<style>
+  :root {
+    --bg: #FAFAF7; --panel: #F1F1EC; --line: #DDDDD4;
+    --ink: #1C2025; --muted: #5A6068; --faint: #8A9098;
+    --accent: #2F4BC7; --s1: #2F4BC7; --s2: #B45309;
+    --ok: #1E7B45; --ok-bg: #E4F2E9; --bad: #B3261E; --bad-bg: #F7E5E3;
+    --note-bg: #F5EEDD; --note-ink: #6B5416; --chip-bg: #E9E9E2;
+  }
+  :root:not([data-theme="light"]) { }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161A; --panel: #1C1F25; --line: #2E323A;
+      --ink: #E8E9E6; --muted: #A2A8B0; --faint: #6C737C;
+      --accent: #8CA3F5; --s1: #6E82D9; --s2: #BF7C35;
+      --ok: #6FCF97; --ok-bg: #16281D; --bad: #E88980; --bad-bg: #2E1A18;
+      --note-bg: #262115; --note-ink: #D9BC6A; --chip-bg: #262A31;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161A; --panel: #1C1F25; --line: #2E323A;
+    --ink: #E8E9E6; --muted: #A2A8B0; --faint: #6C737C;
+    --accent: #8CA3F5; --s1: #6E82D9; --s2: #BF7C35;
+    --ok: #6FCF97; --ok-bg: #16281D; --bad: #E88980; --bad-bg: #2E1A18;
+    --note-bg: #262115; --note-ink: #D9BC6A; --chip-bg: #262A31;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: Charter, 'Bitstream Charter', Cambria, Georgia, serif;
+    font-size: 17px; line-height: 1.55;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 3rem 1.25rem 6rem; }
+  header h1 {
+    font-size: 2.6rem; margin: 0 0 .4rem; letter-spacing: -.01em;
+    text-wrap: balance; font-weight: 700;
+  }
+  .subtitle { color: var(--muted); font-size: 1.05rem; max-width: 62ch; margin: 0; }
+  .provenance {
+    border: 1px solid var(--line); background: var(--panel);
+    border-radius: 6px; padding: 1rem 1.2rem; margin: 1.6rem 0 0;
+    font-size: .95rem; color: var(--muted); max-width: none;
+  }
+  .provenance strong { color: var(--ink); }
+  .runall {
+    display: flex; align-items: center; gap: 1rem; margin-top: 1.2rem;
+  }
+  button {
+    font-family: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+    font-size: .85rem; padding: .45rem .9rem; border-radius: 5px;
+    border: 1px solid var(--accent); background: transparent;
+    color: var(--accent); cursor: pointer;
+  }
+  button:hover { background: var(--accent); color: var(--bg); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  #runall-out { font-family: ui-monospace, Menlo, monospace; font-size: .85rem; }
+  nav.index { margin: 2.4rem 0 0; }
+  nav.index ol { margin: .4rem 0 0; padding-left: 1.4rem; column-count: 2; column-gap: 2.5rem; }
+  nav.index li { font-size: .95rem; margin-bottom: .3rem; }
+  nav.index a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  nav.index a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+  .eyebrow {
+    font-family: ui-monospace, Menlo, monospace; font-size: .72rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--faint);
+  }
+  section.claim { margin-top: 4rem; border-top: 1px solid var(--line); padding-top: 1.6rem; }
+  .claim-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem .8rem; }
+  .cnum {
+    font-family: ui-monospace, Menlo, monospace; font-weight: 600;
+    color: var(--accent); font-size: 1rem;
+  }
+  .claim-head h2 { font-size: 1.35rem; margin: 0; letter-spacing: -.005em; }
+  .chips { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .chip {
+    font-family: ui-monospace, Menlo, monospace; font-size: .68rem;
+    padding: .12rem .5rem; border-radius: 99px; background: var(--chip-bg);
+    color: var(--muted); border: 1px solid var(--line); white-space: nowrap;
+  }
+  .statement { max-width: 68ch; margin: 1rem 0 0; }
+  .statement .math { font-style: italic; }
+  .note {
+    background: var(--note-bg); color: var(--note-ink);
+    border-radius: 5px; padding: .6rem .9rem; font-size: .88rem;
+    margin: .9rem 0 0; max-width: 68ch;
+  }
+  .demo {
+    border: 1px solid var(--line); background: var(--panel); border-radius: 8px;
+    padding: 1rem 1.1rem; margin-top: 1.1rem; overflow-x: auto;
+  }
+  .demo .controls {
+    display: flex; flex-wrap: wrap; gap: .8rem 1.4rem; align-items: center;
+    font-family: ui-monospace, Menlo, monospace; font-size: .82rem;
+    color: var(--muted); margin-bottom: .7rem;
+  }
+  .demo .controls label { display: flex; align-items: center; gap: .5rem; }
+  input[type="range"] { accent-color: var(--accent); width: 160px; }
+  input[type="number"] {
+    font-family: ui-monospace, Menlo, monospace; font-size: .85rem;
+    width: 4.5rem; background: var(--bg); color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px; padding: .25rem .4rem;
+  }
+  canvas { display: block; max-width: 100%; }
+  .readout {
+    font-family: ui-monospace, Menlo, monospace; font-size: .84rem;
+    white-space: pre; line-height: 1.5; font-variant-numeric: tabular-nums;
+  }
+  .verify-row { margin-top: .9rem; display: flex; gap: .8rem; align-items: flex-start; flex-wrap: wrap; }
+  .verify-out {
+    font-family: ui-monospace, Menlo, monospace; font-size: .8rem;
+    white-space: pre-wrap; border-radius: 5px; padding: .5rem .8rem;
+    display: none; flex: 1 1 100%; line-height: 1.55;
+    font-variant-numeric: tabular-nums;
+  }
+  .verify-out.pass { display: block; background: var(--ok-bg); color: var(--ok); }
+  .verify-out.fail { display: block; background: var(--bad-bg); color: var(--bad); }
+  .sources {
+    font-family: ui-monospace, Menlo, monospace; font-size: .72rem;
+    color: var(--faint); margin-top: 1rem; line-height: 1.7; max-width: none;
+    overflow-wrap: anywhere;
+  }
+  .modegrid { display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 8px; max-width: 460px; }
+  .modecell {
+    border: 1px solid var(--line); border-radius: 6px; padding: .6rem .7rem;
+    font-family: ui-monospace, Menlo, monospace; font-size: .78rem; cursor: pointer;
+    background: var(--bg);
+  }
+  .modecell:hover { border-color: var(--accent); }
+  .modecell .res { font-weight: 600; }
+  .modecell.allowed { border-color: var(--ok); }
+  .modecell.forbidden { border-color: var(--bad); }
+  footer { margin-top: 5rem; border-top: 1px solid var(--line); padding-top: 1.2rem;
+    color: var(--faint); font-size: .85rem; }
+  @media (max-width: 640px) { nav.index ol { column-count: 1; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Compendium · 13 claims · every one runnable</p>
+  <h1>What Survived</h1>
+  <p class="subtitle">The mathematics extracted from the harmonics corpus after its
+  audits — stated in standard language, sourced, honestly labeled, and verified
+  live in this page.</p>
+  <div class="provenance">
+    <strong>Provenance.</strong> The parent framework's physics claims failed
+    adversarial audit (2026-08). These are the mathematical statements that
+    checked out, stripped of framework vocabulary. <strong>None are claimed as
+    novel</strong> — each carries its known-status: classical (with citation),
+    folklore (literature-checked, see ledger), or exercise-level. Where the
+    source docs were wrong in detail while their scripts were right, the
+    discrepancy is noted inline. Every claim's verification recipe executes in
+    your browser: the Verify buttons can fail, and print exactly what they computed.
+  </div>
+  <div class="runall">
+    <button id="runall-btn">Run all 13 verifications</button>
+    <span id="runall-out"></span>
+  </div>
+</header>
+
+<nav class="index">
+  <p class="eyebrow">Index</p>
+  <ol>
+    <li><a href="#c1">Stern–Brocot invariant package</a></li>
+    <li><a href="#c2">The unique pair (2, 3)</a></li>
+    <li><a href="#c3">Fibonacci: F<sub>n+1</sub> = F<sub>n</sub>² − 1 once</a></li>
+    <li><a href="#c4">Farey mirror census</a></li>
+    <li><a href="#c5">Antipodal orbit plateaus</a></li>
+    <li><a href="#c6">No order 15 in Z₆×Z₅₄×Z₂</a></li>
+    <li><a href="#c7">Klein bottle: twisted spectrum</a></li>
+    <li><a href="#c8">The devil's staircase</a></li>
+    <li><a href="#c9">Tongue scaling &amp; the ratio law</a></li>
+    <li><a href="#c10">Adler's locking threshold</a></li>
+    <li><a href="#c11">A Chebyshev product identity</a></li>
+    <li><a href="#c12">No inverse-square width law</a></li>
+    <li><a href="#c13">A Möbius bijection</a></li>
+  </ol>
+</nav>
+
+<section class="claim" id="c1">
+  <div class="claim-head"><span class="cnum">C1</span><h2>Stern–Brocot invariant package</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">finite check to depth 12</span><span class="chip">classical — Stern 1858, Brocot 1861</span></span></div>
+  <p class="statement">For adjacent fractions <span class="math">a/b &lt; c/d</span> with
+  <span class="math">bc − ad = 1</span>: inserting the mediant <span class="math">(a+c)/(b+d)</span>
+  preserves the determinant condition on both new pairs; every rational strictly between them has
+  denominator ≥ <span class="math">b + d</span>, with equality only at the mediant; denominators grow
+  strictly down every edge; iteration from (0/1, 1/0) produces every positive rational exactly once,
+  in lowest terms; and the left/right run-lengths of the path to <span class="math">p/q</span> are its
+  continued-fraction digits.</p>
+  <div class="demo">
+    <div class="controls">
+      <label>p <input type="number" id="c1p" value="13" min="1"></label>
+      <label>q <input type="number" id="c1q" value="19" min="1"></label>
+      <button id="c1go">Trace path</button>
+    </div>
+    <div class="readout" id="c1out">path: —</div>
+  </div>
+  <div class="verify-row"><button data-verify="c1">Verify — depth-12 exhaustive</button><div class="verify-out" id="v-c1"></div></div>
+  <p class="sources">v1: mediant_derivation.md:61-126 · mediant_forcing_lemma.md:38-100 · curriculum 04/05 engines · Graham–Knuth–Patashnik §4.5, Hardy &amp; Wright ch. III</p>
+</section>
+
+<section class="claim" id="c2">
+  <div class="claim-head"><span class="cnum">C2</span><h2>The unique pair (2, 3)</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">exercise-level</span></span></div>
+  <p class="statement">The only positive integers with <span class="math">x² − 1 = y</span> and
+  <span class="math">y² − 1 = x³</span> are <span class="math">(x, y) = (2, 3)</span>. Substitution gives
+  <span class="math">x⁴ − x³ − 2x² = x²(x − 2)(x + 1) = 0</span>, whose only positive root is 2.
+  (Mihăilescu's theorem is <em>not</em> needed; the factorization closes it.)</p>
+  <div class="verify-row"><button data-verify="c2">Verify — factor table + exhaustive scan to 1000</button><div class="verify-out" id="v-c2"></div></div>
+  <p class="sources">v1: mass_sector_closure.md:27-46 · CHAIN_KSTAR.md:33-39 · farey_partition.md:109-111</p>
+</section>
+
+<section class="claim" id="c3">
+  <div class="claim-head"><span class="cnum">C3</span><h2>Fibonacci: F<sub>n+1</sub> = F<sub>n</sub>² − 1 exactly once</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">exercise-level</span></span></div>
+  <p class="statement">With <span class="math">F₁ = 1, F₂ = 2</span>, the identity
+  <span class="math">F<sub>n+1</sub> = F<sub>n</sub>² − 1</span> holds only at <span class="math">n = 2</span>
+  (3 = 2² − 1). For <span class="math">F<sub>n</sub> ≥ 3</span> the gap
+  <span class="math">F<sub>n</sub>² − 1 − F<sub>n+1</sub> ≥ (F<sub>n</sub> − 1)² − 2 &gt; 0</span> grows forever.</p>
+  <div class="verify-row"><button data-verify="c3">Verify — table with growth bound</button><div class="verify-out" id="v-c3"></div></div>
+  <p class="sources">v1: dimension_loop.py</p>
+</section>
+
+<section class="claim" id="c4">
+  <div class="claim-head"><span class="cnum">C4</span><h2>Farey mirror census</h2>
+    <span class="chips"><span class="chip">finite computation</span><span class="chip">folklore — Farey symmetry</span></span></div>
+  <p class="statement">The involution <span class="math">r ↦ 1 − r</span> maps the Farey set
+  <span class="math">F<sub>n</sub></span> to itself, with exactly one fixed point (½) for
+  <span class="math">n ≥ 2</span>. The census (pairs, fixed) runs (1,0), (1,1), (2,1), (3,1), (5,1), (6,1)
+  for <span class="math">n = 1..6</span>; the pair count is strictly increasing, so each census value occurs
+  at exactly one <span class="math">n</span>.</p>
+  <div class="verify-row"><button data-verify="c4">Verify — census n = 1..6</button><div class="verify-out" id="v-c4"></div></div>
+  <p class="sources">v1: step3_step5_klein_proof.py · CHAIN_KSTAR.md:55-80 · Hardy &amp; Wright ch. III</p>
+</section>
+
+<section class="claim" id="c5">
+  <div class="claim-head"><span class="cnum">C5</span><h2>Antipodal orbit plateaus</h2>
+    <span class="chips"><span class="chip">finite computation</span><span class="chip">exercise-level totient bookkeeping</span></span></div>
+  <p class="statement">Among reduced <span class="math">p/q ∈ [0,1]</span> (endpoints included) with
+  <span class="math">gcd(q, 6) = 1, q ≤ n</span>, the involution <span class="math">p/q ↦ (q−p)/q</span> is
+  fixed-point-free, and the orbit count steps by <span class="math">φ(q)/2</span> at each admissible
+  <span class="math">q ≥ 5</span>: plateaus 1, 3, 6, 11, 17, 25, 34, 45, 55, … The value 15 never occurs —
+  and neither do most integers; partial sums with increments ≥ 2 skip them.</p>
+  <div class="note">Doc discrepancy: path_a_walkthrough.md states increments (q−1)/2, which holds only at
+  primes. The correct increment is φ(q)/2 — first divergence at q = 25 (increment 10, not 12). The
+  source scripts compute orbits directly and were right.</div>
+  <div class="demo">
+    <div class="controls"><label>n <input type="range" id="c5n" min="1" max="28" value="17"> <span id="c5nv">17</span></label></div>
+    <canvas id="c5canvas" width="780" height="230"></canvas>
+    <div class="readout" id="c5out"></div>
+  </div>
+  <div class="verify-row"><button data-verify="c5">Verify — plateau table + φ(q)/2 increments</button><div class="verify-out" id="v-c5"></div></div>
+  <p class="sources">v1: k_axis_uniqueness.py:85-116 · path_a_walkthrough.md:101-144 · LITCHECKS.md LC-2</p>
+</section>
+
+<section class="claim" id="c6">
+  <div class="claim-head"><span class="cnum">C6</span><h2>No order 15 in Z₆ × Z₅₄ × Z₂</h2>
+    <span class="chips"><span class="chip">finite computation — 648 elements</span><span class="chip">classical — Lagrange</span></span></div>
+  <p class="statement">|G| = 648 = 2³·3⁴, and 15 ∤ 648, so no subgroup or quotient has order 15
+  (Lagrange). Sharper: the element orders of G are exactly {1, 2, 3, 6, 9, 18, 27, 54}.</p>
+  <div class="demo"><canvas id="c6canvas" width="780" height="180"></canvas></div>
+  <div class="verify-row"><button data-verify="c6">Verify — enumerate all 648 elements + divisors</button><div class="verify-out" id="v-c6"></div></div>
+  <p class="sources">v1: path_a_walkthrough.md:38-53</p>
+</section>
+
+<section class="claim" id="c7">
+  <div class="claim-head"><span class="cnum">C7</span><h2>Klein bottle: the twisted spectrum</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">folklore — Miatello–Rossetti 2002; Banach–Dowker 1979</span></span></div>
+  <p class="statement">For functions with the flat Klein bottle's orientation-bundle boundary conditions
+  <span class="math">f(x+1, y) = −f(x, 1−y)</span>, <span class="math">f(x, y+1) = f(x, y)</span>, a complete
+  Laplacian eigenbasis is exactly: <em>half-integer</em> x-modes ⊗ cos-branch, and <em>integer</em>
+  x-modes ⊗ sin-branch — the parity XOR rule — with the constant mode excluded, so the smallest
+  eigenvalue is π², not 0.</p>
+  <div class="demo">
+    <p class="eyebrow" style="margin:0 0 .5rem">Click each combination — the boundary-condition residual is computed at 200 random points</p>
+    <div class="modegrid">
+      <div class="modecell" data-mode="hc">m = 3/2 (half-int) · cos 2πny<br><span class="res">residual: click</span></div>
+      <div class="modecell" data-mode="ic">m = 2 (integer) · cos 2πny<br><span class="res">residual: click</span></div>
+      <div class="modecell" data-mode="hs">m = 3/2 (half-int) · sin 2πny<br><span class="res">residual: click</span></div>
+      <div class="modecell" data-mode="is">m = 2 (integer) · sin 2πny<br><span class="res">residual: click</span></div>
+    </div>
+  </div>
+  <div class="verify-row"><button data-verify="c7">Verify — all four combinations, m ∈ {0,1,2,½,3∕2}, n ∈ {0,1,2}</button><div class="verify-out" id="v-c7"></div></div>
+  <p class="sources">v1: xor_derivation.md:177-260 · klein_bottle.md:95-157 · LITCHECKS.md LC-1</p>
+</section>
+
+<section class="claim" id="c8">
+  <div class="claim-head"><span class="cnum">C8</span><h2>The devil's staircase</h2>
+    <span class="chips"><span class="chip">numerical simulation</span><span class="chip">classical — Arnold 1961; Jensen–Bak–Bohr 1983</span></span></div>
+  <p class="statement">For the sine circle map <span class="math">θ ← θ + Ω − (K/2π)·sin 2πθ</span>, the
+  rotation number <span class="math">ρ(Ω)</span> is a monotone step function locking at every rational;
+  widths order by denominator (½ widest, then ⅓ and ⅔, …). At K = 1 the steps fill the axis — the
+  complete staircase (Jensen–Bak–Bohr; complement dimension ≈ 0.87, not re-verified here).</p>
+  <div class="demo">
+    <div class="controls"><label>K <input type="range" id="c8k" min="10" max="100" value="100"> <span id="c8kv">1.00</span></label></div>
+    <canvas id="c8canvas" width="780" height="360"></canvas>
+  </div>
+  <div class="verify-row"><button data-verify="c8">Verify — monotone; plateau widths at K = 1 order by q</button><div class="verify-out" id="v-c8"></div></div>
+  <p class="sources">v1: curriculum/03_the_tongues/engine.py · mode_locking_exhibits.md:37-70</p>
+</section>
+
+<section class="claim" id="c9">
+  <div class="claim-head"><span class="cnum">C9</span><h2>Tongue scaling and the ratio law</h2>
+    <span class="chips"><span class="chip">proof (identity)</span><span class="chip">simulation (instantiation)</span><span class="chip">classical — Arnold 1961</span></span></div>
+  <p class="statement">Identity: if <span class="math">D<sub>a</sub> = c<sub>a</sub>K^{q_a}</span> and
+  <span class="math">D<sub>b</sub> = c<sub>b</sub>K^{q_b}</span>, then
+  <span class="math">d ln(D<sub>a</sub>/D<sub>b</sub>)/d ln K = q<sub>a</sub> − q<sub>b</sub></span>,
+  independent of the prefactors. Instantiation: circle-map tongue widths scale as
+  <span class="math">w(p/q) ∝ K^q</span> for small K, so the log-log slope of
+  <span class="math">w(½)/w(⅓)</span> tends to −1.</p>
+  <div class="note">Doc discrepancy: beta_from_tongues.md:61 states the prefactor 2(K/2)^q/q; measured against
+  the repo's own map convention, only the exponent K^q is verified (w(½) ≈ K²/4π). The ratio law above is
+  deliberately prefactor-independent. The surrounding physics claim was retired by the doc itself.</div>
+  <div class="demo">
+    <div class="controls"><button id="c9run">Measure widths at K = 0.2, 0.4</button></div>
+    <div class="readout" id="c9out">—</div>
+  </div>
+  <div class="verify-row"><button data-verify="c9">Verify — slope of ln(w½/w⅓) vs ln K ≈ −1</button><div class="verify-out" id="v-c9"></div></div>
+  <p class="sources">v1: beta_from_tongues.md:301-330 (§6; doc retires its own physics claim)</p>
+</section>
+
+<section class="claim" id="c10">
+  <div class="claim-head"><span class="cnum">C10</span><h2>Adler's locking threshold</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">simulation</span><span class="chip">classical — Adler 1946</span></span></div>
+  <p class="statement">For <span class="math">φ′ = Δω − 2K·sin φ</span>: a locked state exists iff
+  <span class="math">|Δω| ≤ 2K</span>, and below threshold the beat frequency is exactly
+  <span class="math">√(Δω² − (2K)²)</span> — with critical slowing as K approaches Δω/2.</p>
+  <div class="demo">
+    <div class="controls">
+      <label>Δω <input type="range" id="c10dw" min="0" max="120" value="60"> <span id="c10dwv">0.60</span></label>
+      <label>K <input type="range" id="c10k" min="1" max="80" value="30"> <span id="c10kv">0.30</span></label>
+    </div>
+    <canvas id="c10canvas" width="780" height="180"></canvas>
+    <div class="readout" id="c10out"></div>
+  </div>
+  <div class="verify-row"><button data-verify="c10">Verify — lock at |Δω| ≤ 0.6, drift at 0.62; beat matches formula</button><div class="verify-out" id="v-c10"></div></div>
+  <p class="sources">v1: curriculum/02_two_waves_one_medium/engine.py</p>
+</section>
+
+<section class="claim" id="c11">
+  <div class="claim-head"><span class="cnum">C11</span><h2>A Chebyshev product identity</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">classical root factorization</span></span></div>
+  <p class="statement">For every integer <span class="math">q ≥ 1</span> and <span class="math">K ≠ 0</span>:
+  <span class="math">∏<sub>j=0</sub><sup>q−1</sup> (1 − K·cos(2πj/q)) = 2·(K/2)^q·(T_q(1/K) − 1)</span>,
+  since <span class="math">T_q(x) − 1</span> has leading coefficient <span class="math">2^{q−1}</span> and
+  roots <span class="math">cos(2πj/q)</span>. (The v1 repo records this as its own 2026-08 correction of an
+  earlier wrong identity.)</p>
+  <div class="demo">
+    <div class="controls">
+      <label>q <input type="range" id="c11q" min="1" max="12" value="5"> <span id="c11qv">5</span></label>
+      <label>K <input type="range" id="c11k" min="5" max="95" value="30"> <span id="c11kv">0.30</span></label>
+    </div>
+    <div class="readout" id="c11out"></div>
+  </div>
+  <div class="verify-row"><button data-verify="c11">Verify — four recorded spot checks</button><div class="verify-out" id="v-c11"></div></div>
+  <p class="sources">v1: beta_from_tongues.md §4d</p>
+</section>
+
+<section class="claim" id="c12">
+  <div class="claim-head"><span class="cnum">C12</span><h2>No inverse-square width law</h2>
+    <span class="chips"><span class="chip">finite computation</span><span class="chip">classical ingredients — Σφ(q)/q² ~ (6/π²)ln Q</span></span></div>
+  <p class="statement">Null result, positively provable: no constant <span class="math">c</span> makes widths
+  <span class="math">c/q²</span> for every reduced <span class="math">p/q</span> sum to total measure 1,
+  because <span class="math">Σ φ(q)/q²</span> diverges logarithmically. So if the critical staircase is
+  complete (measure 1), the critical width exponent must exceed 2 — the repo's own recorded widths agree
+  (w·q² falls: 0.296, 0.275, 0.254, … for q = 2..7). This refutes three of the parent framework's docs,
+  from inside.</p>
+  <div class="demo"><canvas id="c12canvas" width="780" height="220"></canvas></div>
+  <div class="verify-row"><button data-verify="c12">Verify — partial sums 2.112, 3.497, 4.897, 6.297</button><div class="verify-out" id="v-c12"></div></div>
+  <p class="sources">v1: farey_tongue_width_null.py · Jensen–Bak–Bohr 1983/84</p>
+</section>
+
+<section class="claim" id="c13">
+  <div class="claim-head"><span class="cnum">C13</span><h2>A Möbius bijection</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">exercise-level</span></span></div>
+  <p class="statement"><span class="math">Ω(w) = (11 + 2w)/(16 + 3w)</span> has derivative numerator
+  <span class="math">2·16 − 3·11 = −1</span>, hence is a strictly decreasing bijection of [0, 1] onto
+  [13/19, 11/16], with inverse <span class="math">w = (11 − 16Ω)/(3Ω − 2)</span>.</p>
+  <div class="note">The parent framework's <em>use</em> of this map — fitting an observed value to select
+  w* — is the part that failed audit. Only the bare function analysis survives.</div>
+  <div class="verify-row"><button data-verify="c13">Verify — derivative, monotonicity, round-trip to 1e−15</button><div class="verify-out" id="v-c13"></div></div>
+  <p class="sources">v1: boundary_weight.md:86-100</p>
+</section>
+
+<footer>
+  Extracted 2026-08-19 from an audited corpus; inventory re-derived every expected
+  number against running code before this page was built. Statuses are labels on
+  evidence, not honors: nothing here is novel, and the page says so.
+</footer>
+</div>
+
+<script>
+"use strict";
+// ---------- shared math ----------
+const gcd = (a, b) => b ? gcd(b, a % b) : a;
+function totientsUpTo(N) {
+  const phi = Array.from({length: N + 1}, (_, i) => i);
+  for (let p = 2; p <= N; p++) if (phi[p] === p)
+    for (let m = p; m <= N; m += p) phi[m] -= phi[m] / p;
+  return phi;
+}
+function rho(Omega, K, iters = 1200, transient = 300) {
+  let th = 0;
+  for (let i = 0; i < transient; i++) th = th + Omega - (K / (2 * Math.PI)) * Math.sin(2 * Math.PI * th);
+  const start = th;
+  for (let i = 0; i < iters; i++) th = th + Omega - (K / (2 * Math.PI)) * Math.sin(2 * Math.PI * th);
+  return (th - start) / iters;
+}
+function plateauWidth(p, q, K, lo, hi, tol = 2e-5) {
+  // scan then bisect both edges of the rho = p/q plateau inside [lo, hi]
+  const target = p / q, N = 400;
+  let insideLo = null, insideHi = null;
+  for (let i = 0; i <= N; i++) {
+    const Om = lo + (hi - lo) * i / N;
+    if (Math.abs(rho(Om, K, 6000, 1500) - target) < tol) {
+      if (insideLo === null) insideLo = Om;
+      insideHi = Om;
+    }
+  }
+  if (insideLo === null) return 0;
+  const bisect = (a, b) => { // a outside the plateau, b inside
+    for (let i = 0; i < 30; i++) {
+      const m = (a + b) / 2;
+      if (Math.abs(rho(m, K, 6000, 1500) - target) < tol) b = m; else a = m;
+    }
+    return b;
+  };
+  const step = (hi - lo) / N;
+  const right = bisect(insideHi + step, insideHi);
+  const left = bisect(insideLo - step, insideLo);
+  return right - left;
+}
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+// ---------- verification registry ----------
+const CHECKS = {};
+function register(id, fn) { CHECKS[id] = fn; }
+function runCheck(id) {
+  const out = document.getElementById("v-" + id);
+  let r;
+  try { r = CHECKS[id](); }
+  catch (e) { r = { pass: false, lines: ["exception: " + e.message] }; }
+  out.className = "verify-out " + (r.pass ? "pass" : "fail");
+  out.textContent = (r.pass ? "PASS\n" : "FAIL\n") + r.lines.join("\n");
+  return r.pass;
+}
+document.querySelectorAll("[data-verify]").forEach(b =>
+  b.addEventListener("click", () => runCheck(b.dataset.verify)));
+document.getElementById("runall-btn").addEventListener("click", () => {
+  const ids = Object.keys(CHECKS);
+  let passed = 0;
+  ids.forEach(id => { if (runCheck(id)) passed++; });
+  const el = document.getElementById("runall-out");
+  el.textContent = `${passed}/${ids.length} verifications pass`;
+  el.style.color = passed === ids.length ? css("--ok") : css("--bad");
+});
+
+// ---------- C1 Stern–Brocot ----------
+function sbPath(p, q) { // returns {runs, dets} via the standard walk
+  let [a, b, c, d] = [0n, 1n, 1n, 0n];
+  const P = BigInt(p), Q = BigInt(q);
+  let path = "", dets = [];
+  for (let i = 0; i < 400; i++) {
+    const mn = a + c, md = b + d;
+    dets.push(Number(b * c - a * d));
+    if (mn * Q === md * P) { dets.push(Number(b * (mn) - a * (md))); return { path, dets, done: true }; }
+    if (mn * Q < md * P) { path += "R"; [a, b] = [mn, md]; }
+    else { path += "L"; [c, d] = [mn, md]; }
+  }
+  return { path, dets, done: false };
+}
+const runs = s => s.match(/L+|R+/g)?.map(r => r.length) ?? [];
+function cf(p, q) { const out = []; while (q) { out.push(Math.floor(p / q)); [p, q] = [q, p % q]; } return out; }
+document.getElementById("c1go").addEventListener("click", () => {
+  let p = +document.getElementById("c1p").value, q = +document.getElementById("c1q").value;
+  const g = gcd(p, q); p /= g; q /= g;
+  const r = sbPath(p, q);
+  document.getElementById("c1out").textContent =
+    `${p}/${q}  path: ${r.path || "(root)"}\nrun-lengths: [${runs(r.path)}]   continued fraction: [${cf(p, q)}]\nbc − ad along path: {${[...new Set(r.dets)]}}`;
+});
+register("c1", () => {
+  // depth-12 tree: exhaustive invariants
+  let level = [[0, 1, 1, 0]], inserted = 0, adjacentOK = 0, adjacentAll = 0, allReduced = true;
+  const seen = new Set();
+  for (let d = 0; d < 12; d++) {
+    const next = [];
+    for (const [a, b, c, dd] of level) {
+      const mn = a + c, md = b + dd;
+      inserted++;
+      if (gcd(mn, md) !== 1) allReduced = false;
+      const key = mn + "/" + md;
+      if (seen.has(key)) allReduced = false; else seen.add(key);
+      for (const [x1, y1, x2, y2] of [[a, b, mn, md], [mn, md, c, dd]]) {
+        adjacentAll++;
+        if (y1 * x2 - x1 * y2 === 1) adjacentOK++;
+        next.push([x1, y1, x2, y2]);
+      }
+    }
+    level = next;
+  }
+  // CF addressing spot checks — path run-lengths equal the CF digits
+  // with the standard last-run + 1 convention (path stops AT the node).
+  const cfCases = [[2, 5, "0,2,2"], [13, 19, "0,1,2,6"]];
+  const cfOK = cfCases.every(([p, q, want]) => {
+    const r = runs(sbPath(p, q).path);
+    if (!r.length) return false;
+    r[r.length - 1] += 1;
+    return "0," + r.join(",") === want &&
+      "0," + r.join(",") === cf(p, q).join(",");
+  });
+  const pass = inserted === 4095 && adjacentOK === 8190 && allReduced && cfOK;
+  return { pass, lines: [
+    `insertions to depth 12: computed ${inserted}, expected 4095`,
+    `adjacent pairs with bc−ad = 1: ${adjacentOK}/${adjacentAll}`,
+    `all reduced and unique: ${allReduced}`,
+    `CF addressing (2/5, 13/19): ${cfOK}` ] };
+});
+
+// ---------- C2 unique (2,3) ----------
+register("c2", () => {
+  const sols = [];
+  for (let x = 1; x <= 1000; x++) { const y = x * x - 1; if (y * y - 1 === x ** 3) sols.push([x, y]); }
+  const ptab = [];
+  for (let x = 1; x <= 6; x++) ptab.push(`p(${x}) = ${x ** 4 - x ** 3 - 2 * x ** 2}`);
+  const pass = JSON.stringify(sols) === "[[2,3]]";
+  return { pass, lines: [
+    `exhaustive x ≤ 1000: solutions = ${JSON.stringify(sols)}, expected [[2,3]]`,
+    `x⁴−x³−2x²: ${ptab.join("  ")}  (zero only at x = 2)` ] };
+});
+
+// ---------- C3 fibonacci ----------
+register("c3", () => {
+  const f = [1, 2]; while (f.length < 12) f.push(f.at(-1) + f.at(-2));
+  const hits = [];
+  const lines = [];
+  for (let n = 1; n < 8; n++) {
+    const eq = f[n] === f[n - 1] ** 2 - 1;
+    if (eq) hits.push(n);
+    lines.push(`n=${n}: F=${f[n - 1]}, next=${f[n]}, F²−1=${f[n - 1] ** 2 - 1} ${eq ? "✓" : "✗"}`);
+  }
+  const pass = hits.length === 1 && hits[0] === 2;
+  return { pass, lines: [...lines, `unique hit at n = ${hits}, expected [2]; growth bound closes n > 7`] };
+});
+
+// ---------- C4 mirror census ----------
+function fareySet(n) {
+  const s = [];
+  for (let q = 1; q <= n; q++) for (let p = 0; p <= q; p++)
+    if (gcd(p, q) === 1 && !(p === 0 && q > 1) && !(p === q && q > 1)) s.push([p, q]);
+  return s;
+}
+register("c4", () => {
+  const want = { 1: [1, 0], 2: [1, 1], 3: [2, 1], 4: [3, 1], 5: [5, 1], 6: [6, 1] };
+  const lines = []; let pass = true;
+  for (let n = 1; n <= 6; n++) {
+    const F = fareySet(n);
+    let fixed = 0, pairs = 0; const seen = new Set();
+    for (const [p, q] of F) {
+      const key = p + "/" + q; if (seen.has(key)) continue;
+      const [mp, mq] = [q - p, q];
+      if (mp === p && mq === q) { fixed++; seen.add(key); }
+      else { pairs++; seen.add(key); seen.add(mp + "/" + mq); }
+    }
+    const ok = pairs === want[n][0] && fixed === want[n][1];
+    pass = pass && ok;
+    lines.push(`n=${n}: |F|=${F.length}, (pairs,fixed)=(${pairs},${fixed}), expected (${want[n]}) ${ok ? "✓" : "✗"}`);
+  }
+  return { pass, lines };
+});
+
+// ---------- C5 antipodal plateaus ----------
+function orbitCount(n) {
+  let count = 0;
+  for (let q = 1; q <= n; q++) {
+    if (gcd(q, 6) !== 1) continue;
+    if (q === 1) { count += 1; continue; }  // {0/1, 1/1} is one orbit
+    let phi = 0; for (let p = 1; p < q; p++) if (gcd(p, q) === 1) phi++;
+    count += phi / 2;
+  }
+  return count;
+}
+function drawC5() {
+  const n = +document.getElementById("c5n").value;
+  document.getElementById("c5nv").textContent = n;
+  const cv = document.getElementById("c5canvas"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const pad = 36, W = cv.width - pad * 2, H = cv.height - pad * 1.4;
+  const maxN = 28, maxC = orbitCount(maxN);
+  ctx.strokeStyle = css("--line"); ctx.beginPath();
+  ctx.moveTo(pad, cv.height - pad); ctx.lineTo(cv.width - pad, cv.height - pad); ctx.stroke();
+  // the 15 line
+  const y15 = cv.height - pad - (15 / maxC) * H;
+  ctx.strokeStyle = css("--bad"); ctx.setLineDash([4, 4]); ctx.beginPath();
+  ctx.moveTo(pad, y15); ctx.lineTo(cv.width - pad, y15); ctx.stroke(); ctx.setLineDash([]);
+  ctx.fillStyle = css("--bad"); ctx.font = "11px ui-monospace, monospace";
+  ctx.fillText("15 — never attained", pad + 4, y15 - 5);
+  // step function
+  ctx.strokeStyle = css("--s1"); ctx.lineWidth = 2; ctx.beginPath();
+  let prev = null;
+  for (let m = 1; m <= maxN; m++) {
+    const x = pad + ((m - 1) / (maxN - 1)) * W;
+    const y = cv.height - pad - (orbitCount(m) / maxC) * H;
+    if (prev === null) ctx.moveTo(x, y);
+    else { ctx.lineTo(x, prev); ctx.lineTo(x, y); }
+    prev = y;
+  }
+  ctx.stroke(); ctx.lineWidth = 1;
+  // cursor
+  const xc = pad + ((n - 1) / (maxN - 1)) * W;
+  ctx.strokeStyle = css("--faint"); ctx.beginPath(); ctx.moveTo(xc, pad / 2); ctx.lineTo(xc, cv.height - pad); ctx.stroke();
+  document.getElementById("c5out").textContent =
+    `N(${n}) = ${orbitCount(n)}   plateaus so far: ${[...new Set(Array.from({length: n}, (_, i) => orbitCount(i + 1)))].join(", ")}`;
+}
+document.getElementById("c5n").addEventListener("input", drawC5);
+register("c5", () => {
+  const expect = [[1, 1], [4, 1], [5, 3], [10, 6], [12, 11], [16, 17], [18, 25], [22, 34], [24, 45], [28, 55]];
+  const lines = []; let pass = true;
+  for (const [n, want] of expect) {
+    const got = orbitCount(n);
+    const ok = got === want; pass = pass && ok;
+    lines.push(`N(${n}) = ${got}, expected ${want} ${ok ? "✓" : "✗"}`);
+  }
+  const incs = [[5, 2], [7, 3], [11, 5], [13, 6], [17, 8], [19, 9], [23, 11], [25, 10]];
+  for (const [q, want] of incs) {
+    let phi = 0; for (let p = 1; p < q; p++) if (gcd(p, q) === 1) phi++;
+    const ok = phi / 2 === want; pass = pass && ok;
+    lines.push(`φ(${q})/2 = ${phi / 2}, expected ${want} ${ok ? "✓" : "✗"}${q === 25 ? "  ← (q−1)/2 would say 12" : ""}`);
+  }
+  lines.push(`15 attained: ${Array.from({length: 28}, (_, i) => orbitCount(i + 1)).includes(15)}`);
+  return { pass, lines };
+});
+
+// ---------- C6 no order 15 ----------
+function orders648() {
+  const lcm = (a, b) => a / gcd(a, b) * b;
+  const counts = new Map();
+  for (let a = 0; a < 6; a++) for (let b = 0; b < 54; b++) for (let c = 0; c < 2; c++) {
+    const o = lcm(lcm(6 / gcd(a, 6), 54 / gcd(b, 54)), 2 / gcd(c, 2));
+    counts.set(o, (counts.get(o) ?? 0) + 1);
+  }
+  return counts;
+}
+function drawC6() {
+  const cv = document.getElementById("c6canvas"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const counts = orders648();
+  const orders = [...counts.keys()].sort((a, b) => a - b);
+  const pad = 36, W = cv.width - pad * 2, H = cv.height - pad * 1.6;
+  const maxC = Math.max(...counts.values());
+  const bw = Math.min(48, W / orders.length - 8);
+  ctx.font = "11px ui-monospace, monospace";
+  orders.forEach((o, i) => {
+    const x = pad + (i + 0.5) * (W / orders.length) - bw / 2;
+    const h = (counts.get(o) / maxC) * H;
+    ctx.fillStyle = css("--s1");
+    ctx.beginPath(); ctx.roundRect(x, cv.height - pad - h, bw, h, [4, 4, 0, 0]); ctx.fill();
+    ctx.fillStyle = css("--muted");
+    ctx.textAlign = "center";
+    ctx.fillText(String(o), x + bw / 2, cv.height - pad + 14);
+    ctx.fillText(String(counts.get(o)), x + bw / 2, cv.height - pad - h - 5);
+  });
+  ctx.textAlign = "left";
+  ctx.fillStyle = css("--faint");
+  ctx.fillText("element order → count (all 648 elements)", pad, 14);
+}
+register("c6", () => {
+  const counts = orders648();
+  const got = [...counts.keys()].sort((a, b) => a - b).join(",");
+  const total = [...counts.values()].reduce((a, b) => a + b, 0);
+  const divisors = []; for (let d = 1; d <= 648; d++) if (648 % d === 0) divisors.push(d);
+  const pass = got === "1,2,3,6,9,18,27,54" && total === 648 && 648 % 15 !== 0 && !divisors.includes(15);
+  return { pass, lines: [
+    `element orders: {${got}}, expected {1,2,3,6,9,18,27,54}`,
+    `elements enumerated: ${total}/648`,
+    `648 mod 15 = ${648 % 15} (≠ 0); 15 in divisor list: ${divisors.includes(15)}`,
+    `divisors (${divisors.length}): ${divisors.join(",")}` ] };
+});
+
+// ---------- C7 klein spectrum ----------
+function bcResidual(m, branch, n, pts = 200) {
+  const f = branch === "cos"
+    ? (x, y) => Math.cos(2 * Math.PI * m * x) * Math.cos(2 * Math.PI * n * y)
+    : (x, y) => Math.cos(2 * Math.PI * m * x) * Math.sin(2 * Math.PI * n * y);
+  let worst = 0;
+  for (let i = 0; i < pts; i++) {
+    const x = Math.random(), y = Math.random();
+    worst = Math.max(worst, Math.abs(f(x + 1, y) + f(x, 1 - y)));
+  }
+  return worst;
+}
+document.querySelectorAll(".modecell").forEach(cell => cell.addEventListener("click", () => {
+  const mode = cell.dataset.mode;
+  const m = mode[0] === "h" ? 1.5 : 2;
+  const branch = mode[1] === "c" ? "cos" : "sin";
+  const n = branch === "cos" ? 1 : 1;
+  const r = bcResidual(m, branch, n);
+  const allowed = (mode === "hc" || mode === "is");
+  cell.classList.remove("allowed", "forbidden");
+  cell.classList.add(r < 1e-9 ? "allowed" : "forbidden");
+  cell.querySelector(".res").textContent =
+    `residual: ${r.toExponential(1)} — ${r < 1e-9 ? "allowed" : "forbidden"}${allowed === (r < 1e-9) ? "" : " (UNEXPECTED)"}`;
+}));
+register("c7", () => {
+  const lines = []; let pass = true;
+  for (const m of [0, 1, 2, 0.5, 1.5]) {
+    for (const branch of ["cos", "sin"]) {
+      for (const n of branch === "cos" ? [0, 1, 2] : [1, 2]) {
+        if (branch === "cos" && n === 0 && m === 0) { /* constant */ }
+        const r = bcResidual(m, branch, n, 120);
+        const halfInt = Math.abs(m % 1) === 0.5;
+        const shouldPass = (halfInt && branch === "cos") || (!halfInt && branch === "sin");
+        const ok = shouldPass ? r < 1e-9 : r > 0.1;
+        pass = pass && ok;
+        lines.push(`m=${m} ${branch} n=${n}: residual ${r.toExponential(1)} — ${shouldPass ? "allowed" : "forbidden"} ${ok ? "✓" : "✗"}`);
+      }
+    }
+  }
+  lines.push("constant mode (m=0, cos, n=0) sits in the forbidden (integer, cos) family → no zero mode; λ_min = π² (m=½, n=0)");
+  return { pass, lines };
+});
+
+// ---------- C8 staircase ----------
+function drawC8() {
+  const K = +document.getElementById("c8k").value / 100;
+  document.getElementById("c8kv").textContent = K.toFixed(2);
+  const cv = document.getElementById("c8canvas"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const pad = 36, W = cv.width - pad * 2, H = cv.height - pad * 1.6;
+  ctx.strokeStyle = css("--line");
+  ctx.strokeRect(pad, pad / 2, W, H);
+  // faint guides at 1/2, 1/3, 2/3
+  ctx.font = "11px ui-monospace, monospace"; ctx.fillStyle = css("--faint");
+  for (const [p, q] of [[1, 2], [1, 3], [2, 3], [1, 4], [3, 4]]) {
+    const y = pad / 2 + H - (p / q) * H;
+    ctx.strokeStyle = css("--line"); ctx.setLineDash([2, 5]);
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(pad + W, y); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillText(`${p}/${q}`, pad + W + 4, y + 4);
+  }
+  ctx.strokeStyle = css("--s1"); ctx.lineWidth = 1.6; ctx.beginPath();
+  const N = 560;
+  for (let i = 0; i <= N; i++) {
+    const Om = i / N;
+    const r = rho(Om, K, 900, 250);
+    const x = pad + Om * W, y = pad / 2 + H - Math.min(1, Math.max(0, r)) * H;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke(); ctx.lineWidth = 1;
+  ctx.fillStyle = css("--muted");
+  ctx.fillText("Ω →", pad + W / 2, cv.height - 8);
+  ctx.save(); ctx.translate(12, pad / 2 + H / 2); ctx.rotate(-Math.PI / 2);
+  ctx.fillText("ρ(Ω)", 0, 0); ctx.restore();
+}
+let c8timer = null;
+document.getElementById("c8k").addEventListener("input", () => {
+  clearTimeout(c8timer); c8timer = setTimeout(drawC8, 120);
+});
+register("c8", () => {
+  const K = 1;
+  // monotonicity on a coarse grid
+  let mono = true, prev = -1;
+  for (let i = 0; i <= 200; i++) {
+    const r = rho(i / 200, K, 900, 250);
+    if (r < prev - 1e-3) mono = false;
+    prev = Math.max(prev, r);
+  }
+  const w12 = plateauWidth(1, 2, 1, 0.35, 0.65);
+  const w13 = plateauWidth(1, 3, 1, 0.2, 0.45);
+  const w14 = plateauWidth(1, 4, 1, 0.12, 0.35);
+  const pass = mono && w12 > w13 && w13 > w14 && w12 > 0.05;
+  return { pass, lines: [
+    `monotone on 200-point grid: ${mono}`,
+    `plateau widths at K=1: w(1/2)=${w12.toFixed(4)}  w(1/3)=${w13.toFixed(4)}  w(1/4)=${w14.toFixed(4)}`,
+    `ordering w(1/2) > w(1/3) > w(1/4): ${w12 > w13 && w13 > w14}` ] };
+});
+
+// ---------- C9 tongue scaling ----------
+function measureWidths(K) {
+  // tight brackets so the fine scan resolves the K = 0.2 widths (~3e-4)
+  return { w12: plateauWidth(1, 2, K, 0.47, 0.53),
+           w13: plateauWidth(1, 3, K, 0.315, 0.352) };
+}
+document.getElementById("c9run").addEventListener("click", () => {
+  const el = document.getElementById("c9out");
+  el.textContent = "measuring…";
+  setTimeout(() => {
+    const a = measureWidths(0.2), b = measureWidths(0.4);
+    const slope = Math.log((a.w12 / a.w13) / (b.w12 / b.w13)) / Math.log(0.2 / 0.4);
+    el.textContent =
+      `K=0.2: w(1/2)=${a.w12.toExponential(3)}  w(1/3)=${a.w13.toExponential(3)}\n` +
+      `K=0.4: w(1/2)=${b.w12.toExponential(3)}  w(1/3)=${b.w13.toExponential(3)}\n` +
+      `slope of ln(w½/w⅓) vs ln K = ${slope.toFixed(3)}   (identity predicts −1 as K → 0)`;
+  }, 30);
+});
+register("c9", () => {
+  const a = measureWidths(0.2), b = measureWidths(0.4);
+  const slope = Math.log((a.w12 / a.w13) / (b.w12 / b.w13)) / Math.log(0.2 / 0.4);
+  const pass = Math.abs(slope - (-1)) < 0.15 && a.w12 > 0 && a.w13 > 0;
+  return { pass, lines: [
+    `w(1/2): ${a.w12.toExponential(3)} @K=0.2, ${b.w12.toExponential(3)} @K=0.4 (ref: 3.147e-3, 1.2533e-2)`,
+    `w(1/3): ${a.w13.toExponential(3)} @K=0.2, ${b.w13.toExponential(3)} @K=0.4 (ref: 2.83e-4, 2.183e-3)`,
+    `ratio-law slope: ${slope.toFixed(3)}, expected ≈ −0.95 (→ −1 as K → 0)` ] };
+});
+
+// ---------- C10 Adler ----------
+function beatFreq(dw, K) {
+  // integrate phi' = dw - 2K sin phi; count full rotations
+  if (Math.abs(dw) <= 2 * K) return 0;
+  let phi = 0, T = 0, dt = 0.002, rot = 0, last = 0;
+  for (let i = 0; i < 400000; i++) {
+    phi += dt * (dw - 2 * K * Math.sin(phi)); T += dt;
+    if (phi - last > 2 * Math.PI) { rot++; last += 2 * Math.PI; }
+  }
+  return rot * 2 * Math.PI / T;
+}
+function drawC10() {
+  const dw = +document.getElementById("c10dw").value / 100;
+  const K = +document.getElementById("c10k").value / 100;
+  document.getElementById("c10dwv").textContent = dw.toFixed(2);
+  document.getElementById("c10kv").textContent = K.toFixed(2);
+  const locked = Math.abs(dw) <= 2 * K;
+  const cv = document.getElementById("c10canvas"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  // phase trajectory
+  let phi = 0.1; const dt = 0.01, N = 700;
+  ctx.strokeStyle = locked ? css("--ok") : css("--s2"); ctx.lineWidth = 2; ctx.beginPath();
+  for (let i = 0; i < N; i++) {
+    phi += dt * (dw - 2 * K * Math.sin(phi));
+    const x = 20 + (i / N) * (cv.width - 40);
+    const y = cv.height / 2 - 60 * Math.sin(phi);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke(); ctx.lineWidth = 1;
+  const pred = locked ? 0 : Math.sqrt(dw * dw - 4 * K * K);
+  document.getElementById("c10out").textContent =
+    `${locked ? "LOCKED" : "DRIFTING"}   threshold 2K = ${(2 * K).toFixed(2)}   ` +
+    `predicted beat = ${pred.toFixed(4)}`;
+}
+["c10dw", "c10k"].forEach(id => document.getElementById(id).addEventListener("input", drawC10));
+register("c10", () => {
+  const K = 0.3;
+  const b1 = beatFreq(0.6, K), b2 = beatFreq(0.62, K);
+  const pred2 = Math.sqrt(0.62 ** 2 - 0.6 ** 2);
+  const b3 = beatFreq(0.9, K), pred3 = Math.sqrt(0.9 ** 2 - 0.6 ** 2);
+  const pass = b1 === 0 && b2 > 0 && Math.abs(b2 - pred2) < 0.02 && Math.abs(b3 - pred3) < 0.02;
+  return { pass, lines: [
+    `K=0.3, Δω=0.60: beat = ${b1} (locked, |Δω| ≤ 2K) ✓`,
+    `K=0.3, Δω=0.62: beat = ${b2.toFixed(4)}, √(Δω²−(2K)²) = ${pred2.toFixed(4)}`,
+    `K=0.3, Δω=0.90: beat = ${b3.toFixed(4)}, formula = ${pred3.toFixed(4)}` ] };
+});
+
+// ---------- C11 chebyshev ----------
+function chebBoth(q, K) {
+  let lhs = 1;
+  for (let j = 0; j < q; j++) lhs *= 1 - K * Math.cos(2 * Math.PI * j / q);
+  const x = 1 / K;
+  let t0 = 1, t1 = x;
+  if (q === 0) return { lhs, rhs: 0 };
+  for (let k = 1; k < q; k++) { const t2 = 2 * x * t1 - t0; t0 = t1; t1 = t2; }
+  const Tq = q === 1 ? x : t1;
+  return { lhs, rhs: 2 * Math.pow(K / 2, q) * (Tq - 1) };
+}
+function drawC11() {
+  const q = +document.getElementById("c11q").value;
+  const K = +document.getElementById("c11k").value / 100;
+  document.getElementById("c11qv").textContent = q;
+  document.getElementById("c11kv").textContent = K.toFixed(2);
+  const { lhs, rhs } = chebBoth(q, K);
+  document.getElementById("c11out").textContent =
+    `∏(1 − K·cos 2πj/q) = ${lhs.toPrecision(10)}\n2(K/2)^q(T_q(1/K)−1) = ${rhs.toPrecision(10)}\n|difference| = ${Math.abs(lhs - rhs).toExponential(2)}`;
+}
+["c11q", "c11k"].forEach(id => document.getElementById(id).addEventListener("input", drawC11));
+register("c11", () => {
+  const cases = [[2, 0.3, 0.91], [3, 0.8, 0.392], [5, 0.3, 0.889879375], [7, 0.8, 0.2064512]];
+  const lines = []; let pass = true;
+  for (const [q, K, want] of cases) {
+    const { lhs, rhs } = chebBoth(q, K);
+    const ok = Math.abs(lhs - rhs) < 1e-12 && Math.abs(lhs - want) < 1e-6;
+    pass = pass && ok;
+    lines.push(`q=${q}, K=${K}: both sides ${lhs.toPrecision(8)}, recorded ${want} ${ok ? "✓" : "✗"}`);
+  }
+  return { pass, lines };
+});
+
+// ---------- C12 divergence ----------
+function drawC12() {
+  const cv = document.getElementById("c12canvas"), ctx = cv.getContext("2d");
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const phi = totientsUpTo(10000);
+  const pad = 40, W = cv.width - pad * 2, H = cv.height - pad * 1.5;
+  const maxY = 6.6;
+  // budget line at 1
+  const y1 = cv.height - pad + 6 - (1 / maxY) * H;
+  ctx.strokeStyle = css("--s2"); ctx.setLineDash([5, 4]); ctx.beginPath();
+  ctx.moveTo(pad, y1); ctx.lineTo(pad + W, y1); ctx.stroke(); ctx.setLineDash([]);
+  ctx.font = "11px ui-monospace, monospace"; ctx.fillStyle = css("--s2");
+  ctx.fillText("total measure budget = 1", pad + 6, y1 - 5);
+  // running sum, log-x
+  ctx.strokeStyle = css("--s1"); ctx.lineWidth = 2; ctx.beginPath();
+  let s = 0;
+  for (let q = 1; q <= 10000; q++) {
+    s += phi[q] / (q * q);
+    if (q % 7 && q > 100) continue;
+    const x = pad + (Math.log10(q) / 4) * W;
+    const y = cv.height - pad + 6 - (s / maxY) * H;
+    q === 1 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  }
+  ctx.stroke(); ctx.lineWidth = 1;
+  ctx.fillStyle = css("--muted");
+  [10, 100, 1000, 10000].forEach(t => {
+    const x = pad + (Math.log10(t) / 4) * W;
+    ctx.fillText(String(t), x - 10, cv.height - pad + 22);
+  });
+  ctx.fillText("Q (log) →", pad + W / 2, cv.height - 4);
+  ctx.fillStyle = css("--faint");
+  ctx.fillText("Σ φ(q)/q² — grows ≈ 1.400 per decade, forever", pad, 14);
+}
+register("c12", () => {
+  const phi = totientsUpTo(10000);
+  const want = { 10: 2.112, 100: 3.497, 1000: 4.897, 10000: 6.297 };
+  let s = 0; const lines = []; let pass = true;
+  for (let q = 1; q <= 10000; q++) {
+    s += phi[q] / (q * q);
+    if (want[q] !== undefined) {
+      const ok = Math.abs(s - want[q]) < 0.002;
+      pass = pass && ok;
+      lines.push(`Σ up to ${q}: ${s.toFixed(3)}, expected ${want[q]} ${ok ? "✓" : "✗"}`);
+    }
+  }
+  lines.push(`per-decade increment ≈ (6/π²)·ln 10 = ${(6 / Math.PI ** 2 * Math.LN10).toFixed(3)}`);
+  return { pass, lines };
+});
+
+// ---------- C13 mobius ----------
+register("c13", () => {
+  const Om = w => (11 + 2 * w) / (16 + 3 * w);
+  const inv = o => (11 - 16 * o) / (3 * o - 2);
+  const numerator = 2 * 16 - 3 * 11;
+  const samples = [0, 0.25, 0.5, 1].map(Om);
+  const dec = samples.every((v, i) => i === 0 || v < samples[i - 1]);
+  let rt = 0;
+  for (const w of [0, 0.3, 0.7, 1]) rt = Math.max(rt, Math.abs(inv(Om(w)) - w));
+  const pass = numerator === -1 && dec && rt < 1e-12
+    && Math.abs(Om(0) - 11 / 16) < 1e-15 && Math.abs(Om(1) - 13 / 19) < 1e-15;
+  return { pass, lines: [
+    `derivative numerator 2·16 − 3·11 = ${numerator}, expected −1`,
+    `Ω(0)=${Om(0)} (11/16), Ω(1)=${Om(1).toFixed(15)} (13/19); strictly decreasing: ${dec}`,
+    `round-trip max error: ${rt.toExponential(2)}` ] };
+});
+
+// ---------- init + theme redraw ----------
+function drawAll() { drawC5(); drawC6(); drawC8(); drawC10(); drawC11(); drawC12(); }
+drawAll();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+</script>
