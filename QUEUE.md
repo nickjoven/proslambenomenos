@@ -114,6 +114,52 @@ correction is recorded in v1's audit trail. Numbers above D28 will be
 triaged the same way when the drip reaches them, against INDEX.md's
 map.
 
+## Follow-through report (2026-08-19): where the reasoning breaks
+
+The queue was executed from Q0 until the process stopped adjudicating.
+It held through Q3 and broke in three places — all three are
+boundaries of mechanization, not execution defects.
+
+**Break 1 — Q0, immediately: the pigeonhole gate is ill-posed for
+singleton coincidences.** Computing a permutation-null p for
+a0 ~ c*H0/(2*pi) requires choosing an expression ensemble: which
+constants, which operations, what tolerance. The choice determines the
+p-value, and nothing inside the system audits the choice — v1's own
+Region-C machinery had this exact dependence (its ensemble was the
+framework's integers). So the spine claim enters coincidence-unruled
+and NO computation available to this repo can move it; only a
+community-defensible ensemble convention could, and adopting one is a
+modeling commitment, not a calculation. The gate's first contact with
+a real physics claim lands on the look-elsewhere boundary and honestly
+stalls there. This is recorded in the claim file itself.
+
+**Break 2 — Q2: the curation vacuum appears.** The planned identity
+claim (a0 = cH/(2*pi) <=> c^2/a0 = 2*pi*c/H) is one line of algebra
+that restates the conjecture without adding content; it was not
+created. From Q4 on, the census is: Q4 definitional + one queued
+exercise, Q5 expected null, Q6 cross-link only, Q7 definitions, Q8
+textbook imports, Q9 declined. The drip therefore contains roughly
+FOUR substantive releases (Q0 note, Q1, Q3's import+refutation pair,
+and Q4's Iwasawa exercise as work) before the numbered spine is
+exhausted. That is the precise measurement of v1's separable
+mathematical content, and it means the drip is a finite curation
+program: past Q3-Q4, continuation requires the solve-candidates —
+new research the strategy can gate but cannot generate.
+
+**Break 3 — "worth recording" is not computable.** kuramoto-critical-
+coupling entered as legitimately as any deep result; a thousand
+textbook imports would too, and no gate would go red. The registry
+degenerating into a bibliography is prevented only by editorial
+judgment, which re-enters at the one door the intake law cannot
+guard. The law bounds dishonesty; it cannot supply significance.
+
+Disposition of the breaks: 1 is permanent and documented (the honest
+status IS the community's status — "unexplained coincidence"); 2 is
+the expected terminus — the queue tail exists for completeness, and
+the frontier after Q4 is the two solve-candidates plus Track 1's
+empirical wait; 3 is accepted as the boundary of mechanization —
+noted here so nobody later mistakes registry size for content.
+
 ## Cadence rules
 
 - One queue item per release; a release = claim file(s) + compendium

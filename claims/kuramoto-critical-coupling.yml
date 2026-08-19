@@ -1,0 +1,13 @@
+id: kuramoto-critical-coupling
+statement: >
+  For the mean-field Kuramoto model with a unimodal symmetric
+  frequency density g, the incoherent state loses stability at the
+  critical coupling K_c = 2/(pi*g(0)).
+premises: []
+evidence:
+  - kind: citation
+    ref: "Kuramoto (1984), Chemical Oscillations, Waves, and Turbulence; review: Strogatz (2000), Physica D 143, 1"
+novelty:
+  status: classical
+  citation: "Kuramoto 1984; standard result"
+status: imported

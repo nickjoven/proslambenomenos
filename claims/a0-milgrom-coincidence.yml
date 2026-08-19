@@ -1,0 +1,25 @@
+id: a0-milgrom-coincidence
+statement: >
+  The observed MOND acceleration scale a0 ~ 1.2e-10 m/s^2 agrees with
+  c*H0/(2*pi) ~ 1.04e-10 m/s^2 (Planck 2018 H0 = 67.4 km/s/Mpc) to a
+  ratio of 1.15. The agreement is an unexplained coincidence noted at
+  MOND's inception and discussed since as the "coincidence problem";
+  no derivation of the relation or the 2*pi is on record here
+  (DECLINED.md D-3).
+premises: []
+evidence:
+  - kind: citation
+    ref: "Milgrom (1983), ApJ 270, 365 - a0 ~ c*H0 noted at MOND's introduction; subsequent literature discusses a0 ~ c*H0/(2*pi) and a0 ~ c^2*sqrt(Lambda) variants"
+  - kind: computation
+    ref: "v1 a0_high_z.py (repaired 2026-08-17): c*H0/(2*pi) = 1.0422e-10 m/s^2, ratio obs/pred = 1.151"
+    method: rerun
+novelty:
+  status: classical
+  citation: "the coincidence is Milgrom's own (1983) and a standing discussion topic in the MOND literature"
+numeric_match:
+  observable: "a0 (MOND acceleration scale, ~1.2e-10 m/s^2)"
+  # No permutation-null p-value is recorded, and none is computable
+  # without choosing an expression ensemble - see QUEUE.md
+  # follow-through report. The cap below is therefore the honest,
+  # possibly permanent, status.
+status: coincidence-unruled

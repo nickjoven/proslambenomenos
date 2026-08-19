@@ -1,0 +1,17 @@
+id: a0-tracks-hubble-conjecture
+statement: >
+  Conjecture: the MOND acceleration scale varies with redshift as
+  a0(z) = c*H(z)/(2*pi), i.e. proportional to the Hubble rate, giving
+  a0(z)/a0(0) of 1.79 at z=1, 3.03 at z=2, 4.57 at z=3 under flat
+  LCDM (Planck 2018). Falsifier: the baryonic Tully-Fisher zero point
+  shifts by ~0.5 dex in log Mb at fixed V_flat by z=2 under this
+  scaling, versus no shift for constant a0 and a smaller shift for
+  a0 proportional to (1+z)^(3/4); low-mass rotation curves
+  (V_flat 50-120 km/s) at z > 1.5 with N > 20 per redshift bin
+  decide it. Current data (RC100, McGaugh 2024) do not.
+premises: []
+evidence: []
+novelty:
+  status: classical
+  citation: "a0 tracking cH(z) is a standing discussion in the MOND literature (Milgrom's variable-a0 remarks; Zhao & Famaey); rival scaling a0 ~ (1+z)^(3/4) from CDM simulations, Xu (2022, arXiv:2203.05606)"
+status: asserted

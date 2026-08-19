@@ -1,0 +1,12 @@
+id: staircase-phi-squared-scaling
+statement: >
+  Claim (v1's, recorded for the refutation): the critical devil's
+  staircase is self-similar at golden-mean winding with scaling ratio
+  phi^2 = 2.618.
+premises: []
+evidence:
+  - kind: refutation
+    ref: "measured ratios converge to Shenker's delta ~ 2.8336, not 2.618 (v1 tongue_width_universality.py reruns; v1 ERRATA/audit record 2026-08; classical value per Shenker 1982) - see golden-mean-shenker-scaling"
+novelty:
+  status: unchecked
+status: refuted

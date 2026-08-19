@@ -1,0 +1,15 @@
+id: golden-mean-shenker-scaling
+statement: >
+  For the critical (K = 1) sine circle map at golden-mean winding
+  number, the widths of successive mode-locking intervals along the
+  Fibonacci approximants scale with Shenker's constant
+  delta ~ 2.83361; the corresponding width exponent at criticality is
+  ln(delta)/ln(phi) ~ 2.164, not 2.
+premises: []
+evidence:
+  - kind: citation
+    ref: "Shenker (1982), Physica D 5, 405; Feigenbaum, Kadanoff & Shenker (1982), Physica D 5, 370"
+novelty:
+  status: classical
+  citation: "Shenker 1982; golden-mean universality class"
+status: imported

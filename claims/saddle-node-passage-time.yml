@@ -1,0 +1,19 @@
+id: saddle-node-passage-time
+statement: >
+  For the saddle-node normal form dx/dt = mu + x^2 with mu > 0, the
+  passage time from -infinity to +infinity is T(mu) =
+  integral dx/(mu + x^2) = pi/sqrt(mu). Hence near a saddle-node
+  bifurcation, characteristic times diverge as mu^(-1/2) and
+  locking-window widths scale with the universal exponent 1/2,
+  independent of higher-order terms.
+premises: []
+evidence:
+  - kind: proof
+    ref: "one-line integral: arctan antiderivative gives pi/sqrt(mu); universality from normal-form reduction (Guckenheimer & Holmes ch. 3; Strogatz ch. 4)"
+  - kind: computation
+    ref: "scripts/verify/q1_saddle_node.py - RK4 passage times at mu = 1e-2, 1e-3, 1e-4 match pi/sqrt(mu) to <0.5% with cutoff X=100"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "textbook normal-form theory (Guckenheimer-Holmes; Strogatz, Nonlinear Dynamics and Chaos, sec. 4.3 'bottleneck' scaling)"
+status: proven
