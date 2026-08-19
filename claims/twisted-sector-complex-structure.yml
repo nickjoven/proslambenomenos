@@ -1,0 +1,19 @@
+id: twisted-sector-complex-structure
+statement: >
+  On the flat Klein bottle with x-period L1, let J be translation by
+  L1/2 in x. J commutes with the deck group (x-translations commute
+  with the glide g and the y-translation t, since g reflects only y),
+  so J acts on sections of every real line bundle over K2. On the
+  orientation-bundle (twisted) sector, whose x-modes have half-integer
+  wavenumber m, J multiplies a mode by e^(i*pi*m) = +/- i, so J^2 = -I;
+  on the untwisted (integer-m) sector J^2 = +I. The twisted sector
+  therefore carries a natural complex structure from the half-period
+  translation - the discrete analog of the 4-pi periodicity of spinors.
+premises:
+  - klein-orientation-bundle-spectrum
+evidence:
+  - kind: proof
+    ref: "notes/topology_evaluation.md sec. 7 - commutation check plus multiplier computation e^(i*pi*m); formalizes the resolved J^2 = -I claim of v1 figure_eight.md"
+novelty:
+  status: unchecked
+status: proven

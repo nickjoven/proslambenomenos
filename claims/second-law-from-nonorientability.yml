@@ -1,0 +1,24 @@
+id: second-law-from-nonorientability
+statement: >
+  Claim (v1's, recorded for the refutation): on a closed non-orientable
+  configuration manifold no globally consistent time-reversal operator
+  exists, and its absence forces strictly positive Kolmogorov-Sinai
+  entropy rate; hence the second law follows from non-orientability.
+premises: []
+evidence:
+  - kind: refutation
+    ref: >
+      Two standard counterexamples sever both links
+      (notes/topology_evaluation.md sec. 5): (i) geodesic flow on any
+      Riemannian manifold, orientable or not, is time-reversible via
+      R(x,v) = (x,-v) with R o phi_t o R = phi_(-t) - applied to the
+      flat Klein bottle this gives a non-orientable configuration space
+      with fully reversible dynamics and h_KS = 0 (flat, integrable);
+      (ii) geodesic flow on a closed hyperbolic surface is
+      time-reversible with h_KS > 0 (Anosov), so reversibility and
+      entropy rate are independent in both directions. The first step
+      also commits a category error: time reversal acts on time/phase
+      space, not on configuration-space orientation.
+novelty:
+  status: unchecked
+status: refuted
