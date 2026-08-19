@@ -71,6 +71,29 @@ circular (adjacency presupposes the tree). Reopen: a non-circular
 dynamical derivation would be welcome but is not required — the import
 suffices.
 
+## D-8 — Klein bottle selected over the torus (declined; 2026-08-19)
+
+v1's own surface_uniqueness_audit.md concluded it: the substrate-
+internal arguments exclude RP^2 genuinely (the apparatus cannot
+operate there — the parabola's two roots identify, no propagating
+modes) but admit BOTH T^2 and K^2; the choice of K^2 is observation-
+fixed (fermion existence, plus an Omega_Lambda match that is
+pigeonhole-capped here). So "swap the torus for a Klein bottle" was
+never a derivation — it is a declared input, and selecting topology
+by "fermions exist" is legitimate practice exactly and only when
+labeled as the input it is. The downstream payoff chain (4-mode
+vacuum -> Lambda, the "4 versus 10^183" contrast) additionally rides
+the XOR translation conjecture and stays with it. Two things survive
+independently: the twisted-spectrum mathematics (compendium C7) and
+the RP^2 exclusion argument. Reopen: a crisply stated substrate-
+internal constraint — and here the reopen is unusually sharp, because
+closed flat 2-manifolds are exactly {T^2, K^2} (classical
+classification), so any crisp constraint makes the selection
+mechanically decidable. Note the floor, though: the thread
+presupposes a closed flat 2-manifold of modes while the dimension
+question itself is declined (D-1) — a reopened selection argument
+would still stand on an undeclared d = 2 input.
+
 ## Open solve-candidates (NOT declined — queued as work)
 
 - **XOR spectrum-to-tree translation**: the Klein spectrum theorem is
