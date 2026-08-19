@@ -1,0 +1,18 @@
+id: mediant-adjacency
+statement: >
+  If a/b and c/d are adjacent in a Farey sequence (bc - ad = 1), then the
+  mediant (a+c)/(b+d) is the unique fraction of minimal denominator
+  strictly between them, and insertion preserves the determinant
+  condition on both new pairs. Down every edge of the Stern-Brocot tree
+  p+q strictly increases, and the left/right turn run-lengths of the
+  path to p/q are the continued-fraction expansion of p/q.
+premises: []
+evidence:
+  - kind: proof
+    ref: "v1: sync_cost/derivations/mediant_derivation.md (Stern-Brocot theorem, audit-checked); curriculum module 05"
+  - kind: citation
+    ref: "Stern (1858), Brocot (1861); Graham-Knuth-Patashnik, Concrete Mathematics, sec. 4.5"
+novelty:
+  status: classical
+  citation: "Stern 1858 / Brocot 1861; textbook treatment in Concrete Mathematics sec. 4.5"
+status: proven

@@ -1,0 +1,18 @@
+id: klein-orientation-bundle-spectrum
+statement: >
+  On the flat Klein bottle obtained from the rectangle [0,L1] x [0,L2],
+  the Laplacian acting on sections of the orientation line bundle -
+  functions on the covering torus with f(x+L1, y) = -f(x, L2-y) - has
+  eigenbasis exactly (half-integer x-modes tensor cos y-modes) direct-sum
+  (integer x-modes tensor sin y-modes), with the constant mode excluded.
+premises: []
+evidence:
+  - kind: proof
+    ref: "v1: sync_cost/derivations/xor_derivation.md sec. 4; klein_bottle.md:101-157 (mode classification + completeness argument)"
+  - kind: computation
+    ref: "v1: 48/48-dimensional span completeness check; forbidden modes violate the boundary condition by O(1)"
+    method: rerun
+novelty:
+  status: folklore
+  citation: "special case of Miatello-Rossetti, Ann. Global Anal. Geom. 21 (2002); anti-invariant decomposition in Gordon-Rossetti arXiv:math/0111016; physics instances from Banach-Dowker, J. Phys. A 12 (1979). Litcheck LC-1."
+status: proven

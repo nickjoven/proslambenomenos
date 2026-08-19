@@ -1,0 +1,20 @@
+id: farey-antipodal-orbit-counts
+statement: >
+  Among fractions p/q in [0,1] (endpoints 0/1 and 1/1 included) with
+  gcd(p,q)=1, gcd(q,6)=1, and q <= n, the involution p/q -> (q-p)/q has
+  orbit count 1 + (1/2) * sum of phi(q) over 5 <= q <= n with
+  gcd(q,6)=1; the involution is fixed-point-free off q<=2 because phi(q)
+  is even for q > 2. The count plateaus at 1, 3, 6, 11, 17, 25 as n
+  passes 5, 7, 11, 13, 17; increments are phi(q)/2, which equals
+  (q-1)/2 only at primes (first divergence q = 25).
+premises: []
+evidence:
+  - kind: computation
+    ref: "independent brute-force recomputation from the definition, 2026-08-19 (agent check recorded in LITCHECKS.md LC-2); v1 source k_axis_uniqueness.py:85-116"
+    method: reimplementation
+  - kind: proof
+    ref: "orbit count = fixed points + pairs; phi even for q>2 gives fixed-point-freeness; sum telescopes"
+novelty:
+  status: folklore
+  citation: "classical Farey symmetry x -> 1-x, Hardy & Wright ch. III; restricted-denominator counting literature (Boca-Cobeli-Zaharescu arXiv:math/0201046). Litcheck LC-2."
+status: proven

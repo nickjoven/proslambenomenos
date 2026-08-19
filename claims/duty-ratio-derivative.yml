@@ -1,0 +1,13 @@
+id: duty-ratio-derivative
+statement: >
+  If quantities w_q depend on a parameter K as w_q = c_q * K^q with
+  constants c_q > 0, then for any q_a, q_b the logarithmic derivative
+  d ln(w_{q_a}/w_{q_b}) / d ln K = q_a - q_b, independent of the
+  constants c_q.
+premises: []
+evidence:
+  - kind: proof
+    ref: "one-line calculus: ln ratio = (q_a - q_b) ln K + const. v1 source beta_from_tongues.md:301-311"
+novelty:
+  status: unchecked
+status: proven

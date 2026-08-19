@@ -1,0 +1,23 @@
+name: gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: intake + fixtures + message gate (HEAD)
+        run: python scripts/run_all.py
+      - name: message gate over the push range
+        if: github.event_name == 'push'
+        run: python scripts/check_messages.py "${{ github.event.before }}..${{ github.sha }}"
