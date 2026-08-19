@@ -1,0 +1,23 @@
+id: klein-weyl-mode-density
+statement: >
+  The orientation-bundle (twisted) Laplacian sector on the flat Klein
+  bottle built from the square [0,L1] x [0,L2] has the same asymptotic
+  eigenvalue count as the torus on the same square: counting modes
+  with max(|m|,|n|) <= M gives approximately 4M^2 in both cases
+  (torus: (m,n) in Z^2; twisted sector: half-integer m tensor cos-modes
+  plus integer m tensor sin-modes). Equivalently, by Weyl's law each
+  character sector has eigenvalue density proportional to
+  Area(K2) = L1*L2, equal to the same-square torus density: the
+  topology relocks the mode pairing without changing the count.
+premises:
+  - klein-line-bundle-classification
+evidence:
+  - kind: proof
+    ref: "notes/topology_evaluation.md sec. 3 - direct count 2M(M+1) + (2M+1)M ~ 4M^2 = (2M)^2; Weyl argument via invariant/anti-invariant split of the double cover"
+  - kind: computation
+    ref: "compendium C15 - counts N_T(M), N_K(M) with ratio -> 1"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "Weyl's law for flat quotients; instance-level statement appears in v1 klein_bottle.md and is confirmed here"
+status: proven

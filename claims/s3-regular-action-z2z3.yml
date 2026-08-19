@@ -1,0 +1,18 @@
+id: s3-regular-action-z2z3
+statement: >
+  On L = Z2 x Z3, the permutations tau(x,y) = (1-x, -y mod 3) and
+  sigma(x,y) = (x, y+1 mod 3) generate a group with tau^2 = id and
+  tau sigma tau^-1 = sigma^-1, hence G = <tau, sigma> is dihedral of
+  order 6, isomorphic to S3; the action on the six points of L is
+  transitive with trivial stabilizers, i.e., regular: |G| = |L| = 6.
+premises: []
+evidence:
+  - kind: proof
+    ref: "notes/topology_evaluation.md sec. 9 - relation and stabilizer computation"
+  - kind: computation
+    ref: "compendium C16 - exhaustive enumeration of the generated group and orbit/stabilizer check on all six points"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "elementary group theory (dihedral presentation; regular actions)"
+status: proven

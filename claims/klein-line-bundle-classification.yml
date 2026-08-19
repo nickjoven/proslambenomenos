@@ -1,0 +1,25 @@
+id: klein-line-bundle-classification
+statement: >
+  The Klein bottle group Gamma = <t, g | g t g^-1 = t^-1> admits
+  exactly four homomorphisms to Z2 (the relation is automatic in an
+  abelian target, so characters are free on the two generators), hence
+  K2 carries exactly four real line bundles: H^1(K2; Z2) = Z2 x Z2.
+  The orientation character is chi(g) = -1, chi(t) = +1, since the
+  glide g reverses orientation (its differential has determinant -1
+  from the y-reflection) and the translation t preserves it. The
+  twisted boundary condition f(x+L1, y) = -f(x, L2-y),
+  f(x, y+L2) = f(x, y) is equivariance under precisely this character:
+  the twisted field is a section of the orientation line bundle. Each
+  character sector locks its own (x-mode type, y-branch) parity
+  pairing.
+premises: []
+evidence:
+  - kind: proof
+    ref: "notes/topology_evaluation.md sec. 1 - character count and orientation-character computation"
+  - kind: computation
+    ref: "compendium C14 - per-sector boundary-condition residual test determines the parity pairing of all four sectors"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "flat-manifold line bundles via holonomy characters; standard covering-space theory (e.g., Hatcher ch. 1; twisted spectra context in Miatello-Rossetti 2002)"
+status: proven

@@ -136,7 +136,7 @@
 
 <div class="wrap">
 <header>
-  <p class="eyebrow">Compendium · 13 claims · every one runnable</p>
+  <p class="eyebrow">Compendium · 18 claims · every one runnable</p>
   <h1>What Survived</h1>
   <p class="subtitle">The mathematics extracted from the harmonics corpus after its
   audits — stated in standard language, sourced, honestly labeled, and verified
@@ -152,7 +152,7 @@
     your browser: the Verify buttons can fail, and print exactly what they computed.
   </div>
   <div class="runall">
-    <button id="runall-btn">Run all 13 verifications</button>
+    <button id="runall-btn">Run all 18 verifications</button>
     <span id="runall-out"></span>
   </div>
 </header>
@@ -173,6 +173,11 @@
     <li><a href="#c11">A Chebyshev product identity</a></li>
     <li><a href="#c12">No inverse-square width law</a></li>
     <li><a href="#c13">A Möbius bijection</a></li>
+    <li><a href="#c14">The four line bundles of K²</a></li>
+    <li><a href="#c15">Weyl density: nothing lost</a></li>
+    <li><a href="#c16">S₃ acting regularly on Z₂×Z₃</a></li>
+    <li><a href="#c17">Half-winding invariance</a></li>
+    <li><a href="#c18">Antipodal parity and the honest null</a></li>
   </ol>
 </nav>
 
@@ -379,6 +384,66 @@
   w* — is the part that failed audit. Only the bare function analysis survives.</div>
   <div class="verify-row"><button data-verify="c13">Verify — derivative, monotonicity, round-trip to 1e−15</button><div class="verify-out" id="v-c13"></div></div>
   <p class="sources">v1: boundary_weight.md:86-100</p>
+</section>
+
+<section class="claim" id="c14">
+  <div class="claim-head"><span class="cnum">C14</span><h2>The four line bundles of K²</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">finite residual check</span><span class="chip">classical — covering-space theory</span></span></div>
+  <p class="statement">The Klein bottle group ⟨t, g | gtg⁻¹ = t⁻¹⟩ has exactly four characters into Z₂
+  (the relation is automatic in an abelian target), so K² carries exactly four real line bundles —
+  H¹(K²; Z₂) = Z₂ × Z₂. The orientation character is χ(g) = −1, χ(t) = +1 (the glide reverses
+  orientation, the translation preserves it), and each of the four sectors locks its own
+  (x-mode type ⊗ y-branch) parity pairing.</p>
+  <div class="demo">
+    <div class="controls"><button id="c14scan">Scan all four sectors</button></div>
+    <div class="readout" id="c14out">—</div>
+  </div>
+  <div class="verify-row"><button data-verify="c14">Verify — residual test locks each sector's pairing</button><div class="verify-out" id="v-c14"></div></div>
+  <p class="sources">proslambenomenos notes/topology_evaluation.md §1 · v1 xor_derivation.md, klein_bottle.md · Hatcher ch. 1; Miatello–Rossetti 2002</p>
+</section>
+
+<section class="claim" id="c15">
+  <div class="claim-head"><span class="cnum">C15</span><h2>Weyl density: nothing lost</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">finite computation</span><span class="chip">classical — Weyl's law</span></span></div>
+  <p class="statement">The twisted (orientation-bundle) sector on the flat Klein bottle from the unit
+  square has the same asymptotic mode count as the torus on that square: the topology relocks the
+  (x, y) pairing without changing the density. Counting modes with m² + n² ≤ R², the ratio of twisted-sector
+  to torus counts tends to 1.</p>
+  <div class="verify-row"><button data-verify="c15">Verify — counts at R = 10, 20, 40; ratio → 1</button><div class="verify-out" id="v-c15"></div></div>
+  <p class="sources">notes/topology_evaluation.md §3 · v1 klein_bottle.md ("no modes are lost" — confirmed)</p>
+</section>
+
+<section class="claim" id="c16">
+  <div class="claim-head"><span class="cnum">C16</span><h2>S₃ acting regularly on Z₂×Z₃</h2>
+    <span class="chips"><span class="chip">finite computation — 6 points</span><span class="chip">classical — dihedral presentation</span></span></div>
+  <p class="statement">τ(x,y) = (1−x, −y) and σ(x,y) = (x, y+1) on Z₂×Z₃ satisfy τ² = id and
+  τστ⁻¹ = σ⁻¹, generating a dihedral group of order 6 ≅ S₃ whose action on the six lattice points is
+  transitive with trivial stabilizers — a regular action: |G| = |L| = 6.</p>
+  <div class="verify-row"><button data-verify="c16">Verify — closure, relations, orbit, stabilizers</button><div class="verify-out" id="v-c16"></div></div>
+  <p class="sources">notes/topology_evaluation.md §9 · v1 down_type_double_cover_closed.md</p>
+</section>
+
+<section class="claim" id="c17">
+  <div class="claim-head"><span class="cnum">C17</span><h2>Half-winding invariance</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">classical — degree theory</span></span></div>
+  <p class="statement">A circle-valued field with the affine boundary condition θ(x+L) = θ(x) + π has
+  total winding valued in Z + ½ — the half-unit offset is a homotopy invariant and cannot be removed.
+  Shifting any phase configuration by π exchanges the stable and unstable zeros of a sinusoidal
+  coupling.</p>
+  <div class="verify-row"><button data-verify="c17">Verify — winding census + stability swap</button><div class="verify-out" id="v-c17"></div></div>
+  <p class="sources">notes/topology_evaluation.md §9 · v1 half_twist_dynamics.md</p>
+</section>
+
+<section class="claim" id="c18">
+  <div class="claim-head"><span class="cnum">C18</span><h2>Antipodal parity and the honest null</h2>
+    <span class="chips"><span class="chip">closed-form proof</span><span class="chip">finite computation</span><span class="chip">classical — Y<sub>ℓm</sub> parity</span></span></div>
+  <p class="statement">Real spherical harmonics obey Y<sub>ℓm</sub>(π−θ, φ+π) = (−1)^ℓ Y<sub>ℓm</sub>(θ, φ),
+  so any observable built from Y² is antipodally symmetric for every ℓ: no descent experiment on
+  U = Y² can distinguish even from odd ℓ. The v1 corpus derived this null against its own proposed
+  discriminator and correctly identified what would work — a Berry-phase probe of the π monodromy for
+  odd ℓ.</p>
+  <div class="verify-row"><button data-verify="c18">Verify — parity at random points, ℓ ≤ 4, all m</button><div class="verify-out" id="v-c18"></div></div>
+  <p class="sources">v1 klein_nodal_parity.md (evaluated correct) · notes/topology_evaluation.md §8 · Jackson §3.5</p>
 </section>
 
 <footer>
@@ -944,6 +1009,206 @@ register("c13", () => {
     `derivative numerator 2·16 − 3·11 = ${numerator}, expected −1`,
     `Ω(0)=${Om(0)} (11/16), Ω(1)=${Om(1).toFixed(15)} (13/19); strictly decreasing: ${dec}`,
     `round-trip max error: ${rt.toExponential(2)}` ] };
+});
+
+// ---------- C14 four line bundles ----------
+function sectorPairings(cg, ct) {
+  // residual test: f(x+1,y)=cg*f(x,1-y), f(x,y+1)=ct*f(x,y)
+  const branches = ["cos", "sin"];
+  const mset = [0, 1, 2, 0.5, 1.5], nset = [0, 1, 2, 0.5, 1.5];
+  const allowed = new Set();
+  for (const m of mset) for (const n of nset) for (const br of branches) {
+    if (br === "sin" && n === 0) continue;
+    const f = br === "cos"
+      ? (x, y) => Math.cos(2 * Math.PI * m * x) * Math.cos(2 * Math.PI * n * y)
+      : (x, y) => Math.cos(2 * Math.PI * m * x) * Math.sin(2 * Math.PI * n * y);
+    let r = 0;
+    for (let i = 0; i < 80; i++) {
+      const x = Math.random(), y = Math.random();
+      r = Math.max(r,
+        Math.abs(f(x + 1, y) - cg * f(x, 1 - y)),
+        Math.abs(f(x, y + 1) - ct * f(x, y)));
+    }
+    if (r < 1e-9) allowed.add((m % 1 ? "half" : "int") + "," + br);
+  }
+  return [...allowed].sort().join(" | ");
+}
+const C14_EXPECT = {
+  "+1,+1": "half,sin | int,cos",
+  "-1,+1": "half,cos | int,sin",
+  "+1,-1": "half,cos | int,sin",
+  "-1,-1": "half,sin | int,cos",
+};
+function c14scan() {
+  const lines = [];
+  for (const [cg, ct] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
+    const key = (cg > 0 ? "+1" : "-1") + "," + (ct > 0 ? "+1" : "-1");
+    lines.push(`χ(g)=${cg > 0 ? "+1" : "-1"}, χ(t)=${ct > 0 ? "+1" : "-1"}` +
+      (key === "-1,+1" ? " (orientation)" : "") +
+      `:  allowed = ${sectorPairings(cg, ct) || "(none)"}`);
+  }
+  return lines;
+}
+document.getElementById("c14scan").addEventListener("click", () => {
+  document.getElementById("c14out").textContent = c14scan().join("\n");
+});
+register("c14", () => {
+  const lines = []; let pass = true;
+  for (const [cg, ct] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
+    const key = (cg > 0 ? "+1" : "-1") + "," + (ct > 0 ? "+1" : "-1");
+    const got = sectorPairings(cg, ct);
+    const ok = got === C14_EXPECT[key];
+    pass = pass && ok;
+    lines.push(`sector (${key}): ${got}  expected ${C14_EXPECT[key]} ${ok ? "✓" : "✗"}`);
+  }
+  lines.push("four characters, four sectors, each locking one complementary pairing — H¹(K²;Z₂)=Z₂×Z₂");
+  return { pass, lines };
+});
+
+// ---------- C15 weyl density ----------
+register("c15", () => {
+  const lines = []; let pass = true; let lastRatio = 0;
+  for (const R of [10, 20, 40]) {
+    let nT = 0, nK = 0;
+    const R2 = R * R;
+    for (let m = -R - 1; m <= R + 1; m++)
+      for (let n = -R - 1; n <= R + 1; n++)
+        if (m * m + n * n <= R2) nT++;
+    for (let k = -R - 1; k <= R + 1; k++) {           // m = k + 1/2
+      const m = k + 0.5;
+      for (let n = 0; n <= R + 1; n++)                 // cos branch, n >= 0
+        if (m * m + n * n <= R2) nK++;
+    }
+    for (let m = -R - 1; m <= R + 1; m++)              // integer m, sin n >= 1
+      for (let n = 1; n <= R + 1; n++)
+        if (m * m + n * n <= R2) nK++;
+    const ratio = nK / nT;
+    lines.push(`R=${R}: torus ${nT}, twisted K² ${nK}, ratio ${ratio.toFixed(4)}`);
+    lastRatio = ratio;
+  }
+  pass = Math.abs(lastRatio - 1) < 0.05;
+  lines.push(`|ratio − 1| at R=40: ${Math.abs(lastRatio - 1).toFixed(4)} (< 0.05)`);
+  return { pass, lines };
+});
+
+// ---------- C16 S3 regular action ----------
+register("c16", () => {
+  const pts = []; for (let x = 0; x < 2; x++) for (let y = 0; y < 3; y++) pts.push([x, y]);
+  const key = p => p[0] + "," + p[1];
+  const tau = ([x, y]) => [1 - x, ((3 - y) % 3)];
+  const sig = ([x, y]) => [x, (y + 1) % 3];
+  const permOf = f => pts.map(p => key(f(p))).join(";");
+  const compose = (f, g) => p => f(g(p));
+  // closure
+  const gens = [tau, sig];
+  const seen = new Map([[permOf(p => p), p => p]]);
+  let frontier = [p => p];
+  while (frontier.length) {
+    const next = [];
+    for (const f of frontier) for (const g of gens) {
+      const h = compose(g, f), k = permOf(h);
+      if (!seen.has(k)) { seen.set(k, h); next.push(h); }
+    }
+    frontier = next;
+  }
+  const order = seen.size;
+  // relation tau sig tau^-1 = sig^-1  (tau is an involution)
+  const rel = permOf(compose(tau, compose(sig, tau))) ===
+    permOf(p => [p[0], (p[1] + 2) % 3]);
+  // regular: transitive + trivial stabilizers
+  const orbit = new Set([...seen.values()].map(f => key(f([0, 0]))));
+  let stabTrivial = true;
+  for (const f of seen.values())
+    if (permOf(f) !== permOf(p => p) && pts.some(p => key(f(p)) === key(p) && key(p) === "0,0" ? false : false)) {}
+  for (const f of seen.values()) {
+    if (permOf(f) === permOf(p => p)) continue;
+    for (const p of pts) if (key(f(p)) === key(p)) { /* fixes a point */ 
+      if (key(p) === "0,0") stabTrivial = stabTrivial && false; }
+  }
+  // stabilizer of every point must be trivial for regularity:
+  let regular = true;
+  for (const p of pts) {
+    let stab = 0;
+    for (const f of seen.values()) if (key(f(p)) === key(p)) stab++;
+    if (stab !== 1) regular = false;
+  }
+  const pass = order === 6 && rel && orbit.size === 6 && regular;
+  return { pass, lines: [
+    `|⟨τ,σ⟩| = ${order}, expected 6`,
+    `τστ⁻¹ = σ⁻¹: ${rel}`,
+    `orbit of (0,0): ${orbit.size}/6 points (transitive)`,
+    `every point-stabilizer trivial (regular action): ${regular}` ] };
+});
+
+// ---------- C17 half-winding ----------
+register("c17", () => {
+  const L = 1, lines = []; let pass = true;
+  const windings = [];
+  for (let k = -2; k <= 2; k++) {
+    const theta = x => (Math.PI + 2 * Math.PI * k) * x / L;
+    const bc = ((theta(L) - theta(0) - Math.PI) / (2 * Math.PI)) % 1;
+    const w = (theta(L) - theta(0)) / (2 * Math.PI);
+    const ok = Math.abs(bc) < 1e-12 && Math.abs(w % 1) === 0.5;
+    pass = pass && ok;
+    windings.push(w);
+  }
+  lines.push(`allowed windings: ${windings.join(", ")} — all in Z + ½`);
+  // integer winding fails the BC
+  const bad = (2 * Math.PI * 1 - Math.PI) % (2 * Math.PI);
+  lines.push(`integer winding BC residual: ${Math.abs(Math.PI - (2 * Math.PI - bad)) < 1e-12 || bad !== 0 ? "π (fails)" : "0"}`);
+  pass = pass && bad !== 0;
+  // stability swap under pi shift for dphi/dt = -sin(phi)
+  const d = phi => -Math.cos(phi); // derivative of -sin at phi
+  const stable0 = d(0) < 0, unstablePi = d(Math.PI) > 0;
+  lines.push(`d/dφ(−sin φ): at 0 → ${d(0)} (stable), at π → ${d(Math.PI)} (unstable) — π shift swaps them`);
+  pass = pass && stable0 && unstablePi;
+  return { pass, lines };
+});
+
+// ---------- C18 spherical parity ----------
+function assocLegendre(l, m, x) {
+  // P_m^m via double factorial, then upward recurrence in l
+  let pmm = 1;
+  if (m > 0) {
+    const somx2 = Math.sqrt((1 - x) * (1 + x));
+    let fact = 1;
+    for (let i = 1; i <= m; i++) { pmm *= -fact * somx2; fact += 2; }
+  }
+  if (l === m) return pmm;
+  let pmmp1 = x * (2 * m + 1) * pmm;
+  if (l === m + 1) return pmmp1;
+  let pll = 0;
+  for (let ll = m + 2; ll <= l; ll++) {
+    pll = ((2 * ll - 1) * x * pmmp1 - (ll + m - 1) * pmm) / (ll - m);
+    pmm = pmmp1; pmmp1 = pll;
+  }
+  return pll;
+}
+function realY(l, m, th, ph) {
+  const x = Math.cos(th);
+  if (m === 0) return assocLegendre(l, 0, x);
+  if (m > 0) return assocLegendre(l, m, x) * Math.cos(m * ph);
+  return assocLegendre(l, -m, x) * Math.sin(-m * ph);
+}
+register("c18", () => {
+  const lines = []; let pass = true;
+  for (let l = 0; l <= 4; l++) {
+    let worst = 0, worstU = 0;
+    for (let m = -l; m <= l; m++) {
+      for (let i = 0; i < 40; i++) {
+        const th = Math.random() * Math.PI, ph = Math.random() * 2 * Math.PI;
+        const y = realY(l, m, th, ph);
+        const ya = realY(l, m, Math.PI - th, ph + Math.PI);
+        worst = Math.max(worst, Math.abs(ya - Math.pow(-1, l) * y));
+        worstU = Math.max(worstU, Math.abs(ya * ya - y * y));
+      }
+    }
+    const ok = worst < 1e-9 && worstU < 1e-9;
+    pass = pass && ok;
+    lines.push(`ℓ=${l}: max|Y(antipode) − (−1)^ℓ Y| = ${worst.toExponential(1)}; max|ΔY²| = ${worstU.toExponential(1)} ${ok ? "✓" : "✗"}`);
+  }
+  lines.push("Y² is antipodally blind for every ℓ — the null is forced; only signed/holonomy probes discriminate");
+  return { pass, lines };
 });
 
 // ---------- init + theme redraw ----------

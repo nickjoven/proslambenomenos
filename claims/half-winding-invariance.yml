@@ -1,0 +1,17 @@
+id: half-winding-invariance
+statement: >
+  For a circle-valued field on a circle domain with the affine boundary
+  condition theta(x + L) = theta(x) + pi (mod 2*pi), the total winding
+  (theta(L) - theta(0))/(2*pi) is valued in Z + 1/2, and the half-unit
+  offset cannot be removed by any homotopy of the field: it is the
+  relative homotopy class against the untwisted structure. Consequently
+  shifting any locked phase configuration by pi exchanges the stable
+  and unstable zeros of a sinusoidal coupling term.
+premises: []
+evidence:
+  - kind: proof
+    ref: "notes/topology_evaluation.md sec. 9 - winding is a homotopy invariant of the pair (map, boundary structure); the pi shift maps sin's stable zero to its unstable zero by sign reversal of the derivative"
+novelty:
+  status: classical
+  citation: "degree theory for circle-valued maps; physically the antiperiodic XY / pi-junction ring ground-state structure"
+status: proven

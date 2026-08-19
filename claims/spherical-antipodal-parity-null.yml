@@ -1,0 +1,20 @@
+id: spherical-antipodal-parity-null
+statement: >
+  Real spherical harmonics satisfy Y_lm(antipode) = (-1)^l Y_lm, so
+  any observable built from Y^2 is antipodally symmetric for every l,
+  and no gradient-descent experiment on U = Y^2 can discriminate even
+  from odd l (the sign flip cancels in the square). A discriminating
+  observable must see the signed field or its holonomy - e.g., a
+  Berry-phase probe measuring the pi monodromy of the pullback line
+  bundle on the antipodal quotient for odd l.
+premises: []
+evidence:
+  - kind: proof
+    ref: "v1 klein_nodal_parity.md - cos(l(phi+pi)) = (-1)^l cos(l phi) and P_l^m parity give Y(antipode) = (-1)^l Y; U = Y^2 kills the sign; evaluated correct in notes/topology_evaluation.md sec. 8"
+  - kind: computation
+    ref: "compendium C18 - random-point antipodal parity check for l <= 4 and Y^2 symmetry"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "parity of spherical harmonics is textbook (e.g., Jackson sec. 3.5); the null is the corpus's own correct application"
+status: proven
