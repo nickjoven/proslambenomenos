@@ -63,16 +63,19 @@ def check_commit(sha, msg, touched_claim_ids, statuses):
     violations = []
     tags = TAG.findall(msg)
     hits = sorted({m.group(0).lower() for m in CONCLUSIVE.finditer(msg)})
+    for t in tags:
+        if t not in statuses:
+            violations.append(f"{sha}: [claim {t}] names no claim")
     if hits:
         if not tags:
             violations.append(f"{sha}: uses {hits} with no [claim <id>] tag")
-        for t in tags:
-            if t not in statuses:
-                violations.append(f"{sha}: [claim {t}] names no claim")
-            elif statuses[t] not in SUPPORTING:
-                violations.append(
-                    f"{sha}: [claim {t}] has status {statuses[t]!r}, which "
-                    f"does not support conclusive language {hits}")
+        # LAW-5: conclusive language needs AT LEAST ONE supporting tag;
+        # coverage tags of capped/argued claims are legitimate alongside.
+        elif not any(statuses.get(t) in SUPPORTING for t in tags):
+            violations.append(
+                f"{sha}: conclusive language {hits} but no tagged claim "
+                f"has a supporting status (statuses: "
+                f"{ {t: statuses.get(t) for t in tags} })")
     # coverage rule: every touched claim must be tagged
     for cid in sorted(touched_claim_ids):
         if cid not in tags:

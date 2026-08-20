@@ -164,6 +164,9 @@ def main() -> int:
     ok &= expect(bool(v), "message gate: conclusive language on argued claim blocks")
     v = cm.check_commit("abc", "proves it [claim good]", set(), statuses)
     ok &= expect(not v, "message gate: conclusive language on proven claim passes")
+    v = cm.check_commit("abc", "proves it [claim good] [claim weak]", {"good", "weak"}, statuses)
+    ok &= expect(not v,
+                 "message gate: coverage tag of capped claim allowed when a supporting tag exists")
     v = cm.check_commit("abc", "tweak wording", {"good"}, statuses)
     ok &= expect(any("touches claims/good.yml" in x for x in v),
                  "message gate: touched claim without tag blocks")
