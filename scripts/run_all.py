@@ -15,6 +15,7 @@ CHECKS = [
     ("append-only gate", ["scripts/check_append_only.py"]),
     ("verify gate", ["scripts/check_verify_scripts.py"]),
     ("compendium gate", ["scripts/check_compendium.py"]),
+    ("prediction gate", ["scripts/check_predictions.py"]),
 ]
 
 

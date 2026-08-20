@@ -208,6 +208,23 @@ def main() -> int:
                  {"scripts/check_claims.py": "b" * 64},
                  "law gate: last entry wins, hash parsed")
 
+    # prediction gate: pure helpers
+    import check_predictions as cp
+    ledger = ("# P\n\n## P-1 — 2026-08-20 — thing\n"
+              "expects: X\nchanges-my-mind: Y\n\n"
+              "## P-2 — 2026-08-20 — other\nexpects: Z\n")
+    preds = cp.parse_predictions(ledger)
+    ok &= expect(preds["P-1"]["expects"] and preds["P-1"]["changes"],
+                 "prediction gate: complete entry parses")
+    ok &= expect(preds["P-2"]["expects"] and not preds["P-2"]["changes"],
+                 "prediction gate: missing changes-my-mind detected")
+    ok &= expect(cp.scope_requires({"numeric_match": {"observable": "x"}}),
+                 "prediction gate: numeric_match is in scope")
+    ok &= expect(cp.scope_requires({"novelty": {"status": "checked-novel"}}),
+                 "prediction gate: checked-novel is in scope")
+    ok &= expect(not cp.scope_requires({"novelty": {"status": "classical"}}),
+                 "prediction gate: classical claims are out of scope")
+
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1
 

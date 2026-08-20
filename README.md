@@ -112,7 +112,15 @@ Derived vocabulary (in order of precedence):
    against git history: any commit removing a line goes red. Residual:
    local history can still be rewritten by the owner — closed fully
    only by a remote with protected history (trust rung 3).
-7. **Routes are separable from problems.** Withdrawing a derivation
+7. **Work is preregistered.** PREDICTIONS.md (append-only) records,
+   BEFORE an attempt runs, the expected outcome and what would change
+   the author's mind; the gate enforces that a cited prediction's
+   registration is an ancestor of the claim citing it, and the
+   protected remote makes the ordering third-party-attested.
+   Post-enactment claims with numeric agreements or novelty checks
+   require one. The three solve-candidates are preregistered as
+   P-1..P-3 before any derivation attempt.
+8. **Routes are separable from problems.** Withdrawing a derivation
    (DECLINED.md) never closes the underlying problem, and a plausible
    route never settles one. The decomposition — "X is derivable" versus
    "X holds" — is mandatory.
