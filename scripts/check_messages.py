@@ -30,7 +30,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 CONCLUSIVE = re.compile(
-    r"(?i)\b(proves?|proof of|exact(?:ly)?|confirms?|closes?|novel|"
+    r"(?i)\b(proves?|proof of|exact(?:ly)?|confirms?|closes?|(?<!-)novel(?!-)|"
     r"establish(?:es|ed)?|demonstrat(?:es|ed|ion)|definitive(?:ly)?|"
     r"guarantee[sd]?|settle[sd]|resolve[sd]?|"
     r"first (?:proof|derivation)|zero free parameters|class 5)\b")
