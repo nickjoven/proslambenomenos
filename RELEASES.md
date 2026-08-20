@@ -47,3 +47,6 @@ The published artifact (claude.ai) is presentation, not preservation.
 
 - link-001 — extraction complete: 20 gated claims, 18-section
   compendium, topology + modular/Koide evaluations. (2026-08-19)
+- link-002 — pre-publication: context-free adversarial audit in the
+  record with F1-F10 dispositions; LAW-3/4/5; seven gates; 21 claims.
+  (2026-08-20)
