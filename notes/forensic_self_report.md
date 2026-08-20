@@ -84,10 +84,36 @@ carries those results is itself sound. The known law-level residuals
 visibility of law changes; singleton pigeonhole) are recorded in
 README and QUEUE and are not repeated as findings.
 
+## Post-report incident (2026-08-19, same day): the report itself contained an unsound claim
+
+Section A originally asserted the constitutional gates were rostered
+and their fixtures present. Closing G1–G3 revealed this was false at
+the time of writing: an earlier red-test cleanup had used `git reset
+--hard` in the working repo, silently destroying the then-uncommitted
+run_all roster edit and the law/append-only fixtures — and thereby
+un-rostering the very gate that would have detected the loss. The
+subsequent greens were `tail -1` over a reduced roster, and the report
+asserted the roster from memory instead of re-checking. Three causes,
+three corrections, now in force:
+
+1. **Destructive cleanup in the working tree** → red-tests that need
+   scratch commits run in git worktrees; `reset --hard` is banned in
+   the working repo (LAW-2 records the protocol change).
+2. **Output truncation** (`tail -1`) → final verification runs show
+   the full per-gate roster, never a truncated tail.
+3. **Memory-based reporting** → any rostering/count statement in a
+   report is re-derived by grep at writing time.
+
+Detection credit: the law gate, run directly, flagged 5 hash
+violations against LAW-1 — the constitution caught its own
+disablement retroactively, which is the designed behavior. Restored
+and closed in LAW-2 alongside G1–G3.
+
 ## Disposition
 
-G1–G3 are mechanical and cheap; they are the difference between "the
-evidence was checked once" and "the tree re-checks its own evidence
-forever," which is this repo's founding standard. G4–G5 are law
-amendments (LAWCHANGES entries when made). G6–G10 are hygiene.
-Queued in this order.
+G1–G3: CLOSED (LAW-2, same day) — the harness is
+scripts/run_compendium_checks.js behind check_compendium.py, rostered;
+scripts/verify/*.py auto-rostered via check_verify_scripts.py;
+evidence refs naming repo paths must exist (fixture pair added).
+G4–G5 remain queued as law amendments. G6–G10 hygiene. The incident
+above is the report's own erratum and stands as finding G13.

@@ -31,6 +31,8 @@ DIRECTION = re.compile(r"^direction: (strengthen|weaken|neutral)$", re.M)
 def covered_files():
     files = sorted(str(p.relative_to(ROOT))
                    for p in (ROOT / "scripts").glob("check_*.py"))
+    files += sorted(str(p.relative_to(ROOT))
+                    for p in (ROOT / "scripts").glob("*.js"))
     files.append("scripts/run_all.py")
     files.append("tests/test_checks.py")
     return sorted(set(files))

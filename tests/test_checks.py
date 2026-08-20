@@ -161,6 +161,41 @@ def main() -> int:
     v = cm.check_commit("abc", "tweak wording [claim good]", {"good"}, statuses)
     ok &= expect(not v, "message gate: touched claim with tag passes")
 
+    # RED: evidence citing a nonexistent repo path (G3)
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: computation, ref: 'scripts/verify/nonexistent_xyz.py - check', method: reimplementation}]\n"
+        "status: verified\n")})
+    ok &= expect(any("does not exist" in x for x in e),
+                 "evidence citing a missing repo path blocks")
+
+    # GREEN: evidence citing a real repo path
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: computation, ref: 'scripts/verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "status: verified\n")})
+    ok &= expect(not e, "evidence citing an existing repo path passes")
+
+    # append-only gate: pure diff parser (restored after the reset incident)
+    import check_append_only as cao
+    diff = ("commit abcdef1234567\n--- a/DECLINED.md\n+++ b/DECLINED.md\n"
+            "@@ -1,3 +1,3 @@\n+added line\n context\n")
+    ok &= expect(cao.parse_removals(diff) == [],
+                 "append-only: insertions and headers produce no removals")
+    ok &= expect(cao.parse_removals(diff + "-a past ruling\n") ==
+                 [("abcdef123", "a past ruling")],
+                 "append-only: removed line detected with its commit")
+
+    # law gate: last-entry hash parsing (restored after the reset incident)
+    import check_lawchanges as cl
+    ledger = ("# L\n\n## LAW-1 x\ndirection: neutral\nhashes:\n"
+              "  " + "a" * 64 + "  scripts/check_claims.py\n"
+              "\n## LAW-2 y\ndirection: strengthen\nhashes:\n"
+              "  " + "b" * 64 + "  scripts/check_claims.py\n")
+    ok &= expect(cl.last_entry_hashes(ledger) ==
+                 {"scripts/check_claims.py": "b" * 64},
+                 "law gate: last entry wins, hash parsed")
+
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1
 

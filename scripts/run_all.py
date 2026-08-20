@@ -11,6 +11,10 @@ CHECKS = [
     ("intake gate", ["scripts/check_claims.py"]),
     ("gate fixtures", ["tests/test_checks.py"]),
     ("message gate", ["scripts/check_messages.py"]),
+    ("law gate", ["scripts/check_lawchanges.py"]),
+    ("append-only gate", ["scripts/check_append_only.py"]),
+    ("verify gate", ["scripts/check_verify_scripts.py"]),
+    ("compendium gate", ["scripts/check_compendium.py"]),
 ]
 
 

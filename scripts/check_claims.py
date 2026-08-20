@@ -44,6 +44,11 @@ import re
 import sys
 from pathlib import Path
 
+# G3: any repo-path-shaped token inside an evidence ref must exist on
+# disk. v1 refs (sync_cost/...) live in the archive repo and are not
+# resolved here.
+REF_PATH = re.compile(r"\b((?:scripts|notes|tests|compendium|claims)/[A-Za-z0-9_./-]+)")
+
 try:
     import yaml
 except ImportError:
@@ -102,8 +107,15 @@ def compute_status(doc: dict, claims: dict, errors: list, cid: str) -> str:
         if kind not in EVIDENCE_KINDS:
             errors.append(f"{cid}: evidence[{i}].kind {kind!r} invalid")
             continue
-        if not (e.get("ref") or "").strip():
+        ref = (e.get("ref") or "").strip()
+        if not ref:
             errors.append(f"{cid}: evidence[{i}] missing ref")
+        else:
+            for tok in REF_PATH.findall(ref):
+                tok = tok.rstrip(".")
+                if not (ROOT / tok).exists():
+                    errors.append(f"{cid}: evidence[{i}] cites repo path "
+                                  f"{tok!r} which does not exist")
         if kind == "computation":
             m = e.get("method")
             if m not in METHODS:
