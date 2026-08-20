@@ -43,3 +43,53 @@ hashes:
   130da351d6753ec097afd996a3234223bacb26f22eac55a9b5e6e6c7b9d5060f  scripts/run_all.py
   dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
   4bba2b0691d57c7ff938aedb9a8bc528c6eebb4e667e10f4260ea8e4169724fe  tests/test_checks.py
+
+## LAW-3 — 2026-08-20 — adversarial-audit fixes F1–F6
+direction: strengthen
+why: context-free adversarial audit (notes/adversarial_audit_2026-08-19.md)
+found four preventive bypasses and two overclaims. Fixed: deleted
+ledgers now detected via git history (F1); scripts/verify/*.py join
+the hash-covered set (F2); a statement scanner forces numeric_match
+on agreement vocabulary, tripwire-grade (F3); the machine: flag is
+disabled entirely until a machine-proof executor exists (F4/G5);
+demonstrated synonyms join the conclusive lexicon (F5); the coverage
+rule is dated from its enactment with CI checking the full governed
+range via --all (F6). Koide claim decomposed per the law (F10);
+prose counts made countless (F7/F8).
+hashes:
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  1629443f3ffefce0aaf2ebeafa5f696fb5539b4658c323ef86963fd7b2b3e3b1  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  9eb8db6c46e6ab1149c8db33087d5282f4cd70a97663654ddbc7ab285a038343  scripts/check_lawchanges.py
+  aea3324dc029969cb70bb7a0b48ca0173d8cb95dd8f173fbab31e113de7c13c1  scripts/check_messages.py
+  a6c0a5ece94b42524e6a328ba11528e145e0746ba567580e87e80042c5a9970d  scripts/check_verify_scripts.py
+  130da351d6753ec097afd996a3234223bacb26f22eac55a9b5e6e6c7b9d5060f  scripts/run_all.py
+  dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
+  4dc17a58fec3a3983b199a565b6f85b02c63a0d09961f554c36ab98e63403661  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  2f3899f75eaf856f0c371c8b763e0800a6cf00f5f2a48eb505f460671fcff94f  tests/test_checks.py
+
+## LAW-4 — 2026-08-20 — repair the LAW-3 lexicon regex
+direction: strengthen
+why: the LAW-3 edit wrote doubled backslashes into the conclusive
+lexicon, turning word boundaries into literals and silently disabling
+the whole pattern — caught by the message-gate fixtures on the next
+run (two fixture failures). Single-backslash boundaries restored;
+pattern verified against fixtures. Also of record: the expanded
+lexicon retroactively flagged the prior commit's title, which was
+reworded by amendment (unpushed, untagged, so no history covenant was
+broken); once a remote with protected history exists, amendments stop
+being available and lexicon expansions must state their own effective
+boundary.
+hashes:
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  1629443f3ffefce0aaf2ebeafa5f696fb5539b4658c323ef86963fd7b2b3e3b1  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  9eb8db6c46e6ab1149c8db33087d5282f4cd70a97663654ddbc7ab285a038343  scripts/check_lawchanges.py
+  0acced4b658b5fe1fbeb4717ffdf9b4a0ff7c70ac5f2b5715ae27d00db4e3f6a  scripts/check_messages.py
+  a6c0a5ece94b42524e6a328ba11528e145e0746ba567580e87e80042c5a9970d  scripts/check_verify_scripts.py
+  130da351d6753ec097afd996a3234223bacb26f22eac55a9b5e6e6c7b9d5060f  scripts/run_all.py
+  dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
+  4dc17a58fec3a3983b199a565b6f85b02c63a0d09961f554c36ab98e63403661  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  2f3899f75eaf856f0c371c8b763e0800a6cf00f5f2a48eb505f460671fcff94f  tests/test_checks.py

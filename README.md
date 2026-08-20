@@ -42,7 +42,7 @@ checking, structurally.
 
 **What carries over from v1.** The audits (the reason anything here can
 be trusted), the compendium (the surviving math, runnable), DECLINED.md
-(seven closed routes with reopen conditions), LITCHECKS.md (the
+(closed routes with reopen conditions), LITCHECKS.md (the
 literature-check ledger), and the two solve-candidates (the XOR
 spectrum-to-tree translation; the two-anchor minimum). What does not
 carry over: any status, any framework vocabulary, any claim that has
@@ -89,7 +89,9 @@ Derived vocabulary (in order of precedence):
 2. **Pigeonhole gate.** Any claim asserting numeric agreement with a
    measured observable must carry `numeric_match.pigeonhole_p` from a
    permutation null; p ≥ 0.05 or absent ⇒ status capped at
-   `coincidence-unruled`.
+   `coincidence-unruled`. A statement scanner forces the block when
+   agreement vocabulary appears — a tripwire, not a wall: paraphrase
+   can evade it, and the residual is recorded (adversarial audit F3).
 3. **Verification method is recorded.** Script evidence declares
    `method: rerun | reimplementation | external`; rerun-only derives the
    weaker `reproduced`, not `verified`.
@@ -97,7 +99,9 @@ Derived vocabulary (in order of precedence):
    commit messages that use conclusive claim vocabulary without
    referencing an existing claim id whose computed status supports it —
    and any commit touching `claims/*.yml` must tag every touched claim
-   id, so the narrative layer cannot silently modify the evidence layer.
+   id, so the narrative layer cannot silently modify the evidence
+   layer. The coverage rule holds from its enactment (b182d83); CI
+   checks the full range from that boundary (--all).
 5. **The law cannot change silently.** Every scripts/check_*.py,
    run_all.py, and the fixture suite is hash-covered by LAWCHANGES.md
    (append-only): any edit without a dated, directed

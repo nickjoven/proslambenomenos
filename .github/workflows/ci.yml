@@ -18,6 +18,5 @@ jobs:
       - run: pip install pyyaml
       - name: intake + fixtures + message gate (HEAD)
         run: python scripts/run_all.py
-      - name: message gate over the push range
-        if: github.event_name == 'push'
-        run: python scripts/check_messages.py "${{ github.event.before }}..${{ github.sha }}"
+      - name: message gate over the full governed range
+        run: python scripts/check_messages.py --all

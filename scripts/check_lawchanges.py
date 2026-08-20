@@ -33,6 +33,8 @@ def covered_files():
                    for p in (ROOT / "scripts").glob("check_*.py"))
     files += sorted(str(p.relative_to(ROOT))
                     for p in (ROOT / "scripts").glob("*.js"))
+    files += sorted(str(p.relative_to(ROOT))
+                    for p in (ROOT / "scripts" / "verify").glob("*.py"))
     files.append("scripts/run_all.py")
     files.append("tests/test_checks.py")
     return sorted(set(files))

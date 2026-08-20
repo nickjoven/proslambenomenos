@@ -1,0 +1,22 @@
+id: koide-empirical-agreement
+statement: >
+  The Koide quantity Q = (m_e + m_mu + m_tau)/(sqrt(m_e) + sqrt(m_mu)
+  + sqrt(m_tau))^2 evaluated at the PDG charged-lepton masses agrees
+  with 2/3 to about 1e-5 relative (Q = 0.666661). No accepted
+  derivation exists; the agreement is an open curiosity in the
+  literature.
+premises: []
+evidence:
+  - kind: computation
+    ref: "notes/modular_koide_evaluation.md item 2 - numeric evaluation with PDG masses, re-run 2026-08-19"
+    method: reimplementation
+  - kind: citation
+    ref: "Koide (1982); status reviewed in the Koide-relation literature"
+novelty:
+  status: classical
+  citation: "Koide 1982; the closeness to 2/3 is the well-known open curiosity"
+numeric_match:
+  observable: "PDG charged-lepton masses vs the 2/3 value"
+  # no defensible permutation null exists for this singleton; the cap
+  # below is the honest status (same reasoning as a0-milgrom-coincidence)
+status: coincidence-unruled

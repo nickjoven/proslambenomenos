@@ -31,7 +31,13 @@ ROOT = Path(__file__).resolve().parents[1]
 
 CONCLUSIVE = re.compile(
     r"(?i)\b(proves?|proof of|exact(?:ly)?|confirms?|closes?|novel|"
+    r"establish(?:es|ed)?|demonstrat(?:es|ed|ion)|definitive(?:ly)?|"
+    r"guarantee[sd]?|settle[sd]|resolve[sd]?|"
     r"first (?:proof|derivation)|zero free parameters|class 5)\b")
+# F6: the touched-claims coverage rule dates from its enactment; the
+# --all mode checks from this boundary so the advertised invariant
+# is true for the range where the rule existed.
+GRANDFATHER = "b182d8304cb92a325ff905e89953701975fe3c4a"  # noqa
 TAG = re.compile(r"\[claim ([a-z0-9-]+)\]")
 SUPPORTING = {"proven", "verified", "refuted"}
 
@@ -88,7 +94,8 @@ def touched_claims(sha):
 
 
 def main() -> int:
-    rng = sys.argv[1] if len(sys.argv) > 1 else "HEAD^..HEAD"
+    arg = sys.argv[1] if len(sys.argv) > 1 else "HEAD^..HEAD"
+    rng = f"{GRANDFATHER}..HEAD" if arg == "--all" else arg
     r = subprocess.run(
         ["git", "log", "--format=%H%x00%B%x01", rng],
         capture_output=True, text=True, cwd=ROOT, check=False)

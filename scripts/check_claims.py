@@ -67,6 +67,12 @@ NOVELTY_VOCAB = re.compile(
     r"(?i)\b(novel|original|new result|first (?:proof|derivation)|"
     r"previously unknown|discover\w*)\b")
 PIGEONHOLE_ALPHA = 0.05
+# F3: numeric-agreement vocabulary in a statement forces a
+# numeric_match block. A tripwire, not a wall (README says so).
+NUMERIC_AGREEMENT = re.compile(
+    r"(?i)\b(agrees? with|matches? (?:the )?(?:observed|measured)|"
+    r"within [0-9.]+\s*%|[0-9.]+\s*sigma\b|"
+    r"(?:observed|measured|PDG|Planck 20\d\d)\b.{0,40}\b(?:gives?|value))")
 
 
 def load_claims(claims_dir: Path, errors: list) -> dict:
@@ -102,6 +108,12 @@ def compute_status(doc: dict, claims: dict, errors: list, cid: str) -> str:
     ev = doc.get("evidence") or []
     kinds = set()
     methods = set()
+    # F4/G5: the machine:true honor flag is DISABLED until a rostered
+    # machine-proof executor exists (LAW-3). Setting it is an error.
+    for i, e in enumerate(ev):
+        if (e or {}).get("machine") is not None:
+            errors.append(f"{cid}: evidence[{i}] sets machine: — disabled "
+                          f"until a machine-proof executor exists (LAW-3)")
     for i, e in enumerate(ev):
         kind = (e or {}).get("kind")
         if kind not in EVIDENCE_KINDS:
@@ -129,11 +141,9 @@ def compute_status(doc: dict, claims: dict, errors: list, cid: str) -> str:
         return "refuted"
 
     # base status from evidence; prose proofs are graded down.
-    machine_proof = any((e or {}).get("kind") == "proof" and (e or {}).get("machine") is True
-                        for e in ev)
     independent_comp = bool(methods & {"reimplementation", "external"})
     if "proof" in kinds:
-        base = "proven" if (machine_proof or independent_comp) else "argued"
+        base = "proven" if independent_comp else "argued"
     elif "computation" in kinds:
         base = "verified" if methods & {"reimplementation", "external"} \
             else "reproduced"
@@ -142,8 +152,15 @@ def compute_status(doc: dict, claims: dict, errors: list, cid: str) -> str:
     else:
         base = "asserted"
 
-    # pigeonhole cap
+    # pigeonhole cap; F3: agreement vocabulary in the statement
+    # requires the block to be present at all.
     nm = doc.get("numeric_match")
+    if nm is None:
+        m = NUMERIC_AGREEMENT.search(doc.get("statement") or "")
+        if m:
+            errors.append(f"{cid}: statement asserts numeric agreement "
+                          f"({m.group(0)!r}) but carries no numeric_match "
+                          f"block — the pigeonhole cap is not optional")
     if nm is not None:
         p = nm.get("pigeonhole_p")
         if not isinstance(p, (int, float)) or p >= PIGEONHOLE_ALPHA:

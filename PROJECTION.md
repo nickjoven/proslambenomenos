@@ -11,7 +11,7 @@ is prospective.
 ## 1. The stack (running, tested, catching real defects)
 
 - Computed-status intake gate: statuses derived from evidence, never
-  declared; 9 red/green fixtures; blocked its own author's label
+  declared; a red/green fixture suite (every rule demonstrated to fail); blocked its own author's label
   errors on first contact.
 - Premise ledger with blocking transitive propagation (v1: 41 anchors,
   mutation-tested); SPINE status join; claims-index status-carrying
@@ -76,7 +76,8 @@ a large incoming audience and essentially no worked examples.
 
 ## 6. The registry and compendium (the mathematics, honestly sized)
 
-12 gated claims and a 13-section runnable compendium: one supplied
+The gated claims registry and the runnable compendium (live censuses
+come from the intake gate and the page itself, not this file): one supplied
 proof (J^2 = -I on the twisted sector), two refutations with
 counterexamples (second law from non-orientability; phi-squared
 scaling), one doc claim confirmed against initial suspicion by

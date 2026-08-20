@@ -54,7 +54,7 @@ def main() -> int:
     # GREEN: pigeonhole p<0.05 does not cap
     e, _ = run_fixture({"a.yml": (
         "id: a\nstatement: x\n"
-        "evidence: [{kind: proof, ref: r, machine: true}]\n"
+        "evidence: [{kind: proof, ref: r}, {kind: computation, ref: c, method: reimplementation}]\n"
         "numeric_match: {observable: o, pigeonhole_p: 0.001}\n"
         "status: proven\n")})
     ok &= expect(not e, "pigeonhole p<0.05 passes")
@@ -75,12 +75,21 @@ def main() -> int:
     ok &= expect(any("recorded != computed (argued)" in x for x in e),
                  "proof + same-algorithm rerun cannot claim proven")
 
-    # GREEN: machine-checked proof is proven
+    # RED (LAW-3): machine: flag is disabled until an executor exists
     e, _ = run_fixture({"a.yml": (
         "id: a\nstatement: x\n"
         "evidence: [{kind: proof, ref: lean, machine: true}]\n"
         "status: proven\n")})
-    ok &= expect(not e, "machine-checked proof derives proven")
+    ok &= expect(any("disabled" in x for x in e),
+                 "machine flag blocked until an executor exists")
+
+    # RED (F3): numeric-agreement vocabulary without numeric_match
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: the ratio agrees with the observed value to 0.1%\n"
+        "evidence: [{kind: citation, ref: r}]\n"
+        "status: imported\n")})
+    ok &= expect(any("pigeonhole cap is not optional" in x for x in e),
+                 "agreement vocabulary forces numeric_match")
 
     # GREEN: proof + independent reimplementation is proven
     e, _ = run_fixture({"a.yml": (
@@ -94,7 +103,7 @@ def main() -> int:
         "a.yml": ("id: a\nstatement: x\n"
                   "evidence: [{kind: proof, ref: prose}]\nstatus: argued\n"),
         "b.yml": ("id: b\nstatement: y\npremises: [a]\n"
-                  "evidence: [{kind: proof, ref: lean, machine: true}]\nstatus: proven\n")})
+                  "evidence: [{kind: proof, ref: p}, {kind: computation, ref: r, method: reimplementation}]\nstatus: proven\n")})
     ok &= expect(any("recorded != computed (conditional)" in x for x in e),
                  "argued premise caps downstream proven")
 

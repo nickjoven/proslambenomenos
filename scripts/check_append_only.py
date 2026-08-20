@@ -39,6 +39,15 @@ def main() -> int:
     violations = []
     for name in LEDGERS:
         if not (ROOT / name).exists():
+            # F1 fix: a ledger that has git history but is absent from
+            # the tree was deleted — the strongest possible violation,
+            # previously skipped silently.
+            r = subprocess.run(["git", "log", "--oneline", "--", name],
+                               capture_output=True, text=True, cwd=ROOT,
+                               check=False)
+            if r.stdout.strip():
+                violations.append(f"{name}: ledger DELETED from the tree "
+                                  f"(git history exists)")
             continue
         r = subprocess.run(
             ["git", "log", "-p", "--follow", "--", name],

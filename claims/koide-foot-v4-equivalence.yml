@@ -6,8 +6,9 @@ statement: >
   cos^2 theta = 1/2 (Foot); (b) in the V4-decomposition of the
   4-vector (sqrt(m_e), sqrt(m_mu), sqrt(m_tau), 0) under the
   Hadamard basis, the trivial-representation fraction
-  |w_chi0|^2/|w|^2 = 3/8 (v1 koide iteration 5). PDG masses give
-  Q = 0.666661, fraction 0.375003, cos^2 theta = 0.500005.
+  |w_chi0|^2/|w|^2 = 3/8 (v1 koide iteration 5). The empirical
+  status of the relation itself is a separate claim
+  (koide-empirical-agreement).
 premises: []
 evidence:
   - kind: proof
