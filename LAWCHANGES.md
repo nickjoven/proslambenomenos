@@ -141,3 +141,25 @@ hashes:
   4dc17a58fec3a3983b199a565b6f85b02c63a0d09961f554c36ab98e63403661  scripts/verify/q1_saddle_node.py
   9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
   8c4511d8b609624ff413e0207ad5874121dce301f64f33e1d827c2638c0c1ce5  tests/test_checks.py
+
+## LAW-7 — 2026-08-20 — the lexicon must not flag its own vocabulary
+direction: neutral
+why: first ceremony PR went red because \bnovel\b matches inside the
+hyphenated field value "checked-novel" — the message gate flagging the
+name of the novelty vocabulary itself. Hyphen guards added around
+that token; fixtures cover both directions (checked-novel passes,
+bare "novel" still blocks). Found by CI on the protected remote,
+which is the enforcer doing precisely what it was installed to do.
+hashes:
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  1629443f3ffefce0aaf2ebeafa5f696fb5539b4658c323ef86963fd7b2b3e3b1  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  9eb8db6c46e6ab1149c8db33087d5282f4cd70a97663654ddbc7ab285a038343  scripts/check_lawchanges.py
+  3064529f88ec4d4ad95532e0724ad28e81a8cda66ddbde230792e0f613f40eea  scripts/check_messages.py
+  0ddaeb011ba633cf3f4433b049c919393759ade85fe023374e33834048fd59f9  scripts/check_predictions.py
+  a6c0a5ece94b42524e6a328ba11528e145e0746ba567580e87e80042c5a9970d  scripts/check_verify_scripts.py
+  0680b9c18dc3818976e88e693d5ca910baeda9894fc4d4ef1e1678d4e5a33b3e  scripts/run_all.py
+  dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
+  4dc17a58fec3a3983b199a565b6f85b02c63a0d09961f554c36ab98e63403661  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  527b57b8752ce2131070c2a3dccdfe17e98a7a01a252ea3ed0ff5ecdbe480edf  tests/test_checks.py

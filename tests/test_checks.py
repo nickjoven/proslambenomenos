@@ -172,6 +172,10 @@ def main() -> int:
                  "message gate: touched claim without tag blocks")
     v = cm.check_commit("abc", "tweak wording [claim good]", {"good"}, statuses)
     ok &= expect(not v, "message gate: touched claim with tag passes")
+    v = cm.check_commit("abc", "handle checked-novel novelty in the gate", set(), statuses)
+    ok &= expect(not v, "message gate: the vocabulary term checked-novel is not conclusive language")
+    v = cm.check_commit("abc", "a novel identity", set(), statuses)
+    ok &= expect(bool(v), "message gate: bare novel still blocks")
 
     # RED: evidence citing a nonexistent repo path (G3)
     e, _ = run_fixture({"a.yml": (
