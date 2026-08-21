@@ -16,9 +16,10 @@ gates-all:
 # ───────────────────────── Plots ─────────────────────────
 
 # All terminal-graphics demos, including a live render of the latest
-# D4 sweep results if present.
+# D4 sweep results if present. THEME=mono|blocks|dark|light
+THEME ?= mono
 plots:
-	$(PYTHON) scripts/termplot_demo.py
+	$(PYTHON) scripts/termplot_demo.py --theme $(THEME)
 
 # ─────────────────────── Experiments ───────────────────────
 # Exploration tier: NOT evidence until promoted to scripts/verify/
