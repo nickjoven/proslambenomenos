@@ -50,3 +50,7 @@ The published artifact (claude.ai) is presentation, not preservation.
 - link-002 — pre-publication: context-free adversarial audit in the
   record with F1-F10 dispositions; LAW-3/4/5; seven gates; 21 claims.
   (2026-08-20)
+- link-003 — P-1 opened: preregistration law (LAW-6/7/8, eighth gate),
+  decomposition with discharged checkables, the gradient theorem-let
+  (claim 22), E1 steps 1-2 with the odd/2N retraction on record, the
+  termplot companion with themes, and the repo Makefile. (2026-08-21)
