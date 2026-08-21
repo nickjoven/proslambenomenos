@@ -1,0 +1,24 @@
+id: klein-twisted-gradient-xor
+statement: >
+  On an N x M lattice with the Klein-twisted boundary conditions
+  theta_{i+N,j} = theta_{i,M+1-j} + pi and theta_{i,j+M} =
+  theta_{i,j} (mod 2*pi), with M even, the uniform-gradient states
+  theta_{i,j} = 2*pi*(W1*i/N + W2*j/M) (windings taken mod N and
+  mod M) compatible with the constraints are precisely: W2 = 0 with
+  W1 in Z + 1/2, and W2 = M/2 (the pi-staggered column pattern) with
+  W1 in Z - an XOR between half-integer x-winding and y-staggering.
+  Spatial windings on the twisted lattice therefore lie in (1/2)Z
+  only; no other rational winding admits a uniform-gradient
+  realization, and in the continuum limit only the W2 = 0 branch
+  survives.
+premises: []
+prediction: P-1
+evidence:
+  - kind: proof
+    ref: "notes/p1_decomposition.md - j-coefficient argument: the j-increment 4*pi*W2/M must vanish mod 2*pi, then the constant part fixes W1 per branch"
+  - kind: computation
+    ref: "scripts/verify/p1_gradient_bc.py - exhaustive check at N = M = 12 over all half-integer W1 and integer W2: compatible set equals the stated XOR set (24 = 24, no extras); reflection acts as the Farey involution on windings"
+    method: reimplementation
+novelty:
+  status: unchecked
+status: proven
