@@ -20,5 +20,6 @@ evidence:
     ref: "scripts/verify/p1_gradient_bc.py - exhaustive check at N = M = 12 over all half-integer W1 and integer W2: compatible set equals the stated XOR set (24 = 24, no extras); reflection acts as the Farey involution on windings"
     method: reimplementation
 novelty:
-  status: unchecked
+  status: classical
+  citation: "ring statement classical: Bulaevskii, Kuzii, Sobyanin, JETP Lett. 25, 290 (1977); Khairnar & Vojta, Phys. Rev. E 111, 024114 (2025); the 2D Klein enumeration not found in prior art but elementary - see LC-3"
 status: proven

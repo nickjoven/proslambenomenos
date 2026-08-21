@@ -1,0 +1,31 @@
+id: xor-bridge-domain-vacuity
+statement: >
+  In the Klein-twisted Kuramoto lattice (v1 klein_bottle.md's
+  equations), considered without a drive and with a per-site pinning
+  drive over K in {1.0, 1.4}, J in {0.3, 0.6, 1.2, 2.0}, and N x M =
+  4 x 4: no family of locked states indexed by pairs of rationals
+  (p1/q1, p2/q2) with unbounded denominators arises. Spatial windings
+  of uniform-gradient states lie in (1/2)Z (klein-twisted-gradient-xor);
+  without a drive the collective rotation number equals the mean
+  natural frequency with no rational structure
+  (klein-twisted-mean-frequency-identity); with the drive, locking
+  supplies a single rational whose value is unshifted by the twist and
+  whose plateaus merely shrink, and every locked state in the explored
+  ranges lies in the spatially trivial sector, with the two XOR
+  winding sectors never retaining a locked state. Consequently the
+  conjectured fraction-level parity rule q1 + q2 odd quantifies over
+  an index set that the dynamics does not instantiate in this model
+  class: it is unfounded there, neither true nor false.
+premises:
+  - klein-twisted-gradient-xor
+  - klein-twisted-mean-frequency-identity
+prediction: P-1
+evidence:
+  - kind: proof
+    ref: "notes/p1_decomposition.md, resolution section - the spatial and no-drive parts are the two cited theorem-lets; the driven part is bounded to the explored ranges by construction of the statement"
+  - kind: computation
+    ref: "scripts/experiments/d4_edge_resolved.py (shrink not shift; locked rho = p/q to <= 2e-4), scripts/experiments/d4_2d_pairs.py (966-run cross-tab, trivial-sector concentration), scripts/experiments/d4_sector_stability.py (XOR sectors locked-and-retained 0/404); results in the adjacent .json files"
+    method: reimplementation
+novelty:
+  status: unchecked
+status: proven

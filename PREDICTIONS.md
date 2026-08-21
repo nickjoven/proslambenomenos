@@ -46,3 +46,18 @@ corrected version.
 changes-my-mind: a proof of the original statement handling the
 Borel case, or a failure to salvage any corrected version, which
 would also reopen the dimension conclusion's support.
+
+## R-1 — 2026-08-21 — resolves P-1
+outcome: the headline expectation held - no canonical map exists from
+the proven spectral XOR to Stern-Brocot denominator parity. The
+MECHANISM differs from the one predicted: P-1 expected
+under-determination (two natural maps with different pushforwards);
+the work found domain vacuity instead - the fraction-pair index set
+the conjectured rule quantifies over is never instantiated by the
+corpus-canonical dynamics (claims klein-twisted-gradient-xor,
+klein-twisted-mean-frequency-identity, xor-bridge-domain-vacuity;
+notes/p1_decomposition.md). The mind-change condition did not fire.
+Scope of the empirical leg is stated in the vacuity claim (explored
+K, J, lattice size); the two theorem-lets are unconditional.
+Mechanism correction recorded as a prediction error, not an
+expectation error.
