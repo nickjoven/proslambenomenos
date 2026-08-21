@@ -157,3 +157,16 @@ preregistered expectation and resolves nothing about it yet.
   SHIFT (lattice offset — the bridge-relevant reading) from plateau
   SHRINKAGE (plain frustration). Step 3, edge-resolved staircases,
   decides it.
+- Step 3 (edge-resolved plateaus, d4_edge_resolved.py, results in
+  d4_edge_results.json): VERDICT — SHRINK, NOT SHIFT. Plateau centers
+  are unmoved (1/2 center at 0.50000 control vs 0.49994/0.50008
+  twisted, within averaging noise) and the locked rho on every
+  measured twisted plateau equals p/q to <= 2e-4 (finite-averaging
+  scale): widths shrink (1/2: x3.5 at K=1, x8.7 at K=1.4; thirds up
+  to x27) but no lattice offset exists — the twist weakens temporal
+  locking without displacing it. Combined with step 2: the temporal
+  sector of this model class (N=4 pinned ring, single seam) shows NO
+  parity-selective or shifted structure that could carry ANY
+  fraction-parity rule. This leans T- for the 1D seam mechanism —
+  honestly scoped: the conjecture concerns 2D pairs, so the 2D
+  enumeration (D4 proper) remains the decisive test.
