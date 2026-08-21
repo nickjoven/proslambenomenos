@@ -138,3 +138,22 @@ on denominator-<= 2 windings and admits nothing else; any
 fraction-level parity rule must arise in the temporal locking sector,
 whose enumeration (D4) is the next step. This is consistent with the
 preregistered expectation and resolves nothing about it yet.
+
+## E1 log (D4 probe, temporal sector)
+
+- Step 1 (branch-seeded ICs, N=4): plateau structure is
+  seed-independent at K=1, J=0.6 — phase slips erase initial winding;
+  the temporal signature is intrinsic to the twisted dynamics.
+- Step 2 (K/J sweep, 3x3, twisted vs control, results in
+  scripts/experiments/d4_sweep_results.json): the 1/2-plateau
+  suppression is ROBUST and strengthens with J (total extinction at
+  K=1.4, J=1.2: 0 vs 51 grid hits); thirds suppressed likewise. The
+  provisional odd/2N enhancement from the first run appears ONLY at
+  the original parameter point (K=1.0, J=0.6) and is hereby retracted
+  as a signature — single-point pattern-matching, caught by the sweep
+  before hardening. X-2's Matsubara anchor demoted accordingly to
+  "suggestive at one point, unsupported across the sweep."
+- Open discriminator: grid-hit counting cannot distinguish plateau
+  SHIFT (lattice offset — the bridge-relevant reading) from plateau
+  SHRINKAGE (plain frustration). Step 3, edge-resolved staircases,
+  decides it.
