@@ -170,3 +170,51 @@ preregistered expectation and resolves nothing about it yet.
   fraction-parity rule. This leans T- for the 1D seam mechanism —
   honestly scoped: the conjecture concerns 2D pairs, so the 2D
   enumeration (D4 proper) remains the decisive test.
+
+## D4 proper (2D pair enumeration, d4_2d_pairs.py, 2026-08-21)
+
+Design forced by E1: one autonomous flow has ONE rotation number, so
+the honest 2D pair is (spatial parity class, temporal rational) with
+b_x = x-winding parity around the orientation double loop and b_y =
+uniform/staggered bond order. Cross-tab over 966 runs (two (K,J)
+points, three seed branches, 161 Omega each):
+
+    (bx,by)    n   q_odd  q_even   p_odd  p_even
+    (0, 0)   147     124      23      86      61
+    (0, 1)     1       1       0       0       1
+    (1, 0)     4       2       2       2       2
+    (1, 1)     1       1       0       1       0
+    locked-but-defect (b_y undefined): 45
+
+Findings, honestly stated:
+1. Locking concentrates almost entirely in the spatially TRIVIAL
+   sector (0,0) — which is an XOR-violating sector for gradients, but
+   pinned locked states are not gradients; the gradient theorem does
+   not constrain them. The XOR sectors (1,0) and (0,1) barely lock
+   (n = 4 and 1): under pinning, winding sectors relax by phase
+   slips (consistent with E1 step 1).
+2. NO parity correlation between the spatial class and the parity of
+   q (or p) of the locked rational is observable: the q_odd
+   dominance in (0,0) mirrors the ordinary staircase composition
+   (odd-q plateaus are wider), and the nontrivial cells have no
+   statistics at all.
+3. The sharpest reading is not under-determination but VACUOUS
+   DOMAIN: in the corpus-canonical dynamics, no family of locked
+   states indexed by arbitrary-denominator fraction PAIRS arises at
+   all. Spatial windings live in (1/2)Z (theorem-let); temporal
+   locking contributes one rational, parity-blind; nothing
+   instantiates the (p1/q1, p2/q2) index set the conjectured rule
+   quantifies over. A rule about states that do not exist is neither
+   true nor false in the model - it is unfounded.
+
+Limitations before any P-1 resolution is claimed: (a) the pinning
+drive is an E1 addition; the corpus's own field equation used a
+self-consistent mean field with no per-site pinning - the no-pinning
+variant must be probed (expected: a single collective frequency and
+NO rational structure at all, which would strengthen vacuity);
+(b) nontrivial-sector statistics are near-zero - larger J or lattices
+might stabilize winding sectors and deserve one check; (c) the D8
+litcheck is still owed. Resolution shape if these hold: P-1 resolves
+as expected (no canonical map), with the mechanism being domain
+vacuity rather than map multiplicity - stronger than the
+preregistered T- and requiring an honest R-entry saying so.
