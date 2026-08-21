@@ -88,3 +88,28 @@ return is undetectable in ONE traversal (the 2pi-vs-4pi fact), so
 the parity material sits exactly one return deeper than the circle —
 fixing the T2 -> T6 dependency order in the curriculum. Mood:
 design note; the uncertainty statement is classical.
+
+## X-7 — The hourglass is the collapsed Mobius band (owner question, 2026-08-21)
+
+The double cone x^2 + y^2 = z^2 is interesting at exactly one point:
+the apex, whose link is two disjoint circles (non-manifold; the
+A1/nodal singularity; in Lorentzian signature, the light cone). Every
+level circle is ordinary — only the DEGENERATE circle needs a
+decision, and the two canonical decisions are both objects already in
+this repo's orbit: (1) crush it — collapse the central circle of the
+cylinder R x S^1 — giving the singular hourglass, the "phase
+forgotten at zero amplitude" reading, X-6's unearned circle
+geometrized; (2) quotient it — a real oscillation x = A cos(2 pi
+theta) carries the free involution (A, theta) ~ (-A, theta + 1/2),
+whose quotient is smooth and is precisely the open MOBIUS BAND with
+the zero-amplitude circle as core: the state space of a real
+oscillator, where crossing zero amplitude traverses the half-twist
+and the sign flip IS the pi. So hourglass = collapsed Mobius band;
+the Mobius band is its resolution. Ties together: v1's D18 Mobius
+container and the bicone + Z_2 vortex experiments (same structure,
+no dictionary), the twisted seam's pi offset (an amplitude zero
+crossed somewhere on the loop), and X-6. Mood: connection note;
+the quotient identification is standard covering-space material and
+checkable; nothing here is claimed novel. Rendering: cones and
+level-circle wireframes draw fine in termplot via parametric
+projection into plot_xy (demo run 2026-08-21).
