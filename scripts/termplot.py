@@ -12,6 +12,41 @@ _DOTS = ((0x01, 0x08), (0x02, 0x10), (0x04, 0x20), (0x40, 0x80))  # [py%4][px%2]
 _EIGHTHS = "▏▎▍▌▋▊▉"  # 1/8 .. 7/8 blocks
 _BOLD, _DIM, _RESET = "\x1b[1m", "\x1b[2m", "\x1b[0m"
 
+# ── themes ──────────────────────────────────────────────────────────
+# A theme bundles: whether ANSI is on, the title/marker/bar codes, the
+# heatmap ramp, and optional per-intensity ramp colors. Select with
+# set_theme(name), the TERMPLOT_THEME env var, or theme= per call;
+# the color= flag still force-enables/disables ANSI per call.
+THEMES = {
+    "mono":   {"ansi": False, "bold": _BOLD, "dim": _DIM, "bar": "",
+               "ramp": " ░▒▓█", "ramp_colors": None},
+    "blocks": {"ansi": False, "bold": _BOLD, "dim": _DIM, "bar": "",
+               "ramp": " ▁▂▃▄▅▆▇█", "ramp_colors": None},
+    "dark":   {"ansi": True, "bold": "\x1b[1;97m", "dim": "\x1b[2;36m",
+               "bar": "\x1b[36m", "ramp": " ░▒▓█",
+               "ramp_colors": [None, "\x1b[34m", "\x1b[36m",
+                               "\x1b[33m", "\x1b[91m"]},
+    "light":  {"ansi": True, "bold": "\x1b[1;30m", "dim": "\x1b[2;34m",
+               "bar": "\x1b[34m", "ramp": " ░▒▓█",
+               "ramp_colors": [None, "\x1b[34m", "\x1b[35m",
+                               "\x1b[31m", "\x1b[1;31m"]},
+}
+import os as _os
+_theme = THEMES.get(_os.environ.get("TERMPLOT_THEME", "mono"), THEMES["mono"])
+
+
+def set_theme(name):
+    """Select a named theme globally; returns the theme dict."""
+    global _theme
+    _theme = THEMES[name]
+    return _theme
+
+
+def _resolve(theme, color):
+    th = THEMES[theme] if isinstance(theme, str) else (theme or _theme)
+    ansi = th["ansi"] if color is None else bool(color)
+    return th, ansi
+
 
 def _fmt(v):
     if float(v).is_integer() and abs(v) < 1e6:
@@ -66,13 +101,14 @@ class _Canvas:
 
 
 def _render_frame(cv, xlo, xhi, ylo, yhi, title, xlabel, ylabel,
-                  marker_rows, color):
+                  marker_rows, color, theme=None):
     """Compose axes, tick labels, and right-margin marker labels."""
+    th, ansi = _resolve(theme, color)
     lo_s, hi_s = _fmt(ylo), _fmt(yhi)
     gut = max(len(lo_s), len(hi_s), len(ylabel))
     out = []
     if title:
-        t = (_BOLD + title + _RESET) if color else title
+        t = (th["bold"] + title + _RESET) if ansi else title
         pad = max(0, (gut + 1 + cv.w - len(title)) // 2)
         out.append(" " * pad + t)
     if ylabel:
@@ -83,7 +119,7 @@ def _render_frame(cv, xlo, xhi, ylo, yhi, title, xlabel, ylabel,
         tail = ""
         if i in marker_rows:
             lbl = " ┈ " + marker_rows[i]
-            tail = (_DIM + lbl + _RESET) if color else lbl
+            tail = (th["dim"] + lbl + _RESET) if ansi else lbl
         out.append(left.rjust(gut) + tick + row + tail)
     out.append(" " * gut + "└" + "─" * cv.w)
     xl, xh = _fmt(xlo), _fmt(xhi)
@@ -116,18 +152,19 @@ def _setup(points, width, height, markers):
 
 
 def plot_xy(points, width=72, height=20, title="", xlabel="", ylabel="",
-            markers=None, color=False):
+            markers=None, color=None, theme=None):
     """Braille scatter plot of (x, y) pairs; markers={label: yvalue}."""
     if not points:
         return _empty(title, "plot_xy")
     pts, cv, px, py, box, mrows = _setup(points, width, height, markers)
     for x, y in pts:
         cv.set(px(x), py(y))
-    return _render_frame(cv, *box, title, xlabel, ylabel, mrows, color)
+    return _render_frame(cv, *box, title, xlabel, ylabel, mrows, color,
+                         theme)
 
 
 def staircase(points, width=72, height=20, title="", xlabel="", ylabel="",
-              markers=None, color=False):
+              markers=None, color=None, theme=None):
     """Step plot for monotone data; flat plateau runs are drawn doubled."""
     if not points:
         return _empty(title, "staircase")
@@ -149,16 +186,19 @@ def staircase(points, width=72, height=20, title="", xlabel="", ylabel="",
             cv.line(px(a[0]), py(a[1]), px(b[0]), py(a[1]))  # tread
             cv.line(px(b[0]), py(a[1]), px(b[0]), py(b[1]))  # riser
             i += 1
-    return _render_frame(cv, *box, title, xlabel, ylabel, mrows, color)
+    return _render_frame(cv, *box, title, xlabel, ylabel, mrows, color,
+                         theme)
 
 
 def heatmap(grid, row_labels=None, col_labels=None, title="", legend=True,
-            color=False):
-    """Shade a 2D grid with ' ░▒▓█'; labels optional."""
+            color=None, theme=None):
+    """Shade a 2D grid with the theme's ramp; labels optional."""
+    th, ansi = _resolve(theme, color)
     grid = [list(map(float, row)) for row in grid]
     if not grid or not grid[0]:
         return _empty(title, "heatmap")
-    ramp = " ░▒▓█"
+    ramp = th["ramp"]
+    rcolors = th["ramp_colors"] if ansi else None
     flat = [v for row in grid for v in row]
     lo, hi = min(flat), max(flat)
     ncol = max(len(r) for r in grid)
@@ -168,7 +208,7 @@ def heatmap(grid, row_labels=None, col_labels=None, title="", legend=True,
     cw = max([2] + [len(s) + 1 for s in cl])
     out = []
     if title:
-        out.append((_BOLD + title + _RESET) if color else title)
+        out.append((th["bold"] + title + _RESET) if ansi else title)
     if cl:
         out.append(" " * (gut + 1) + "".join(s.center(cw) for s in cl))
     for r, row in enumerate(grid):
@@ -176,7 +216,10 @@ def heatmap(grid, row_labels=None, col_labels=None, title="", legend=True,
         for v in row:
             k = int((v - lo) / (hi - lo) * (len(ramp) - 1) + 0.5) if hi > lo \
                 else len(ramp) // 2
-            cells += ramp[k] * cw
+            cell = ramp[k] * cw
+            if rcolors and k < len(rcolors) and rcolors[k]:
+                cell = rcolors[k] + cell + _RESET
+            cells += cell
         out.append((rl[r] if r < len(rl) else "").rjust(gut) + " " + cells)
     if legend:
         out.append("%s min %s [%s] max %s" % (" " * gut, _fmt(lo), ramp,
@@ -184,8 +227,9 @@ def heatmap(grid, row_labels=None, col_labels=None, title="", legend=True,
     return "\n".join(out)
 
 
-def bars(labels, values, width=60, title="", color=False):
+def bars(labels, values, width=60, title="", color=None, theme=None):
     """Horizontal bar chart with value annotations."""
+    th, ansi = _resolve(theme, color)
     values = [float(v) for v in values]
     if not values:
         return _empty(title, "bars")
@@ -194,12 +238,12 @@ def bars(labels, values, width=60, title="", color=False):
     top = max([v for v in values if v > 0] + [0]) or 1.0
     out = []
     if title:
-        out.append((_BOLD + title + _RESET) if color else title)
+        out.append((th["bold"] + title + _RESET) if ansi else title)
     for lbl, v in zip(labels, values):
         n8 = max(0, round(v / top * width * 8))
         bar = "█" * (n8 // 8) + (_EIGHTHS[n8 % 8 - 1] if n8 % 8 else "")
-        if color and bar:
-            bar = "\x1b[36m" + bar + _RESET
+        if ansi and bar and th["bar"]:
+            bar = th["bar"] + bar + _RESET
         pad = width - (n8 // 8) - (1 if n8 % 8 else 0)
         out.append("%s │%s%s %s" % (lbl.rjust(gut), bar, " " * pad,
                                          _fmt(v)))

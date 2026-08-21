@@ -5,7 +5,16 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import termplot
 from termplot import plot_xy, staircase, heatmap, bars
+
+import argparse
+_ap = argparse.ArgumentParser()
+_ap.add_argument("--theme", default=None, choices=["mono", "blocks", "dark", "light"],
+                 help="termplot theme (default: TERMPLOT_THEME env or mono)")
+_args, _ = _ap.parse_known_args()
+if _args.theme:
+    termplot.set_theme(_args.theme)
 
 RESULTS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                        "experiments", "d4_sweep_results.json")
