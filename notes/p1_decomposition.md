@@ -218,3 +218,75 @@ litcheck is still owed. Resolution shape if these hold: P-1 resolves
 as expected (no canonical map), with the mechanism being domain
 vacuity rather than map multiplicity - stronger than the
 preregistered T- and requiring an honest R-entry saying so.
+
+## D4 holes (a) and (b) — computed 2026-08-21
+
+**(a) No-pinning variant (d4_nopin_meanfield.py, results in
+d4_nopin_results.json).** Kuramoto lattice with quenched zero-mean
+frequency offsets and no per-site drive, 4 x 4, twisted and control,
+Delta in {0.05, 0.2}, 101 Omega each: max |rho - Omega| = 5.4e-14 over
+all 404 runs. The "snaps" (7 per row against ~2.1 expected by chance)
+are exactly the grid points where Omega itself is rational - not
+plateaus. There is no mode-locking at all without a drive.
+
+This is a theorem, not a finding (claim
+klein-twisted-mean-frequency-identity, proven; fast check
+scripts/verify/p1_mean_frequency.py): with antisymmetric coupling and
+consistent seam offsets s_ab = -s_ba, each undirected edge contributes
+sin(x) + sin(-x) = 0 to the sum of all phase advances, so the mean
+advance per step is Omega + Delta*mean(G) = Omega identically, at every
+step, regardless of the twist. The corpus's own no-drive field
+equation therefore cannot produce any rational structure in Omega;
+every temporal rational in this work enters via the pinning drive E1
+added.
+
+**(b) Nontrivial-sector stability (d4_sector_stability.py, results in
+d4_sector_results.json).** XOR sectors seeded directly (uniform
+half-integer x-winding -> (1,0); staggered -> (0,1)), J in {1.2, 2.0},
+K = 1.0, 101 Omega per row:
+
+    J    seed       retained  locked  locked&retained
+    1.2  uniform       0/101    3       0
+    1.2  staggered     4/101    5       0
+    2.0  uniform       0/101    4       0
+    2.0  staggered     6/101    4       0
+
+Stronger coupling does not stabilize the sectors: the half-integer
+winding sector is never retained, the staggered sector rarely, and no
+run in any row both retains its sector and locks. The empty cells of
+the D4-proper cross-tab are structural within the explored ranges.
+
+## Resolution (draft against P-1; R-1 in PREDICTIONS.md)
+
+Claim xor-bridge-domain-vacuity (proven, scoped to the explored K, J,
+and 4 x 4 lattice for its driven leg; unconditional for its two
+theorem-let legs): the corpus-canonical dynamics instantiates no
+family of locked states indexed by fraction pairs with unbounded
+denominators. The conjectured rule q1 + q2 odd is unfounded in the
+model class - neither true nor false there. P-1's expectation (no
+canonical map) holds; its predicted mechanism (map multiplicity, T-)
+was wrong - the actual mechanism is domain vacuity. Recorded in R-1 as
+a mechanism error. Canonicity criteria D5 are never reached: there is
+no B-side object for Phi to land on.
+
+Still owed before any novelty label: D8 litcheck (in progress, under
+P-1). Not claimed: anything about other model classes (different
+drives, larger lattices, continuum limits) - the vacuity statement is
+bounded to what was computed, and the mean-frequency identity is the
+only unconditional temporal result.
+
+## D8 litcheck — LC-3 (2026-08-21)
+
+Ring half-winding: classical (Bulaevskii 1977). Mean-frequency identity:
+textbook (Kuramoto; Strogatz 2000; Acebron 2005). Both claims now carry
+novelty = classical with citations. The 2D Klein enumeration was not
+found in prior art and is labeled nothing: an elementary corollary.
+E1's shrink-not-shift result is NOT labeled: adjacent 0-pi Josephson
+literature (Frolov 2006; Lazarides 2008) reports the half-turn offset
+CREATING half-integer steps under drive, the opposite sign - the
+per-site-pinning vs bias-drive distinction and an N-parity check
+(Lazarides predicts even/odd dependence; E1 ran N = 4 only) are owed
+before the E1 observation can be claimed as more than a computation
+in one model. The P-1 resolution does not depend on the sign of that
+effect: vacuity rests on the theorem-lets plus the explored-range
+cross-tab, and holds whichever way the plateaus move.
