@@ -1,0 +1,23 @@
+id: klein-twisted-mean-frequency-identity
+statement: >
+  For a Kuramoto lattice dtheta_a/dt = omega_a + (J/2pi) sum_b
+  sin(2pi(theta_b - theta_a + s_ab)) with antisymmetric seam offsets
+  s_ab = -s_ba (the Klein-twisted boundary conditions are such a
+  system, as is the untwisted control), the mean phase velocity over
+  the lattice equals the mean natural frequency at every instant,
+  because each undirected edge contributes sin(x) + sin(-x) = 0 to the
+  total. With zero-mean frequency offsets around Omega the collective
+  rotation number is Omega itself, independent of the twist; no
+  mode-locking structure in Omega exists without an external drive.
+premises: []
+prediction: P-1
+evidence:
+  - kind: proof
+    ref: "notes/p1_decomposition.md, resolution section - pairwise edge cancellation under s_ab = -s_ba"
+  - kind: computation
+    ref: "scripts/verify/p1_mean_frequency.py - 4x4 twisted and control lattices, 300 steps, |mean advance - Omega| = 0 to machine precision; scripts/experiments/d4_nopin_meanfield.py - 404 runs, |rho - Omega| <= 5.4e-14"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "Kuramoto 1984 ch. 5; Strogatz, Physica D 143, 1 (2000); Acebron et al., Rev. Mod. Phys. 77, 137 (2005) sec. II; Dorfler & Bullo, SIAM J. Control Optim. 50, 1616 (2012) - see LC-3"
+status: proven
