@@ -70,3 +70,21 @@ the circle (two mirror points, 0 and 1/2) are the same Z_2 in three
 domains. E1's control/twisted contrast is a fourth appearance: the
 crushed 1/2 plateau sits AT the mirror point. Mood: observed
 pattern; the orbifold reading has not been used for anything yet.
+
+## X-6 — When is the circle earned? (question from the owner, 2026-08-20)
+
+Below one period the circle fails twice: topologically it is a
+hypothesis (return not yet witnessed; strictly the SECOND return
+certifies periodicity), and metrically it is undefined in principle —
+time-frequency uncertainty gives delta_T/T > 1 for duration < T, a
+circumference fuzzy by more than itself, sharpening as 1/n with n
+periods (frequency-comb narrowing). Distinctions worth keeping: the
+circle-as-state-space-of-a-law (exists before any trajectory closes;
+period inferable from an arc) versus circle-as-witnessed-recurrence
+(earned at return two) — different objects, different birthdays.
+Physics instance: super-horizon modes are treated as frozen
+constants, not phases. Twist corollary: periodic vs antiperiodic
+return is undetectable in ONE traversal (the 2pi-vs-4pi fact), so
+the parity material sits exactly one return deeper than the circle —
+fixing the T2 -> T6 dependency order in the curriculum. Mood:
+design note; the uncertainty statement is classical.
