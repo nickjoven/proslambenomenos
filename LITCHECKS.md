@@ -208,3 +208,37 @@ the 1983 observation and the 1999 reading's 2pi without either
 citation; both are now on record; the claim's cap stands. Method:
 from memory of the primary sources, flagged for independent check
 before any citation-kind evidence is added to the claim.
+
+## LC-7 — provenance of the Stern-Brocot tree: Stern's array, Brocot's gear table (2026-08-22)
+prediction: P-1
+
+Checked by an independent context-free agent (59 tool calls).
+Stern: "Ueber eine zahlentheoretische Funktion", J. reine angew.
+Math. 55 (1858) 193-220 - the diatomic ARRAY (rows built by inserting
+sums of adjacent pairs; Stern credits Eisenstein 1850; OEIS A002487),
+not a tree. Brocot: Achille Brocot, Paris clockmaker, "Calcul des
+rouages par approximation, nouvelle methode", Revue chronometrique 3
+(1861) 186-194, dated December 1860 (presented 10 June 1860 to the
+Societe des horlogers); 97-page monograph of the same title, Paris
+1862 (BnF ark:/12148/cb30164108s). Purpose confirmed from Brocot's
+own text (Kirk's translation): replace a ratio such as 191/23 by one
+with smaller terms and least error, because a 191-tooth wheel cannot
+be cut; he used the MEDIANT explicitly, bracketing the target between
+an under- and an over-approximation, with the error of the mediant
+the mediant of the errors (Mansuy, CultureMATH 2008, Prop. 10); he
+wanted semi-convergents, not just continued-fraction convergents.
+His output is a three-column TABLE (wheel, pinion, error) for one
+target - "Brocot table" survives as a horologists' term (Merritt,
+Gear Trains, 1947). Neither author drew the binary tree; the tree
+presentation and the name are Graham, Knuth, Patashnik, Concrete
+Mathematics sec. 4.5 (1989/1994) - coinage not conclusively verified.
+Secondary: Hayes, "On the Teeth of Wheels", American Scientist 88
+(2000) 296.
+
+Disposition: Side B's object (P-1) is native to the gear train - a
+COMPOSITION OF ROTATIONS with rational ratio - and the tree is a 1989
+presentation of an 1858 array and an 1860 algorithm. Consistent with
+E1's spatial-to-temporal finding and with the wheel's-track reading
+(X-11 discussion). No claim changes; the in-chat attribution
+"Brocot 1861, independently of Stern 1858" stands with the date
+refinement (Dec 1860 / 1861 / 1862).
