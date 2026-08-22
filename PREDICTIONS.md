@@ -161,3 +161,30 @@ Jacobian check. Mind-change condition did not fire. Filed as the
 verified claim circulant-twisted-max-density-small with an exhaustive
 n <= 20 certificate (notes/p6_circulant.md). No contribution to the
 open gap; a reproduction with tooling that now handles the object.
+
+## P-8 — 2026-08-23 — the Gabor limit for mode-locking measurements
+question: a rotation number measured over T iterations of the sine
+circle map has resolution ~1/T, and near a plateau edge the orbit's
+passage time diverges as pi/sqrt(mu) (claim saddle-node-passage-time).
+A model-free measurement (grid scan + bisection of "|rho - p/q| < tol
+over T iterations", the repo's own method in compendium C8/C9 and
+notes/p1) therefore cannot distinguish a slowly drifting orbit from a
+locked one when pi/sqrt(mu) > T. How does the measured plateau width
+w(T) depend on T, and in which direction is the bias?
+method: measure w(1/2), w(1/3) at K = 0.5 and K = 1 with T in {600,
+1200, 2400, 4800, 9600} (transient T/4 excluded), tolerance fixed at
+2e-5; fit w(T) = w_inf + c T^(-a).
+expects: widths are OVERESTIMATED at finite T and converge from
+above, with a ~ 2 (the saddle-node law: an orbit is misjudged locked
+when mu < (pi/T)^2, so each edge is displaced outward by O(T^-2));
+the residual bias at T = 9600 is below 1e-4 for the 1/2 plateau.
+Secondary: the tongue CENTRE for q >= 3 is displaced from p/q by
+O(K^2) (found while building the T1 notebook), so a bisection
+started at p/q overstates q >= 3 widths by a factor that does NOT
+vanish with T - a method bias, not a resolution bias.
+changes-my-mind: widths converging from BELOW, or an exponent a ~ 1
+(resolution-limited rather than passage-time-limited) robust across
+K and plateau; either would mean the measurement error is not the
+saddle-node mechanism.
+not-claimed-in-advance: anything about model-based (fitted)
+estimators, which can beat the model-free bound (Cramer-Rao).
