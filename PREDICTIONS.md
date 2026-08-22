@@ -223,3 +223,14 @@ ring does select kink configurations by parity and the E1 reading
 must be redone with N-parity as a variable.
 not-claimed-in-advance: anything about bias-driven arrays; the
 absolute widths.
+
+## R-6 — 2026-08-23 — resolves P-9
+outcome: mixed, recorded as such. No even/odd alternation at either
+coupling (mind-change did not fire; the LC-3 drive-type reading
+stands). The secondary expectation r(N) -> 1 failed: shrinkage
+saturates near 0.45 at K = 1.0 and is non-monotone at K = 1.4 with a
+maximum at N = 7 - unexplained. Of record: E1's initial condition
+theta_i = 0.13 i is not N-safe (it lands N >= 6 rings in winding
+attractors, collapsing the control plateau); E1's N = 4 result is
+unaffected; the method is corrected by attractor-controlled initial
+conditions (notes/p9_nparity.md; catalog c28 pins the data).
