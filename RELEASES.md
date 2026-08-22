@@ -66,3 +66,11 @@ The published artifact (claude.ai) is presentation, not preservation.
   three-check script (LAW-12); P-4 runs 1-5 (Helmholtz regime reached
   in the control, gate region identified, no doubling yet); X-9..X-12;
   LC-4..LC-6; P-5. (2026-08-22)
+- link-006 — overnight adversarial audits: five context-free agents on
+  every open thread. P-3 resolved (R-2, Borel counterexample, classical
+  classification as replacement); P-4 resolved as model-class vacuity
+  (R-3: the clamp cut the loop); Proof Chain A refutation evidence
+  corrected (sign, lapse, Lyapunov); LAW-14..17 (P-3 script; corrected
+  refutation; six gate bypasses closed; compendium under the falsifier
+  rule with 22 mutants); catalog 16 entries one mutant each. 28 claims.
+  (2026-08-22)
