@@ -17,6 +17,7 @@ CHECKS = [
     ("compendium gate", ["scripts/check_compendium.py"]),
     ("prediction gate", ["scripts/check_predictions.py"]),
     ("catalog gate", ["scripts/check_catalog.py"]),
+    ("notebook gate", ["scripts/check_notebooks.py"]),
 ]
 
 
