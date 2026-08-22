@@ -1,0 +1,40 @@
+id: einstein-from-kuramoto-chain-a
+statement: >
+  Claim (harmonics Proof Chain A, PROOF_A_gravity.md and
+  adm_dictionary.md, recorded for the refutation): from energy
+  conservation and stability of coupled oscillators the Einstein
+  field equations follow uniquely - at K = 1 the locked Kuramoto
+  field supplies an ADM dictionary (spatial metric gamma_ij =
+  <d_i theta d_j theta>, lapse N = coherence r, shift = phase gradient,
+  extrinsic curvature = <(d_i d_j theta)^2>), the ADM evolution
+  equations follow from differentiating the Kuramoto dynamics, and
+  Lovelock's theorem then forces G + Lambda g = 8 pi G T.
+premises: []
+evidence:
+  - kind: refutation
+    ref: >
+      scripts/verify/kuramoto_einstein_refutation.py and
+      notes/kuramoto_einstein_refutation.md. Three independent
+      failures: (1) Kuramoto is first order in time - a perturbation of
+      a locked lattice spreads with exponent 0.500 (parabolic), while
+      ADM evolution is hyperbolic (exponent 1; the --mutant inertial
+      chain gives 0.989), so no differentiation of the Kuramoto flow
+      yields the second-order ADM system; (2) in a locked state every
+      oscillator has the same frequency by definition, so the
+      dictionary's lapse is uniform - the regime the chain uses has no
+      position-dependent clock rate, which is the phenomenon a lapse
+      encodes (checked: residual 3.4e-5 -> 5.0e-6, decaying to lock);
+      (3) gamma = I + grad theta grad theta^T is the induced metric of
+      the graph z = theta(x) in flat space and obeys the graph Gauss
+      equation (checked to 4e-4 against Brioschi), hence is a
+      codimension-one flat-embeddable metric and not a general spatial
+      metric (Janet-Cartan: generic 3-metrics need up to six flat
+      dimensions). Of record without computation: P8 supplies
+      Lovelock's general-covariance hypothesis with "SL(2,R) acts
+      transitively"; Diff(M) is infinite-dimensional, SL(2,R) is
+      three-dimensional, so the hypothesis is not met; and P7's
+      "second equation follows from differentiating" was never
+      written down in the corpus.
+novelty:
+  status: unchecked
+status: refuted
