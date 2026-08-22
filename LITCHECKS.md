@@ -242,3 +242,37 @@ E1's spatial-to-temporal finding and with the wheel's-track reading
 (X-11 discussion). No claim changes; the in-chat attribution
 "Brocot 1861, independently of Stern 1858" stands with the date
 refinement (Dec 1860 / 1861 / 1862).
+
+## LC-8 — cosmic topology, Bell, and the absence of a cosmological staircase (2026-08-23)
+prediction: P-1
+
+Pointers from a context-free check of a speculative text the owner
+was reviewing (not a repo document), kept because they bound the
+corpus's own twist material. (1) Non-orientable flat 3-spaces E7-E10
+are a live observational object: COMPACT Collaboration, "Cosmic
+topology Part IIb: eigenmodes, correlation matrices, and detectability
+of non-orientable Euclidean manifolds", arXiv:2510.05030 (2025); an
+orientation-reversing holonomy gives matched circle pairs with
+mirror-reversed temperature sequences (Cornish, Spergel, Starkman,
+CQG 15, 2657 (1998)); circle searches exclude fundamental domains
+smaller than ~ the last-scattering diameter (Planck 2013 XXVI; 2015
+XVIII). Orientability is a global Z_2 class w_1 in H^1(M; Z_2): no
+"local Klein regime" exists (Hatcher sec. 3.3). (2) Any "mode-locking
+collapse" of a superposition would be a deterministic nonlinear
+modification of quantum mechanics, excluded by Gisin, Phys. Lett. A
+143, 1 (1990) (superluminal signalling); viable collapse models are
+stochastic (GRW 1986; CSL; Diosi-Penrose, constrained by Donadi et
+al., Nat. Phys. 2021). Any "entanglement as structural necessity of a
+connecting network" is a local hidden-variable model, excluded by the
+loophole-free Bell tests (Hensen et al., Nature 526, 682 (2015);
+Giustina et al., PRL 115, 250401; Shalm et al., PRL 115, 250402).
+(3) No published use of a Devil's staircase, Farey tree, or Arnold
+tongue in cosmology: cosmic expansion has no two competing
+frequencies and no circle map; the staircase's genuine homes are the
+circle map (Jensen, Bak, Bohr 1983), Shapiro steps, charge-density
+waves, Frenkel-Kontorova. (4) Jacobson 1995 derives the Einstein
+equation from REVERSIBLE delta Q = T dS as an equation of state;
+"geometry from entropy production" is not in it (Eling, Guedens,
+Jacobson 2006 add production only for f(R) corrections). Disposition:
+no claim changes; the text scored ~10% established / 30% wrong / 60%
+content-free and is not pursued.
