@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Temporal-First Curriculum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7; --panel: #F1F1EC; --line: #DDDDD4;
+    --ink: #1C2025; --muted: #5A6068; --faint: #8A9098;
+    --accent: #2F4BC7; --s1: #2F4BC7; --s2: #B45309;
+    --ok: #1E7B45; --ok-bg: #E4F2E9; --bad: #B3261E; --bad-bg: #F7E5E3;
+    --note-bg: #F5EEDD; --note-ink: #6B5416; --chip-bg: #E9E9E2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14161A; --panel: #1C1F25; --line: #2E323A;
+      --ink: #E8E9E6; --muted: #A2A8B0; --faint: #6C737C;
+      --accent: #8CA3F5; --s1: #6E82D9; --s2: #BF7C35;
+      --ok: #6FCF97; --ok-bg: #16281D; --bad: #E88980; --bad-bg: #2E1A18;
+      --note-bg: #262115; --note-ink: #D9BC6A; --chip-bg: #262A31;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14161A; --panel: #1C1F25; --line: #2E323A;
+    --ink: #E8E9E6; --muted: #A2A8B0; --faint: #6C737C;
+    --accent: #8CA3F5; --s1: #6E82D9; --s2: #BF7C35;
+    --ok: #6FCF97; --ok-bg: #16281D; --bad: #E88980; --bad-bg: #2E1A18;
+    --note-bg: #262115; --note-ink: #D9BC6A; --chip-bg: #262A31;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); margin: 0;
+         font-family: 'Source Serif 4', Charter, 'Bitstream Charter', Cambria, Georgia, serif;
+         font-size: 17px; line-height: 1.55; }
+  main { max-width: 62rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header h1 { font-size: 2rem; margin: 0 0 .4rem; letter-spacing: -.01em; }
+  .subtitle { color: var(--muted); margin: 0 0 1rem; max-width: 62ch; }
+  .provenance { border: 1px solid var(--line); background: var(--panel); border-radius: 6px;
+                padding: .8rem 1rem; font-size: .92rem; color: var(--muted); }
+  .provenance strong { color: var(--ink); }
+  nav.index { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; margin: 1.2rem 0 2rem; font-size: .95rem; }
+  nav.index a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  nav.index a:hover { border-color: var(--accent); }
+  section.nb { border-top: 1px solid var(--line); padding-top: 1.8rem; margin-top: 2.2rem; }
+  section.nb > .nb-head { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+  .cnum { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+          color: var(--accent); font-size: .9rem; }
+  .chip { font-size: .78rem; padding: .1rem .5rem; border-radius: 999px; background: var(--chip-bg); color: var(--muted); }
+  .chip.ok { background: var(--ok-bg); color: var(--ok); }
+  .chip.bad { background: var(--bad-bg); color: var(--bad); }
+  .md h1 { font-size: 1.55rem; margin: .2rem 0 .8rem; }
+  .md h2 { font-size: 1.15rem; margin: 1.4rem 0 .5rem; }
+  .md p, .md li { max-width: 70ch; }
+  .md code, .math { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .88em; }
+  .math { color: var(--note-ink); background: var(--note-bg); padding: 0 .2em; border-radius: 3px; }
+  pre { margin: 0; white-space: pre; overflow-x: auto; font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: .8rem; line-height: 1.38; }
+  .cell { margin: .9rem 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .cell .src { background: var(--panel); padding: .7rem .9rem; border-left: 3px solid var(--accent); }
+  .cell .out { padding: .7rem .9rem; border-top: 1px dashed var(--line); }
+  .cell .out pre { color: var(--muted); }
+  .cell .out pre .tag { color: var(--ink); }
+  .cell.failed .src { border-left-color: var(--bad); }
+  .cell .err { background: var(--bad-bg); color: var(--bad); padding: .6rem .9rem; }
+  .svgs { display: flex; flex-wrap: wrap; gap: 1rem; padding: .6rem .9rem; }
+  .svgs svg { max-width: 100%; height: auto; color: var(--ink); }
+  footer { margin-top: 3rem; color: var(--faint); font-size: .85rem; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Temporal-first curriculum, run</h1>
+  <p class="subtitle">Eight notebooks (T0–T6 and a capstone) arranged from
+  <code>notes/temporal_first_curriculum.md</code>: every fact is computed in a cell or cited;
+  every module ends by running a named mutant and requiring it to fail.</p>
+  <div class="provenance"><strong>Provenance.</strong> This page is the captured stdout of
+  <code>python3 scripts/nb_run.py</code> (stdlib Python; plots by <code>scripts/termplot.py</code>).
+  Nothing here is a claim: the statuses that matter live in <code>claims/</code> and are derived by the gates.
+  Generated 2026-08-22; all notebooks ran: <strong>yes</strong>.</div>
+  <nav class="index"><a href="#T0_return">T0 — Return</a><a href="#T1_two_rhythms">T1 — Two rhythms: rotation number and locking</a><a href="#T2_half_turn">T2 — The first shape, and its half turn</a><a href="#T3_counts_vs_anchors">T3 — Counts versus anchors</a><a href="#T4_gradient_vs_hamiltonian">T4 — Gradient flow versus Hamiltonian flow</a><a href="#T5_corners">T5 — Corners and weak discontinuities</a><a href="#T6_order_and_number">T6 — Order + number</a><a href="#capstone_null_before_grid">Capstone — Derive the null before reading the grid</a></nav>
+</header>
+<section class="nb" id="T0_return">
+<div class="nb-head"><span class="cnum">0</span><span class="chip ok">ran: all cells</span><span class="chip">9 code cells · 0.2s</span><span class="chip"><code>notebooks/T0_return.ipynb</code></span></div>
+<div class="md"><h1>T0 — Return</h1>
+<p><strong>Facts used</strong> (classical; module T0 of <code>notes/temporal_first_curriculum.md</code>, and X-6 of <code>notes/cross_domain_connections.md</code>).</p>
+<ol><li>A process is periodic with period <span class="math">T</span> iff <span class="math">x(t+T)=x(t)</span> for all <span class="math">t</span>. One return <span class="math">x(t_1)=x(0)</span> is compatible with non-periodicity; the second return at the same interval is the first witness of a period (X-6: &quot;strictly the SECOND return certifies periodicity&quot;).</li><li>Rotation by <span class="math">\alpha = p/q</span> on the circle <span class="math">\mathbb{R}/\mathbb{Z}</span> first returns at step <span class="math">q</span>; an irrational rotation never returns exactly (Poincaré; Hardy &amp; Wright ch. XXIII for the approximation orders).</li><li>A frequency estimated from <span class="math">n</span> periods of a sinusoid is fuzzy by <span class="math">\Delta f \approx 1/(nT)</span>: the main lobe of the truncated signal&#x27;s Fourier transform narrows as <span class="math">1/n</span> (Fourier uncertainty; X-6&#x27;s &quot;frequency-comb narrowing&quot;).</li><li>Catalog c01 (Tusi couple, al-Tusi 1247): a circle rolling inside a circle of twice its radius traces a straight diameter. Catalog c02: the cycloid&#x27;s cusp at the contact point is semicubical, <span class="math">|y| \sim |x|^{2/3}</span>. Catalog c24 (Sós 1958; Świerczkowski 1959): an irrational rotation&#x27;s orbit is dense with at most three gap lengths; a rational one revisits <span class="math">q</span> points forever.</li></ol>
+<p>Everything below is computed; the final cell runs the catalog mutants and requires them to fail.</p></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="md"><h2>1–2. Counting returns</h2></div>
+<div class="cell"><div class="src"><pre>def first_return(alpha, eps=1e-9, max_steps=10000):
+    th = 0.0
+    for n in range(1, max_steps + 1):
+        th = (th + alpha) % 1.0
+        if min(th, 1 - th) &lt; eps:
+            return n
+    return None
+
+golden = (math.sqrt(5) - 1) / 2
+for label, a in [(&quot;1/2&quot;, 0.5), (&quot;2/5&quot;, 0.4), (&quot;3/7&quot;, 3 / 7), (&quot;golden&quot;, golden)]:
+    print(f&quot;alpha = {label:&gt;6}: first exact return at step {first_return(a)}&quot;)
+
+# near-returns of the golden rotation happen at Fibonacci steps and never close
+th, best = 0.0, []
+for n in range(1, 200):
+    th = (th + golden) % 1.0
+    d = min(th, 1 - th)
+    if not best or d &lt; best[-1][1]:
+        best.append((n, d))
+print(&quot;golden: record near-returns (step, distance):&quot;, [(n, f&quot;{d:.2e}&quot;) for n, d in best[:8]])</pre></div>
+<div class="out"><pre>alpha =    1/2: first exact return at step 2
+alpha =    2/5: first exact return at step 5
+alpha =    3/7: first exact return at step 7
+alpha = golden: first exact return at step None
+golden: record near-returns (step, distance): [(1, &#x27;3.82e-01&#x27;), (2, &#x27;2.36e-01&#x27;), (3, &#x27;1.46e-01&#x27;), (5, &#x27;9.02e-02&#x27;), (8, &#x27;5.57e-02&#x27;), (13, &#x27;3.44e-02&#x27;), (21, &#x27;2.13e-02&#x27;), (34, &#x27;1.32e-02&#x27;)]</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(claimed=lambda p, q: q):
+    ok = True
+    for p, q in [(1, 2), (2, 5), (3, 7), (5, 11)]:
+        ok &amp;= first_return(p / q) == claimed(p, q)
+    return ok
+
+# the falsifier discipline: the same check with a wrong claim must fail
+falsify(check, {&quot;return-at-numerator&quot;: lambda: {&quot;claimed&quot;: lambda p, q: p}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant return-at-numerator {&#x27;claimed&#x27;: &lt;function &lt;lambda&gt;.&lt;locals&gt;.&lt;lambda&gt; at 0x79668307e2a0&gt;}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><p>One coordinate&#x27;s return is not the process&#x27;s return: the damped signal below returns to its starting <em>value</em> at equal intervals, yet its state <span class="math">(x, x&#x27;)</span> never returns - each visit has a smaller velocity.</p></div>
+<div class="cell"><div class="src"><pre>x = lambda t: math.sin(t) * math.exp(-t / 4)          # damped - not periodic
+# zero crossings of x(t) - x(0) with x(0) = 0
+ts = [i * 1e-3 for i in range(1, 12000)]
+crossings = [t for a, t in zip(ts, ts[1:]) if x(a) * x(t) &lt;= 0 and x(t) != x(a)]
+intervals = [b - a for a, b in zip(crossings, crossings[1:])]
+print(&quot;return times:&quot;, [f&quot;{t:.3f}&quot; for t in crossings[:4]])
+print(&quot;intervals   :&quot;, [f&quot;{d:.3f}&quot; for d in intervals[:3]], &quot;(equal - the value is periodic)&quot;)
+print(&quot;state (x, x&#x27;) at successive returns:&quot;, [(round(x(t), 6), round((x(t + 1e-6) - x(t)) / 1e-6, 3)) for t in crossings[:3]])</pre></div>
+<div class="out"><pre>return times: [&#x27;3.142&#x27;, &#x27;6.284&#x27;, &#x27;9.425&#x27;]
+intervals   : [&#x27;3.142&#x27;, &#x27;3.141&#x27;] (equal - the value is periodic)
+state (x, x&#x27;) at successive returns: [(-0.000186, -0.456), (0.000169, 0.208), (-2.1e-05, -0.095)]</pre></div>
+</div>
+<div class="md"><h2>3. The circumference sharpens as <span class="math">1/n</span></h2></div>
+<div class="cell"><div class="src"><pre>def main_lobe_halfwidth(n_periods, T=1.0, samples_per_period=64):
+    # |sum x(t) e^{-2 pi i f t}| for a cosine observed over n periods; find the first zero above f0 = 1/T
+    N = n_periods * samples_per_period
+    dt = T / samples_per_period
+    xs = [math.cos(2 * math.pi * t * dt / T) for t in range(N)]
+    f0 = 1.0 / T
+    prev = None
+    for k in range(1, 4000):
+        f = f0 + k * (0.0005 / n_periods)
+        amp = abs(sum(x * cmath.exp(-2j * math.pi * f * t * dt) for t, x in enumerate(xs)))
+        if prev is not None and amp &gt; prev:
+            return f - f0
+        prev = amp
+    return None
+
+ns = [1, 2, 4, 8]
+ws = [main_lobe_halfwidth(n) for n in ns]
+for n, w in zip(ns, ws):
+    print(f&quot;n = {n} periods: main-lobe half-width {w:.4f}  (1/n = {1 / n:.4f})&quot;)
+slope = math.log(ws[-1] / ws[0]) / math.log(ns[-1] / ns[0])
+print(f&quot;log-log slope of width vs n: {slope:.3f}&quot;)
+print(termplot.plot_xy([(math.log(n), math.log(w)) for n, w in zip(ns, ws)], width=50, height=10,
+                       title=&quot;ln(half-width) vs ln(n periods)&quot;, xlabel=&quot;ln n&quot;, ylabel=&quot;ln dF&quot;))</pre></div>
+<div class="out"><pre>n = 1 periods: main-lobe half-width 0.0010  (1/n = 1.0000)
+n = 2 periods: main-lobe half-width 0.0005  (1/n = 0.5000)
+n = 4 periods: main-lobe half-width 0.0003  (1/n = 0.2500)
+n = 8 periods: main-lobe half-width 0.0001  (1/n = 0.1250)
+log-log slope of width vs n: -1.000
+             ln(half-width) vs ln(n periods)
+ ln dF
+-6.908┤⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-8.987┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀
+      └──────────────────────────────────────────────────
+       0                                            2.079
+                              ln n</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(exponent=-1.0):
+    return abs(slope - exponent) &lt; 0.05
+
+falsify(check, {&quot;narrows-as-1/sqrt(n)&quot;: lambda: {&quot;exponent&quot;: -0.5}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant narrows-as-1/sqrt(n) {&#x27;exponent&#x27;: -0.5}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>4. Two returns that make a line, and a cusp (catalog c01, c02)</h2></div>
+<div class="cell"><div class="src"><pre>def hypocycloid(R, r, t):
+    return ((R - r) * math.cos(t) + r * math.cos((R - r) / r * t),
+            (R - r) * math.sin(t) - r * math.sin((R - r) / r * t))
+
+pts = [hypocycloid(2.0, 1.0, 2 * math.pi * k / 400) for k in range(400)]
+print(&quot;Tusi couple R = 2r: max |y| =&quot;, f&quot;{max(abs(y) for _, y in pts):.1e}&quot;, &quot; x spans&quot;,
+      f&quot;[{min(x for x, _ in pts):.3f}, {max(x for x, _ in pts):.3f}]&quot;)
+pts3 = [hypocycloid(3.0, 1.0, 2 * math.pi * k / 400) for k in range(400)]
+print(termplot.plot_xy(pts3, width=44, height=14, title=&quot;R = 3r for contrast: a deltoid, not a line&quot;))
+
+cyc = [(t - math.sin(t), 1 - math.cos(t)) for t in (1e-2, 3e-3, 1e-3)]
+exps = [math.log(cyc[i][1] / cyc[i + 1][1]) / math.log(cyc[i][0] / cyc[i + 1][0]) for i in range(2)]
+print(&quot;cycloid cusp: local exponent d ln y / d ln x =&quot;, [f&quot;{e:.4f}&quot; for e in exps], &quot; (2/3 =&quot;, f&quot;{2 / 3:.4f})&quot;)</pre></div>
+<div class="out"><pre>Tusi couple R = 2r: max |y| = 0.0e+00  x spans [-2.000, 2.000]
+    R = 3r for contrast: a deltoid, not a line
+ 2.598┤⠻⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠘⢎⠑⠦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠈⢆⠀⠀⠉⠓⠢⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠘⡄⠀⠀⠀⠀⠀⠈⠙⠢⠤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⢣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠑⠒⠤⢄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠑⠒⠤⠤⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠈⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠑⠒⠒⠢⠤⠤⠤⣀⣀⣀⣀⣀⣀
+      │⠀⠀⠀⠀⢀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡠⠤⠤⠔⠒⠒⠒⠉⠉⠉⠉⠉⠉
+      │⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡠⠤⠒⠒⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠤⠒⠊⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⢠⠃⠀⠀⠀⠀⠀⢀⣠⠔⠒⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⢀⠎⠀⠀⣀⡤⠔⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⢠⢎⡠⠖⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-2.598┤⣴⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      └────────────────────────────────────────────
+       -1.5                                       3
+cycloid cusp: local exponent d ln y / d ln x = [&#x27;0.6667&#x27;, &#x27;0.6667&#x27;]  (2/3 = 0.6667)</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>svg = [&#x27;&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;-2.2 -2.2 4.4 4.4&quot; width=&quot;260&quot; height=&quot;260&quot;&gt;&#x27;,
+       &#x27;&lt;circle cx=&quot;0&quot; cy=&quot;0&quot; r=&quot;2&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.03&quot;/&gt;&#x27;]
+d = &quot;M &quot; + &quot; L &quot;.join(f&quot;{x:.3f} {-y:.3f}&quot; for x, y in pts3)
+svg.append(f&#x27;&lt;path d=&quot;{d} Z&quot; fill=&quot;none&quot; stroke=&quot;#B45309&quot; stroke-width=&quot;0.04&quot;/&gt;&#x27;)
+d2 = &quot;M &quot; + &quot; L &quot;.join(f&quot;{x:.3f} {-y:.3f}&quot; for x, y in pts[::8])
+svg.append(f&#x27;&lt;path d=&quot;{d2}&quot; fill=&quot;none&quot; stroke=&quot;#2F4BC7&quot; stroke-width=&quot;0.06&quot;/&gt;&#x27;)
+svg.append(&quot;&lt;/svg&gt;&quot;)
+show_svg(&quot;&quot;.join(svg), &quot;Tusi (blue, R=2r) and deltoid (orange, R=3r)&quot;)</pre></div>
+<div class="svgs"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.2 -2.2 4.4 4.4" width="260" height="260"><circle cx="0" cy="0" r="2" fill="none" stroke="currentColor" stroke-width="0.03"/><path d="M 3.000 -0.000 L 2.999 -0.000 L 2.997 -0.000 L 2.993 -0.000 L 2.988 -0.000 L 2.982 -0.000 L 2.973 -0.001 L 2.964 -0.001 L 2.953 -0.002 L 2.940 -0.003 L 2.926 -0.004 L 2.911 -0.005 L 2.894 -0.007 L 2.876 -0.008 L 2.857 -0.011 L 2.836 -0.013 L 2.813 -0.016 L 2.790 -0.019 L 2.765 -0.022 L 2.739 -0.026 L 2.711 -0.030 L 2.682 -0.035 L 2.652 -0.040 L 2.621 -0.046 L 2.589 -0.052 L 2.555 -0.058 L 2.520 -0.065 L 2.484 -0.073 L 2.447 -0.081 L 2.409 -0.090 L 2.370 -0.099 L 2.330 -0.109 L 2.288 -0.119 L 2.246 -0.130 L 2.203 -0.142 L 2.159 -0.154 L 2.114 -0.167 L 2.069 -0.180 L 2.022 -0.194 L 1.975 -0.209 L 1.927 -0.225 L 1.878 -0.241 L 1.829 -0.257 L 1.779 -0.275 L 1.728 -0.293 L 1.677 -0.311 L 1.626 -0.331 L 1.573 -0.350 L 1.521 -0.371 L 1.468 -0.392 L 1.414 -0.414 L 1.360 -0.437 L 1.306 -0.460 L 1.252 -0.484 L 1.197 -0.508 L 1.142 -0.533 L 1.087 -0.559 L 1.032 -0.585 L 0.977 -0.612 L 0.922 -0.639 L 0.867 -0.667 L 0.811 -0.695 L 0.756 -0.724 L 0.701 -0.754 L 0.646 -0.784 L 0.591 -0.814 L 0.536 -0.845 L 0.482 -0.877 L 0.428 -0.908 L 0.374 -0.940 L 0.320 -0.973 L 0.267 -1.006 L 0.214 -1.039 L 0.162 -1.073 L 0.110 -1.107 L 0.058 -1.141 L 0.007 -1.175 L -0.043 -1.210 L -0.093 -1.244 L -0.142 -1.279 L -0.191 -1.314 L -0.239 -1.350 L -0.286 -1.385 L -0.333 -1.420 L -0.379 -1.455 L -0.424 -1.491 L -0.469 -1.526 L -0.512 -1.561 L -0.555 -1.596 L -0.597 -1.631 L -0.638 -1.666 L -0.678 -1.701 L -0.718 -1.736 L -0.756 -1.770 L -0.794 -1.804 L -0.831 -1.837 L -0.867 -1.871 L -0.901 -1.904 L -0.935 -1.936 L -0.968 -1.968 L -1.000 -2.000 L -1.031 -2.031 L -1.061 -2.062 L -1.090 -2.092 L -1.118 -2.121 L -1.145 -2.150 L -1.171 -2.179 L -1.195 -2.206 L -1.219 -2.233 L -1.242 -2.259 L -1.264 -2.284 L -1.285 -2.309 L -1.305 -2.333 L -1.323 -2.356 L -1.341 -2.378 L -1.358 -2.399 L -1.374 -2.419 L -1.388 -2.438 L -1.402 -2.456 L -1.415 -2.474 L -1.427 -2.490 L -1.438 -2.505 L -1.448 -2.519 L -1.457 -2.532 L -1.465 -2.544 L -1.472 -2.555 L -1.479 -2.564 L -1.484 -2.573 L -1.489 -2.580 L -1.493 -2.586 L -1.496 -2.591 L -1.498 -2.595 L -1.499 -2.597 L -1.500 -2.598 L -1.500 -2.598 L -1.499 -2.596 L -1.497 -2.593 L -1.495 -2.589 L -1.492 -2.584 L -1.489 -2.577 L -1.485 -2.569 L -1.480 -2.560 L -1.475 -2.549 L -1.469 -2.537 L -1.462 -2.523 L -1.455 -2.509 L -1.448 -2.492 L -1.440 -2.475 L -1.432 -2.456 L -1.423 -2.436 L -1.414 -2.414 L -1.405 -2.391 L -1.395 -2.367 L -1.385 -2.342 L -1.375 -2.315 L -1.364 -2.287 L -1.354 -2.257 L -1.343 -2.226 L -1.332 -2.194 L -1.320 -2.161 L -1.309 -2.127 L -1.298 -2.091 L -1.286 -2.054 L -1.274 -2.016 L -1.263 -1.976 L -1.251 -1.936 L -1.240 -1.894 L -1.228 -1.852 L -1.217 -1.808 L -1.205 -1.763 L -1.194 -1.717 L -1.183 -1.670 L -1.172 -1.622 L -1.161 -1.573 L -1.151 -1.523 L -1.141 -1.472 L -1.131 -1.421 L -1.121 -1.368 L -1.111 -1.315 L -1.102 -1.261 L -1.093 -1.206 L -1.085 -1.150 L -1.076 -1.094 L -1.068 -1.037 L -1.061 -0.979 L -1.054 -0.921 L -1.047 -0.862 L -1.041 -0.803 L -1.035 -0.743 L -1.029 -0.683 L -1.024 -0.622 L -1.020 -0.561 L -1.016 -0.499 L -1.012 -0.438 L -1.009 -0.376 L -1.006 -0.313 L -1.004 -0.251 L -1.002 -0.188 L -1.001 -0.126 L -1.000 -0.063 L -1.000 -0.000 L -1.000 0.063 L -1.001 0.126 L -1.002 0.188 L -1.004 0.251 L -1.006 0.313 L -1.009 0.376 L -1.012 0.438 L -1.016 0.499 L -1.020 0.561 L -1.024 0.622 L -1.029 0.683 L -1.035 0.743 L -1.041 0.803 L -1.047 0.862 L -1.054 0.921 L -1.061 0.979 L -1.068 1.037 L -1.076 1.094 L -1.085 1.150 L -1.093 1.206 L -1.102 1.261 L -1.111 1.315 L -1.121 1.368 L -1.131 1.421 L -1.141 1.472 L -1.151 1.523 L -1.161 1.573 L -1.172 1.622 L -1.183 1.670 L -1.194 1.717 L -1.205 1.763 L -1.217 1.808 L -1.228 1.852 L -1.240 1.894 L -1.251 1.936 L -1.263 1.976 L -1.274 2.016 L -1.286 2.054 L -1.298 2.091 L -1.309 2.127 L -1.320 2.161 L -1.332 2.194 L -1.343 2.226 L -1.354 2.257 L -1.364 2.287 L -1.375 2.315 L -1.385 2.342 L -1.395 2.367 L -1.405 2.391 L -1.414 2.414 L -1.423 2.436 L -1.432 2.456 L -1.440 2.475 L -1.448 2.492 L -1.455 2.509 L -1.462 2.523 L -1.469 2.537 L -1.475 2.549 L -1.480 2.560 L -1.485 2.569 L -1.489 2.577 L -1.492 2.584 L -1.495 2.589 L -1.497 2.593 L -1.499 2.596 L -1.500 2.598 L -1.500 2.598 L -1.499 2.597 L -1.498 2.595 L -1.496 2.591 L -1.493 2.586 L -1.489 2.580 L -1.484 2.573 L -1.479 2.564 L -1.472 2.555 L -1.465 2.544 L -1.457 2.532 L -1.448 2.519 L -1.438 2.505 L -1.427 2.490 L -1.415 2.474 L -1.402 2.456 L -1.388 2.438 L -1.374 2.419 L -1.358 2.399 L -1.341 2.378 L -1.323 2.356 L -1.305 2.333 L -1.285 2.309 L -1.264 2.284 L -1.242 2.259 L -1.219 2.233 L -1.195 2.206 L -1.171 2.179 L -1.145 2.150 L -1.118 2.121 L -1.090 2.092 L -1.061 2.062 L -1.031 2.031 L -1.000 2.000 L -0.968 1.968 L -0.935 1.936 L -0.901 1.904 L -0.867 1.871 L -0.831 1.837 L -0.794 1.804 L -0.756 1.770 L -0.718 1.736 L -0.678 1.701 L -0.638 1.666 L -0.597 1.631 L -0.555 1.596 L -0.512 1.561 L -0.469 1.526 L -0.424 1.491 L -0.379 1.455 L -0.333 1.420 L -0.286 1.385 L -0.239 1.350 L -0.191 1.314 L -0.142 1.279 L -0.093 1.244 L -0.043 1.210 L 0.007 1.175 L 0.058 1.141 L 0.110 1.107 L 0.162 1.073 L 0.214 1.039 L 0.267 1.006 L 0.320 0.973 L 0.374 0.940 L 0.428 0.908 L 0.482 0.877 L 0.536 0.845 L 0.591 0.814 L 0.646 0.784 L 0.701 0.754 L 0.756 0.724 L 0.811 0.695 L 0.867 0.667 L 0.922 0.639 L 0.977 0.612 L 1.032 0.585 L 1.087 0.559 L 1.142 0.533 L 1.197 0.508 L 1.252 0.484 L 1.306 0.460 L 1.360 0.437 L 1.414 0.414 L 1.468 0.392 L 1.521 0.371 L 1.573 0.350 L 1.626 0.331 L 1.677 0.311 L 1.728 0.293 L 1.779 0.275 L 1.829 0.257 L 1.878 0.241 L 1.927 0.225 L 1.975 0.209 L 2.022 0.194 L 2.069 0.180 L 2.114 0.167 L 2.159 0.154 L 2.203 0.142 L 2.246 0.130 L 2.288 0.119 L 2.330 0.109 L 2.370 0.099 L 2.409 0.090 L 2.447 0.081 L 2.484 0.073 L 2.520 0.065 L 2.555 0.058 L 2.589 0.052 L 2.621 0.046 L 2.652 0.040 L 2.682 0.035 L 2.711 0.030 L 2.739 0.026 L 2.765 0.022 L 2.790 0.019 L 2.813 0.016 L 2.836 0.013 L 2.857 0.011 L 2.876 0.008 L 2.894 0.007 L 2.911 0.005 L 2.926 0.004 L 2.940 0.003 L 2.953 0.002 L 2.964 0.001 L 2.973 0.001 L 2.982 0.000 L 2.988 0.000 L 2.993 0.000 L 2.997 0.000 L 2.999 0.000 Z" fill="none" stroke="#B45309" stroke-width="0.04"/><path d="M 2.000 -0.000 L 1.984 -0.000 L 1.937 -0.000 L 1.860 -0.000 L 1.753 -0.000 L 1.618 -0.000 L 1.458 -0.000 L 1.275 -0.000 L 1.072 -0.000 L 0.852 -0.000 L 0.618 -0.000 L 0.375 -0.000 L 0.126 -0.000 L -0.126 -0.000 L -0.375 -0.000 L -0.618 -0.000 L -0.852 -0.000 L -1.072 -0.000 L -1.275 -0.000 L -1.458 -0.000 L -1.618 -0.000 L -1.753 -0.000 L -1.860 -0.000 L -1.937 -0.000 L -1.984 -0.000 L -2.000 -0.000 L -1.984 -0.000 L -1.937 -0.000 L -1.860 -0.000 L -1.753 -0.000 L -1.618 -0.000 L -1.458 -0.000 L -1.275 -0.000 L -1.072 -0.000 L -0.852 -0.000 L -0.618 -0.000 L -0.375 -0.000 L -0.126 -0.000 L 0.126 -0.000 L 0.375 -0.000 L 0.618 -0.000 L 0.852 -0.000 L 1.072 -0.000 L 1.275 -0.000 L 1.458 -0.000 L 1.618 -0.000 L 1.753 -0.000 L 1.860 -0.000 L 1.937 -0.000 L 1.984 -0.000" fill="none" stroke="#2F4BC7" stroke-width="0.06"/></svg></div>
+</div>
+<div class="md"><h2>Falsifier: the catalog mutants must fail</h2></div>
+<div class="cell"><div class="src"><pre>for entry in (&quot;c01_tusi_couple&quot;, &quot;c02_cycloid_cusp&quot;, &quot;c24_three_gap_kronecker&quot;):
+    rc, _ = catalog(entry)
+    assert rc == 0, entry
+    rc, out = catalog(entry, mutant=True)
+    mutant_must_fail(entry, rc, out)</pre></div>
+<div class="out"><pre>$ python3 catalog/c01_tusi_couple.py
+PASS: hypocycloid R=2r stays on y=0 (max|y|=0.0e+00) spanning [-R, R]
+-&gt; exit 0
+$ python3 catalog/c01_tusi_couple.py --mutant
+MUTANT FAIL: hypocycloid R=3r stays on y=0 (max|y|=2.6e+00) spanning [-R, R]
+-&gt; exit 1
+mutant c01_tusi_couple: fails as required
+$ python3 catalog/c02_cycloid_cusp.py
+PASS: local exponent d ln y/d ln x at the cusp = 0.6667 (claimed 0.6667)
+-&gt; exit 0
+$ python3 catalog/c02_cycloid_cusp.py --mutant
+MUTANT FAIL: local exponent d ln y/d ln x at the cusp = 0.6667 (claimed 0.5000)
+-&gt; exit 1
+mutant c02_cycloid_cusp: fails as required
+$ python3 catalog/c24_three_gap_kronecker.py
+PASS: golden mean: 3 gap lengths, max gap 0.0031; 3/7: max gap 0.1429
+-&gt; exit 0
+$ python3 catalog/c24_three_gap_kronecker.py --mutant
+MUTANT FAIL: golden mean: 3 gap lengths, max gap 0.0031; 3/7: max gap 0.1429
+-&gt; exit 1
+mutant c24_three_gap_kronecker: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="T1_two_rhythms">
+<div class="nb-head"><span class="cnum">1</span><span class="chip ok">ran: all cells</span><span class="chip">7 code cells · 5.5s</span><span class="chip"><code>notebooks/T1_two_rhythms.ipynb</code></span></div>
+<div class="md"><h1>T1 — Two rhythms: rotation number and locking</h1>
+<p><strong>Facts used</strong> (classical; module T1; compendium C8/C9/C10 reimplemented here in Python).</p>
+<ol><li>For the sine circle map <span class="math">\theta \mapsto \theta + \Omega - (K/2\pi)\sin 2\pi\theta</span> the rotation number <span class="math">\rho(\Omega) = \lim (\theta_n - \theta_0)/n</span> exists, is monotone non-decreasing in <span class="math">\Omega</span>, and locks on intervals at every rational (Poincaré; Arnold 1961; Jensen–Bak–Bohr 1983).</li><li>Tongue widths scale as <span class="math">w(p/q) \propto K^q</span> for small <span class="math">K</span> (Arnold 1961); hence <span class="math">d\ln(w_{1/2}/w_{1/3})/d\ln K \to -1</span> (compendium C9).</li><li>Adler (1946): <span class="math">\varphi&#x27; = \Delta\omega - 2K\sin\varphi</span> locks iff <span class="math">|\Delta\omega| \le 2K</span>; below threshold the beat frequency is <span class="math">\sqrt{\Delta\omega^2 - (2K)^2}</span> (compendium C10; catalog c23 states the same fact with coupling <span class="math">K</span> in place of <span class="math">2K</span>).</li></ol>
+<p>The rationals are the lockable ratios; the tongue edges are found below by the tangency condition rather than by scanning, so the widths are derived from the map and not read off a grid.</p></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def step(th, Om, K):
+    return th + Om - (K / (2 * math.pi)) * math.sin(2 * math.pi * th)
+
+def rho(Om, K, iters=900, transient=250):
+    th = 0.0
+    for _ in range(transient):
+        th = step(th, Om, K)
+    start = th
+    for _ in range(iters):
+        th = step(th, Om, K)
+    return (th - start) / iters
+
+K = 1.0
+grid = [(i / 200, rho(i / 200, K)) for i in range(201)]
+mono = all(b[1] &gt;= a[1] - 1e-3 for a, b in zip(grid, grid[1:]))
+print(&quot;monotone on a 200-point grid:&quot;, mono)
+print(termplot.staircase(grid, width=64, height=18, title=&quot;rho(Omega) at K = 1: the devil&#x27;s staircase&quot;,
+                         xlabel=&quot;Omega&quot;, ylabel=&quot;rho&quot;, markers={&quot;1/2&quot;: 0.5, &quot;1/3&quot;: 1 / 3, &quot;2/3&quot;: 2 / 3}))</pre></div>
+<div class="out"><pre>monotone on a 200-point grid: True
+             rho(Omega) at K = 1: the devil&#x27;s staircase
+rho
+  1┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⠉⠉⠉⠉⠉⠉⠉⠉⠉⠉
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠴⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠞⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⢁⡴⠛⠛⠃⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀ ┈ 2/3
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡤⠞⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣤⣤⣤⣤⣴⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⣡⠞⠁⠀⠁⠀⠉⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀⠁⠀ ┈ 1/2
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣰⠚⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⢀⣀⣠⡖⠋⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀⡀⠀ ┈ 1/3
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠚⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⠖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡖⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+  0┤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   └────────────────────────────────────────────────────────────────
+    0                                                              1
+                                 Omega</pre></div>
+</div>
+<div class="md"><h2>Tongue edges by tangency</h2>
+<p><span class="math">\rho = p/q</span> is locked iff <span class="math">g(\theta) = f^q(\theta) - \theta - p</span> has a zero. <span class="math">g</span> increases with <span class="math">\Omega</span> for every <span class="math">\theta</span>, so the left edge is the <span class="math">\Omega</span> where <span class="math">\max_\theta g = 0</span> and the right edge where <span class="math">\min_\theta g = 0</span>.</p></div>
+<div class="cell"><div class="src"><pre>def g_extrema(Om, K, p, q, n=720):
+    lo, hi = float(&quot;inf&quot;), float(&quot;-inf&quot;)
+    for i in range(n):
+        th0 = i / n
+        th = th0
+        for _ in range(q):
+            th = step(th, Om, K)
+        v = th - th0 - p
+        lo, hi = min(lo, v), max(hi, v)
+    return lo, hi
+
+def tongue(p, q, K, span=0.02, scan=200):
+    target = p / q
+    # the tongue need not contain p/q itself (its centre shifts by O(K^2) for q &gt;= 3):
+    # scan for one locked Omega, then bisect each edge from there
+    inside = None
+    for i in range(scan + 1):
+        Om = target - span + 2 * span * i / scan
+        lo, hi = g_extrema(Om, K, p, q, n=360)
+        if lo &lt;= 0 &lt;= hi:
+            inside = Om; break
+    assert inside is not None, &quot;no locked point found in the scan&quot;
+    def bisect(fn, a, b):               # fn increasing in Om, fn(a) &lt; 0 &lt;= fn(b)
+        for _ in range(40):
+            m = (a + b) / 2
+            if fn(m) &lt; 0: a = m
+            else: b = m
+        return (a + b) / 2
+    left = bisect(lambda Om: g_extrema(Om, K, p, q)[1], inside - span, inside)
+    right = bisect(lambda Om: g_extrema(Om, K, p, q)[0], inside, inside + span)
+    return left, right
+
+widths = {}
+for K in (0.2, 0.4):
+    for p, q in ((1, 2), (1, 3)):
+        l, r = tongue(p, q, K)
+        widths[(K, q)] = r - l
+        print(f&quot;K = {K}: tongue {p}/{q} = [{l:.6f}, {r:.6f}]  width {r - l:.4e}&quot;)
+print(&quot;compendium C9 reference widths: 3.147e-3, 1.2533e-2 (1/2); 2.83e-4, 2.183e-3 (1/3)&quot;)</pre></div>
+<div class="out"><pre>K = 0.2: tongue 1/2 = [0.498414, 0.501586]  width 3.1726e-03
+K = 0.2: tongue 1/3 = [0.334105, 0.334384]  width 2.7917e-04
+K = 0.4: tongue 1/2 = [0.493716, 0.506284]  width 1.2568e-02
+K = 0.4: tongue 1/3 = [0.335789, 0.337985]  width 2.1964e-03
+compendium C9 reference widths: 3.147e-3, 1.2533e-2 (1/2); 2.83e-4, 2.183e-3 (1/3)</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(q_offset=0, slope_target=-1.0):
+    r12 = widths[(0.4, 2)] / widths[(0.2, 2)]
+    r13 = widths[(0.4, 3)] / widths[(0.2, 3)]
+    abs_ok = abs(r12 - 2 ** (2 + q_offset)) / 2 ** (2 + q_offset) &lt; 0.15 and \
+             abs(r13 - 2 ** (3 + q_offset)) / 2 ** (3 + q_offset) &lt; 0.15
+    slope = math.log((widths[(0.2, 2)] / widths[(0.2, 3)]) / (widths[(0.4, 2)] / widths[(0.4, 3)])) / math.log(0.2 / 0.4)
+    print(f&quot;  doubling K: w(1/2) x{r12:.2f}, w(1/3) x{r13:.2f}; ratio-law slope {slope:.3f}&quot;)
+    return abs_ok and abs(slope - slope_target) &lt; 0.15
+
+falsify(check, {&quot;exponent-q-plus-1&quot;: lambda: {&quot;q_offset&quot;: 1},
+                &quot;ratio-law-slope-zero&quot;: lambda: {&quot;slope_target&quot;: 0.0}})</pre></div>
+<div class="out"><pre>  doubling K: w(1/2) x3.96, w(1/3) x7.87; ratio-law slope -0.990
+check: PASS
+  doubling K: w(1/2) x3.96, w(1/3) x7.87; ratio-law slope -0.990
+mutant exponent-q-plus-1 {&#x27;q_offset&#x27;: 1}: FAIL (as required)
+  doubling K: w(1/2) x3.96, w(1/3) x7.87; ratio-law slope -0.990
+mutant ratio-law-slope-zero {&#x27;slope_target&#x27;: 0.0}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>Adler&#x27;s threshold</h2></div>
+<div class="cell"><div class="src"><pre>def beat(dw, K, coef=2.0, T=400.0, dt=0.002):
+    # integrate phi&#x27; = dw - coef K sin phi with RK4; count rotations. Lock must emerge, not be assumed.
+    f = lambda p: dw - coef * K * math.sin(p)
+    phi, rot, last = 0.0, 0, 0.0
+    n = int(T / dt)
+    for _ in range(n):
+        k1 = f(phi); k2 = f(phi + dt * k1 / 2); k3 = f(phi + dt * k2 / 2); k4 = f(phi + dt * k3)
+        phi += dt * (k1 + 2 * k2 + 2 * k3 + k4) / 6
+        while phi - last &gt; 2 * math.pi:
+            rot += 1; last += 2 * math.pi
+    return rot * 2 * math.pi / T
+
+K = 0.3
+rows = []
+for dw in (0.45, 0.6, 0.62, 0.7, 0.9):
+    b = beat(dw, K)
+    pred = 0.0 if abs(dw) &lt;= 2 * K else math.sqrt(dw * dw - 4 * K * K)
+    rows.append((dw, b, pred))
+    print(f&quot;K = {K}, dw = {dw:.2f}: beat {b:.4f}   sqrt(dw^2 - (2K)^2) = {pred:.4f}&quot;)
+print(termplot.plot_xy([(dw, b) for dw, b, _ in rows] + [(dw, p) for dw, _, p in rows], width=50, height=10,
+                       title=&quot;beat frequency vs dw (measured and formula)&quot;, xlabel=&quot;dw&quot;, ylabel=&quot;beat&quot;))</pre></div>
+<div class="out"><pre>K = 0.3, dw = 0.45: beat 0.0000   sqrt(dw^2 - (2K)^2) = 0.0000
+K = 0.3, dw = 0.60: beat 0.0000   sqrt(dw^2 - (2K)^2) = 0.0000
+K = 0.3, dw = 0.62: beat 0.1414   sqrt(dw^2 - (2K)^2) = 0.1562
+K = 0.3, dw = 0.70: beat 0.3456   sqrt(dw^2 - (2K)^2) = 0.3606
+K = 0.3, dw = 0.90: beat 0.6597   sqrt(dw^2 - (2K)^2) = 0.6708
+       beat frequency vs dw (measured and formula)
+  beat
+0.6708┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     0┤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      └──────────────────────────────────────────────────
+       0.45                                           0.9
+                               dw</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(thr_factor=2.0, coef=2.0):
+    thr = thr_factor * K
+    pred = lambda dw: 0.0 if abs(dw) &lt;= thr else math.sqrt(dw * dw - thr * thr)
+    b1, b2, b3 = beat(0.45, K, coef), beat(0.62, K, coef), beat(0.9, K, coef)
+    return b1 == pred(0.45) and b2 &gt; 0 and abs(b2 - pred(0.62)) &lt; 0.02 and abs(b3 - pred(0.9)) &lt; 0.02
+
+falsify(check, {&quot;threshold-K-not-2K&quot;: lambda: {&quot;thr_factor&quot;: 1.0},
+                &quot;ode-coefficient-K&quot;: lambda: {&quot;coef&quot;: 1.0}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant threshold-K-not-2K {&#x27;thr_factor&#x27;: 1.0}: FAIL (as required)
+mutant ode-coefficient-K {&#x27;coef&#x27;: 1.0}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><p>The golden ratio is the most stubborn drifter: the gaps in the staircase at <span class="math">K&lt;1</span> are the irrationals, and the one worst approximated by rationals (Hurwitz) is <span class="math">(\sqrt5 - 1)/2</span>. Not re-verified here; stated with citation only.</p>
+<h2>Falsifier: catalog c23 (Adler, in the <span class="math">\delta - K\sin\theta</span> convention) must fail under its mutant</h2></div>
+<div class="cell"><div class="src"><pre>rc, _ = catalog(&quot;c23_adler_locking_range&quot;)
+assert rc == 0
+rc, out = catalog(&quot;c23_adler_locking_range&quot;, mutant=True)
+mutant_must_fail(&quot;c23_adler_locking_range&quot;, rc, out)</pre></div>
+<div class="out"><pre>$ python3 catalog/c23_adler_locking_range.py
+PASS: delta=0.7: beat 0.000 pred 0.000; delta=0.95: beat 0.000 pred 0.000; delta=1.05: beat 0.319 pred 0.320; delta=1.5: beat 1.117 pred 1.118
+-&gt; exit 0
+$ python3 catalog/c23_adler_locking_range.py --mutant
+MUTANT FAIL: delta=0.7: beat 0.000 pred 0.490; delta=0.95: beat 0.000 pred 0.808; delta=1.05: beat 0.319 pred 0.923; delta=1.5: beat 1.117 pred 1.414
+-&gt; exit 1
+mutant c23_adler_locking_range: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="T2_half_turn">
+<div class="nb-head"><span class="cnum">2</span><span class="chip ok">ran: all cells</span><span class="chip">8 code cells · 0.1s</span><span class="chip"><code>notebooks/T2_half_turn.ipynb</code></span></div>
+<div class="md"><h1>T2 — The first shape, and its half turn</h1>
+<p><strong>Facts used</strong> (module T2 and T6 of the curriculum note, placed here per X-6&#x27;s dependency order &quot;the parity material sits exactly one return deeper than the circle&quot;).</p>
+<ol><li>The circle is <span class="math">\mathbb{R}/\mathbb{Z}</span>: time modulo period (T2). Its functions are the modes <span class="math">e^{2\pi i m x}</span>, <span class="math">m \in \mathbb{Z}</span>.</li><li>With antiperiodic closure <span class="math">f(x+1) = -f(x)</span> the modes have <span class="math">m \in \mathbb{Z}+\tfrac12</span> (Matsubara 1955; Scherk–Schwarz 1979; X-2, X-9). On a ring of <span class="math">N</span> phases with <span class="math">\theta_{i+N} = \theta_i + \pi</span> the uniform gradients carry winding in <span class="math">\mathbb{Z}+\tfrac12</span> (Bulaevskii 1977 per LC-3; claim <code>klein-twisted-gradient-xor</code>).</li><li>The half-translation <span class="math">J: x \mapsto x + \tfrac12</span> squares to <span class="math">J^2 = (-1)^{2m}</span> on every mode; the sign depends on the <span class="math">x</span>-parity class, not on the bundle (claim <code>half-shift-squares-by-x-parity</code>; <code>scripts/verify/q_j_structure_sectors.py</code>).</li><li>One traversal cannot tell periodic from antiperiodic return: <span class="math">|f|^2</span> is unchanged after one loop either way, and <span class="math">f</span> itself closes after two (X-6: the <span class="math">2\pi</span>-vs-<span class="math">4\pi</span> fact).</li></ol></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="md"><h2>1–2. Windings on a twisted ring</h2></div>
+<div class="cell"><div class="src"><pre>N = 8
+rows = []
+for twist in (0.0, math.pi):
+    ws = []
+    for k in range(-2, 3):
+        delta = (twist + 2 * math.pi * k) / N            # uniform bond gradient closing with the twist
+        total = N * delta
+        ws.append(total / (2 * math.pi))
+    rows.append((twist, ws))
+    print(f&quot;twist {twist:.3f}: windings of uniform gradients = {ws}&quot;)</pre></div>
+<div class="out"><pre>twist 0.000: windings of uniform gradients = [-2.0, -1.0, 0.0, 1.0, 2.0]
+twist 3.142: windings of uniform gradients = [-1.5, -0.5, 0.5, 1.5, 2.5]</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(twist=math.pi, claimed_lattice=0.5):
+    ws = [(twist + 2 * math.pi * k) / (2 * math.pi) for k in range(-3, 4)]
+    return all(abs((w - claimed_lattice) - round(w - claimed_lattice)) &lt; 1e-12 for w in ws)
+
+falsify(check, {&quot;integer-windings-on-twisted-ring&quot;: lambda: {&quot;claimed_lattice&quot;: 0.0}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant integer-windings-on-twisted-ring {&#x27;claimed_lattice&#x27;: 0.0}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>3. <span class="math">J^2</span> on the flat Klein bottle&#x27;s modes (reusing the verify script&#x27;s functions)</h2></div>
+<div class="cell"><div class="src"><pre>import importlib.util
+spec = importlib.util.spec_from_file_location(&quot;qjs&quot;, ROOT / &quot;scripts/verify/q_j_structure_sectors.py&quot;)
+qjs = importlib.util.module_from_spec(spec); spec.loader.exec_module(qjs)
+
+table = []
+for m in (0, 0.5, 1, 1.5, 2):
+    for br in (&quot;cos&quot;, &quot;sin&quot;):
+        f = qjs.mode(m, 1, br)
+        table.append((m, br, qjs.bundle(f), qjs.j2(f)))
+        print(f&quot;m = {m:&lt;4} {br}  bundle = {table[-1][2]:&lt;9}  J^2 = {table[-1][3]:+d}&quot;)</pre></div>
+<div class="out"><pre>m = 0    cos  bundle = untwisted  J^2 = +1
+m = 0    sin  bundle = twisted    J^2 = +1
+m = 0.5  cos  bundle = twisted    J^2 = -1
+m = 0.5  sin  bundle = untwisted  J^2 = -1
+m = 1    cos  bundle = untwisted  J^2 = +1
+m = 1    sin  bundle = twisted    J^2 = +1
+m = 1.5  cos  bundle = twisted    J^2 = -1
+m = 1.5  sin  bundle = untwisted  J^2 = -1
+m = 2    cos  bundle = untwisted  J^2 = +1
+m = 2    sin  bundle = twisted    J^2 = +1</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(rule=&quot;x-parity&quot;):
+    if rule == &quot;x-parity&quot;:
+        return all(s == (1 if float(m).is_integer() else -1) for m, _, _, s in table)
+    return all(s == (-1 if b == &quot;twisted&quot; else 1) for _, _, b, s in table)
+
+falsify(check, {&quot;bundle-decides&quot;: lambda: {&quot;rule&quot;: &quot;bundle&quot;}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant bundle-decides {&#x27;rule&#x27;: &#x27;bundle&#x27;}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>4. One loop is blind to the sign; two loops close</h2></div>
+<div class="cell"><div class="src"><pre>def traverse(m, loops, x=0.137):
+    f = lambda x: cmath.exp(2j * math.pi * m * x)
+    return f(x + loops) / f(x)
+
+for m in (1, 0.5, 1.5):
+    one, two = traverse(m, 1), traverse(m, 2)
+    print(f&quot;m = {m}: after one loop f -&gt; {one.real:+.0f} f,  |f|^2 ratio {abs(one) ** 2:.0f};  after two loops f -&gt; {two.real:+.0f} f&quot;)</pre></div>
+<div class="out"><pre>m = 1: after one loop f -&gt; +1 f,  |f|^2 ratio 1;  after two loops f -&gt; +1 f
+m = 0.5: after one loop f -&gt; -1 f,  |f|^2 ratio 1;  after two loops f -&gt; +1 f
+m = 1.5: after one loop f -&gt; -1 f,  |f|^2 ratio 1;  after two loops f -&gt; +1 f</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(loops_to_close=2):
+    half = [0.5, 1.5, -0.5]
+    intensity_blind = all(abs(abs(traverse(m, 1)) ** 2 - 1) &lt; 1e-12 for m in half)
+    closes = all(abs(traverse(m, loops_to_close) - 1) &lt; 1e-12 for m in half)
+    return intensity_blind and closes
+
+falsify(check, {&quot;closes-after-one-loop&quot;: lambda: {&quot;loops_to_close&quot;: 1}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant closes-after-one-loop {&#x27;loops_to_close&#x27;: 1}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>Falsifier: the verify script&#x27;s named mutant must fail</h2></div>
+<div class="cell"><div class="src"><pre>rc, out = verify(&quot;q_j_structure_sectors.py&quot;)
+assert rc == 0
+rc, out = verify(&quot;q_j_structure_sectors.py&quot;, mutant=&quot;bundle-decides&quot;)
+mutant_must_fail(&quot;bundle-decides&quot;, rc, out)</pre></div>
+<div class="out"><pre>$ python3 scripts/verify/q_j_structure_sectors.py
+m=1.5  sin  untwisted  J^2=-1
+m=2    cos  untwisted  J^2=+1
+m=2    sin  twisted    J^2=+1
+replacement J^2 = (-1)^(2m) on all modes: True
+counterexample twisted with J^2=+1: True; untwisted with J^2=-1: True
+PASS
+-&gt; exit 0
+$ python3 scripts/verify/q_j_structure_sectors.py --mutant bundle-decides
+m=1.5  sin  untwisted  J^2=-1
+m=2    cos  untwisted  J^2=+1
+m=2    sin  twisted    J^2=+1
+replacement J^2 = (-1)^(2m) on all modes: False
+counterexample twisted with J^2=+1: True; untwisted with J^2=-1: True
+FAIL
+-&gt; exit 1
+mutant bundle-decides: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="T3_counts_vs_anchors">
+<div class="nb-head"><span class="cnum">3</span><span class="chip ok">ran: all cells</span><span class="chip">8 code cells · 0.7s</span><span class="chip"><code>notebooks/T3_counts_vs_anchors.ipynb</code></span></div>
+<div class="md"><h1>T3 — Counts versus anchors</h1>
+<p><strong>Facts used</strong> (classical; catalog c05, c08, c11, c14, c15). The organizing sentence: <em>the integer is structural, the anchor is medium</em> (X-10&#x27;s &quot;order + number&quot;; X-11&#x27;s &quot;number enters only as count&quot;).</p>
+<ol><li>Koenig (Goldstein ch. 1): <span class="math">L = R_{cm}\times P + L_{rel}</span> and <span class="math">T = \tfrac12 M V_{cm}^2 + T_{rel}</span> for any particle system (c08, c14); a uniform field exerts no torque about the CM (c15). The split is an identity in the masses - no medium enters.</li><li>Toomre (1964; Binney &amp; Tremaine eq. 6.55): the fluid-disk WKB dispersion <span class="math">\omega^2 = \kappa^2 - 2\pi G\Sigma k + k^2\sigma^2</span> has growing modes iff <span class="math">\sigma\kappa/(\pi G\Sigma) &lt; 1</span> (c05). The threshold <strong>1</strong> is the discriminant of a quadratic; <span class="math">G, \Sigma, \kappa, \sigma</span> are the anchors.</li><li>Schrödinger (1914): the nearest-neighbour chain has <span class="math">\omega(k) = 2\sqrt{J/m}\,|\sin(k/2)|</span> (c11). A ring of <span class="math">N</span> masses has exactly <span class="math">N</span> modes whatever <span class="math">J/m</span>; <span class="math">\sqrt{J/m}</span> only scales them.</li></ol></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="md"><h2>1. Koenig: an identity in the masses</h2></div>
+<div class="cell"><div class="src"><pre>def koenig(seed):
+    random.seed(seed)
+    n = 7
+    m = [random.uniform(0.5, 2) for _ in range(n)]
+    r = [[random.uniform(-1, 1) for _ in range(3)] for _ in range(n)]
+    v = [[random.uniform(-1, 1) for _ in range(3)] for _ in range(n)]
+    M = sum(m)
+    R = [sum(m[i] * r[i][k] for i in range(n)) / M for k in range(3)]
+    V = [sum(m[i] * v[i][k] for i in range(n)) / M for k in range(3)]
+    cross = lambda a, b: [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]
+    L = [sum(m[i] * cross(r[i], v[i])[k] for i in range(n)) for k in range(3)]
+    L_rel = [sum(m[i] * cross([r[i][j] - R[j] for j in range(3)], [v[i][j] - V[j] for j in range(3)])[k] for i in range(n)) for k in range(3)]
+    L_cm = cross(R, [M * V[k] for k in range(3)])
+    T = sum(0.5 * m[i] * sum(v[i][k] ** 2 for k in range(3)) for i in range(n))
+    T_rel = sum(0.5 * m[i] * sum((v[i][k] - V[k]) ** 2 for k in range(3)) for i in range(n))
+    T_cm = 0.5 * M * sum(V[k] ** 2 for k in range(3))
+    return L, L_rel, L_cm, T, T_rel, T_cm
+
+for seed in (1, 2, 3):
+    L, L_rel, L_cm, T, T_rel, T_cm = koenig(seed)
+    errL = max(abs(L[k] - L_rel[k] - L_cm[k]) for k in range(3))
+    print(f&quot;seed {seed}: |L - (R x P + L_rel)| = {errL:.1e}   |T - (M V^2/2 + T_rel)| = {abs(T - T_rel - T_cm):.1e}&quot;)</pre></div>
+<div class="out"><pre>seed 1: |L - (R x P + L_rel)| = 2.2e-16   |T - (M V^2/2 + T_rel)| = 5.1e-16
+seed 2: |L - (R x P + L_rel)| = 4.2e-16   |T - (M V^2/2 + T_rel)| = 7.2e-16
+seed 3: |L - (R x P + L_rel)| = 2.2e-16   |T - (M V^2/2 + T_rel)| = 5.6e-17</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(keep_cm_term=True):
+    L, L_rel, L_cm, T, T_rel, T_cm = koenig(5)
+    w = 1.0 if keep_cm_term else 0.0
+    return max(abs(L[k] - L_rel[k] - w * L_cm[k]) for k in range(3)) &lt; 1e-12 and abs(T - T_rel - w * T_cm) &lt; 1e-12
+
+falsify(check, {&quot;omit-cm-term&quot;: lambda: {&quot;keep_cm_term&quot;: False}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant omit-cm-term {&#x27;keep_cm_term&#x27;: False}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>2. Toomre: the 1 is a discriminant</h2></div>
+<div class="cell"><div class="src"><pre>def min_omega2(sigma, G=1.0, Sigma=1.0, kappa=1.0):
+    # omega^2(k) = kappa^2 - 2 pi G Sigma k + k^2 sigma^2; a quadratic in k with minimum at k* = pi G Sigma / sigma^2
+    ks = [0.001 * j for j in range(1, 20000)]
+    numeric = min(kappa ** 2 - 2 * math.pi * G * Sigma * k + k * k * sigma * sigma for k in ks)
+    closed = kappa ** 2 - (math.pi * G * Sigma / sigma) ** 2
+    return numeric, closed
+
+for anchors in ((1.0, 1.0, 1.0), (2.0, 0.5, 3.0), (0.3, 4.0, 0.7)):
+    G, Sigma, kappa = anchors
+    print(f&quot;anchors G={G}, Sigma={Sigma}, kappa={kappa}:&quot;)
+    for Q in (0.9, 0.99, 1.01, 1.1):
+        sigma = Q * math.pi * G * Sigma / kappa
+        num, clo = min_omega2(sigma, G, Sigma, kappa)
+        print(f&quot;   Q = {Q:&lt;5} min omega^2 = {num:+.4f} (closed form {clo:+.4f}) -&gt; {&#x27;unstable&#x27; if num &lt; 0 else &#x27;stable&#x27;}&quot;)</pre></div>
+<div class="out"><pre>anchors G=1.0, Sigma=1.0, kappa=1.0:
+   Q = 0.9   min omega^2 = -0.2346 (closed form -0.2346) -&gt; unstable
+   Q = 0.99  min omega^2 = -0.0203 (closed form -0.0203) -&gt; unstable
+   Q = 1.01  min omega^2 = +0.0197 (closed form +0.0197) -&gt; stable
+   Q = 1.1   min omega^2 = +0.1736 (closed form +0.1736) -&gt; stable
+anchors G=2.0, Sigma=0.5, kappa=3.0:
+   Q = 0.9   min omega^2 = -2.1111 (closed form -2.1111) -&gt; unstable
+   Q = 0.99  min omega^2 = -0.1827 (closed form -0.1827) -&gt; unstable
+   Q = 1.01  min omega^2 = +0.1773 (closed form +0.1773) -&gt; stable
+   Q = 1.1   min omega^2 = +1.5620 (closed form +1.5620) -&gt; stable
+anchors G=0.3, Sigma=4.0, kappa=0.7:
+   Q = 0.9   min omega^2 = -0.1149 (closed form -0.1149) -&gt; unstable
+   Q = 0.99  min omega^2 = -0.0099 (closed form -0.0099) -&gt; unstable
+   Q = 1.01  min omega^2 = +0.0097 (closed form +0.0097) -&gt; stable
+   Q = 1.1   min omega^2 = +0.0850 (closed form +0.0850) -&gt; stable</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(threshold=1.0):
+    ok = True
+    for G, Sigma, kappa in ((1.0, 1.0, 1.0), (2.0, 0.5, 3.0), (0.3, 4.0, 0.7)):
+        for Q in (0.5, 0.9, 0.99, 1.01, 1.1, 1.5):
+            sigma = Q * math.pi * G * Sigma / kappa
+            ok &amp;= (min_omega2(sigma, G, Sigma, kappa)[0] &lt; 0) == (Q &lt; threshold)
+    return ok
+
+falsify(check, {&quot;threshold-2&quot;: lambda: {&quot;threshold&quot;: 2.0}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant threshold-2 {&#x27;threshold&#x27;: 2.0}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>3. The chain: <span class="math">N</span> modes, one anchor</h2></div>
+<div class="cell"><div class="src"><pre>def chain_modes(N, J, m):
+    # eigenvalues of the ring Laplacian on plane waves k = 2 pi n / N
+    return sorted(math.sqrt((2 - 2 * math.cos(2 * math.pi * n / N)) * J / m) for n in range(N))
+
+N = 12
+for J, m in ((1.0, 1.0), (4.0, 1.0), (1.0, 9.0)):
+    w = chain_modes(N, J, m)
+    scaled = [x / math.sqrt(J / m) for x in w]
+    print(f&quot;J/m = {J / m:&lt;5}: {len(w)} modes; omega/sqrt(J/m) = {[round(s, 4) for s in scaled[:6]]} ...&quot;)
+ks = [2 * math.pi * n / N for n in range(N // 2 + 1)]
+print(termplot.plot_xy([(k, 2 * abs(math.sin(k / 2))) for k in ks] + [(k, k) for k in ks], width=50, height=12,
+                       title=&quot;omega/sqrt(J/m): chain (curve) vs continuum line&quot;, xlabel=&quot;k&quot;, ylabel=&quot;omega&quot;))</pre></div>
+<div class="out"><pre>J/m = 1.0  : 12 modes; omega/sqrt(J/m) = [0.0, 0.5176, 0.5176, 1.0, 1.0, 1.4142] ...
+J/m = 4.0  : 12 modes; omega/sqrt(J/m) = [0.0, 0.5176, 0.5176, 1.0, 1.0, 1.4142] ...
+J/m = 0.1111111111111111: 12 modes; omega/sqrt(J/m) = [0.0, 0.5176, 0.5176, 1.0, 1.0, 1.4142] ...
+    omega/sqrt(J/m): chain (curve) vs continuum line
+omega
+3.142┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⠀⠀⠀⠀⠀⠐
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    0┤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     └──────────────────────────────────────────────────
+      0                                            3.142
+                              k</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(law=&quot;chain&quot;):
+    worst = 0.0
+    for n in (1, 5, 13, 31):
+        k = 2 * math.pi * n / 64
+        num = math.sqrt(2 - 2 * math.cos(k))
+        claim = k if law == &quot;continuum&quot; else 2 * abs(math.sin(k / 2))
+        worst = max(worst, abs(num - claim) / num)
+    return worst &lt; 1e-12
+
+falsify(check, {&quot;continuum-law&quot;: lambda: {&quot;law&quot;: &quot;continuum&quot;}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant continuum-law {&#x27;law&#x27;: &#x27;continuum&#x27;}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>Falsifier: every catalog mutant used here must fail</h2></div>
+<div class="cell"><div class="src"><pre>for entry in (&quot;c05_toomre_fluid&quot;, &quot;c08_koenig_angular_momentum&quot;, &quot;c14_koenig_kinetic_energy&quot;,
+              &quot;c15_cm_torque_uniform_gravity&quot;, &quot;c11_chain_dispersion&quot;):
+    rc, _ = catalog(entry)
+    assert rc == 0, entry
+    rc, out = catalog(entry, mutant=True)
+    mutant_must_fail(entry, rc, out)</pre></div>
+<div class="out"><pre>$ python3 catalog/c05_toomre_fluid.py
+PASS: unstable at Q = [0.5, 0.9, 0.99] (claimed: Q &lt; 1)
+-&gt; exit 0
+$ python3 catalog/c05_toomre_fluid.py --mutant
+MUTANT FAIL: unstable at Q = [0.5, 0.9, 0.99] (claimed: Q &lt; 2)
+-&gt; exit 1
+mutant c05_toomre_fluid: fails as required
+$ python3 catalog/c08_koenig_angular_momentum.py
+PASS: |L - (R x P + L_cm)| / |L| = 1.4e-16
+-&gt; exit 0
+$ python3 catalog/c08_koenig_angular_momentum.py --mutant
+MUTANT FAIL: |L - (R x P + L_cm)| / |L| = 9.3e-02
+-&gt; exit 1
+mutant c08_koenig_angular_momentum: fails as required
+$ python3 catalog/c14_koenig_kinetic_energy.py
+PASS: |T - split| / T = 1.2e-16
+-&gt; exit 0
+$ python3 catalog/c14_koenig_kinetic_energy.py --mutant
+MUTANT FAIL: |T - split| / T = 6.0e-02
+-&gt; exit 1
+mutant c14_koenig_kinetic_energy: fails as required
+$ python3 catalog/c15_cm_torque_uniform_gravity.py
+PASS: |torque| / (M g) = 3.4e-17
+-&gt; exit 0
+$ python3 catalog/c15_cm_torque_uniform_gravity.py --mutant
+MUTANT FAIL: |torque| / (M g) = 3.0e-01
+-&gt; exit 1
+mutant c15_cm_torque_uniform_gravity: fails as required
+$ python3 catalog/c11_chain_dispersion.py
+PASS: worst relative deviation of claimed omega(k) from the chain eigenfrequency: 4.4e-15
+-&gt; exit 0
+$ python3 catalog/c11_chain_dispersion.py --mutant
+MUTANT FAIL: worst relative deviation of claimed omega(k) from the chain eigenfrequency: 5.2e-01
+-&gt; exit 1
+mutant c11_chain_dispersion: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="T4_gradient_vs_hamiltonian">
+<div class="nb-head"><span class="cnum">4</span><span class="chip ok">ran: all cells</span><span class="chip">5 code cells · 3.1s</span><span class="chip"><code>notebooks/T4_gradient_vs_hamiltonian.ipynb</code></span></div>
+<div class="md"><h1>T4 — Gradient flow versus Hamiltonian flow</h1>
+<p><strong>Facts used</strong> (classical; <code>scripts/verify/kuramoto_einstein_refutation.py</code> check 1, claim <code>einstein-from-kuramoto-chain-a</code>, refuted).</p>
+<ol><li>With symmetric coupling, <span class="math">\theta&#x27; = -\partial V/\partial\theta</span> with <span class="math">V = -K\sum\cos(\theta_j - \theta_i)</span>: <span class="math">V</span> is a Lyapunov function and the linearization about a locked state is self-adjoint (Strogatz 2000).</li><li>The signature computed here: a small perturbation of a locked chain spreads diffusively, width <span class="math">\sim t^{1/2}</span>; the same chain with inertia (a wave equation) spreads ballistically, width <span class="math">\sim t^{1}</span>. The verify script reports 0.5 versus 0.989 at <span class="math">N=401</span>, 4000 steps; this notebook runs a smaller, faster version of the same computation.</li><li>Curriculum T4 names curvature as the holonomy of clock transport; that material is cited only (Sagnac 1913; MTW sec. 17). Nothing here derives it.</li></ol></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def spread(inertial, N=201, K=1.0, dt=0.02, steps=2000, every=400):
+    th = [0.0] * N
+    w = [0.0] * N
+    th[N // 2] = 1e-3
+    out = []
+    V0 = None
+    for k in range(1, steps + 1):
+        F = [K * (math.sin(th[(i + 1) % N] - th[i]) + math.sin(th[i - 1] - th[i])) for i in range(N)]
+        if inertial:
+            for i in range(N):
+                w[i] += F[i] * dt
+                th[i] += w[i] * dt
+        else:
+            for i in range(N):
+                th[i] += F[i] * dt
+        if k % every == 0:
+            m0 = sum(abs(v) for v in th)
+            m2 = sum(abs(v) * (i - N // 2) ** 2 for i, v in enumerate(th))
+            V = -K * sum(math.cos(th[(i + 1) % N] - th[i]) for i in range(N))
+            out.append((k * dt, math.sqrt(m2 / m0), V))
+    return out
+
+res = {name: spread(flag) for name, flag in ((&quot;overdamped&quot;, False), (&quot;inertial&quot;, True))}
+expo = {}
+for name, rows in res.items():
+    (t0, w0, _), (t1, w1, _) = rows[0], rows[-1]
+    expo[name] = math.log(w1 / w0) / math.log(t1 / t0)
+    print(f&quot;{name:&gt;10}: widths {[round(w, 2) for _, w, _ in rows]}  exponent {expo[name]:.3f}&quot;)
+print(termplot.plot_xy([(math.log(t), math.log(w)) for t, w, _ in res[&#x27;overdamped&#x27;]] +
+                       [(math.log(t), math.log(w)) for t, w, _ in res[&#x27;inertial&#x27;]], width=50, height=12,
+                       title=&quot;ln width vs ln t (lower: overdamped ~1/2, upper: inertial ~1)&quot;, xlabel=&quot;ln t&quot;, ylabel=&quot;ln w&quot;))</pre></div>
+<div class="out"><pre>overdamped: widths [4.0, 5.66, 6.93, 8.0, 8.94]  exponent 0.500
+  inertial: widths [5.42, 10.54, 15.9, 21.38, 26.8]  exponent 0.993
+ln width vs ln t (lower: overdamped ~1/2, upper: inertial ~1)
+ ln w
+3.288┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+1.386┤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     └──────────────────────────────────────────────────
+      2.079                                        3.689
+                             ln t</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(model=&quot;overdamped&quot;, target=0.5):
+    return abs(expo[model] - target) &lt; 0.1
+
+falsify(check, {&quot;inertial&quot;: lambda: {&quot;model&quot;: &quot;inertial&quot;}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant inertial {&#x27;model&#x27;: &#x27;inertial&#x27;}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>The Lyapunov function decreases; the inertial energy does not</h2></div>
+<div class="cell"><div class="src"><pre>Vs = [V for _, _, V in res[&quot;overdamped&quot;]]
+print(&quot;overdamped V(t) samples:&quot;, [f&quot;{v:.9f}&quot; for v in Vs])
+print(&quot;monotone non-increasing:&quot;, all(b &lt;= a + 1e-12 for a, b in zip(Vs, Vs[1:])))</pre></div>
+<div class="out"><pre>overdamped V(t) samples: [&#x27;-200.999999999&#x27;, &#x27;-201.000000000&#x27;, &#x27;-201.000000000&#x27;, &#x27;-201.000000000&#x27;, &#x27;-201.000000000&#x27;]
+monotone non-increasing: True</pre></div>
+</div>
+<div class="md"><h2>Falsifier: the verify script&#x27;s <code>inertial</code> mutant must fail</h2></div>
+<div class="cell"><div class="src"><pre>rc, out = verify(&quot;kuramoto_einstein_refutation.py&quot;, mutant=&quot;inertial&quot;)
+mutant_must_fail(&quot;inertial&quot;, rc, out)</pre></div>
+<div class="out"><pre>$ python3 scripts/verify/kuramoto_einstein_refutation.py --mutant inertial
+1. perturbation spreading exponent: 0.989 (diffusive 0.5; ballistic 1.0)
+2. locked heterogeneous ring: local coherence ranges 0.805-1.000, yet max |theta&#x27; - Omega| = 2.05e-07 -&gt; 4.24e-12 (lapse uniform)
+3. gamma = I - grad theta grad theta^T obeys the Minkowski-graph Gauss equation: rel. err 3.43e-04
+REFUTATION NOT CONFIRMED
+-&gt; exit 1
+mutant inertial: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="T5_corners">
+<div class="nb-head"><span class="cnum">5</span><span class="chip ok">ran: all cells</span><span class="chip">5 code cells · 0.3s</span><span class="chip"><code>notebooks/T5_corners.ipynb</code></span></div>
+<div class="md"><h1>T5 — Corners and weak discontinuities</h1>
+<p><strong>Facts used</strong> (classical; X-12 of <code>notes/cross_domain_connections.md</code>, corrected per LC-4; catalog c11).</p>
+<ol><li>d&#x27;Alembert: <span class="math">u(x,t) = \tfrac12[f(x-ct) + f(x+ct)]</span> for the ideal string with initial displacement <span class="math">f</span> and zero velocity. A slope jump in <span class="math">f</span> (a corner) travels on the characteristics unchanged - a <em>weak</em> discontinuity (Hadamard 1903), not a shock (Courant &amp; Friedrichs 1948).</li><li>On the mass chain <span class="math">\omega(k) = 2\sqrt{J/m}|\sin(k/2)|</span> (c11; Schrödinger 1914), group velocity depends on <span class="math">k</span>, and the corner disperses.</li><li>X-12&#x27;s table: the <span class="math">\pi</span> twist is a class of the bundle (static, conserved as <span class="math">\mathbb{Z}_2</span>, dies under nothing); the corner is a singularity of the solution (moves at <span class="math">c</span>, dies under dispersion and damping). Computed here: row &quot;dies under dispersion&quot;.</li></ol></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>N, c = 256, 1.0
+def triangle(x, center=N // 2, half=24):
+    return max(0.0, 1 - abs(x - center) / half)
+
+def sharpness(u):
+    # largest second difference: the corner is where the slope jumps
+    return max(abs(u[i + 1] - 2 * u[i] + u[i - 1]) for i in range(1, len(u) - 1))
+
+def dalembert(t):
+    return [0.5 * (triangle(x - c * t) + triangle(x + c * t)) for x in range(N)]
+
+def chain(t_end, dt=0.05):
+    u = [triangle(x) for x in range(N)]
+    v = [0.0] * N
+    steps = int(round(t_end / dt))
+    for _ in range(steps):                              # leapfrog / Verlet on the linear chain
+        a = [u[(i + 1) % N] - 2 * u[i] + u[(i - 1) % N] for i in range(N)]
+        v = [v[i] + dt * a[i] for i in range(N)]
+        u = [u[i] + dt * v[i] for i in range(N)]
+    return u
+
+times = [0, 10, 20, 40, 60]
+rows = []
+for t in times:
+    s_cont, s_chain = sharpness(dalembert(t)), sharpness(chain(t))
+    rows.append((t, s_cont, s_chain))
+    print(f&quot;t = {t:&gt;3}: corner sharpness  continuum {s_cont:.4f}   chain {s_chain:.4f}&quot;)
+print(termplot.plot_xy([(x, u) for x, u in enumerate(chain(40))], width=64, height=10,
+                       title=&quot;chain displacement at t = 40 (the two half-corners, blurred)&quot;, xlabel=&quot;site&quot;))
+print(termplot.plot_xy([(x, u) for x, u in enumerate(dalembert(40))], width=64, height=10,
+                       title=&quot;d&#x27;Alembert at t = 40 (two half-corners, sharp)&quot;, xlabel=&quot;x&quot;))</pre></div>
+<div class="out"><pre>t =   0: corner sharpness  continuum 0.0833   chain 0.0833
+t =  10: corner sharpness  continuum 0.0417   chain 0.0210
+t =  20: corner sharpness  continuum 0.0417   chain 0.0197
+t =  40: corner sharpness  continuum 0.0417   chain 0.0166
+t =  60: corner sharpness  continuum 0.0417   chain 0.0128
+      chain displacement at t = 40 (the two half-corners, blurred)
+  0.4835┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⢑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡘⠣⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠃⠀⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠂⠈⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠀⠀⠰⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠀⠀⠨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⠁⠀⠀⠀⢂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⠀⠀⠀⠀⢃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⠀⠀⠀⠐⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠀⠀⠀⠀⠐⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡨⠀⠀⠀⠀⠀⠀⠡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⠀⠀⠀⠀⠀⠀⢡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠂⠀⠀⠀⠀⠀⠀⠈⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠃⠀⠀⠀⠀⠀⠀⠀⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠀⠀⠀⠀⠀⠀⠀⠀⠨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠀⠀⠀⠀⠀⠀⠀⠀⠨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢃⠀⠀⠀⠀⠀⠀⠀⠀⢐⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+-0.01116┤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢄⠤⠤⠤⠤⠤⠤⣤⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠦⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤
+        └────────────────────────────────────────────────────────────────
+         0                                                            255
+                                       site
+           d&#x27;Alembert at t = 40 (two half-corners, sharp)
+0.5┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⢅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠐⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠆⠐⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡨⠀⠀⢡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡨⠀⠀⢡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠂⠀⠀⠀⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠂⠀⠀⠀⡂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠀⠀⠀⠀⠨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠌⠀⠀⠀⠀⠨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⠁⠀⠀⠀⠀⠀⢃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢐⠁⠀⠀⠀⠀⠀⢃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠀⠀⠀⠀⠀⠀⠈⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠀⠀⠀⠀⠀⠀⠈⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡘⠀⠀⠀⠀⠀⠀⠀⠀⢑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡘⠀⠀⠀⠀⠀⠀⠀⠀⢑⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+   │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠀⠀⠀⠀⠀⠀⠀⠀⠠⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+  0┤⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⡊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣀⣀⣀⣀⣀⣀⣀⣀⡊⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀
+   └────────────────────────────────────────────────────────────────
+    0                                                            255
+                                   x</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(chain_keeps_corner=False):
+    cont = [s for _, s, _ in rows[1:]]
+    ch = [s for _, _, s in rows[1:]]
+    continuum_conserved = max(cont) - min(cont) &lt; 1e-9 and abs(cont[0] - rows[0][1] / 2) &lt; 1e-9
+    chain_decays = all(b &lt; a for a, b in zip(ch, ch[1:])) and ch[-1] &lt; 0.5 * cont[-1]
+    return continuum_conserved and (chain_decays != chain_keeps_corner)
+
+falsify(check, {&quot;chain-is-non-dispersive&quot;: lambda: {&quot;chain_keeps_corner&quot;: True}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant chain-is-non-dispersive {&#x27;chain_keeps_corner&#x27;: True}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><h2>The reason: group velocity on the chain is not constant</h2></div>
+<div class="cell"><div class="src"><pre>def vg(k, J=1.0, m=1.0):
+    return math.sqrt(J / m) * math.cos(k / 2) * (1 if k &gt;= 0 else -1)
+
+ks = [i * math.pi / 16 for i in range(1, 16)]
+print(&quot;k/pi  v_group(chain)  v_group(continuum)&quot;)
+for k in ks[::2]:
+    print(f&quot;{k / math.pi:.3f}   {vg(k):.4f}          {c:.4f}&quot;)</pre></div>
+<div class="out"><pre>k/pi  v_group(chain)  v_group(continuum)
+0.062   0.9952          1.0000
+0.188   0.9569          1.0000
+0.312   0.8819          1.0000
+0.438   0.7730          1.0000
+0.562   0.6344          1.0000
+0.687   0.4714          1.0000
+0.813   0.2903          1.0000
+0.937   0.0980          1.0000</pre></div>
+</div>
+<div class="md"><h2>Falsifier: c11&#x27;s continuum mutant must fail</h2></div>
+<div class="cell"><div class="src"><pre>rc, _ = catalog(&quot;c11_chain_dispersion&quot;)
+assert rc == 0
+rc, out = catalog(&quot;c11_chain_dispersion&quot;, mutant=True)
+mutant_must_fail(&quot;c11_chain_dispersion&quot;, rc, out)</pre></div>
+<div class="out"><pre>$ python3 catalog/c11_chain_dispersion.py
+PASS: worst relative deviation of claimed omega(k) from the chain eigenfrequency: 4.4e-15
+-&gt; exit 0
+$ python3 catalog/c11_chain_dispersion.py --mutant
+MUTANT FAIL: worst relative deviation of claimed omega(k) from the chain eigenfrequency: 5.2e-01
+-&gt; exit 1
+mutant c11_chain_dispersion: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="T6_order_and_number">
+<div class="nb-head"><span class="cnum">6</span><span class="chip ok">ran: all cells</span><span class="chip">6 code cells · 0.1s</span><span class="chip"><code>notebooks/T6_order_and_number.ipynb</code></span></div>
+<div class="md"><h1>T6 — Order + number</h1>
+<p><strong>Cited only</strong> (X-10; no computation here touches them): causal order determines the conformal geometry of a distinguishing spacetime (Hawking, King, McCarthy, J. Math. Phys. 17, 174 (1976); Malament, J. Math. Phys. 18, 1399 (1977)); the conformal factor is supplied by counting (Bombelli, Lee, Meyer, Sorkin, PRL 59, 521 (1987)). Overreach named in X-10: none of this derives spatial dimension from time.</p>
+<p><strong>Computed</strong>: curvature as a count, without irrationals (X-11: a being with no metric whose &quot;<span class="math">\pi</span> is half&quot;). For a closed polyhedral surface the angle deficit at a vertex is <span class="math">1 - (\text{sum of face angles})</span> in <em>turns</em>; Descartes (c. 1630) / Gauss–Bonnet: the deficits sum to <span class="math">\chi</span> turns, <span class="math">\chi = V - E + F</span> (Euler 1758); catalog c17 (Regge 1961). On a cube every deficit is <span class="math">1/4</span> turn and eight of them make 2 turns. Every number below is a <code>Fraction</code>.</p></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="md"><h2>Voxel solids: every face angle is a quarter turn</h2></div>
+<div class="cell"><div class="src"><pre>def surface(voxels):
+    # boundary unit squares of a set of unit cubes; each square as a frozenset of 4 vertices
+    voxels = set(voxels)
+    squares = []
+    for (x, y, z) in voxels:
+        for axis in range(3):
+            for side in (0, 1):
+                nb = list((x, y, z)); nb[axis] += 1 if side else -1
+                if tuple(nb) in voxels:
+                    continue
+                base = [x, y, z]; base[axis] += side
+                a, b = [i for i in range(3) if i != axis]
+                vs = []
+                for da, db in ((0, 0), (1, 0), (1, 1), (0, 1)):
+                    p = list(base); p[a] += da; p[b] += db
+                    vs.append(tuple(p))
+                squares.append(vs)
+    return squares
+
+def euler_and_deficits(squares, turn=Fraction(1)):
+    V = {v for sq in squares for v in sq}
+    E = {frozenset((sq[i], sq[(i + 1) % 4])) for sq in squares for i in range(4)}
+    chi = len(V) - len(E) + len(squares)
+    count = {v: 0 for v in V}
+    for sq in squares:
+        for v in sq:
+            count[v] += 1
+    deficits = {v: turn - n * Fraction(1, 4) for v, n in count.items()}
+    return chi, deficits
+
+solids = {
+    &quot;cube&quot;: [(0, 0, 0)],
+    &quot;2x1x1 box&quot;: [(0, 0, 0), (1, 0, 0)],
+    &quot;L-shape&quot;: [(0, 0, 0), (1, 0, 0), (0, 1, 0)],
+    &quot;3x3x1 ring (torus)&quot;: [(i, j, 0) for i in range(3) for j in range(3) if (i, j) != (1, 1)],
+}
+results = {}
+for name, vox in solids.items():
+    chi, deficits = euler_and_deficits(surface(vox))
+    total = sum(deficits.values())
+    hist = {}
+    for d in deficits.values():
+        hist[d] = hist.get(d, 0) + 1
+    results[name] = (chi, total)
+    print(f&quot;{name:&gt;20}: chi = {chi:&gt;2}; deficits {dict(sorted(hist.items()))} -&gt; sum = {total} turn(s)&quot;)</pre></div>
+<div class="out"><pre>                cube: chi =  2; deficits {Fraction(1, 4): 8} -&gt; sum = 2 turn(s)
+           2x1x1 box: chi =  2; deficits {Fraction(0, 1): 4, Fraction(1, 4): 8} -&gt; sum = 2 turn(s)
+             L-shape: chi =  2; deficits {Fraction(-1, 4): 2, Fraction(0, 1): 4, Fraction(1, 4): 10} -&gt; sum = 2 turn(s)
+  3x3x1 ring (torus): chi =  0; deficits {Fraction(-1, 4): 8, Fraction(0, 1): 16, Fraction(1, 4): 8} -&gt; sum = 0 turn(s)</pre></div>
+</div>
+<div class="md"><h2>Regular polyhedra: rational deficits, no <span class="math">\pi</span></h2></div>
+<div class="cell"><div class="src"><pre># (vertices, faces-per-vertex, corner angle of the face in turns): a regular p-gon has corner (p-2)/(2p)
+regular = {&quot;tetrahedron&quot;: (4, 3, Fraction(1, 6)), &quot;cube&quot;: (8, 3, Fraction(1, 4)),
+           &quot;octahedron&quot;: (6, 4, Fraction(1, 6)), &quot;dodecahedron&quot;: (20, 3, Fraction(3, 10)),
+           &quot;icosahedron&quot;: (12, 5, Fraction(1, 6))}
+for name, (V, n, corner) in regular.items():
+    d = 1 - n * corner
+    print(f&quot;{name:&gt;12}: {V} vertices x deficit {d} = {V * d} turns&quot;)</pre></div>
+<div class="out"><pre> tetrahedron: 4 vertices x deficit 1/2 = 2 turns
+        cube: 8 vertices x deficit 1/4 = 2 turns
+  octahedron: 6 vertices x deficit 1/3 = 2 turns
+dodecahedron: 20 vertices x deficit 1/10 = 2 turns
+ icosahedron: 12 vertices x deficit 1/6 = 2 turns</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(turn=Fraction(1), expected_total=None):
+    ok = True
+    for name, vox in solids.items():
+        chi, deficits = euler_and_deficits(surface(vox), turn)
+        ok &amp;= sum(deficits.values()) == (chi if expected_total is None else expected_total)
+    for name, (V, n, c) in regular.items():
+        ok &amp;= V * (turn - n * c) == (2 if expected_total is None else expected_total)
+    return ok
+
+falsify(check, {&quot;full-turn-is-three-quarters&quot;: lambda: {&quot;turn&quot;: Fraction(3, 4)},
+                &quot;deficits-sum-to-one-turn&quot;: lambda: {&quot;expected_total&quot;: 1}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant full-turn-is-three-quarters {&#x27;turn&#x27;: Fraction(3, 4)}: FAIL (as required)
+mutant deficits-sum-to-one-turn {&#x27;expected_total&#x27;: 1}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><p>The torus row is the point: its deficits are <span class="math">+1/4</span> at eight convex corners and <span class="math">-1/4</span> at eight saddle corners, summing to <span class="math">0 = \chi(T^2)</span>. Negative curvature as a count, no ambient space needed (Gauss; X-10&#x27;s &quot;embedding&quot; baggage item).</p></div>
+<div class="cell"><div class="src"><pre>chi, deficits = euler_and_deficits(surface(solids[&quot;3x3x1 ring (torus)&quot;]))
+neg = sorted(v for v, d in deficits.items() if d &lt; 0)
+print(&quot;saddle vertices (deficit -1/4):&quot;, neg)</pre></div>
+<div class="out"><pre>saddle vertices (deficit -1/4): [(1, 1, 0), (1, 1, 1), (1, 2, 0), (1, 2, 1), (2, 1, 0), (2, 1, 1), (2, 2, 0), (2, 2, 1)]</pre></div>
+</div>
+<div class="md"><h2>Falsifier: catalog c17 (Descartes / Regge 1961) must fail under its mutant</h2></div>
+<div class="cell"><div class="src"><pre>rc, _ = catalog(&quot;c17_gauss_bonnet_polyhedra&quot;)
+assert rc == 0
+rc, out = catalog(&quot;c17_gauss_bonnet_polyhedra&quot;, mutant=True)
+mutant_must_fail(&quot;c17_gauss_bonnet_polyhedra&quot;, rc, out)</pre></div>
+<div class="out"><pre>$ python3 catalog/c17_gauss_bonnet_polyhedra.py
+PASS: tetrahedron: deficit 1/2 turn x 4 = 2 turns; cube: deficit 1/4 turn x 8 = 2 turns; octahedron: deficit 1/3 turn x 6 = 2 turns; icosahedron: deficit 1/6 turn x 12 = 2 turns
+-&gt; exit 0
+$ python3 catalog/c17_gauss_bonnet_polyhedra.py --mutant
+MUTANT FAIL: tetrahedron: deficit 1/2 turn x 4 = 2 turns; cube: deficit 1/4 turn x 8 = 2 turns; octahedron: deficit 1/3 turn x 6 = 2 turns; icosahedron: deficit 1/6 turn x 12 = 2 turns
+-&gt; exit 1
+mutant c17_gauss_bonnet_polyhedra: fails as required</pre></div>
+</div>
+</section>
+<section class="nb" id="capstone_null_before_grid">
+<div class="nb-head"><span class="cnum">7</span><span class="chip ok">ran: all cells</span><span class="chip">7 code cells · 0.3s</span><span class="chip"><code>notebooks/capstone_null_before_grid.ipynb</code></span></div>
+<div class="md"><h1>Capstone — Derive the null before reading the grid</h1>
+<p>A worked example from the repo&#x27;s own record (P-1, resolved as R-1 in <code>PREDICTIONS.md</code>; <code>notes/p1_decomposition.md</code> D4 hole (a); <code>notes/p4_twisted_inertial_ring.md</code> run 5).</p>
+<ol><li><strong>d4_nopin</strong>: a Kuramoto lattice with no per-site drive, twisted and control, 101 values of <span class="math">\Omega</span>. The first reading counted 7 &quot;rational snaps&quot; per row. The null: <span class="math">\rho = \Omega</span> identically (claim <code>klein-twisted-mean-frequency-identity</code>; each undirected edge contributes <span class="math">\sin x + \sin(-x) = 0</span>), so a &quot;snap&quot; is any grid point where <span class="math">\Omega</span> itself is a rational with <span class="math">q \le 8</span>. Computed below: the snap set equals that grid set.</li><li><strong>P-4 run 5</strong>: slip periods near 3.0 (and 4.3) round trips were read as integer plateaus. The null: quasi-static loading with stiffness <span class="math">4J/N</span> gives period/round-trip <span class="math">= F_N/(4Jv)</span> with no wave involved (catalog c12, within 25% on the 16 rows with prediction <span class="math">\ge 3</span>); <span class="math">F_N/(4v) = 3.0</span> at <span class="math">(0.6, 0.05)</span> and <span class="math">(1.2, 0.1)</span> - a grid coincidence, flagged in the table. Catalog c13 records what the formula cannot see (a <span class="math">2.2\times</span> swing with <span class="math">\mu_d</span> at fixed <span class="math">F_N, v</span>).</li></ol></div>
+<div class="cell"><div class="src"><pre>import sys, math, json, cmath, random
+from fractions import Fraction
+from pathlib import Path
+_root = next(p for p in [Path.cwd(), *Path.cwd().parents] if (p / &quot;CATALOG.md&quot;).exists())
+sys.path.insert(0, str(_root / &quot;notebooks&quot;))
+from nbkit import ROOT, show_svg, catalog, verify, mutant_must_fail, falsify
+import termplot
+print(&quot;repo root:&quot;, ROOT.name)</pre></div>
+<div class="out"><pre>repo root: proslambenomenos</pre></div>
+</div>
+<div class="md"><h2>1. The snaps are the grid</h2></div>
+<div class="cell"><div class="src"><pre>rows = json.loads((ROOT / &quot;scripts/experiments/d4_nopin_results.json&quot;).read_text())
+TOL = 5e-4
+def snaps(rows):
+    out = []
+    for r in rows:
+        for q in range(2, 9):
+            p = round(r[&quot;rho&quot;] * q)
+            if abs(r[&quot;rho&quot;] - p / q) &lt; TOL and math.gcd(p, q) == 1 and 0 &lt; p &lt; q:
+                out.append(round(r[&quot;Omega&quot;], 2)); break
+    return sorted(set(out))
+
+grid_rationals = sorted({k / 100 for k in range(101)
+                         if 0 &lt; k &lt; 100 and Fraction(k, 100).denominator &lt;= 8})
+print(&quot;grid points that ARE rationals with q &lt;= 8 (the null):&quot;, grid_rationals)
+maxdev = 0.0
+for Delta in (0.05, 0.2):
+    for tw in (False, True):
+        sel = [r for r in rows if r[&quot;Delta&quot;] == Delta and r[&quot;twisted&quot;] == tw]
+        s = snaps(sel)
+        maxdev = max(maxdev, max(abs(r[&quot;rho&quot;] - r[&quot;Omega&quot;]) for r in sel))
+        print(f&quot;Delta {Delta:&lt;5} {&#x27;twisted&#x27; if tw else &#x27;control&#x27;:&gt;8}: snaps {s} == null: {s == grid_rationals}&quot;)
+print(f&quot;max |rho - Omega| over all {len(rows)} runs: {maxdev:.1e}&quot;)</pre></div>
+<div class="out"><pre>grid points that ARE rationals with q &lt;= 8 (the null): [0.2, 0.25, 0.4, 0.5, 0.6, 0.75, 0.8]
+Delta 0.05   control: snaps [0.2, 0.25, 0.4, 0.5, 0.6, 0.75, 0.8] == null: True
+Delta 0.05   twisted: snaps [0.2, 0.25, 0.4, 0.5, 0.6, 0.75, 0.8] == null: True
+Delta 0.2    control: snaps [0.2, 0.25, 0.4, 0.5, 0.6, 0.75, 0.8] == null: True
+Delta 0.2    twisted: snaps [0.2, 0.25, 0.4, 0.5, 0.6, 0.75, 0.8] == null: True
+max |rho - Omega| over all 404 runs: 5.4e-14</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>def check(tol=TOL, null=&quot;grid&quot;):
+    ok = abs(maxdev) &lt; 1e-10
+    for Delta in (0.05, 0.2):
+        for tw in (False, True):
+            sel = [r for r in rows if r[&quot;Delta&quot;] == Delta and r[&quot;twisted&quot;] == tw]
+            s = snaps(sel)
+            ok &amp;= (s == grid_rationals) if null == &quot;grid&quot; else (len(s) &gt; 2.2 and s != grid_rationals)
+    return ok
+
+falsify(check, {&quot;snaps-are-locking&quot;: lambda: {&quot;null&quot;: &quot;locking&quot;}})</pre></div>
+<div class="out"><pre>check: PASS
+mutant snaps-are-locking {&#x27;null&#x27;: &#x27;locking&#x27;}: FAIL (as required)</pre></div>
+</div>
+<div class="md"><p>The identity behind the null, with its own named mutant:</p></div>
+<div class="cell"><div class="src"><pre>rc, out = verify(&quot;p1_mean_frequency.py&quot;)
+assert rc == 0
+rc, out = verify(&quot;p1_mean_frequency.py&quot;, mutant=&quot;phase-lag&quot;)
+mutant_must_fail(&quot;phase-lag&quot;, rc, out)</pre></div>
+<div class="out"><pre>$ python3 scripts/verify/p1_mean_frequency.py
+control: max |mean advance - Omega| = 0.00e+00
+twisted: max |mean advance - Omega| = 0.00e+00
+PASS
+-&gt; exit 0
+$ python3 scripts/verify/p1_mean_frequency.py --mutant phase-lag
+control: max |mean advance - Omega| = 0.00e+00
+twisted: max |mean advance - Omega| = 4.20e-02
+FAIL
+-&gt; exit 1
+mutant phase-lag: fails as required</pre></div>
+</div>
+<div class="md"><h2>2. The loading formula</h2></div>
+<div class="cell"><div class="src"><pre>data = json.loads((ROOT / &quot;scripts/experiments/p4_results_lowdamp.json&quot;).read_text())
+sel = [r for r in data if r[&quot;g&quot;] == 0.01 and r[&quot;regime&quot;] == &quot;stick-slip&quot; and r[&quot;F_N&quot;] / (4 * r[&quot;v&quot;]) &gt;= 3 - 1e-9]
+print(f&quot;{&#x27;N&#x27;:&gt;3} {&#x27;F_N&#x27;:&gt;5} {&#x27;v&#x27;:&gt;5} | observed  F_N/(4Jv)  rel.err&quot;)
+errs = []
+for r in sorted(sel, key=lambda r: (r[&quot;N&quot;], r[&quot;v&quot;], r[&quot;F_N&quot;])):
+    pred = r[&quot;F_N&quot;] / (4 * r[&quot;v&quot;])
+    e = abs(r[&quot;ratio&quot;] - pred) / r[&quot;ratio&quot;]
+    errs.append(e)
+    flag = &quot;  &lt;- F_N/(4v) = 3.0 on the grid&quot; if abs(pred - 3.0) &lt; 1e-9 else (&quot;  &lt;- read as &#x27;4.3&#x27;&quot; if abs(r[&quot;ratio&quot;] - 4.3) &lt; 0.1 else &quot;&quot;)
+    print(f&quot;{r[&#x27;N&#x27;]:&gt;3} {r[&#x27;F_N&#x27;]:&gt;5} {r[&#x27;v&#x27;]:&gt;5} | {r[&#x27;ratio&#x27;]:8.3f}  {pred:8.3f}  {e:6.2f}{flag}&quot;)
+print(f&quot;{len(sel)} rows; worst relative error {max(errs):.2f}&quot;)
+print(termplot.plot_xy([(r[&#x27;F_N&#x27;] / (4 * r[&#x27;v&#x27;]), r[&#x27;ratio&#x27;]) for r in sel] + [(x / 2, x / 2) for x in range(4, 30)],
+                       width=50, height=12, title=&quot;observed period vs F_N/(4Jv) (diagonal = formula)&quot;, xlabel=&quot;F/(4Jv)&quot;, ylabel=&quot;period&quot;))</pre></div>
+<div class="out"><pre>  N   F_N     v | observed  F_N/(4Jv)  rel.err
+ 64   0.6  0.05 |    3.112     3.000    0.04  &lt;- F_N/(4v) = 3.0 on the grid
+ 64   0.9  0.05 |    5.087     4.500    0.12
+ 64   1.2  0.05 |    6.370     6.000    0.06
+ 64   1.5  0.05 |    8.552     7.500    0.12
+ 64   1.8  0.05 |   11.297     9.000    0.20
+ 64   1.2   0.1 |    3.259     3.000    0.08  &lt;- F_N/(4v) = 3.0 on the grid
+ 64   1.5   0.1 |    4.381     3.750    0.14  &lt;- read as &#x27;4.3&#x27;
+ 64   1.8   0.1 |    5.721     4.500    0.21
+128   0.6  0.05 |    3.068     3.000    0.02  &lt;- F_N/(4v) = 3.0 on the grid
+128   0.9  0.05 |    4.311     4.500    0.04  &lt;- read as &#x27;4.3&#x27;
+128   1.2  0.05 |    5.850     6.000    0.03
+128   1.5  0.05 |    7.590     7.500    0.01
+128   1.8  0.05 |    9.982     9.000    0.10
+128   1.2   0.1 |    3.198     3.000    0.06  &lt;- F_N/(4v) = 3.0 on the grid
+128   1.5   0.1 |    4.323     3.750    0.13  &lt;- read as &#x27;4.3&#x27;
+128   1.8   0.1 |    5.462     4.500    0.18
+16 rows; worst relative error 0.21
+    observed period vs F_N/(4Jv) (diagonal = formula)
+period
+  14.5┤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠈
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠀⠈⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠐⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⢀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠐⠀⢀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠀⢀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠄⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠄⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆⠀⠀⠀⠄⠀⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⠀⠀⠀⠄⡀⠀⠄⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      │⠀⠀⠀⠀⡄⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+     2┤⡀⠀⠂⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+      └──────────────────────────────────────────────────
+       2                                             14.5
+                            F/(4Jv)</pre></div>
+</div>
+<div class="cell"><div class="src"><pre>mud = json.loads((ROOT / &quot;scripts/experiments/p4_mud_results.json&quot;).read_text())[&quot;rows&quot;]
+print(&quot;mu_d dependence at fixed (N, g, v, F_N) where the formula predicts 4.5 for every row:&quot;)
+for r in mud:
+    print(f&quot;   mu_d = {r[&#x27;mu_d&#x27;]}: period {r[&#x27;ratio&#x27;]}&quot;)</pre></div>
+<div class="out"><pre>mu_d dependence at fixed (N, g, v, F_N) where the formula predicts 4.5 for every row:
+   mu_d = 0.25: period 6.9475
+   mu_d = 0.5: period 5.087187
+   mu_d = 0.75: period 3.120156</pre></div>
+</div>
+<div class="md"><h2>Falsifiers: c12 and c13 mutants must fail</h2></div>
+<div class="cell"><div class="src"><pre>for entry in (&quot;c12_p4_loading_formula&quot;, &quot;c13_p4_mud_dependence&quot;):
+    rc, _ = catalog(entry)
+    assert rc == 0, entry
+    rc, out = catalog(entry, mutant=True)
+    mutant_must_fail(entry, rc, out)</pre></div>
+<div class="out"><pre>$ python3 catalog/c12_p4_loading_formula.py
+PASS: 16 rows with predicted period &gt;= 3; worst relative error of F/(4Jv): 0.21
+-&gt; exit 0
+$ python3 catalog/c12_p4_loading_formula.py --mutant
+MUTANT FAIL: 16 rows with predicted period &gt;= 3; worst relative error of F/(2Jv): 1.09
+-&gt; exit 1
+mutant c12_p4_loading_formula: fails as required
+$ python3 catalog/c13_p4_mud_dependence.py
+PASS: periods [6.9475, 5.087187, 3.120156]; spread 1.23; monotone decreasing True
+-&gt; exit 0
+$ python3 catalog/c13_p4_mud_dependence.py --mutant
+MUTANT FAIL: periods [6.9475, 5.087187, 3.120156]; spread 1.23; monotone decreasing True
+-&gt; exit 1
+mutant c13_p4_mud_dependence: fails as required</pre></div>
+</div>
+<div class="md"><p>The lesson both rows share (P-4 note, run 5): a plateau read off a grid is not a plateau until the null that would put it there has been derived and ruled out. That is the same discipline as LAW-11: a check without a failing mutant is a restatement.</p></div>
+</section>
+<footer>Rendered by <code>scripts/nb_html.py</code>; source notebooks in <code>notebooks/</code>;
+authoring source <code>scripts/nb_build.py</code>.</footer>
+</main>
+<script>
+  // readable PASS/FAIL lines without any external library
+  document.querySelectorAll('.out pre').forEach(pre => {
+    pre.innerHTML = pre.innerHTML.replace(/^(.*\b(PASS|FAIL|fails as required|as required)\b.*)$/gm,
+      '<span class="tag">$1</span>');
+  });
+</script>
+</body>
+</html>
