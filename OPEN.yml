@@ -13,11 +13,11 @@ owner:
     item: delete merged branches at your discretion
     command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa"
   - id: O-4
-    item: JUNCTURE - retire or reopen P-4; word P-7 (incommensurate flux), P-8 (Gabor limit for locking), P-9 (E1 N-parity) - recommended order P-8, P-9, P-7
-    command: ""
+    item: JUNCTURE - retire or reopen P-4 (if reopened, impact/stick-slip oscillator on a glued ring, nonlinear observable); word P-7 (incommensurate flux); tag link-007 on return
+    command: "cd ~/code/proslambenomenos && make gates"
 agent:
   - id: A-1
-    item: compendium checks under the falsifier rule (LAW-12-owed; audit found C10, C5, C17 tautological, C12/C9/C8 weak, count unasserted)
+    item: link-007 ceremony (census 29 claims / 30 catalog / 8 notebooks / eleven gates), then site bump
   - id: A-2
     item: E1 N-parity check (Lazarides 2008 reconciliation) - needs a P-line first
   - id: A-3
@@ -25,6 +25,7 @@ agent:
   - id: A-4
     item: if P-4 is reopened - new P-line, free ring (no clamp), massless contact, N >= 64, low damping, an observable the background half-winding can reach
 decided_since_parent:
+  - "2026-08-23 pm: P-8 (R-5) and P-9 (R-6) resolved; VOCABULARY.md; Toda solitons (c29) and impact oscillator (c30) with figure pages; synonyms table incl. Gunter's Half-Center coinages; spec suite in a controlled grammar (55 rules, TDD red->green) and the notes gate (LAW-20) - eleven gates; link-007 not yet tagged"
   - "2026-08-23: catalog c17-c26; curriculum notebooks T0-T6 + capstone as the tenth gate (LAW-18); multi-actor infrastructure (worktrees, union-merged ledgers, AGENTS.md); P-6 registered then computed in its own worktree - R-4, reproduction, no exceedance of 0.6809, verified claim with exhaustive certificate (LAW-19)"
   - "overnight adversarial audits (5 context-free agents): P-3 resolved (R-2); P-4 resolved as model-class vacuity (R-3) - the clamp cut the loop; Proof Chain A refutation evidence corrected (sign, lapse test, Lyapunov argument); LAW-16 closed six gate bypasses; catalog split to one mutant per fact"
   - "handoff interface landed (OPEN.yml, make handoff, recap artifact, ~/code/handoffs store); catbus hardening filed as nickjoven/catbus#1 (sign, lint, lineage, replay)"
@@ -35,6 +36,9 @@ decided_since_parent:
   - "LC-7: Stern-Brocot is Stern's 1858 array + Brocot's 1860/61 gear table; the tree is GKP 1989"
   - "primes-as-dimensions direction assessed: synthesis not citation; low value unless the pure-x sorting criterion is wanted"
 retracted_since_parent:
+  - "P-9: E1's initial condition theta_i = 0.13 i is not N-safe (N >= 6 lands rings in winding attractors); E1 N=4 result stands"
+  - "Toda first run: periodic ring forced a compensating stretch; first-order velocity field radiated 17%"
+  - "Impact first run: steady-state max speed is not the grazing map; chatter regime wrong (needs slow forcing)"
   - "P-4: 'integrator fix' diagnosis (chatter is the massive bow node's period, dt-invariant); 'Euler not symplectic' (it is Euler-Cromer); loading formula's mu_d-independence; X-8's 'half-integer lines always on'"
   - "Proof Chain A refutation v1 supports: delta + grad grad (source has minus), identical-frequency lapse test (vacuous), 'characteristic order invariant under coarse-graining' (false)"
   - "run-2 P-4 doubling reading (medians of bursty gaps)"
@@ -49,5 +53,9 @@ do_not_recompute:
   - "Helmholtz motion in the clamped control at g=0.002, F_N <= 0.6: period 2.02-2.07 round trips, slip fraction 0.52 - notes/p4 audit S4"
   - "clamped twisted ring = control with stiffness J cos(pi/N); no holonomy - notes/p4 audit S1"
   - "connected subgroups of SL(2,R): {e}, K, A, N, AN, G - claims/sl2r-connected-subgroups"
+  - "circulant twisted-state max density: 12/19 (n<=20 exhaustive), 2/3 (n<=28), 0.6744 found to n=64, all below 0.6809 - p6_results.json"
+  - "finite-T plateau width exponent ~2 (saddle-node), q=3 centre shift O(K^2) - catalog c27"
+  - "no N-parity in twisted-ring shrinkage; saturates ~0.45 at K=1, non-monotone at K=1.4 (unexplained) - catalog c28"
+  - "Toda: exact soliton transport, v/c = sinh k/k within 1% - catalog c29; impact: v^2/d -> 2Aw^2, chatter ratio -> r - catalog c30"
 artifact: "https://claude.ai/code/artifact/2421bb54-5508-4608-9390-452c0880fe76"
 recap: "https://claude.ai/code/artifact/5933c553-6c3f-4f4f-aaab-c92917a779d5"
