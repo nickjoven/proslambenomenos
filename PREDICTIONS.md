@@ -197,3 +197,29 @@ shortest T, where an unconverged transient near the edge
 underestimates with the same scaling (recorded as a second mechanism,
 not a refutation). Centre shift O(K^2) for q = 3 confirmed at two K.
 Mind-change did not fire. Catalog c27 pins the data.
+
+## P-9 — 2026-08-23 — N-parity of plateau shrinkage on the pinned twisted ring
+question: LC-3 recorded that in driven 0-pi Josephson arrays the
+half-turn offset CREATES half-integer steps with an even/odd-N
+dependence (Lazarides, PRB 77, 214419 (2008)), opposite in sign to
+E1's shrink-not-shift finding on the pinned circle-map ring, which
+ran N = 4 only. Does the twisted ring's 1/2-plateau shrinkage (twisted
+width / control width) depend on the parity of N?
+method: E1's exact model (scripts/experiments/d4_edge_resolved.py:
+per-site pinning K, sine coupling J, one pi seam), N = 4, 5, 6, 7, 8,
+9 at (K, J) = (1.0, 0.6) and (1.4, 0.6); edge-resolved 1/2-plateau
+widths for twisted and control; the ratio r(N) = w_twisted / w_control.
+expects: NO parity alternation - r(N) varies smoothly (monotonically
+or nearly) with N, because the drive here is per-site pinning to the
+lab frame (Frenkel-Kontorova-like), not a bias coupling to phase
+differences, and the pi offset relaxes to a uniform strain pi/N with
+no kink/antikink selection; the sign discrepancy with the Josephson
+literature is the drive type, as LC-3 proposed. Secondary: r(N) -> 1
+as N grows (the seam's effect is diluted over more sites).
+changes-my-mind: r(N) alternating with the parity of N by more than
+the measurement resolution (~3% in width, P-8) at both (K, J), in the
+same sense as Lazarides (even N more affected); that would mean the
+ring does select kink configurations by parity and the E1 reading
+must be redone with N-parity as a variable.
+not-claimed-in-advance: anything about bias-driven arrays; the
+absolute widths.
