@@ -188,3 +188,12 @@ K and plateau; either would mean the measurement error is not the
 saddle-node mechanism.
 not-claimed-in-advance: anything about model-based (fitted)
 estimators, which can beat the model-free bound (Cramer-Rao).
+
+## R-5 — 2026-08-23 — resolves P-8
+outcome: as expected on the mechanism - fitted exponents 1.82, 2.00,
+2.07, 2.06 (saddle-node T^-2, not resolution T^-1); convergence from
+above in 3 of 4, the exception being the narrowest plateau at the
+shortest T, where an unconverged transient near the edge
+underestimates with the same scaling (recorded as a second mechanism,
+not a refutation). Centre shift O(K^2) for q = 3 confirmed at two K.
+Mind-change did not fire. Catalog c27 pins the data.
