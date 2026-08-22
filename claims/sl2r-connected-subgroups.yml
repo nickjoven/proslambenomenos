@@ -18,7 +18,7 @@ evidence:
     ref: "scripts/verify/iwasawa_one_stage.py - 2000-sample classification of exp X by sign of det X against the closed form; AN unique a*n factorisation, closure, non-abelian; a generic one-parameter subgroup in AN conjugate to A; Iwasawa k a n reconstruction"
     method: reimplementation
 null_system: "the classification is the list of Lie subalgebras of sl(2,R), a fact about a 3-dimensional Lie algebra with no coupling, stage, or physics attached; the script computes exponentials and factorisations from the matrices, not from the stage labels"
-falsifier: "scripts/verify/iwasawa_one_stage.py --mutant"
+falsifier: "scripts/verify/iwasawa_one_stage.py --mutant borel-abelian"
 novelty:
   status: classical
   citation: "subalgebras of sl(2,R): Lang, SL2(R) (1975); Kirillov, An Introduction to Lie Groups and Lie Algebras (2008)"

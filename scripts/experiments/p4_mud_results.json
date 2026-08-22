@@ -1,0 +1,4 @@
+{"model": "p4_twisted_inertial_ring.run(N=64, twisted=False, F_N=0.9, v_bow=0.05, g=0.01, clamp=True, T=2560, T_skip=640)",
+ "date": "2026-08-22",
+ "rows": [{"mu_d": 0.25, "ratio": 6.9475}, {"mu_d": 0.5, "ratio": 5.087187}, {"mu_d": 0.75, "ratio": 3.120156}],
+ "note": "slip period/round-trip depends strongly on mu_d at fixed mu_s = 1; the loading formula F/(4Jv) = 4.5 predicts no mu_d dependence and matches only near mu_d = mu_s/2 (audit 2026-08-22)"}

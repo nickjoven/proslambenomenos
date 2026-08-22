@@ -49,7 +49,11 @@ import math
 import random
 import sys
 
-MUTANT = sys.argv[sys.argv.index("--mutant") + 1] if "--mutant" in sys.argv else None
+MUTANT = sys.argv[sys.argv.index("--mutant") + 1] if "--mutant" in sys.argv and sys.argv.index("--mutant") + 1 < len(sys.argv) else ("--mutant" in sys.argv or None)
+KNOWN_MUTANTS = {"inertial"}
+if MUTANT is not None and MUTANT not in KNOWN_MUTANTS:
+    print(f"usage error: unknown mutant {MUTANT!r}; known: {sorted(KNOWN_MUTANTS)}")
+    sys.exit(2)
 
 
 def spreading_exponent(inertial):

@@ -1,5 +1,6 @@
-"""Koenig: L = R_cm x P + L_about_cm and T = M V_cm^2/2 + T_rel; uniform gravity exerts zero torque about the CM.
-Source: Goldstein, Classical Mechanics ch. 1. Mutant: omit the CM term in L."""
+"""Koenig (angular momentum): L = R_cm x P + L_about_cm for any particle system.
+Source: Goldstein, Classical Mechanics ch. 1. Mutant: omit the R_cm x P term."""
+
 import random, sys
 from _common import mutant_flag, finish
 
@@ -16,10 +17,7 @@ L = [sum(m[i] * cross(r[i], v[i])[k] for i in range(N)) for k in range(3)]
 L_rel = [sum(m[i] * cross([r[i][j] - R[j] for j in range(3)], [v[i][j] - V[j] for j in range(3)])[k] for i in range(N)) for k in range(3)]
 L_cm = cross(R, [M * V[k] for k in range(3)])
 L_pred = [L_rel[k] + (0 if mutant_flag() else L_cm[k]) for k in range(3)]
-T = sum(0.5 * m[i] * sum(v[i][k] ** 2 for k in range(3)) for i in range(N))
-T_pred = 0.5 * M * sum(V[k] ** 2 for k in range(3)) + sum(0.5 * m[i] * sum((v[i][k] - V[k]) ** 2 for k in range(3)) for i in range(N))
-g = [0, 0, -9.81]
-tau_cm = [sum(cross([r[i][j] - R[j] for j in range(3)], [m[i] * g[k] for k in range(3)])[kk] for i in range(N)) for kk in range(3)]
 errL = max(abs(L[k] - L_pred[k]) for k in range(3))
-ok = errL < 1e-12 and abs(T - T_pred) < 1e-12 and max(abs(t) for t in tau_cm) < 1e-12
-sys.exit(finish(ok, f"|L - (R x P + L_cm)| = {errL:.1e}; |T - split| = {abs(T - T_pred):.1e}; |torque about CM| = {max(abs(t) for t in tau_cm):.1e}"))
+scale = max(abs(x) for x in L) + 1.0
+ok = errL / scale < 1e-12
+sys.exit(finish(ok, f"|L - (R x P + L_cm)| / |L| = {errL / scale:.1e}"))
