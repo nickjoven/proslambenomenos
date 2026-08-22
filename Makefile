@@ -35,3 +35,6 @@ e1-sweep:
 	$(PYTHON) scripts/experiments/d4_kj_sweep.py
 
 .PHONY: gates gates-all plots e1-staircase e1-sweep
+
+catalog:
+	$(PYTHON) scripts/check_catalog.py
