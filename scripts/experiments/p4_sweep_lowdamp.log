@@ -1,0 +1,48 @@
+N= 64 g=0.010 v=0.05 F_N=1.2 slips=   5 period/round=6.37 [6.30,6.37] stick-slip
+N= 64 g=0.010 v=0.05 F_N=1.5 slips=   3 period/round=8.55 [8.55,8.55] stick-slip
+N= 64 g=0.010 v=0.10 F_N=0.3 slips=   0 period/round=  -   sliding
+N= 64 g=0.010 v=0.10 F_N=1.5 slips=   7 period/round=4.38 [4.38,4.38] stick-slip
+N= 64 g=0.010 v=0.10 F_N=1.8 slips=   6 period/round=5.72 [5.67,5.73] stick-slip
+N= 64 g=0.010 v=0.05 F_N=0.3 slips=   0 period/round=  -   sliding
+N= 64 g=0.010 v=0.05 F_N=1.8 slips=   3 period/round=11.30 [11.30,11.30] stick-slip
+N= 64 g=0.002 v=0.05 F_N=0.6 slips=  11 period/round=3.09 [0.76,3.19] stick-slip
+N= 64 g=0.010 v=0.10 F_N=1.2 slips=   9 period/round=3.26 [3.25,3.31] stick-slip
+N= 64 g=0.010 v=0.10 F_N=0.6 slips=   0 period/round=  -   sliding
+N= 64 g=0.002 v=0.05 F_N=0.3 slips=  14 period/round=2.06 [2.05,2.06] stick-slip
+N= 64 g=0.010 v=0.10 F_N=0.9 slips=  10 period/round=3.08 [3.08,3.08] stick-slip
+N= 64 g=0.010 v=0.05 F_N=0.9 slips=   5 period/round=5.09 [5.09,5.09] stick-slip
+N= 64 g=0.010 v=0.05 F_N=0.6 slips=   9 period/round=3.11 [3.11,3.11] stick-slip
+N= 64 g=0.002 v=0.05 F_N=0.9 slips=   7 period/round=4.40 [4.13,4.64] stick-slip
+N= 64 g=0.002 v=0.05 F_N=1.2 slips=   5 period/round=5.55 [5.40,5.69] stick-slip
+N= 64 g=0.002 v=0.10 F_N=0.3 slips=  15 period/round=2.03 [2.02,2.03] stick-slip
+N= 64 g=0.002 v=0.10 F_N=0.9 slips= 104 period/round=0.24 [0.06,2.29] stick-slip
+N= 64 g=0.002 v=0.10 F_N=1.2 slips=  22 period/round=0.64 [0.10,3.31] stick-slip
+N= 64 g=0.002 v=0.05 F_N=1.8 slips=   6 period/round=0.63 [0.40,10.32] stick-slip
+N= 64 g=0.002 v=0.05 F_N=1.5 slips=   5 period/round=6.77 [0.09,7.41] stick-slip
+N= 64 g=0.002 v=0.10 F_N=0.6 slips=  14 period/round=2.07 [2.06,2.08] stick-slip
+N= 64 g=0.002 v=0.10 F_N=1.5 slips=  96 period/round=0.24 [0.06,2.88] stick-slip
+N= 64 g=0.002 v=0.10 F_N=1.8 slips=  57 period/round=0.29 [0.06,3.20] stick-slip
+N=128 g=0.010 v=0.05 F_N=0.3 slips=   0 period/round=  -   sliding
+N=128 g=0.010 v=0.05 F_N=0.6 slips=  10 period/round=3.07 [3.07,3.07] stick-slip
+N=128 g=0.010 v=0.05 F_N=0.9 slips=   7 period/round=4.31 [4.31,4.31] stick-slip
+N=128 g=0.010 v=0.05 F_N=1.2 slips=   5 period/round=5.85 [5.85,5.85] stick-slip
+N=128 g=0.010 v=0.10 F_N=0.3 slips=   0 period/round=  -   sliding
+N=128 g=0.002 v=0.05 F_N=0.6 slips=   9 period/round=3.08 [3.07,3.15] stick-slip
+N=128 g=0.010 v=0.05 F_N=1.5 slips=   4 period/round=7.59 [7.59,7.59] stick-slip
+N=128 g=0.002 v=0.05 F_N=0.3 slips=  15 period/round=2.05 [2.05,2.05] stick-slip
+N=128 g=0.010 v=0.10 F_N=0.9 slips=  13 period/round=2.37 [2.37,2.37] stick-slip
+N=128 g=0.010 v=0.10 F_N=0.6 slips=   0 period/round=  -   sliding
+N=128 g=0.010 v=0.10 F_N=1.2 slips=   9 period/round=3.20 [3.20,3.20] stick-slip
+N=128 g=0.010 v=0.05 F_N=1.8 slips=   3 period/round=9.98 [9.98,9.98] stick-slip
+N=128 g=0.010 v=0.10 F_N=1.5 slips=   7 period/round=4.32 [4.32,4.32] stick-slip
+N=128 g=0.010 v=0.10 F_N=1.8 slips=   6 period/round=5.46 [5.46,5.46] stick-slip
+N=128 g=0.002 v=0.05 F_N=0.9 slips=   6 period/round=4.35 [4.14,5.13] stick-slip
+N=128 g=0.002 v=0.05 F_N=1.2 slips=   5 period/round=6.28 [6.27,6.36] stick-slip
+N=128 g=0.002 v=0.05 F_N=1.5 slips=   3 period/round=8.55 [8.08,8.55] stick-slip
+N=128 g=0.002 v=0.05 F_N=1.8 slips=   3 period/round=11.17 [10.58,11.17] stick-slip
+N=128 g=0.002 v=0.10 F_N=0.3 slips=  15 period/round=2.02 [2.02,2.02] stick-slip
+N=128 g=0.002 v=0.10 F_N=1.8 slips=   6 period/round=5.52 [4.49,5.62] stick-slip
+N=128 g=0.002 v=0.10 F_N=0.6 slips=  14 period/round=2.06 [2.06,2.06] stick-slip
+N=128 g=0.002 v=0.10 F_N=1.2 slips=   9 period/round=3.18 [3.15,3.21] stick-slip
+N=128 g=0.002 v=0.10 F_N=1.5 slips=  92 period/round=0.20 [0.03,2.08] stick-slip
+N=128 g=0.002 v=0.10 F_N=0.9 slips= 108 period/round=0.22 [0.03,0.99] stick-slip

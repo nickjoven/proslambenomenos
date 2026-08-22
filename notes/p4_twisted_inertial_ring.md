@@ -155,3 +155,43 @@ control ring. All stick-slip sequences are strictly periodic (gap_min
    round trips in the control before any twist enters.
 
 P-4 status unchanged: OPEN; the model has not yet exhibited the gate.
+
+## Run 5 - low damping, slow bow, large N, control only (p4_lowdamp.py, p4_results_lowdamp.json)
+
+N in {64, 128}, damping g in {0.01, 0.002}, v in {0.05, 0.1}, F_N
+0.3-1.8, 40 round trips each, 14 parallel workers.
+
+1. HELMHOLTZ MOTION REACHED, first time in this model: at g = 0.002
+   and F_N <= 0.6 (v = 0.1) or F_N = 0.3 (v = 0.05), the slip period
+   is 2.02-2.07 round trips, flat in F_N, identical at N = 64 and 128,
+   gap_min = gap_max. Two round trips is the Helmholtz period of a
+   string of length N bowed at its midpoint. At g = 0.01 the same
+   rows are "sliding" (node stationary): the corner no longer
+   survives the trip. The corner now exists and gates.
+2. A FORMULA retracts the "integer plateaus": quasi-static loading of
+   a ring whose stiffness at the bow is 4J/N reaches mu_s F_N after
+   displacement N mu_s F_N/(4J), i.e. after time N mu_s F_N/(4 J v),
+   so period/round-trip = mu_s F_N/(4 J v) with NO wave involved.
+   This predicts 3.0 at (F_N, v) = (0.6, 0.05) and (1.2, 0.1) - the
+   observed 3.07-3.20 - and tracks every loading-limited row to
+   within ~15% (deviations grow with F_N as the sine coupling
+   saturates). The "3" and "4.3" values are grid coincidences of
+   F_N/(4v), not locking. Same trap as d4_nopin's rational snaps,
+   caught the same way: derive the null before reading the grid.
+   Run 4's periods obey the same formula.
+3. The gate region is numerically contaminated. Kawano's every-
+   second-arrival state would sit where loading alone fails within
+   2 round trips but succeeds within 4, with the corner present:
+   g = 0.002, v = 0.1, F_N between 0.8 and 1.1 (formula crosses 2 at
+   F_N = 8v). Exactly those rows (F_N = 0.9, and 1.5 at both N) show
+   100+ slips with gaps of 0.03-0.06 round trips - sub-transit
+   chatter from the forward-Euler stick-slip switch, not physics.
+   Nothing can be read there until the integrator is fixed.
+
+Status: the control exhibits the corner-gated regime; the x2 gate is
+not yet observed; its expected location is identified and is where
+the current integrator fails. Next, designed not run: an event-
+located stick-slip switch (or velocity-Verlet with sub-step root
+finding on the stick condition), then F_N 0.7-1.2 in steps of 0.05 at
+g = 0.002, v = 0.1, N = 128, control first. P-4 remains OPEN; the
+twist has not been tested in any regime where the gate exists.
