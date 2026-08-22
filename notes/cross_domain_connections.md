@@ -113,3 +113,35 @@ the quotient identification is standard covering-space material and
 checkable; nothing here is claimed novel. Rendering: cones and
 level-circle wireframes draw fine in termplot via parametric
 projection into plot_xy (demo run 2026-08-21).
+
+## X-8 — Two Z_2's: holonomy forces the count, a threshold selects it (2026-08-21)
+
+Kawano, Kobayashi, Suzuki, Ichiji, arXiv:2502.11902 (2025): the bowed
+violin subharmonic f0/2 is NOT parametric resonance. Mechanism
+(Guettler 2002, now filmed at 3000 fps): with high bow force and slow
+bow the returning Helmholtz corner fails to trigger slip, the contact
+point becomes a conditionally reflecting boundary, slip fires on every
+second corner arrival, and the bridge receives n*(f0/2) while the f0
+component stays trapped nut-side. Their own ablation: one transverse
+polarization + wave equation (inertia) + one stick-slip friction node
++ constant-velocity bow suffices; no tension modulation, no second
+polarization, no damping.
+
+The connection: a twisted loop (holonomy pi) has half-integer
+harmonics in its spectrum kinematically - "closing on the double
+cover" is a property of the bundle, always on. Kawano's f0/2 is the
+same count selected dynamically by a threshold, switchable by bow
+pressure, with f0 coexisting on one side of the gate. Josephson 0-pi
+arrays under drive (Frolov 2006; Lazarides 2008, LC-3) sit between:
+fixed pi bond + drive creates half-integer steps. Reading: a bundle
+class can only force which counts are AVAILABLE; a non-smooth
+threshold is what SELECTS among them. The source corpus used the
+first as if it did the second. This repo's current model space
+(first-order Kuramoto, smooth odd coupling, smooth pinning) lacks all
+three Kawano ingredients: inertia, a stick/slip state variable, a
+moving drive. The only f/2 it can produce is the K > 1
+non-invertible regime of the sine circle map - local period doubling,
+not a gated reflection. Mood: connection note; the Kawano summary is
+from an independent literature agent reading the arXiv HTML; the
+"forces vs selects" reading is a framing, not a theorem. Experiment
+preregistered as P-4.
