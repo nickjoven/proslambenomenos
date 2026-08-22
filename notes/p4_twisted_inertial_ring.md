@@ -282,3 +282,12 @@ result, not a puzzle. Reopening would require a new P-line with a
 model that keeps the loop (no clamp; a massless contact; N >= 64; low
 damping) and an observable that the background half-winding can
 actually reach.
+
+## Wording correction (2026-08-23, from building the capstone notebook)
+
+Run 5 item 2 said "the '3' and '4.3' values are grid coincidences of
+F_N/(4v)". Only the 3.0 rows are exact grid values of the formula
+((F_N, v) = (0.6, 0.05) and (1.2, 0.1)); the ~4.3 rows sit at
+predictions 3.75 and 4.5, inside the formula's stated 25%. They are
+loading-limited, not coincidences. The capstone notebook flags both
+kinds in its table rather than repeating the sentence.

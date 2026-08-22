@@ -509,3 +509,42 @@ hashes:
   9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
   243240999a02eb20701c5b20cca171aca2c45ee6b9dc6fcfd253bd799d62ad07  scripts/verify/q_j_structure_sectors.py
   f3a31f6bd498b34969dc720fea7e7b00e547552338d6375be3c01f62a2b7213c  tests/test_checks.py
+
+## LAW-18 — 2026-08-23 — the curriculum notebooks become a tenth gate
+direction: strengthen
+why: the temporal-first curriculum (T0-T6 + capstone) now exists as
+eight stdlib-only Jupyter notebooks built by an agent from the notes
+and the catalog, each module ending on a visibly failing mutant.
+scripts/check_notebooks.py (covered by the check_*.py glob) runs
+scripts/nb_run.py - every code cell in order, fresh namespace,
+nonzero on any exception - on every gate pass. A notebook that does
+not run is prose; the curriculum is evidence-grade only while it
+executes. The notebooks and nb_run.py are not hash-pinned (same
+tradeoff as catalog entries, LAW-13); the gate script is. Of record
+from the build: the P-4 note's "4.3 values are grid coincidences"
+was wrong (corrected in the note); for q >= 3 the sine-map tongue
+centre shifts by O(K^2), so widths bisected from p/q overstate by
+~4x (the compendium's C9 brackets already avoid this; the T1 notebook
+records it).
+hashes:
+  1b8ab111bb43eb17a25a822468e8f978c4883f67b9ea3b15bc5b85d0b499f7b4  catalog/_common.py
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  bf002174d2acae7f6ee1e20cb85c9c1079893d54a4761c593af09a960e774bb2  scripts/check_catalog.py
+  de456c53a7ca5d62c0e80184fe6e20fe8115f85e130de3a2a50212be3da4ab39  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  1a1610d4c0238d5e6c04b2e59fc68fb413aa52fb142fa3788a794b21f2518ee8  scripts/check_lawchanges.py
+  bdefe7404cf4d08b7fb019d2ce607933e594fff6e13cb7666cfe92d6cbae42a8  scripts/check_messages.py
+  9b0e2fcc9228dfd2c1ee4c011247205d58ca895c932e1f11496c86b596b9bb35  scripts/check_notebooks.py
+  0ddaeb011ba633cf3f4433b049c919393759ade85fe023374e33834048fd59f9  scripts/check_predictions.py
+  d234ef54cbcca21383fc960d8ecf1d55e835ebbedfec464515739e2ae1edc34c  scripts/check_verify_scripts.py
+  b9295a59107726bc6be52dbc876b4843a08e083f0835c51032d96ea5e5262ebb  scripts/run_all.py
+  78e4dc2720ffd206c7ef827cc7856c892ba9c3b11ccec07ac4c99e3b2d865052  scripts/run_compendium_checks.js
+  de67901cdc5fbdf8b29eed5e880e8736f3270f8ae6f3f01b579d41caf7c7255c  scripts/verify/iwasawa_one_stage.py
+  664b6917eb806d0bf4894d0a089b5107de4a95684b35827e2473c1b46f65879f  scripts/verify/kuramoto_einstein_refutation.py
+  19f02072bb299e8a590cc43b3c85a6c91dbe1ef20fe79da2a9aa813fd689bbd1  scripts/verify/p1_depth6_pairs.py
+  295765a5ab72dc9c4684762d91d41d7ef643785a99eb4bb7e0f5000dd0a0ff30  scripts/verify/p1_gradient_bc.py
+  9dd948075e8a0a5da9db0438be3b9ed9bb6d7b8f4e7092f282402318efc14e8a  scripts/verify/p1_mean_frequency.py
+  97bde79c88fc71a1f10af692c7acc4f980a7e97a6f9b1887bf55c5900485a1e5  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  243240999a02eb20701c5b20cca171aca2c45ee6b9dc6fcfd253bd799d62ad07  scripts/verify/q_j_structure_sectors.py
+  f3a31f6bd498b34969dc720fea7e7b00e547552338d6375be3c01f62a2b7213c  tests/test_checks.py
