@@ -99,3 +99,14 @@ pointer (LC-6).
 changes-my-mind: a peer-reviewed derivation producing the MOND
 interpolating function, or the BTFR normalisation, from de Sitter
 thermodynamics without fitted parameters.
+
+## R-2 — 2026-08-22 — resolves P-3
+outcome: as expected. The v1 statement is false (the 2-dimensional
+Borel subgroup AN kills two stages; the one-parameter-or-discrete
+dichotomy omits dimensions 2 and 3), the corrected classification
+of connected subgroups of SL(2,R) is proven (claim
+sl2r-connected-subgroups, classical), and the dimension-3 conclusion
+survives because it only ever used dim H >= 1. The mind-change
+condition did not fire. Resolution produced by a context-free
+auditor and reviewed; the physics premises of the source are not
+touched by the mathematics and remain unsupported.
