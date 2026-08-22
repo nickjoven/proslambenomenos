@@ -26,6 +26,7 @@ def run_fixture(files: dict) -> tuple:
                 errors.append(f"{cid}: recorded != computed ({computed})")
             cc.check_novelty(doc, errors, cid, lcs)
             cc.check_falsifier(doc, errors, cid, computed)
+            cc.check_compendium_refs(doc, errors, cid)
         return errors, claims
 
 
@@ -225,6 +226,13 @@ def main() -> int:
         "falsifier: 'scripts/verify/q1_saddle_node.py --mutant wrong-exponent'\n"
         "status: proven\n")})
     ok &= expect(not e, "proven with null and --mutant falsifier passes")
+
+    # RED (LAW-17): a free-text compendium reference must name a registered check
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: computation, ref: 'compendium C99 - census', method: reimplementation}]\n"
+        "status: verified\n")})
+    ok &= expect(any("not a registered check" in x for x in e), "LAW-17: phantom compendium ref blocks")
 
     # GREEN: evidence citing a real repo path
     e, _ = run_fixture({"a.yml": (
