@@ -124,3 +124,30 @@ recorded as such (notes/p4_twisted_inertial_ring.md, audit section).
 Also retracted with it: the "integrator fix" diagnosis (the chatter
 is the massive bow node's own period, physical) and the
 mu_d-independence of the loading formula (catalog c13).
+
+## P-6 — 2026-08-23 — dense circulant graphs that do not synchronize
+question: on circulant graphs C_n(S) with identical Kuramoto
+oscillators, which (n, S, q) admit a linearly stable q-twisted state
+theta_j = 2 pi q j / n, and what is the largest edge density at which
+one exists? Known: Townsend, Stillman, Strogatz (Chaos 30, 083142,
+2020) exhibit non-synchronizing circulant graphs at density ~ 0.6809;
+Kassabov, Strogatz, Townsend (Chaos 31, 073135, 2021) prove every
+graph of density > 0.75 synchronizes globally. The gap is open.
+method: exhaustive over all symmetric connection sets S for n <= 28
+(stability from the closed-form circulant eigenvalues lambda_m =
+sum_{k in S} cos(2 pi q k/n)(1 - cos(2 pi m k/n)) >= 0 for all m != 0);
+greedy/random search for 28 < n <= 64; independent check of any
+reported stable state by direct Jacobian eigenvalues.
+expects: the maximal circulant density with a stable twisted state
+is reproduced at ~0.68 and does NOT exceed 0.6809 + 1e-3 for n <= 64:
+the circulant family was already optimised by the 2020 authors and
+the open gap lives in non-circulant graphs. Secondary: the maximising
+S are the "near-half" families (offsets concentrated where cos(2 pi q
+k/n) > 0), and the density maximum approaches from below as n grows.
+changes-my-mind: a circulant C_n(S), n <= 64, with a twisted state
+whose Jacobian has all non-trivial eigenvalues strictly negative at
+density > 0.6819, verified by the independent Jacobian check - that
+would move the published lower bound and be reported as such. Any
+stable twisted state above 0.75 is a bug, not a result (theorem).
+not-claimed-in-advance: anything about non-circulant graphs; the
+global-sync threshold itself.
