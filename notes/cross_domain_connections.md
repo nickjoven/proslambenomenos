@@ -145,3 +145,27 @@ not a gated reflection. Mood: connection note; the Kawano summary is
 from an independent literature agent reading the arXiv HTML; the
 "forces vs selects" reading is a framing, not a theorem. Experiment
 preregistered as P-4.
+
+## X-9 — Kinematic gap (holonomy) vs dynamical gap (Yang-Mills) (2026-08-21)
+
+The twisted sector of the flat Klein bottle has no zero mode: with
+antiperiodic closure the lowest eigenvalue is strictly positive (modes
+at half-integers; claim klein-orientation-bundle-spectrum). That is a
+spectral gap in the literal sense, and it is classical: Scherk-Schwarz
+compactification (Scherk & Schwarz, Phys. Lett. B 82, 60 (1979)) gaps a
+field by twisting its boundary condition; antiperiodic fermions at
+finite temperature carry odd Matsubara frequencies (the X-2 anchor);
+the harmonics corpus's half-winding material is this fact under
+another name. The Yang-Mills Millennium problem asks for a gap that
+INTERACTIONS generate in a theory whose free, untwisted, trivial-bundle
+limit is gapless (massless gluons), non-abelian, in 4D, with a
+rigorously constructed measure. Same split as X-8: a bundle class
+forces a gap kinematically; YM needs dynamics to produce one where
+kinematics gives none. The corpus repeatedly took the first kind of gap
+and spoke of it in the second kind's vocabulary - this is the precise
+location of the "mass" overclaim, and the word "mass" is the only thing
+the two share. Harmonics' remaining mass content is spectrum
+numerology on a declared input scale v_EW (MANIFEST.yml
+dimensionful_inputs_detail; Koide carried here as a proven identity
+plus a capped coincidence claim). Mood: classical distinction, no
+claim; nothing in either repo bears on the dynamical gap.
