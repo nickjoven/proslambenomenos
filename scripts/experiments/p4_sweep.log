@@ -1,0 +1,120 @@
+N=8 control        F_N=0.90 slips=   0 period/round=  -  sliding
+N=8 control        F_N=1.00 slips=   0 period/round=  -  sliding
+N=8 control        F_N=1.10 slips=  25 period/round=0.982 stick-slip
+N=8 control        F_N=1.20 slips=  25 period/round=1.008 stick-slip
+N=8 control        F_N=1.30 slips=  24 period/round=1.036 stick-slip
+N=8 control        F_N=1.40 slips=  23 period/round=1.058 stick-slip
+N=8 control        F_N=1.50 slips=  22 period/round=1.144 stick-slip
+N=8 control        F_N=1.60 slips=  21 period/round=1.191 stick-slip
+N=8 control        F_N=1.70 slips=  20 period/round=1.212 stick-slip
+N=8 control        F_N=1.80 slips=  21 period/round=1.229 stick-slip
+N=8 control        F_N=1.90 slips=  19 period/round=1.332 stick-slip
+N=8 control        F_N=2.00 slips=  18 period/round=1.401 stick-slip
+N=8 control        F_N=2.10 slips=   0 period/round=  -  stuck
+N=8 control        F_N=2.20 slips=   0 period/round=  -  stuck
+N=8 control        F_N=2.30 slips=   0 period/round=  -  stuck
+N=8 twisted        F_N=0.90 slips=   0 period/round=  -  sliding
+N=8 twisted        F_N=1.00 slips=   0 period/round=  -  sliding
+N=8 twisted        F_N=1.10 slips=   0 period/round=  -  sliding
+N=8 twisted        F_N=1.20 slips=  25 period/round=0.998 stick-slip
+N=8 twisted        F_N=1.30 slips=  24 period/round=1.030 stick-slip
+N=8 twisted        F_N=1.40 slips=   0 period/round=  -  sliding
+N=8 twisted        F_N=1.50 slips=  23 period/round=1.108 stick-slip
+N=8 twisted        F_N=1.60 slips=  22 period/round=1.124 stick-slip
+N=8 twisted        F_N=1.70 slips=  21 period/round=1.157 stick-slip
+N=8 twisted        F_N=1.80 slips=  19 period/round=1.325 stick-slip
+N=8 twisted        F_N=1.90 slips=  17 period/round=1.360 stick-slip
+N=8 twisted        F_N=2.00 slips=   8 period/round=1.489 stick-slip
+N=8 twisted        F_N=2.10 slips=   0 period/round=  -  stuck
+N=8 twisted        F_N=2.20 slips=   0 period/round=  -  stuck
+N=8 twisted        F_N=2.30 slips=   0 period/round=  -  stuck
+N=9 control        F_N=0.90 slips=   0 period/round=  -  sliding
+N=9 control        F_N=1.00 slips=   0 period/round=  -  sliding
+N=9 control        F_N=1.10 slips=   0 period/round=  -  sliding
+N=9 control        F_N=1.20 slips=  20 period/round=0.923 stick-slip
+N=9 control        F_N=1.30 slips=  19 period/round=0.934 stick-slip
+N=9 control        F_N=1.40 slips=  19 period/round=0.942 stick-slip
+N=9 control        F_N=1.50 slips=  18 period/round=0.949 stick-slip
+N=9 control        F_N=1.60 slips=  25 period/round=0.913 stick-slip
+N=9 control        F_N=1.70 slips=  19 period/round=1.127 stick-slip
+N=9 control        F_N=1.80 slips=  19 period/round=1.141 stick-slip
+N=9 control        F_N=1.90 slips=  19 period/round=1.153 stick-slip
+N=9 control        F_N=2.00 slips=  17 period/round=1.253 stick-slip
+N=9 control        F_N=2.10 slips=   0 period/round=  -  stuck
+N=9 control        F_N=2.20 slips=   0 period/round=  -  stuck
+N=9 control        F_N=2.30 slips=   0 period/round=  -  stuck
+N=9 twisted        F_N=0.90 slips=   0 period/round=  -  sliding
+N=9 twisted        F_N=1.00 slips=   0 period/round=  -  sliding
+N=9 twisted        F_N=1.10 slips=   0 period/round=  -  sliding
+N=9 twisted        F_N=1.20 slips=   0 period/round=  -  sliding
+N=9 twisted        F_N=1.30 slips=   0 period/round=  -  sliding
+N=9 twisted        F_N=1.40 slips=  16 period/round=0.950 stick-slip
+N=9 twisted        F_N=1.50 slips=  24 period/round=0.918 stick-slip
+N=9 twisted        F_N=1.60 slips=  16 period/round=0.949 stick-slip
+N=9 twisted        F_N=1.70 slips=  23 period/round=0.941 stick-slip
+N=9 twisted        F_N=1.80 slips=  24 period/round=0.953 stick-slip
+N=9 twisted        F_N=1.90 slips=  23 period/round=0.967 stick-slip
+N=9 twisted        F_N=2.00 slips=  17 period/round=1.303 stick-slip
+N=9 twisted        F_N=2.10 slips=   0 period/round=  -  stuck
+N=9 twisted        F_N=2.20 slips=   0 period/round=  -  stuck
+N=9 twisted        F_N=2.30 slips=   0 period/round=  -  stuck
+N=16 control       F_N=0.90 slips=  26 period/round=0.473 stick-slip
+N=16 control       F_N=1.00 slips=  26 period/round=0.483 stick-slip
+N=16 control       F_N=1.10 slips=  26 period/round=0.495 stick-slip
+N=16 control       F_N=1.20 slips=  24 period/round=0.508 stick-slip
+N=16 control       F_N=1.30 slips=  24 period/round=0.519 stick-slip
+N=16 control       F_N=1.40 slips=  24 period/round=0.527 stick-slip
+N=16 control       F_N=1.50 slips=  24 period/round=0.533 stick-slip
+N=16 control       F_N=1.60 slips=  23 period/round=0.538 stick-slip
+N=16 control       F_N=1.70 slips=  18 period/round=0.574 stick-slip
+N=16 control       F_N=1.80 slips=  20 period/round=0.618 stick-slip
+N=16 control       F_N=1.90 slips=  19 period/round=0.637 stick-slip
+N=16 control       F_N=2.00 slips=  19 period/round=0.646 stick-slip
+N=16 control       F_N=2.10 slips=   0 period/round=  -  stuck
+N=16 control       F_N=2.20 slips=   0 period/round=  -  stuck
+N=16 control       F_N=2.30 slips=   0 period/round=  -  stuck
+N=16 twisted       F_N=0.90 slips=   0 period/round=  -  sliding
+N=16 twisted       F_N=1.00 slips=   0 period/round=  -  sliding
+N=16 twisted       F_N=1.10 slips=  25 period/round=0.492 stick-slip
+N=16 twisted       F_N=1.20 slips=  25 period/round=0.498 stick-slip
+N=16 twisted       F_N=1.30 slips=  25 period/round=0.503 stick-slip
+N=16 twisted       F_N=1.40 slips=  23 period/round=0.524 stick-slip
+N=16 twisted       F_N=1.50 slips=  24 period/round=0.534 stick-slip
+N=16 twisted       F_N=1.60 slips=  23 period/round=0.539 stick-slip
+N=16 twisted       F_N=1.70 slips=  19 period/round=0.553 stick-slip
+N=16 twisted       F_N=1.80 slips=  23 period/round=0.558 stick-slip
+N=16 twisted       F_N=1.90 slips=  20 period/round=0.623 stick-slip
+N=16 twisted       F_N=2.00 slips=  19 period/round=0.665 stick-slip
+N=16 twisted       F_N=2.10 slips=   0 period/round=  -  stuck
+N=16 twisted       F_N=2.20 slips=   0 period/round=  -  stuck
+N=16 twisted       F_N=2.30 slips=   0 period/round=  -  stuck
+N=17 control       F_N=0.90 slips=   0 period/round=  -  sliding
+N=17 control       F_N=1.00 slips=   0 period/round=  -  sliding
+N=17 control       F_N=1.10 slips=  26 period/round=0.453 stick-slip
+N=17 control       F_N=1.20 slips=  25 period/round=0.471 stick-slip
+N=17 control       F_N=1.30 slips=  24 period/round=0.489 stick-slip
+N=17 control       F_N=1.40 slips=  23 period/round=0.501 stick-slip
+N=17 control       F_N=1.50 slips=  23 period/round=0.510 stick-slip
+N=17 control       F_N=1.60 slips=  23 period/round=0.517 stick-slip
+N=17 control       F_N=1.70 slips=  22 period/round=0.521 stick-slip
+N=17 control       F_N=1.80 slips=  23 period/round=0.526 stick-slip
+N=17 control       F_N=1.90 slips=  20 period/round=0.578 stick-slip
+N=17 control       F_N=2.00 slips=  19 period/round=0.622 stick-slip
+N=17 control       F_N=2.10 slips=   0 period/round=  -  stuck
+N=17 control       F_N=2.20 slips=   0 period/round=  -  stuck
+N=17 control       F_N=2.30 slips=   0 period/round=  -  stuck
+N=17 twisted       F_N=0.90 slips=   0 period/round=  -  sliding
+N=17 twisted       F_N=1.00 slips=   0 period/round=  -  sliding
+N=17 twisted       F_N=1.10 slips=   0 period/round=  -  sliding
+N=17 twisted       F_N=1.20 slips=   0 period/round=  -  sliding
+N=17 twisted       F_N=1.30 slips=  25 period/round=0.486 stick-slip
+N=17 twisted       F_N=1.40 slips=  23 period/round=0.502 stick-slip
+N=17 twisted       F_N=1.50 slips=  23 period/round=0.512 stick-slip
+N=17 twisted       F_N=1.60 slips=  22 period/round=0.520 stick-slip
+N=17 twisted       F_N=1.70 slips=  22 period/round=0.526 stick-slip
+N=17 twisted       F_N=1.80 slips=  17 period/round=0.568 stick-slip
+N=17 twisted       F_N=1.90 slips=  19 period/round=0.599 stick-slip
+N=17 twisted       F_N=2.00 slips=  19 period/round=0.631 stick-slip
+N=17 twisted       F_N=2.10 slips=   0 period/round=  -  stuck
+N=17 twisted       F_N=2.20 slips=   0 period/round=  -  stuck
+N=17 twisted       F_N=2.30 slips=   0 period/round=  -  stuck

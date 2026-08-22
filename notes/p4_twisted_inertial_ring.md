@@ -1,0 +1,68 @@
+# P-4 working document: holonomy vs gate on a twisted inertial ring
+
+Governed by P-4 (PREDICTIONS.md): expects the period-doubling gating
+threshold UNCHANGED between twisted and control; mind-change is a
+threshold shift surviving N, friction parameters, drive velocity, and
+independent reimplementation. Model and both runs:
+scripts/experiments/p4_twisted_inertial_ring.py; results in
+p4_results_pinned.json / p4_sweep_pinned.log and
+p4_results_clamp.json / p4_sweep_clamp.log. Prose carries no load.
+
+## Run 1 - substrate-pinned ring (outside the Kawano regime)
+
+Ring of N inertial phase oscillators, sine coupling J = 1, damping
+0.05, bow node at N/2 dragged at v = 0.3 with Coulomb stick-slip
+(mu_s = 1, mu_d = 0.5, normal force F_N swept), one bond with offset
+pi (twisted) or 0 (control). First smoke run with NO restoring term:
+0 slips at every F_N - a free ring co-rotates with the bow (rigid
+rotation zero mode). Added on-site -K sin(theta), K = 1.
+
+Result: slip period ~ 8 time units at N = 8, 9, 16, 17 alike
+(period/round-trip 1.0 at N = 8-9, 0.5 at N = 16-17). The slip clock
+is local (substrate + bow), not a returning corner: the on-site term
+gaps the chain and kills propagation. No period doubling anywhere.
+The variant does not implement the Kawano/Guettler mechanism and
+cannot answer P-4. Stuck threshold F_N = 2.1 identical in all 8
+configurations - trivially, the bound 2J + gamma*v = 2.015.
+Unregistered observation: sliding -> stick-slip onset is higher in
+the twisted ring at every N (control 1.1/1.2/<=0.9/1.1, twisted
+1.2/1.4/1.1/1.3 for N = 8/9/16/17).
+
+## Run 2 - clamped ring (Helmholtz regime)
+
+Substrate removed; site 0 clamped (the bridge); bow at N/2; so the
+ring is a string of length N fixed at one point with the bow at its
+midpoint, Helmholtz period 2N/c = 2 T_round. F_N from 0.6 to 2.3,
+T = 400, slips counted after T = 200, Euler dt = 0.01 (not
+symplectic - numerical caveat stands).
+
+Findings, stated only as far as the data goes:
+1. Slip period/round-trip sits at 2.1-2.6 for all N and both twist
+   states across the stick-slip band: the clamp variant IS in the
+   Helmholtz regime. The f0/2 analog would be ratio ~4.
+2. Ratios >= 4 appear ONLY in twisted rings near the stuck edge:
+   N = 8 at F_N = 1.8/1.9 (4.37, 7.47; 6 and 5 slips), N = 9 at
+   1.9/2.0 (5.62, 5.38; 4 and 3 slips). Control maxima in the same
+   band: 2.66 (N=8), 3.06 (N=9), 2.87 (N=16), 2.43 (N=17). At N = 16
+   and 17 the twisted rings reach only 3.06 and 2.67. With 3-6 slips
+   per window the ratio is a median of 2-5 gaps: statistically thin.
+   This leans AGAINST P-4's expectation at small N and does not meet
+   P-4's own bar (does not survive N at this resolution; no parameter
+   variation; no reimplementation). Recorded as inconclusive.
+3. Robust and unregistered: the twisted ring's sliding -> stick-slip
+   onset is higher at every N in this variant too (control 0.8/1.1/
+   1.3/1.8, twisted 1.1/0.8*/1.8/1.2 - *N = 9 is the exception in
+   onset but then shows a wide sliding island; N = 17 twisted is
+   mostly sliding). Same sign as run 1 in 7 of 8 configurations.
+   Mechanism not identified; a twisted clamped ring must carry a
+   half-winding background (pi/N per bond) and the bow node sits in
+   it - whether that background changes the stick force balance is a
+   one-page calculation not yet done.
+
+## Next (designed, not run unless chosen)
+
+Refinement run near the stuck edge: F_N 1.5-2.1 step 0.05, T = 1200,
+count after 400, N = 8, 9, 16, 17, both twist states; then the
+half-winding force-balance calculation; then a second
+implementation (velocity-Verlet, independent code) before any claim
+touches the P-4 mind-change condition.
