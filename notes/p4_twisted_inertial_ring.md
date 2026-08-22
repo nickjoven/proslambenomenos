@@ -195,3 +195,12 @@ located stick-slip switch (or velocity-Verlet with sub-step root
 finding on the stick condition), then F_N 0.7-1.2 in steps of 0.05 at
 g = 0.002, v = 0.1, N = 128, control first. P-4 remains OPEN; the
 twist has not been tested in any regime where the gate exists.
+
+## Correction to run 5, item 2 (2026-08-22, from the catalog gate)
+
+"Tracks every loading-limited row to within ~15%" overstated: the
+rows whose predicted period is near the Helmholtz value 2 (F_N = 0.9,
+v = 0.1 at both N) are 27-37% off - loading and wave timing interact
+there. The formula holds to < 20% where F_N/(4 J v) >= 3 (10 rows);
+catalog/c12 carries the scoped statement and would have failed on the
+original wording.
