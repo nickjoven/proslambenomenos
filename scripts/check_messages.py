@@ -86,7 +86,10 @@ def check_commit(sha, msg, touched_claim_ids, statuses):
 
 def touched_claims(sha):
     r = subprocess.run(
-        ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", sha],
+        # -m --first-parent: merge commits are diffed against their first
+        # parent, so an 'evil merge' touching claims/ is not invisible
+        # (audit 2026-08-22, LAW-16).
+        ["git", "diff-tree", "--no-commit-id", "--name-only", "-r", "-m", "--first-parent", sha],
         capture_output=True, text=True, cwd=ROOT, check=False)
     out = set()
     for line in r.stdout.splitlines():

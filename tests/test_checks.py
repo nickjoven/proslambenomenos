@@ -194,6 +194,29 @@ def main() -> int:
     ok &= expect(any("falsifier" in x for x in e) and any("null_system" in x for x in e),
                  "proven with verify evidence lacking null/falsifier blocks")
 
+    # RED (LAW-16): falsifier borrowed from another claim's script
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: r}, {kind: computation, ref: 'scripts/verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "null_system: 'n'\n"
+        "falsifier: 'scripts/verify/p1_gradient_bc.py --mutant and-not-xor'\n"
+        "status: proven\n")})
+    ok &= expect(any("borrowed" in x for x in e), "LAW-16: borrowed falsifier blocks")
+
+    # RED (LAW-16): verified status is in scope too
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: computation, ref: 'scripts/verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "status: verified\n")})
+    ok &= expect(any("falsifier" in x for x in e), "LAW-16: verified claims need a falsifier")
+
+    # RED (LAW-16): path normalisation - scripts//verify cannot dodge the rule
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: r}, {kind: computation, ref: 'scripts//verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "status: proven\n")})
+    ok &= expect(any("falsifier" in x for x in e), "LAW-16: double-slash path does not dodge the rule")
+
     # GREEN: same claim with null and a --mutant falsifier
     e, _ = run_fixture({"a.yml": (
         "id: a\nstatement: x\n"
@@ -206,7 +229,7 @@ def main() -> int:
     # GREEN: evidence citing a real repo path
     e, _ = run_fixture({"a.yml": (
         "id: a\nstatement: x\n"
-        "evidence: [{kind: computation, ref: 'scripts/verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "evidence: [{kind: computation, ref: 'scripts/experiments/d4_2d_pairs.py - check', method: reimplementation}]\n"
         "status: verified\n")})
     ok &= expect(not e, "evidence citing an existing repo path passes")
 

@@ -16,6 +16,9 @@ for n in (1, 2, 5):
     # pitch angle: tan i = dr / (r dphi)
     i = math.degrees(math.atan2((r2 - r1), (1.0 * abs(dphi)))) if dphi != 0 else 90.0
     pitch.append(i)
-# the claim, evaluated identically in both modes: rigid rotation cannot satisfy it
-ok = pitch[1] < 5.0 and pitch[2] < pitch[1] < pitch[0]
+# the claim, evaluated identically in both modes: rigid rotation cannot satisfy it.
+# 1/t law: tan(i_n) * n is constant across n = 1, 2, 5 (to 1e-9 - it is exact here)
+tn = [math.tan(math.radians(p)) * n for p, n in zip(pitch, (1, 2, 5))]
+law = max(tn) - min(tn) < 1e-9 * max(tn) if max(tn) < 1e9 else False
+ok = pitch[1] < 5.0 and pitch[2] < pitch[1] < pitch[0] and law
 sys.exit(finish(ok, f"pitch angle after 1, 2, 5 rotations: {[round(p, 2) for p in pitch]} deg ({'rigid' if rigid else 'flat curve'})"))

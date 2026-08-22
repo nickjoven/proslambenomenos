@@ -37,6 +37,7 @@ def covered_files():
                     for p in (ROOT / "scripts" / "verify").glob("*.py"))
     files.append("scripts/run_all.py")
     files.append("tests/test_checks.py")
+    files.append("catalog/_common.py")   # LAW-16: the catalog harness decides what self-testing means
     return sorted(set(files))
 
 

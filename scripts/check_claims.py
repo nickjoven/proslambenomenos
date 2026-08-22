@@ -205,6 +205,22 @@ def check_novelty(doc: dict, errors: list, cid: str, lcs: set) -> None:
 VERIFY_REF = re.compile(r"scripts/verify/[\w.-]+\.py")
 
 
+def verify_scripts_cited(doc: dict) -> set:
+    """Normalised scripts/verify/*.py paths cited by computation evidence.
+    Path tokens are normalised (os.path.normpath) so 'scripts//verify/x.py'
+    and 'scripts/./verify/x.py' cannot dodge the rule (audit 2026-08-22)."""
+    import os
+    out = set()
+    for e in doc.get("evidence") or []:
+        if not isinstance(e, dict) or e.get("kind") != "computation":
+            continue
+        for tok in REF_PATH.findall(e.get("ref") or ""):
+            tok = os.path.normpath(tok.rstrip("."))
+            if tok.startswith("scripts/verify/") and tok.endswith(".py"):
+                out.add(tok)
+    return out
+
+
 def check_falsifier(doc: dict, errors: list, cid: str, computed: str) -> None:
     """LAW-11: a proven claim whose computation cites a scripts/verify
     script must name its NULL (the simplest system where the same
@@ -213,11 +229,13 @@ def check_falsifier(doc: dict, errors: list, cid: str, computed: str) -> None:
     FAIL. The verify gate runs falsifiers and requires rc != 0. A
     script for which no failing mutant can be written is restating
     the claim, not testing it (the J^2 sector error, LC-5)."""
-    if computed != "proven":
+    # LAW-16: applies to every SETTLED-by-computation status, not only
+    # proven - 'verified' settles premises and licenses conclusive
+    # language with the same weight.
+    if computed not in ("proven", "verified"):
         return
-    refs = " ".join((e or {}).get("ref") or "" for e in doc.get("evidence") or []
-                    if (e or {}).get("kind") == "computation")
-    if not VERIFY_REF.search(refs):
+    cited = verify_scripts_cited(doc)
+    if not cited:
         return
     null = doc.get("null_system")
     if not isinstance(null, str) or not null.strip():
@@ -228,11 +246,16 @@ def check_falsifier(doc: dict, errors: list, cid: str, computed: str) -> None:
         errors.append(f"{cid}: proven with scripts/verify evidence requires a "
                       f"falsifier: command (LAW-11)")
         return
-    path = fal.split()[0]
+    import os
+    parts = fal.split()
+    path = os.path.normpath(parts[0])
     if not (ROOT / path).exists():
         errors.append(f"{cid}: falsifier path {path!r} does not exist")
-    if "--mutant" not in fal:
-        errors.append(f"{cid}: falsifier must invoke a --mutant mode")
+    if path not in cited:
+        errors.append(f"{cid}: falsifier {path!r} is not one of this claim's cited "
+                      f"verify scripts {sorted(cited)} (LAW-16: no borrowed falsifiers)")
+    if "--mutant" not in parts or parts[-1] == "--mutant" and len(parts) < 3:
+        errors.append(f"{cid}: falsifier must invoke '--mutant <name>'")
 
 
 def detect_cycles(claims: dict, errors: list) -> None:

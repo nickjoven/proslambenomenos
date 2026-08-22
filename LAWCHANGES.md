@@ -414,3 +414,52 @@ hashes:
   9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
   9573c69f65ee06679584e3fa67cb37bc4b2c7aba9e745eaa2d5da9ad01438646  scripts/verify/q_j_structure_sectors.py
   28dac92b5ffc812b5f8b6c60a268779f6d4a5b90a34b2c55e07772312a151bc4  tests/test_checks.py
+
+## LAW-16 — 2026-08-22 — gate bypasses closed after adversarial audit
+direction: strengthen
+why: a context-free audit of LAW-11/13 found, with demonstrations:
+(1) the falsifier runner regexed claims/*.yml and, on a single-quoted
+or block-scalar value, ran a nonexistent file whose rc 2 counted as
+"fails as required" - the repo's own green fixture used the evasion
+form; (2) any crash, any file, or another claim's script satisfied
+"nonzero exit"; (3) LAW-11 applied to proven only, while verified
+settles premises with equal weight; (4) VERIFY_REF missed
+scripts//verify/x.py while G3 resolved it; (5) the message gate's
+diff-tree was blind to merge commits; (6) catalog/_common.py - the
+harness that defines "self-testing" - and c12's data were unpinned;
+a raising mutant branch counted as failing. Fixes: falsifiers are
+read from parsed YAML; a falsifier counts only if it is one of the
+claim's own cited verify scripts, runs, exits 1 (not 2), prints a
+FAIL line, and leaves no traceback; verify scripts exit 2 on an
+unknown mutant name; the rule covers proven and verified; evidence
+paths are normalised; diff-tree runs with -m --first-parent; the
+catalog harness requires the MUTANT FAIL sentinel and handles a
+missing docstring as a failure; catalog/_common.py joins the covered
+set; data-reading entries pin their inputs by sha256. Entries that
+asserted several facts under one mutant were split (c08 -> c08/c14/
+c15; c09 -> c09/c16); c04 asserts the 1/t law; c12 rescoped (25%,
+16 rows); c13 records the mu_d dependence the formula cannot see.
+Fixtures added for borrowed falsifier, verified-in-scope, and path
+normalisation. Of record: the P-3 mutant was renamed borel-abelian
+to satisfy the named-mutant rule.
+hashes:
+  1b8ab111bb43eb17a25a822468e8f978c4883f67b9ea3b15bc5b85d0b499f7b4  catalog/_common.py
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  bf002174d2acae7f6ee1e20cb85c9c1079893d54a4761c593af09a960e774bb2  scripts/check_catalog.py
+  25565a386761e84d5cea6f708c8d9dbf09f23525c4d204a9be6082df41b43b22  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  1a1610d4c0238d5e6c04b2e59fc68fb413aa52fb142fa3788a794b21f2518ee8  scripts/check_lawchanges.py
+  bdefe7404cf4d08b7fb019d2ce607933e594fff6e13cb7666cfe92d6cbae42a8  scripts/check_messages.py
+  0ddaeb011ba633cf3f4433b049c919393759ade85fe023374e33834048fd59f9  scripts/check_predictions.py
+  d234ef54cbcca21383fc960d8ecf1d55e835ebbedfec464515739e2ae1edc34c  scripts/check_verify_scripts.py
+  28302350dc360f2408c0e97793fcb6a9b7bacd6b19f41383595139aa238daaac  scripts/run_all.py
+  dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
+  de67901cdc5fbdf8b29eed5e880e8736f3270f8ae6f3f01b579d41caf7c7255c  scripts/verify/iwasawa_one_stage.py
+  664b6917eb806d0bf4894d0a089b5107de4a95684b35827e2473c1b46f65879f  scripts/verify/kuramoto_einstein_refutation.py
+  19f02072bb299e8a590cc43b3c85a6c91dbe1ef20fe79da2a9aa813fd689bbd1  scripts/verify/p1_depth6_pairs.py
+  295765a5ab72dc9c4684762d91d41d7ef643785a99eb4bb7e0f5000dd0a0ff30  scripts/verify/p1_gradient_bc.py
+  9dd948075e8a0a5da9db0438be3b9ed9bb6d7b8f4e7092f282402318efc14e8a  scripts/verify/p1_mean_frequency.py
+  97bde79c88fc71a1f10af692c7acc4f980a7e97a6f9b1887bf55c5900485a1e5  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  243240999a02eb20701c5b20cca171aca2c45ee6b9dc6fcfd253bd799d62ad07  scripts/verify/q_j_structure_sectors.py
+  e58ecaca687124efa87ee52c64f449dbd20fbb2371eee445f6dcf0b8afd8ce8f  tests/test_checks.py

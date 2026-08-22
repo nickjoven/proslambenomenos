@@ -9,7 +9,11 @@ conjugate to A; (4) Iwasawa g = k a n for random SL(2,R). The
 --mutant asserts the v1 reading (every connected H != {e} is
 one-parameter, hence abelian) on H = AN and must fail."""
 import sys, math, random
-MUTANT = '--mutant' in sys.argv
+_i = sys.argv.index('--mutant') if '--mutant' in sys.argv else -1
+_name = sys.argv[_i + 1] if _i >= 0 and _i + 1 < len(sys.argv) else (True if _i >= 0 else None)
+if _name is not None and _name != 'borel-abelian':
+    print(f"usage error: unknown mutant {_name!r}; known: ['borel-abelian']"); sys.exit(2)
+MUTANT = _name == 'borel-abelian'
 random.seed(int(sys.argv[sys.argv.index('--seed')+1]) if '--seed' in sys.argv else 3)
 EPS = 1e-9
 def mm(A,B): return [[sum(A[i][k]*B[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
