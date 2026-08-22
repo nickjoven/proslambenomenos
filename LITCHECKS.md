@@ -139,3 +139,51 @@ Rankine-Hugoniot speed, dissipative, born from smooth data) -
 Hadamard 1903; Courant & Friedrichs, Supersonic Flow and Shock Waves
 (1948). Lattice "shocks" (Holian, Flaschka, McLaughlin, PRA 24, 2595
 (1981)) are dispersive shock waves, a third object.
+
+## LC-5 — the half-shift J, Pin structures, odd-ring frustration, phi even (2026-08-22)
+prediction: P-1
+
+Triggered by the scrutiny that refuted twisted-sector-complex-structure.
+Independent context-free agent, 7 tool calls.
+
+S1 (J^2 = -I on the twisted sector). Agent verdict WRONG - agreeing
+with the refutation but via a different normalization: it took the
+x-period to be g^2's shift, so its J is the full glide shift (= the
+reflection pullback up to sign), which squares to +1 on both bundles.
+The claim's J is HALF the glide shift, an order-4 operator on sections
+(J^4 = g^2); on the real span of cos(pi x/L1), sin(pi x/L1) it is a
+90-degree rotation. Translating the agent's mode table ("m odd ->
+even in y, m even -> odd in y" in its units) into the claim's units
+gives (half-integer m, cos) and (integer m, sin) as the twisted
+bundle - the counterexample of q_j_structure_sectors.py. Both
+analyses agree the bundle does not determine the sign. What the
+object is: a Z_4 extension acting faithfully on the half-integer-m
+(antiperiodic-in-x) modes, the standard half-shift of freely acting /
+Scherk-Schwarz orbifolds and of antiperiodic XXZ "twisted translation"
+operators (Niekamp, Wirth, Frahm 2009); folklore, no source found
+stating it as a theorem; arXiv:2606.07041 (2026) is adjacent and
+should be read before any claim here. Pin: the "reflection lift
+squares to -1" analogy is Pin^-(1) = Z_4 vs Pin^+(1) = Z_2 x Z_2 group
+theory (Kirby & Taylor, LMS Lecture Notes 151 (1990), 177-242;
+Witten arXiv:1508.04715 sec. 2), not a fact about line-bundle
+sections; K^2 has w_2 = w_1^2 = 0 so four Pin^+ and four Pin^-
+structures (Kirby-Taylor; arXiv:2112.07290). The "discrete analog of
+4 pi spinor periodicity" sentence: not defensible beyond metaphor;
+the precise statement is the central extension 1 -> Z_2 -> Z_4 -> Z_2
+-> 1, same shape as Spin -> SO, different object. Disposition: the
+replacement claim half-shift-squares-by-x-parity carries the
+(-1)^(2m) arithmetic only, novelty = classical (folklore half-shift).
+
+S2 (M even needed for the pi-staggered branch). KNOWN, textbook:
+"topological frustration" / frustrated boundary conditions on odd
+rings - Maric, Giampaolo, Kuic, Franchini, New J. Phys. 22, 083024
+(2020); Maric, Giampaolo, Franchini, Commun. Phys. 3, 220 (2020);
+Lazarides, PRB 77, 214419 (2008) even/odd 0-pi arrays. Disposition:
+the M-even condition in klein-twisted-gradient-xor is a named lattice-
+parity artifact; the claim's classical citation is extended here.
+
+S3 (phi(q) even for q > 2; the Farey involution fixed-point-free for
+q > 2). KNOWN, trivial: Hardy & Wright ch. V; the pairing p <-> q - p
+IS the standard proof of evenness, so farey-antipodal-orbit-counts'
+"phi even gives fixed-point-freeness" has the logic backwards in
+emphasis (the pairing is primary). Already ROUTINE per LC-2.

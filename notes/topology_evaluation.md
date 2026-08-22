@@ -271,3 +271,26 @@ arithmetic wears topological language without constructing any
 topological object. The constructive core is larger and better than
 my earlier summaries credited; the bridge is exactly one question;
 and nothing in the corpus's topology, correct or not, closes it.
+
+## 7a. Correction (2026-08-21): §7 misidentified the sector
+
+§7 and claim twisted-sector-complex-structure assert J² = −I on the
+twisted bundle and +I on the untwisted one, with the premise that the
+twisted sector's x-modes have half-integer m. The premise contradicts
+C7 / klein-orientation-bundle-spectrum: the twisted bundle is the set
+p_x + p_y odd, i.e. (half-integer m, cos) AND (integer m, sin). Direct
+computation: J² = translation by L₁ = e^{2πim} = (−1)^{2m}, so J² = +I
+on the (integer m, sin) twisted modes and −I on the (half-integer m,
+sin) untwisted modes. Equivalently, from the glide condition
+e^{2πim}·R_y = ε: J² = ε·R_y. The complex structure belongs to the
+x-parity class, which straddles both bundles; it is not a property of
+the orientation bundle, and the "discrete analog of spinors" sentence
+has no object to attach to. Claim refuted; replacement
+half-shift-squares-by-x-parity; refutation script
+q_j_structure_sectors.py. The original verify script passed because
+its "integer sector" cases were (integer m, sin) modes labelled
+untwisted - the script encoded the statement's error rather than
+testing it. Found by deriving the null: on a plain antiperiodic circle
+the half-shift squares to −1 for the same arithmetic reason, so the
+Klein bottle was never doing any work in §7. The §11 table row
+"J² = −I on twisted sector | correct" is superseded by this section.

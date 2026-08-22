@@ -15,8 +15,10 @@ evidence:
   - kind: proof
     ref: "notes/topology_evaluation.md sec. 7 - commutation check plus multiplier computation e^(i*pi*m); formalizes the resolved J^2 = -I claim of v1 figure_eight.md"
   - kind: computation
-    ref: "scripts/verify/q_j_structure.py - multiplier, J^2 sign, and BC preservation checked on 7 explicit modes at random points, all < 1e-12"
+    ref: "scripts/verify/q_j_structure.py - multiplier, J^2 sign, and BC preservation checked on 7 explicit modes at random points, all < 1e-12 (its sector labels encode the same misidentification as the statement: (integer m, sin) is treated as untwisted)"
     method: reimplementation
+  - kind: refutation
+    ref: "scripts/verify/q_j_structure_sectors.py - the twisted bundle (glide sign -1) contains the (integer m, sin) modes, on which J^2 = +1, and the untwisted bundle contains the (half-integer m, sin) modes, on which J^2 = -1; J^2 = (-1)^(2m) is an x-parity statement, not a bundle statement. The premise 'the twisted sector, whose x-modes have half-integer m' contradicts klein-orientation-bundle-spectrum's own p_x + p_y odd rule. Found 2026-08-21 by deriving the circle null for the half-shift."
 novelty:
   status: unchecked
-status: proven
+status: refuted
