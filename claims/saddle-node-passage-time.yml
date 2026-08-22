@@ -13,6 +13,8 @@ evidence:
   - kind: computation
     ref: "scripts/verify/q1_saddle_node.py - RK4 passage times at mu = 1e-2, 1e-3, 1e-4 match pi/sqrt(mu) to <0.5% with cutoff X=100"
     method: reimplementation
+null_system: "the scaling T ~ mu^(-1/2) is the one-dimensional normal form dx/dt = mu + x^2 integrated exactly: int dx/(mu + x^2) = pi/sqrt(mu); no circle map or lattice is involved, and the verify script integrates that ODE, not the claim"
+falsifier: "scripts/verify/q1_saddle_node.py --mutant wrong-exponent"
 novelty:
   status: classical
   citation: "textbook normal-form theory (Guckenheimer-Holmes; Strogatz, Nonlinear Dynamics and Chaos, sec. 4.3 'bottleneck' scaling)"

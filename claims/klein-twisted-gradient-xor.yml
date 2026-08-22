@@ -19,6 +19,8 @@ evidence:
   - kind: computation
     ref: "scripts/verify/p1_gradient_bc.py - exhaustive check at N = M = 12 over all half-integer W1 and integer W2: compatible set equals the stated XOR set (24 = 24, no extras); reflection acts as the Farey involution on windings"
     method: reimplementation
+null_system: "on a 1D ring with antiperiodic closure the half-integer winding is forced by the same constant-part argument (Bulaevskii 1977); the 2D content is only the j-coefficient condition 2 W2 = 0 mod M, and the exhaustive check computes compatibility from the boundary condition, not from the branch labels"
+falsifier: "scripts/verify/p1_gradient_bc.py --mutant and-not-xor"
 novelty:
   status: classical
   citation: "ring statement classical: Bulaevskii, Kuzii, Sobyanin, JETP Lett. 25, 290 (1977); Khairnar & Vojta, Phys. Rev. E 111, 024114 (2025); the 2D Klein enumeration not found in prior art but elementary - see LC-3"

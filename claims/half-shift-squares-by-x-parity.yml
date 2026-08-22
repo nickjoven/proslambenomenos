@@ -20,6 +20,8 @@ evidence:
   - kind: computation
     ref: "scripts/verify/q_j_structure_sectors.py - all 10 (m, branch) modes: bundle membership from the glide condition, J^2 sign from translation by L1; J^2 = (-1)^(2m) holds on every mode and each bundle shows both signs"
     method: reimplementation
+null_system: "on a plain circle the half-period shift squares to e^(2 pi i m), which is -1 exactly on antiperiodic modes; the Klein bottle contributes only which modes each bundle contains, and the script determines bundle membership from the glide condition, not from the statement"
+falsifier: "scripts/verify/q_j_structure_sectors.py --mutant bundle-decides"
 novelty:
   status: classical
   citation: "half-shift on antiperiodic sectors: Scherk-Schwarz / freely acting orbifolds; twisted translation in antiperiodic XXZ (Niekamp, Wirth, Frahm 2009); see LC-5"
