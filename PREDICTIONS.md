@@ -61,3 +61,27 @@ Scope of the empirical leg is stated in the vacuity claim (explored
 K, J, lattice size); the two theorem-lets are unconditional.
 Mechanism correction recorded as a prediction error, not an
 expectation error.
+
+## P-4 — 2026-08-21 — holonomy vs gate on a twisted inertial ring
+question: on a ring of N second-order phase oscillators (Kuramoto with
+inertia / Frenkel-Kontorova with mass) carrying one pi-offset bond and
+one stick-slip node driven at constant velocity, does the holonomy
+change the gating threshold at which the slip pattern doubles its
+period (the Kawano/Guettler f0/2 mechanism), or does gating occur at
+the same threshold with the holonomy only relabeling which orbits
+close on the base vs the double cover?
+expects: the threshold is UNCHANGED to within the sweep resolution -
+the holonomy is kinematic (available counts) and the gate is dynamic
+(selection); the twisted ring differs from the control only in
+which spectral lines are present (half-integer lines always on),
+not in WHEN period doubling onsets. Secondary expectation: an N-parity
+dependence of the twisted case (Lazarides 2008 analog), absent in
+the control.
+changes-my-mind: a threshold shift between twisted and control that
+survives changing N, friction law parameters, and drive velocity,
+with sign and magnitude reproducible by an independent
+reimplementation; that would mean the bundle class does dynamical
+selection and X-8's reading is wrong.
+not-claimed-in-advance: anything about real strings; the model is a
+phase ring, not Kawano's FE string, and its stick-slip law will be a
+Coulomb threshold, not Bellante's velocity-dependent mu.
