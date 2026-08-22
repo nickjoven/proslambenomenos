@@ -1,3 +1,4 @@
+<!-- evidence: scripts/experiments/p9_nparity.py, scripts/experiments/p9_results_attractor.json, catalog/c28_twisted_ring_nparity.py -->
 # P-9: N-parity of plateau shrinkage on the pinned twisted ring
 
 Registered (PR #41, first commit) before computing; run 2026-08-23 in

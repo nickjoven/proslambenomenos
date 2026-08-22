@@ -1,3 +1,4 @@
+<!-- evidence: compendium/index.html, scripts/verify/q_j_structure_sectors.py, scripts/verify/q_j_structure.py, claims/klein-orientation-bundle-spectrum.yml, claims/second-law-from-nonorientability.yml -->
 # Topology in the v1 corpus: a mathematical evaluation
 
 Every assertion below is backed by a computation, a proof sketch, or an

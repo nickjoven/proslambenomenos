@@ -1,3 +1,4 @@
+<!-- evidence: scripts/experiments/p6_circulant_twisted.py, scripts/experiments/p6_results.json, scripts/verify/p6_circulant_small.py -->
 # P-6: stable twisted states on circulant graphs
 
 Registered before computing (PREDICTIONS.md P-6, PR #38); run

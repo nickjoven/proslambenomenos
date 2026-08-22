@@ -1,3 +1,4 @@
+<!-- evidence: scripts/verify/p1_depth6_pairs.py, scripts/verify/p1_gradient_bc.py, scripts/verify/p1_mean_frequency.py, scripts/experiments/d4_sweep_results.json, scripts/experiments/d4_edge_results.json, scripts/experiments/d4_2d_results.json, scripts/experiments/d4_nopin_results.json, scripts/experiments/d4_sector_results.json -->
 # P-1 working document: the XOR spectrum-to-tree bridge, decomposed
 
 Governed by prediction P-1 (PREDICTIONS.md): expected outcome is

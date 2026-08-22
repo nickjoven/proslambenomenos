@@ -1,3 +1,4 @@
+<!-- evidence: scripts/experiments/p4_twisted_inertial_ring.py, scripts/experiments/p4_lowdamp.py, scripts/experiments/p4_forcebalance.py, scripts/experiments/p4_results_lowdamp.json, scripts/experiments/p4_mud_results.json -->
 # P-4 working document: holonomy vs gate on a twisted inertial ring
 
 Governed by P-4 (PREDICTIONS.md): expects the period-doubling gating

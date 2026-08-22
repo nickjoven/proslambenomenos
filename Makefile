@@ -65,3 +65,6 @@ wt:
 
 wt-done:
 	git worktree remove ../wt-$(TASK) && git branch -d $(TASK)
+
+spec:
+	$(PYTHON) tests/run_spec.py

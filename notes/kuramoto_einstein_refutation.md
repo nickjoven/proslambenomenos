@@ -1,3 +1,4 @@
+<!-- evidence: scripts/verify/kuramoto_einstein_refutation.py, claims/einstein-from-kuramoto-chain-a.yml -->
 # Refutation of Proof Chain A (Kuramoto -> Einstein)
 
 First-class record, 2026-08-22. Source: harmonics

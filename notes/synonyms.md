@@ -1,3 +1,4 @@
+<!-- commentary -->
 # Synonym table: one object, many names
 
 Groups of terms that name the same mathematical object across the
