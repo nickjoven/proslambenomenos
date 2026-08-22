@@ -1,0 +1,26 @@
+id: half-shift-squares-by-x-parity
+statement: >
+  On the flat Klein bottle with base x-period L1 (glide shift L1),
+  let J be translation by L1/2 in x on the cover. J commutes with the
+  deck group and so acts on sections of both real line bundles. On a
+  mode e^(2 pi i m x / L1) g(y), J^2 = translation by L1 = e^(2 pi i m)
+  = (-1)^(2m): J^2 = -I exactly on the half-integer-m modes and +I on
+  the integer-m modes, in BOTH bundles. Since the glide condition
+  reads e^(2 pi i m) R_y = epsilon with R_y the y-parity of g and
+  epsilon the bundle sign, J^2 = epsilon R_y: each bundle contains
+  modes of both signs, and the half-shift's complex structure lives on
+  the x-parity class, not on the orientation bundle. This replaces
+  twisted-sector-complex-structure, which assigned J^2 = -I to the
+  twisted bundle as a whole.
+premises:
+  - klein-orientation-bundle-spectrum
+evidence:
+  - kind: proof
+    ref: "notes/topology_evaluation.md sec. 7a - J^2 = e^(2 pi i m) directly; glide condition e^(2 pi i m) R_y = epsilon gives J^2 = epsilon R_y"
+  - kind: computation
+    ref: "scripts/verify/q_j_structure_sectors.py - all 10 (m, branch) modes: bundle membership from the glide condition, J^2 sign from translation by L1; J^2 = (-1)^(2m) holds on every mode and each bundle shows both signs"
+    method: reimplementation
+novelty:
+  status: classical
+  citation: "half-shift on antiperiodic sectors: Scherk-Schwarz / freely acting orbifolds; twisted translation in antiperiodic XXZ (Niekamp, Wirth, Frahm 2009); see LC-5"
+status: proven
