@@ -54,3 +54,8 @@ The published artifact (claude.ai) is presentation, not preservation.
   decomposition with discharged checkables, the gradient theorem-let
   (claim 22), E1 steps 1-2 with the odd/2N retraction on record, the
   termplot companion with themes, and the repo Makefile. (2026-08-21)
+- link-004 — P-1 resolved: R-1 (headline met, mechanism corrected to
+  domain vacuity), claims 23-24 (mean-frequency identity, bridge
+  vacuity), E1 step 3 shrink-not-shift, D4 proper cross-tab and holes
+  (a)/(b), litcheck LC-3 with classical labels and the unreconciled
+  Josephson sign, X-7/X-8, P-4 preregistered, LAW-9. (2026-08-21)
