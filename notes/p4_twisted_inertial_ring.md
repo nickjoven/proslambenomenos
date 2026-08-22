@@ -204,3 +204,81 @@ v = 0.1 at both N) are 27-37% off - loading and wave timing interact
 there. The formula holds to < 20% where F_N/(4 J v) >= 3 (10 rows);
 catalog/c12 carries the scoped statement and would have failed on the
 original wording.
+
+## Adversarial audit (2026-08-22) and resolution
+
+A context-free auditor refuted the thread's premise. Findings, in
+severity order, each checked:
+
+S1 (decisive). In the clamped variant the pi bond sits next to the
+clamped site, so the force on site N-1 sees the clamp as phase pi
+while site 1 sees it as phase 0: the "ring" is an open Dirichlet
+chain with its ends held at 0 and pi. The loop that would carry a
+holonomy is cut by the clamp. Linearised, the twisted equilibrium is
+a uniform strain pi/N on every bond, so the twisted system is the
+control with stiffness J cos(pi/N): same modes, speed lower by
+sqrt(cos(pi/N)) - 4% at N = 8, 0.06% at N = 64. Measured Helmholtz
+periods at N = 64: control 2.0292 / twisted 2.0309 (F_N = 0.3),
+2.0714 / 2.0716 (0.6). Every run in the Helmholtz regime (2-5) was in
+this variant; run 1, the only genuine ring, had no propagation. No
+run had both ingredients of the registered question. P-4's
+"threshold UNCHANGED" was guaranteed by construction and its
+mind-change condition could not fire. Corollary: X-8's "half-integer
+lines always on" is false for the force/velocity dynamics of
+antisymmetric-offset phase oscillators, clamped or free - the
+small-oscillation spectrum is integer in both; half-integer lines
+live only in the Fourier transform of e^{i theta_j} along the site
+index (the background half-winding), which the slip observable never
+sees. T_round = N/c at N = 8, 9 is 4% short for the twisted ring.
+
+S2 (wrong diagnosis). The sub-transit "chatter" is physical: the
+minimum gap is 3.5-4.4 time units at every N, invariant under an 8x
+change in dt (dt = 0.02 ... 0.0025 at N = 64: 104-114 slips, gap_min
+0.046-0.064) - it is 2 pi / sqrt(2J) = 4.44, the massive bow node's
+own oscillation period on its two bonds. A massive Coulomb contact
+re-sticks on a velocity crossing and re-slips on its local period
+whenever the ring force hovers near mu_s F_N; a continuum string's
+bow point has no mass. The planned "event-located integrator" was
+aimed at the wrong cause; the fix would be a massless or overdamped
+contact. Also: the bulk update is Euler-Cromer (first-order
+symplectic), so "Euler, not symplectic" in runs 2 and 5 was wrong.
+
+S3 (formula incomplete). period/round = mu_s F_N/(4 J v) has the
+right stiffness constant but assumes re-stick at zero ring force,
+which holds only because mu_d = mu_s/2 makes the undamped overshoot
+land at (2 mu_d - mu_s) F_N = 0. At N = 64, g = 0.01, v = 0.05, F_N =
+0.9: mu_d = 0.25 -> 6.95, 0.5 -> 5.09, 0.75 -> 3.12 (recomputed;
+catalog c13). Every "loading-limited" row also has slip duration
+1.04-1.11 round trips - the node slides until the launched wave
+returns - so "no wave involved" was false: the period is one wave-
+limited slip plus a loading time depending on mu_s - mu_d. c12's
+factor-2 mutant could not see this; c12 is rescoped and c13 added.
+
+S4. "Helmholtz motion reached" rests on three rows; the auditor's
+re-run recorded re-stick times and found slip fraction 0.52 of the
+period, consistent with beta = 1/2 - the claim survives a check the
+repo had not made.
+
+S5. P-4's observable is not well posed in this model class: no
+doubling in any run; with S1, "threshold unchanged" would stay true
+even if a gate appeared; the N-parity expectation has no mechanism
+(the uniform pi/N gradient is the ground state for every N).
+
+S6. Code: friction is zero on the slip-onset step (rel == 0
+placeholder); the re-stick condition is vacuous at rel == 0 and only
+the force test prevents instant re-stick; the median of two gaps
+returns the larger (run 2's retracted ratios were biased upward).
+
+Resolution: P-4 resolves as MODEL-CLASS VACUITY (R-3): the registered
+question cannot be posed in the clamped variant, and the free ring
+has no corner. The expectation "threshold unchanged" held vacuously;
+the secondary N-parity expectation was mechanism-free; the
+prediction was not falsifiable in this class - a prediction-design
+error, recorded as such. What survives: the stiffness constant 4,
+the Helmholtz period 2N/c for the clamped geometry, run 3's
+retraction of doubling, X-12's corner diagnosis, and the three-
+decimal twisted/control identity - now understood as the expected
+result, not a puzzle. Reopening would require a new P-line with a
+model that keeps the loop (no clamp; a massless contact; N >= 64; low
+damping) and an observable that the background half-winding can
+actually reach.

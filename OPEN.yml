@@ -12,21 +12,17 @@ owner:
   - id: O-3
     item: delete merged branches at your discretion
     command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface"
-  - id: O-4
-    item: go/no-go on the P-4 integrator fix (event-located stick-slip; also the independent reimplementation P-4's bar demands)
-    command: ""
 agent:
   - id: A-1
-    item: P-4 integrator fix, then F_N 0.7-1.2 step 0.05 at g=0.002, v=0.1, N=128, control first
+    item: compendium checks under the falsifier rule (LAW-12-owed; audit found C10, C5, C17 tautological, C12/C9/C8 weak, count unasserted)
   - id: A-2
-    item: LAW-12-owed gap - compendium JS checks and experiment-backed claims under the falsifier rule
-  - id: A-3
     item: E1 N-parity check (Lazarides 2008 reconciliation) - needs a P-line first
-  - id: A-4
-    item: P-3 Iwasawa one-stage (pure mathematics, preregistered)
-  - id: A-5
+  - id: A-3
     item: P-2 two-anchor; Crouzeix issue audit; dotfiles/tokenctl/toolbox remotes
+  - id: A-4
+    item: if P-4 is reopened - new P-line, free ring (no clamp), massless contact, N >= 64, low damping, an observable the background half-winding can reach
 decided_since_parent:
+  - "overnight adversarial audits (5 context-free agents): P-3 resolved (R-2); P-4 resolved as model-class vacuity (R-3) - the clamp cut the loop; Proof Chain A refutation evidence corrected (sign, lapse test, Lyapunov argument); LAW-16 closed six gate bypasses; catalog split to one mutant per fact"
   - "handoff interface landed (OPEN.yml, make handoff, recap artifact, ~/code/handoffs store); catbus hardening filed as nickjoven/catbus#1 (sign, lint, lineage, replay)"
   - "link-005 sealed: J^2 claim refuted and replaced; Proof Chain A refuted first-class; LAW-11 falsifiers"
   - "math catalog is the ninth gate (LAW-13); entries self-test via --mutant, not hash-pinned"
@@ -35,6 +31,8 @@ decided_since_parent:
   - "LC-7: Stern-Brocot is Stern's 1858 array + Brocot's 1860/61 gear table; the tree is GKP 1989"
   - "primes-as-dimensions direction assessed: synthesis not citation; low value unless the pure-x sorting criterion is wanted"
 retracted_since_parent:
+  - "P-4: 'integrator fix' diagnosis (chatter is the massive bow node's period, dt-invariant); 'Euler not symplectic' (it is Euler-Cromer); loading formula's mu_d-independence; X-8's 'half-integer lines always on'"
+  - "Proof Chain A refutation v1 supports: delta + grad grad (source has minus), identical-frequency lapse test (vacuous), 'characteristic order invariant under coarse-graining' (false)"
   - "run-2 P-4 doubling reading (medians of bursty gaps)"
   - "runs 1-2 onset-shift robustness (short-window artifact)"
   - "run-5 note 'within ~15%' (27-37% near the Helmholtz period; scoped to F/(4Jv) >= 3)"
@@ -43,7 +41,9 @@ do_not_recompute:
   - "P-1 resolved by domain vacuity (R-1); the two theorem-lets are unconditional"
   - "J^2 = (-1)^(2m) depends on x-parity, not the bundle"
   - "Kuramoto spreading exponent 0.500 (parabolic); inertial chain 0.989 - scripts/verify/kuramoto_einstein_refutation.py"
-  - "loading formula period/round = F/(4Jv) where that is >= 3 - catalog/c12_p4_loading_formula.py"
-  - "Helmholtz motion in the clamped control at g=0.002, F_N <= 0.6: period 2.02-2.07 round trips"
+  - "loading formula period/round = F/(4Jv) within 25% where prediction >= 3 AND mu_d = mu_s/2 only - catalog/c12, c13"
+  - "Helmholtz motion in the clamped control at g=0.002, F_N <= 0.6: period 2.02-2.07 round trips, slip fraction 0.52 - notes/p4 audit S4"
+  - "clamped twisted ring = control with stiffness J cos(pi/N); no holonomy - notes/p4 audit S1"
+  - "connected subgroups of SL(2,R): {e}, K, A, N, AN, G - claims/sl2r-connected-subgroups"
 artifact: "https://claude.ai/code/artifact/2421bb54-5508-4608-9390-452c0880fe76"
 recap: "https://claude.ai/code/artifact/5933c553-6c3f-4f4f-aaab-c92917a779d5"
