@@ -38,3 +38,12 @@ e1-sweep:
 
 catalog:
 	$(PYTHON) scripts/check_catalog.py
+
+handoff:
+	$(PYTHON) scripts/handoff.py --pack
+
+handoff-preview:
+	$(PYTHON) scripts/handoff.py && cat HANDOFF.md
+
+owner-commands:
+	@grep -E "^\s+command: \"." OPEN.yml | sed -E "s/^\s+command: \"(.*)\"/\1/"

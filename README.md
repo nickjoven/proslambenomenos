@@ -139,3 +139,13 @@ Derived vocabulary (in order of precedence):
 A green gate is consistency accounting, not truth: statuses are derived
 from *recorded* evidence, undeclared premises are invisible, and the
 checker cannot read mathematics. Reds are theorems; greens are not.
+
+## Handoffs and owner actions
+
+- `make handoff` — generate HANDOFF.md from repo state + OPEN.yml and
+  pack it as a catbus packet in `~/code/handoffs` (linked to the
+  previous packet). `make handoff-preview` prints it without packing.
+- `make owner-commands` — print the owner-action commands from
+  OPEN.yml as bare lines, one per action, for copying.
+- OPEN.yml is the single source of truth for open items; edit it, not
+  the chat, when an item opens or closes.

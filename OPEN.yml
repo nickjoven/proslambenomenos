@@ -1,0 +1,47 @@
+# Open items, the single source of truth for handoff packets and the
+# recap artifact. Two kinds: owner (needs Nick; carries the exact
+# command) and agent (can proceed without asking). Keep entries short;
+# history lives in git and the handoff chain, not here.
+owner:
+  - id: O-1
+    item: reseal the two drifted harmonics docs and push E18-E22
+    command: "cd ~/code/harmonics && make owner-reseal && make owner-push"
+  - id: O-2
+    item: harmonics MANIFEST proof_chains.A status after E18 (check_manifest_claims must stay green)
+    command: "cd ~/code/harmonics && grep -n 'proof_chains' -A6 MANIFEST.yml"
+  - id: O-3
+    item: delete merged branches at your discretion
+    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot"
+  - id: O-4
+    item: go/no-go on the P-4 integrator fix (event-located stick-slip; also the independent reimplementation P-4's bar demands)
+    command: ""
+agent:
+  - id: A-1
+    item: P-4 integrator fix, then F_N 0.7-1.2 step 0.05 at g=0.002, v=0.1, N=128, control first
+  - id: A-2
+    item: LAW-12-owed gap - compendium JS checks and experiment-backed claims under the falsifier rule
+  - id: A-3
+    item: E1 N-parity check (Lazarides 2008 reconciliation) - needs a P-line first
+  - id: A-4
+    item: P-3 Iwasawa one-stage (pure mathematics, preregistered)
+  - id: A-5
+    item: P-2 two-anchor; Crouzeix issue audit; dotfiles/tokenctl/toolbox remotes
+decided_since_parent:
+  - "link-005 sealed: J^2 claim refuted and replaced; Proof Chain A refuted first-class; LAW-11 falsifiers"
+  - "math catalog is the ninth gate (LAW-13); entries self-test via --mutant, not hash-pinned"
+  - "harmonics ERRATA E18-E22 written with status banners; Koide Floor reverted; neutrino open at 2.25 sigma"
+  - "LC-6/P-5: a0 ~ cH0/2pi stays coincidence-unruled; Milgrom 1999 is a heuristic"
+  - "LC-7: Stern-Brocot is Stern's 1858 array + Brocot's 1860/61 gear table; the tree is GKP 1989"
+  - "primes-as-dimensions direction assessed: synthesis not citation; low value unless the pure-x sorting criterion is wanted"
+retracted_since_parent:
+  - "run-2 P-4 doubling reading (medians of bursty gaps)"
+  - "runs 1-2 onset-shift robustness (short-window artifact)"
+  - "run-5 note 'within ~15%' (27-37% near the Helmholtz period; scoped to F/(4Jv) >= 3)"
+  - "in-chat: shocks conflated with weak discontinuities (LC-4 S5); half-turn phase-lag mutant too weak (LAW-11 record)"
+do_not_recompute:
+  - "P-1 resolved by domain vacuity (R-1); the two theorem-lets are unconditional"
+  - "J^2 = (-1)^(2m) depends on x-parity, not the bundle"
+  - "Kuramoto spreading exponent 0.500 (parabolic); inertial chain 0.989"
+  - "loading formula period/round = F/(4Jv) where that is >= 3"
+  - "Helmholtz motion in the clamped control at g=0.002, F_N <= 0.6: period 2.02-2.07 round trips"
+artifact: "https://claude.ai/code/artifact/2421bb54-5508-4608-9390-452c0880fe76"
