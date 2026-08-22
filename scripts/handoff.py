@@ -27,7 +27,7 @@ def sh(*cmd):
 def load_open():
     # minimal YAML reader for OPEN.yml's fixed shape (no pyyaml on this box)
     data = {"owner": [], "agent": [], "decided_since_parent": [], "retracted_since_parent": [],
-            "do_not_recompute": [], "artifact": ""}
+            "do_not_recompute": [], "artifact": "", "recap": ""}
     section, cur = None, None
     for raw in (ROOT / "OPEN.yml").read_text().splitlines():
         if not raw.strip() or raw.lstrip().startswith("#"):
@@ -35,9 +35,9 @@ def load_open():
         if not raw.startswith(" ") and raw.endswith(":"):
             section = raw[:-1]
             continue
-        m = re.match(r'^artifact:\s*"?([^"]*)"?$', raw)
+        m = re.match(r'^(artifact|recap):\s*"?([^"]*)"?$', raw)
         if m:
-            data["artifact"] = m.group(1)
+            data[m.group(1)] = m.group(2)
             continue
         if raw.strip().startswith("- id:"):
             cur = {"id": raw.split(":", 1)[1].strip()}
@@ -79,7 +79,7 @@ def main() -> int:
     lines += ["OPEN (owner)"] + [f"  {i['id']} {i['item']}" + (f"\n      $ {i['command']}" if i.get("command") else "") for i in o["owner"]] + [""]
     lines += ["NEXT (agent, in order)"] + [f"  {i['id']} {i['item']}" for i in o["agent"]] + [""]
     lines += ["DO-NOT-RECOMPUTE"] + [f"  - {d}" for d in o["do_not_recompute"]] + [""]
-    lines += ["POINTERS", f"  artifact {o['artifact']}", "  notes/ claims/ PREDICTIONS.md LITCHECKS.md LAWCHANGES.md CATALOG.md RELEASES.md OPEN.yml"]
+    lines += ["POINTERS", f"  compendium {o['artifact']}", f"  recap {o.get('recap', '')}", "  notes/ claims/ PREDICTIONS.md LITCHECKS.md LAWCHANGES.md CATALOG.md RELEASES.md OPEN.yml"]
     text = "\n".join(lines) + "\n"
     (ROOT / "HANDOFF.md").write_text(text)
     (ROOT / "handoff.json").write_text(json.dumps({"where": where, "state": state, "open": o}, indent=1))

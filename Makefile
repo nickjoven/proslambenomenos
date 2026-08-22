@@ -40,7 +40,7 @@ catalog:
 	$(PYTHON) scripts/check_catalog.py
 
 handoff:
-	$(PYTHON) scripts/handoff.py --pack
+	$(PYTHON) scripts/handoff.py --pack && $(PYTHON) scripts/recap_html.py
 
 handoff-preview:
 	$(PYTHON) scripts/handoff.py && cat HANDOFF.md
