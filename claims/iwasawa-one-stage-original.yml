@@ -1,0 +1,15 @@
+id: iwasawa-one-stage-original
+statement: >
+  Claim (harmonics planck_scale.md line 234, recorded for the
+  refutation): every continuous H != {e} in SL(2,R) kills exactly one
+  of the three Iwasawa coupling stages (K, A, N), reducing the system
+  to N <= 2 effective stages; the three one-parameter classes and the
+  discrete subgroups exhaust the possibilities.
+premises: []
+prediction: P-3
+evidence:
+  - kind: refutation
+    ref: "scripts/verify/iwasawa_one_stage.py section 2 and notes/p3_iwasawa.md - the connected Borel subgroup AN is 2-dimensional, non-abelian ([D, N+] = 2 N+), contains A and N, and has dim G/AN = 1: it kills two stages; the one-parameter/discrete dichotomy omits dimensions 2 and 3"
+novelty:
+  status: unchecked
+status: refuted
