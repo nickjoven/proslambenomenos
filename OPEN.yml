@@ -13,7 +13,7 @@ owner:
     item: delete merged branches at your discretion
     command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa"
   - id: O-4
-    item: JUNCTURE - reopen P-4 under a new P-line (free ring, massless contact, N >= 64, low damping) or retire the holonomy-vs-gate question; and approve the wording of a P-6 for the E1 N-parity check before any run
+    item: JUNCTURE - retire or reopen P-4; word P-7 (incommensurate flux), P-8 (Gabor limit for locking), P-9 (E1 N-parity) - recommended order P-8, P-9, P-7
     command: ""
 agent:
   - id: A-1
@@ -25,6 +25,7 @@ agent:
   - id: A-4
     item: if P-4 is reopened - new P-line, free ring (no clamp), massless contact, N >= 64, low damping, an observable the background half-winding can reach
 decided_since_parent:
+  - "2026-08-23: catalog c17-c26; curriculum notebooks T0-T6 + capstone as the tenth gate (LAW-18); multi-actor infrastructure (worktrees, union-merged ledgers, AGENTS.md); P-6 registered then computed in its own worktree - R-4, reproduction, no exceedance of 0.6809, verified claim with exhaustive certificate (LAW-19)"
   - "overnight adversarial audits (5 context-free agents): P-3 resolved (R-2); P-4 resolved as model-class vacuity (R-3) - the clamp cut the loop; Proof Chain A refutation evidence corrected (sign, lapse test, Lyapunov argument); LAW-16 closed six gate bypasses; catalog split to one mutant per fact"
   - "handoff interface landed (OPEN.yml, make handoff, recap artifact, ~/code/handoffs store); catbus hardening filed as nickjoven/catbus#1 (sign, lint, lineage, replay)"
   - "link-005 sealed: J^2 claim refuted and replaced; Proof Chain A refuted first-class; LAW-11 falsifiers"
