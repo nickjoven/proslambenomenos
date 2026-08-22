@@ -110,3 +110,17 @@ survives because it only ever used dim H >= 1. The mind-change
 condition did not fire. Resolution produced by a context-free
 auditor and reviewed; the physics premises of the source are not
 touched by the mathematics and remain unsupported.
+
+## R-3 — 2026-08-22 — resolves P-4
+outcome: model-class vacuity. A context-free audit showed the
+clamped variant - the only one in which a corner propagates - has no
+loop and hence no holonomy: the pi bond next to the clamp is a
+boundary phase difference, gauge-equivalent to a uniform strain
+pi/N, so twisted and control are the same linear system to
+O(1/N^2). "Threshold unchanged" held by construction, the N-parity
+expectation had no mechanism, and no run exhibited the gate at all.
+The mind-change condition could not fire: a prediction-design error,
+recorded as such (notes/p4_twisted_inertial_ring.md, audit section).
+Also retracted with it: the "integrator fix" diagnosis (the chatter
+is the massive bow node's own period, physical) and the
+mu_d-independence of the loading formula (catalog c13).

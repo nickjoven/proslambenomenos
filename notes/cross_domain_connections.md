@@ -267,3 +267,16 @@ Run 5 is that. Physical status of the corner: observed (Helmholtz
 (1974) finite rounding. Mood: all classical with citations; the
 "restated P-4" is a framing, and the model-defect diagnosis is the
 computation's own.
+
+## X-8 correction (2026-08-22, from the P-4 audit)
+
+"The twisted ring differs from the control only in which spectral
+lines are present (half-integer lines always on)" is false for the
+force/velocity dynamics of antisymmetric-offset phase oscillators:
+their small-oscillation spectrum is integer in both rings, the twist
+entering only as the stiffness factor cos(pi/N) of the uniform
+background strain. Half-integer lines exist in the Fourier transform
+of e^{i theta_j} along the site index - the background half-winding -
+and nothing a slip-time observable measures can see them. The
+"forces vs selects" framing survives; the spectral sentence is
+withdrawn. P-4 resolved as model-class vacuity (R-3).
