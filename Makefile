@@ -47,3 +47,15 @@ handoff-preview:
 
 owner-commands:
 	@grep -E "^\s+command: \"." OPEN.yml | sed -E "s/^\s+command: \"(.*)\"/\1/"
+
+# ───────────────────────── Notebooks ─────────────────────────
+# Curriculum notebooks (notebooks/*.ipynb, authored by scripts/nb_build.py):
+# run every code cell with stdlib Python; exit nonzero on any exception.
+notebooks:
+	$(PYTHON) scripts/nb_run.py
+
+# Rebuild the notebooks from their source and render notebooks/index.html.
+notebooks-html:
+	$(PYTHON) scripts/nb_build.py && $(PYTHON) scripts/nb_html.py
+
+.PHONY: notebooks notebooks-html
