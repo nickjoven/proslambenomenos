@@ -59,3 +59,10 @@ The published artifact (claude.ai) is presentation, not preservation.
   vacuity), E1 step 3 shrink-not-shift, D4 proper cross-tab and holes
   (a)/(b), litcheck LC-3 with classical labels and the unreconciled
   Josephson sign, X-7/X-8, P-4 preregistered, LAW-9. (2026-08-21)
+- link-005 — scrutiny and mechanism: twisted-sector-complex-structure
+  refuted (J^2 follows x-parity, not the bundle) and replaced; LAW-11
+  null_system + falsifier rule with the four-claim sweep; Proof Chain A
+  (Kuramoto -> Einstein) refuted as a first-class claim with a
+  three-check script (LAW-12); P-4 runs 1-5 (Helmholtz regime reached
+  in the control, gate region identified, no doubling yet); X-9..X-12;
+  LC-4..LC-6; P-5. (2026-08-22)
