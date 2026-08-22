@@ -17,6 +17,8 @@ evidence:
   - kind: computation
     ref: "scripts/verify/p1_mean_frequency.py - 4x4 twisted and control lattices, 300 steps, |mean advance - Omega| = 0 to machine precision; scripts/experiments/d4_nopin_meanfield.py - 404 runs, |rho - Omega| <= 5.4e-14"
     method: reimplementation
+null_system: "two oscillators with one antisymmetric sine bond already satisfy the identity (sin x + sin(-x) = 0); the lattice, the twist, and the frequency spread add nothing, and the script integrates the dynamics rather than summing the algebra"
+falsifier: "scripts/verify/p1_mean_frequency.py --mutant phase-lag"
 novelty:
   status: classical
   citation: "Kuramoto 1984 ch. 5; Strogatz, Physica D 143, 1 (2000); Acebron et al., Rev. Mod. Phys. 77, 137 (2005) sec. II; Dorfler & Bullo, SIAM J. Control Optim. 50, 1616 (2012) - see LC-3"

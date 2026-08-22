@@ -26,6 +26,7 @@ import random
 import sys
 
 random.seed(11)
+MUTANT = sys.argv[sys.argv.index("--mutant") + 1] if "--mutant" in sys.argv else None
 
 
 def mode(m, n, br):
@@ -62,7 +63,11 @@ def main() -> int:
             f = mode(m, 1, br)
             rows.append((m, br, bundle(f), j2(f)))
             print(f"m={m:<4} {br}  {rows[-1][2]:<9}  J^2={rows[-1][3]:+d}")
-    replacement = all(s == (1 if float(m).is_integer() else -1) for m, _, _, s in rows)
+    if MUTANT == "bundle-decides":
+        # LAW-11 mutant: the refuted statement - J^2 = -1 iff twisted bundle
+        replacement = all(s == (-1 if b == "twisted" else 1) for _, _, b, s in rows)
+    else:
+        replacement = all(s == (1 if float(m).is_integer() else -1) for m, _, _, s in rows)
     twisted_plus = any(b == "twisted" and s == +1 for _, _, b, s in rows)
     untwisted_minus = any(b == "untwisted" and s == -1 for _, _, b, s in rows)
     print(f"replacement J^2 = (-1)^(2m) on all modes: {replacement}")

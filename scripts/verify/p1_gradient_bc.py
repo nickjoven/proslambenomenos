@@ -47,6 +47,9 @@ def residual(W1, W2):
     return worst
 
 
+MUTANT = sys.argv[sys.argv.index("--mutant") + 1] if "--mutant" in sys.argv else None
+
+
 def main() -> int:
     # exhaustive over half-integer W1 in [0, N) and integer W2 in [0, M)
     compatible = set()
@@ -57,7 +60,11 @@ def main() -> int:
     expect = set()
     for k in range(0, 2 * N):
         W1 = k / 2
-        if W1 != int(W1):
+        if MUTANT == "and-not-xor":
+            # LAW-11 mutant: claim every W1 admits BOTH y-branches
+            expect.add((W1, 0))
+            expect.add((W1, M // 2))
+        elif W1 != int(W1):
             expect.add((W1, 0))        # half-integer x-winding, uniform y
         else:
             expect.add((W1, M // 2))   # integer x-winding, staggered y

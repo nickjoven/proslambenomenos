@@ -18,6 +18,8 @@ Claim schema (claims/<id>.yml):
     numeric_match:                         # required iff the claim asserts
       observable: "..."                    # numeric agreement with a measured
       pigeonhole_p: 0.13                   # observable; p from permutation null
+    null_system: "..."      # LAW-11: required when proven cites scripts/verify
+    falsifier: "scripts/verify/x.py --mutant <name>"   # must exit nonzero
     status: <derived>       # MUST equal the computed status
 
 Derivation rules (fixed; changing them is a repo-law change):
@@ -200,6 +202,39 @@ def check_novelty(doc: dict, errors: list, cid: str, lcs: set) -> None:
                           f"novelty vocabulary ({m.group(0)!r})")
 
 
+VERIFY_REF = re.compile(r"scripts/verify/[\w.-]+\.py")
+
+
+def check_falsifier(doc: dict, errors: list, cid: str, computed: str) -> None:
+    """LAW-11: a proven claim whose computation cites a scripts/verify
+    script must name its NULL (the simplest system where the same
+    computation gives the same answer) and a FALSIFIER command - a
+    mutant of the claimed discriminator on which the script must
+    FAIL. The verify gate runs falsifiers and requires rc != 0. A
+    script for which no failing mutant can be written is restating
+    the claim, not testing it (the J^2 sector error, LC-5)."""
+    if computed != "proven":
+        return
+    refs = " ".join((e or {}).get("ref") or "" for e in doc.get("evidence") or []
+                    if (e or {}).get("kind") == "computation")
+    if not VERIFY_REF.search(refs):
+        return
+    null = doc.get("null_system")
+    if not isinstance(null, str) or not null.strip():
+        errors.append(f"{cid}: proven with scripts/verify evidence requires a "
+                      f"null_system: line (LAW-11)")
+    fal = doc.get("falsifier")
+    if not isinstance(fal, str) or not fal.strip():
+        errors.append(f"{cid}: proven with scripts/verify evidence requires a "
+                      f"falsifier: command (LAW-11)")
+        return
+    path = fal.split()[0]
+    if not (ROOT / path).exists():
+        errors.append(f"{cid}: falsifier path {path!r} does not exist")
+    if "--mutant" not in fal:
+        errors.append(f"{cid}: falsifier must invoke a --mutant mode")
+
+
 def detect_cycles(claims: dict, errors: list) -> None:
     WHITE, GRAY, BLACK = 0, 1, 2
     color = {}
@@ -235,6 +270,7 @@ def main(claims_dir: Path = None) -> int:
                 f"{computed!r} — statuses are derived, not declared; "
                 f"change the evidence, not the label")
         check_novelty(doc, errors, cid, lcs)
+        check_falsifier(doc, errors, cid, computed)
     if errors:
         print(f"intake gate: {len(errors)} violation(s)")
         for e in errors:

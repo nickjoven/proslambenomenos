@@ -27,11 +27,17 @@ def passage_time(mu, X=100.0, dt_scale=1e-3):
     return t
 
 
+MUTANT = sys.argv[sys.argv.index("--mutant") + 1] if "--mutant" in sys.argv else None
+
+
 def main() -> int:
     ok = True
+    # LAW-11 mutant 'wrong-exponent': claim T = pi / mu^(1/3) instead;
+    # the RK4 integration is independent of the claim and must reject it.
+    expo = 1.0 / 3.0 if MUTANT == "wrong-exponent" else 0.5
     for mu in (1e-2, 1e-3, 1e-4):
         T = passage_time(mu)
-        pred = math.pi / math.sqrt(mu)
+        pred = math.pi / mu ** expo
         rel = abs(T - pred) / pred
         line = f"mu={mu:g}: T={T:.4f}  pi/sqrt(mu)={pred:.4f}  rel err={rel:.2e}"
         print(line + ("  ok" if rel < 5e-3 else "  FAIL"))
@@ -40,7 +46,7 @@ def main() -> int:
     T1, T2 = passage_time(1e-2), passage_time(1e-4)
     slope = math.log(T2 / T1) / math.log(1e-4 / 1e-2)
     print(f"scaling exponent d ln T / d ln mu = {slope:.4f} (theory: -0.5)")
-    ok &= abs(slope + 0.5) < 0.01
+    ok &= abs(slope + expo) < 0.01
     print("PASS" if ok else "FAIL")
     return 0 if ok else 1
 

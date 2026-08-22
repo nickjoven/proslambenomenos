@@ -244,3 +244,46 @@ hashes:
   9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
   4d3b4216c23b82de6589c2b2185c46f3168c60f9526da841d409c6d72843a468  scripts/verify/q_j_structure_sectors.py
   527b57b8752ce2131070c2a3dccdfe17e98a7a01a252ea3ed0ff5ecdbe480edf  tests/test_checks.py
+
+## LAW-11 — 2026-08-22 — null and falsifier required; falsifiers must fail
+direction: strengthen
+why: LC-5 / topology_evaluation.md sec. 7a: a proven claim passed the
+gate, the fixtures, and the context-free audit because its verify
+script restated the statement's sector labels instead of deriving
+them (tautological verification). Mechanism: every proven claim
+whose computation evidence cites a scripts/verify script must carry
+(i) null_system: the simplest system in which the same computation
+gives the same answer, naming what the claimed object does NOT
+contribute; (ii) falsifier: a "<script> --mutant <name>" command that
+mutates the claimed discriminator, which the verify gate runs and
+REQUIRES to exit nonzero. A script for which no failing mutant can be
+written is not a test. Fixtures added (red: missing fields; green:
+present). Sweep of the four affected claims done in this entry:
+saddle-node-passage-time (wrong-exponent), klein-twisted-gradient-xor
+(and-not-xor), klein-twisted-mean-frequency-identity (phase-lag),
+half-shift-squares-by-x-parity (bundle-decides). Of record: the first
+phase-lag mutant used a half-turn same-sign lag, which is
+indistinguishable from the antisymmetric form (pi = -pi), and the
+gate rejected it as a passing falsifier - a too-weak mutant is the
+known residual failure mode, and the rule caught its own first
+instance. Field is named null_system because "null" is a YAML
+keyword. Known gap, owed as LAW-12: the 18 compendium JS checks and
+proven claims whose computation lives in compendium or
+scripts/experiments are not yet under this rule.
+hashes:
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  c2c271b6a2d03b966a44cbf3567c32f4fd7f9adcf61d95e7a32e391fe9a58587  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  9eb8db6c46e6ab1149c8db33087d5282f4cd70a97663654ddbc7ab285a038343  scripts/check_lawchanges.py
+  3064529f88ec4d4ad95532e0724ad28e81a8cda66ddbde230792e0f613f40eea  scripts/check_messages.py
+  0ddaeb011ba633cf3f4433b049c919393759ade85fe023374e33834048fd59f9  scripts/check_predictions.py
+  1ab7498f5c873bda35296eecb5fe7ef01c200a0703887df0e9c8c08f9366f771  scripts/check_verify_scripts.py
+  0680b9c18dc3818976e88e693d5ca910baeda9894fc4d4ef1e1678d4e5a33b3e  scripts/run_all.py
+  dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
+  19f02072bb299e8a590cc43b3c85a6c91dbe1ef20fe79da2a9aa813fd689bbd1  scripts/verify/p1_depth6_pairs.py
+  c42c77e5b668a5a8e0029d4d60d1ff7a8c6dddfcaeabfb33f6e546b3e9f3efd4  scripts/verify/p1_gradient_bc.py
+  b6a275e86a0af49da1648700e3a041c083bac5014cb7697367d20201d8e3a431  scripts/verify/p1_mean_frequency.py
+  a11f1ed7002239ac46d661b81428fc0ebbfd02f300c61fbaebcf70943aee388d  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  9573c69f65ee06679584e3fa67cb37bc4b2c7aba9e745eaa2d5da9ad01438646  scripts/verify/q_j_structure_sectors.py
+  28dac92b5ffc812b5f8b6c60a268779f6d4a5b90a34b2c55e07772312a151bc4  tests/test_checks.py

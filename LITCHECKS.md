@@ -187,3 +187,24 @@ q > 2). KNOWN, trivial: Hardy & Wright ch. V; the pairing p <-> q - p
 IS the standard proof of evenness, so farey-antipodal-orbit-counts'
 "phi even gives fixed-point-freeness" has the logic backwards in
 emphasis (the pairing is primary). Already ROUTINE per LC-2.
+
+## LC-6 — a0 ~ cH0/2pi: the de Sitter temperature reading (2026-08-22)
+prediction: P-5
+
+Literature pointer for claim a0-tracks-hubble-conjecture (status
+coincidence-unruled, unchanged). The coincidence a0 ~ cH0 is the
+oldest observation of the MOND program: Milgrom, ApJ 270, 365 (1983).
+The 2pi is the Gibbons-Hawking de Sitter temperature T = H/2pi
+(Gibbons & Hawking, Phys. Rev. D 15, 2738 (1977)); Milgrom, "The
+modified dynamics as a vacuum effect," Phys. Lett. A 253, 273 (1999)
+proposes a0 as the acceleration at which an observer's Unruh
+temperature equals the de Sitter temperature. This is a heuristic
+identification, not a derivation: no interpolating function, no BTFR
+normalisation, and no relativistic completion follows from it, and
+the relativistic completions that exist (TeVeS, Bekenstein 2004,
+excluded by GW170817; RelMOND, Skordis & Zlosnik, PRL 127, 161302
+(2021)) do not use it. Disposition: the corpus's a0 thread presented
+the 1983 observation and the 1999 reading's 2pi without either
+citation; both are now on record; the claim's cap stands. Method:
+from memory of the primary sources, flagged for independent check
+before any citation-kind evidence is added to the claim.

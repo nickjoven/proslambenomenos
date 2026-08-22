@@ -25,6 +25,7 @@ def run_fixture(files: dict) -> tuple:
             if doc.get("status") != computed:
                 errors.append(f"{cid}: recorded != computed ({computed})")
             cc.check_novelty(doc, errors, cid, lcs)
+            cc.check_falsifier(doc, errors, cid, computed)
         return errors, claims
 
 
@@ -184,6 +185,23 @@ def main() -> int:
         "status: verified\n")})
     ok &= expect(any("does not exist" in x for x in e),
                  "evidence citing a missing repo path blocks")
+
+    # RED: proven with verify-script evidence but no falsifier (LAW-11)
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: r}, {kind: computation, ref: 'scripts/verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "status: proven\n")})
+    ok &= expect(any("falsifier" in x for x in e) and any("null_system" in x for x in e),
+                 "proven with verify evidence lacking null/falsifier blocks")
+
+    # GREEN: same claim with null and a --mutant falsifier
+    e, _ = run_fixture({"a.yml": (
+        "id: a\nstatement: x\n"
+        "evidence: [{kind: proof, ref: r}, {kind: computation, ref: 'scripts/verify/q1_saddle_node.py - check', method: reimplementation}]\n"
+        "null_system: 'the same computation on a trivial system'\n"
+        "falsifier: 'scripts/verify/q1_saddle_node.py --mutant wrong-exponent'\n"
+        "status: proven\n")})
+    ok &= expect(not e, "proven with null and --mutant falsifier passes")
 
     # GREEN: evidence citing a real repo path
     e, _ = run_fixture({"a.yml": (

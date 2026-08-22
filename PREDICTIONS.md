@@ -85,3 +85,17 @@ selection and X-8's reading is wrong.
 not-claimed-in-advance: anything about real strings; the model is a
 phase ring, not Kawano's FE string, and its stick-slip law will be a
 Coulomb threshold, not Bellante's velocity-dependent mu.
+
+## P-5 — 2026-08-22 — the a0 / cH0 literature pointer
+question: does the published literature contain a derivation (not a
+heuristic) of Milgrom's a0 from the de Sitter / Gibbons-Hawking
+temperature, such that a0-tracks-hubble-conjecture could be promoted
+from coincidence-unruled to imported-with-mechanism?
+expects: NO - Milgrom 1999 is a heuristic identification of a0 with
+the acceleration at which the Unruh temperature matches the de Sitter
+temperature, and no later work derives MOND phenomenology from it;
+the claim stays coincidence-unruled and gains only a literature
+pointer (LC-6).
+changes-my-mind: a peer-reviewed derivation producing the MOND
+interpolating function, or the BTFR normalisation, from de Sitter
+thermodynamics without fitted parameters.

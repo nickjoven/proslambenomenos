@@ -19,16 +19,24 @@ TWO_PI = 2 * math.pi
 N, M = 4, 4
 
 
+MUTANT = sys.argv[sys.argv.index("--mutant") + 1] if "--mutant" in sys.argv else None
+
+
 def neighbors(i, j, twisted):
     out = []
     if i + 1 < N:
         out.append((i + 1, j, 0.0))
     else:
-        out.append((0, M - 1 - j, 0.5 if twisted else 0.0))
+        out.append((0, M - 1 - j, (0.25 if MUTANT == "phase-lag" else 0.5) if twisted else 0.0))
     if i - 1 >= 0:
         out.append((i - 1, j, 0.0))
     else:
-        out.append((N - 1, M - 1 - j, -0.5 if twisted else 0.0))
+        # LAW-11 mutant 'phase-lag': a quarter-turn lag with the SAME sign on
+        # both ends of the seam (Sakaguchi-Kuramoto form) - edge cancellation
+        # fails and the identity must break. (A half-turn same-sign lag is
+        # indistinguishable from the antisymmetric form since pi = -pi mod
+        # 2pi; that first mutant passed, and the gate rejected it.)
+        out.append((N - 1, M - 1 - j, (0.25 if MUTANT == "phase-lag" else -0.5) if twisted else 0.0))
     out.append((i, (j + 1) % M, 0.0))
     out.append((i, (j - 1) % M, 0.0))
     return out
