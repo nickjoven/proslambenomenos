@@ -122,3 +122,36 @@ set). Before any R-entry: find period doubling in the CONTROL ring
 first (Kawano's regime is high force AND slow bow; v_bow has not been
 varied), then test the twist against it. If no parameter regime of
 this model doubles, P-4 resolves as model-class vacuity and says so.
+
+## Run 4 - control-only v_bow sweep (p4_results_vsweep.json, T = 1200, count after 400)
+
+v_bow in {0.05, 0.1, 0.2, 0.5}, F_N 1.2-2.0, N = 8 and 16, clamped
+control ring. All stick-slip sequences are strictly periodic (gap_min
+= gap_max) except at the v = 0.5 stuck edge.
+
+1. Two regimes, no doubling between them. FAST bow (v = 0.5): period
+   2.2-2.6 round trips, flat in F_N - wave-locked (Helmholtz). SLOW
+   bow (v <= 0.1): period grows continuously with F_N and scales as
+   ~F_N/v (N=8: 6.8 -> 16.3 at v = 0.05; 4.2 -> 8.2 at v = 0.1), taking
+   non-integer values (6.8, 7.3, 8.0, ...) - bow-limited relaxation
+   oscillation: the slip fires when quasi-static loading reaches
+   mu_s F_N, and the launched wave has decayed (damping 0.05 over
+   7-16 round trips) before it could matter. The corner never
+   triggers anything in this regime.
+2. The one Kawano-adjacent feature: at v = 0.2 the period JUMPS by
+   about one round trip (N=8: 2.5 -> 3.3 between F_N 1.3 and 1.4;
+   N=16: 2.4 -> 3.2 between 1.4 and 1.5) - consistent with the slip
+   waiting one extra corner arrival. But the plateaus are not flat
+   (3.3 -> 4.1 with F_N), so it is partial locking, not the gated
+   every-second-arrival state, and it is a +1 step, not x2.
+3. Diagnosis: Kawano's gate needs the RETURNING CORNER to be what
+   tips the node over threshold. Here either the bow's loading does
+   it alone (slow) or the wave does it every pass (fast); no regime
+   has loading-alone insufficient AND corner-plus-loading sufficient
+   with a corner that survives the trip. The control is damping 0.05
+   per unit time against round trips of 8-16: the corner is gone.
+   Next parameter, designed not run: damping g down to 0.01-0.005
+   with v = 0.1-0.2, looking for flat integer plateaus at 2 and 4
+   round trips in the control before any twist enters.
+
+P-4 status unchanged: OPEN; the model has not yet exhibited the gate.

@@ -97,11 +97,27 @@ def run(N, twisted, F_N, v_bow=0.3, m=1.0, g=0.05, J=1.0, K=1.0, mu_s=1.0, mu_d=
 def main():
     clamp = "--clamp" in sys.argv
     refine = "--refine" in sys.argv
+    vsweep = "--vsweep" in sys.argv
     Ns = [int(x) for x in [a for a in sys.argv[1:] if not a.startswith("--")] or ["8", "9"]]
     F_grid = ([1.5 + 0.05 * k for k in range(13)] if refine
               else [0.6 + 0.1 * k for k in range(18)])
     T, T_skip = (1200.0, 400.0) if refine else (400.0, 200.0)
     out = {}
+    if vsweep:   # control only: find period doubling before testing the twist
+        for N in Ns:
+            for v in (0.05, 0.1, 0.2, 0.5):
+                key = f"N={N} control v={v}"
+                rows = []
+                for F_N in [1.2 + 0.1 * k for k in range(9)]:
+                    r = run(N, False, F_N, v_bow=v, T=1200.0, T_skip=400.0, clamp=True)
+                    rows.append({"F_N": round(F_N, 2), **r})
+                    rat = r["ratio"]
+                    print(f"{key:24s} F_N={F_N:4.2f} slips={r['n_slips']:4d} "
+                          f"period/round={'%.3f' % rat if rat else '  - '} {r['regime']}", flush=True)
+                out[key] = rows
+        with open("scripts/experiments/p4_results_vsweep.json", "w") as f:
+            json.dump(out, f, indent=1)
+        return
     for N in Ns:
         for twisted in (False, True):
             key = f"N={N} {'twisted' if twisted else 'control'}"
