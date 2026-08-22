@@ -4,14 +4,17 @@
 # history lives in git and the handoff chain, not here.
 owner:
   - id: O-1
-    item: reseal the two drifted harmonics docs and push E18-E22
-    command: "cd ~/code/harmonics && make owner-reseal && make owner-push"
+    item: push harmonics branch unseal-fermion-mass-running (E18-E24; reseal already done by owner at 0932210)
+    command: "cd ~/code/harmonics && make owner-push"
   - id: O-2
     item: harmonics MANIFEST proof_chains.A status after E18 (check_manifest_claims must stay green)
     command: "cd ~/code/harmonics && grep -n 'proof_chains' -A6 MANIFEST.yml"
   - id: O-3
     item: delete merged branches at your discretion
-    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface"
+    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa"
+  - id: O-4
+    item: JUNCTURE - reopen P-4 under a new P-line (free ring, massless contact, N >= 64, low damping) or retire the holonomy-vs-gate question; and approve the wording of a P-6 for the E1 N-parity check before any run
+    command: ""
 agent:
   - id: A-1
     item: compendium checks under the falsifier rule (LAW-12-owed; audit found C10, C5, C17 tautological, C12/C9/C8 weak, count unasserted)
