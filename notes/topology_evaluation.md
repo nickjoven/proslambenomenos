@@ -294,3 +294,22 @@ testing it. Found by deriving the null: on a plain antiperiodic circle
 the half-shift squares to −1 for the same arithmetic reason, so the
 Klein bottle was never doing any work in §7. The §11 table row
 "J² = −I on twisted sector | correct" is superseded by this section.
+
+## 7b. Attribution correction (2026-08-22 audit)
+
+The refuted statement was introduced by §7 of this note and the
+claim file, not by v1: harmonics figure_eight.md (lines 180-234)
+defines its sector as "half-integer x-wavenumbers" with "y-dependence
+trivial", and klein_bottle_derivation.md (176-180) as "odd: f(theta +
+pi) = -f(theta)" - the x-parity class, i.e. exactly the replacement
+claim half-shift-squares-by-x-parity. The conflation "half-integer
+sector = orientation bundle" is a formalisation artifact of §7.
+Sharpening from the same audit: on the base K^2, J^2 is not the
+identity but the y-reflection R_y (T_{L1} = R_y o g, g trivial on the
+base) and J^4 = id, so J^2 = epsilon R_y on sections is pullback by
+a base isometry twisted by the bundle sign - which is why the sign
+cannot be a bundle invariant. Side finding for harmonics:
+klein_bottle_derivation.md 170-174 assigns the Z_2 torsion of
+H_1(K^2) to the x-loop; abelianising <t, g | g t g^-1 = t^-1> gives
+t^2 = 1, so the torsion class is the y-loop t and the glide g is the
+free generator (ERRATA owed).

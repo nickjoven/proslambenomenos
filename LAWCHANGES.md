@@ -377,3 +377,40 @@ hashes:
   9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
   9573c69f65ee06679584e3fa67cb37bc4b2c7aba9e745eaa2d5da9ad01438646  scripts/verify/q_j_structure_sectors.py
   28dac92b5ffc812b5f8b6c60a268779f6d4a5b90a34b2c55e07772312a151bc4  tests/test_checks.py
+
+## LAW-15 — 2026-08-22 — refutation script corrected after adversarial audit
+direction: strengthen
+why: a context-free audit of einstein-from-kuramoto-chain-a found
+the verdict sound and three supports defective: check 3 used
+delta + grad grad where the source defines delta - grad grad
+(Minkowski-graph Gauss formula now used); check 2 used identical
+frequencies, whose attractor is in-phase (r = 1 everywhere), so it
+could not test a varying coherence (now heterogeneous frequencies,
+coherence 0.805-1.000, residual 4e-12); check 1's stated principle
+(characteristic order invariant under coarse-graining) was false and
+is replaced by the gradient-flow/Lyapunov argument, the exponent
+kept as a necessary-condition signature. Script re-pinned. Of
+record: the gate could not have caught any of these - all three
+were the evidence testing the wrong object while passing - which is
+the failure mode LAW-11 addresses and which the audit practice
+exists for.
+hashes:
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  361cee68968d5f14b4b2b5afc5d2918ddb59226bd5b8d4190f728b96642011f0  scripts/check_catalog.py
+  c2c271b6a2d03b966a44cbf3567c32f4fd7f9adcf61d95e7a32e391fe9a58587  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  9eb8db6c46e6ab1149c8db33087d5282f4cd70a97663654ddbc7ab285a038343  scripts/check_lawchanges.py
+  3064529f88ec4d4ad95532e0724ad28e81a8cda66ddbde230792e0f613f40eea  scripts/check_messages.py
+  0ddaeb011ba633cf3f4433b049c919393759ade85fe023374e33834048fd59f9  scripts/check_predictions.py
+  1ab7498f5c873bda35296eecb5fe7ef01c200a0703887df0e9c8c08f9366f771  scripts/check_verify_scripts.py
+  28302350dc360f2408c0e97793fcb6a9b7bacd6b19f41383595139aa238daaac  scripts/run_all.py
+  dcf9e6438a304e9e1812dadb8745f40a9e27767e01601e3df23012240b6ba6d2  scripts/run_compendium_checks.js
+  8041be6fba084ea49040746294644ab559d31901040f355820ea16feacfa6463  scripts/verify/iwasawa_one_stage.py
+  f742e81930c1b1419825d28c0bb42e3ed940d119921ed035642d29ac66364b75  scripts/verify/kuramoto_einstein_refutation.py
+  19f02072bb299e8a590cc43b3c85a6c91dbe1ef20fe79da2a9aa813fd689bbd1  scripts/verify/p1_depth6_pairs.py
+  c42c77e5b668a5a8e0029d4d60d1ff7a8c6dddfcaeabfb33f6e546b3e9f3efd4  scripts/verify/p1_gradient_bc.py
+  b6a275e86a0af49da1648700e3a041c083bac5014cb7697367d20201d8e3a431  scripts/verify/p1_mean_frequency.py
+  a11f1ed7002239ac46d661b81428fc0ebbfd02f300c61fbaebcf70943aee388d  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  9573c69f65ee06679584e3fa67cb37bc4b2c7aba9e745eaa2d5da9ad01438646  scripts/verify/q_j_structure_sectors.py
+  28dac92b5ffc812b5f8b6c60a268779f6d4a5b90a34b2c55e07772312a151bc4  tests/test_checks.py

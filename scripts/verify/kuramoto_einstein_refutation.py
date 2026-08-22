@@ -4,32 +4,47 @@ A: Einstein's equations follow uniquely from Kuramoto dynamics via the
 Kuramoto -> ADM dictionary at K = 1 and Lovelock's theorem). Three
 independent checks, each a computation, each sufficient alone:
 
-1. PARABOLIC, NOT HYPERBOLIC. Kuramoto is first order in time; a small
-   perturbation of a locked lattice spreads diffusively, width ~ t^(1/2).
-   ADM evolution is second order and hyperbolic: width ~ t^1, finite
-   propagation speed. Measured exponent must be ~0.5 (mutant 'inertial'
-   restores a second-order chain and gives ~1, so the test discriminates).
+1. GRADIENT FLOW, NOT HAMILTONIAN. With symmetric coupling and fixed
+   frequencies Kuramoto is theta' = -dV/dtheta with V = -sum omega_i
+   theta_i - K sum cos(theta_j - theta_i): V is a Lyapunov function and
+   the linearisation about any locked state is self-adjoint with real
+   spectrum, so no reversible (Hamiltonian) evolution of the ADM type
+   is a coarse-graining of it. The computed signature: a small
+   perturbation of a locked lattice spreads diffusively, width ~
+   t^(1/2); the inertial mutant (a genuinely second-order chain)
+   gives ~1. Necessary-condition check only (nonlinear gradient flows
+   can move fronts ballistically); the Lyapunov argument is the proof.
 
-2. THE DICTIONARY'S LAPSE IS CONSTANT BY DEFINITION. In a locked state
-   every oscillator has the same frequency (that is what locked means),
-   so the local clock rate is uniform: the regime the chain uses has no
-   position-dependent time dilation at all. Checked on a locked lattice
-   with spatially varying coherence: max |theta_i' - Omega| ~ 0.
+2. THE DICTIONARY'S LAPSE IS CONSTANT BY DEFINITION. adm_dictionary.md
+   line 153: "a clock at x ticks at rate r, and its phase is psi"; but
+   in a locked state every oscillator has the same frequency (that is
+   what locked means), so the clock rate is uniform whatever r(x)
+   does - and PROOF_A P7 sets r = 1 outright. Checked on a locked ring
+   with HETEROGENEOUS natural frequencies, so that the local coherence
+   genuinely varies (recorded), while max |theta_i' - Omega| -> 0.
 
-3. THE DICTIONARY'S METRIC IS A GRAPH METRIC. gamma_ij = delta_ij +
-   d_i theta d_j theta is the induced metric of the hypersurface
-   z = theta(x) in flat space; its curvature obeys the Gauss equation
-   (in 2D: K = det(Hess theta)/(1+|grad theta|^2)^2). Checked against the
-   Brioschi formula on random theta. Such metrics are codimension-one
-   flat embeddings, not general metrics; a generic 3-metric needs up
-   to 6 flat dimensions (Janet-Cartan), so the chain's gamma cannot be
-   the general-relativistic spatial metric of arbitrary matter.
+3. THE DICTIONARY'S METRIC IS A GRAPH METRIC. adm_dictionary.md line
+   64 defines gamma_ij = delta_ij - d_i theta d_j theta (positivity
+   needs |grad theta| < 1, lines 41-49; the bracket average is over a
+   single smooth field, so the tensor is rank-one as the source argues
+   it). That is the induced metric of the SPACELIKE graph z = theta(x)
+   in Minkowski R^(n,1); its curvature obeys the corresponding Gauss
+   equation (in 2D: K = -det(Hess theta)/(1-|grad theta|^2)^2). Checked
+   against the Brioschi formula on random theta with |grad theta| < 1.
+   Codimension-one flat (pseudo-Euclidean) embeddings are a thin
+   subfamily: one free function against three for a general 3-metric
+   modulo diffeomorphisms (Janet-Cartan), so the chain's gamma cannot
+   be the spatial metric of arbitrary matter, and Lovelock's
+   uniqueness presupposes a general metric. Of record: the first
+   version of this script used delta + grad grad (the wrong sign) -
+   found by a context-free audit 2026-08-22.
 
 Also of record, not computed: P8 invokes Lovelock (1971) with "general
 covariance" supplied by "SL(2,R) acts transitively"; Diff(M) is
 infinite-dimensional and SL(2,R) is three-dimensional - the hypothesis
 is not met. Exit 0 iff checks 1-3 confirm the refutation."""
 
+import cmath
 import math
 import random
 import sys
@@ -63,26 +78,35 @@ def spreading_exponent(inertial):
 
 
 def locked_clock_rates():
-    # locked lattice with a coherence gradient: varying coupling along x
-    N, Om, dt = 64, 0.3, 0.01
-    Kx = [0.6 + 0.4 * math.sin(2 * math.pi * i / N) for i in range(N)]
-    th = [0.1 * math.sin(4 * math.pi * i / N) for i in range(N)]
+    # locked ring with HETEROGENEOUS natural frequencies (zero mean about
+    # Omega) and strong coupling: the locked state is not in-phase, so the
+    # local coherence r_i = |mean of e^{i theta} over i-1, i, i+1| varies
+    # with position - and yet every theta_i' -> Omega.
+    N, Om, K, dt = 64, 0.3, 3.0, 0.01
+    random.seed(2)
+    om = [random.uniform(-0.5, 0.5) for _ in range(N)]
+    m = sum(om) / N
+    om = [Om + (o - m) for o in om]
+    th = [0.0] * N
     spread = []
-    for k in range(1, 80001):
-        F = [Om + Kx[i] * (math.sin(th[(i + 1) % N] - th[i]) + math.sin(th[i - 1] - th[i])) for i in range(N)]
+    for k in range(1, 100001):
+        F = [om[i] + K * (math.sin(th[(i + 1) % N] - th[i]) + math.sin(th[i - 1] - th[i])) for i in range(N)]
         for i in range(N):
             th[i] += F[i] * dt
-        if k in (40000, 80000):
+        if k in (50000, 100000):
             spread.append(max(abs(f - Om) for f in F))
-    # the residual is the decaying approach to lock: it must shrink and be small
-    return spread[0], spread[1]
+    r = []
+    for i in range(N):
+        z = sum(cmath.exp(1j * th[j % N]) for j in (i - 1, i, i + 1)) / 3
+        r.append(abs(z))
+    return spread[0], spread[1], min(r), max(r)
 
 
 def gauss_check():
     random.seed(3)
     worst = 0.0
     for _ in range(5):
-        a = [random.uniform(-1, 1) for _ in range(6)]
+        a = [random.uniform(-0.3, 0.3) for _ in range(6)]   # keep |grad theta| < 1
         th = lambda x, y: a[0] * x * x + a[1] * x * y + a[2] * y * y + a[3] * x ** 3 + a[4] * y ** 3 + a[5] * x * y * y
         h = 1e-3
         x0, y0 = random.uniform(-0.5, 0.5), random.uniform(-0.5, 0.5)
@@ -91,11 +115,11 @@ def gauss_check():
         txx = (th(x0 + h, y0) - 2 * th(x0, y0) + th(x0 - h, y0)) / h ** 2
         tyy = (th(x0, y0 + h) - 2 * th(x0, y0) + th(x0, y0 - h)) / h ** 2
         txy = (th(x0 + h, y0 + h) - th(x0 + h, y0 - h) - th(x0 - h, y0 + h) + th(x0 - h, y0 - h)) / (4 * h * h)
-        K_graph = (txx * tyy - txy ** 2) / (1 + tx * tx + ty * ty) ** 2
+        K_graph = -(txx * tyy - txy ** 2) / (1 - tx * tx - ty * ty) ** 2   # spacelike graph in R^(2,1)
         # Brioschi via Christoffel symbols on g = I + grad theta grad theta^T
         def g(x, y):
             px, py = d(th, x, y)
-            return (1 + px * px, px * py, 1 + py * py)
+            return (1 - px * px, -px * py, 1 - py * py)   # gamma = delta - grad grad (adm_dictionary.md:64)
         def K_brioschi(x, y):
             H = 1e-2
             E, F, G = g(x, y)
@@ -120,14 +144,14 @@ def main() -> int:
     ok = True
     inertial = MUTANT == "inertial"
     e = spreading_exponent(inertial)
-    print(f"1. perturbation spreading exponent: {e:.3f} (parabolic 0.5; hyperbolic 1.0)")
+    print(f"1. perturbation spreading exponent: {e:.3f} (diffusive 0.5; ballistic 1.0)")
     ok &= abs(e - 0.5) < 0.1
-    r1, r2 = locked_clock_rates()
-    print(f"2. locked lattice with coherence gradient: max |theta' - Omega| = {r1:.2e} -> {r2:.2e} "
-          f"(transient decaying; lapse uniform in the limit)")
-    ok &= r2 < r1 and r2 < 1e-4
+    r1, r2, rmin, rmax = locked_clock_rates()
+    print(f"2. locked heterogeneous ring: local coherence ranges {rmin:.3f}-{rmax:.3f}, "
+          f"yet max |theta' - Omega| = {r1:.2e} -> {r2:.2e} (lapse uniform)")
+    ok &= r2 <= r1 and r2 < 1e-6 and (rmax - rmin) > 0.01
     w = gauss_check()
-    print(f"3. gamma = I + grad theta grad theta^T obeys the graph Gauss equation: rel. err {w:.2e}")
+    print(f"3. gamma = I - grad theta grad theta^T obeys the Minkowski-graph Gauss equation: rel. err {w:.2e}")
     ok &= w < 5e-2
     print("REFUTATION " + ("CONFIRMED" if ok else "NOT CONFIRMED"))
     return 0 if ok else 1
