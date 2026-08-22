@@ -89,3 +89,53 @@ and the observable is rotation-number plateau width, not a voltage
 step - the sign difference may be entirely this; (ii) Lazarides 2008
 predicts N-parity dependence; E1 ran N = 4 only. An N-parity check is
 the natural next experiment and is queued, not run.
+
+## LC-4 — the Helmholtz corner, lattice dispersion, twist gauge, ALF prior art (2026-08-21)
+prediction: P-4
+
+Five statements from the P-4 discussion checked by an independent
+context-free agent (web, 40 tool calls). Verdicts:
+
+S1 corner = propagating weak discontinuity on characteristics:
+mechanics correct; attributions loose. d'Alembert (1747) suffices for
+the 1D wave equation; Hadamard, Lecons sur la propagation des ondes
+(1903) for weak discontinuities; Hormander, Acta Math. 127 (1971) /
+Duistermaat-Hormander 128 (1972) only for the general theorem.
+Helmholtz's book is 1863 (preface 1862). Cremer's corner rounding is
+Acustica 30, 119 (1974), mechanism losses PLUS stiffness balanced
+against friction sharpening; the 1984 MIT Press book is secondary.
+Raman, Bull. Indian Assoc. Cultiv. Sci. 15, 1 (1918) is a dynamical
+theory. Woodhouse & Galluzzo, Acta Acustica 90, 579 (2004) correct.
+
+S2 lattice dispersion spreads a sharp front: KNOWN - Schrodinger,
+Ann. Phys. 349, 916 (1914), Bessel-function solution on the chain.
+Caveats: a finite-difference string scheme at CFL = 1 is exactly
+dispersion-free (Bilbao, Numerical Sound Synthesis, 2009), so the
+dispersion is a property of the mass-chain ODE, not of numerics per
+se; bowed-string simulators (McIntyre, Schumacher, Woodhouse, JASA
+74, 1325 (1983); digital waveguides) use reflection functions and
+deliberately band-limit the corner. No published "N sites needed to
+hold a corner" statement found.
+
+S3 twist gauge-invisible to linear waves except via background:
+correct for ANTISYMMETRIC bond phases (Teitel & Jayaprakash, PRB 27,
+598 (1983); twisted BC = Peierls phase on one bond); WRONG for a
+same-sign offset at both ends, which is the Sakaguchi-Kuramoto
+phase-lag model (Prog. Theor. Phys. 76, 576 (1986)), not removable.
+The repo's scripts use the antisymmetric form (p4 lines 54-55;
+p1_mean_frequency.py); the in-chat sentence was the sloppy one.
+
+S4 topology/holonomy vs ALF onset in bowed strings: NOT FOUND.
+ALF conditions KNOWN: bow force above Schelleng's f_max with slow
+bow (Guettler, CASJ 2(6), 8 (1994); PhD KTH 2002; Guettler &
+Schoonderwaldt, ISMA 2007; Kimura, J. New Music Res. 28, 178 (1999);
+Hanson, Halgedahl, Schneider, CASJ 2(6), 1 (1994)). Schelleng, JASA
+53, 26 (1973): f_max = 2 Z0 v_b / [beta (mu_s - mu_d)].
+
+S5 "shocks and pulse edges are the same object as the corner": WRONG.
+Weak discontinuity (derivative jump, characteristic speed,
+non-dissipative) vs strong discontinuity / shock (field jump,
+Rankine-Hugoniot speed, dissipative, born from smooth data) -
+Hadamard 1903; Courant & Friedrichs, Supersonic Flow and Shock Waves
+(1948). Lattice "shocks" (Holian, Flaschka, McLaughlin, PRA 24, 2595
+(1981)) are dispersive shock waves, a third object.
