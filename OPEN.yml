@@ -11,7 +11,7 @@ owner:
     command: "cd ~/code/harmonics && grep -n 'proof_chains' -A6 MANIFEST.yml"
   - id: O-3
     item: delete merged branches at your discretion
-    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot"
+    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface"
   - id: O-4
     item: go/no-go on the P-4 integrator fix (event-located stick-slip; also the independent reimplementation P-4's bar demands)
     command: ""
@@ -27,6 +27,7 @@ agent:
   - id: A-5
     item: P-2 two-anchor; Crouzeix issue audit; dotfiles/tokenctl/toolbox remotes
 decided_since_parent:
+  - "handoff interface landed (OPEN.yml, make handoff, recap artifact, ~/code/handoffs store); catbus hardening filed as nickjoven/catbus#1 (sign, lint, lineage, replay)"
   - "link-005 sealed: J^2 claim refuted and replaced; Proof Chain A refuted first-class; LAW-11 falsifiers"
   - "math catalog is the ninth gate (LAW-13); entries self-test via --mutant, not hash-pinned"
   - "harmonics ERRATA E18-E22 written with status banners; Koide Floor reverted; neutrino open at 2.25 sigma"
@@ -41,8 +42,8 @@ retracted_since_parent:
 do_not_recompute:
   - "P-1 resolved by domain vacuity (R-1); the two theorem-lets are unconditional"
   - "J^2 = (-1)^(2m) depends on x-parity, not the bundle"
-  - "Kuramoto spreading exponent 0.500 (parabolic); inertial chain 0.989"
-  - "loading formula period/round = F/(4Jv) where that is >= 3"
+  - "Kuramoto spreading exponent 0.500 (parabolic); inertial chain 0.989 - scripts/verify/kuramoto_einstein_refutation.py"
+  - "loading formula period/round = F/(4Jv) where that is >= 3 - catalog/c12_p4_loading_formula.py"
   - "Helmholtz motion in the clamped control at g=0.002, F_N <= 0.6: period 2.02-2.07 round trips"
 artifact: "https://claude.ai/code/artifact/2421bb54-5508-4608-9390-452c0880fe76"
 recap: "https://claude.ai/code/artifact/5933c553-6c3f-4f4f-aaab-c92917a779d5"
