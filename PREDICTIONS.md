@@ -151,3 +151,13 @@ would move the published lower bound and be reported as such. Any
 stable twisted state above 0.75 is a bug, not a result (theorem).
 not-claimed-in-advance: anything about non-circulant graphs; the
 global-sync threshold itself.
+
+## R-4 — 2026-08-23 — resolves P-6
+outcome: as expected. Exhaustive n <= 28: maximum density 2/3 (n =
+22, 25, 28, contiguous S, q = 1); search to n = 64: 0.6744 (n = 44,
+two-band S, q = 2); nothing above 0.6809; the maximum rises with n
+toward the published value. All maximisers pass the independent
+Jacobian check. Mind-change condition did not fire. Filed as the
+verified claim circulant-twisted-max-density-small with an exhaustive
+n <= 20 certificate (notes/p6_circulant.md). No contribution to the
+open gap; a reproduction with tooling that now handles the object.

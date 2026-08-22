@@ -1,0 +1,21 @@
+id: circulant-twisted-max-density-small
+statement: >
+  For identical Kuramoto oscillators on a circulant graph C_n(S) with
+  n <= 20, over all symmetric connection sets S and all windings q,
+  the largest edge density at which the q-twisted state theta_j =
+  2 pi q j / n is linearly stable is 12/19, attained at n = 20 by
+  S = {1, ..., 6} with q = 1. Stability is decided by the circulant
+  eigenvalues lambda_m = sum_{k in S} w_k cos(2 pi q k/n)(1 - cos(2 pi
+  m k/n)) > 0 for m = 1..n-1, with w_k = 2 (w_{n/2} = 1).
+premises: []
+prediction: P-6
+evidence:
+  - kind: computation
+    ref: "scripts/verify/p6_circulant_small.py - exhaustive over 2^(n//2) subsets for each n <= 20 and every q, stability from the closed-form eigenvalues, the maximiser re-checked by the DFT of the Jacobian's first row; scripts/experiments/p6_circulant_twisted.py extends the exhaustive range to n <= 28 (maximum 2/3 at n = 22, 25, 28) and a search to n <= 64 (0.6744 at n = 44, q = 2), results in p6_results.json"
+    method: reimplementation
+null_system: "the ring with k nearest neighbours per side (S = {1..k}) already gives the whole n <= 20 maximiser family; Wiley, Strogatz, Girvan (2006) show q-twisted states on that ring are stable for k/n below about 0.34 - the exhaustive search's content is that no non-contiguous S does better at these n"
+falsifier: "scripts/verify/p6_circulant_small.py --mutant claims-two-thirds"
+novelty:
+  status: classical
+  citation: "circulant eigenvalue criterion for twisted states: Wiley, Strogatz, Girvan, Chaos 16, 015103 (2006); Townsend, Stillman, Strogatz, Chaos 30, 083142 (2020)"
+status: verified
