@@ -59,3 +59,9 @@ notebooks-html:
 	$(PYTHON) scripts/nb_build.py && $(PYTHON) scripts/nb_html.py
 
 .PHONY: notebooks notebooks-html
+
+wt:
+	git worktree add ../wt-$(TASK) -b $(TASK) main && echo "../wt-$(TASK) on branch $(TASK)"
+
+wt-done:
+	git worktree remove ../wt-$(TASK) && git branch -d $(TASK)

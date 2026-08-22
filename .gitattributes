@@ -1,0 +1,9 @@
+# Append-only ledgers: union merge concatenates both sides instead of
+# conflicting, which is exactly the semantics of an append-only file.
+# ID allocation (LC-n, P-n, LAW-n) happens at task assignment so two
+# branches never claim the same number; LAW entries are written by the
+# integrator only, after rebase, because they embed gate-file hashes.
+LAWCHANGES.md merge=union
+LITCHECKS.md merge=union
+PREDICTIONS.md merge=union
+DECLINED.md merge=union
