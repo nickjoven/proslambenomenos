@@ -498,7 +498,15 @@ const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).
 
 // ---------- verification registry ----------
 const CHECKS = {};
-function register(id, fn) { CHECKS[id] = fn; }
+const MUTANTS = {};
+// KNOBS: every check reads its claimed discriminators from here, so a
+// mutant (a named function that sets one knob to a specific wrong
+// value) can be applied by the headless harness, which then requires
+// the check to FAIL. A check with no failing mutant is not a test
+// (LAW-11, LAW-17).
+const KNOBS = {};
+function knob(k, dflt) { return (k in KNOBS) ? KNOBS[k] : dflt; }
+function register(id, fn, mutants) { CHECKS[id] = fn; MUTANTS[id] = mutants || {}; }
 function runCheck(id) {
   const out = document.getElementById("v-" + id);
   let r;
@@ -572,25 +580,26 @@ register("c1", () => {
     return "0," + r.join(",") === want &&
       "0," + r.join(",") === cf(p, q).join(",");
   });
-  const pass = inserted === 4095 && adjacentOK === 8190 && allReduced && cfOK;
+  const pass = inserted === 4095 && adjacentOK === knob("c1_adjacent", 8190) && allReduced && cfOK;
   return { pass, lines: [
     `insertions to depth 12: computed ${inserted}, expected 4095`,
     `adjacent pairs with bc−ad = 1: ${adjacentOK}/${adjacentAll}`,
     `all reduced and unique: ${allReduced}`,
     `CF addressing (2/5, 13/19): ${cfOK}` ] };
-});
+}, { "adjacency-det-2": () => { KNOBS.c1_adjacent = 4095; } });
 
 // ---------- C2 unique (2,3) ----------
 register("c2", () => {
   const sols = [];
-  for (let x = 1; x <= 1000; x++) { const y = x * x - 1; if (y * y - 1 === x ** 3) sols.push([x, y]); }
+  const e = knob("c2_exponent", 3);
+  for (let x = 1; x <= 1000; x++) { const y = x * x - 1; if (y * y - 1 === x ** e) sols.push([x, y]); }
   const ptab = [];
   for (let x = 1; x <= 6; x++) ptab.push(`p(${x}) = ${x ** 4 - x ** 3 - 2 * x ** 2}`);
   const pass = JSON.stringify(sols) === "[[2,3]]";
   return { pass, lines: [
     `exhaustive x ≤ 1000: solutions = ${JSON.stringify(sols)}, expected [[2,3]]`,
     `x⁴−x³−2x²: ${ptab.join("  ")}  (zero only at x = 2)` ] };
-});
+}, { "cube-to-square": () => { KNOBS.c2_exponent = 2; } });
 
 // ---------- C3 fibonacci ----------
 register("c3", () => {
@@ -602,9 +611,9 @@ register("c3", () => {
     if (eq) hits.push(n);
     lines.push(`n=${n}: F=${f[n - 1]}, next=${f[n]}, F²−1=${f[n - 1] ** 2 - 1} ${eq ? "✓" : "✗"}`);
   }
-  const pass = hits.length === 1 && hits[0] === 2;
+  const pass = hits.length === 1 && hits[0] === knob("c3_hit", 2);
   return { pass, lines: [...lines, `unique hit at n = ${hits}, expected [2]; growth bound closes n > 7`] };
-});
+}, { "hit-at-3": () => { KNOBS.c3_hit = 3; } });
 
 // ---------- C4 mirror census ----------
 function fareySet(n) {
@@ -614,7 +623,7 @@ function fareySet(n) {
   return s;
 }
 register("c4", () => {
-  const want = { 1: [1, 0], 2: [1, 1], 3: [2, 1], 4: [3, 1], 5: [5, 1], 6: [6, 1] };
+  const want = knob("c4_want", { 1: [1, 0], 2: [1, 1], 3: [2, 1], 4: [3, 1], 5: [5, 1], 6: [6, 1] });
   const lines = []; let pass = true;
   for (let n = 1; n <= 6; n++) {
     const F = fareySet(n);
@@ -630,7 +639,7 @@ register("c4", () => {
     lines.push(`n=${n}: |F|=${F.length}, (pairs,fixed)=(${pairs},${fixed}), expected (${want[n]}) ${ok ? "✓" : "✗"}`);
   }
   return { pass, lines };
-});
+}, { "no-fixed-point-at-2": () => { KNOBS.c4_want = { 1: [1, 0], 2: [2, 0], 3: [2, 1], 4: [3, 1], 5: [5, 1], 6: [6, 1] }; } });
 
 // ---------- C5 antipodal plateaus ----------
 function orbitCount(n) {
@@ -676,13 +685,26 @@ function drawC5() {
     `N(${n}) = ${orbitCount(n)}   plateaus so far: ${[...new Set(Array.from({length: n}, (_, i) => orbitCount(i + 1)))].join(", ")}`;
 }
 document.getElementById("c5n").addEventListener("input", drawC5);
+function orbitCountDirect(n) {
+  // count orbits of p/q -> (q-p)/q on the Farey fractions with gcd(q,6)=1
+  // by explicit pairing - never via the phi formula (LAW-17: the
+  // formula is the statement; the pairing is the definition).
+  const restrict = knob("c5_restrict", true);
+  const F = fareySet(n).filter(([p, q]) => !restrict || gcd(q, 6) === 1);
+  const seen = new Set(); let orbits = 0;
+  for (const [p, q] of F) {
+    const k = p + "/" + q; if (seen.has(k)) continue;
+    seen.add(k); seen.add((q - p) + "/" + q); orbits++;
+  }
+  return orbits;
+}
 register("c5", () => {
   const expect = [[1, 1], [4, 1], [5, 3], [10, 6], [12, 11], [16, 17], [18, 25], [22, 34], [24, 45], [28, 55]];
   const lines = []; let pass = true;
   for (const [n, want] of expect) {
-    const got = orbitCount(n);
-    const ok = got === want; pass = pass && ok;
-    lines.push(`N(${n}) = ${got}, expected ${want} ${ok ? "✓" : "✗"}`);
+    const got = orbitCountDirect(n);
+    const ok = got === want && got === orbitCount(n); pass = pass && ok;
+    lines.push(`N(${n}) = ${got} (direct pairing), formula ${orbitCount(n)}, expected ${want} ${ok ? "✓" : "✗"}`);
   }
   const incs = [[5, 2], [7, 3], [11, 5], [13, 6], [17, 8], [19, 9], [23, 11], [25, 10]];
   for (const [q, want] of incs) {
@@ -690,9 +712,13 @@ register("c5", () => {
     const ok = phi / 2 === want; pass = pass && ok;
     lines.push(`φ(${q})/2 = ${phi / 2}, expected ${want} ${ok ? "✓" : "✗"}${q === 25 ? "  ← (q−1)/2 would say 12" : ""}`);
   }
-  lines.push(`15 attained: ${Array.from({length: 28}, (_, i) => orbitCount(i + 1)).includes(15)}`);
+  const plateaus = Array.from({length: 28}, (_, i) => orbitCountDirect(i + 1));
+  const has15 = plateaus.includes(15);
+  pass = pass && (has15 === knob("c5_expect15", false));
+  lines.push(`15 attained: ${has15} (expected ${knob("c5_expect15", false)})`);
   return { pass, lines };
-});
+}, { "all-denominators": () => { KNOBS.c5_restrict = false; },
+     "claims-15-attained": () => { KNOBS.c5_expect15 = true; } });
 
 // ---------- C6 no order 15 ----------
 function orders648() {
@@ -732,13 +758,13 @@ register("c6", () => {
   const got = [...counts.keys()].sort((a, b) => a - b).join(",");
   const total = [...counts.values()].reduce((a, b) => a + b, 0);
   const divisors = []; for (let d = 1; d <= 648; d++) if (648 % d === 0) divisors.push(d);
-  const pass = got === "1,2,3,6,9,18,27,54" && total === 648 && 648 % 15 !== 0 && !divisors.includes(15);
+  const pass = got === knob("c6_orders", "1,2,3,6,9,18,27,54") && total === 648 && 648 % 15 !== 0 && !divisors.includes(15);
   return { pass, lines: [
     `element orders: {${got}}, expected {1,2,3,6,9,18,27,54}`,
     `elements enumerated: ${total}/648`,
     `648 mod 15 = ${648 % 15} (≠ 0); 15 in divisor list: ${divisors.includes(15)}`,
     `divisors (${divisors.length}): ${divisors.join(",")}` ] };
-});
+}, { "order-15-present": () => { KNOBS.c6_orders = "1,2,3,6,9,15,18,27,54"; } });
 
 // ---------- C7 klein spectrum ----------
 function bcResidual(m, branch, n, pts = 200) {
@@ -772,7 +798,9 @@ register("c7", () => {
         if (branch === "cos" && n === 0 && m === 0) { /* constant */ }
         const r = bcResidual(m, branch, n, 120);
         const halfInt = Math.abs(m % 1) === 0.5;
-        const shouldPass = (halfInt && branch === "cos") || (!halfInt && branch === "sin");
+        const shouldPass = knob("c7_flip", false)
+          ? ((halfInt && branch === "sin") || (!halfInt && branch === "cos"))
+          : ((halfInt && branch === "cos") || (!halfInt && branch === "sin"));
         const ok = shouldPass ? r < 1e-9 : r > 0.1;
         pass = pass && ok;
         lines.push(`m=${m} ${branch} n=${n}: residual ${r.toExponential(1)} — ${shouldPass ? "allowed" : "forbidden"} ${ok ? "✓" : "✗"}`);
@@ -781,7 +809,7 @@ register("c7", () => {
   }
   lines.push("constant mode (m=0, cos, n=0) sits in the forbidden (integer, cos) family → no zero mode; λ_min = π² (m=½, n=0)");
   return { pass, lines };
-});
+}, { "xor-flipped": () => { KNOBS.c7_flip = true; } });
 
 // ---------- C8 staircase ----------
 function drawC8() {
@@ -830,12 +858,13 @@ register("c8", () => {
   const w12 = plateauWidth(1, 2, 1, 0.35, 0.65);
   const w13 = plateauWidth(1, 3, 1, 0.2, 0.45);
   const w14 = plateauWidth(1, 4, 1, 0.12, 0.35);
-  const pass = mono && w12 > w13 && w13 > w14 && w12 > 0.05;
+  const ordered = knob("c8_reverse", false) ? (w13 > w12 && w14 > w13) : (w12 > w13 && w13 > w14);
+  const pass = mono && ordered && w12 > 0.05;
   return { pass, lines: [
     `monotone on 200-point grid: ${mono}`,
     `plateau widths at K=1: w(1/2)=${w12.toFixed(4)}  w(1/3)=${w13.toFixed(4)}  w(1/4)=${w14.toFixed(4)}`,
     `ordering w(1/2) > w(1/3) > w(1/4): ${w12 > w13 && w13 > w14}` ] };
-});
+}, { "ordering-reversed": () => { KNOBS.c8_reverse = true; } });
 
 // ---------- C9 tongue scaling ----------
 function measureWidths(K) {
@@ -858,20 +887,28 @@ document.getElementById("c9run").addEventListener("click", () => {
 register("c9", () => {
   const a = measureWidths(0.2), b = measureWidths(0.4);
   const slope = Math.log((a.w12 / a.w13) / (b.w12 / b.w13)) / Math.log(0.2 / 0.4);
-  const pass = Math.abs(slope - (-1)) < 0.15 && a.w12 > 0 && a.w13 > 0;
+  // absolute exponent: w(p/q) ∝ K^q, so doubling K multiplies w(1/2) by 2^2
+  // and w(1/3) by 2^3 (to leading order) - the ratio law alone cannot see q.
+  const off = knob("c9_exp_offset", 0);
+  const r12 = b.w12 / a.w12, r13 = b.w13 / a.w13;
+  const absOK = Math.abs(r12 - 2 ** (2 + off)) / 2 ** (2 + off) < 0.15 && Math.abs(r13 - 2 ** (3 + off)) / 2 ** (3 + off) < 0.15;
+  const pass = Math.abs(slope - (-1)) < 0.15 && a.w12 > 0 && a.w13 > 0 && absOK;
   return { pass, lines: [
     `w(1/2): ${a.w12.toExponential(3)} @K=0.2, ${b.w12.toExponential(3)} @K=0.4 (ref: 3.147e-3, 1.2533e-2)`,
     `w(1/3): ${a.w13.toExponential(3)} @K=0.2, ${b.w13.toExponential(3)} @K=0.4 (ref: 2.83e-4, 2.183e-3)`,
-    `ratio-law slope: ${slope.toFixed(3)}, expected ≈ −0.95 (→ −1 as K → 0)` ] };
-});
+    `ratio-law slope: ${slope.toFixed(3)}, expected ≈ −0.95 (→ −1 as K → 0)`,
+    `doubling K: w(1/2) ×${r12.toFixed(2)} (expect 4), w(1/3) ×${r13.toFixed(2)} (expect 8): ${absOK}` ] };
+}, { "exponent-q-plus-1": () => { KNOBS.c9_exp_offset = 1; } });
 
 // ---------- C10 Adler ----------
 function beatFreq(dw, K) {
-  // integrate phi' = dw - 2K sin phi; count full rotations
-  if (Math.abs(dw) <= 2 * K) return 0;
+  // integrate phi' = dw - coef*K sin phi; count full rotations. No
+  // threshold short-circuit: lock must EMERGE from the integration
+  // (the old early return restated the claim; audit 2026-08-22).
+  const coef = knob("c10_coef", 2);
   let phi = 0, T = 0, dt = 0.002, rot = 0, last = 0;
   for (let i = 0; i < 400000; i++) {
-    phi += dt * (dw - 2 * K * Math.sin(phi)); T += dt;
+    phi += dt * (dw - coef * K * Math.sin(phi)); T += dt;
     if (phi - last > 2 * Math.PI) { rot++; last += 2 * Math.PI; }
   }
   return rot * 2 * Math.PI / T;
@@ -901,16 +938,17 @@ function drawC10() {
 }
 ["c10dw", "c10k"].forEach(id => document.getElementById(id).addEventListener("input", drawC10));
 register("c10", () => {
-  const K = 0.3;
-  const b1 = beatFreq(0.6, K), b2 = beatFreq(0.62, K);
-  const pred2 = Math.sqrt(0.62 ** 2 - 0.6 ** 2);
-  const b3 = beatFreq(0.9, K), pred3 = Math.sqrt(0.9 ** 2 - 0.6 ** 2);
-  const pass = b1 === 0 && b2 > 0 && Math.abs(b2 - pred2) < 0.02 && Math.abs(b3 - pred3) < 0.02;
+  const K = 0.3, thr = knob("c10_thr", 2) * K;   // claimed lock threshold
+  const b1 = beatFreq(0.45, K);                   // interior of the claimed lock range
+  const b2 = beatFreq(0.62, K), b3 = beatFreq(0.9, K);
+  const pred = dw => Math.abs(dw) <= thr ? 0 : Math.sqrt(dw * dw - thr * thr);
+  const pass = b1 === pred(0.45) && b2 > 0 && Math.abs(b2 - pred(0.62)) < 0.02 && Math.abs(b3 - pred(0.9)) < 0.02;
   return { pass, lines: [
-    `K=0.3, Δω=0.60: beat = ${b1} (locked, |Δω| ≤ 2K) ✓`,
-    `K=0.3, Δω=0.62: beat = ${b2.toFixed(4)}, √(Δω²−(2K)²) = ${pred2.toFixed(4)}`,
-    `K=0.3, Δω=0.90: beat = ${b3.toFixed(4)}, formula = ${pred3.toFixed(4)}` ] };
-});
+    `K=0.3, Δω=0.45: beat = ${b1.toFixed(4)} (claimed locked, threshold ${thr.toFixed(2)}) ${b1 === pred(0.45) ? "✓" : "✗"}`,
+    `K=0.3, Δω=0.62: beat = ${b2.toFixed(4)}, √(Δω²−thr²) = ${pred(0.62).toFixed(4)}`,
+    `K=0.3, Δω=0.90: beat = ${b3.toFixed(4)}, formula = ${pred(0.9).toFixed(4)}` ] };
+}, { "threshold-K-not-2K": () => { KNOBS.c10_thr = 1; },
+     "ode-coefficient-K": () => { KNOBS.c10_coef = 1; } });
 
 // ---------- C11 chebyshev ----------
 function chebBoth(q, K) {
@@ -920,7 +958,8 @@ function chebBoth(q, K) {
   let t0 = 1, t1 = x;
   if (q === 0) return { lhs, rhs: 0 };
   for (let k = 1; k < q; k++) { const t2 = 2 * x * t1 - t0; t0 = t1; t1 = t2; }
-  const Tq = q === 1 ? x : t1;
+  let Tq = q === 1 ? x : t1;
+  if (knob("c11_shift", 0) === 1) { Tq = 2 * x * t1 - t0; }   // T_{q+1} instead of T_q
   return { lhs, rhs: 2 * Math.pow(K / 2, q) * (Tq - 1) };
 }
 function drawC11() {
@@ -943,7 +982,7 @@ register("c11", () => {
     lines.push(`q=${q}, K=${K}: both sides ${lhs.toPrecision(8)}, recorded ${want} ${ok ? "✓" : "✗"}`);
   }
   return { pass, lines };
-});
+}, { "chebyshev-index-shift": () => { KNOBS.c11_shift = 1; } });
 
 // ---------- C12 divergence ----------
 function drawC12() {
@@ -990,9 +1029,16 @@ register("c12", () => {
       lines.push(`Σ up to ${q}: ${s.toFixed(3)}, expected ${want[q]} ${ok ? "✓" : "✗"}`);
     }
   }
-  lines.push(`per-decade increment ≈ (6/π²)·ln 10 = ${(6 / Math.PI ** 2 * Math.LN10).toFixed(3)}`);
+  // divergence: per-decade increments stay at (6/π²) ln 10 ≈ 1.400, not shrinking
+  const sums = {}; let s2 = 0;
+  for (let q = 1; q <= 10000; q++) { s2 += phi[q] / (q * q); if (want[q] !== undefined) sums[q] = s2; }
+  const inc1 = sums[1000] - sums[100], inc2 = sums[10000] - sums[1000];
+  const rate = 6 / Math.PI ** 2 * Math.LN10;
+  const diverges = knob("c12_converges", false) ? (inc2 < 0.5 * inc1) : (Math.abs(inc1 - rate) < 0.02 && Math.abs(inc2 - rate) < 0.02);
+  pass = pass && diverges;
+  lines.push(`per-decade increments: ${inc1.toFixed(4)}, ${inc2.toFixed(4)}; (6/π²)·ln 10 = ${rate.toFixed(4)} — ${diverges ? "✓" : "✗"}`);
   return { pass, lines };
-});
+}, { "series-converges": () => { KNOBS.c12_converges = true; } });
 
 // ---------- C13 mobius ----------
 register("c13", () => {
@@ -1003,13 +1049,13 @@ register("c13", () => {
   const dec = samples.every((v, i) => i === 0 || v < samples[i - 1]);
   let rt = 0;
   for (const w of [0, 0.3, 0.7, 1]) rt = Math.max(rt, Math.abs(inv(Om(w)) - w));
-  const pass = numerator === -1 && dec && rt < 1e-12
+  const pass = numerator === knob("c13_num", -1) && dec && rt < 1e-12
     && Math.abs(Om(0) - 11 / 16) < 1e-15 && Math.abs(Om(1) - 13 / 19) < 1e-15;
   return { pass, lines: [
     `derivative numerator 2·16 − 3·11 = ${numerator}, expected −1`,
     `Ω(0)=${Om(0)} (11/16), Ω(1)=${Om(1).toFixed(15)} (13/19); strictly decreasing: ${dec}`,
     `round-trip max error: ${rt.toExponential(2)}` ] };
-});
+}, { "numerator-plus-1": () => { KNOBS.c13_num = 1; } });
 
 // ---------- C14 four line bundles ----------
 function sectorPairings(cg, ct) {
@@ -1054,16 +1100,26 @@ document.getElementById("c14scan").addEventListener("click", () => {
 });
 register("c14", () => {
   const lines = []; let pass = true;
+  const expect = knob("c14_expect", C14_EXPECT);
   for (const [cg, ct] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
     const key = (cg > 0 ? "+1" : "-1") + "," + (ct > 0 ? "+1" : "-1");
     const got = sectorPairings(cg, ct);
-    const ok = got === C14_EXPECT[key];
+    const ok = got === expect[key];
     pass = pass && ok;
-    lines.push(`sector (${key}): ${got}  expected ${C14_EXPECT[key]} ${ok ? "✓" : "✗"}`);
+    lines.push(`sector (${key}): ${got}  expected ${expect[key]} ${ok ? "✓" : "✗"}`);
   }
+  // the orientation character is computed, not labelled: chi(h) = det of the
+  // linear part of the deck element h; g = (x+1, 1-y) has det -1, t = (x, y+1) has det +1
+  const detg = (1) * (-1), dett = (1) * (1);
+  const orientKey = (detg > 0 ? "+1" : "-1") + "," + (dett > 0 ? "+1" : "-1");
+  const labelled = knob("c14_orient_label", "-1,+1");
+  const orientOK = orientKey === labelled;
+  pass = pass && orientOK;
+  lines.push(`orientation character from det(linear parts): (${orientKey}); labelled (${labelled}) ${orientOK ? "✓" : "✗"}`);
   lines.push("four characters, four sectors, each locking one complementary pairing — H¹(K²;Z₂)=Z₂×Z₂");
   return { pass, lines };
-});
+}, { "pairing-swapped": () => { KNOBS.c14_expect = { "+1,+1": "half,cos | int,sin", "-1,+1": "half,sin | int,cos", "+1,-1": "half,sin | int,cos", "-1,-1": "half,cos | int,sin" }; },
+     "orientation-mislabelled": () => { KNOBS.c14_orient_label = "+1,-1"; } });
 
 // ---------- C15 weyl density ----------
 register("c15", () => {
@@ -1086,16 +1142,17 @@ register("c15", () => {
     lines.push(`R=${R}: torus ${nT}, twisted K² ${nK}, ratio ${ratio.toFixed(4)}`);
     lastRatio = ratio;
   }
-  pass = Math.abs(lastRatio - 1) < 0.05;
-  lines.push(`|ratio − 1| at R=40: ${Math.abs(lastRatio - 1).toFixed(4)} (< 0.05)`);
+  const target = knob("c15_ratio", 1);
+  pass = Math.abs(lastRatio - target) < 0.05;
+  lines.push(`|ratio − ${target}| at R=40: ${Math.abs(lastRatio - target).toFixed(4)} (< 0.05)`);
   return { pass, lines };
-});
+}, { "ratio-one-half": () => { KNOBS.c15_ratio = 0.5; } });
 
 // ---------- C16 S3 regular action ----------
 register("c16", () => {
   const pts = []; for (let x = 0; x < 2; x++) for (let y = 0; y < 3; y++) pts.push([x, y]);
   const key = p => p[0] + "," + p[1];
-  const tau = ([x, y]) => [1 - x, ((3 - y) % 3)];
+  const tau = knob("c16_tau_no_neg", false) ? (([x, y]) => [1 - x, y]) : (([x, y]) => [1 - x, ((3 - y) % 3)]);
   const sig = ([x, y]) => [x, (y + 1) % 3];
   const permOf = f => pts.map(p => key(f(p))).join(";");
   const compose = (f, g) => p => f(g(p));
@@ -1132,38 +1189,56 @@ register("c16", () => {
     for (const f of seen.values()) if (key(f(p)) === key(p)) stab++;
     if (stab !== 1) regular = false;
   }
-  const pass = order === 6 && rel && orbit.size === 6 && regular;
+  const tau2 = permOf(compose(tau, tau)) === permOf(p => p);
+  const pass = order === 6 && rel && tau2 && orbit.size === 6 && regular;
   return { pass, lines: [
     `|⟨τ,σ⟩| = ${order}, expected 6`,
+    `τ² = id: ${tau2}`,
     `τστ⁻¹ = σ⁻¹: ${rel}`,
     `orbit of (0,0): ${orbit.size}/6 points (transitive)`,
     `every point-stabilizer trivial (regular action): ${regular}` ] };
-});
+}, { "tau-without-y-negation": () => { KNOBS.c16_tau_no_neg = true; } });
 
 // ---------- C17 half-winding ----------
 register("c17", () => {
+  // Census by construction-free search: random smooth theta(x) on [0, L]
+  // with the affine BC theta(L) = theta(0) + off (off = pi for the
+  // antiperiodic loop), winding read off by numerically unwrapping
+  // e^{i theta} along a fine grid - never from a formula for theta.
   const L = 1, lines = []; let pass = true;
-  const windings = [];
-  for (let k = -2; k <= 2; k++) {
-    const theta = x => (Math.PI + 2 * Math.PI * k) * x / L;
-    const bc = ((theta(L) - theta(0) - Math.PI) / (2 * Math.PI)) % 1;
-    const w = (theta(L) - theta(0)) / (2 * Math.PI);
-    const ok = Math.abs(bc) < 1e-12 && Math.abs(w % 1) === 0.5;
-    pass = pass && ok;
-    windings.push(w);
+  const off = knob("c17_offset", Math.PI);
+  const windings = new Set(); let bcWorst = 0;
+  for (let trial = 0; trial < 40; trial++) {
+    const k = Math.floor(Math.random() * 5) - 2;
+    const a = Array.from({length: 4}, () => (Math.random() - 0.5) * 3);
+    const theta = x => (off + 2 * Math.PI * k) * x / L + a.reduce((acc, c, j) => acc + c * Math.sin(2 * Math.PI * (j + 1) * x / L), 0);
+    let w = 0, prev = theta(0);
+    for (let i = 1; i <= 2000; i++) {
+      const cur = theta(i * L / 2000);
+      let d = cur - prev; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
+      w += d; prev = cur;
+    }
+    windings.add(Math.round(2 * w / (2 * Math.PI)) / 2);
+    bcWorst = Math.max(bcWorst, Math.abs(((theta(L) - theta(0) - off + Math.PI) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) - Math.PI));
   }
-  lines.push(`allowed windings: ${windings.join(", ")} — all in Z + ½`);
-  // integer winding fails the BC
-  const bad = (2 * Math.PI * 1 - Math.PI) % (2 * Math.PI);
-  lines.push(`integer winding BC residual: ${Math.abs(Math.PI - (2 * Math.PI - bad)) < 1e-12 || bad !== 0 ? "π (fails)" : "0"}`);
-  pass = pass && bad !== 0;
-  // stability swap under pi shift for dphi/dt = -sin(phi)
-  const d = phi => -Math.cos(phi); // derivative of -sin at phi
-  const stable0 = d(0) < 0, unstablePi = d(Math.PI) > 0;
-  lines.push(`d/dφ(−sin φ): at 0 → ${d(0)} (stable), at π → ${d(Math.PI)} (unstable) — π shift swaps them`);
-  pass = pass && stable0 && unstablePi;
+  const allHalf = [...windings].every(w => Math.abs(w % 1) === 0.5);
+  pass = pass && allHalf && bcWorst < 1e-9;
+  lines.push(`windings found by unwrapping (40 random fields): ${[...windings].sort((a, b) => a - b).join(", ")} — all in Z + ½: ${allHalf}; BC residual ${bcWorst.toExponential(1)}`);
+  // integer winding violates the antiperiodic BC by exactly pi
+  const bad = Math.abs(((2 * Math.PI - off) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI));
+  const badOK = Math.abs(bad - Math.PI) < 1e-12;
+  pass = pass && badOK;
+  lines.push(`integer-winding BC residual: ${bad.toFixed(6)} (expect π) ${badOK ? "✓" : "✗"}`);
+  // stability swap under the pi shift, by integration: dphi/dt = -sin(phi)
+  // has 0 stable; psi = phi + pi obeys dpsi/dt = +sin(psi), so 0 is unstable.
+  let phi = 0.1, psi = 0.1; const dt = 0.01;
+  for (let i = 0; i < 2000; i++) { phi += dt * (-Math.sin(phi)); psi += dt * (Math.sin(psi)); }
+  const swap = knob("c17_swap", true) ? (Math.abs(phi) < 1e-6 && Math.abs(psi) > 1) : (Math.abs(phi) < 1e-6 && Math.abs(psi) < 1e-6);
+  pass = pass && swap;
+  lines.push(`integrated: φ(0.1)→${phi.toExponential(1)} (stable at 0); ψ(0.1)→${psi.toFixed(3)} after π shift (leaves 0) — swap ${swap ? "✓" : "✗"}`);
   return { pass, lines };
-});
+}, { "periodic-bc": () => { KNOBS.c17_offset = 0; },
+     "no-stability-swap": () => { KNOBS.c17_swap = false; } });
 
 // ---------- C18 spherical parity ----------
 function assocLegendre(l, m, x) {
@@ -1199,7 +1274,7 @@ register("c18", () => {
         const th = Math.random() * Math.PI, ph = Math.random() * 2 * Math.PI;
         const y = realY(l, m, th, ph);
         const ya = realY(l, m, Math.PI - th, ph + Math.PI);
-        worst = Math.max(worst, Math.abs(ya - Math.pow(-1, l) * y));
+        worst = Math.max(worst, Math.abs(ya - Math.pow(-1, knob("c18_parity_m", false) ? m : l) * y));
         worstU = Math.max(worstU, Math.abs(ya * ya - y * y));
       }
     }
@@ -1209,7 +1284,7 @@ register("c18", () => {
   }
   lines.push("Y² is antipodally blind for every ℓ — the null is forced; only signed/holonomy probes discriminate");
   return { pass, lines };
-});
+}, { "parity-by-m": () => { KNOBS.c18_parity_m = true; } });
 
 // ---------- init + theme redraw ----------
 function drawAll() { drawC5(); drawC6(); drawC8(); drawC10(); drawC11(); drawC12(); }

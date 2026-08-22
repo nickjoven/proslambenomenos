@@ -205,6 +205,30 @@ def check_novelty(doc: dict, errors: list, cid: str, lcs: set) -> None:
 VERIFY_REF = re.compile(r"scripts/verify/[\w.-]+\.py")
 
 
+COMPENDIUM_REF = re.compile(r"\bcompendium\s+C(\d+)\b", re.I)
+_COMPENDIUM_IDS = None
+
+
+def compendium_ids() -> set:
+    """Registered check ids parsed from compendium/index.html (LAW-17:
+    a free-text 'compendium C99' reference must name a real check)."""
+    global _COMPENDIUM_IDS
+    if _COMPENDIUM_IDS is None:
+        page = ROOT / "compendium" / "index.html"
+        _COMPENDIUM_IDS = set(re.findall(r'register\("c(\d+)"', page.read_text())) if page.exists() else set()
+    return _COMPENDIUM_IDS
+
+
+def check_compendium_refs(doc: dict, errors: list, cid: str) -> None:
+    for i, e in enumerate(doc.get("evidence") or []):
+        if not isinstance(e, dict):
+            continue
+        for num in COMPENDIUM_REF.findall(e.get("ref") or ""):
+            if num not in compendium_ids():
+                errors.append(f"{cid}: evidence[{i}] cites compendium C{num}, "
+                              f"which is not a registered check")
+
+
 def verify_scripts_cited(doc: dict) -> set:
     """Normalised scripts/verify/*.py paths cited by computation evidence.
     Path tokens are normalised (os.path.normpath) so 'scripts//verify/x.py'
@@ -294,6 +318,7 @@ def main(claims_dir: Path = None) -> int:
                 f"change the evidence, not the label")
         check_novelty(doc, errors, cid, lcs)
         check_falsifier(doc, errors, cid, computed)
+        check_compendium_refs(doc, errors, cid)
     if errors:
         print(f"intake gate: {len(errors)} violation(s)")
         for e in errors:
