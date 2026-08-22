@@ -228,3 +228,42 @@ of holonomy: any connection on a principal bundle); the "something
 atop it all" feeling is recorded as exactly the sensation the
 psychosis question was about, and its honest referent is a known
 dictionary, not a hidden layer.
+
+## X-12 — The corner is a weak discontinuity; the twist is a class (2026-08-21, corrected per LC-4)
+
+The Helmholtz corner is a propagating WEAK discontinuity: field
+continuous, slope jumps, travelling on characteristics (d'Alembert;
+Hadamard 1903), persisting because the ideal string is
+non-dispersive. It is not a shock (strong discontinuity, Courant &
+Friedrichs 1948) and not a lattice dispersive shock wave - an earlier
+in-chat conflation, retracted in LC-4. Against the pi twist:
+
+    twist (holonomy)                 corner (weak discontinuity)
+    topological class of the bundle  singularity of the solution
+    conserved as a Z_2 invariant     conserved by the shift on characteristics
+    carries winding 1/2              carries no charge
+    dies under nothing               dies under dispersion and damping
+    static                           moves at c
+
+P-4 restated: does a topological invariant change what a weak
+discontinuity does at a threshold element? For antisymmetric bond
+phases the twist is gauge-invisible to linear waves except through
+the background gradient (Teitel & Jayaprakash 1983), and runs 1-3
+found no static effect of that background at the bow - so the
+default expectation is "no", which is P-4's registered expectation.
+
+Why runs 1-4 could not see the gate: (a) the corner is a continuum
+object and the mass chain disperses it (Schrodinger 1914) - at N =
+8-16 it is lattice-scale from birth; (b) damping 0.05 per unit time
+over round trips of 8-16 removed it; (c) sine coupling saturates at
+2J, so "bow force above Schelleng's f_max" - the regime where ALF
+lives (Guettler 1994/2002) - does not exist in the model: above F_N
+~ 2 the node freezes instead of failing Helmholtz motion. Guettler's
+recipe translated: slow bow (keeps amplitudes in the linear range so
+the saturation never binds and f_max, which scales with v_b, is
+reachable), low damping (corner survives), large N (corner exists).
+Run 5 is that. Physical status of the corner: observed (Helmholtz
+1863 vibration microscope; Kawano 2025 at 3000 fps), with Cremer's
+(1974) finite rounding. Mood: all classical with citations; the
+"restated P-4" is a framing, and the model-defect diagnosis is the
+computation's own.
