@@ -1,3 +1,4 @@
+<!-- commentary -->
 # Cross-domain connections — running ledger
 
 Mood: design notes, mood-marked throughout; nothing here is a claim

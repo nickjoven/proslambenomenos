@@ -1,3 +1,4 @@
+<!-- evidence: scripts/experiments/toda_solitons.py, scripts/experiments/toda_results.json, catalog/c29_toda_soliton.py -->
 # Solitons on the inertial nonlinear chain (the vocabulary's last term earned)
 
 2026-08-23, worktree wt-solitons. scripts/experiments/toda_solitons.py

@@ -149,3 +149,13 @@ checker cannot read mathematics. Reds are theorems; greens are not.
   OPEN.yml as bare lines, one per action, for copying.
 - OPEN.yml is the single source of truth for open items; edit it, not
   the chat, when an item opens or closes.
+
+## Specs and the notes gate (LAW-20)
+
+Every gate rule is a line in `tests/spec/*.spec`, in a controlled
+grammar (`RULE gate.n "label": GIVEN fixture WHEN gate RUNS THEN
+ACCEPT | REJECT MENTIONING "token" | EQUALS json`). `make spec` runs
+them; a rule naming a gate that does not exist fails, which is how a
+new gate is written test-first. Every `notes/*.md` opens with
+`<!-- commentary -->` (no load, no verdicts) or `<!-- evidence: paths
+-->` naming the executable artifacts that carry its numbers.

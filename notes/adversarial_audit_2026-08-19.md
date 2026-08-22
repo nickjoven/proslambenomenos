@@ -1,3 +1,4 @@
+<!-- commentary -->
 # Adversarial audit (context-free agent, 2026-08-19)
 
 Performed by a fresh agent with no session context, instructed to

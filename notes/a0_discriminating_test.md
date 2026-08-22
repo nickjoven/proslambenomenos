@@ -1,3 +1,4 @@
+<!-- commentary -->
 # Does a0 track H(z)? The discriminating test
 
 Status: synthesis note. Nothing here is derived; the rival hypotheses

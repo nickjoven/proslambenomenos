@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 CHECKS = [
     ("intake gate", ["scripts/check_claims.py"]),
-    ("gate fixtures", ["tests/test_checks.py"]),
+    ("spec gate", ["tests/run_spec.py"]),
     ("message gate", ["scripts/check_messages.py"]),
     ("law gate", ["scripts/check_lawchanges.py"]),
     ("append-only gate", ["scripts/check_append_only.py"]),
@@ -18,6 +18,7 @@ CHECKS = [
     ("prediction gate", ["scripts/check_predictions.py"]),
     ("catalog gate", ["scripts/check_catalog.py"]),
     ("notebook gate", ["scripts/check_notebooks.py"]),
+    ("notes gate", ["scripts/check_notes.py"]),
 ]
 
 

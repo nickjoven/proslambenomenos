@@ -2,11 +2,12 @@
 """Catalog gate: every catalog/c*.py is a runnable mathematical fact.
 Each must exit 0 plainly and exit nonzero with --mutant (LAW-11
 discipline applied to imported facts). Prints the index."""
+import os
 import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get("PROS_ROOT", Path(__file__).resolve().parents[1]))   # spec gate points this at a fixture tree
 
 
 def main() -> int:

@@ -1,3 +1,4 @@
+<!-- commentary -->
 # Forensic self-report: proslambenomenos under its own lens
 
 Method: the same information-lift-with-correctness-scrutiny applied to

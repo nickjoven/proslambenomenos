@@ -1,3 +1,4 @@
+<!-- commentary -->
 # A temporal-first geometry curriculum — design sketch
 
 Mood: design note. The claim-shaped statements cited here (Malament;

@@ -36,7 +36,8 @@ def covered_files():
     files += sorted(str(p.relative_to(ROOT))
                     for p in (ROOT / "scripts" / "verify").glob("*.py"))
     files.append("scripts/run_all.py")
-    files.append("tests/test_checks.py")
+    files.append("tests/run_spec.py")
+    files += sorted(str(p.relative_to(ROOT)) for p in (ROOT / "tests" / "spec").glob("*.spec"))   # LAW-20: the specs ARE the law's tests
     files.append("catalog/_common.py")   # LAW-16: the catalog harness decides what self-testing means
     return sorted(set(files))
 

@@ -1,3 +1,4 @@
+<!-- evidence: scripts/verify/iwasawa_one_stage.py, claims/sl2r-connected-subgroups.yml -->
 # P-3: the Iwasawa one-stage claim, resolved
 
 Governed by P-3 (PREDICTIONS.md). Source of the original: harmonics

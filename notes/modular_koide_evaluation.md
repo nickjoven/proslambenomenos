@@ -1,3 +1,4 @@
+<!-- evidence: claims/koide-foot-v4-equivalence.yml, claims/koide-empirical-agreement.yml, claims/farey-antipodal-orbit-counts.yml, compendium/index.html -->
 # Modular / Koide stratum: direct-read evaluation
 
 Method as in topology_evaluation.md: every verdict carried by an

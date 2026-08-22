@@ -1,3 +1,4 @@
+<!-- evidence: scripts/experiments/p8_gabor_locking.py, scripts/experiments/p8_results.json, catalog/c27_finite_T_plateau_bias.py -->
 # P-8: the Gabor limit for mode-locking measurements
 
 Registered (PR #40, first commit) before computing; run 2026-08-23 in
