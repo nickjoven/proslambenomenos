@@ -35,7 +35,7 @@ or claim that requires it, not before.
 | **null system** | the simplest system in which the same computation gives the same answer | LAW-11 field; the refutation of twisted-sector-complex-structure |
 | **invariant integral** | an integral of a medium-dependent integrand over a closed domain, valued in counts | c17 (Gauss-Bonnet), index theorems (cited) |
 | **corner / weak discontinuity** | a propagating jump in a derivative, carried on characteristics, killed by dispersion or damping | X-12; c11 (chain dispersion); T5 notebook |
-| **soliton** | a corner's stable descendant: nonlinearity balancing dispersion in an inertial medium | cited (Toda, KdV; LC-4 Holian-Flaschka-McLaughlin) - no artifact yet |
+| **soliton** | a corner's stable descendant: nonlinearity balancing dispersion in an inertial medium | c29 (Toda chain: shape kept to 0.1%, v/c = sinh k/k; linear mutant disperses); notes/toda_solitons.md |
 | **critical point** | the marginal parameter value between two behaviours, where scaling is universal | saddle-node-passage-time (pi/sqrt(mu)); c05 (Toomre Q = 1); P-8 exponent 2 |
 | **universality** | a number fixed by the critical point, not by the medium | golden-mean-shenker-scaling; staircase-phi-squared-scaling |
 | **rigidity / vacuity** | the two ends of "does the class reach the observable": fixed by it / untouched by it | P-3 and P-6 (rigidity); P-1, P-4, P-9 (vacuity) |
