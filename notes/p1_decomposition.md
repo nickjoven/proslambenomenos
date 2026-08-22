@@ -290,3 +290,14 @@ before the E1 observation can be claimed as more than a computation
 in one model. The P-1 resolution does not depend on the sign of that
 effect: vacuity rests on the theorem-lets plus the explored-range
 cross-tab, and holds whichever way the plateaus move.
+
+## E1 method correction (2026-08-23, from P-9)
+
+E1 step 3's initial condition theta_i = 0.13 i spans 0.13 (N - 1)
+turns; at N = 4 it reaches the in-phase control attractor and the
+reported widths stand, but for N >= 6 the same initial condition
+lands the control ring in a winding attractor whose 1/2 plateau is
+far narrower (0.0354 at N = 6, 0.0014 at N = 9 versus 0.0740
+in-phase). Any reuse of the E1 script at other N must set the
+initial condition to the intended attractor. Recorded in
+notes/p9_nparity.md.
