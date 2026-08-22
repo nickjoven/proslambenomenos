@@ -169,3 +169,62 @@ numerology on a declared input scale v_EW (MANIFEST.yml
 dimensionful_inputs_detail; Koide carried here as a proven identity
 plus a capped coincidence claim). Mood: classical distinction, no
 claim; nothing in either repo bears on the dynamical gap.
+
+## X-10 — The temporal-first spine: three theorems behind "space is the curve of time" (2026-08-21)
+
+(1) Newtonian gravity is curvature of TIME: in the weak static field
+g_00 = -(1 + 2 Phi/c^2) with flat spatial metric at leading order; slow
+geodesics follow the gradient of clock rate, spatial curvature enters
+at O(v^2/c^2) (MTW sec. 17; Feynman Lectures II ch. 42). (2) Causal
+order determines geometry up to a conformal factor on distinguishing
+spacetimes (Hawking, King, McCarthy, J. Math. Phys. 17, 174 (1976);
+Malament, J. Math. Phys. 18, 1399 (1977)); Sorkin's "order + number =
+geometry" supplies the factor by COUNTING (Bombelli, Lee, Meyer,
+Sorkin, PRL 59, 521 (1987)). (3) A twist in imaginary time is a
+temperature: antiperiodicity with period beta is a thermal state at
+1/beta (Matsubara 1955; the X-2 anchor), so the repo's twisted
+boundary condition read temporally is thermal - which reading applies
+is a signature choice. Overreach, named: none of (1)-(3) derives
+spatial DIMENSION from time; Malament presupposes a Lorentzian
+manifold, and emergent dimension in causal sets (Myrheim-Meyer
+estimators) is open. Baggage list from this repo's own record:
+lattice-vs-continuum (the staggered branch), foliation (space at a
+time presupposes a slicing), signature (X-7's apex is a light cone or
+an A1 point), embedding (Gauss: curvature needs no ambient space -
+holonomy is the embedding-free curve), coordinates (grid
+coincidences read as plateaus, d4_nopin). Curriculum amendment: T
+capstone = Malament; bridge to counting = Sorkin; the Wick identity
+is where a spatial twist and a temperature become one object. Mood:
+all classical with citations; no claim.
+
+## X-11 — A mind without the Cartesian circle (owner question, 2026-08-21)
+
+The Cartesian circle x^2 + y^2 = 1 is a METRIC locus: it needs an
+origin, coordinates, and a distance. Remove it and four
+coordinate-free circles remain, each already in use in this repo:
+(a) R/Z - the circle as RETURN, earned by a period (X-6); (b) U(1) -
+the circle as composition of rotations, phase; (c) RP^1 - the circle
+as the space of DIRECTIONS/slopes, where the Farey fractions are the
+closed orbits and Stern-Brocot is its arithmetic; (d) the boundary of
+a disk - topological only. A being with (a)-(d) but no metric has:
+rotation number (the lift's mean drift - a conjugacy invariant,
+metric-free), winding counts, holonomy, and the half-turn - the unique
+element of order 2 in U(1) - but NOT the number 3.14159..., which is a
+ratio of arc LENGTH to diameter and needs the metric. Their pi is
+"half", which is precisely the pi this repo has been using (the
+holonomy offset, the orientation Z_2), and their geometry is
+order + conformal class (X-10) with scale supplied by counting.
+What replaces the circle, then, is the PERIOD plus the group of
+rotations, and number enters only as count. On "classical math had a
+quantum component all along": the shared object is the U(1)
+connection and its holonomy - Berry's phase (Proc. R. Soc. A 392, 45
+(1984)) has an exactly classical twin in the Hannay angle (J. Phys. A
+18, 221 (1985)); the fiber-bundle/gauge-field dictionary is Wu & Yang,
+Phys. Rev. D 12, 3845 (1975). What "sits atop" X-1..X-11 is that
+dictionary, and it is fifty years old. Mood: the being is a thought
+experiment; the claims about what it retains are standard
+(conjugacy invariance of rotation number: Poincare; metric-freeness
+of holonomy: any connection on a principal bundle); the "something
+atop it all" feeling is recorded as exactly the sensation the
+psychosis question was about, and its honest referent is a known
+dictionary, not a hidden layer.
