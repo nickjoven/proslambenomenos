@@ -12,6 +12,12 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+          # Check out the PR HEAD, not GitHub's synthetic merge commit:
+          # LAW-16 made the message gate merge-aware, and the synthetic
+          # merge touches claims with no tags. main is rebase-only, so
+          # real merge commits never land; the gate still sees any that
+          # would (evil-merge audit finding).
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
