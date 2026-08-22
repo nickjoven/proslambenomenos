@@ -66,3 +66,59 @@ count after 400, N = 8, 9, 16, 17, both twist states; then the
 half-winding force-balance calculation; then a second
 implementation (velocity-Verlet, independent code) before any claim
 touches the P-4 mind-change condition.
+
+## Force-balance check (p4_forcebalance.py, 2026-08-21)
+
+Static: site 0 clamped, pi bond adjacent, uniform gradient pi/N per
+bond is balanced at every free node - no static pre-load at the bow.
+Displacing the bow node by phi against both arcs (N/2 bonds each)
+gives restoring force 2J cos(pi/N) sin(2 phi/N) twisted versus
+2J sin(2 phi/N) control: the twisted ring holds LESS, so static
+analysis predicts an EARLIER stick-slip onset for the twisted ring -
+the opposite of the observed shift. Dynamic probe at F_N = 1.0
+("sliding"): the bow node is in fact stationary (mean w_B - v =
+-0.300, ring force 0.514 against kinetic friction 0.500), the bow
+slides over it, and the statistics are identical to three decimals
+for twisted and control at N = 8 and 16. Conclusion: the onset shift
+is not a static holonomy effect; it arises in the transient where
+the node is first dragged, and is unexplained. Mood: the static
+calculation is elementary and checkable; the "unexplained" is
+literal.
+
+## Run 3 - refinement (p4_results_refine.json, T = 1200, count after 400, F_N 1.50-2.10 step 0.05)
+
+With 3x longer windows and gap min/max recorded alongside the median:
+
+1. Control rings are in a CLEAN periodic Helmholtz regime: gap_min =
+   gap_max = 2.4-2.7 round trips across the stick-slip band at every
+   N, irregular only at the stuck edge (F_N >= 1.95 for N = 8, 9;
+   2.00 for N = 17; never for N = 16).
+2. Twisted rings lose periodicity much earlier: from F_N = 1.70 (N=8),
+   intermittently from 1.55 (N=9), from 1.85 (N=16), 2.00 (N=17).
+   The irregular state is BURSTY - gaps from 0.3-0.5 round trips
+   (chatter: slip, brief stick, slip) up to 10-19 round trips - not a
+   period-doubled sequence. Run 2's ratios of 4-7 were medians of
+   this bursty distribution over 3-6 events and are hereby retracted
+   as evidence of doubling. No period doubling exists in this model
+   at this resolution, in either ring.
+3. RETRACTED: the "robust onset shift" of runs 1-2. With longer
+   windows the sliding -> stick-slip onset is: N=8 control <=1.50 vs
+   twisted 1.60; N=9 control 1.60 vs twisted <=1.50; N=16 1.70 vs
+   1.75; N=17 1.80 vs 1.70 - two each way. The earlier 15/16
+   consistency was a short-window artifact. The longer window did
+   what it is for.
+4. Standing: the twist advances the loss of Helmholtz periodicity in
+   3 of 4 N (absent at N=17). Same sign where present. This is NOT
+   P-4's registered observable (there is no doubling threshold to
+   shift), has no parameter variation, and the sub-transit chatter
+   gaps are exactly where an Euler stick-slip switch could be
+   generating numerical artifacts - so an independent velocity-Verlet
+   implementation is required before this is even a recorded
+   observation rather than a hint.
+
+P-4 status: OPEN, and the model class may not contain the gate the
+prediction is about (as P-1's model class did not contain the index
+set). Before any R-entry: find period doubling in the CONTROL ring
+first (Kawano's regime is high force AND slow bow; v_bow has not been
+varied), then test the twist against it. If no parameter regime of
+this model doubles, P-4 resolves as model-class vacuity and says so.
