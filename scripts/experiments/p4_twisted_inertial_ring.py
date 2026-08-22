@@ -96,21 +96,26 @@ def run(N, twisted, F_N, v_bow=0.3, m=1.0, g=0.05, J=1.0, K=1.0, mu_s=1.0, mu_d=
 
 def main():
     clamp = "--clamp" in sys.argv
+    refine = "--refine" in sys.argv
     Ns = [int(x) for x in [a for a in sys.argv[1:] if not a.startswith("--")] or ["8", "9"]]
-    F_grid = [0.6 + 0.1 * k for k in range(18)]
+    F_grid = ([1.5 + 0.05 * k for k in range(13)] if refine
+              else [0.6 + 0.1 * k for k in range(18)])
+    T, T_skip = (1200.0, 400.0) if refine else (400.0, 200.0)
     out = {}
     for N in Ns:
         for twisted in (False, True):
             key = f"N={N} {'twisted' if twisted else 'control'}"
             rows = []
             for F_N in F_grid:
-                r = run(N, twisted, F_N, T=400.0, T_skip=200.0, clamp=clamp)
+                r = run(N, twisted, F_N, T=T, T_skip=T_skip, clamp=clamp)
+                r["gaps_n"] = r["n_slips"]
                 rows.append({"F_N": round(F_N, 2), **r})
                 rat = r["ratio"]
                 print(f"{key:18s} F_N={F_N:4.2f} slips={r['n_slips']:4d} "
                       f"period/round={'%.3f' % rat if rat else '  - '} {r['regime']}", flush=True)
             out[key] = rows
-    name = "p4_results_clamp.json" if clamp else "p4_results_pinned.json"
+    name = ("p4_results_refine.json" if refine else
+            "p4_results_clamp.json" if clamp else "p4_results_pinned.json")
     with open("scripts/experiments/" + name, "w") as f:
         json.dump(out, f, indent=1)
 
