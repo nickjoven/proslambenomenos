@@ -74,3 +74,12 @@ The published artifact (claude.ai) is presentation, not preservation.
   refutation; six gate bypasses closed; compendium under the falsifier
   rule with 22 mutants); catalog 16 entries one mutant each. 28 claims.
   (2026-08-22)
+- link-007 — executable everywhere: P-6 (R-4, circulant sync bound
+  reproduced with an exhaustive n <= 20 certificate), P-8 (R-5, finite-T
+  plateau exponent ~2), P-9 (R-6, no N-parity; E1 initial condition not
+  N-safe); catalog c17-c30 (Gauss-Bonnet on polyhedra through the impact
+  oscillator's grazing law); curriculum notebooks T0-T6 + capstone as
+  the tenth gate (LAW-18); VOCABULARY.md earned in full (Toda solitons,
+  c29); spec suite in a controlled grammar (55 rules, TDD red -> green)
+  and the notes gate (LAW-20) - eleven gates; multi-actor worktree
+  infrastructure (AGENTS.md); LC-8; LAW-14..20. 29 claims. (2026-08-23)
