@@ -90,3 +90,43 @@ def eikonal(m, J, j0, j1):
     """Discrete eikonal time sum_{i=j0}^{j1-1} 1/c(i): the registered
     arrival-time prediction between sites j0 and j1."""
     return sum(1.0 / c_site(m, J, i) for i in range(j0, j1))
+
+
+def junction_solve(m1, J1, m2, J2, k1):
+    """Exact lattice junction (bond into the junction node carries J2,
+    the profile convention above): incident + reflected plane wave on
+    the left, transmitted on the right; the two interface EOMs solved
+    as a 2x2 complex system. Returns (R, T_e) with R = |r|^2 and
+    T_e the energy-flux transmission; R + T_e = 1 is checked as EQ7.
+    Raises ValueError when the right medium is evanescent at this
+    frequency (omega above its band edge 2*sqrt(J2/m2))."""
+    import cmath
+    w2 = 4 * J1 / m1 * math.sin(k1 / 2) ** 2
+    s2 = math.sqrt(w2) / (2 * math.sqrt(J2 / m2))
+    if s2 > 1:
+        raise ValueError("evanescent on the right")
+    k2 = 2 * math.asin(s2)
+    e1, e1i = cmath.exp(1j * k1), cmath.exp(-1j * k1)
+    e2, e22 = cmath.exp(1j * k2), cmath.exp(2j * k2)
+    # eqs as a_r r + a_t tt = rhs, with u0 = 1 + r, u_{-1} = e1i + r e1,
+    # u1 = tt e2, u2 = tt e22:
+    # eq0: -m1 w2 (1+r) = J1((e1i + r e1) - (1+r)) + J2(tt e2 - (1+r))
+    a_r0 = -m1 * w2 - J1 * (e1 - 1) + J2
+    a_t0 = -J2 * e2
+    rhs0 = m1 * w2 + J1 * (e1i - 1) - J2
+    # eq1: 0 = m2 w2 tt e2 + J2(1 + r - tt e2) + J2 tt(e22 - e2)
+    a_r1 = J2
+    a_t1 = m2 * w2 * e2 - J2 * e2 + J2 * (e22 - e2)
+    rhs1 = -J2
+    det = a_r0 * a_t1 - a_t0 * a_r1
+    r = (rhs0 * a_t1 - a_t0 * rhs1) / det
+    tt = (a_r0 * rhs1 - rhs0 * a_r1) / det
+    vg1 = math.sqrt(J1 / m1) * math.cos(k1 / 2)
+    vg2 = math.sqrt(J2 / m2) * math.cos(k2 / 2)
+    return abs(r) ** 2, (m2 * vg2) / (m1 * vg1) * abs(tt) ** 2
+
+
+def fresnel(m1, J1, m2, J2):
+    """Continuum impedance law ((Z1-Z2)/(Z1+Z2))^2, Z = sqrt(mJ)."""
+    z1, z2 = math.sqrt(m1 * J1), math.sqrt(m2 * J2)
+    return ((z1 - z2) / (z1 + z2)) ** 2
