@@ -305,3 +305,48 @@ ratio of two ~3e-3 numbers - the clause was drafted over derived
 statistics it should not have covered; every physical observable
 moved by less. Filed as chain-arrivals-read-acoustic-metric and
 junction-reflection-reads-impedance-not-metric.
+
+## P-11 — 2026-08-24 — the representation decides the metric: Connes distance on cycles and circulants
+question: the spectral distance d(p,q) = sup { f(q) - f(p) :
+||[D, f]||_op <= 1 } (Connes 1994) turns algebra + Dirac + Hilbert
+space into geometry with no paths anywhere in the definition. On
+cycle graphs C_n with the incidence Dirac D = [[0, B^T], [B, 0]],
+does the graph metric come back - and which piece of the spectral
+triple decides? Two representations of the SAME algebra of vertex
+functions: (A) f acts on l2(V) only, zero on l2(E); (B) f acts on
+l2(V) and on l2(E) by source-pullback.
+method: derivation layer scripts/experiments/p11_derive.py with
+committed output p11_derive_out.txt (pre-registration): construction
+A's commutator norm reduces to sqrt(lam_max(diag(f) L diag(f))), L
+the cycle Laplacian, and construction B's to max_e |f(v) - f(u)|,
+both checked to 1.75e-16 against explicitly built 2n x 2n
+commutators; primal small-n table computed. Registered computation:
+scripts/experiments/p11_spectral.py, stdlib, power iteration for
+operator norms, BFS for hop distances.
+expects: (a) construction B recovers hop distance EXACTLY on any
+graph (the hop tent has commutator norm 1 and attains it; any
+feasible f telescopes to <= d_hop): machine-checked on the three
+P-6 maximiser circulants C_20({1..6}), C_22 (contiguous), C_44
+(two-band, q = 2) - tent norm within 1e-9 of 1, and 200 random
+feasible f per graph never exceed hop distance.
+(b) construction A on cycles, n >= 4: d(0,1) = 2/sqrt(3) exactly -
+upper bound from the 2x2 principal minor of the Gram matrix
+(lam_max <= 1 forces f_1 - f_0 <= 2/sqrt(3) at the antisymmetric
+point), lower bound from a primal witness, meeting within 1e-6;
+every gauged feasible f has |g_i| <= 1/sqrt(2) + 1e-9 (diagonal
+Rayleigh bound), hence diameter <= sqrt(2); a primal witness
+reaches d(0, n/2) >= 1.40 for n in {8, 12, 16, 20}. The metric
+saturates: nearest neighbours are resolved, everything farther
+sits at ~sqrt(2).
+(c) the dichotomy stands as registered: same algebra, same Dirac -
+representation B returns the geodesic metric, representation A a
+bounded one. The geometry is informed by how the algebra is
+represented on H (how it couples), not by the graph alone.
+changes-my-mind: a feasible construction-A f with f_1 - f_0 >
+2/sqrt(3) + 1e-4 or any pair above sqrt(2) + 1e-4 (the minor and
+diagonal bounds would be wrong, and (b) collapses); a random
+feasible construction-B f exceeding hop distance by more than 1e-9
+(the telescoping argument would be wrong, and (a) collapses).
+not-claimed-in-advance: continuum limits; construction A beyond
+cycles; other Dirac operators (the literature has many, with
+different distances); anything about physical spacetime.
