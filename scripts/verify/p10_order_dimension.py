@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Proposed verify script for P-10 (Myrheim-Meyer dimension from pure
-order). Written by the p10 task; the integrator moves it into
-scripts/verify/ if a claim is filed. Self-contained, stdlib only,
-fixed seed, ~2 s.
+"""Verification for the P-10 claim order-and-count-read-dimension
+(Myrheim-Meyer dimension from pure order). Self-contained, stdlib
+only, fixed seed, ~2 s; reads nothing from the experiment's results.
 
 Checks (see PREDICTIONS.md P-10 and scripts/experiments/p10_symbolic.py):
   1. d=2 related-pair fraction re-derived from scratch: in lightcone
