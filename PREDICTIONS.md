@@ -283,3 +283,25 @@ not-claimed-in-advance: anything about Einstein equations or
 dynamics of the metric (the einstein-from-kuramoto-chain-a
 refutation stands); horizons or advection; dimensions above one;
 quantum behaviour; real spacetime.
+
+## R-8 — 2026-08-24 — resolves P-13
+outcome: core as expected; two clauses failed as registered, both
+diagnosed. Arrivals: RMS 0.31% / 0.32% / 0.30% (ramp / lens /
+zramp) against 2% registered; shuffled substrate scores 85x / 16x
+worse; control speed 0.99897. Scattering: jc 0.362 vs the impedance
+law's 0.360; smooth Z-constant ramp 2e-4. changes-my-mind did not
+fire. Failed as registered: (a2) front-width exponent 0.027 - the
+half-sine pulse's intrinsic width dominates its dispersive
+broadening; a labelled step-drive diagnostic gives 0.332, inside
+the registered band; the observable was attached to the wrong
+drive, and is not rescued. (c-jz) 0.036 against < 0.01: the
+registered threshold came from the monochromatic lattice value,
+but 2.9% of the pulse's flux lies above the slow side's band edge
+omega_c = 0.5 and reflects regardless of impedance matching; the
+flux-weighted exact lattice solve reproduces the measurement at 7%
+with no free parameters (p13_jz_diagnosis.py). (d) max dt-halving
+change 0.31% vs 0.2%; the culprit is zramp's RMS statistic, a
+ratio of two ~3e-3 numbers - the clause was drafted over derived
+statistics it should not have covered; every physical observable
+moved by less. Filed as chain-arrivals-read-acoustic-metric and
+junction-reflection-reads-impedance-not-metric.
