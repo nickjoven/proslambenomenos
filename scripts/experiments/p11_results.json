@@ -1,0 +1,126 @@
+{
+ "clauses": {
+  "a_tent_norm_1": false,
+  "a_no_feasible_exceeds_hop": true,
+  "b_witness_neighbor": true,
+  "b_witness_far": true,
+  "b_diag_bound": true,
+  "b_minor_bound": true
+ },
+ "detail": {
+  "c44_S": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22
+  ],
+  "b_norm_crosscheck_dev": 0.0,
+  "construction_B": {
+   "C20": {
+    "n": 20,
+    "S": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "tent_norm": 2.449489742783178,
+    "in_degree": 6,
+    "scaled_tent_lower_bound_d(0,antipode)": 0.8164965809277261,
+    "hop_antipode": 2,
+    "worst_feasible_excess_over_hop": 0.0
+   },
+   "C22": {
+    "n": 22,
+    "S": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "tent_norm": 2.6457513110645907,
+    "in_degree": 7,
+    "scaled_tent_lower_bound_d(0,antipode)": 0.7559289460184544,
+    "hop_antipode": 2,
+    "worst_feasible_excess_over_hop": 0.0
+   },
+   "C44": {
+    "n": 44,
+    "S": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20,
+     21,
+     22
+    ],
+    "tent_norm": 3.872983346207417,
+    "in_degree": 15,
+    "scaled_tent_lower_bound_d(0,antipode)": 0.5163977794943222,
+    "hop_antipode": 2,
+    "worst_feasible_excess_over_hop": 0.0
+   }
+  },
+  "witness_neighbor": {
+   "8": {
+    "norm": 1.0,
+    "value": 1.1547005383792517
+   },
+   "12": {
+    "norm": 1.0,
+    "value": 1.1547005383792517
+   },
+   "16": {
+    "norm": 1.0,
+    "value": 1.1547005383792517
+   },
+   "20": {
+    "norm": 1.0000000000000002,
+    "value": 1.1547005383792517
+   }
+  },
+  "witness_far": {
+   "8": {
+    "norm": 0.9999999999999999,
+    "value": 1.414213562373095
+   },
+   "12": {
+    "norm": 0.9999999999999999,
+    "value": 1.414213562373095
+   },
+   "16": {
+    "norm": 0.9999999999999999,
+    "value": 1.414213562373095
+   },
+   "20": {
+    "norm": 0.9999999999999999,
+    "value": 1.414213562373095
+   }
+  }
+ }
+}
