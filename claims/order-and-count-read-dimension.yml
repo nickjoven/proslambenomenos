@@ -1,0 +1,28 @@
+id: order-and-count-read-dimension
+statement: >
+  A Poisson sprinkle into a causal interval of d-dimensional
+  Minkowski space, reduced to its order relation and count alone,
+  returns its dimension: inverting the Myrheim-Meyer related-pair
+  fraction f(d) = Gamma(d+1)Gamma(d/2)/(2 Gamma(3d/2)) (unordered-
+  pair convention; f = 1, 1/2, 8/35, 1/10 at d = 1..4, re-derived by
+  direct integration) recovers d = 2, 3, 4 within bands derived
+  before any sampling, across N = 2^7..2^13: 21 of 21 cells in-band,
+  means 2.020 -> 1.999, 3.024 -> 3.002, 4.079 -> 3.993, with the
+  variance carried by the derived shared-point covariance term (5x
+  to 43x the binomial term). Scrambling the time coordinate at
+  d = 4 lands at the derived scrambled null d* = 4.230, outside
+  every band. Scope: flat intervals only; at d = 2 both coordinate
+  shuffles provably leave f = 1/2 (product-measure symmetry), so
+  the shuffle falsifier operates at d >= 3.
+premises: []
+prediction: P-10
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p10_symbolic.py (27 machine-checked equalities: exact integrals, the Gamma-form factor-2 convention, the full variance, the scrambled nulls; output committed as p10_symbolic_out.txt); scripts/experiments/p10_mm_dimension.py with p10_results.json (registered grid, seed 20260824); independently reimplemented by scripts/verify/p10_order_dimension.py, which re-derives f(d) exactly and runs its own fixed-seed d = 4 sprinkle with no access to the results file"
+    method: reimplementation
+null_system: "the derived f(d) with its full non-binomial variance is the null; the derived scrambled-order value d* = 4.230 is the alternative the falsifier separates; the d = 2 no-signal symmetry (p10_symbolic EQ 22-25) is registered as a limit of the falsifier, not of the claim"
+falsifier: "scripts/verify/p10_order_dimension.py --mutant shuffled-order"
+novelty:
+  status: classical
+  citation: "Myrheim, CERN preprint TH-2538 (1978); Meyer, MIT PhD thesis (1988); Sorkin, 'order + number = geometry'"
+status: verified
