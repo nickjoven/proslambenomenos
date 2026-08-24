@@ -1,0 +1,8 @@
+EQ 1 PASS  m u'' = J(u_{n+1} - 2u_n + u_{n-1}) for u = cos(kn - wt), w = 2 sqrt(J/m) sin(k/2)  | worst rel delta 1.22e-14 over 300 samples of (k,n,t,J,m)
+EQ 2 PASS  (2J/m)(1 - cos k) = (4J/m) sin^2(k/2)  | worst rel delta 4.44e-16
+EQ 3 PASS  dw/dk = sqrt(J/m) cos(k/2); c0 = sqrt(J/m)  | worst rel delta 0.00e+00; c0(J=m=1) = 1.000000000000
+EQ 4 PASS  c = c0(1+bx) => T = ln(1+bx)/(c0 b)  | d/dx check worst 2.95e-16; Simpson 1663.553233 vs closed 1663.553233
+EQ 5 PASS  discrete eikonal sum = continuum integral of 1/c to O(1/N)  | ramp: sum 2111.053 vs integral 2111.553 (rel 2.37e-04); lens: sum 1652.917 vs integral 1652.917 (rel 3.79e-13)
+EQ 6 PASS  lattice junction R -> ((Z1-Z2)/(Z1+Z2))^2 as k -> 0 (both junctions)  | jc: Fresnel 0.3600, lattice R(k=0.10) 0.3606, R(k=0.05) 0.3601; jz: Fresnel 0.0000, lattice R(k=0.10) 0.0058, R(k=0.05) 0.0014
+EQ 7 PASS  R + (m2 vg2 / m1 vg1)|t|^2 = 1 at the junction  | worst |R + Te - 1| = 3.33e-16
+EQ 8 PASS  zramp: Z = 1 (+/- bond-midpoint O(1/N)); jc: c identical across junction  | max |Z-1| = 2.08e-04; c_left 1.000000000000 c_right 1.000000000000
