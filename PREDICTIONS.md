@@ -368,3 +368,75 @@ geodesic recovery is a property of in-degree-1 (chain-like) coupling
 recorded, not rescued. The dichotomy survives with a sharpened
 moral: one graph, three geometries, decided by the coupling. Filed
 as connes-distance-representation-dichotomy.
+## P-10 — 2026-08-24 — dimension from pure order (Myrheim-Meyer)
+question: a Poisson sprinkle into a causal interval of d-dimensional
+Minkowski space retains only its order relation. Myrheim (CERN
+TH-2538, 1978) and Meyer (MIT thesis, 1988): the related-pair
+fraction f = E[R]/C(N,2) is a function of d alone, so inverting it
+reads dimension off pure order (Sorkin's "order + number =
+geometry"). Does the inversion recover d = 2, 3, 4 from finite
+sprinkles, within bands derived before any sprinkle runs, and does
+scrambling the order destroy the estimate?
+method: null derived FIRST by direct integration
+(scripts/experiments/p10_symbolic.py, output committed as
+p10_symbolic_out.txt, same commit as this entry; EQ ids below are
+its printed lines): f(1) = 1, f(2) = 1/2, f(3) = 8/35, f(4) = 1/10,
+equal to twice the Gamma form Gamma(d+1)Gamma(d/2)/(4 Gamma(3d/2))
+(EQ 11-14; the Gamma form as usually quoted is the ORDERED-pair
+probability - a factor-2 convention, both appear in the literature;
+E[R]/C(N,2) with R counting unordered related pairs is 2x it).
+Estimator: d_hat = F^-1(R/C(N,2)) by bisection on the Gamma form
+anchored at the integrals (EQ 15-18). Sprinkles: fixed seed
+20260824, fixed-N accept-reject into the interval from a unit box;
+the acceptance rate must match the derived volume fraction (EQ 1-3:
+1/2, pi/12 = 0.2618, pi/24 = 0.1309) within 4 binomial sigma. Grid:
+d in {2,3,4}, N = 2^7..2^13, M(N) = 40,40,40,40,24,16,12 sprinkles
+per cell. Variance derived, not guessed: Var(R) = C(N,2) f(1-f) +
+6 C(N,3) (E[g^2]-f^2), g = tau_p^d + tau_q^d, E[g^2] = 5/18 (d=2,
+EQ 19), 0.0742857 (d=3, EQ 21), 1/50 (d=4, EQ 20); the binomial
+term alone underestimates sigma_f by a factor growing from 5.4
+(N=2^7) to 43 (N=2^13) - registered so the narrower band cannot be
+substituted later. Bands (full BAND table in p10_symbolic_out.txt):
+|mean_M d_hat - d| <= |bias| + 4 sigma_d / sqrt(M), sigma_d =
+sigma_f/|F'|, delta-method bias (largest 0.018, at d=4 N=2^7);
+e.g. 0.052 / 0.099 / 0.153 at N=2^7 and 0.011 / 0.021 / 0.031 at
+N=2^13 for d = 2 / 3 / 4.
+expects: (1) mean d_hat inside its band at all 21 (d, N) cells;
+(2) sample SD inside [0.4, 2.2] x sigma_d at every cell - a
+binomial-only sigma would sit outside this window at every N
+(factor 5.4 at N=2^7 already), which is what the variance
+derivation is for; (3) spread shrinks ~ N^(-1/2): per d, sample SD
+at N=2^13 below that at N=2^7; the derived inversion bias (< 0.019
+everywhere, decreasing in N) stays below the noise floor, so mean
+errors are consistent with zero throughout. Secondary: RMS-across-d
+of the mean error smaller at N=2^13 than at N=2^7 (noise risk ~1 in
+10, registered as such). (4) mutant shuffled-order (random
+permutation of the time coordinate across points, spatial parts
+kept): mean d_hat lands near the derived scrambled nulls
+d* = F^-1(f_shuf), f_shuf(3) = 0.2141 -> d* = 3.080, f_shuf(4) =
+0.0824 -> d* = 4.230 (EQ 26-27), within 0.3 of d* (the mutant
+spread is not derived); OUTSIDE every band for d = 4, and outside
+every d = 3 band with N >= 2^8. Registered blind spots, derived in
+advance, not post hoc: at (d=3, N=2^7) the derived displacement
+0.080 is inside the 0.099 band, so that cell is uninformative for
+the mutant; and at d = 2 order scrambling is undetectable in the
+mean - permuting a lightcone coordinate is a distributional
+symmetry of the 2d sprinkle (EQ 22), and permuting t leaves f
+centred at 1/2 because the time and space marginals of the diamond
+are the same triangle density (EQ 23-25) - so the d = 2 mutant
+means stay INSIDE the band (variant shuffled-lightcone runs at
+d = 2 to exhibit the symmetry).
+changes-my-mind: a cell outside its band, or a sample SD outside
+the [0.4, 2.2] window, means the closed form or the variance
+derivation is wrong - diagnose which EQ fails before trusting
+anything downstream. A d=3 (N >= 2^8) or d=4 mutant mean inside its
+band means the estimator does not respond to order structure at the
+registered resolution and the prediction fails as registered. A
+d=2 mutant mean OUTSIDE its band refutes the derived symmetry
+(EQ 22-25). No parameter moves after this entry; a failed band is
+recorded, not rescued.
+not-claimed-in-advance: curved spacetimes or any non-flat interval;
+spectral or any other dimension estimator; non-integer d; Poisson-N
+sprinkles (what runs is fixed-N binomial sampling); the d=2 mutant
+beyond its mean; anything about our universe. Novelty status:
+classical reproduction (Myrheim 1978; Meyer 1988; Sorkin).

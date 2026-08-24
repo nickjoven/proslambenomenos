@@ -1,0 +1,63 @@
+# A. related-pair fraction f(d) by direct integration
+EQ 1 PASS d=2 interval volume S_d*I_V vs omega/(d 2^(d-1)): 0.5 = 0.5 (delta 5.551e-17, tol 1.0e-12)
+EQ 2 PASS d=3 interval volume S_d*I_V vs omega/(d 2^(d-1)): 0.261799387799 = 0.261799387799 (delta 0.000e+00, tol 1.0e-12)
+EQ 3 PASS d=4 interval volume S_d*I_V vs omega/(d 2^(d-1)): 0.1308996939 = 0.1308996939 (delta 0.000e+00, tol 1.0e-12)
+EQ 4 PASS d=3 I_V exact vs Simpson quadrature: 0.0416666666667 = 0.0416666666667 (delta 0.000e+00, tol 1.0e-09)
+EQ 5 PASS d=1 ordered-pair integral int(1-t)dt: 1/2 = 1/2 (delta 0.000e+00)
+EQ 6 PASS d=2 p_ord in lightcone coords: 1/4 = 1/4 (delta 0.000e+00)
+EQ 7 PASS d=2 p_ord (t,r) vs lightcone parameterisations: 1/4 = 1/4 (delta 0.000e+00)
+EQ 8 PASS d=3 I_J exact pieces: 1/210 = 1/210 (delta 0.000e+00)
+EQ 9 PASS d=3 I_J exact vs Simpson quadrature: 0.0047619047619 = 0.0047619047881 (delta 2.619e-11, tol 1.0e-09)
+EQ 10 PASS d=4 I_J exact vs Simpson quadrature: 0.000520833333333 = 0.000520833333499 (delta 1.659e-13, tol 1.0e-09)
+# derived: f(1) = 1, f(2) = 1/2, f(3) = 8/35, f(4) = 1/10
+EQ 11 PASS d=1 related fraction f vs 2x Gamma form: 1 = 1 (delta 4.441e-16, tol 1.0e-12)
+EQ 12 PASS d=2 related fraction f vs 2x Gamma form: 0.5 = 0.5 (delta 0.000e+00, tol 1.0e-12)
+EQ 13 PASS d=3 related fraction f vs 2x Gamma form: 0.228571428571 = 0.228571428571 (delta 8.327e-17, tol 1.0e-12)
+EQ 14 PASS d=4 related fraction f vs 2x Gamma form: 0.1 = 0.1 (delta 1.527e-16, tol 1.0e-12)
+EQ 15 PASS F strictly decreasing on [1,16] (0.05 grid): 1 = 1 (delta 0.000e+00, tol 0.0e+00)
+EQ 16 PASS inversion round-trip F^-1(f(2)): 2 = 2 (delta 8.882e-16, tol 1.0e-09)
+EQ 17 PASS inversion round-trip F^-1(f(3)): 3 = 3 (delta 8.882e-16, tol 1.0e-09)
+EQ 18 PASS inversion round-trip F^-1(f(4)): 4 = 4 (delta 0.000e+00, tol 1.0e-09)
+# B. pair-variance of R: E[g^2] with g = tau_p^d + tau_q^d
+EQ 19 PASS d=2 E[g^2] (t,r) vs lightcone parameterisations: 5/18 = 5/18 (delta 0.000e+00)
+# derived: E[g^2](2) = 5/18
+EQ 20 PASS d=4 E[g^2] exact vs Simpson quadrature: 0.02 = 0.019999999969 (delta 3.104e-11, tol 1.0e-09)
+# derived: E[g^2](4) = 1/50
+EQ 21 PASS d=3 E[g^2] poly+cross vs single quadrature: 0.0742857143999 = 0.0742857144698 (delta 6.989e-11, tol 1.0e-08)
+# derived: E[g^2](3) = 0.0742857144  (polynomial part 1/360 / I_V, cross term by quadrature, refinement error 2.2e-11)
+# C. mutant nulls
+EQ 22 PASS d=2 lightcone-shuffle fraction 2*P(u<)P(v<) vs f(2): 1/2 = 1/2 (delta 0.000e+00)
+EQ 23 PASS d=2 time marginal == spatial marginal (as polys in |s|): 0 = 0 (delta 0.000e+00)
+EQ 24 PASS d=2 marginal shift algebra: 1/2 = 1/2 (delta 0.000e+00)
+EQ 25 PASS d=2 t-shuffle fraction (quadrature) vs derived 1/2: 0.500030856972 = 0.5 (delta 3.086e-05, tol 2.0e-03)
+EQ 26 PASS d=3 t-shuffle fraction refinement (coarse vs fine): 0.214142017985 = 0.214142485655 (delta 4.677e-07, tol 2.0e-04)
+EQ 27 PASS d=4 t-shuffle fraction refinement (coarse vs fine): 0.0824307448367 = 0.0823745868695 (delta 5.616e-05, tol 3.4e-04)
+# derived t-shuffled nulls: f_shuf(2) = 0.500031 (= f(2): mutant ineffective at d=2 by EQ 22-25), f_shuf(3) = 0.214142 -> d* = 3.0804, f_shuf(4) = 0.082375 -> d* = 4.2296
+# D. registered bands: |mean_M d_hat - d| <= band, with
+#    sigma_f^2 = [C(N,2) f(1-f) + 6 C(N,3) k2] / C(N,2)^2,
+#    k2 = E[g^2]-f^2; sigma_d = sigma_f/|F'(d)|;
+#    bias = -F'' sigma_f^2 / (2 F'^3)  (delta method);
+#    band = |bias| + 4 sigma_d / sqrt(M).
+# BAND d N M f sigma_f sigma_d bias band binom_underest_factor
+BAND 2 128 40 0.5000000000 2.986601e-02 7.964268e-02 +2.030e-03 0.052400 5.39
+BAND 2 256 40 0.5000000000 2.097582e-02 5.593552e-02 +1.001e-03 0.036378 7.58
+BAND 2 512 40 0.5000000000 1.478176e-02 3.941801e-02 +4.973e-04 0.025427 10.69
+BAND 2 1024 40 0.5000000000 1.043447e-02 2.782526e-02 +2.478e-04 0.017846 15.10
+BAND 2 2048 24 0.5000000000 7.371990e-03 1.965864e-02 +1.237e-04 0.016175 21.35
+BAND 2 4096 16 0.5000000000 5.210559e-03 1.389482e-02 +6.179e-05 0.013957 30.18
+BAND 2 8192 12 0.5000000000 3.683635e-03 9.823026e-03 +3.088e-05 0.011374 42.67
+BAND 3 128 40 0.2285714286 2.655270e-02 1.436046e-01 +7.804e-03 0.098628 5.70
+BAND 3 256 40 0.2285714286 1.866653e-02 1.009540e-01 +3.857e-03 0.067706 8.03
+BAND 3 512 40 0.2285714286 1.316073e-02 7.117700e-02 +1.917e-03 0.046934 11.34
+BAND 3 1024 40 0.2285714286 9.292439e-03 5.025618e-02 +9.558e-04 0.032741 16.02
+BAND 3 2048 24 0.2285714286 6.565939e-03 3.551049e-02 +4.772e-04 0.029471 22.64
+BAND 3 4096 16 0.2285714286 4.641121e-03 2.510051e-02 +2.384e-04 0.025339 32.01
+BAND 3 8192 12 0.2285714286 3.281167e-03 1.774550e-02 +1.192e-04 0.020610 45.26
+BAND 4 128 40 0.1000000000 1.791960e-02 2.129062e-01 +1.839e-02 0.153045 5.39
+BAND 4 256 40 0.1000000000 1.258549e-02 1.495306e-01 +9.072e-03 0.103643 7.58
+BAND 4 512 40 0.1000000000 8.869053e-03 1.053749e-01 +4.505e-03 0.071150 10.69
+BAND 4 1024 40 0.1000000000 6.260682e-03 7.438435e-02 +2.245e-03 0.049290 15.10
+BAND 4 2048 24 0.1000000000 4.423194e-03 5.255280e-02 +1.121e-03 0.044030 21.35
+BAND 4 4096 16 0.1000000000 3.126335e-03 3.714458e-02 +5.598e-04 0.037704 30.18
+BAND 4 8192 12 0.1000000000 2.210181e-03 2.625957e-02 +2.798e-04 0.030602 42.67
+# EQ summary: ALL PASS
