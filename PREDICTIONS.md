@@ -350,3 +350,21 @@ feasible construction-B f exceeding hop distance by more than 1e-9
 not-claimed-in-advance: continuum limits; construction A beyond
 cycles; other Dirac operators (the literature has many, with
 different distances); anything about physical spacetime.
+
+## R-9 — 2026-08-24 — resolves P-11
+outcome: five of six clauses as expected; one failed as registered
+and is diagnosed exactly. Construction A: both closed-form witnesses
+carry Gram norm 1.0 to 1e-9 at every tested n - d(0,1) = 2/sqrt(3),
+d(0,j>=2) = sqrt(2) - and the diagonal and minor caps held on every
+random feasible f; the metric saturates as registered. Construction
+B: no feasible f exceeded hop distance on any of the three
+circulants (worst excess 0.0; the telescoping direction holds
+everywhere), but the registered "tent norm = 1" holds only on the
+cycle: on C_20({1..6}), C_22({1..7}) and C_44 (two-band) the tent's
+norm is sqrt(6), sqrt(7), sqrt(15) = sqrt(in-degree), because the
+B-rep commutator norm aggregates incoming gradients in l2. Exact
+geodesic recovery is a property of in-degree-1 (chain-like) coupling
+- the registration overgeneralized from the cycle derivation;
+recorded, not rescued. The dichotomy survives with a sharpened
+moral: one graph, three geometries, decided by the coupling. Filed
+as connes-distance-representation-dichotomy.
