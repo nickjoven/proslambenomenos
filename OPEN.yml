@@ -4,16 +4,16 @@
 # history lives in git and the handoff chain, not here.
 owner:
   - id: O-1
-    item: push harmonics branch unseal-fermion-mass-running (E18-E24 + the owner-push fix) and open its PR
-    command: "cd ~/code/harmonics && make owner-push && gh pr create --base main --head unseal-fermion-mass-running --fill"
+    item: open the harmonics PR for unseal-fermion-mass-running (branch already pushed; E18-E24 + the owner-push fix)
+    command: "cd ~/code/harmonics && gh pr create --base main --head unseal-fermion-mass-running --fill"
   - id: O-2
     item: harmonics MANIFEST proof_chains.A status after E18 (check_manifest_claims must stay green)
     command: "cd ~/code/harmonics && grep -n 'proof_chains' -A6 MANIFEST.yml"
   - id: O-3
     item: delete merged branches at your discretion
-    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa"
+    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa p13-acoustic c31-everpresent p11-spectral p10-order-dimension"
   - id: O-4
-    item: JUNCTURE - retire or reopen P-4 (if reopened, impact/stick-slip oscillator on a glued ring, nonlinear observable); word P-7 (incommensurate flux); tag link-007 on return
+    item: JUNCTURE - retire or reopen P-4 (recipe in A-4); word P-7 (A-1); seal link-008 over the three-P-line landing if satisfied
     command: "cd ~/code/proslambenomenos && make gates"
 agent:
   - id: A-1
@@ -24,9 +24,15 @@ agent:
     item: P-2 two-anchor; Crouzeix issue audit; dotfiles/tokenctl/toolbox remotes
   - id: A-4
     item: if P-4 is reopened - new P-line, free ring (no clamp), massless contact, N >= 64, low damping, an observable the background half-winding can reach
+  - id: A-5
+    item: commit the no-calculus runway pages (t0..t0d, currently scratchpad + artifacts only) into the repo; step 2 (amplitude / the half turn) awaits the user's step-1d feedback
 decided_since_parent:
-  - "link-007 sealed and live; harmonics owner-push made branch-aware (uncommitted to remote until O-1)"
-  - "2026-08-23 pm: P-8 (R-5) and P-9 (R-6) resolved; VOCABULARY.md; Toda solitons (c29) and impact oscillator (c30) with figure pages; synonyms table incl. Gunter's Half-Center coinages; spec suite in a controlled grammar (55 rules, TDD red->green) and the notes gate (LAW-20) - eleven gates; link-007 not yet tagged"
+  - "2026-08-24: P-13 registered and resolved (R-8) - the acoustic metric c = sqrt(J/m) is read by pulse arrivals on the exact chain (RMS 0.31%/0.32%/0.30% vs 2% registered; shuffled substrate 85x/16x worse) and is NOT a complete summary of the substrate: scattering follows the impedance law (jc 0.362 vs 0.360, zramp 2e-4), and the jz residual 0.036 is the pulse's flux at the slow side's band edge, reproduced at 7% with no free parameters. Claims chain-arrivals-read-acoustic-metric and junction-reflection-reads-impedance-not-metric, both verified by live miniature reimplementation; stdlib symbolic layer symb.py makes every supporting '=' run in CI (EQ1-EQ8); LAW-21"
+  - "2026-08-24: P-10 registered and resolved (R-7) by a worktree agent - Myrheim-Meyer dimension from pure order: f(d) derived by direct integration first (27 EQ, factor-2 convention in the Gamma form caught; full non-binomial variance, 5-43x the binomial term), then 21/21 (d, N) null cells inside pre-registered bands, d_hat -> 2, 3, 4; scrambled-order mutant lands on the derived d* = 4.230; the d = 2 shuffle no-signal was derived in advance, not discovered. Claim order-and-count-read-dimension; LAW-23"
+  - "2026-08-24: P-11 registered and resolved (R-9) - Connes spectral distance on cycles: the source-pullback representation returns hop distance exactly; the vertex-only representation gives a bounded metric with exact witnesses d(0,1) = 2/sqrt(3) and d(0,j>=2) = sqrt(2) (saturation); off the cycle the tent norm is sqrt(in-degree), so geodesic recovery is a chain-coupling property. One graph, three geometries, decided by the coupling. Claim connes-distance-representation-dichotomy; LAW-22"
+  - "2026-08-24: catalog c31 - Sorkin's everpresent-Lambda count fluctuation 1/sqrt(N) lands 0.4 orders of magnitude from the observed Lambda (P-12's planned content absorbed as a self-testing catalog fact)"
+  - "link-007 sealed and live; harmonics owner-push made branch-aware and the branch pushed (PR still to open, O-1)"
+  - "2026-08-23 pm: P-8 (R-5) and P-9 (R-6) resolved; VOCABULARY.md; Toda solitons (c29) and impact oscillator (c30) with figure pages; synonyms table incl. Gunter's Half-Center coinages; spec suite in a controlled grammar (55 rules, TDD red->green) and the notes gate (LAW-20) - eleven gates"
   - "2026-08-23: catalog c17-c26; curriculum notebooks T0-T6 + capstone as the tenth gate (LAW-18); multi-actor infrastructure (worktrees, union-merged ledgers, AGENTS.md); P-6 registered then computed in its own worktree - R-4, reproduction, no exceedance of 0.6809, verified claim with exhaustive certificate (LAW-19)"
   - "overnight adversarial audits (5 context-free agents): P-3 resolved (R-2); P-4 resolved as model-class vacuity (R-3) - the clamp cut the loop; Proof Chain A refutation evidence corrected (sign, lapse test, Lyapunov argument); LAW-16 closed six gate bypasses; catalog split to one mutant per fact"
   - "handoff interface landed (OPEN.yml, make handoff, recap artifact, ~/code/handoffs store); catbus hardening filed as nickjoven/catbus#1 (sign, lint, lineage, replay)"
@@ -37,6 +43,7 @@ decided_since_parent:
   - "LC-7: Stern-Brocot is Stern's 1858 array + Brocot's 1860/61 gear table; the tree is GKP 1989"
   - "primes-as-dimensions direction assessed: synthesis not citation; low value unless the pure-x sorting criterion is wanted"
 retracted_since_parent:
+  - "2026-08-24, failed-as-registered and diagnosed in the R-entries, not rescued: P-13 clause a2 (Airy exponent measured through a half-sine pulse whose intrinsic width dominates; step-drive diagnostic gives 0.332, in-band) and clause d (0.2% convergence registered over derived statistics; physical observables converged); P-11 clause a off the cycle (tent norm = sqrt(in-degree), not 1); P-10 mutant band at (d=3, N=2^8) (band ignored the mutant's own sampling noise)"
   - "P-9: E1's initial condition theta_i = 0.13 i is not N-safe (N >= 6 lands rings in winding attractors); E1 N=4 result stands"
   - "Toda first run: periodic ring forced a compensating stretch; first-order velocity field radiated 17%"
   - "Impact first run: steady-state max speed is not the grazing map; chatter regime wrong (needs slow forcing)"
@@ -47,6 +54,10 @@ retracted_since_parent:
   - "run-5 note 'within ~15%' (27-37% near the Helmholtz period; scoped to F/(4Jv) >= 3)"
   - "in-chat: shocks conflated with weak discontinuities (LC-4 S5); half-turn phase-lag mutant too weak (LAW-11 record)"
 do_not_recompute:
+  - "acoustic chain (P-13): arrival RMS 0.31%/0.32%/0.30% (ramp/lens/zramp); jc R = 0.362, jz = 0.036 (band-edge, predicted 0.039), zramp = 2e-4; front-crossing, not peak, is the stable arrival observable on short baselines - p13_results.json, scripts/verify/p13_acoustic_metric.py"
+  - "MM dimension (P-10): f(d) = 1, 1/2, 8/35, 1/10 (unordered convention = 2x the Gamma form as usually quoted); d=2 shuffles leave f = 1/2 exactly; scrambled null d* = 4.230 - p10_symbolic_out.txt, p10_results.json"
+  - "Connes distance (P-11): cycle vertex-only rep d(0,1) = 2/sqrt(3), d(0,j>=2) = sqrt(2), exact witnesses of Gram norm 1; source-pullback rep = hop on the cycle; tent norm sqrt(6)/sqrt(7)/sqrt(15) on C_20/C_22/C_44 - p11_results.json"
+  - "everpresent Lambda (c31): 10^-121.9 vs observed 10^-121.5; mutant 1/N misses by 122 orders - catalog/c31_everpresent_lambda.py"
   - "P-1 resolved by domain vacuity (R-1); the two theorem-lets are unconditional"
   - "J^2 = (-1)^(2m) depends on x-parity, not the bundle"
   - "Kuramoto spreading exponent 0.500 (parabolic); inertial chain 0.989 - scripts/verify/kuramoto_einstein_refutation.py"
