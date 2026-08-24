@@ -440,3 +440,27 @@ spectral or any other dimension estimator; non-integer d; Poisson-N
 sprinkles (what runs is fixed-N binomial sampling); the d=2 mutant
 beyond its mean; anything about our universe. Novelty status:
 classical reproduction (Myrheim 1978; Meyer 1988; Sorkin).
+
+## R-7 — 2026-08-24 — resolves P-10
+outcome: as expected except one registered mutant cell; recorded as
+such. Nulls: all 21 (d, N) cells inside their bands (largest mean
+error +0.079 at d=4, N=2^7, band 0.153); sample SD inside 0.72-1.34
+x the derived sigma_d at every cell (a binomial-only sigma would sit
+at 1/5 to 1/43 of the observed spread - the derived shared-point
+covariance term carries the variance); spreads shrink ~ N^(-1/2)
+and the RMS mean error falls 0.049 -> 0.004 from N=2^7 to 2^13;
+acceptance rates match the derived volume fractions everywhere.
+Mutants: d=4 shuffled-order outside every band, means 4.22-4.32
+against the derived scrambled null d* = 4.230; both d=2 shuffles
+stay inside the band, as the registered symmetry derivation said
+they must (EQ 22-25). The failure: (d=3, N=2^8) shuffled-order mean
+3.051, band 0.068 - inside. Diagnosis, not rescue: the derived
+displacement 0.080 clears that band by only 0.013 = 0.9 sigma of
+the mutant mean at M=40, so the registered "outside every d=3 band
+with N >= 2^8" ignored the mutant's own sampling noise - a
+registration design error, same family as R-3's; the paired
+mutant-minus-null difference at that cell is 0.073, consistent with
+the derived 0.080, and the other six d=3 cells (including the
+registered-uninformative N=2^7 one) fall outside. No parameter
+moved after registration. Data: p10_results.json, seed 20260824;
+note notes/p10_order_dimension.md.
