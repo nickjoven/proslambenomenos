@@ -1,0 +1,33 @@
+id: connes-distance-representation-dichotomy
+statement: >
+  On the cycle graph C_n (n >= 4) with the incidence Dirac D =
+  [[0, B^T], [B, 0]], the Connes spectral distance d(p,q) =
+  sup { f(q)-f(p) : ||[D,f]|| <= 1 } depends on the representation
+  of the vertex-function algebra, not on the graph alone. With f
+  acting on l2(V) and on l2(E) by source pullback, the commutator
+  norm is max_e |f(v)-f(u)| and d = hop distance exactly (the hop
+  tent is feasible and extremal; telescoping caps every feasible f).
+  With f acting on l2(V) only, the norm is
+  sqrt(lam_max(diag(f) L diag(f))) (L the cycle Laplacian), the
+  seminorm feels the values of f, and the gauged distance is
+  bounded: d(0,1) = 2/sqrt(3) (witness (-1/sqrt(3), +1/sqrt(3),
+  0, ...) of Gram norm exactly 1; 2x2 principal-minor cap) and
+  d(0,j) = sqrt(2) for every j >= 2 (witness (-1/sqrt(2), 0, ...,
+  +1/sqrt(2)); diagonal Rayleigh cap 2 g_i^2 <= 1) - neighbours
+  resolved, everything farther saturated. Off the cycle the
+  source-pullback norm aggregates in l2 over incoming edges (the
+  hop tent has norm sqrt(6) on C_20({1..6}) and is infeasible), so
+  even the geodesic recovery is a property of the coupling
+  structure, not of the algebra.
+premises: []
+prediction: P-11
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p11_derive.py (reductions checked to 1.75e-16 against explicit 2n x 2n commutators; output committed as p11_derive_out.txt); scripts/experiments/p11_spectral.py (registered computation, results in p11_results.json); independently reimplemented by scripts/verify/p11_spectral_metric.py, which rebuilds the Gram matrix, witnesses, and caps from scratch with no access to the results file"
+    method: reimplementation
+null_system: "hop distance is the null geometry: the source-pullback representation on the cycle reproduces it exactly, so the deformation to the bounded 2/sqrt(3)-and-sqrt(2) metric is attributable to removing the edge action alone, with algebra, Dirac, and graph held fixed"
+falsifier: "scripts/verify/p11_spectral_metric.py --mutant hop-metric"
+novelty:
+  status: unchecked
+  citation: "framework: Connes, Noncommutative Geometry (1994); finite-space distance computations: Iochum, Krajewski, Martinetti, J. Geom. Phys. 37, 100 (2001)"
+status: verified
