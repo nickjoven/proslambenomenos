@@ -17,8 +17,8 @@ premises: []
 prediction: P-13
 evidence:
   - kind: computation
-    ref: "scripts/experiments/p13_acoustic_chain.py junction runs (jc, jz, zramp) in p13_results.json; exact lattice interface solve junction_solve in p13_profiles.py, energy-conserving to 3e-16 (EQ6, EQ7 in p13_symbolic.py); band-edge decomposition in p13_jz_diagnosis.py / p13_jz_diagnosis.json"
-    method: registered-then-computed
+    ref: "scripts/experiments/p13_acoustic_chain.py junction runs (jc, jz, zramp) in p13_results.json; exact lattice interface solve junction_solve in p13_profiles.py, energy-conserving to 3e-16 (EQ6, EQ7 in p13_symbolic.py); band-edge decomposition in p13_jz_diagnosis.py / p13_jz_diagnosis.json; independently reimplemented in miniature by scripts/verify/p13_acoustic_metric.py, which integrates its own 500-site junctions live and re-derives both reflections against the impedance law"
+    method: reimplementation
 null_system: "the continuum Fresnel/impedance law itself is the null; the mutant replaces it with the metric-ratio law ((c1-c2)/(c1+c2))^2, which predicts 0 for the reflecting junction and 0.36 for the quiet one - wrong in both directions"
 falsifier: "scripts/verify/p13_acoustic_metric.py --mutant c-ratio-reflection"
 novelty:
