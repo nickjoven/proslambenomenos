@@ -1,4 +1,4 @@
-<!-- evidence: scripts/experiments/p11_derive.py, scripts/experiments/p11_derive_out.txt, scripts/experiments/p11_spectral.py, scripts/experiments/p11_results.json, scripts/verify/p11_spectral_metric.py -->
+<!-- evidence: scripts/experiments/p11_derive.py, scripts/experiments/p11_spectral.py, scripts/experiments/p11_results.json, scripts/verify/p11_spectral_metric.py -->
 # P-11: the representation decides the metric
 
 Registered before computing (PREDICTIONS.md P-11); resolution R-9.
