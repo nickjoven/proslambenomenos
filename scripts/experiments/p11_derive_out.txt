@@ -1,0 +1,12 @@
+DERIVE 1 PASS: construction A norm = sqrt(lam_max(diag(f) L diag(f))); construction B norm = max|df| (worst rel dev 1.75e-16 vs the explicit 2n x 2n commutators)
+DERIVE 2 PASS: construction B - the hop-distance tent has commutator norm 1 and attains f(j)-f(0) = d_hop; any feasible f telescopes to <= d_hop along the short arc, so d_spec = d_hop exactly
+DERIVE 3: construction A gauged d_spec(0,j) lower bounds vs hop
+  n=3: j=1: 1.1632 (hop 1)
+  n=4: j=1: 1.1547 (hop 1); j=2: 1.4163 (hop 2)
+  n=5: j=1: 1.1547 (hop 1); j=2: 1.4145 (hop 2)
+  n=6: j=1: 1.1547 (hop 1); j=2: 1.4148 (hop 2); j=3: 1.4135 (hop 3)
+  n=8: j=1: 1.1547 (hop 1); j=2: 1.4142 (hop 2); j=3: 1.4131 (hop 3); j=4: 1.4132 (hop 4)
+  n=10: j=1: 1.1547 (hop 1); j=2: 1.4136 (hop 2); j=3: 1.4033 (hop 3); j=4: 1.4035 (hop 4); j=5: 1.4119 (hop 5)
+python3 p11_derive.py  941.64s user 0.10s system 100% cpu 15:40.93 total
+
+[exited with code 0]
