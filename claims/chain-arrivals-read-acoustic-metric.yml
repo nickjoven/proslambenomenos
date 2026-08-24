@@ -13,8 +13,8 @@ premises: []
 prediction: P-13
 evidence:
   - kind: computation
-    ref: "scripts/experiments/p13_acoustic_chain.py (Euler-Cromer, dt-halving convergence run) with profiles and eikonal in p13_profiles.py; results in p13_results.json; supporting identities EQ1-EQ5 machine-checked by scripts/experiments/p13_symbolic.py (stdlib symbolic layer symb.py), output in p13_symbolic_out.txt"
-    method: registered-then-computed
+    ref: "scripts/experiments/p13_acoustic_chain.py (Euler-Cromer, dt-halving convergence run) with profiles and eikonal in p13_profiles.py; results in p13_results.json; supporting identities EQ1-EQ5 machine-checked by scripts/experiments/p13_symbolic.py (stdlib symbolic layer symb.py); independently reimplemented in miniature by scripts/verify/p13_acoustic_metric.py, which integrates its own 500-site control and ramp live (different size, pulse, and profile) and scores arrivals against the eikonal with no access to the experiment's outputs"
+    method: reimplementation
 null_system: "the uniform chain (flat metric): fitted front speed 0.99897 of c0 = 1; the eikonal claim's content is that the *arrangement* of local speeds is what the arrival curve reads - the shuffled-substrate comparison is the discriminator"
 falsifier: "scripts/verify/p13_acoustic_metric.py --mutant shuffled-profile"
 novelty:
