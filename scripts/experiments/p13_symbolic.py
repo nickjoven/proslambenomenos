@@ -116,43 +116,7 @@ eq(5, ok5, "discrete eikonal sum = continuum integral of 1/c to O(1/N)", "; ".jo
 # with Z = sqrt(mJ) as k -> 0, for BOTH junctions:
 #   jc (c matched, Z ratio 4)  -> Fresnel R = (3/5)^2 = 0.36
 #   jz (Z matched, c ratio 4)  -> Fresnel R = 0
-def lattice_junction(m1, J1, m2, J2, k1):
-    w2 = 4 * J1 / m1 * math.sin(k1 / 2) ** 2
-    wv = math.sqrt(w2)
-    s2 = wv / (2 * math.sqrt(J2 / m2))
-    if s2 > 1:
-        raise ValueError("evanescent on the right")
-    k2 = 2 * math.asin(s2)
-    e1, e1i = cmath.exp(1j * k1), cmath.exp(-1j * k1)
-    e2, e22 = cmath.exp(1j * k2), cmath.exp(2j * k2)
-    # unknowns r, tt;  u_n = e^{ik1 n} + r e^{-ik1 n} (n<=0), tt e^{ik2 n} (n>=1)
-    # node 0 (mass m1, left spring J1, right spring J2):
-    #   -m1 w^2 u0 = J1(u_{-1} - u0) + J2(u_1 - u0)
-    # node 1 (mass m2, both springs J2):
-    #   -m2 w^2 u1 = J2(u_0 - u1) + J2(u_2 - u1)
-    # eqs as a_r r + a_t tt = rhs, with u0 = 1 + r, u_{-1} = e1i + r e1,
-    # u1 = tt e2, u2 = tt e22:
-    # eq0: -m1 w2 (1+r) = J1((e1i + r e1) - (1+r)) + J2(tt e2 - (1+r))
-    a_r0 = -m1 * w2 - J1 * (e1 - 1) + J2
-    a_t0 = -J2 * e2
-    rhs0 = m1 * w2 + J1 * (e1i - 1) - J2
-    # eq1: 0 = m2 w2 tt e2 + J2(1 + r - tt e2) + J2 tt(e22 - e2)
-    a_r1 = J2
-    a_t1 = m2 * w2 * e2 - J2 * e2 + J2 * (e22 - e2)
-    rhs1 = -J2
-    det = a_r0 * a_t1 - a_t0 * a_r1
-    r = (rhs0 * a_t1 - a_t0 * rhs1) / det
-    tt = (a_r0 * rhs1 - rhs0 * a_r1) / det
-    vg1 = math.sqrt(J1 / m1) * math.cos(k1 / 2)
-    vg2 = math.sqrt(J2 / m2) * math.cos(k2 / 2)
-    R = abs(r) ** 2
-    Te = (m2 * vg2) / (m1 * vg1) * abs(tt) ** 2
-    return R, Te
-
-
-def fresnel(m1, J1, m2, J2):
-    z1, z2 = math.sqrt(m1 * J1), math.sqrt(m2 * J2)
-    return ((z1 - z2) / (z1 + z2)) ** 2
+from p13_profiles import junction_solve as lattice_junction, fresnel  # noqa: E402
 
 
 rows6, ok6 = [], True
