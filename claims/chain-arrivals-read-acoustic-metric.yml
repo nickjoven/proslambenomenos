@@ -1,0 +1,23 @@
+id: chain-arrivals-read-acoustic-metric
+statement: >
+  On a mass-spring chain m_i u_i'' = J_i(u_{i+1}-u_i) +
+  J_{i-1}(u_{i-1}-u_i), the peak arrival time of a low-k pulse at
+  site j matches the discrete eikonal sum_{i<j} 1/c(i) of the
+  acoustic metric c = sqrt(J/m), independently of the impedance
+  Z = sqrt(mJ): RMS relative deviation 0.31% (ramp profile, Z
+  varying x2), 0.32% (lens), 0.30% (zramp, Z constant) at N = 1500
+  over checkpoints 200..1300, against a registered tolerance of 2%;
+  a block-shuffled substrate with the same multiset of local delays
+  scores 16-85x worse.
+premises: []
+prediction: P-13
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p13_acoustic_chain.py (Euler-Cromer, dt-halving convergence run) with profiles and eikonal in p13_profiles.py; results in p13_results.json; supporting identities EQ1-EQ5 machine-checked by scripts/experiments/p13_symbolic.py (stdlib symbolic layer symb.py), output in p13_symbolic_out.txt"
+    method: registered-then-computed
+null_system: "the uniform chain (flat metric): fitted front speed 0.99897 of c0 = 1; the eikonal claim's content is that the *arrangement* of local speeds is what the arrival curve reads - the shuffled-substrate comparison is the discriminator"
+falsifier: "scripts/verify/p13_acoustic_metric.py --mutant shuffled-profile"
+novelty:
+  status: classical
+  citation: "eikonal/WKB on slowly varying media (Brillouin); acoustic metric: Unruh, PRL 46, 1351 (1981); Barcelo, Liberati, Visser, Living Rev. Relativity 14, 3 (2011)"
+status: verified

@@ -1,0 +1,27 @@
+id: junction-reflection-reads-impedance-not-metric
+statement: >
+  Energy reflection at an abrupt chain junction follows the
+  impedance law ((Z1-Z2)/(Z1+Z2))^2 with Z = sqrt(mJ), not any
+  function of the metric ratio c2/c1: the c-matched junction (m, J
+  both x4; Z jumps x4, metric unchanged) reflects 0.362 vs the law's
+  0.360, while the metric-only changes are quiet - the Z-matched
+  junction (c drops x4) reflects 0.036 and the smooth Z-constant
+  ramp (c halves) reflects 2e-4. Scope: the impedance law governs
+  in-band flux; the Z-matched junction's residual 0.036 is the
+  pulse's flux at and above the slow side's band edge omega_c =
+  2 sqrt(J2/m2), reproduced with no free parameters at 7% by the
+  flux-weighted exact lattice solve (predicted 0.039) - impedance
+  matching silences only the shared band, and the band edge is set
+  by the metric side of the substrate.
+premises: []
+prediction: P-13
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p13_acoustic_chain.py junction runs (jc, jz, zramp) in p13_results.json; exact lattice interface solve junction_solve in p13_profiles.py, energy-conserving to 3e-16 (EQ6, EQ7 in p13_symbolic.py); band-edge decomposition in p13_jz_diagnosis.py / p13_jz_diagnosis.json"
+    method: registered-then-computed
+null_system: "the continuum Fresnel/impedance law itself is the null; the mutant replaces it with the metric-ratio law ((c1-c2)/(c1+c2))^2, which predicts 0 for the reflecting junction and 0.36 for the quiet one - wrong in both directions"
+falsifier: "scripts/verify/p13_acoustic_metric.py --mutant c-ratio-reflection"
+novelty:
+  status: classical
+  citation: "impedance matching and transmission lines (textbook); lattice band structure: Brillouin, Wave Propagation in Periodic Structures (1946)"
+status: verified
