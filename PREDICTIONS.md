@@ -234,3 +234,52 @@ theta_i = 0.13 i is not N-safe (it lands N >= 6 rings in winding
 attractors, collapsing the control plateau); E1's N = 4 result is
 unaffected; the method is corrected by attractor-controlled initial
 conditions (notes/p9_nparity.md; catalog c28 pins the data).
+
+## P-13 — 2026-08-24 — the acoustic metric and what it does not see, on a mass-spring chain
+question: a chain of masses m(x) and springs J(x) is a substrate
+carrying two independent local data: c(x) = sqrt(J/m) and Z(x) =
+sqrt(mJ). The analogue-gravity reading (Unruh, PRL 46, 1351 (1981);
+Barcelo, Liberati, Visser, Living Rev. Relativity 14, 3 (2011)) says
+excitations propagate on the acoustic metric set by c(x) alone. Does
+the counting observable "arrival time at each site" reproduce the
+eikonal of that metric on the exact lattice (no continuum
+approximation), and is the metric a complete summary of the
+substrate - i.e. does anything measurable separate two chains with
+identical c(x)?
+method: Euler-Cromer integration of the chain m_i u_i'' =
+J_i(u_{i+1}-u_i) + J_{i-1}(u_{i-1}-u_i), N = 1500, dt = 0.05, fixed
+far end, half-sine displacement pulse (tau = 60) at site 0. Profiles
+pinned in scripts/experiments/p13_profiles.py; every supporting
+identity derived and machine-checked BEFORE this entry by the stdlib
+symbolic layer (scripts/experiments/symb.py + p13_symbolic.py, EQ1-
+EQ8 all passing; numbers pinned in p13_registration.json). Arrival =
+time of peak |u_j| at checkpoints 200..1300; reflection = energy on
+the launch side of a stated cut at a stated time over injected
+energy. Nulls: control chain (flat metric); jz and zramp are the
+scattering nulls for the impedance claim.
+expects: (a) control (m = J = 1): fitted front speed within 0.5% of
+c0 = 1 (EQ3); 0.1-threshold crossing spread grows as t^p with p in
+[0.23, 0.43] (Airy precursor of the lattice front).
+(b) ramp and lens: RMS relative deviation of peak arrival from the
+discrete eikonal sum (EQ4, EQ5; time offset calibrated on the
+control) below 2% over the checkpoints; the same statistic computed
+against a block-shuffled profile's eikonal is larger by a factor of
+at least 10.
+(c) junction jc (c matched, Z jumps x4): measured energy reflection
+within 0.05 of 0.360 (EQ6); junction jz (Z matched, c drops x4):
+reflection below 0.01 (EQ6 lattice value 0.0014 at k = 0.05); smooth
+zramp (Z = 1 while c halves): reflection below 0.01 AND its own
+arrival eikonal still holding to 2%. Reading: arrival times measure
+c(x) and are blind to Z(x); reflection measures Z(x) and is blind to
+c(x); the metric is readable from the substrate and is not a
+complete summary of it.
+(d) halving dt moves every reported number by less than 0.2%.
+changes-my-mind: zramp or jz reflection above 0.05 at converged dt
+kills the metric/impedance split as stated; ramp RMS above 5% kills
+the eikonal (geometric) reading of the chain at these scales; jc
+reflection farther than 0.15 from 0.360 means the lattice matching
+analysis (EQ6/EQ7) is wrong and the entry resolves against me.
+not-claimed-in-advance: anything about Einstein equations or
+dynamics of the metric (the einstein-from-kuramoto-chain-a
+refutation stands); horizons or advection; dimensions above one;
+quantum behaviour; real spacetime.
