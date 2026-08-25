@@ -1,0 +1,8 @@
+EQ 1 PASS  Z = 1/c  =>  V = c(c(c^-1/2)')'/(c^-1/2) = c'^2/4 - c c''/2  | two concrete c, worst rel delta 1.11e-16
+EQ 2 PASS  linear c = 1+bx: c'' = 0  =>  V = b^2/4 (P-14 EQ2 as the special case)  | worst rel delta 0.00e+00
+EQ 3 PASS  s(0)=0, s(1)=1, s'=s''=0 at both ends; coded s', s'' = CAS derivatives  | endpoint vals ['0.0e+00', '1.0e+00', '0.0e+00', '0.0e+00', '0.0e+00', '0.0e+00']; worst 2.54e-14
+EQ 4 PASS  szramp: Z = sqrt((1/c) c) = 1  =>  V = 0  | worst rel delta 0.00e+00
+EQ 5 PASS  int_ramp V dtau = int_ramp c'^2/(4c) dx (C2 edges: [c'/2] = 0)  | lhs 1.019991649e-04, rhs 1.019991649e-04, rel delta 2.66e-16
+EQ 6 PASS  T, tau(x), shift_k = (2/T) int V sin^2(k pi tau/T) dtau, k = 1..80  | T_r = 1710.746347, T = 2160.746347, Vbar_s = 4.720552e-08, mean shift(k=60..80) = 4.719318e-08, tau-integ rel err 2.5e-15
+EQ 7 PASS  Sturm bisection = (4/a^2) sin^2(k pi/(2(n+1))) on the uniform chain  | worst rel dev 4.22e-13 over k = 1..20, n = 200
+EQ 8 PASS  mean |shift_k - Vbar_s| over k = 41..80 < mean over k = 1..40  | low-k mean 9.291e-09, high-k mean 9.772e-11, max osc 1.272e-07 at k = 1

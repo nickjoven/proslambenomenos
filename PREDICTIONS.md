@@ -670,3 +670,51 @@ communication complexity (van Dam, exhaustive at n = 8), and the
 one principled contraction - information causality - is bounded
 below 1 exactly at Tsirelson and broken everywhere above it. Filed
 as bell-ladder-priced.
+
+## P-18 — 2026-08-25 — the C2 retest of the fired clause (A-6)
+question: P-14's k-resolved zero-free-parameter clause d died at RMS
+2.89 x Vbar and the recorded diagnosis blamed the linear ramp's C1
+corners (where c' jumps, the travel-time potential has distributional
+spikes; corr(residual, k^2) = 0.003 excluded the metric-split
+alternative). That diagnosis is itself a claim and stays a story
+until tested. If the corners are the culprit, replacing the ramp with
+a C2 profile must recover the first-order shifts with no parameters.
+method: derivation layer scripts/experiments/p18_derive.py (run
+first, output committed): quintic smoothstep c(x) = 1 - 0.5 s(u),
+s = 6u^5 - 15u^4 + 10u^3 over the same [150, 1350]; the CAS checks
+the general closed form V = c'^2/4 - c c''/2 for Z = 1/c (EQ1), the
+linear limit b^2/4 recovering P-14 (EQ2), that s' = s'' = 0 at both
+ends so V is globally continuous and vanishes at the ramp edges (EQ3),
+the boundary-term identity int V dtau = int c'^2/(4c) dx that fails
+for C1 corners (EQ5), and the Fourier decay of shift_k - Vbar_s that
+only a continuous V produces (EQ8). Pinned before any eigensolve:
+T = 2160.746347, Vbar_s = 4.720552e-08, and the 80 k-resolved shifts
+including the derived SIGN FLIP shift_1 = -7.999903e-08 (the linear
+case had no such structure). Eigensolves: same Sturm bisection
+(validated to 1e-12, EQ7), grids n = 1499 and 2999, lowest 80
+eigenvalues, Richardson extrapolation in a^2, sramp (Z = 1/c) minus
+szramp (Z = 1) with the C2 profile; the P-14 linear pair rerun on the
+same grids as a positive control.
+expects: (a) Weyl over k in [5, 60] at n = 2999 for both C2 profiles:
+|omega_k T/(k pi) - 1| < 2e-3 (k = 1..4 excluded by the recorded
+P-14 clause-b lesson: the shift itself is a percent-scale relative
+effect at the lowest modes). (b) not isospectral: max_k
+|Delta omega_k^2| > 1e-9. (c) k-resolved match: RMS over k in [5, 60]
+of (Richardson Delta omega_k^2 - shift_k) below 0.3 x Vbar_s - the
+SAME bar clause d originally registered and failed. (d) the derived
+sign flip: Richardson Delta omega_1^2 < -4e-8. (e) window mean within
+3 percent of the mean pinned shift. (f) positive control: the linear
+pair on the same grids reproduces the failure, RMS > 2.0 x Vbar_lin,
+and the improvement factor (linear RMS/Vbar_lin) / (C2 RMS/Vbar_s)
+exceeds 5.
+changes-my-mind: C2 RMS above 1.0 x Vbar_s at converged grids kills
+the corner diagnosis (the kink story was a rescue, and R-10's honest
+reading becomes "first-order perturbation fails on this substrate
+class"); linear control RMS below 1.5 x Vbar_lin means R-10's own
+measurement does not reproduce and P-14's resolution needs reopening;
+measured Delta omega_1^2 > 0 kills the derived sign structure and
+with it the V = c'^2/4 - c c''/2 reading of the spectral difference.
+not-claimed-in-advance: higher order in V; other boundary conditions
+or profiles; dimensions above one; any mechanism story for the
+C1 residual beyond its absence here; continuum limits beyond the two
+registered grids.
