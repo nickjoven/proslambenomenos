@@ -595,3 +595,57 @@ form of "the loss goes to the spectrum as the impedance potential"
 holds as registered where the k-resolved form (R-10) fired. Filed
 as spectral-dimension-instrument. The causal-set definitional
 disagreement remains P-16, not started.
+
+## P-17 — 2026-08-24 — the Bell ladder: expansion is cheap, contraction is a theorem
+question: the 2022 Nobel experiments (Aspect, Clauser, Zeilinger)
+honour a theorem about mechanical models. How sophisticated can an
+honest mechanical model be? Design principle: it is easier to expand
+than contract. Expanding the correlation set is one purchasable
+resource per rung, priced exactly; contracting it back down is where
+the theorems live, and the only known principled contraction lands
+exactly on the quantum boundary.
+method: derivation layer scripts/experiments/p17_derive.py (run
+first, EQ1-EQ8 all green, output committed; pins in
+p17_registration.json): the local ceiling 2 by exhaustive
+enumeration of all 16 deterministic strategies; mixtures buy nothing
+(linearity); the quantum ceiling 2 sqrt 2 from Landau's identity
+S^2 = 4I - [A0,A1]x[B0,B1] (entrywise to 8.9e-16) with norm and
+singlet expectation both 2 sqrt 2 to 1e-12; the rotor LHV's zigzag
+E = 2 theta/pi - 1 saturating S = 2 at the same angles where the
+cosine reaches 2 sqrt 2; one blunt bit giving deterministic S = 4;
+the detection rung's two sphere identities (E[(b.l) sign(a.l)] =
+cos/2, E|b.l| = 1/2) giving post-selected E = -cos exactly at mean
+efficiency 3/4, below the Garg-Mermin threshold 2/(1+sqrt 2) =
+0.8284; van Dam's collapse (n-bit inner product from one bit with
+PR boxes, exhaustive at n = 8); the information-causality ladder
+f(E,k) = 2^k(1 - h((1+E^k)/2)) bounded below 1 at E = 1/sqrt 2
+(max 0.7982 at k = 1, decreasing to 1/(2 ln 2) = 0.7213), crossing
+1 at k = 8 for E = 0.73, exploding as 2^k at the PR box.
+Registered computation scripts/experiments/p17_bell.py: the Monte
+Carlo tiers, 1e6 pairs each, seed 20260824, angles 0.4, 1.1, 2.0,
+2.8, binomial error bands derived.
+expects: (a) the rotor machine's simulated E lands within 4 sigma
+of the zigzag at every registered angle and its CHSH at the pinned
+angles within 4 sigma of exactly 2. (b) the Toner-Bacon protocol
+(shared lambda1, lambda2 on the sphere; one bit c = sign(a.l1)
+sign(a.l2); Bob outputs sign(b.(l1 + c l2))) reproduces E = -cos
+theta within 4 sigma at every registered angle - one bit buys the
+exact singlet curve (Toner, Bacon, PRL 91, 187904 (2003)). (c) the
+detection machine's post-selected correlations land within 4 sigma
+of -cos theta AND its measured Bob efficiency within 4 sigma of
+1/2 (mean 3/4) - a mechanical fake of the quantum curve, priced at
+25% of the detections, legal only below the 0.8284 threshold the
+loophole-free 2015 experiments enforced. (d) catalog c32: the
+measured history - AGR 1982 S = 2.697 +/- 0.015 sits 46 sigma
+above the local ceiling and at 95.4% of Tsirelson; FC 1972 delta =
+0.050 +/- 0.008 sits 6 sigma above its bound (litcheck LC-10) -
+self-tests with a mutant asserting local compatibility.
+changes-my-mind: any MC tier off its exact curve by more than 4
+sigma at converged sample size (the constructions would be wrong,
+not the statistics); the Toner-Bacon simulation NOT matching -cos
+would falsify the priced-expansion reading of the one-bit rung.
+not-claimed-in-advance: anything about why nature stops at
+Tsirelson beyond what information causality states for this slice
+(the full quantum boundary needs the NPA hierarchy, not attempted);
+loophole-free experimental analysis; memory-loophole finite
+statistics; interpretations of quantum mechanics.

@@ -276,3 +276,27 @@ equation from REVERSIBLE delta Q = T dS as an equation of state;
 Jacobson 2006 add production only for f(R) corrections). Disposition:
 no claim changes; the text scored ~10% established / 30% wrong / 60%
 content-free and is not pursued.
+
+## LC-10 — 2026-08-24 — the Bell ladder's constants
+prediction: P-17
+claims-checked:
+- AGR 1982 measured S = 2.697 +/- 0.015, more than 40 sigma above
+  the local bound, with the apparatus-corrected quantum prediction
+  S_QM = 2.70 +/- 0.05 (Aspect, Grangier, Roger, PRL 49, 91 (1982);
+  Nobel scientific background 2022; arXiv:2212.05535).
+- Freedman-Clauser 1972: delta = 0.050 +/- 0.008 against delta <= 0,
+  a 6 sigma violation (Freedman, Clauser, PRL 28, 938 (1972);
+  arXiv:physics/0508180).
+- Detection-loophole models reproducing the singlet exactly exist at
+  MEAN efficiency 75% (Gisin, Gisin, Phys. Lett. A 260, 323 (1999),
+  quant-ph/9905018; Pearle 1970 is the family's ancestor); the
+  symmetric-efficiency threshold above which no such model exists is
+  2/(1+sqrt 2) = 82.84% (Garg-Mermin; review arXiv:1407.0363). The
+  two numbers are different facts and the chat draft of this line
+  initially conflated them - corrected here.
+- One classical bit suffices to simulate the singlet correlations
+  exactly: Toner, Bacon, PRL 91, 187904 (2003).
+- PR boxes collapse communication complexity (van Dam,
+  quant-ph/0501159); information causality bounds quantum
+  correlations at Tsirelson for the CHSH slice (Pawlowski et al.,
+  Nature 461, 1101 (2009)).
