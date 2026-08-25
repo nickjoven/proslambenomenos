@@ -3,8 +3,8 @@ statement: >
   Two mass-spring chains built on the identical metric profile c(x)
   (P-13's ramp) but different impedance - ramp (Z = 1/c) and zramp
   (Z = 1) - are isometric in every commutator-visible sense and are
-  not isospectral: the weighted-seminorm end-to-end distances agree
-  within 1.18e-4 relative at n = 1499, halving at n = 2999 (O(1/n)
+  not isospectral: the weighted-seminorm end-to-end distances differ
+  by only 1.18e-4 relative at n = 1499, halving at n = 2999 (O(1/n)
   bookkeeping around identical metric data), while the lowest 80
   Dirichlet eigenvalues differ by up to 2.31e-7 in omega^2 against
   an eigensolver resolving 1e-12 (Sturm bisection on the symmetrized
