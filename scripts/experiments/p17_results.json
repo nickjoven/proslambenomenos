@@ -1,0 +1,29 @@
+{
+ "clauses": {
+  "a_rotor": true,
+  "b_toner_bacon": true,
+  "c_detection": true
+ },
+ "detail": {
+  "rotor": [
+   "theta=0.4: -0.7453 vs zigzag -0.7454 (0.02 sig)",
+   "theta=1.1: -0.3005 vs zigzag -0.2997 (0.81 sig)",
+   "theta=2.0: 0.2722 vs zigzag 0.2732 (1.03 sig)",
+   "theta=2.8: 0.7826 vs zigzag 0.7825 (0.04 sig)",
+   "S = 2.00050 vs 2 (0.29 sig)"
+  ],
+  "toner_bacon": [
+   "theta=0.4: -0.9208 vs -cos -0.9211 (0.76 sig)",
+   "theta=1.1: -0.4544 vs -cos -0.4536 (0.91 sig)",
+   "theta=2.0: 0.4163 vs -cos 0.4161 (0.17 sig)",
+   "theta=2.8: 0.9421 vs -cos 0.9422 (0.34 sig)"
+  ],
+  "detection": [
+   "theta=0.4: -0.9215 vs -0.9211 (0.78 sig), eta_B = 0.5004 (0.72 sig)",
+   "theta=1.1: -0.4519 vs -0.4536 (1.38 sig), eta_B = 0.5006 (1.20 sig)",
+   "theta=2.0: 0.4156 vs 0.4161 (0.41 sig), eta_B = 0.5003 (0.52 sig)",
+   "theta=2.8: 0.9416 vs 0.9422 (1.41 sig), eta_B = 0.4996 (0.75 sig)"
+  ]
+ },
+ "changes_my_mind_fired": false
+}
