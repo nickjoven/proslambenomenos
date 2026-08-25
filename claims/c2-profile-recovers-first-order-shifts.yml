@@ -1,0 +1,32 @@
+id: c2-profile-recovers-first-order-shifts
+statement: >
+  P-14's fired per-mode clause was killed by the profile's C1
+  corners, not by first-order perturbation theory. On the quintic
+  smoothstep profile (same endpoints and interval as P-13's ramp,
+  but s' = s'' = 0 at both edges, so the travel-time potential
+  V = c'^2/4 - c c''/2 is globally continuous and vanishes at the
+  ramp edges), the sramp (Z = 1/c) minus szramp (Z = 1) spectral
+  difference tracks the zero-free-parameter first-order shifts with
+  RMS residual 0.004 x Vbar_s over k = 5..60 (Richardson over
+  n = 1499, 2999) - against the SAME 0.3 bar the original clause
+  registered and failed - including a derived sign flip at k = 1
+  (pinned -8.00e-8 before any eigensolve; measured -1.04e-7, the
+  excess being second-order territory at the lowest mode and not
+  part of this claim). The linear pair, rerun on the same grids as
+  a registered positive control, reproduces R-10's failure at RMS
+  2.893 x Vbar_lin (R-10 recorded 2.89), an improvement factor of
+  756. Scope: this profile pair, Dirichlet ends, first order in V,
+  the two registered grids; no mechanism story for the C1 residual
+  beyond its absence here.
+premises: []
+prediction: P-18
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p18_derive.py (CAS-checked closed form V = c'^2/4 - c c''/2, its linear limit b^2/4, the C2 endpoint conditions, and the 80 pinned shifts including the k = 1 sign flip, all before any eigensolve; p18_registration.json); scripts/experiments/p18_smooth.py with p18_results.json (registered eigensolves plus the linear control at n = 1499, 2999); independently reimplemented by scripts/verify/p18_smooth_retest.py, which re-derives the shifts by its own quadrature and rebuilds all four chains at grid sizes the experiment never used (n = 599, 1199) with no access to the results file"
+    method: reimplementation
+null_system: "the null is the corner diagnosis being a rescue story: if first-order theory were the broken part, the C2 pair would miss its shifts just as the linear pair does; the registered positive control pins the failure to the corners by reproducing it on the same grids while the C2 pair passes the original bar with two orders to spare"
+falsifier: "scripts/verify/p18_smooth_retest.py --mutant c1-corners-benign"
+novelty:
+  status: classical
+  citation: "first-order eigenvalue perturbation for Sturm-Liouville operators is textbook (Courant-Hilbert); the sensitivity of WKB/perturbative spectra to derivative discontinuities of the coefficient profile is classical scattering lore (e.g. Berry, Semiclassical Mechanics of regular and irregular motion, on diffraction at discontinuities)"
+status: verified
