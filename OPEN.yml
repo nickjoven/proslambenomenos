@@ -11,9 +11,9 @@ owner:
     command: "cd ~/code/harmonics && grep -n 'proof_chains' -A6 MANIFEST.yml"
   - id: O-3
     item: delete merged branches at your discretion
-    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa p13-acoustic c31-everpresent p11-spectral p10-order-dimension"
+    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa p13-acoustic c31-everpresent p11-spectral p10-order-dimension p14-shadow p15-specdim"
   - id: O-4
-    item: JUNCTURE - retire or reopen P-4 (recipe in A-4); word P-7 (A-1); seal link-008 over the three-P-line landing if satisfied
+    item: JUNCTURE - retire or reopen P-4 (recipe in A-4); word P-7 (A-1); seal link-008 over the six-P-line landing if satisfied
     command: "cd ~/code/proslambenomenos && make gates"
 agent:
   - id: A-1
@@ -26,7 +26,17 @@ agent:
     item: if P-4 is reopened - new P-line, free ring (no clamp), massless contact, N >= 64, low damping, an observable the background half-winding can reach
   - id: A-5
     item: commit the no-calculus runway pages (t0..t0d, currently scratchpad + artifacts only) into the repo; step 2 (amplitude / the half turn) awaits the user's step-1d feedback
+  - id: A-6
+    item: C2 (kink-free) ramp retest of P-14's fired k-resolved clause - re-register as its own P-line before running; the trace-level form already passed as registered in P-15
+  - id: A-7
+    item: P-16 - the causal-set spectral-dimension definitional disagreement (Eichhorn-Mizera 2014 walk vs d'Alembertian flows) reproduced on our own sprinklings with the P-15 instrument
+  - id: A-8
+    item: horizon-coincidence census - c32 (Cohen-Kaplan-Nelson bound arithmetic), LC-9 (fresh Verlinde observational status), then P-17 counting the dimensionally-independent horizon scalings with pigeonhole numbers (continues D-3's recorded reopen path)
+  - id: A-9
+    item: the Bell price-list P-line (2022 Nobel) - local polytope max 2 by enumeration, Tsirelson 2 sqrt 2 by exact 4x4 eigenvalues, flywheel LHV saturating 2, Toner-Bacon one-bit and Pearle detection escapes costed, AGR 1982 S = 2.697 as a catalog fact - offered, awaiting Nick's go
 decided_since_parent:
+  - "2026-08-24 pm: P-14 registered and resolved (R-10, mind-change FIRED and recorded) - ramp and zramp are commutator-isometric and not isospectral (max Delta omega^2 = 2.31e-7 at 1e-12 resolution, Weyl subleading on both); the k-resolved first-order shift prediction died on kink-localised lattice oscillations (metric-split alternative excluded, corr(k^2) = 0.003) while the window mean hit the impedance potential at 0.9%. Claim isometric-not-isospectral-chain; LAW-24; CAS potentials: V = beta^2/4 exactly on the ramp"
+  - "2026-08-24 pm: P-15 registered and resolved (R-11, all clauses) - the spectral-dimension instrument: exact log-derivative of exact eigen-sums, anchors by two independent routes to 1.1e-14, window rule with the exact two-mode decay, 400k-walker MC tier at 0.25 sigma; C_4096({1..6}) peaks at d_s = 2.95 before its 1D plateau; on the P-14 pair the instrument is blind at leading order (6.9e-5) and reads the impedance at second order as the derived trace drift 2 Vbar t to 1.5% - R-10's kink oscillations cancel in the trace. Claim spectral-dimension-instrument; LAW-25"
   - "2026-08-24: P-13 registered and resolved (R-8) - the acoustic metric c = sqrt(J/m) is read by pulse arrivals on the exact chain (RMS 0.31%/0.32%/0.30% vs 2% registered; shuffled substrate 85x/16x worse) and is NOT a complete summary of the substrate: scattering follows the impedance law (jc 0.362 vs 0.360, zramp 2e-4), and the jz residual 0.036 is the pulse's flux at the slow side's band edge, reproduced at 7% with no free parameters. Claims chain-arrivals-read-acoustic-metric and junction-reflection-reads-impedance-not-metric, both verified by live miniature reimplementation; stdlib symbolic layer symb.py makes every supporting '=' run in CI (EQ1-EQ8); LAW-21"
   - "2026-08-24: P-10 registered and resolved (R-7) by a worktree agent - Myrheim-Meyer dimension from pure order: f(d) derived by direct integration first (27 EQ, factor-2 convention in the Gamma form caught; full non-binomial variance, 5-43x the binomial term), then 21/21 (d, N) null cells inside pre-registered bands, d_hat -> 2, 3, 4; scrambled-order mutant lands on the derived d* = 4.230; the d = 2 shuffle no-signal was derived in advance, not discovered. Claim order-and-count-read-dimension; LAW-23"
   - "2026-08-24: P-11 registered and resolved (R-9) - Connes spectral distance on cycles: the source-pullback representation returns hop distance exactly; the vertex-only representation gives a bounded metric with exact witnesses d(0,1) = 2/sqrt(3) and d(0,j>=2) = sqrt(2) (saturation); off the cycle the tent norm is sqrt(in-degree), so geodesic recovery is a chain-coupling property. One graph, three geometries, decided by the coupling. Claim connes-distance-representation-dichotomy; LAW-22"
@@ -43,6 +53,7 @@ decided_since_parent:
   - "LC-7: Stern-Brocot is Stern's 1858 array + Brocot's 1860/61 gear table; the tree is GKP 1989"
   - "primes-as-dimensions direction assessed: synthesis not citation; low value unless the pure-x sorting criterion is wanted"
 retracted_since_parent:
+  - "2026-08-24 pm: P-14 clause d (k-resolved zero-free-parameter shifts) - mind-change fired at RMS 2.89 x Vbar, dead at these grids, retest queued as A-6; P-14 clause b at k = 1-2 (the flat Weyl tolerance ignored that the predicted V-shift is a 0.9% relative effect at the lowest mode); P-15's first-draft verify mutant discarded in LAW-25 (deg-minus-adjacency on a cycle reconstructs the Laplacian)"
   - "2026-08-24, failed-as-registered and diagnosed in the R-entries, not rescued: P-13 clause a2 (Airy exponent measured through a half-sine pulse whose intrinsic width dominates; step-drive diagnostic gives 0.332, in-band) and clause d (0.2% convergence registered over derived statistics; physical observables converged); P-11 clause a off the cycle (tent norm = sqrt(in-degree), not 1); P-10 mutant band at (d=3, N=2^8) (band ignored the mutant's own sampling noise)"
   - "P-9: E1's initial condition theta_i = 0.13 i is not N-safe (N >= 6 lands rings in winding attractors); E1 N=4 result stands"
   - "Toda first run: periodic ring forced a compensating stretch; first-order velocity field radiated 17%"
@@ -54,6 +65,8 @@ retracted_since_parent:
   - "run-5 note 'within ~15%' (27-37% near the Helmholtz period; scoped to F/(4Jv) >= 3)"
   - "in-chat: shocks conflated with weak discontinuities (LC-4 S5); half-turn phase-lag mutant too weak (LAW-11 record)"
 do_not_recompute:
+  - "isometric pair (P-14): V_ramp = beta^2/4 = 4.340e-8 exactly (CAS), Vbar = 3.416e-8, T = 2113.553; max spectral split 2.31e-7; Sturm bisection validated to 1e-12 - p14_registration.json, p14_results.json"
+  - "spectral dimension (P-15): line 1/t coefficient 0.1255; dense-circulant peak d_s = 2.95 at t = 0.2; window rule t < 0.5/lambda_1 with two-mode decay 0.5433 at 3 t_mix; chain trace-drift ratio 1.008-1.015 - p15_registration.json, p15_results.json"
   - "acoustic chain (P-13): arrival RMS 0.31%/0.32%/0.30% (ramp/lens/zramp); jc R = 0.362, jz = 0.036 (band-edge, predicted 0.039), zramp = 2e-4; front-crossing, not peak, is the stable arrival observable on short baselines - p13_results.json, scripts/verify/p13_acoustic_metric.py"
   - "MM dimension (P-10): f(d) = 1, 1/2, 8/35, 1/10 (unordered convention = 2x the Gamma form as usually quoted); d=2 shuffles leave f = 1/2 exactly; scrambled null d* = 4.230 - p10_symbolic_out.txt, p10_results.json"
   - "Connes distance (P-11): cycle vertex-only rep d(0,1) = 2/sqrt(3), d(0,j>=2) = sqrt(2), exact witnesses of Gram norm 1; source-pullback rep = hop on the cycle; tent norm sqrt(6)/sqrt(7)/sqrt(15) on C_20/C_22/C_44 - p11_results.json"
