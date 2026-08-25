@@ -8,12 +8,12 @@ statement: >
   8.9e-16, norm and singlet expectation 2 sqrt 2 to 1e-12); one bit
   spent bluntly (sending the setting) reaches the algebraic ceiling
   4; one bit spent cleverly (Toner-Bacon) buys the exact singlet
-  curve (simulated at 1e6 pairs per angle, worst 0.91 sigma); a
+  curve (simulated at 1e6 pairs per angle, worst 0.91 standard errors); a
   detection machine in which Bob answers only with probability
   |b.lambda| produces the exact -cos theta post-selected at mean
   efficiency 3/4 (two sphere identities; measured eta_B = 0.500,
-  worst 1.41 sigma), below the 2/(1+sqrt 2) threshold; the honest
-  rotor machine saturates its ceiling (S = 2.00050, 0.29 sigma). At
+  worst 1.41 standard errors), below the 2/(1+sqrt 2) threshold; the honest
+  rotor machine saturates its ceiling (S = 2.00050, 0.29 standard errors). At
   the expansion extreme, PR boxes collapse communication complexity
   (n-bit inner product from one bit, exhaustive at n = 8); the one
   principled contraction, information causality, is bounded below 1
