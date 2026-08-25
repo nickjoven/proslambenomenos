@@ -508,3 +508,28 @@ made the difference.
 not-claimed-in-advance: anything beyond first order in V; other
 boundary conditions; dimensions above one; drums, manifolds, or
 physical spacetime; isospectrality questions beyond this pair.
+
+## R-10 — 2026-08-24 — resolves P-14
+outcome: two of four clauses as expected; one failed where the
+prediction's own effect exceeded the clause's tolerance; the
+k-resolved clause failed and the mind-change condition FIRED.
+(a) as registered (derived and pinned at registration). (b) failed
+at k = 1-2 for the ramp: worst 3.0e-3 vs the 2e-3 tolerance - the
+deviation IS the predicted V-shift, a 0.9% relative effect at
+k = 1 that the clause's flat tolerance ignored; for k >= 5 both
+profiles pass (worst 1.13e-3). (c) as registered: max
+|Delta omega_k^2| = 2.31e-7 against an eigensolver resolving
+1e-12 - same commutator data, different spectra. (d) NOT as
+registered: RMS residual 2.89 x Vbar against 0.3 registered and
+1.0 mind-change - fired, recorded, not rescued. Post-firing
+diagnosis (labelled, computed): the window mean matches the
+impedance potential at 0.9% (3.443e-8 vs 3.414e-8); the named
+metric-split alternative is excluded, corr(residual, k^2) = 0.003;
+the residual is a bounded sign-alternating oscillation consistent
+with lattice scattering off the ramp profile's two derivative
+discontinuities, which first-order continuum theory does not
+model. The k-resolved zero-free-parameter reading is dead at these
+grids; the honest retest is a C^2 ramp with no kinks, queued as an
+open item and not run. Filed as isometric-not-isospectral-chain,
+covering clauses (a) and (c) only - the mean-level agreement stays
+a post-hoc observation in the note.
