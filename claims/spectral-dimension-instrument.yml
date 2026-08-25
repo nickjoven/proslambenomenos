@@ -7,7 +7,8 @@ statement: >
   independent routes to 1.1e-14, product additivity exactly, and
   the finite-size window rule t < 0.5/lambda_1 with the exact
   two-mode decay beyond it - and a 400k-walker Monte Carlo tier
-  lands within 0.25 sigma of the exact return probabilities. On
+  lands inside a quarter of its derived standard error at every
+  registered check of the exact return probabilities. On
   the P-14 chain pair (identical metric, split spectra) the
   instrument is blind at leading order (max |Delta d_s| = 6.9e-5
   for t in [100, 1000]) and reads the impedance at second order as
