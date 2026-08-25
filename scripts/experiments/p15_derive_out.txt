@@ -1,0 +1,6 @@
+EQ 1 PASS  C_n Laplacian spectrum lambda_k = 2(1 - cos(2 pi k/n))  | worst eigen-residual 4.88e-15 at n = 12
+EQ 2 PASS  C_4096 d_s(t) = exact Z curve 2t(2 - 2 I1/I0) for t << t_mix  | t=5: 1.0280034809 (Z: 1.0280034809); t=10: 1.0131796844 (Z: 1.0131796844); t=20: 1.0064126931 (Z: 1.0064126931); worst dev 1.11e-14
+EQ 3 PASS  d_s(t) = 1 + c/t + ..., c measured from the exact curve  | c(t=30,60,120) = 0.127140, 0.126055, 0.125524 (drift 0.42%)
+EQ 4 PASS  P_{CxC} = P_C^2, so d_s adds (torus d_s = 2 x cycle d_s)  | worst product dev 0.00e+00; d_s torus(t=8) = 2.033424
+EQ 5 PASS  past t_mix = 1/lambda_1 d_s decays on the exact two-mode curve; window rule pinned  | K_50 d_s(t=5) = 6.54e-105; C_4096 d_s(3 t_mix) = 0.543604 vs two-mode closed form 0.543342
+EQ 6 PASS  C_4096({1..6}): short-sigma peak then crossover toward the 1D plateau  | t=0.05: 1.1275; t=0.2: 2.9520; t=1.0: 1.0421; t=5.0: 1.0071; t=20.0: 1.0017; t=80.0: 1.0004
