@@ -670,3 +670,25 @@ communication complexity (van Dam, exhaustive at n = 8), and the
 one principled contraction - information causality - is bounded
 below 1 exactly at Tsirelson and broken everywhere above it. Filed
 as bell-ladder-priced.
+
+## P-18 — 2026-08-25 — the ALF period lattice
+expects: on the four-ingredient bowed-string waveguide (origin:
+harmonics archive session 2026-08-24/25, commits e045ab8..105cd3c),
+the in-repo experiment and an independent miniature (half the sample
+rate, a different observable - bridge-waveform autocorrelation vs
+slip-onset clustering - and per-beta force selected only by lock
+quality over a band that contains 2.0 T0) both find the m=1
+anomalous-low-frequency lock at T0*(2 - beta) + eps with eps in
+[0.03, 0.07] T0: slope dP/dbeta within [-1.35, -0.65] T0, every lock
+at least 0.04 T0 away from 2.000 T0, m-spacing (1-beta)*T0 within
+0.03. The subsequent litcheck is expected to find Guettler's wave
+analysis contains the extra-rounds mechanism and possibly the period
+formula (then the lattice labels classical-with-citation), but not
+the dP/dbeta slope discriminator or a bow-position pitch protocol.
+changes-my-mind: a lock within measurement jitter of 2.000 T0 at any
+bow position, or a slope consistent with 0, kills the lattice
+reading and vindicates the halving reading of arXiv:2502.11902. On
+the instrument side (future claim, not this one): an audio
+measurement showing ALF pitch independent of bow position (period
+ratio 1.000 +/- 0.010 between beta = 0.10 and 0.16, where the
+lattice predicts 1.033) does the same.
