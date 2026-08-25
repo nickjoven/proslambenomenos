@@ -464,3 +464,47 @@ the derived 0.080, and the other six d=3 cells (including the
 registered-uninformative N=2^7 one) fall outside. No parameter
 moved after registration. Data: p10_results.json, seed 20260824;
 note notes/p10_order_dimension.md.
+
+## P-14 — 2026-08-24 — the commutator kernel is spectrally audible
+question: P-13 showed the metric is a lossy summary of the substrate;
+P-11 located the loss in the commutator with the algebra. Where does
+the discarded data go? Claim to test: into the spectrum. Two chains
+share the metric c(x) (P-13's ramp profile) and differ only in
+impedance - ramp (Z = 1/c) and zramp (Z = 1): they should be
+isometric in every commutator-visible sense yet NOT isospectral, and
+the spectral difference should be EXACTLY the first-order shift of
+the travel-time impedance potential, with zero free parameters.
+method: derivation layer scripts/experiments/p14_derive.py (run
+first, output committed): in travel-time coordinates the wave
+equation takes Schrodinger form with V = (sqrt Z)''/sqrt Z; the CAS
+(symb.py) checks that for c = 1 + bx, Z = 1/c this V is the CONSTANT
+b^2/4 (EQ2), zramp has V = 0 identically (EQ3), and the k-resolved
+first-order Dirichlet shifts have the closed form pinned in
+p14_registration.json (EQ5): shift_k -> Vbar = V0 T_r/T =
+3.416182e-08. Eigensolves: Sturm-sequence bisection on the
+symmetrized tridiagonal (exact linear algebra, no timestep),
+validated against the uniform chain's closed-form spectrum to 1e-12
+(EQ6). Grids n = 1499 and 2999; lowest 80 eigenvalues each;
+Richardson extrapolation in a^2 for the difference.
+expects: (a) commutator isometry: the weighted seminorm end-to-end
+distance agrees between ramp and zramp within 5e-3 relative,
+shrinking with n (derived at registration: 1.18e-4 at n = 1499,
+5.91e-5 at n = 2999, both converging to T = 2113.553233).
+(b) the metric is the leading spectral data: for BOTH profiles,
+|omega_k T/(k pi) - 1| < 2e-3 for k <= 60 at n = 2999 (Weyl).
+(c) not isospectral: max_k |omega_k^2(ramp) - omega_k^2(zramp)| >
+1e-9 (the derived signal is ~3.4e-8, the eigensolver resolves
+~1e-12).
+(d) the difference IS the impedance potential, k-resolved: after
+Richardson extrapolation over the two grids, RMS over k in [5, 60]
+of (Delta omega_k^2 - shift_k) is below 0.3 x Vbar, with shift_k
+the pinned zero-free-parameter closed form.
+changes-my-mind: mean Delta omega_k^2 with the wrong sign, or RMS
+above 1.0 x Vbar at converged grids, kills the "loss goes to the
+spectrum as the impedance potential" reading; a k-dependence
+tracking the metric-split model 2 omega^2 (T_z - T_r)/T instead of
+the flat shift_k means the isometry bookkeeping, not the physics,
+made the difference.
+not-claimed-in-advance: anything beyond first order in V; other
+boundary conditions; dimensions above one; drums, manifolds, or
+physical spacetime; isospectrality questions beyond this pair.

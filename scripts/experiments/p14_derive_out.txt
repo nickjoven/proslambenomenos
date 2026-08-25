@@ -1,0 +1,7 @@
+EQ 1 PASS  d/dtau(w'/w) = w''/w - (w'/w)^2  | two concrete w, worst rel delta 5.55e-17
+EQ 2 PASS  c = 1+bx, Z = 1/c  =>  V = c(c sqrtZ')'/sqrtZ = b^2/4 (constant)  | worst rel delta 2.65e-23 over the sampled (x, b) box
+EQ 3 PASS  zramp: Z = sqrt((1/c) c) = 1  =>  V = 0  | worst rel delta 0.00e+00
+EQ 4 PASS  V0 = b^2/4; T_r = ln(1+b Dx)/b; T = 150 + T_r + 300  | V0 = 4.340278e-08; T_r = 1663.553233 (quad 1663.553233); T = 2113.553233
+EQ 5 PASS  shift_k = (2 V0/T) int_ramp sin^2(k pi tau/T) dtau, -> Vbar = V0 T_r/T  | antiderivative worst 2.22e-16; Vbar = 3.416182e-08; mean shift(k=60..80) = 3.416498e-08
+EQ 6 PASS  Sturm bisection = (4/a^2) sin^2(k pi/(2(n+1))) on the uniform chain  | worst rel dev 4.22e-13 over k = 1..20, n = 200
+EQ 7 PASS  seminorm end-to-end distance: ramp = zramp within O(1/n), both -> T  | n=1499: T_ramp 2113.0533, T_zramp 2113.3032, rel split 1.18e-04, rel dev from continuum 2.37e-04; n=2999: T_ramp 2113.3033, T_zramp 2113.4282, rel split 5.91e-05, rel dev from continuum 1.18e-04
