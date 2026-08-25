@@ -533,3 +533,48 @@ grids; the honest retest is a C^2 ramp with no kinks, queued as an
 open item and not run. Filed as isometric-not-isospectral-chain,
 covering clauses (a) and (c) only - the mean-level agreement stays
 a post-hoc observation in the note.
+## P-15 — 2026-08-24 — the spectral-dimension instrument
+question: spectral dimension d_s(t) = -2 dlnP/dlnt (P the mean
+return probability of the Laplacian walk) is the counting observable
+behind the quantum-gravity "dimensional flow" literature (CDT:
+Ambjorn, Jurkiewicz, Loll, PRL 95, 171301 (2005); asymptotic safety:
+Lauscher, Reuter; reviews: Carlip, CQG 34, 193001 (2017)) and is
+also, by Weyl, the spectrum's leading metric data. Can the repo
+carry a general instrument for it whose every anchor is exact, and
+does the instrument inherit the P-13/P-14 lossiness structure -
+blind to impedance at leading order, sensitive at second order as a
+derived trace effect?
+method: derivation layer scripts/experiments/p15_derive.py (run
+first, all EQ green, output committed): d_s computed as the EXACT
+log-derivative of exact eigen-sums, no fitting; anchors pinned in
+p15_registration.json - the line curve at five t values (two
+independent routes, eigen-sum vs Bessel continued fraction, agreeing
+to 1.1e-14), the 1/t coefficient 0.1255, product additivity, the
+window rule t < 0.5/lambda_1 with the exact two-mode decay past it,
+and the dense-circulant crossover (peak d_s = 2.95 at t = 0.2,
+plateau 1.0 by t = 80). Registered computation
+scripts/experiments/p15_specdim.py: a fresh implementation plus a
+Monte Carlo walker route and the P-14 chains via Sturm spectra
+(lowest 250 modes, truncation bounded).
+expects: (a) the fresh implementation reproduces every pinned
+anchor within 1e-9. (b) the continuous-time walker Monte Carlo
+(400k walkers, binomial error derived) lands within 4 sigma of the
+exact P(t) at t = 0.2, 1.0, 5.0 on C_4096({1..6}) - the stochastic
+tier that later runs on objects with no computable spectrum.
+(c) chains: over t in [100, 1000] (within the k <= 250 truncation
+window), |d_s^ramp(t) - d_s^zramp(t)| < 1e-3: the instrument is
+blind at leading order to the impedance split that P-14 proved
+present in the spectrum. (d) the second-order sensitivity is the
+derived trace drift: Delta d_s(t) lies within a factor of 2 of
+2 Vbar t (Vbar = 3.416e-8 from P-14's registration) for t in
+[300, 1000] - the P-14 kink oscillations should average out in the
+trace as they did in the window mean.
+changes-my-mind: an anchor missed at 1e-6 kills the instrument;
+the chain identity broken above 1e-3 in-window falsifies "d_s is
+metric-level data" as stated; Delta d_s with the wrong sign or
+outside a factor of 5 of 2 Vbar t kills the trace-drift reading
+and sends the kink question back ahead of any C^2 retest.
+not-claimed-in-advance: causal sets and their definitional
+disagreement (that is P-16, not this line); any continuum limit;
+Monte Carlo precision beyond its derived bands; anything about
+physical spacetime.

@@ -1,0 +1,41 @@
+{
+ "definition": "d_s(t) = 2t <lambda>_P, P = mean Tr exp(-tL), exact log-derivative",
+ "cycle_n": 4096,
+ "ds_line_pins": {
+  "5.0": 1.0280034809030811,
+  "10.0": 1.0131796844077152,
+  "20.0": 1.006412693091948,
+  "40.0": 1.0031648459411469,
+  "60.0": 1.0021009245053294
+ },
+ "one_over_t_coeff": 0.12552425388267174,
+ "window_rule": {
+  "t_mix_is": "1/lambda_1",
+  "report_only_below": 0.5,
+  "meaning": "report d_s only for t < 0.5/lambda_1"
+ },
+ "dense_circulant": {
+  "S": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6
+  ],
+  "crossover_pins": {
+   "0.05": 1.1275166549403375,
+   "0.2": 2.951978524953932,
+   "1.0": 1.0421439414696254,
+   "5.0": 1.0070529243348145,
+   "20.0": 1.0017282264489,
+   "80.0": 1.0004299525534555
+  },
+  "peak_t": 0.2
+ },
+ "chain_identity_tol": 1e-06,
+ "tolerances": {
+  "anchor_abs": 1e-09,
+  "reimpl_abs": 1e-10
+ }
+}
