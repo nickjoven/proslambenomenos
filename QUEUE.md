@@ -168,3 +168,19 @@ noted here so nobody later mistakes registry size for content.
   and complete release.
 - Any novelty label beyond classical requires a LITCHECKS entry first.
 - Track 1 (Q0) may ship independently of the numbered sequence.
+
+## Q-alf — the ALF period lattice (new-evidence intake, one claim)
+
+The over-pressed bowed string's locked periods on the two-generator
+lattice T0 + m(1-beta)T0, with the beta-slope discriminator against
+integer subharmonics and a cheap real-string falsifier (bow-position
+pitch shift, ~55 cents between beta 0.10 and 0.16). Enters as
+claims/alf-period-lattice.yml + notes/p18_alf_lattice.md +
+scripts/experiments/p18_alf_waveguide.py +
+scripts/verify/p18_alf_lattice.py (two mutants). Registered as P-18.
+Does NOT come along: the gated-cylinder holonomy framing, the
+medium-vs-direct discriminator program, all cosmological analogies
+(LC-8 bounds those), and the real-string measurement itself - the
+field half of the P-18 falsifier, a separate future claim if run.
+Pending: a litcheck on Guettler 1994/2002 for the explicit period
+formula (novelty currently unchecked).
