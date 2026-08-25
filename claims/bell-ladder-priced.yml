@@ -1,0 +1,36 @@
+id: bell-ladder-priced
+statement: >
+  The CHSH ladder 2 < 2 sqrt 2 < 4 is computed exactly and every
+  expansion past the local ceiling is priced: the ceiling 2 is
+  exhaustive over all 16 deterministic strategies (mixtures add
+  nothing, by linearity); the quantum ceiling follows from Landau's
+  operator identity S^2 = 4I - [A0,A1]x[B0,B1] (entrywise to
+  8.9e-16, norm and singlet expectation 2 sqrt 2 to 1e-12); one bit
+  spent bluntly (sending the setting) reaches the algebraic ceiling
+  4; one bit spent cleverly (Toner-Bacon) buys the exact singlet
+  curve (simulated at 1e6 pairs per angle, worst 0.91 sigma); a
+  detection machine in which Bob answers only with probability
+  |b.lambda| produces the exact -cos theta post-selected at mean
+  efficiency 3/4 (two sphere identities; measured eta_B = 0.500,
+  worst 1.41 sigma), below the 2/(1+sqrt 2) threshold; the honest
+  rotor machine saturates its ceiling (S = 2.00050, 0.29 sigma). At
+  the expansion extreme, PR boxes collapse communication complexity
+  (n-bit inner product from one bit, exhaustive at n = 8); the one
+  principled contraction, information causality, is bounded below 1
+  at every depth exactly at E = 1/sqrt 2 and broken at finite depth
+  everywhere above it. Scope: the CHSH slice only; the full quantum
+  boundary (NPA) is not attempted; the correlation function is
+  classically constructible - its allocation across separated
+  stations is what the ladder prices.
+premises: []
+prediction: P-17
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p17_derive.py (EQ1-EQ8: enumeration, Landau identity, zigzag closed form, sphere identities, van Dam exhaustive, IC ladder; pins in p17_registration.json); scripts/experiments/p17_bell.py with p17_results.json (three machines, 1e6 pairs each, seed 20260824); catalog/c32_bell_experiments.py (the measured history against the ladder); independently reimplemented by scripts/verify/p17_bell_ladder.py, which re-derives the enumeration, the operator norm, and the IC values from scratch and re-runs fresh short simulations, reading nothing from the results file"
+    method: reimplementation
+null_system: "the local polytope is the null: everything the honest rotor machine can do, it does (saturating S = 2 at the quantum-optimal angles); every measured or simulated exceedance is attributed to a named, priced resource - the ladder's content is that the price list for CHSH is exhaustive and each price is exact"
+falsifier: "scripts/verify/p17_bell_ladder.py --mutant local-exceeds-two"
+novelty:
+  status: classical
+  citation: "Bell (1964); CHSH (1969); Fine, PRL 48, 291 (1982); Landau, Phys. Lett. A 120, 54 (1987); Toner, Bacon, PRL 91, 187904 (2003); Pearle (1970); Gisin, Gisin, Phys. Lett. A 260, 323 (1999); van Dam, quant-ph/0501159; Pawlowski et al., Nature 461, 1101 (2009); litcheck LC-10"
+status: verified
