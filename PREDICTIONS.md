@@ -718,3 +718,23 @@ not-claimed-in-advance: higher order in V; other boundary conditions
 or profiles; dimensions above one; any mechanism story for the
 C1 residual beyond its absence here; continuum limits beyond the two
 registered grids.
+
+## R-13 — 2026-08-25 — resolves P-18
+outcome: all six clauses as registered; the mind-change did not
+fire. (a) Weyl holds for both C2 profiles over k in [5, 60], worst
+below 2e-3. (b) max |Delta omega_k^2| = 1.3e-7 against a solver
+resolving 1e-12. (c) the per-mode zero-parameter match: RMS over
+k in [5, 60] of (Richardson Delta omega_k^2 - shift_k) = 0.004 x
+Vbar_s against the 0.3 bar that P-14's clause d registered and
+failed - the same first-order theory, on a substrate with no
+corners, lands at half a percent of the potential scale. (d) the
+derived sign flip at k = 1 is in the data: Delta omega_1^2 =
+-1.04e-7 (pinned -8.00e-8; the 2.4e-8 excess is second-order
+territory at the lowest mode, outside the window and not claimed).
+(e) window mean 4.6709e-8 vs pinned 4.6620e-8, 0.19 percent apart.
+(f) the positive control reproduces R-10's failure on the same
+grids: linear RMS = 2.893 x Vbar_lin (R-10 recorded 2.89);
+improvement factor 756. Reading: P-14's fired clause was the C1
+corners, not the first-order theory - the corner diagnosis
+survives its registered test. A-6 closes. Filed as
+c2-profile-recovers-first-order-shifts.
