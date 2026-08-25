@@ -1,0 +1,30 @@
+id: isometric-not-isospectral-chain
+statement: >
+  Two mass-spring chains built on the identical metric profile c(x)
+  (P-13's ramp) but different impedance - ramp (Z = 1/c) and zramp
+  (Z = 1) - are isometric in every commutator-visible sense and are
+  not isospectral: the weighted-seminorm end-to-end distances agree
+  within 1.18e-4 relative at n = 1499, halving at n = 2999 (O(1/n)
+  bookkeeping around identical metric data), while the lowest 80
+  Dirichlet eigenvalues differ by up to 2.31e-7 in omega^2 against
+  an eigensolver resolving 1e-12 (Sturm bisection on the symmetrized
+  tridiagonal, validated to 1e-12 on the uniform chain's closed
+  form). The split is subleading to Weyl: both spectra satisfy
+  |omega_k T/(k pi) - 1| < 2e-3 for 5 <= k <= 60 with the SAME
+  T = 2113.553 - the metric is the leading spectral data, and the
+  impedance difference is audible beneath it. Scope: this pair,
+  Dirichlet ends, low modes; the k-resolved first-order shift
+  prediction FIRED its mind-change condition (R-10) and is not part
+  of this claim.
+premises: []
+prediction: P-14
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p14_derive.py (CAS-checked potentials and closed forms, pinned in p14_registration.json); scripts/experiments/p14_spectral_shadow.py with p14_results.json (registered eigensolves at n = 1499, 2999); independently reimplemented by scripts/verify/p14_isometric_spectra.py, which rebuilds both chains at a different grid size and re-derives the isometry and the spectral split live with no access to the results file"
+    method: reimplementation
+null_system: "isospectrality is the null this claim breaks: the pair is constructed commutator-identical, so any resolved spectral split is attributable to the impedance data alone; the Weyl clause keeps the split subleading, so the metric remains the leading spectral data on both sides"
+falsifier: "scripts/verify/p14_isometric_spectra.py --mutant isospectral"
+novelty:
+  status: classical
+  citation: "one spectrum under-determines a Sturm-Liouville operator: Borg, Acta Math. 78, 1 (1946); Gelfand, Levitan (1951); audibility: Kac, Am. Math. Monthly 73, 1 (1966); Gordon, Webb, Wolpert, Invent. Math. 110, 1 (1992)"
+status: verified
