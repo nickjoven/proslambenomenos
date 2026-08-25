@@ -1,0 +1,8 @@
+EQ 1 PASS  max |S| over all 16 deterministic local strategies = 2 (exact)  | max = 2
+EQ 2 PASS  shared randomness stays inside |S| <= 2 (linearity)  | max over 200 mixtures = 1.234098291059
+EQ 3 PASS  Landau: S^2 = 4I - [A0,A1]x[B0,B1]; ||S|| = <singlet|S|singlet> = 2 sqrt 2  | identity dev 8.88e-16; norm 2.82842712474619; singlet 2.82842712474619
+EQ 4 PASS  rotor LHV: E = 2 theta/pi - 1 (grid check); S_zigzag = 2 and S_cos = 2 sqrt 2 at the SAME angles  | zigzag worst dev 8.36e-06; S_zig = 2.000000000000; S_cos = 2.828427124746
+EQ 5 PASS  one bit spent bluntly (send the setting): deterministic S = 4  | S = 4
+EQ 6 PASS  E[(b.l) sign(a.l)] = cos/2 and E|b.l| = 1/2  =>  post-selected E = -cos exactly at mean eta = 3/4  | worst quadrature dev 7.12e-05; threshold 2/(1+sqrt2) = 0.828427 > 0.75
+EQ 7 PASS  PR boxes collapse communication: n-bit inner product from ONE sent bit (exhaustive grid, n = 8)  | all checked input pairs exact
+EQ 8 PASS  IC: f(E,k) < 1 for all k at Tsirelson (max at k=1, decreasing to 1/(2 ln 2)), crosses 1 by k = 12 at E = 0.73, explodes as 2^k at the PR box  | max f(1/sqrt2, k) = 0.798248 at k=1, f(.,20) = 0.721348 (asymptote 0.721348); E=0.73 crosses 1 at k = 8; f(1, 20) = 2^20
