@@ -649,3 +649,24 @@ Tsirelson beyond what information causality states for this slice
 (the full quantum boundary needs the NPA hierarchy, not attempted);
 loophole-free experimental analysis; memory-loophole finite
 statistics; interpretations of quantum mechanics.
+
+## R-12 — 2026-08-24 — resolves P-17
+outcome: all clauses as expected; the mind-change did not fire;
+worst Monte Carlo deviation 1.41 sigma over twelve million pairs.
+(a) the rotor machine rides the zigzag at every registered angle
+and its CHSH lands at 2.00050 (0.29 sigma from its exact ceiling).
+(b) Toner-Bacon: one shared-randomness bit reproduces -cos theta
+at every angle (worst 0.91 sigma) - the one-bit rung is priced and
+paid. (c) the detection machine fakes the quantum curve at
+eta_B = 0.500 within 1.2 sigma everywhere - mean efficiency 3/4,
+legal only below the 0.8284 threshold that the loophole-free 2015
+experiments enforced. (d) c32 self-tests: AGR 1982 sits 46.5 sigma
+above the exhaustively-derived local ceiling and at 95.35% of
+Tsirelson; FC 1972 at 6.25 sigma. The ladder stands as registered:
+expansion is one purchasable resource per rung (0 bits -> 2; one
+blunt bit -> 4; one clever bit -> the exact singlet; a quarter of
+the detections -> a fake 2 sqrt 2), the expansion extreme collapses
+communication complexity (van Dam, exhaustive at n = 8), and the
+one principled contraction - information causality - is bounded
+below 1 exactly at Tsirelson and broken everywhere above it. Filed
+as bell-ladder-priced.
