@@ -578,3 +578,20 @@ not-claimed-in-advance: causal sets and their definitional
 disagreement (that is P-16, not this line); any continuum limit;
 Monte Carlo precision beyond its derived bands; anything about
 physical spacetime.
+
+## R-11 — 2026-08-24 — resolves P-15
+outcome: all four clauses as expected; the mind-change did not
+fire. (a) fresh implementation reproduces every pinned anchor with
+zero measured deviation. (b) the walker Monte Carlo lands at 0.02,
+0.25, 0.04 sigma from the exact P(t) at the three registered
+t-values. (c) leading-order blindness: max |Delta d_s| = 6.93e-5
+over t in [100, 1000] against the 1e-3 tolerance - the instrument
+does not see the impedance split that P-14 proved present in the
+same spectra. (d) the second-order trace drift: Delta d_s /
+(2 Vbar t) = 1.008 - 1.015 across the whole [300, 1000] window,
+inside the registered factor-2 band with 1.5% to spare - the P-14
+kink oscillations average out in the trace, and the trace-level
+form of "the loss goes to the spectrum as the impedance potential"
+holds as registered where the k-resolved form (R-10) fired. Filed
+as spectral-dimension-instrument. The causal-set definitional
+disagreement remains P-16, not started.
