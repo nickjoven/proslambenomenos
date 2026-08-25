@@ -1,0 +1,31 @@
+id: spectral-dimension-instrument
+statement: >
+  The spectral dimension d_s(t) = -2 dlnP/dlnt of the Laplacian
+  walk, computed as the exact log-derivative of exact eigen-sums
+  (no fitting), reproduces its closed-form anchors on cycles, the
+  line, products, and the complete graph - the line curve by two
+  independent routes to 1.1e-14, product additivity exactly, and
+  the finite-size window rule t < 0.5/lambda_1 with the exact
+  two-mode decay beyond it - and a 400k-walker Monte Carlo tier
+  lands within 0.25 sigma of the exact return probabilities. On
+  the P-14 chain pair (identical metric, split spectra) the
+  instrument is blind at leading order (max |Delta d_s| = 6.9e-5
+  for t in [100, 1000]) and reads the impedance at second order as
+  the derived trace drift: Delta d_s / (2 Vbar t) = 1.008-1.015
+  across t in [300, 1000] with Vbar imported from P-14's
+  registration and nothing fit. The dense circulant C_4096({1..6})
+  peaks at d_s = 2.95 at short diffusion time before its 1D
+  plateau: which dimension is seen depends on the scale of the
+  walk coupled to the object.
+premises: []
+prediction: P-15
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p15_derive.py (exact anchors, two-route line check, window rule; pins in p15_registration.json); scripts/experiments/p15_specdim.py with p15_results.json (fresh implementation, walker tier, chain drift); independently reimplemented by scripts/verify/p15_spectral_dimension.py, which re-derives the line value by the Bessel continued fraction, the crossover and window numbers by fresh eigen-sums, and the chain drift on a grid size the experiment never used, reading nothing from the results file"
+    method: reimplementation
+null_system: "the flat anchors are the null (line d_s = 1 with the measured 1/8t correction; torus additivity; complete-graph collapse); the chain clause's null is P-14's proven spectral split - the instrument's blindness to it at leading order and its exact second-order reading are the claim's content"
+falsifier: "scripts/verify/p15_spectral_dimension.py --mutant past-window"
+novelty:
+  status: classical
+  citation: "heat-kernel/spectral dimension: standard; dimensional flow: Ambjorn, Jurkiewicz, Loll, PRL 95, 171301 (2005); review: Carlip, CQG 34, 193001 (2017); the trace drift is first-order perturbation theory (P_ramp = P_zramp e^{-Vbar t})"
+status: verified
