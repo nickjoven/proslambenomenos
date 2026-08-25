@@ -17,9 +17,9 @@ results; every number recomputed here from scratch:
 
 --mutant past-window            asserts d_s(3 t_mix) is still the
     dimension (= 1 within 0.1) and must FAIL: it is 0.54.
---mutant adjacency-not-laplacian generates the walk from the
-    adjacency spectrum instead of the Laplacian and must FAIL the
-    line anchor.
+--mutant squared-generator generates the walk from L^2 (the
+    biharmonic) instead of L - its line dimension is 1/2, not 1 -
+    and must FAIL the line anchor.
 """
 import math
 import sys
@@ -32,7 +32,7 @@ MUTANT = None
 if "--mutant" in sys.argv:
     i = sys.argv.index("--mutant")
     MUTANT = sys.argv[i + 1] if i + 1 < len(sys.argv) else "?"
-KNOWN = {"past-window", "adjacency-not-laplacian"}
+KNOWN = {"past-window", "squared-generator"}
 if MUTANT is not None and MUTANT not in KNOWN:
     print(f"usage error: unknown mutant {MUTANT!r}; known: {sorted(KNOWN)}")
     sys.exit(2)
@@ -40,16 +40,11 @@ if MUTANT is not None and MUTANT not in KNOWN:
 VBAR = 3.416182e-08
 
 
-def spectrum(n, S, mutant_adjacency=False):
-    if mutant_adjacency:
-        # adjacency spectrum shifted to be a "generator": deg - adj
-        # eigenvalue is the Laplacian; the mutant uses adj directly,
-        # offset by its max so the sum converges but the curve is wrong
-        mu = [sum(2 * math.cos(2 * math.pi * k * s / n) for s in S) for k in range(n)]
-        mx = max(mu)
-        return [mx - x for x in mu]
-    return [sum(2 * (1 - math.cos(2 * math.pi * k * s / n)) for s in S)
-            for k in range(n)]
+def spectrum(n, S, mutant_squared=False):
+    lap = [sum(2 * (1 - math.cos(2 * math.pi * k * s / n)) for s in S)
+           for k in range(n)]
+    # the wrong-operator mutant walks under L^2: line d_s becomes 1/2
+    return [x * x for x in lap] if mutant_squared else lap
 
 
 def ds(spec, t):
@@ -99,7 +94,7 @@ def sturm_lowest(diag, off, kmax):
 def main():
     n = 4096
     # 1. line anchor, both routes
-    line = spectrum(n, (1,), mutant_adjacency=(MUTANT == "adjacency-not-laplacian"))
+    line = spectrum(n, (1,), mutant_squared=(MUTANT == "squared-generator"))
     d20 = ds(line, 20.0)
     r = bessel_ratio(40.0)
     d20_cf = 2 * 20.0 * (2 - 2 * r)
