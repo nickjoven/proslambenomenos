@@ -300,3 +300,45 @@ claims-checked:
   quant-ph/0501159); information causality bounds quantum
   correlations at Tsirelson for the CHSH slice (Pawlowski et al.,
   Nature 461, 1101 (2009)).
+
+## LC-11 — 2026-08-25 — the ALF literature and the imaging-resolution arithmetic
+prediction: P-18 (ALF period lattice)
+claims-checked:
+- Guettler, "Wave analysis of a string bowed to anomalous low
+  frequencies", CAS Journal 2(6), 1994: ALF divides into two groups
+  triggered by transverse and torsional waves respectively, and the
+  mechanism is triggering waves taking "an extra turn" on the string
+  before the release from the bow-hair grip; typical lowered
+  intervals third, octave, octave plus fifth (publisher metadata and
+  the author's publication list; the CASJ text itself is paywalled
+  and the thesis PDF at knutsacoustics.com is image-scanned, so
+  FORMULA-level verification - whether Guettler states
+  P = T0(1 + m(1-beta)) explicitly - remains open; the registered
+  expectation in P-18 anticipated exactly this split). The
+  extra-rounds MECHANISM is therefore prior art; the claim's
+  torsional-family exclusion matches Guettler's two-group finding.
+- arXiv:2502.11902 (the imaging paper the model is built against):
+  shutter 1/3000 s, frame rate 3000 fps (0.33 ms per frame); steel
+  G string, reference frequency 196.9 Hz, diameter 0.8 mm, length
+  325 mm - all as imported by the model. The paper states the slip
+  event "occurs every 5 ms in the normal technique and at half that
+  frequency in the subharmonic technique" and describes the sound
+  as "approximately one octave lower" with the bow "approximately
+  5 cm from the bridge" (beta ~ 0.154 on 325 mm). It ALSO states
+  the subharmonic pitch "can be tuned by varying the bow position
+  and applied pressure" - a qualitative anticipation of the
+  lattice's beta-dependence, with no quantitative period formula or
+  slope given. The arithmetic behind the null_system line: at
+  196.9 Hz, T0 = 5.079 ms, and the gap between the lattice lock at
+  beta ~ 0.154 (about 1.89 T0) and exact doubling 2.000 T0 is about
+  0.56 ms, under two frame intervals; between 1.94 T0 and 2.00 T0
+  it is 0.30 ms, under one. Frame-quantized period estimates at
+  3000 fps therefore cannot separate the lattice from exact
+  doubling at this f0, and the paper's own "approximately" is
+  consistent with either reading.
+- Not found in any accessible source: the dP/dbeta = -1 slope
+  discriminator, the two-generator lattice statement, or a
+  bow-position pitch-shift measurement protocol for ALF. The
+  novelty split registered in P-18 (mechanism classical, formula
+  possibly classical, discriminator and protocol not found) stands,
+  with the formula question still open pending CASJ 1994 access.

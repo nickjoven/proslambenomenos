@@ -33,13 +33,21 @@ evidence:
       by lock quality over the period band [1.5, 2.5] T0, which
       contains 2.0, so selection cannot bias the test; reads nothing
       from the results file; second mutant beta-independent covers
-      the slope statement"
+      the slope statement; force provenance covered by
+      scripts/experiments/p18_force_scan.py with p18_force_scan.json
+      (every hardcoded RUNS force sits inside a lock plateau and the
+      period drifts at most 0.0155 T0 across a plateau, so force
+      selection cannot reach 2.000 T0 or flatten the slope)"
     method: reimplementation
 null_system: "integer subharmonics f0/n at the bow-position-independent
-  value 2.000 T0 (the reading of arXiv:2502.11902, whose 0.33 ms
-  imaging cannot separate 1.94 from 2.00 at 196.9 Hz): predicts slope
-  0 and P = 2.000 at every beta; measured locks sit >= 0.06 T0 away
-  with jitter 0.001 and slope -1.004 (experiment) / -0.926 (miniature)"
+  value 2.000 T0 (the exact-halving reading CONSISTENT WITH
+  arXiv:2502.11902, whose 3000 fps imaging cannot separate 1.94 from
+  2.00 T0 at 196.9 Hz - the gap is 0.30 ms against a 0.33 ms frame,
+  arithmetic in LC-11; the paper itself says 'approximately one
+  octave lower' and notes bow-position tunability qualitatively):
+  predicts slope 0 and P = 2.000 at every beta; measured locks sit
+  >= 0.06 T0 away with jitter 0.001 and slope -1.004 (experiment) /
+  -0.926 (miniature)"
 falsifier: "scripts/verify/p18_alf_lattice.py --mutant exact-doubling"
 novelty:
   status: unchecked
