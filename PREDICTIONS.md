@@ -1232,3 +1232,62 @@ rebuild because main's P-18 slot had meanwhile gone to the C2
 retest. The question, method, and not-claimed-in-advance fields
 were added at the rebuild; the expects and changes-my-mind text is
 verbatim from the original registration.
+
+## P-20 — 2026-08-26 — the eps budget and the frame-separability map
+question: the alf-period-lattice claim carries a scope sentence
+asserting that eps - the lattice offset, measured 0.034-0.055 T0 -
+is "slip-episode duration plus reflection-filter group delay". That
+was asserted, never computed. Does a zero-parameter budget
+eps_pred = (one-pole filter delays on the trigger path) +
+(delay-line rounding) + (measured mean slipping samples per cycle)
+actually reproduce eps cell by cell? And where, in (beta, fps), does
+single-interval frame counting separate the lattice from exact
+doubling - the boundary behind the session observation that 3000 fps
+frame histograms split 29 vs 30-31 at beta = 0.154?
+method: derivation layer scripts/experiments/p20_derive.py (run
+first, output p20_registration.json committed with this entry): the
+CAS checks the one-pole DC phase delay a/(1-a) (EQ1-EQ2), a live run
+of the recursion reproduces it (EQ4), and the stuck-bow junction
+algebra (EQ3) shows one extra nut-side round trip passes the nut
+one-pole plus the contact one-pole (3.000 samples) while the base
+loop passes bridge plus nut one-poles (3.000 samples); delay-line
+rounding is computed per cell from d_b, d_n. The slip term S is to
+be MEASURED as slip-flag sample counts per lock cycle - an
+observable independent of the period offsets - by
+scripts/experiments/p20_eps_budget.py instrumenting the p19 model
+across the P-19 RUNS grid plus the Kawano beta = 50/325 cell (that
+cell's lock 1.8887 T0, force plateau [0.90, 1.15], and 29-vs-30/31
+frame histograms are session-known anchors from 2026-08-25, inputs
+here and not predictions). Frame histograms are simulated at 3000
+fps from the same deterministic runs, against a synthetic
+exact-doubling comparator quantized identically.
+expects: (a) per cell, |eps_meas - eps_pred| <= 0.015 T0 with
+nothing tuned - equivalently, given the committed eps values, the
+measured S must land at 12.61/8.71/12.63/14.99/13.03 samples in the
+five cells (beta 0.10/0.13/0.16 m=1, beta 0.13 m=2, Kawano m=1) to
+within the band - and eps_pred reproduces the sign of eps variation
+between adjacent m=1 grid betas (the fixed filter+rounding part is
+nearly flat, so the budget says the beta-to-beta wiggle of eps
+lives in the slip term). (b) within each committed m=1 force
+plateau, eps_meas ranges less than 0.016 T0 across the registered
+ladder (from the committed force-scan drift bound), and between
+ladder endpoints S moves in the same direction as eps_meas whenever
+|delta eps_meas| > 0.002 T0. (c) the separability map: D =
+(beta - eps/T0)*fps/f0 frames; single-interval separation needs
+D >= 1, i.e. beta >= f0/fps + eps/T0 = 0.10675 at 3000 fps, f0 =
+196.9, grid-median eps; with a registered margin of 0.02 in beta,
+cells at beta = 0.13, 0.16, and 50/325 show ZERO frame-histogram
+overlap with the doubling comparator and the beta = 0.10 cell
+(D = 0.894 < 1) shows overlap. All bands, ladders, cell partitions,
+and the S targets are pinned in p20_registration.json before any
+slip duration or histogram is computed.
+changes-my-mind: any cell with |eps_meas - eps_pred| > 0.030 T0
+(double the band) kills the claimed eps decomposition - the
+alf-period-lattice scope sentence then needs a DECLINED-style
+correction recorded in the R entry, not a rescue. A histogram
+overlap in a cell whose derived separation is >= 1.5 frames (beta =
+0.16 and the Kawano cell) kills the separability arithmetic.
+not-claimed-in-advance: real strings; the torsional trigger family;
+frame rates other than 3000 fps; force dependence beyond the
+committed plateaus; other strings, tunings, or bow models; any
+mechanism story for WHY the slip episode lasts as long as it does.
