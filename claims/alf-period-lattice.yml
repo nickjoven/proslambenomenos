@@ -1,0 +1,46 @@
+id: alf-period-lattice
+statement: >
+  On a bowed-string waveguide model (travelling-wave string, per-sample
+  stick-slip against a near-Coulomb falling friction curve, with
+  DC-lossless end reflections, a damped torsional pair, and finite
+  contact width; the arXiv:2502.11902 steel G string, f0 = 196.9 Hz),
+  the anomalous-low-frequency locked periods above the Schelleng
+  maximum bow force lie on the lattice P(m, beta) =
+  T0*(1 + m*(1-beta)) + eps with eps in [0.03, 0.07] T0, not on
+  integer subharmonics n*T0: the m=1 lock measures
+  1.9413/1.9036/1.8811 T0 (cluster jitter <= 0.0011) at bow position
+  beta = 0.10/0.13/0.16, giving slope dP/dbeta = -1.004 T0 against
+  the lattice's -1 (integer subharmonics: 0), and the m=2 to m=1
+  spacing at beta = 0.13 is 0.891 T0 against the lattice's 0.87
+  (integer subharmonics: 1.0). The octave-below ALF is therefore
+  about 50 cents sharp of the octave and its pitch moves with bow
+  position. Scope: in-model claim; eps is model-systematic
+  (slip-episode duration plus reflection-filter group delay) and
+  weakly force-dependent; real-string validation is the P-19
+  falsifier's field half, a separate future claim; the torsional
+  trigger family of ALF is out of scope.
+premises: []
+prediction: P-19
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p19_alf_waveguide.py with p19_results.json
+      (fs 88200, slip-onset-interval observable, dominant-cluster
+      statistics, deterministic, no RNG); independently reimplemented
+      by scripts/verify/p19_alf_lattice.py at fs 44100 with a
+      different observable (bridge-waveform autocorrelation,
+      parabolic-interpolated, physical filter time constants held
+      fixed across the rate change) and per-beta force selected only
+      by lock quality over the period band [1.5, 2.5] T0, which
+      contains 2.0, so selection cannot bias the test; reads nothing
+      from the results file; second mutant beta-independent covers
+      the slope statement"
+    method: reimplementation
+null_system: "integer subharmonics f0/n at the bow-position-independent
+  value 2.000 T0 (the reading of arXiv:2502.11902, whose 0.33 ms
+  imaging cannot separate 1.94 from 2.00 at 196.9 Hz): predicts slope
+  0 and P = 2.000 at every beta; measured locks sit >= 0.06 T0 away
+  with jitter 0.001 and slope -1.004 (experiment) / -0.926 (miniature)"
+falsifier: "scripts/verify/p19_alf_lattice.py --mutant exact-doubling"
+novelty:
+  status: unchecked
+status: verified

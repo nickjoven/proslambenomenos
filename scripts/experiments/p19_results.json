@@ -1,0 +1,42 @@
+{
+ "runs": [
+  {
+   "beta": 0.1,
+   "force": 1.5,
+   "m": 1,
+   "lock_mean_T0": 1.94134,
+   "lock_std_T0": 0.00109,
+   "n_lock": 100,
+   "n_all": 100
+  },
+  {
+   "beta": 0.13,
+   "force": 1.1,
+   "m": 1,
+   "lock_mean_T0": 1.90361,
+   "lock_std_T0": 0.00101,
+   "n_lock": 103,
+   "n_all": 103
+  },
+  {
+   "beta": 0.16,
+   "force": 0.95,
+   "m": 1,
+   "lock_mean_T0": 1.88112,
+   "lock_std_T0": 0.00107,
+   "n_lock": 104,
+   "n_all": 104
+  },
+  {
+   "beta": 0.13,
+   "force": 1.7,
+   "m": 2,
+   "lock_mean_T0": 2.79497,
+   "lock_std_T0": 0.00027,
+   "n_lock": 69,
+   "n_all": 69
+  }
+ ],
+ "slope_dP_dbeta_T0": -1.0037,
+ "spacing_m2_m1_T0": 0.8914
+}
