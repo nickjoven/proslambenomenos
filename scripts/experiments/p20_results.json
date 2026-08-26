@@ -1,0 +1,232 @@
+{
+ "cells": [
+  {
+   "beta": 0.1,
+   "force": 1.5,
+   "m": 1,
+   "P_T0": 1.94134,
+   "eps_meas_T0": 0.04134,
+   "slip_samples_window": 5087,
+   "n_lock": 100,
+   "S_samples": 50.87,
+   "episodes_per_cycle": 1.01,
+   "episode_mean_samples": 50.366,
+   "episode_max_samples": 51,
+   "p19_lock_mean_T0": 1.94134,
+   "eps_pred_T0": 0.12675,
+   "resid_T0": -0.08541,
+   "within_band": false
+  },
+  {
+   "beta": 0.13,
+   "force": 1.1,
+   "m": 1,
+   "P_T0": 1.90361,
+   "eps_meas_T0": 0.03361,
+   "slip_samples_window": 6388,
+   "n_lock": 103,
+   "S_samples": 62.019,
+   "episodes_per_cycle": 1.01,
+   "episode_mean_samples": 61.423,
+   "episode_max_samples": 62,
+   "p19_lock_mean_T0": 1.90361,
+   "eps_pred_T0": 0.15262,
+   "resid_T0": -0.11901,
+   "within_band": false
+  },
+  {
+   "beta": 0.16,
+   "force": 0.95,
+   "m": 1,
+   "P_T0": 1.88112,
+   "eps_meas_T0": 0.04112,
+   "slip_samples_window": 7845,
+   "n_lock": 104,
+   "S_samples": 75.433,
+   "episodes_per_cycle": 1.01,
+   "episode_mean_samples": 74.714,
+   "episode_max_samples": 75,
+   "p19_lock_mean_T0": 1.88112,
+   "eps_pred_T0": 0.18131,
+   "resid_T0": -0.14019,
+   "within_band": false
+  },
+  {
+   "beta": 0.13,
+   "force": 1.7,
+   "m": 2,
+   "P_T0": 2.79497,
+   "eps_meas_T0": 0.05497,
+   "slip_samples_window": 4269,
+   "n_lock": 69,
+   "S_samples": 61.87,
+   "episodes_per_cycle": 1.014,
+   "episode_mean_samples": 60.986,
+   "episode_max_samples": 61,
+   "p19_lock_mean_T0": 2.79497,
+   "eps_pred_T0": 0.15963,
+   "resid_T0": -0.10466,
+   "within_band": false
+  },
+  {
+   "beta": 0.15384615384615385,
+   "force": 1.05,
+   "m": 1,
+   "P_T0": 1.8887,
+   "eps_meas_T0": 0.04254,
+   "slip_samples_window": 7592,
+   "n_lock": 103,
+   "S_samples": 73.709,
+   "episodes_per_cycle": 1.01,
+   "episode_mean_samples": 73.0,
+   "episode_max_samples": 73,
+   "anchor_P_T0": 1.8886976751865794,
+   "eps_pred_T0": 0.17801,
+   "resid_T0": -0.13547,
+   "within_band": false
+  }
+ ],
+ "clauses": {
+  "a_band": false,
+  "a_signs": false,
+  "b": false,
+  "c": false
+ },
+ "mind_change": {
+  "eps_decomposition_killed": true,
+  "worst_resid_T0": 0.14019,
+  "separability_arithmetic_killed": false
+ },
+ "force_trend": {
+  "0.10": {
+   "rows": [
+    {
+     "F": 1.2,
+     "eps_meas_T0": 0.02629,
+     "S_samples": 53.327
+    },
+    {
+     "F": 1.5,
+     "eps_meas_T0": 0.04134,
+     "S_samples": 50.87
+    },
+    {
+     "F": 1.6,
+     "eps_meas_T0": 0.04451,
+     "S_samples": 50.55
+    }
+   ],
+   "range_T0": 0.01822,
+   "range_ok": false,
+   "direction": "OPPOSES"
+  },
+  "0.13": {
+   "rows": [
+    {
+     "F": 0.95,
+     "eps_meas_T0": 0.02979,
+     "S_samples": 62.602
+    },
+    {
+     "F": 1.1,
+     "eps_meas_T0": 0.03361,
+     "S_samples": 62.019
+    },
+    {
+     "F": 1.2,
+     "eps_meas_T0": 0.03771,
+     "S_samples": 61.466
+    }
+   ],
+   "range_T0": 0.00792,
+   "range_ok": true,
+   "direction": "OPPOSES"
+  },
+  "0.16": {
+   "rows": [
+    {
+     "F": 0.9,
+     "eps_meas_T0": 0.03972,
+     "S_samples": 75.49
+    },
+    {
+     "F": 0.95,
+     "eps_meas_T0": 0.04112,
+     "S_samples": 75.433
+    },
+    {
+     "F": 1.05,
+     "eps_meas_T0": 0.04417,
+     "S_samples": 75.728
+    }
+   ],
+   "range_T0": 0.00445,
+   "range_ok": true,
+   "direction": "tracks"
+  }
+ },
+ "frames": {
+  "0.100000": {
+   "lattice_hist": {
+    "29": 42,
+    "30": 58
+   },
+   "doubling_hist": {
+    "30": 53,
+    "31": 47
+   },
+   "overlap_frames": [
+    30
+   ],
+   "registered_side": "overlap side",
+   "D_frames_registered": 0.894,
+   "ok": true
+  },
+  "0.130000": {
+   "lattice_hist": {
+    "28": 1,
+    "29": 100,
+    "30": 2
+   },
+   "doubling_hist": {
+    "30": 54,
+    "31": 49
+   },
+   "overlap_frames": [
+    30
+   ],
+   "registered_side": "no-overlap side",
+   "D_frames_registered": 1.469,
+   "ok": false
+  },
+  "0.160000": {
+   "lattice_hist": {
+    "28": 35,
+    "29": 69
+   },
+   "doubling_hist": {
+    "30": 55,
+    "31": 49
+   },
+   "overlap_frames": [],
+   "registered_side": "no-overlap side",
+   "D_frames_registered": 1.811,
+   "ok": true
+  },
+  "0.153846": {
+   "lattice_hist": {
+    "28": 23,
+    "29": 80
+   },
+   "doubling_hist": {
+    "30": 55,
+    "31": 48
+   },
+   "overlap_frames": [],
+   "registered_side": "no-overlap side",
+   "D_frames_registered": 1.696,
+   "ok": true
+  }
+ },
+ "all_registered_clauses_held": false
+}
