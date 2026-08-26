@@ -882,3 +882,42 @@ max(0.04 |v_pin|, 3 sqrt(2 D/(T M))) of the pinned quadrature
 value; the delta = 0 cell must satisfy |v| < 3 sqrt(2 D/(T M)).
 Everything else in P-22 stands unchanged. Ancestry: this amendment
 precedes the registered computation commit.
+
+## R-17 — 2026-08-26 — resolves P-22 (mind-change FIRED on two clauses)
+outcome: the quantitative heart held; two clauses failed as
+registered and the mind-change condition fired - recorded, then
+diagnosed with labels, not rescued.
+(b) as amended by P-22a, all six mobility cells: worst case
+0.9_1.0_0.25 at 0.38735 vs pinned 0.37400 (inside the derived
+band); the noise-activated deep-tongue cell lands 0.04578 vs
+0.04778 and the delta = 0 cell at -0.0012 against a 3-sigma bound
+of 0.0032. The constant-flux FPE construction is quantitatively
+confirmed by simulation across activated, marginal, and running
+regimes. (c) all four variance cells inside 5 percent of the von
+Mises quadrature. (d) all three hop cells: rates 0.00204/0.00484/
+0.00984 vs pinned 0.00188/0.00496/0.00940 inside the Poisson
+bands, and the committed-hop size distribution is PURE pi - 1337
+hops observed across cells, zero 2 pi events. Two locked phases pi
+apart, hopping at the first-passage rate: the Z2 skeleton stands.
+(a) FAILED as registered at the two tongue-edge cells only
+(delta = 1.05, both scenarios): residuals -3.7e-3 and -2.4e-3
+against the 2e-3 band, while all twelve other cells pass at 2e-5
+to 3e-4. Post-firing diagnosis (labelled): the winding count over
+a finite run is quantized, bounding the velocity estimator by
+2 pi/T = 3.1e-3 absolute - larger than the band exactly at the
+edge where the beat is slow. EQ7 budgeted hop counts and dt bias
+but not winding quantization: a registration design error of the
+same class P-22a caught for clause (b), this one not caught in
+time. The beat law itself shows no deviation beyond the estimator
+bound.
+(e) FAILED as registered: measured <cos 2 theta> = 0.6971 against
+the registered threshold 0.8, with |<cos theta>| = 0.035 and 399
+hops. Post-firing diagnosis (labelled): the registered 0.8 was an
+UNDERIVED threshold - the stationary von Mises density fixes the
+equilibrium value exactly at I1(kappa)/I0(kappa) with kappa =
+eps/(2D) = 2, i.e. 0.69777, and the measurement sits 9e-4 from it.
+The observable did precisely what the stationary theory says; the
+clause died because the registration asked for more alignment than
+the equilibrium possesses. The protection reading is therefore NOT
+claimed from P-22; it is re-registered properly as P-23 with the
+Bessel-ratio value derived in advance and fresh seeds.
