@@ -978,3 +978,14 @@ threshold is the derived equilibrium: the mod-pi observable sits
 on I1(eps/2D)/I0(eps/2D) while hopping scrambles the bare phase to
 its derived null. Filed as locking-protects-mod-pi-observable;
 the P-22 core is filed separately as two-photon-locking-z2-skeleton.
+
+## R-18a — 2026-08-26 — transcription correction to R-18
+The D = 0.2 row in R-18 was transcribed from memory instead of from
+the committed output: the correct figures are 0.76468 +/- 0.00045
+vs pin 0.76500 (0.70 SEM), and the per-cell minimum committed hop
+counts are 65 / 84 / 150, not 84 / 84 / 150. Every clause verdict
+is unchanged (the corrected row passes more comfortably than the
+mistyped one); p23_results.json is authoritative. Two transcription
+slips in one line (P-23a, this) are a process signal: ledger numbers
+must be pasted from the artifact, never retyped - recorded here so
+the habit has a name and a cost.
