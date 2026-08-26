@@ -1160,3 +1160,47 @@ plateau). phi stays the address; the plateau constant is
 Catalan's, not phi's - the taxonomy's shape, now computed. A-1
 closes. Filed as harper-golden-ladder; figure page
 p7_plots.html.
+## P-19 — 2026-08-25 — the ALF period lattice
+question: anomalous-low-frequency (ALF) locks on a bowed string are
+conventionally read as exact pitch halving - period 2.000 T0, an
+integer subharmonic. Do the locks instead sit on the two-generator
+period lattice P(m, beta) = T0*(1 + m*(1-beta)) + eps, with bow
+position beta a live control knob and every lock strictly off
+2.000 T0?
+method: a four-ingredient digital-waveguide bowed string (two
+travelling-wave delay loops joined at the bow point, DC-lossless
+one-pole reflection filters at nut and bridge, a damped torsional
+pair, exact per-sample stick-slip against a falling friction curve
+with one-pole contact smoothing; steel G, f0 = 196.9 Hz, L = 325 mm,
+the arXiv:2502.11902 string), run at the m=1 lock for beta = 0.10,
+0.13, 0.16 plus the m=2 lock at beta = 0.13; observable one is
+slip-onset interval clustering (dominant cluster = the lock), and an
+independent miniature at half the sample rate measures observable
+two, bridge-waveform autocorrelation, with per-beta force selected
+only by lock quality over a band that contains 2.0 T0.
+expects: on the four-ingredient bowed-string waveguide (origin:
+harmonics archive session 2026-08-24/25, commits e045ab8..105cd3c),
+the in-repo experiment and an independent miniature (half the sample
+rate, a different observable - bridge-waveform autocorrelation vs
+slip-onset clustering - and per-beta force selected only by lock
+quality over a band that contains 2.0 T0) both find the m=1
+anomalous-low-frequency lock at T0*(2 - beta) + eps with eps in
+[0.03, 0.07] T0: slope dP/dbeta within [-1.35, -0.65] T0, every lock
+at least 0.04 T0 away from 2.000 T0, m-spacing (1-beta)*T0 within
+0.03. The subsequent litcheck is expected to find Guettler's wave
+analysis contains the extra-rounds mechanism and possibly the period
+formula (then the lattice labels classical-with-citation), but not
+the dP/dbeta slope discriminator or a bow-position pitch protocol.
+changes-my-mind: a lock within measurement jitter of 2.000 T0 at any
+bow position, or a slope consistent with 0, kills the lattice
+reading and vindicates the halving reading of arXiv:2502.11902. On
+the instrument side (future claim, not this one): an audio
+measurement showing ALF pitch independent of bow position (period
+ratio 1.000 +/- 0.010 between beta = 0.10 and 0.16, where the
+lattice predicts 1.033) does the same.
+not-claimed-in-advance: real-string behavior (this is an in-model
+line; the audio protocol above is future work, not this claim); the
+torsional trigger family and which perturbation starts an ALF
+episode; any decomposition of the eps offset into mechanisms; other
+strings, tunings, or bow models; anything beyond the four-ingredient
+model.
