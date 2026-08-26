@@ -1204,3 +1204,31 @@ torsional trigger family and which perturbation starts an ALF
 episode; any decomposition of the eps offset into mechanisms; other
 strings, tunings, or bow models; anything beyond the four-ingredient
 model.
+
+## R-14 — 2026-08-26 — resolves P-19
+outcome: every clause as registered; the mind-change did not fire.
+The m=1 locks measure 1.9413/1.9036/1.8811 T0 at beta = 0.10/0.13/
+0.16 (cluster jitter <= 0.0011) and the m=2 lock at beta = 0.13
+measures 2.7950 T0; eps = P - T0*(1 + m*(1-beta)) lands at 0.041/
+0.034/0.041/0.055 T0, all inside the registered [0.03, 0.07]. Slope
+dP/dbeta = -1.004 T0 in the experiment and -0.926 T0 in the
+half-rate autocorrelation miniature (miniature residuals 0.036-
+0.041), both inside the registered [-1.35, -0.65]. Every lock sits
+at least 0.0587 T0 from 2.000 T0 against the registered floor of
+0.04. The m-spacing lands at 0.891 T0 against the lattice's 0.87,
+off by 0.021 against the registered 0.03. No lock within jitter of
+2.000 T0 at any bow position and no slope consistent with 0, so the
+mind-change clause stayed quiet. The litcheck expectation resolved
+as registered too: LC-11 finds Guettler's extra-rounds mechanism is
+prior art (two trigger families, transverse and torsional), the
+period-formula question stays open behind the CASJ paywall, and
+neither the dP/dbeta discriminator nor a bow-position pitch
+protocol appears in any accessible source. Filed as
+alf-period-lattice.
+lineage: this line was first registered as P-18 on branch
+alf-lattice (commit 98c33f3, 2026-08-25), before its computation
+commit as the gate requires; it was renumbered to P-19 at the
+rebuild because main's P-18 slot had meanwhile gone to the C2
+retest. The question, method, and not-claimed-in-advance fields
+were added at the rebuild; the expects and changes-my-mind text is
+verbatim from the original registration.
