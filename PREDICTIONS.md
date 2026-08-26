@@ -954,3 +954,12 @@ blame on the registration.
 not-claimed-in-advance: same exclusions as P-22; additionally no
 claim about relaxation TIMES (only stationary averages), and no
 quantum statement.
+
+## P-23a — 2026-08-26 — transcription correction, before any run
+The P-23 expects: prose quoted the pins as "0.75823 / 0.69777 /
+0.64686"; the derivation layer's actual pinned values, committed in
+the same commit and produced by EQ1's two agreeing routes, are
+0.76500 / 0.69777 / 0.63472 (kappa = 2.5, 2, 5/3). The prose
+numbers at the first and third cells were hand-transcription
+errors; p23_registration.json governs, as the entry itself states.
+Recorded before the registered computation ran.
