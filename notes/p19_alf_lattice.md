@@ -1,4 +1,4 @@
-<!-- evidence: scripts/experiments/p19_alf_waveguide.py, scripts/experiments/p19_results.json, scripts/verify/p19_alf_lattice.py -->
+<!-- evidence: scripts/experiments/p19_alf_waveguide.py, scripts/experiments/p19_results.json, scripts/experiments/p19_force_scan.py, scripts/experiments/p19_force_scan.json, scripts/verify/p19_alf_lattice.py -->
 # P-19 — ALF locked periods lie on a two-generator timing lattice
 
 ## Statement
@@ -61,7 +61,27 @@ e7e1383, ff25d3f, 105cd3c in ~/harmonics — archive repo, adversarial
 test bed). This note and both scripts are fresh implementations; the
 verify script reads nothing from the experiment.
 
-## Prior art (per LC-4, plus what a new litcheck must pin)
+## Force provenance (audit addition, 2026-08-25)
+
+The four RUNS forces (1.50/1.10/0.95 for m=1; 1.70 for m=2) were
+found by hand during model development and hardcoded, which is a
+fair audit target: selected forces could in principle select the
+result. The in-repo scan p19_force_scan.py sweeps F over
+[0.60, 2.20] at every RUNS beta with the experiment's own
+simulate()/lock_stats() and shows they could not have: every
+hardcoded force sits INSIDE a lock plateau (m=1 windows
+F = 1.15-1.65 at beta 0.10, 0.95-1.20 at 0.13, 0.90-1.05 at 0.16;
+m=2 window 1.60-1.90 at 0.13), and the lock period drifts by at
+most 0.0155 T0 across an entire plateau - a factor ~4 below the
+0.06 T0 separation from exact doubling and an order below the
+beta-to-beta differences that carry the slope. Any force choice
+inside the plateaus moves eps within its stated bracket and nothing
+else. The plateaus narrow as beta grows, consistent with the
+Schelleng-geometry expectation. (The verify script guards the same
+risk independently, selecting force by lock quality over a band
+containing 2.0.)
+
+## Prior art (per LC-4 and LC-11)
 
 KNOWN: ALF conditions — bow force above Schelleng's f_max with slow
 bow (Guettler, CASJ 2(6), 8 (1994); Guettler PhD KTH 2002; Guettler &
@@ -73,18 +93,27 @@ families (third, octave, octave-plus-fifth) with transverse and
 torsional trigger families. Schelleng, JASA 53, 26 (1973). Corner
 rounding: Cremer, Acustica 30, 119 (1974). MSW simulation: McIntyre,
 Schumacher & Woodhouse, JASA 74, 1325 (1983). The driving paper:
-arXiv:2502.11902 (FEM + high-speed imaging; reads the subharmonic as
-exact halving, at 0.33 ms timing resolution, which cannot separate
-1.94 from 2.00 at 196.9 Hz).
+arXiv:2502.11902 (FEM + high-speed imaging at 3000 fps = 0.33 ms per
+frame, which cannot separate 1.94 from 2.00 T0 at 196.9 Hz - the gap
+is 0.30 ms; arithmetic in LC-11). LC-11 corrects this note's earlier
+draft reading of that paper as "exact halving": the paper itself says
+"approximately one octave lower" and that the pitch "can be tuned by
+varying the bow position and applied pressure" - a qualitative
+anticipation of the lattice's beta-dependence, with no quantitative
+formula or slope given.
 
 NOT FOUND by LC-4: any topology/holonomy framing of ALF onset; any
-published "N sites to hold a corner" statement. **A new litcheck must
-check specifically** whether Guettler 1994/2002 states the quantitative
-period formula T0 + m(1-beta)T0 and/or the dP/dbeta = -1 discriminator;
-"one or more extra rounds" makes the formula plausibly implicit there.
-Until that check runs, novelty is UNCHECKED and the honest expectation
-is "classical with citation" for the lattice itself, with the slope
-discriminator and the lab protocol as the contribution.
+published "N sites to hold a corner" statement. LC-11 (2026-08-25)
+ran the queued Guettler check as far as accessible sources allow: the
+extra-rounds mechanism and the two trigger families are confirmed
+prior art at metadata level, but the CASJ 1994 text is paywalled and
+the thesis PDF is image-scanned, so whether Guettler states
+P = T0(1 + m(1-beta)) explicitly REMAINS OPEN; the dP/dbeta = -1
+discriminator and a bow-position pitch protocol were not found in any
+accessible source. Novelty stays UNCHECKED pending CASJ 1994 access,
+with "classical with citation" still the honest expectation for the
+lattice itself and the slope discriminator and lab protocol as the
+contribution.
 
 ## Lab falsifier (the real-string test)
 
