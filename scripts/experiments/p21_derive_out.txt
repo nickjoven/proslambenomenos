@@ -1,0 +1,16 @@
+EQ 1 PASS  every deterministic assignment with A1=+, B1=+ hits a Z1/Z2/Z3 event => LHV p_Hardy = 0  | 16 assignments enumerated; counterexamples: []
+EQ 2 PASS  tan a0 = a, tan b0 = -k/a, tan a1 = -k^2/a, tan b1 = k a kill all three Hardy amplitudes identically  | Z1, Z2, Z3 on both sign boxes; worst |amp| 1.11e-16
+EQ 3 PASS  p_Hardy = k^2 (1-k^2)^2 / [(1+k^2)(1+k^4/a^2)(1+k^2 a^2)]  | worst rel delta 6.94e-17 over both boxes
+EQ 4 PASS  (1+k^4/a^2)(1+k^2 a^2) - (1+k^3)^2 = k^2 (a-k/a)^2 >= 0, equality iff a^2 = k (exact minimization, no calculus)  | worst rel delta 7.77e-16
+EQ 5 PASS  p_env(k) = k^2(1-k)^2/[(1+k^2)(1-k+k^2)^2]; p_env(1/k) = p_env(k)  | worst rel delta 5.55e-17
+EQ 6 PASS  d/dk log p_env = 2 Q(k) / [k(1-k)(1+k^2)(k^2-k+1)], Q = k^5 - 2k^4 - 2k + 1  | worst rel delta 1.33e-15
+EQ 7 PASS  Q(k) = (k+1)(k^4 - 3k^3 + 3k^2 - 3k + 1) (integer coeffs); k = -1 spurious for k = c/s > 0  | product coeffs low->high [1, -2, 0, 0, -2, 1]
+EQ 8 PASS  k^4 - 3k^3 + 3k^2 - 3k + 1 = k^2 (y^2 - 3y + 1), y = k + 1/k  | worst rel delta 8.88e-16
+EQ 9 PASS  y* = (3+sqrt5)/2 solves y^2 - 3y + 1 = 0; y* = Phi^2; y* > 2  | y* = 2.618033988749895
+EQ 10 PASS  p_env = (y-2)/(y (y-1)^2) in y = k + 1/k  | worst rel delta 1.17e-16
+EQ 11 PASS  p* = (y*-2)/(y*(y*-1)^2) = phi/Phi^4 = phi^5 = (5 sqrt5 - 11)/2, exact in Q(sqrt5)  | p* = (-11/2) + (5/2)*sqrt5 = 0.09016994374947451
+EQ 12 PASS  optimal state: c s = 1/y* = phi^2 exactly; c^2, s^2 = (1 -+ sqrt(6 sqrt5 - 13))/2 (disc = 1 - 4 phi^4 = 6 sqrt5 - 13)  | c^2 = 0.177351636840221, s^2 = 0.822648363159779, k* = 0.464312613208127
+EQ 13 PASS  k = 1 (maximally entangled): the constrained paradox probability is the zero function of a  | worst |p| 1.23e-32
+float sanity: p_env(k*) = 0.09016994374947424 vs p* = 0.09016994374947451 (delta 2.78e-16)
+wrote p21_registration.json
+derivation layer: 13 EQ lines, 0 failures
