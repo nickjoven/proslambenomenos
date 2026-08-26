@@ -1,0 +1,863 @@
+{
+ "counts": {
+  "NEARMISS": 54,
+  "EXACT": 32,
+  "EXCLUDED": 15,
+  "UNEXCLUDED": 4,
+  "INCONSISTENT": 2
+ },
+ "rows": [
+  {
+   "id": "1a",
+   "lhs": 0.6180339887498949,
+   "rhs": 0.6180334299082773,
+   "rel_dev": 9.042247316829191e-07,
+   "class": "NEARMISS",
+   "note": "phi from pi"
+  },
+  {
+   "id": "1e",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.09016714954138638,
+   "rel_dev": 3.098824255294976e-05,
+   "class": "NEARMISS",
+   "note": "phi^5 from pi"
+  },
+  {
+   "id": "1f",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.08817462186877802,
+   "rel_dev": 0.02212845874940333,
+   "class": "NEARMISS",
+   "note": "phi^5 from pi,13"
+  },
+  {
+   "id": "2b",
+   "lhs": 0.6666666666666665,
+   "rhs": 0.6666666666666666,
+   "rel_dev": 1.6653345369377348e-16,
+   "class": "EXACT",
+   "note": "sin(dihedral) = 2/3"
+  },
+  {
+   "id": "2c",
+   "lhs": 3.141592653589793,
+   "rhs": 3.141325341898871,
+   "rel_dev": 8.508795391297164e-05,
+   "class": "NEARMISS",
+   "note": "pi from icosahedron"
+  },
+  {
+   "id": "3a",
+   "lhs": 137.03630377587842,
+   "target": 137.035999177,
+   "sigma_exp": 14504.708495960153,
+   "class": "EXCLUDED",
+   "note": "alpha^-1 = 4pi^3+pi(pi+1)"
+  },
+  {
+   "id": "3b",
+   "lhs": 137.03517499118448,
+   "target": 137.035999177,
+   "sigma_exp": 39246.94359674114,
+   "class": "EXCLUDED",
+   "note": ""
+  },
+  {
+   "id": "3c",
+   "lhs": 137.03628087239662,
+   "target": 137.035999177,
+   "sigma_exp": 13414.066505187553,
+   "class": "EXCLUDED",
+   "note": ""
+  },
+  {
+   "id": "3d",
+   "lhs": 137.0365034140884,
+   "target": 137.035999177,
+   "sigma_exp": 24011.289923464574,
+   "class": "EXCLUDED",
+   "note": ""
+  },
+  {
+   "id": "3e",
+   "lhs": 137.03601571995986,
+   "target": 137.035999177,
+   "sigma_exp": 787.7599931102201,
+   "class": "EXCLUDED",
+   "note": ""
+  },
+  {
+   "id": "3g",
+   "lhs": 0.002319384512409039,
+   "target": 0.0023193043618201514,
+   "sigma_exp": 154135.7478609083,
+   "class": "EXCLUDED",
+   "note": "Delta g_e from pi alone"
+  },
+  {
+   "id": "4",
+   "lhs": 13.014830400254061,
+   "rhs": 13.011197054679151,
+   "rel_dev": 0.0002791696444111074,
+   "class": "NEARMISS",
+   "note": "sqrt(2 phi/alpha) ~ pi(pi+1)"
+  },
+  {
+   "id": "5a",
+   "lhs": 137.0360679774998,
+   "target": 137.035999177,
+   "sigma_exp": 3276.214276378856,
+   "class": "EXCLUDED",
+   "note": "icosahedron 171 route"
+  },
+  {
+   "id": "5c",
+   "lhs": 137.037676126548,
+   "target": 137.035999177,
+   "sigma_exp": 79854.74038091092,
+   "class": "EXCLUDED",
+   "note": ""
+  },
+  {
+   "id": "app-root1",
+   "lhs": -7.369194143791447e-11,
+   "rhs": 0.0,
+   "rel_dev": 7.369194143791447e-11,
+   "class": "EXACT",
+   "note": "appendix radical is a root"
+  },
+  {
+   "id": "app-root2",
+   "lhs": 1.0972731729263056e-11,
+   "rhs": 0.0,
+   "rel_dev": 1.0972731729263056e-11,
+   "class": "EXACT",
+   "note": "appendix radical is a root"
+  },
+  {
+   "id": "app-root3",
+   "lhs": 2.229438855749777e-12,
+   "rhs": 0.0,
+   "rel_dev": 2.229438855749777e-12,
+   "class": "EXACT",
+   "note": "appendix radical is a root"
+  },
+  {
+   "id": "app-root4",
+   "lhs": 1.0791915833542176e-17,
+   "rhs": 0.0,
+   "rel_dev": 1.0791915833542176e-17,
+   "class": "EXACT",
+   "note": "appendix radical is a root"
+  },
+  {
+   "id": "14",
+   "lhs": 228.0,
+   "rhs": 228.0,
+   "rel_dev": 0.0,
+   "class": "EXACT",
+   "note": "Vieta: sum of roots"
+  },
+  {
+   "id": "11",
+   "lhs": 2.5836503952377754,
+   "rhs": 2.583650395239974,
+   "rel_dev": 8.509996871165079e-13,
+   "class": "EXACT",
+   "note": "x2 = -1/x1 reciprocity"
+  },
+  {
+   "id": "12",
+   "lhs": 2.5836503952377754,
+   "rhs": 2.6666666666666856,
+   "rel_dev": 0.03113110178584111,
+   "class": "NEARMISS",
+   "note": "x2 ~ 228-4/3*169  (claimed 2.666)"
+  },
+  {
+   "id": "9",
+   "lhs": 171.0059171597633,
+   "rhs": 171.0,
+   "rel_dev": 3.460207612448585e-05,
+   "class": "NEARMISS",
+   "note": "(13+1/13)^2 ~ 171"
+  },
+  {
+   "id": "16-17",
+   "lhs": -3.637978807091713e-12,
+   "rhs": 0.0,
+   "rel_dev": 3.637978807091713e-12,
+   "class": "EXACT",
+   "note": "root check"
+  },
+  {
+   "id": "17",
+   "lhs": 12.999772406971053,
+   "rhs": 13.0,
+   "rel_dev": 1.7507156072883187e-05,
+   "class": "NEARMISS",
+   "note": "x ~ 13 (claimed 12.99977)"
+  },
+  {
+   "id": "19",
+   "lhs": 0.6180339887498949,
+   "rhs": 0.6180339887498948,
+   "rel_dev": 1.7963785889362146e-16,
+   "class": "EXACT",
+   "note": "phi CF fixed point"
+  },
+  {
+   "id": "20",
+   "lhs": 0.23606797749978975,
+   "rhs": 0.2360679774997898,
+   "rel_dev": 2.351490101248792e-16,
+   "class": "EXACT",
+   "note": "phi^3 = sqrt5 - 2"
+  },
+  {
+   "id": "20cf",
+   "lhs": 0.23606797749978975,
+   "rhs": 0.2360679774997897,
+   "rel_dev": 2.3514901012487926e-16,
+   "class": "EXACT",
+   "note": "phi^3 CF in 4s"
+  },
+  {
+   "id": "22",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.09016994374947451,
+   "rel_dev": 2.6164194289432574e-15,
+   "class": "EXACT",
+   "note": "phi^5 closed form"
+  },
+  {
+   "id": "22cf",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.09016994374947424,
+   "rel_dev": 4.617210756958702e-16,
+   "class": "EXACT",
+   "note": "phi^5 CF in 11s"
+  },
+  {
+   "id": "24",
+   "lhs": 0.922929922626438,
+   "rhs": 0.9229283148369208,
+   "rel_dev": 1.7420493991711142e-06,
+   "class": "NEARMISS",
+   "note": "6th root vs 12/13 term"
+  },
+  {
+   "id": "24-digits",
+   "lhs": 0.922929922626438,
+   "class": "NEARMISS",
+   "note": "claimed repeating '922929922'; actual digits 0.922929922626 break the pattern at the 8th decimal"
+  },
+  {
+   "id": "25",
+   "lhs": 1.6180339887498951,
+   "rhs": 1.618033988749895,
+   "rel_dev": 1.3723111286221163e-16,
+   "class": "EXACT",
+   "note": "sum phi^n = Phi"
+  },
+  {
+   "id": "27",
+   "lhs": 11.999999999999998,
+   "rhs": 12.0,
+   "rel_dev": 1.4802973661668753e-16,
+   "class": "EXACT",
+   "note": "(sum 13^-n)^-1 = 12"
+  },
+  {
+   "id": "29",
+   "lhs": 12.923076923076923,
+   "rhs": 12.923076923076923,
+   "rel_dev": 0.0,
+   "class": "EXACT",
+   "note": "odd-n sum"
+  },
+  {
+   "id": "31",
+   "lhs": 171.0059171597633,
+   "rhs": 171.00591715976333,
+   "rel_dev": 1.6620307590789886e-16,
+   "class": "EXACT",
+   "note": "(m+1/m)^2 = 4+(m-1/m)^2"
+  },
+  {
+   "id": "32",
+   "lhs": 0.08271182329550238,
+   "rhs": 0.08271182329550233,
+   "rel_dev": 5.033544391193135e-16,
+   "class": "EXACT",
+   "note": "identity in disguise"
+  },
+  {
+   "id": "32b",
+   "lhs": 0.08271182329550238,
+   "rhs": 0.08284023668639054,
+   "rel_dev": 0.0015501330757213955,
+   "class": "NEARMISS",
+   "note": "vs 1/13+1/169"
+  },
+  {
+   "id": "33",
+   "lhs": 0.002323004252377309,
+   "rhs": 0.0023228194641953287,
+   "rel_dev": 7.95470700457707e-05,
+   "class": "NEARMISS",
+   "note": "pi|beta_g| ~ 1/(pi alpha^-1)"
+  },
+  {
+   "id": "34",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.09042740000000002,
+   "rel_dev": 0.0028471044232803566,
+   "class": "NEARMISS",
+   "note": "phi^5 ~ cbrt(beta_g)"
+  },
+  {
+   "id": "36-37",
+   "lhs": 0.4501964643745655,
+   "rhs": 0.4501581580785531,
+   "rel_dev": 8.5087953912836e-05,
+   "class": "NEARMISS",
+   "note": "beta_m two ways"
+  },
+  {
+   "id": "38",
+   "lhs": 0.4501964643745655,
+   "rhs": 0.4508497187473714,
+   "rel_dev": 0.0014489404021829568,
+   "class": "NEARMISS",
+   "note": "beta_m ~ 5 phi^5"
+  },
+  {
+   "id": "40a",
+   "lhs": 1.2599210498948732,
+   "rhs": 1.260298206482862,
+   "rel_dev": 0.0002992597990291579,
+   "class": "NEARMISS",
+   "note": "cbrt2 from phi^5"
+  },
+  {
+   "id": "41",
+   "lhs": 2.0536215758789726,
+   "rhs": 2.058171027271492,
+   "rel_dev": 0.0022104340855242065,
+   "class": "NEARMISS",
+   "note": "gamma1+1/gamma1 ~ phi^-3/2"
+  },
+  {
+   "id": "45",
+   "lhs": 3.141592653589793,
+   "rhs": 4.434723153831272,
+   "rel_dev": 0.29159215928153487,
+   "class": "NEARMISS",
+   "note": "pi from cbrt4"
+  },
+  {
+   "id": "46",
+   "lhs": 2.0023193141446014,
+   "target": 2.00231930436182,
+   "sigma_exp": 18813.040868737884,
+   "class": "EXCLUDED",
+   "note": "g_e golden form 1"
+  },
+  {
+   "id": "47c",
+   "lhs": 0.002319303718862636,
+   "target": 0.0023193043618201514,
+   "sigma_exp": 1236.4567602957975,
+   "class": "EXCLUDED",
+   "note": "Delta g_e = phi^6/12+ln(1-phi^6/24)"
+  },
+  {
+   "id": "47id",
+   "lhs": 0.0023193037188626907,
+   "rhs": -2.7000311724157885e-06,
+   "rel_dev": 1.001164155927685,
+   "class": "NEARMISS",
+   "note": "series identity (truncation)"
+  },
+  {
+   "id": "50max-loc",
+   "lhs": 0.6180339843095322,
+   "rhs": 0.6180339887498949,
+   "rel_dev": 7.184657842433654e-09,
+   "class": "NEARMISS",
+   "note": "argmax of Hardy P is phi"
+  },
+  {
+   "id": "50max-val",
+   "lhs": 0.09016994374947422,
+   "rhs": 0.09016994374947428,
+   "rel_dev": 6.156281009278269e-16,
+   "class": "EXACT",
+   "note": "max Hardy probability = phi^5 EXACTLY"
+  },
+  {
+   "id": "50closed",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.09016994374947451,
+   "rel_dev": 2.6164194289432574e-15,
+   "class": "EXACT",
+   "note": "phi^5 = (5 sqrt5 - 11)/2"
+  },
+  {
+   "id": "53",
+   "lhs": 2.7755575615628914e-17,
+   "rhs": 0.0,
+   "rel_dev": 2.7755575615628914e-17,
+   "class": "EXACT",
+   "note": "h(x) two forms, grid worst"
+  },
+  {
+   "id": "52a",
+   "lhs": 0.09016994374947429,
+   "rhs": 0.09016994374947428,
+   "rel_dev": 1.539070252319567e-16,
+   "class": "EXACT",
+   "note": "q(phi) = phi^5"
+  },
+  {
+   "id": "52b",
+   "lhs": 0.09016994374947429,
+   "rhs": 0.09016994374947428,
+   "rel_dev": 1.539070252319567e-16,
+   "class": "EXACT",
+   "note": "q(1) = phi^5"
+  },
+  {
+   "id": "52c",
+   "lhs": -2.220446049250313e-16,
+   "rhs": 0.0,
+   "rel_dev": 2.220446049250313e-16,
+   "class": "EXACT",
+   "note": "is x=phi a critical point of q? (claimed 'exactly')"
+  },
+  {
+   "id": "55",
+   "lhs": 0.18033988749894855,
+   "target": 0.18533834586466164,
+   "sigma_exp": 0.8989789893709804,
+   "class": "UNEXCLUDED",
+   "note": "Om_M/Om_DM vs 2 phi^5"
+  },
+  {
+   "id": "56",
+   "lhs": 0.4508497187473714,
+   "target": 0.4604936468526362,
+   "sigma_exp": 0.8726077774705072,
+   "class": "UNEXCLUDED",
+   "note": "Om_m/Om_L vs 5 phi^5"
+  },
+  {
+   "id": "58",
+   "lhs": 0.15450849718747373,
+   "target": 0.1563590231525531,
+   "sigma_exp": 1.0759189319371663,
+   "class": "UNEXCLUDED",
+   "note": "baryon fraction vs phi/4"
+  },
+  {
+   "id": "66",
+   "lhs": 0.04508497187473714,
+   "target": 0.0493,
+   "sigma_exp": 8.430056250525716,
+   "class": "EXCLUDED",
+   "note": "Om_M = phi^5/2 vs Planck Om_b"
+  },
+  {
+   "id": "69",
+   "lhs": 0.7360679774997898,
+   "target": 0.6847,
+   "sigma_exp": 7.036709246546552,
+   "class": "EXCLUDED",
+   "note": "Om_DE = 2phi - 1/2"
+  },
+  {
+   "id": "72",
+   "lhs": 0.7331116292502735,
+   "target": 0.6847,
+   "sigma_exp": 6.631730034284046,
+   "class": "EXCLUDED",
+   "note": "Om_PD variant"
+  },
+  {
+   "id": "OmDE-spread",
+   "class": "INCONSISTENT",
+   "lhs": 0.683,
+   "rhs": 0.736068,
+   "note": "five in-paper Omega_DE values spread 7.3 experimental sigma"
+  },
+  {
+   "id": "60a",
+   "lhs": 3.0901699437494745,
+   "rhs": 3.090169943749474,
+   "rel_dev": 1.4371028711489716e-16,
+   "class": "EXACT",
+   "note": "5 phi = 3 + phi^5 (exact metallic identity)"
+  },
+  {
+   "id": "74",
+   "lhs": 13.897886248013982,
+   "rhs": 13.897886,
+   "rel_dev": 1.7845446297260567e-08,
+   "class": "NEARMISS",
+   "note": "Fibonacci net angle, self-consistency"
+  },
+  {
+   "id": "76",
+   "lhs": 13.897886248013982,
+   "rhs": 13.884680500542963,
+   "rel_dev": 0.0009501982701079127,
+   "class": "NEARMISS",
+   "note": "alpha_F ~ 4pi+(pi+1)/pi"
+  },
+  {
+   "id": "78",
+   "lhs": 0.23999592748983453,
+   "rhs": 0.23999632297286533,
+   "rel_dev": 1.6478712085971736e-06,
+   "class": "NEARMISS",
+   "note": "sine gimmick"
+  },
+  {
+   "id": "87",
+   "lhs": 228.0295221573489,
+   "rhs": 228.0,
+   "rel_dev": 0.0001294663825525885,
+   "class": "NEARMISS",
+   "note": "228 from the net angle"
+  },
+  {
+   "id": "106",
+   "lhs": 0.1415355272222222,
+   "rhs": 0.14159265358979312,
+   "rel_dev": 0.00040345573108905176,
+   "class": "NEARMISS",
+   "note": "a1/360 ~ pi-3"
+  },
+  {
+   "id": "107",
+   "lhs": 0.2830710544444444,
+   "rhs": 0.28327723285795325,
+   "rel_dev": 0.000727832630348468,
+   "class": "NEARMISS",
+   "note": "a1/180 ~ pi phi^5"
+  },
+  {
+   "id": "111",
+   "lhs": 0.8899416736757911,
+   "rhs": 0.8899967,
+   "rel_dev": 6.182755981998588e-05,
+   "class": "NEARMISS",
+   "note": "a1 = pi^2 phi^5 rad = 50.99 deg: check via degrees (pi^2 phi^5 rad = 50.9899 deg)"
+  },
+  {
+   "id": "112",
+   "lhs": 125.23002429002176,
+   "target": 125.2,
+   "sigma_exp": 0.27294809110688073,
+   "class": "UNEXCLUDED",
+   "note": "Higgs mass from the DEGREE VALUE of an angle"
+  },
+  {
+   "id": "114",
+   "lhs": 133.39590763934427,
+   "rhs": 133.39613551802893,
+   "rel_dev": 1.708285504446052e-06,
+   "class": "NEARMISS",
+   "note": "Dirac large number 20th root"
+  },
+  {
+   "id": "116",
+   "lhs": 0.09029258256237331,
+   "rhs": 0.09029261917657937,
+   "rel_dev": 4.055060800078958e-07,
+   "class": "NEARMISS",
+   "note": "alpha_m definition"
+  },
+  {
+   "id": "117",
+   "lhs": 51.05925252928833,
+   "rhs": 51.05927,
+   "rel_dev": 3.4216532411187646e-07,
+   "class": "NEARMISS",
+   "note": "am*pi^2 (degrees arithmetic)"
+  },
+  {
+   "id": "120",
+   "lhs": 9.869604401089358,
+   "rhs": 9.835223286935653,
+   "rel_dev": 0.0034835351809957157,
+   "class": "NEARMISS",
+   "note": "pi^2 ~ a1*aF/72"
+  },
+  {
+   "id": "123",
+   "lhs": 0.2027325540540822,
+   "rhs": 0.20273,
+   "rel_dev": 1.2598144852047548e-05,
+   "class": "NEARMISS",
+   "note": "Pauling ice entropy (their digits)"
+  },
+  {
+   "id": "123b",
+   "lhs": 0.2027325540540822,
+   "rhs": 0.20264236728467555,
+   "rel_dev": 0.0004448558832962901,
+   "class": "NEARMISS",
+   "note": "vs 2/pi^2"
+  },
+  {
+   "id": "124",
+   "lhs": 3.618033988749895,
+   "rhs": 3.618033988749895,
+   "rel_dev": 0.0,
+   "class": "EXACT",
+   "note": "3+phi = sqrt(13+phi^5) EXACT?"
+  },
+  {
+   "id": "125",
+   "lhs": 18.090169943749473,
+   "rhs": 18.090169943749473,
+   "rel_dev": 0.0,
+   "class": "EXACT",
+   "note": "18+phi^5 from 5 turns"
+  },
+  {
+   "id": "127",
+   "lhs": 0.08271182329550238,
+   "rhs": 0.08271182329550233,
+   "rel_dev": 5.033544391193135e-16,
+   "class": "EXACT",
+   "note": "quasicrystal entropy identity"
+  },
+  {
+   "id": "130",
+   "lhs": 0.22961587625675173,
+   "rhs": 0.23076923076923078,
+   "rel_dev": 0.004997869554075903,
+   "class": "NEARMISS",
+   "note": "optimal doping ~ 3/13"
+  },
+  {
+   "id": "131",
+   "lhs": 0.22928276587694402,
+   "rhs": 0.22918,
+   "rel_dev": 0.00044820584988571044,
+   "class": "NEARMISS",
+   "note": "sigma0 via theta_ea (their 0.22918)"
+  },
+  {
+   "id": "133",
+   "lhs": 0.39326960927306875,
+   "rhs": 0.3934466291663163,
+   "rel_dev": 0.00044992098069978074,
+   "class": "NEARMISS",
+   "note": "theta_ea ~ 5 phi^3/3"
+  },
+  {
+   "id": "133b",
+   "lhs": 0.39326960927306875,
+   "rhs": 0.39269908169872414,
+   "rel_dev": 0.0014507288661312907,
+   "class": "NEARMISS",
+   "note": "theta_ea ~ pi/8"
+  },
+  {
+   "id": "136",
+   "lhs": 0.2293289426931281,
+   "rhs": 0.22933,
+   "rel_dev": 4.610416744061047e-06,
+   "class": "NEARMISS",
+   "note": "sigma0 ~ 2/delta1 (their digits)"
+  },
+  {
+   "id": "137",
+   "lhs": 0.09016994374947428,
+   "rhs": 0.09005726520253073,
+   "rel_dev": 0.0012496242346187324,
+   "class": "NEARMISS",
+   "note": "phi^5 ~ pi/(4 delta1)"
+  },
+  {
+   "id": "139",
+   "lhs": 137.03596176556383,
+   "target": 137.035999177,
+   "sigma_exp": 1781.4969610407431,
+   "class": "EXCLUDED",
+   "note": "alpha^-1 from 228+theta_ea"
+  },
+  {
+   "id": "140",
+   "lhs": 15.894569765182629,
+   "rhs": 15.89456977,
+   "rel_dev": 3.0308284278186386e-10,
+   "class": "NEARMISS",
+   "note": "their exact expression, self-check"
+  },
+  {
+   "id": "140b",
+   "lhs": 15.89456977,
+   "rhs": 15.88955088048848,
+   "rel_dev": 0.00031576126841715614,
+   "class": "NEARMISS",
+   "note": "approx 1"
+  },
+  {
+   "id": "140c",
+   "lhs": 15.89456977,
+   "rhs": 15.894500467644022,
+   "rel_dev": 4.360127828634598e-06,
+   "class": "NEARMISS",
+   "note": "approx 2"
+  },
+  {
+   "id": "145",
+   "lhs": 31.006276680299816,
+   "rhs": 31.0,
+   "rel_dev": 0.00020243257081570729,
+   "class": "NEARMISS",
+   "note": "pi^3 ~ 31"
+  },
+  {
+   "id": "147",
+   "lhs": 137.0,
+   "rhs": 137,
+   "rel_dev": 0.0,
+   "class": "EXACT",
+   "note": "integer identity"
+  },
+  {
+   "id": "149",
+   "lhs": 137.00028813164496,
+   "rhs": 137.0,
+   "rel_dev": 2.1031462699383696e-06,
+   "class": "NEARMISS",
+   "note": "137 from pi (their 137.0002881)"
+  },
+  {
+   "id": "151",
+   "lhs": 2.2351134192478392,
+   "rhs": 2.23606797749979,
+   "rel_dev": 0.0004268914279689672,
+   "class": "NEARMISS",
+   "note": "(12/13)^6+(13/12)^6 ~ sqrt5"
+  },
+  {
+   "id": "152",
+   "lhs": 0.011480793812837587,
+   "rhs": 0.011458893933582643,
+   "rel_dev": 0.0019075230869886137,
+   "class": "NEARMISS",
+   "note": "alpha residue vs phi^5"
+  },
+  {
+   "id": "154",
+   "lhs": 11.090169967980616,
+   "rhs": 11.090169943749475,
+   "rel_dev": 2.1849206646671313e-09,
+   "class": "NEARMISS",
+   "note": "sqrt(123-1/123) = 11+phi^5 EXACT?"
+  },
+  {
+   "id": "155",
+   "lhs": 2.6180339910379735,
+   "rhs": 2.618033988749895,
+   "rel_dev": 8.739682614117903e-10,
+   "class": "NEARMISS",
+   "note": "5th root = Phi^2?"
+  },
+  {
+   "id": "156",
+   "lhs": 1.61803398945695,
+   "rhs": 1.618033988749895,
+   "rel_dev": 4.369840718783954e-10,
+   "class": "NEARMISS",
+   "note": "10th root = Phi?"
+  },
+  {
+   "id": "159",
+   "lhs": 1.902011319320558,
+   "rhs": 1.902113032590307,
+   "rel_dev": 5.347383042250495e-05,
+   "class": "NEARMISS",
+   "note": "123/34 vs 3+phi"
+  },
+  {
+   "id": "161",
+   "lhs": 494.0,
+   "rhs": 493.99999999999994,
+   "rel_dev": 1.150676495158057e-16,
+   "class": "EXACT",
+   "note": "coefficient identity"
+  },
+  {
+   "id": "163",
+   "lhs": 38.00909030811854,
+   "rhs": 38.0,
+   "rel_dev": 0.0002391614228293107,
+   "class": "NEARMISS",
+   "note": "123 phi/2 ~ 38"
+  },
+  {
+   "id": "165",
+   "lhs": 0.2832772328579533,
+   "rhs": 0.28327723285795325,
+   "rel_dev": 1.9596051073787977e-16,
+   "class": "EXACT",
+   "note": "Kepler pyramid: V_O/V_pyr = pi phi^5 (exact theorem)"
+  },
+  {
+   "id": "168",
+   "lhs": 51.82729237298775,
+   "rhs": 51.82729,
+   "rel_dev": 4.578645039198842e-08,
+   "class": "NEARMISS",
+   "note": "Kepler face angle"
+  },
+  {
+   "id": "165-monument",
+   "class": "NEARMISS",
+   "lhs": 1.2728693613511048,
+   "rhs": 1.272019649514069,
+   "rel_dev": 0.0006680021313825327,
+   "note": "monument slope 1.27287 vs Kepler sqrt(Phi) = 1.27202 vs pi-theory 4/pi = 1.27324: the two theories differ by 0.10%, inside build tolerance - the monument cannot decide"
+  },
+  {
+   "id": "169",
+   "lhs": 137.04010956398366,
+   "target": 137.035999177,
+   "sigma_exp": 195732.71350736832,
+   "class": "EXCLUDED",
+   "note": "alpha from two angles"
+  },
+  {
+   "id": "table5",
+   "class": "INCONSISTENT",
+   "lhs": 50.911688,
+   "rhs": 51.059277,
+   "note": "the paper's own Table 5 lists 14 interchangeable 'conditions' for alpha_1 spanning 50.912..51.059 (0.29% wide): any target in the window is 'matched' by construction"
+  },
+  {
+   "id": "riemann-lnzeta",
+   "lhs": 0.4976999223017315,
+   "rhs": 0.4977003024707453,
+   "rel_dev": 7.638512814593451e-07,
+   "class": "NEARMISS",
+   "note": "ln zeta(2) = sum_p sum_m 1/(m p^2m)"
+  },
+  {
+   "id": "riemann-J",
+   "lhs": 28.533333333333335,
+   "rhs": 28.533333333333335,
+   "rel_dev": 0.0,
+   "class": "EXACT",
+   "note": "J(100) both ways"
+  }
+ ]
+}
