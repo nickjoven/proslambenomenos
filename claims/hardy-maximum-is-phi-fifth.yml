@@ -1,0 +1,39 @@
+id: hardy-maximum-is-phi-fifth
+statement: >
+  Hardy's nonlocality paradox for two qubits - local binary
+  projective measurements A0/A1 and B0/B1, zero-constraints
+  P(A0+,B0+) = 0, P(A1+,B0-) = 0, P(A0-,B1+) = 0, and the paradox
+  event p_Hardy = P(A1+,B1+), which every local hidden-variable
+  model obeying the constraints sends to zero (exhaustive over the
+  16 deterministic assignments) - has quantum maximum equal to the
+  fifth power of the golden mean: max p_Hardy = (5 sqrt 5 - 11)/2
+  = phi^5 = 0.0901699..., phi = (sqrt 5 - 1)/2. The three
+  constraints eliminate three measurement angles; the remaining
+  freedom is removed by the square identity D - (1+k^3)^2 =
+  k^2 (a - k/a)^2; the envelope p_env(k) = k^2 (1-k)^2 /
+  ((1+k^2)(1-k+k^2)^2), k = c/s, is stationary where y = k + 1/k
+  solves y^2 - 3y + 1 = 0, and (y-2)/(y(y-1)^2) at y* =
+  (3+sqrt5)/2 = Phi^2 lands at (5 sqrt 5 - 11)/2 by exact Q(sqrt5)
+  field arithmetic. The optimal state is non-maximally entangled
+  with golden Schmidt structure c s = phi^2, {c^2, s^2} =
+  (1 -+ sqrt(6 sqrt5 - 13))/2 = {0.177352, 0.822648}, while the
+  maximally entangled state gives p_Hardy = 0. A blind 200-start
+  seeded search over the full 5-parameter space (Schmidt angle plus
+  four measurement angles), penalty schedule then
+  constraint-eliminated polish, lands at a maximum that differs
+  from the pinned phi^5 by less than 1e-9 (the run's deviation:
+  2.4e-16). Scope: two qubits, two projective binary settings per
+  side, pure states; no Hardy ladders, no POVMs, and no connection
+  claimed to golden-ratio appearances anywhere else.
+premises: []
+prediction: P-21
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p21_derive.py (13 EQ lines: LHV exhaustion, CAS-checked constraint elimination and closed form, square-identity minimization, stationarity quintic and its y-collapse, the maximum and the Schmidt structure in exact Q(sqrt5) arithmetic; pins in p21_registration.json committed before the search existed); scripts/experiments/p21_hardy.py with p21_results.json (200-start seeded blind search, seed 20260826, penalty schedule 1e3..1e9, registered polish); independently reimplemented by scripts/verify/p21_hardy_maximum.py, which re-derives the constraint elimination and the closed form against direct amplitudes, reproduces the Q(sqrt5) algebra with its own field implementation, and reruns a fresh 40-start search with a different seed (20260827), reading nothing from the registration or results files"
+    method: reimplementation
+null_system: "the local polytope is the null: under the three Hardy zero-constraints every deterministic local assignment - hence every local hidden-variable mixture - gives the paradox event probability zero (exhaustive over all 16 assignments, EQ1), and the maximally entangled quantum state joins the null (p_Hardy = 0, EQ13); the claim's content is that quantum mechanics on non-maximally entangled states departs from zero by at most, and at the golden Schmidt structure by, phi^5"
+falsifier: "scripts/verify/p21_hardy_maximum.py --mutant maximally-entangled-best"
+novelty:
+  status: classical
+  citation: "Hardy, PRL 71, 1665 (1993) - the paradox and the maximum probability (5 sqrt 5 - 11)/2; Mermin, Am. J. Phys. 62, 880 (1994) - the pedagogical form; the golden-mean reading phi^5 is standard in the Hardy literature"
+status: verified
