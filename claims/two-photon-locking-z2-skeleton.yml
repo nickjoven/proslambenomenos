@@ -1,0 +1,40 @@
+id: two-photon-locking-z2-skeleton
+statement: >
+  On the Adler-class phase equations that PRB 111, 184519 names as
+  the universal frame for its Josephson-photonics stabilization
+  (fundamental: dtheta/dt = delta - eps sin theta; two-photon /
+  squeezed, reference injected at twice the emission frequency:
+  dtheta/dt = delta - eps sin 2 theta; additive white phase noise of
+  strength D), the following holds by registered computation
+  against quadrature pins derived in advance. The two-photon
+  equation shares the fundamental's Arnold tongue |delta| < eps
+  exactly (the phi = 2 theta reduction) and carries TWO stable
+  locked phases separated by pi. With noise, the drift velocity on
+  six pinned (delta, eps, D) cells spanning noise-activated,
+  marginal, and running regimes lands inside bands derived from the
+  estimator noise around the constant-flux Fokker-Planck quadrature
+  (worst cell 0.38735 against pinned 0.37400); the locked-phase
+  variance follows the von Mises quadrature on a four-point
+  D-ladder inside its derived bands; and the phase hops between the
+  two locked values at the rate pinned by exact mean-first-passage
+  quadrature (0.00204/0.00484/0.00984 measured against
+  0.00188/0.00496/0.00940 pinned, inside Poisson bands), with every
+  one of the 1337 committed hops observed having size pi - none 2
+  pi. Scope: the dimensionless classical skeleton only; the
+  tongue-edge beat cells and the protection clause failed AS
+  REGISTERED (R-17, winding quantization and an underived
+  threshold) and are not part of this claim - the protection
+  statement lives in locking-protects-mod-pi-observable under its
+  own registration; nothing quantum is claimed.
+premises: []
+prediction: P-22
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p22_derive.py (beat closed form, fixed-point structure, FPE mobility quadrature validated on four exact limits, von Mises variance, MFPT hop rates, derived bands; pins in p22_registration.json); scripts/experiments/p22_locking.py with p22_results.json (seeded Euler-Maruyama, clauses per P-22 as amended by P-22a); independently reimplemented by scripts/verify/p22_locking_skeleton.py with its own integrator, own quadrature, own Bessel continued fraction, and fresh seeds, reading nothing from results files"
+    method: reimplementation
+null_system: "the null is that twice-frequency injection behaves as ordinary injection with a relabeled frequency: it does not - the sin 2 theta equation carries a Z2 doublet of locked phases that ordinary Adler locking lacks, and the committed-hop record (1337 hops, all size pi) is the direct observation of that doublet; the tongue identity meanwhile shows what IS inherited from the fundamental"
+falsifier: "scripts/verify/p22_locking_skeleton.py --mutant single-phase-lock"
+novelty:
+  status: classical
+  citation: "Adler, Proc. IRE 34, 351 (1946); Stratonovich, Topics in the Theory of Random Noise (1963) for the tilted-washboard mobility; the sin 2 theta bistability is the standard subharmonic injection-locking doublet (e.g. parametric phase-locking lore); the P-22 exercise is reproduction with registered pins, not novelty"
+status: verified

@@ -337,3 +337,31 @@ claims-checked:
   (injection locking, Adler class) - the rigorous instance of the
   "reference wave" motif, and the target of the next locking-line
   heading (A-10).
+
+## LC-13 — 2026-08-26 — what PRB 111, 184519 actually states
+prediction: P-22
+claims-checked:
+- Danner, Hoehe, Padurariu, Ankerhold, Kubala, Phys. Rev. B 111,
+  184519 (2025): dc-biased Josephson junction coupled to a microwave
+  cavity emits correlated photon pairs; bias-voltage noise enters
+  the junction phase as the integral of V(t) and causes phase
+  diffusion that destroys coherence; a weak ac reference added to
+  the dc bias (or injected into the cavity) stabilizes the emission.
+  Extracted verbatim from the PDF text: the two-photon/squeezed
+  scenario "relies on the injection of a signal at twice the
+  frequency of the emitted radiation", showing "strikingly
+  different features" from standard locking; the conclusion places
+  the phenomenon in the class of "the respective universal
+  phenomenological Adler and Kuramoto models" (their ref [52] is
+  Adler, Proc. IRE 34, 351 (1946)); fundamental-resonance locking
+  (one photon per Cooper pair) is treated in their ref [42].
+- Extraction honesty: the paper's display equations are not
+  machine-extractable from the PDF (glyph-encoded); P-22 therefore
+  reproduces the NAMED universality class (Adler dynamics, with the
+  twice-frequency injection entering as sin(2 theta)), not the
+  paper's device-specific coefficients - declared in the P-22
+  scope, and the reason no clause references their figures.
+- Adler 1946 (Proc. IRE 34, 351): locking range proportional to
+  injection amplitude, beat sqrt(detuning^2 - range^2) - the
+  closed forms the P-22 derivation layer re-checks by quadrature
+  (EQ1) before anything stochastic runs.
