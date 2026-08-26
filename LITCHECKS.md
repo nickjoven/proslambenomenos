@@ -300,3 +300,40 @@ claims-checked:
   quant-ph/0501159); information causality bounds quantum
   correlations at Tsirelson for the CHSH slice (Pawlowski et al.,
   Nature 461, 1101 (2009)).
+
+## LC-12 — 2026-08-26 — the Otto 2025 corpus: sources checked
+prediction: none (audit; see notes/otto25_mechanization.md)
+claims-checked:
+- Hardy's maximum nonlocality probability equals the fifth power of
+  the golden mean, (5 sqrt 5 - 11)/2 = 0.0901699: REAL and
+  peer-reviewed (Hardy, PRL 71, 1665 (1993); Mermin, Am. J. Phys.
+  62, 880 (1994)). The one theorem-grade golden number in the
+  paper's physics; everything else attaches by proximity.
+- CODATA/PDG anchors used by the mechanization: alpha^-1 =
+  137.035999177(21) (the paper's own quote); g_e =
+  2.00231930436182(52) (its eq. 49, Penning-trap lineage); m_H =
+  125.20 +/- 0.11 GeV (PDG 2024); Planck 2018 Omega_L = 0.6847 +/-
+  0.0073.
+- The paper's load-bearing physics sources are a self-referential
+  non-peer-reviewed cluster: Guynn (viXra 1810.0456) for the
+  "maximum galactic velocity" beta_g and the g_e "calculation
+  without any QED construct"; Suleiman's Information Relativity
+  (Nova book); El Naschie's E-infinity (Chaos Solitons Fractals,
+  author-adjacent); Markoulakis's "superluminal graviton condensate"
+  (10^22 c). None of these is an independent measurement; relations
+  calibrated against beta_g inherit its status.
+- Klein's icosahedral form z^20 - 228 z^15 + 494 z^10 + 228 z^5 + 1
+  is genuine (Klein 1884; Nash 2013 exposition); the paper's quartic
+  reduction and appendix radicals check out exactly (mechanization
+  rows app-root1..4, 14, 11, 161).
+- The Great Pyramid slope ambiguity is classical lore now
+  quantified in-repo: Kepler sqrt(Phi) = 1.27202 vs 4/pi = 1.27324
+  differ by 0.10%, inside the monument's build tolerance
+  (surveyed 146.59 m / 230.33 m base); the phi-vs-pi debate is
+  undecidable from the building.
+- The 2025 companion PRB 111, 184519 (Danner, Hoehe, Padurariu,
+  Ankerhold, Kubala): real Josephson-photonics work where an
+  injected REFERENCE SIGNAL phase-locks squeezed microwave states
+  (injection locking, Adler class) - the rigorous instance of the
+  "reference wave" motif, and the target of the next locking-line
+  heading (A-10).
