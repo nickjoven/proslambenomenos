@@ -1,0 +1,46 @@
+{
+ "prediction": "P-21",
+ "seed": 20260826,
+ "starts": 200,
+ "lambda_schedule": [
+  1000.0,
+  100000.0,
+  10000000.0,
+  1000000000.0
+ ],
+ "best_penalized": {
+  "x": [
+   2.005981317575057,
+   0.5981246046710942,
+   -0.30625183555848023,
+   0.5981245954296845,
+   -0.30625184127379435
+  ],
+  "p": 0.09050273553544463,
+  "constraint_probs": [
+   1.4891170977707605e-07,
+   1.7477943338738447e-07,
+   1.7477943323180247e-07
+  ],
+  "k_canonical": 0.46491160522704833,
+  "dev_from_pinned": 0.00033279178597012127
+ },
+ "polished": {
+  "k": 0.46431261247701366,
+  "p": 0.09016994374947428,
+  "dev_from_pinned": -2.3592239273284576e-16,
+  "weight_min": 0.17735163638075488,
+  "weight_max": 0.8226483636192451,
+  "weight_dev_from_pinned": 4.5946599303015034e-10
+ },
+ "me_slice_max": 1.232595164407831e-32,
+ "starts_within_1e-3_of_pinned": 200,
+ "pinned_max": 0.09016994374947451,
+ "clauses": {
+  "a_polished_max_within_1e-9": true,
+  "b_schmidt_weights_within_1e-6": true,
+  "c_me_slice_below_1e-12": true,
+  "mind_change_exceedance": false,
+  "mind_change_search_floor": false
+ }
+}

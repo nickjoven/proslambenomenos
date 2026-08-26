@@ -791,3 +791,23 @@ generalizations; any connection between phi here and phi numerology
 elsewhere - notes/otto25_mechanization.md records why that
 separation matters, and this line exists to isolate the ONE
 theorem-grade golden number.
+
+## R-16 — 2026-08-26 — resolves P-21
+outcome: all three clauses as registered; neither mind-change fired.
+(a) the blind search's polished maximum lands at 0.090169943749474,
+within 2.4e-16 of the pinned (5 sqrt 5 - 11)/2 = phi^5 (bar 1e-9).
+(b) the optimizer's canonicalized Schmidt weights land at
+0.177351636381 / 0.822648363619, within 4.6e-10 of the pinned
+golden values (1 -+ sqrt(6 sqrt5 - 13))/2 (bar 1e-6); found
+k = 0.464312612477 against the pinned 0.464312613208 (the envelope
+is quadratically flat at its top, so the 7.3e-10 offset in k costs
+nothing in p). (c) the maximally-entangled slice tops out at
+1.2e-32 over the registered grid and polish (bar 1e-12) - Hardy's
+paradox vanishes on the maximally entangled state, as derived in
+EQ13 before the search ran. Search behavior: 200/200 starts reach
+the global basin; the best penalized-stage point sits ABOVE the
+pinned maximum by 3.3e-4 at worst constraint probability 1.7e-7 -
+the standard penalty-method infeasibility offset of order
+C^2/(4 lambda), removed by the registered constraint-eliminated
+polish; no feasible exceedance of phi^5 anywhere in the run. Filed
+as hardy-maximum-is-phi-fifth.
