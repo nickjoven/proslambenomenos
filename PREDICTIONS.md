@@ -738,3 +738,56 @@ improvement factor 756. Reading: P-14's fired clause was the C1
 corners, not the first-order theory - the corner diagnosis
 survives its registered test. A-6 closes. Filed as
 c2-profile-recovers-first-order-shifts.
+
+## P-21 — 2026-08-26 — Hardy's maximum is the fifth power of the golden mean
+question: Hardy's nonlocality paradox (Hardy, PRL 71, 1665 (1993);
+Mermin, Am. J. Phys. 62, 880 (1994)): two qubits, local projective
+binary measurements A0/A1 and B0/B1, three zero-constraints
+P(A0+,B0+) = 0, P(A1+,B0-) = 0, P(A0-,B1+) = 0, and the paradox
+event p_Hardy = P(A1+,B1+), which every local hidden-variable model
+obeying the constraints sends to zero. What is the maximum of
+p_Hardy over all two-qubit pure states and measurement choices, and
+does it land on the pinned (5 sqrt 5 - 11)/2 = phi^5 - the one
+golden-mean physics number that survived the Otto mechanization
+(notes/otto25_mechanization.md, A-9) as a theorem rather than a fit?
+method: derivation layer scripts/experiments/p21_derive.py (run
+first, output committed): real Schmidt form psi = c|00> + s|11>,
+k = c/s; the LHV exhaustion over all 16 deterministic assignments
+(EQ1); the three constraints eliminated analytically into tangents
+(a, -k/a, -k^2/a, ka), CAS-checked to kill all three amplitudes
+(EQ2); the reduced p_Hardy in closed form (EQ3); the measurement
+freedom minimized EXACTLY via the square identity D - (1+k^3)^2 =
+k^2(a - k/a)^2 (EQ4); the envelope p_env(k) = k^2(1-k)^2 /
+((1+k^2)(1-k+k^2)^2) with its k <-> 1/k tie (EQ5); stationarity
+polynomial k^5 - 2k^4 - 2k + 1 (EQ6), factored over the integers
+(EQ7), collapsed in y = k + 1/k to y^2 - 3y + 1 = 0 (EQ8-EQ9); the
+maximum (y-2)/(y(y-1)^2) at y* = (3+sqrt5)/2 computed in exact
+Q(sqrt5) arithmetic (EQ10-EQ11) with the optimal Schmidt structure
+c s = phi^2, {c^2, s^2} = (1 -+ sqrt(6 sqrt5 - 13))/2 (EQ12), and
+the vanishing maximally-entangled slice (EQ13). Everything pinned
+in p21_registration.json BEFORE the second route runs. Route 2,
+scripts/experiments/p21_hardy.py: blind seeded multi-start
+Nelder-Mead (implemented in-repo, stdlib) over the FULL 5-parameter
+space (Schmidt angle + 4 measurement angles), 200 starts, seed
+20260826, maximizing p_Hardy - lambda * sum of squared constraint
+probabilities on the registered schedule lambda = 1e3, 1e5, 1e7,
+1e9, then polished with constraints eliminated (envelope in k,
+golden-section to 1e-12).
+expects: (a) the blind search's polished global maximum lands
+within 1e-9 of the pinned (5 sqrt 5 - 11)/2 = 0.090169943749...;
+(b) the optimizer's canonicalized Schmidt weights land within 1e-6
+of the pinned golden values (1 -+ sqrt(6 sqrt5 - 13))/2 =
+{0.177351636840, 0.822648363160}; (c) the maximally-entangled
+slice - the constraint-eliminated p(k = 1, a) over the registered
+grid and polish - stays below 1e-12.
+changes-my-mind: a blind-search maximum exceeding the pinned phi^5
+by more than 1e-9 (the classical result or the constraint algebra
+is wrong - record, do not rescue); a maximum found below
+phi^5 - 1e-6 after the registered 200 starts (optimizer
+inadequacy - record as method failure, not physics).
+not-claimed-in-advance: more than two qubits or two settings per
+side; POVMs beyond projective measurements; the Hardy ladder
+generalizations; any connection between phi here and phi numerology
+elsewhere - notes/otto25_mechanization.md records why that
+separation matters, and this line exists to isolate the ONE
+theorem-grade golden number.

@@ -1,0 +1,40 @@
+{
+ "prediction": "P-21",
+ "pinned_max_exact": "(5*sqrt(5)-11)/2 = phi^5, phi = (sqrt(5)-1)/2",
+ "pinned_max": 0.09016994374947451,
+ "phi": 0.6180339887498949,
+ "y_star": 2.618033988749895,
+ "k_star": 0.4643126132081265,
+ "theta_star": 1.1361039830638027,
+ "schmidt": {
+  "convention": "psi = c|00> + s|11>, k = c/s <= 1 canonical (the k <-> 1/k mirror ties, EQ5)",
+  "c2": 0.17735163684022087,
+  "s2": 0.8226483631597792,
+  "cs": 0.3819660112501051,
+  "weight_min": 0.17735163684022087,
+  "weight_max": 0.8226483631597792
+ },
+ "closed_form": "p_env(k) = k^2 (1-k)^2 / ((1+k^2) (1-k+k^2)^2)",
+ "stationarity": "k^5 - 2k^4 - 2k + 1 = 0 -> (k+1)(k^4-3k^3+3k^2-3k+1) = 0 -> y = k+1/k: y^2 - 3y + 1 = 0 -> y* = (3+sqrt5)/2",
+ "optimizer": {
+  "starts": 200,
+  "seed": 20260826,
+  "dims": 5,
+  "parameters": "theta (Schmidt angle), alpha0, alpha1, beta0, beta1",
+  "penalty": "p_Hardy - lambda * sum_i P_i^2 over the three zero-constraint probabilities",
+  "lambda_schedule": [
+   1000.0,
+   100000.0,
+   10000000.0,
+   1000000000.0
+  ],
+  "polish": "constraint-eliminated envelope p_env(k), golden-section in k to 1e-12",
+  "me_slice": "constraint-eliminated p(k=1, a): 1000-point grid in log10 a in [-3, 3] plus Nelder-Mead polish in a"
+ },
+ "tolerances": {
+  "max_abs_dev_from_pinned": 1e-09,
+  "schmidt_weight_dev": 1e-06,
+  "me_slice_ceiling": 1e-12,
+  "search_floor_below_pinned": 1e-06
+ }
+}
