@@ -963,3 +963,18 @@ the same commit and produced by EQ1's two agreeing routes, are
 numbers at the first and third cells were hand-transcription
 errors; p23_registration.json governs, as the entry itself states.
 Recorded before the registered computation ran.
+
+## R-18 — 2026-08-26 — resolves P-23
+outcome: all cells as registered; the mind-change did not fire.
+Ensemble means of <cos 2 theta> against the derived Bessel-ratio
+pins on fresh seeds: D = 0.2: 0.76437 +/- 0.00135 vs 0.76500
+(0.47 SEM); D = 0.25: 0.69819 +/- 0.00170 vs 0.69777 (0.24 SEM);
+D = 0.3: 0.63334 +/- 0.00112 vs 0.63472 (1.23 SEM). The bare-phase
+means sit inside their 4-SEM bands around the derived zero
+(worst 2.7 SEM at D = 0.3) with every member logging at least 84,
+84, 150 committed pi-hops respectively. The protection statement
+that died in R-17 under an underived threshold holds when the
+threshold is the derived equilibrium: the mod-pi observable sits
+on I1(eps/2D)/I0(eps/2D) while hopping scrambles the bare phase to
+its derived null. Filed as locking-protects-mod-pi-observable;
+the P-22 core is filed separately as two-photon-locking-z2-skeleton.
