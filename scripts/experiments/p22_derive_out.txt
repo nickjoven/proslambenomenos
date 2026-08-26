@@ -1,0 +1,7 @@
+EQ 1 PASS  oint dtheta/(delta - eps sin theta) = 2 pi/sqrt(delta^2 - eps^2)  | d=1.5,e=1.0: 5.619851785 vs 5.619851785; d=2.0,e=1.0: 3.627598728 vs 3.627598728
+EQ 2 PASS  fundamental: 1 stable phase per 2pi; two-photon: 2 stable phases, pi apart  | stability signs checked at asin(0.6); separation = pi exactly
+EQ 3 PASS  d(2 theta)/dt = 2 delta - 2 eps sin(2 theta): Adler in phi  | worst dev 0.00e+00; tongue |delta| < eps and theta-beat sqrt(delta^2-eps^2) follow
+EQ 4 PASS  FPE mobility quadrature reproduces all four exact limits  | eps=0: 0.69999725 vs 0.7; D=60: 0.69990 vs 0.7; D->0 out: 1.117890 vs 1.118034; D->0 in: 9.52e-07; grid-conv: 5.2e-06
+EQ 5 PASS  two-photon locked variance: quadrature, asymptote D/(2 eps)  | D=0.05: 0.02641 vs D/2eps = 0.02500; ladder pinned
+EQ 6 PASS  pi-hop rate from exact MFPT; Kramers within factor 2 at D = eps/5  | D=0.2: rate 0.00188 (Kramers 0.00214, ratio 0.879); D=0.25: rate 0.00496 (Kramers 0.00583, ratio 0.850); D=0.3: rate 0.00940 (Kramers 0.01136, ratio 0.828)
+EQ 7 PASS  hop-count budget: every registered cell expects > 60 hops  | D=0.2: N~151; D=0.25: N~396; D=0.3: N~752
