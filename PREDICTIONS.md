@@ -1291,3 +1291,59 @@ not-claimed-in-advance: real strings; the torsional trigger family;
 frame rates other than 3000 fps; force dependence beyond the
 committed plateaus; other strings, tunings, or bow models; any
 mechanism story for WHY the slip episode lasts as long as it does.
+
+## R-15 — 2026-08-26 — resolves P-20
+outcome: the eps budget is dead as registered; the separability map
+held in three of four cells. Clause by clause, from committed
+p20_results.json:
+(a) FAILED, every cell, and the mind-change FIRED. The measured slip
+term is one episode per cycle (1.01 episodes/cycle in all five
+cells) lasting 50.9/62.0/75.4/61.9/73.7 samples - a few samples
+above beta*loop (44.8/58.2/71.7/58.2/68.9), i.e. the slip episode is
+the Helmholtz-style flyback, whose duration scales with the
+BRIDGE-side transit, not the 12.61/8.71/12.63/14.99/13.03 samples
+the additive budget required. eps_pred lands at 0.127-0.181 T0
+against eps_meas 0.034-0.055; residuals -0.085 to -0.140 T0, all
+outside the 0.015 band, worst 0.140 = 4.7x the 0.030 mind-change
+line. The adjacent-beta sign clause also failed (0.10 -> 0.13:
+eps_meas falls, eps_pred rises). The claimed decomposition of the
+alf-period-lattice scope sentence - eps as "slip-episode duration
+plus reflection-filter group delay" - is hereby recorded as WRONG in
+its additive reading: the slip episode is 3-5x longer than all of
+eps, so eps cannot contain it as a term. What survives unclaimed:
+the fixed filter+rounding part (5.79-9.64 samples) is smaller than
+every eps_meas (15.1-24.6 samples), so filter delay alone
+under-explains eps and the remainder is an emergent property of the
+locked orbit, not a sum of transit-time corrections. The correction
+stands in this entry per the registration (record, not rescue); the
+lattice claim's measured content (locks, slope, spacing) is
+untouched.
+(b) FAILED overall. Ranges: 0.0182/0.0079/0.0045 T0 at beta
+0.10/0.13/0.16 against the 0.016 bound - the 0.10 failure traces to
+a registration design error: the registered ladder point F = 1.20
+sits in a HOLE of the committed plateau (the force scan classifies
+it m=None, std 0.0395), so the range there compared a non-locked
+point; the two clean plateaus sit inside the bound. The direction
+sub-clause OPPOSES at 0.10 and 0.13 (S falls as force rises while
+eps_meas rises) and tracks only at 0.16 - consistent with (a): the
+slip term does not carry eps's force dependence either.
+(c) HELD in three of four cells: beta 0.10 (D = 0.894 < 1) shows
+the registered overlap (lattice frames {29: 42, 30: 58} vs doubling
+{30, 31}); beta 0.16 and the Kawano beta = 50/325 cell show zero
+overlap as registered (28/29 vs 30/31 - the session's 29-vs-30/31
+observation reproduced from the registered protocol). beta 0.13
+FAILED the zero-overlap clause: 2 of 103 intervals quantize to
+frame 30 (support {28, 29, 30} vs {30, 31}) at derived separation
+D = 1.469 frames - below the 1.5-frame mind-change line, which did
+NOT fire. Diagnosis: D >= 1 plus a 0.02 beta margin does not
+guarantee empty support intersection when the lattice period sits
+essentially on an integer frame count (29.004 frames at beta 0.13);
+the honest boundary statement is D >= 1 plus distance of P*fps from
+the nearest shared integer, and at 3000 fps the certified-separable
+region of the tested grid is beta >= 0.154 (Kawano) and 0.16, with
+0.13 separable in 101 of 103 intervals but not certified.
+No claim is filed from P-20 (the registration's condition for
+filing was the eps clauses holding; they did not). The frame map
+and the flyback finding stay available for a future registered
+line; the diagnosis above is recorded as diagnosis, not as claimed
+science.
