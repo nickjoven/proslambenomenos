@@ -921,3 +921,36 @@ clause died because the registration asked for more alignment than
 the equilibrium possesses. The protection reading is therefore NOT
 claimed from P-22; it is re-registered properly as P-23 with the
 Bessel-ratio value derived in advance and fresh seeds.
+
+## P-23 — 2026-08-26 — the protection clause, derived this time
+question: R-17 killed P-22's clause (e) because the registered
+threshold 0.8 was underived taste; the measured mod-pi alignment
+landed 9e-4 from the von Mises equilibrium I1(2)/I0(2) = 0.69777
+that COULD have been derived in advance. Does the protection
+statement hold when registered properly: the mod-pi observable
+sits at its derived Bessel-ratio equilibrium on a D-ladder while
+the bare phase averages to its derived value of zero, on fresh
+seeds the diagnosis never touched?
+method: derivation layer scripts/experiments/p23_derive.py (run
+first, committed): <cos 2 theta> = I1(kappa)/I0(kappa) with
+kappa = eps/(2D), computed two independent ways - the P-15
+continued-fraction instrument and direct von Mises quadrature,
+agreeing to 1e-12 (EQ1); <cos theta> = 0 exactly by symmetry
+(EQ2); per-cell durations sized so each ensemble member expects
+more than 50 committed pi-hops (EQ3). Registered computation:
+M = 8 fresh-seeded Euler-Maruyama members per cell, dt = 0.002,
+cells (eps, D) = (1, 0.2), (1, 0.25), (1, 0.3).
+expects: per cell, the ensemble mean of <cos 2 theta> lands
+within 4 SEM of the pinned Bessel ratio (0.75823 / 0.69777 /
+0.64686 as pinned in p23_registration.json) with SEM below 0.01;
+the ensemble mean of <cos theta> satisfies |mean| < 4 SEM; every
+member logs at least 50 committed hops.
+changes-my-mind: a cell mean outside 4 SEM of its pinned ratio
+kills the stationary von Mises account of the locked two-photon
+phase; |<cos theta>| exceeding its band with hops present kills
+the symmetry argument and with it the mod-pi protection reading -
+this time with the equilibrium derived, there is nothing left to
+blame on the registration.
+not-claimed-in-advance: same exclusions as P-22; additionally no
+claim about relaxation TIMES (only stationary averages), and no
+quantum statement.
