@@ -811,3 +811,58 @@ the standard penalty-method infeasibility offset of order
 C^2/(4 lambda), removed by the registered constraint-eliminated
 polish; no feasible exceedance of phi^5 anywhere in the run. Filed
 as hardy-maximum-is-phi-fifth.
+## P-22 — 2026-08-26 — locked references: the Adler skeleton of squeezed-light stabilization
+question: PRB 111, 184519 (Danner, Hoehe, Padurariu, Ankerhold,
+Kubala 2025) stabilizes dc-biased Josephson-photonic squeezed
+microwaves by injecting a weak reference, names the Adler/Kuramoto
+class as the universal frame (their ref [52] is Adler 1946), and
+states the striking feature that the squeezed state locks to a
+reference at TWICE the emission frequency. Claim to test on the
+named model class: the two-photon locking equation dtheta/dt =
+delta - eps sin(2 theta) + noise shares the fundamental's Arnold
+tongue exactly, carries TWO locked phases pi apart, hops between
+them at a rate derived in advance from first-passage quadrature,
+and the mod-pi phase observable survives the hopping that scrambles
+the bare phase - the classical skeleton of "locking preserves
+squeezing".
+method: derivation layer scripts/experiments/p22_derive.py (run
+first, output committed): beat-period closed form checked by
+quadrature (EQ1), fixed-point count and pi-separation by CAS
+stability signs (EQ2), the phi = 2 theta reduction to Adler (EQ3),
+the constant-flux Fokker-Planck mobility v(delta, eps, D) in
+log-domain quadrature validated on four exact limits including
+sqrt(delta^2 - eps^2) at D -> 0 (EQ4), the von Mises locked
+variance with asymptote D/(2 eps) (EQ5), the pi-hop rate from
+exact MFPT double quadrature with the Kramers form (eps/pi)
+exp(-eps/D) recovered at small D (EQ6), and simulation tolerance
+bands DERIVED from hop-count Poisson budgets and a dt-halving
+bias estimate rather than chosen (EQ7). Registered computation:
+seeded Euler-Maruyama at dt = 0.002, pinned seeds, pinned grids
+(p22_registration.json).
+expects: (a) deterministic tongue: at eps = 1, measured beat
+frequency lands on sqrt(delta^2 - 1) within 2e-3 relative for
+delta in {1.05, 1.2, 1.5, 2.0} and no phase slip over the full run
+for delta in {0.2, 0.6, 0.9}, in BOTH scenarios (the two-photon
+case after theta -> 2 theta). (b) noisy mobility: on the six
+pinned (delta, eps, D) cells the simulated drift lands within 4
+percent of the pinned quadrature values. (c) locked variance
+(two-photon, delta = 0): within 5 percent of the pinned von Mises
+quadrature on the D-ladder {0.05, 0.1, 0.2, 0.4}. (d) pi-hops
+(two-photon, delta = 0): measured hop rate within the derived
+Poisson band of the pinned MFPT rate at D in {0.2, 0.25, 0.3},
+and at least 98 percent of hops have size pi, not 2 pi. (e) the
+protected observable: at (eps, D) = (1, 0.25), long-run
+|<cos 2 theta>| > 0.8 while |<cos theta>| < 0.2 - the mod-pi
+alignment survives hopping that scrambles the bare phase.
+changes-my-mind: simulated mobility off the quadrature by more
+than twice the band at converged dt kills the constant-flux FPE
+construction as implemented; a tongue edge scaling differently
+from eps or a beat exponent differing from 1/2 kills the Adler
+reduction; pi-hops scrambling cos 2 theta (clause e failing) kills
+the mod-pi protection reading and with it the classical-skeleton
+account of why locking preserves squeezing.
+not-claimed-in-advance: anything quantum - squeezing spectra,
+entanglement measures, photon statistics, the paper's specific
+device coefficients or cavity parameters; multi-mode dynamics;
+mutual synchronization; the direct-cavity-injection scenario;
+dimensional units.
