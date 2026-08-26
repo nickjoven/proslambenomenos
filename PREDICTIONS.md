@@ -866,3 +866,19 @@ entanglement measures, photon statistics, the paper's specific
 device coefficients or cavity parameters; multi-mode dynamics;
 mutual synchronization; the direct-cavity-injection scenario;
 dimensional units.
+
+## P-22a — 2026-08-26 — pre-computation amendment to P-22 clause (b)
+Before any registered simulation ran, a feasibility check of clause
+(b) against its own estimator noise showed the flat 4-percent
+relative band is unachievable on five of the six pinned cells: the
+winding estimator has standard deviation sqrt(2 D / (T M)) that
+exceeds the band wherever the drift is small, and the delta = 0
+cell gets a band of width zero. EQ7 budgeted hop counts but not the
+mobility estimator - a registration design error, corrected here
+rather than discovered post hoc. Clause (b) as amended: each cell
+is measured as the mean winding rate over M = 12 independent seeded
+runs of length T = 3000, and must land within
+max(0.04 |v_pin|, 3 sqrt(2 D/(T M))) of the pinned quadrature
+value; the delta = 0 cell must satisfy |v| < 3 sqrt(2 D/(T M)).
+Everything else in P-22 stands unchanged. Ancestry: this amendment
+precedes the registered computation commit.
