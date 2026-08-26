@@ -41,7 +41,10 @@ V_BOW = 0.05
 DURATION, WINDOW = 2.0, 1.0
 
 RUNS = [
-    # (beta, force, target m)
+    # (beta, force, target m); forces hand-found during development -
+    # each sits mid-plateau, not knife-edge: see p19_force_scan.py
+    # (m=1 windows 1.15-1.65 / 0.95-1.20 / 0.90-1.05, m=2 1.60-1.90;
+    # period drift <= 0.0155 T0 across any plateau)
     (0.10, 1.50, 1),
     (0.13, 1.10, 1),
     (0.16, 0.95, 1),
