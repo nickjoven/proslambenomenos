@@ -1126,3 +1126,56 @@ hashes:
   5d870c2fe6dd7d5b7ed807cc8780fcacded655414851fb0f3b6c55fb0b6321b6  tests/spec/ledgers.spec
   ae60038700e7505b580ce7915375e32e9816b0079232f8a406435f0a013d9d10  tests/spec/message.spec
   af180d006a2b25e6c9722190de07ba8b58ffa0f05c4ad34b36eff9557a677692  tests/spec/notes.spec
+
+## LAW-31 — 2026-08-27 — the P-7 falsifier pinned
+direction: strengthen
+why: adds scripts/verify/p7_golden_flux.py, the falsifier for
+harper-golden-ladder. Independent reimplementation: own Bloch
+matrices, own Jacobi eigensolver, own Catalan series, on the short
+ladder to q = 21 with the same anchor closed forms. Mutants:
+bandwidth-constant (asserts S(21) > 0.8 S(5); it contracts about
+fourfold) and silver-clock (asserts the ladder clock is
+ln(1 + sqrt 2) = 0.8814; the measured clock is golden, 0.4982 on
+the short ladder). No gate semantics change; the table below
+re-pins all covered files.
+hashes:
+  1b8ab111bb43eb17a25a822468e8f978c4883f67b9ea3b15bc5b85d0b499f7b4  catalog/_common.py
+  f66449b5076b3d3a49c80551f0881d8bf26f2ac4022f143e7a00be88ab0114e5  scripts/check_append_only.py
+  7e0dc75ccf248f9c85f66b4be979ac44136c15890c152abb59a1edeb7292ca53  scripts/check_catalog.py
+  de456c53a7ca5d62c0e80184fe6e20fe8115f85e130de3a2a50212be3da4ab39  scripts/check_claims.py
+  c607f72b887665dee08c7609bc2e6b7172d0fab39edd3386b3e0e1a93d11c3fb  scripts/check_compendium.py
+  ab28484233b07d3741fa29753e4cc14a9095532b2f0aa7f5e9dfc0ce738fa212  scripts/check_lawchanges.py
+  bdefe7404cf4d08b7fb019d2ce607933e594fff6e13cb7666cfe92d6cbae42a8  scripts/check_messages.py
+  9b0e2fcc9228dfd2c1ee4c011247205d58ca895c932e1f11496c86b596b9bb35  scripts/check_notebooks.py
+  252c2d52ca0539114caf42bbf79722ec304656bd86805be4a286dab73c311106  scripts/check_notes.py
+  0ddaeb011ba633cf3f4433b049c919393759ade85fe023374e33834048fd59f9  scripts/check_predictions.py
+  d234ef54cbcca21383fc960d8ecf1d55e835ebbedfec464515739e2ae1edc34c  scripts/check_verify_scripts.py
+  a6fe7f804b4fcf673137804fd0f6f5b124d29d030e5dd1f7b48bebd9206098d4  scripts/run_all.py
+  78e4dc2720ffd206c7ef827cc7856c892ba9c3b11ccec07ac4c99e3b2d865052  scripts/run_compendium_checks.js
+  de67901cdc5fbdf8b29eed5e880e8736f3270f8ae6f3f01b579d41caf7c7255c  scripts/verify/iwasawa_one_stage.py
+  664b6917eb806d0bf4894d0a089b5107de4a95684b35827e2473c1b46f65879f  scripts/verify/kuramoto_einstein_refutation.py
+  c7d77ffd0006a7dc7ec562f29b416934557aec30e7d3eabbf96a349837785b4a  scripts/verify/p10_order_dimension.py
+  cdeacdee9a97a20e209a01f712a5fe1c43fb9c11b65f9b3434f98fd65e37252b  scripts/verify/p11_spectral_metric.py
+  792ce4623ab937012b43d33575fd36057b0c20cf8cc4ce8395cf94d960dbe52d  scripts/verify/p13_acoustic_metric.py
+  99ae99cd74ff87f88105d05f3f131fa48eb35ffcd150ce07c08964e7e77624c2  scripts/verify/p14_isometric_spectra.py
+  68716f23dafe0b72ef9d117f010e8b44276ca1d3226df2586442001c7343df3e  scripts/verify/p15_spectral_dimension.py
+  24ec0a6651f1ead949398d03a20be4cb17cc6a9a5f90241fe5f0cbf95a703d82  scripts/verify/p17_bell_ladder.py
+  3a8ec4fca6a063b9a38756d45b97ae5a0cb104d1d3aca073250154fe49362aa1  scripts/verify/p18_smooth_retest.py
+  19f02072bb299e8a590cc43b3c85a6c91dbe1ef20fe79da2a9aa813fd689bbd1  scripts/verify/p1_depth6_pairs.py
+  295765a5ab72dc9c4684762d91d41d7ef643785a99eb4bb7e0f5000dd0a0ff30  scripts/verify/p1_gradient_bc.py
+  9dd948075e8a0a5da9db0438be3b9ed9bb6d7b8f4e7092f282402318efc14e8a  scripts/verify/p1_mean_frequency.py
+  9549e2345684c7a7d0d4a911e11893e712a57a0e46117e085b2955c741ad56d4  scripts/verify/p21_hardy_maximum.py
+  2218e889bc78f33c27e7452b071e6db1e8795eca60698c8d3d5a98177644f287  scripts/verify/p22_locking_skeleton.py
+  95295290411be46b98100bb238f9924259fefb60179e4e52168a88894eace4bb  scripts/verify/p24_memory_hierarchy.py
+  4355a643f81ab69f9d7f92331355fe37964c445e64873a49b5461c1eefe391e6  scripts/verify/p6_circulant_small.py
+  b60ad77d615e353171739472bafbda552f4d1f60f34dd504812c7383a60f7df5  scripts/verify/p7_golden_flux.py
+  97bde79c88fc71a1f10af692c7acc4f980a7e97a6f9b1887bf55c5900485a1e5  scripts/verify/q1_saddle_node.py
+  9817e5aa93f80e96db3d9429fc778498fd3249f72c1fa17332d21006ff59820f  scripts/verify/q_j_structure.py
+  243240999a02eb20701c5b20cca171aca2c45ee6b9dc6fcfd253bd799d62ad07  scripts/verify/q_j_structure_sectors.py
+  49a15d0ed708463af8fa998c2e41544c2f2488c9681711eada58aee3c1bbd29e  tests/run_spec.py
+  68ca44f2f153f84714c977ae0bf25f81f6fdcb5f01d069208a5777597ec1f937  tests/spec/catalog.spec
+  5d476e65468c813857cd33d2e16580b786a0156e1c2abf64997092b66743c2f3  tests/spec/falsifier.spec
+  c342759d5f6356fc14ef6097c0bf2379f11be1e1c19de3761161d9b75295744b  tests/spec/intake.spec
+  5d870c2fe6dd7d5b7ed807cc8780fcacded655414851fb0f3b6c55fb0b6321b6  tests/spec/ledgers.spec
+  ae60038700e7505b580ce7915375e32e9816b0079232f8a406435f0a013d9d10  tests/spec/message.spec
+  af180d006a2b25e6c9722190de07ba8b58ffa0f05c4ad34b36eff9557a677692  tests/spec/notes.spec

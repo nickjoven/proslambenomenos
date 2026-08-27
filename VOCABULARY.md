@@ -169,10 +169,14 @@ refusal of phi is one of the entire orbit.
    are therefore not refused - ln phi already serves as the ledger's
    golden-criticality unit, and the graph's observable layer runs on
    log-linear edges throughout (Arrhenius, nat bands, bit
-   accounting). What ln phi does NOT yet have is an entropy/growth
-   edge (Fibonacci growth rate, cat-map Lyapunov 2 ln(1+phi)): no
-   artifact computes one - unearned, which is a different bin than
-   refused; P-7 (A-1, golden flux) is the queued door.
+   accounting). The entropy/growth edge is now EARNED:
+   P-7/R-20 measured the critical Harper bandwidth contracting per
+   Fibonacci-approximant step at ln(S(89)/S(144)) = 0.48075 against
+   ln phi = 0.48121 - the ln phi clock, decomposed as clock (the
+   F-ratio) times flatness (Thouless's imported plateau 32 G/pi,
+   which the same ladder lands 0.0011 away). The remaining unearned
+   relatives (cat-map Lyapunov 2 ln(1+phi), golden-shift entropy)
+   stay in the unearned bin until their artifacts exist.
 3. AS A FITTED CONSTANT: refused wherever computed - the block
    above.
 - The ALF period is NOT an integer subharmonic (P-19, branch

@@ -1,0 +1,35 @@
+id: harper-golden-ladder
+statement: >
+  For the critical almost-Mathieu operator on the Fibonacci flux
+  ladder F_m/F_{m+1} up to q = 144, computed through a Bloch
+  construction validated against CAS closed forms (q = 2: bands
+  +-[0, 2 sqrt 2] touching at the c25 pi-flux Dirac point; q = 3:
+  edges from the factorizations of E^3 - 6E = -+4): the gap parity
+  rule holds ladder-wide - every odd-q gap open, the even-q central
+  gap closed to 1e-14; the bandwidth invariant q S(q) lands its
+  terminal-pair mean 9.3310, a deviation of 0.0011 from the
+  IMPORTED Thouless plateau 32 G/pi = 9.32995 with G Catalan's
+  constant (LC-14 - the plateau is imported, only the approach is
+  measured, against a registered band of 0.25); and the total
+  bandwidth contracts per ladder step at the golden log:
+  ln(S(89)/S(144)) = 0.48075 beside ln phi = 0.48121, a deviation
+  of 4.6e-4 against a registered band of 0.05. The clock decomposes
+  as registered: the Fibonacci ratio supplies ln phi, the Thouless
+  flatness supplies the rest - phi is the ADDRESS of the ladder and
+  the YARDSTICK of its clock, while the plateau constant is
+  Catalan's, not phi's, exactly as the VOCABULARY phi taxonomy
+  requires. Scope: lambda = 1, theta at the two Chambers extremes,
+  the registered ladder; the Cantor structure of the irrational
+  limit is imported literature, not computed.
+premises: []
+prediction: P-7
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p7_derive.py (CAS anchors, construction validation, Catalan from its own series, pinned small-q trend and bands; p7_registration.json); scripts/experiments/p7_flux.py with p7_results.json (the registered ladder, Jacobi residuals below 1e-12); figure page scripts/experiments/p7_plots.py; independently reimplemented by scripts/verify/p7_golden_flux.py, which rebuilds the matrices, the eigensolver, and Catalan's series from scratch on the short ladder"
+    method: reimplementation
+null_system: "two nulls, both killed by mutants: a bandwidth that does not contract (the spectrum could stay fat as q grows - it thins as 1/q), and a wrong clock (the silver mean ln(1+sqrt 2) = 0.8814 is the natural rival ladder constant - the measured clock is 0.48, golden). The parity rule is the structural null: gap counting follows q and its parity, not taste"
+falsifier: "scripts/verify/p7_golden_flux.py --mutant silver-clock"
+novelty:
+  status: classical
+  citation: "Hofstadter 1976 (butterfly); Thouless 1983/1990 (the 32G/pi bandwidth plateau); Avila-Jitomirskaya 2009 (Ten Martini, imported context); the contribution is the registered anchor-validated ladder and the explicit clock-times-flatness decomposition of the ln phi rate"
+status: verified
