@@ -365,3 +365,25 @@ claims-checked:
   injection amplitude, beat sqrt(detuning^2 - range^2) - the
   closed forms the P-22 derivation layer re-checks by quadrature
   (EQ1) before anything stochastic runs.
+
+## LC-14 — 2026-08-27 — the golden flux line's imports
+prediction: P-7
+claims-checked:
+- The critical almost-Mathieu total-bandwidth plateau q S(q) ->
+  32 G / pi = 9.32995 with G Catalan's constant: Thouless, Phys.
+  Rev. B 28, 4272 (1983) and Commun. Math. Phys. 127, 187 (1990)
+  (asymptotic scaling for the Harper bandwidth; the constant is
+  imported - P-7 measures only the APPROACH, and lands the
+  terminal-pair mean 0.0011 away).
+- Hofstadter, Phys. Rev. B 14, 2239 (1976): the rational-flux band
+  structure and the butterfly; Chambers relation for the
+  k-dependence entering only through cos(q k1) + cos(q k2) -
+  the two-extremal-point band-edge construction P-7 validates
+  against CAS closed forms at q = 2, 3.
+- The Cantor spectrum at irrational flux (Ten Martini): Avila,
+  Jitomirskaya, Ann. Math. 170, 303 (2009) - IMPORTED context only;
+  nothing Cantor is computed in P-7 and the scope says so.
+- c25 interop confirmed in-repo: the alpha = 1/2 anchor's band
+  maximum 2 sqrt 2 equals the pi-flux Dirac dispersion maximum of
+  catalog c25 (Affleck-Marston 1988; Lieb 1994), and the central
+  touch at E = 0 is the same Dirac point.
