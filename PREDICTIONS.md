@@ -1091,3 +1091,51 @@ MFPT with barrier eps, and the 1D winding number at the Langer
 rate under a barrier that saturates at 2K: no extensive
 topological protection, a closed-form crossover instead. Filed as
 memory-hierarchy-of-substrates; figure page p24_plots.html.
+
+## P-7 — 2026-08-27 — the golden flux ladder (the number reserved since A-1, now worded)
+question: the VOCABULARY phi taxonomy admits phi as ADDRESS (the
+most-irrational winding) and refuses it as a fitted constant; ln phi
+was filed as UNEARNED - no artifact computes an entropy/growth edge.
+This line is the queued door: Harper / almost-Mathieu at critical
+coupling on the Fibonacci-approximant fluxes F_m/F_{m+1} -> 1/phi.
+Claim to test: the total bandwidth S(q) contracts per ladder step at
+the rate ln phi - earned as CLOCK (the Fibonacci ratio) times
+FLATNESS (Thouless's plateau q S(q) -> 32 G/pi, G Catalan's
+constant, IMPORTED not derived) - while the exact anchors, the gap
+parity rule, and the plateau approach hold as registered. phi
+remains the address; the plateau constant is Catalan's, not phi's -
+the taxonomy's shape, now computed.
+method: derivation layer scripts/experiments/p7_derive.py (run
+first, committed): q = 2 closed form by CAS Bloch determinant -
+bands +-[0, 2 sqrt 2] touching at the c25 pi-flux Dirac point (the
+interop edge); q = 3 exact via the CAS transfer trace tr M +
+2 cos 3 theta = E^3 - 6E and integer factorizations of D = -+4;
+the Bloch construction (q x q, corner +-1, k2 in {0, pi/q}, bands =
+consecutive sorted edge pairs, cyclic Jacobi) validated against
+both anchors to 1e-10; Catalan's G from its own accelerated series
+(two depths to 1e-13) giving the imported plateau 32 G/pi =
+9.3299489290 (LC-14); the gap parity rule verified at the anchors;
+the small-q trend q S(q) = 11.3137 / 8.7846 / 9.2171 / 9.6168 at
+q = 2, 3, 5, 8 pinned, from which the clause bands derive.
+Registered computation: the ladder (8,13), (13,21), (21,34),
+(34,55), (55,89), (89,144), same construction, Jacobi residual
+guard 1e-8.
+expects: (a) the ladder code reproduces the q = 2, 3 anchors to
+1e-10. (b) parity rule along the ladder: odd q - all q-1 gaps
+open (> 1e-8); even q - the central gap closed (< 1e-8), all
+others open. (c) plateau: the mean of q S(q) over the terminal
+even/odd pair (55/89 and 89/144) lands within 0.25 of 9.3299489.
+(d) the ln phi clock: |ln(S(89)/S(144)) - ln phi| < 0.05, with
+ln phi = 0.4812118 - the edge that moves ln phi from unearned to
+earned in the symbol graph.
+changes-my-mind: plateau off by more than 0.9 kills either the
+Thouless import or the construction (the anchors decide which);
+clock slope off by more than 0.15 kills the clock reading; a
+closed gap at odd q or an open central gap at even q kills the
+parity rule and with it the band-counting; a Jacobi residual above
+1e-8 voids the affected cell rather than the clause (declared).
+not-claimed-in-advance: the Cantor structure of the irrational
+limit (Ten Martini - imported literature, not computed); the
+Thouless limit itself (imported; only the APPROACH is measured);
+Chern labels; lambda away from 1; theta-averages beyond the two
+Chambers extremes; any dimensionful statement.
