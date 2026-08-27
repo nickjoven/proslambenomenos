@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p22_derive.py, scripts/experiments/p22_registration.json, scripts/experiments/p22_locking.py, scripts/experiments/p22_results.json, scripts/experiments/p23_derive.py, scripts/experiments/p23_registration.json, scripts/experiments/p23_protect.py, scripts/experiments/p23_results.json, scripts/verify/p22_locking_skeleton.py -->
 # P-22/P-23: locked references - the reference wave, computed
 
+Symbols: see the VOCABULARY.md symbol graph - the tongue half-width and the memory barrier are the same eps (the P-22/P-24 edge); the beat falls out of the tongue outside it.
+
 Registered before computing (PREDICTIONS.md P-22 with amendment
 P-22a; P-23 with P-23a); resolutions R-17 (mind-change FIRED on two
 clauses, diagnosed, not rescued) and R-18 (all cells held, with the

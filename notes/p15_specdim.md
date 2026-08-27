@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p15_derive.py, scripts/experiments/p15_registration.json, scripts/experiments/p15_specdim.py, scripts/experiments/p15_results.json, scripts/verify/p15_spectral_dimension.py -->
 # P-15: the spectral-dimension instrument
 
+Symbols: see the VOCABULARY.md symbol graph - d_s falls out of the spectrum inside the window rule; the 2 Vbar t drift is the cross-line edge to P-14's potential.
+
 Registered before computing (PREDICTIONS.md P-15); resolution R-11,
 all clauses as registered. Spectral dimension d_s(t) =
 -2 dlnP/dlnt is the counting observable behind the quantum-gravity

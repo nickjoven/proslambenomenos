@@ -58,3 +58,89 @@ with its demonstration) or the statement is carrying load it has not
 earned (fix the statement). This file is the checklist; it is not a
 gate, because a lexicon gate would be gamed by synonyms the same way
 LAW-3's conclusive-vocabulary list was (F5).
+
+## The symbol graph (verified interoperability)
+
+Where two lines write the same symbol, this graph records whether the
+repo has COMPUTED the equivalence, in which regime it holds, and
+where it breaks. An edge "X <- Y" reads "X falls out of Y". Rule,
+inherited from the vocabulary: an edge enters only with the runnable
+artifact that verified it, and every edge carries the scale at which
+it was verified - most edges here were EARNED by watching them fail
+outside that scale first.
+
+### Layer 0 — substrate parameters (chosen, never derived)
+
+m(x), J(x) [chain masses, couplings] · K [ring stiffness] ·
+eps [injection / lock rate] · D [noise strength] · N [system size] ·
+delta [detuning] · k [Schmidt ratio]
+
+### Layer 1 — falls out of the substrate
+
+| symbol | falls out of | scale where verified | earned by |
+|---|---|---|---|
+| c = sqrt(J/m) | (m, J) | long wavelength, ka << 1 | P-13/R-8: arrivals read c at RMS <= 0.32% |
+| Z = sqrt(mJ) | (m, J) | below the band edge | P-13/R-8: junction R = ((Z1-Z2)/(Z1+Z2))^2, 0.362 vs 0.360 |
+| (m,J) <-> (c,Z) | bijection | leaks exactly at the band edge: the jz residual 0.036 is the pulse's evanescent flux (predicted 0.039) | P-13/R-8 |
+| U(theta) = -(eps/2)cos 2theta | eps | overdamped, twice-frequency injection | P-22 EQ2 |
+| Delta_E(N) | (K, N) via E(Delta), Delta* = pi(N-3)/(N-2) | w = 1 sector, N >= 5 (N = 4: barrier exactly 0) | P-24 EQ3/R-19 |
+
+### Layer 2 — falls out of layer 1
+
+| symbol | falls out of | scale where verified | earned by |
+|---|---|---|---|
+| tau = int dx/c | c | continuum travel time | P-13/P-14 (T pinned 2113.553, 2160.746) |
+| V = (sqrt Z)''/sqrt Z = c'^2/4 - c c''/2 | Z, in the tau gauge | C2 PROFILES ONLY - at C1 the equivalence breaks (R-10 fired; P-18 repaired it at 0.004 Vbar) | P-14 EQ2, P-18 EQ1-3/R-13 |
+| tongue half-width = eps | eps | first order, deterministic Adler | P-22/R-17(a) |
+| memory barrier = eps | U, CAS max - min | same eps as the tongue: one symbol, two verified roles | P-24 EQ2 - the P-22/P-24 interop edge |
+
+### Layer 3 — observables
+
+| symbol | falls out of | scale where verified | earned by |
+|---|---|---|---|
+| omega_k ~ k pi/T | tau (the metric) alone | k in [5, 60]; k = 1-2 EXCLUDED (the V-shift is a percent-level relative effect there - R-10 clause b) | P-14/P-18 |
+| shift_k = (2/T) int V sin^2 | V | first order in V, C2 profiles | P-18/R-13: RMS 0.004 Vbar, derived sign flip at k = 1 |
+| beat = sqrt(delta^2 - eps^2) | the tongue | outside; estimator floor 2 pi/T (R-17's corrected boundary) | P-22/R-17 |
+| tau_1 = 1/D | diffusion generator, eigenvalue 1 | all D, exact | P-24 EQ1/R-19(a) |
+| tau_2 = T_MFPT(eps, D) | (U, D), exact quadrature | any D by quadrature; Kramers form at D << eps | P-22/R-17(d), P-24/R-19(b): Arrhenius slope 0.970 vs CAS barrier 1 |
+| <cos 2theta> = I1(kappa)/I0(kappa), kappa = eps/2D | the stationary von Mises density | delta = 0, stationary averages | P-23/R-18 (0.24-1.23 SEM) |
+| rate_3 = N Langer(H) e^(-Delta_E/D) | (Delta_E, Hessians, N) | Delta_E/D in [2.3, 7.1], verified 0.03-0.18 nat; NOT extensive (Delta_E saturates at 2K) | P-24/R-19(c) |
+| d_s(t) = 2t <lambda>_P | the spectrum | window t < 0.5/lambda_1 (two-mode boundary 0.5433) | P-15/R-11 |
+| d_hat | order + count via f(d) | sprinkled orders; CONVENTION TRAP: unordered f = 2x the usually quoted Gamma form | P-10/R-7 |
+| S <= 2; S_QM <= 2 sqrt 2 | enumeration; the Landau identity | two settings, two outcomes | P-17/R-12 |
+| p_Hardy max = phi^5 = (5 sqrt 5 - 11)/2 | y^2 - 3y + 1 = 0, y = k + 1/k | two qubits, projective; VANISHES at maximal entanglement | P-21/R-16, exact in Q(sqrt 5) |
+
+### Cross-line edges (the same object verified in two homes)
+
+- **eps**: tongue half-width (P-22) and Kramers barrier (P-24) - the
+  same registration defines both from the same U; CAS-exact.
+- **Vbar**: the impedance potential's mean shifts spectra (P-14/P-18)
+  AND drifts the spectral-dimension trace as 2 Vbar t (P-15, measured
+  1.008-1.015 of derived) - the instrument sees the potential.
+- **I1/I0 continued fraction**: one instrument, two homes - P-15
+  heat-kernel ratios and P-23 locked-phase equilibrium, each
+  validated to 1e-12 against an independent route. The bridge
+  DERIVATION (why one function serves both) is not yet registered:
+  flagged, not claimed.
+- **T_MFPT quadrature**: one construction verified against
+  simulation in three lines (P-22 hops, P-23 budgets, P-24 rungs).
+- **winding w**: the P-6 twisted-state count and P-24's rung-3
+  charge are the same primitive; the ALF lock index m (P-19) is its
+  branch-pending cousin.
+
+### Verified refusals (equivalences the repo computed and REJECTED)
+
+- c is NOT a complete substrate summary: scattering follows Z, not c
+  (P-13); the spectrum hears the remainder (P-14/P-18).
+- The metric does NOT fall out of the commutator in every
+  representation: vertex-only caps distances at 2/sqrt 3 and sqrt 2;
+  geodesic recovery is a property of the coupling (P-11).
+- Delta_E does NOT scale extensively: no free topological memory in
+  classical 1D (P-24 EQ5; a chat guess died there pre-registration).
+- phi does NOT fall out of alpha^-1, g_e, the Omegas, the 2D
+  Madelung constant, or the Kerr Davies point (LC-11, LC-12,
+  notes/otto25_mechanization.md: excluded at 788 to 2e5 sigma, or
+  net-zero information). phi's one verified physics home is Hardy's
+  maximum (P-21).
+- The ALF period is NOT an integer subharmonic (P-19, branch
+  alf-v2, pending merge - recorded here as pending, not landed).

@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p24_derive.py, scripts/experiments/p24_registration.json, scripts/experiments/p24_memory.py, scripts/experiments/p24_results.json, scripts/experiments/p24_plots.py, scripts/verify/p24_memory_hierarchy.py -->
 # P-24: how substrates forget - the memory hierarchy, derived end to end
 
+Symbols: see the VOCABULARY.md symbol graph - tau_1, tau_2, rate_3 fall out of (D), (U, D), (Delta_E, Hessians, N); Delta_E saturation is a verified refusal of extensivity.
+
 Registered before computing (PREDICTIONS.md P-24, protocol amendment
 P-24a caught two design flaws pre-run); resolution R-19, all four
 clauses, mind-change quiet. This line is the constructive answer to

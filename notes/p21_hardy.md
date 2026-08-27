@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p21_derive.py, scripts/experiments/p21_registration.json, scripts/experiments/p21_hardy.py, scripts/experiments/p21_results.json, scripts/verify/p21_hardy_maximum.py -->
 # P-21: Hardy's maximum is the fifth power of the golden mean
 
+Symbols: see the VOCABULARY.md symbol graph - phi^5 falls out of y^2 - 3y + 1 = 0 in y = k + 1/k - phi's one verified physics home.
+
 Registered before computing (PREDICTIONS.md P-21); resolution R-16,
 all clauses as registered; claim hardy-maximum-is-phi-fifth. This
 closes A-9 - the one golden-mean physics number that survived the
