@@ -1139,3 +1139,24 @@ limit (Ten Martini - imported literature, not computed); the
 Thouless limit itself (imported; only the APPROACH is measured);
 Chern labels; lambda away from 1; theta-averages beyond the two
 Chambers extremes; any dimensionful statement.
+
+## R-20 — 2026-08-27 — resolves P-7
+outcome: all four clauses as registered; the mind-change did not
+fire. Numbers pasted from p7_results.json by script (R-18a rule).
+(a) anchors reproduced by the ladder code (S at q = 2, 3 within
+1e-10 of the CAS closed forms 4 sqrt 2 and 4 sqrt 3 - 4).
+(b) parity along the ladder, all cells (Jacobi residuals below
+1e-12): q=13: qS = 9.2509, min gap 1.62e-02; q=21: qS = 9.3199, min gap 3.05e-03; q=34: qS = 9.3608, min gap 5.15e-15; q=55: qS = 9.3208, min gap 3.33e-04; q=89: qS = 9.3290, min gap 6.49e-05; q=144: qS = 9.3330, min gap 1.48e-14 - the even-q central gaps close to 1e-14, every
+odd-q gap stays open.
+(c) plateau: terminal-pair mean 9.3310 against the imported
+32 G/pi = 9.3299 - deviation +0.0011 against the
+registered 0.25: the plateau is Catalan's to four digits.
+(d) the ln phi clock: ln(S(89)/S(144)) = 0.48075 against
+ln phi = 0.48121, deviation -4.6e-04 against the registered
+0.05. The edge is earned: ln phi enters the symbol graph as the
+Fibonacci-approximant clock of the critical Harper bandwidth -
+clock (the F ratio) times flatness (the imported Thouless
+plateau). phi stays the address; the plateau constant is
+Catalan's, not phi's - the taxonomy's shape, now computed. A-1
+closes. Filed as harper-golden-ladder; figure page
+p7_plots.html.
