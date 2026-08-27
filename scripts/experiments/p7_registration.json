@@ -1,0 +1,65 @@
+{
+ "ladder": [
+  [
+   8,
+   13
+  ],
+  [
+   13,
+   21
+  ],
+  [
+   21,
+   34
+  ],
+  [
+   34,
+   55
+  ],
+  [
+   55,
+   89
+  ],
+  [
+   89,
+   144
+  ]
+ ],
+ "anchors": {
+  "2": {
+   "p": 1,
+   "S": 5.656854249492381
+  },
+  "3": {
+   "p": 1,
+   "S": 2.9282032302755088
+  },
+  "5": {
+   "p": 3,
+   "S": 1.8434217043103391
+  },
+  "8": {
+   "p": 5,
+   "S": 1.2021049599890155
+  }
+ },
+ "thouless": 9.329948928986168,
+ "catalan": 0.9159655941772158,
+ "ln_phi": 0.48121182505960347,
+ "jacobi_tol": 1e-11,
+ "edge_pairs_rule": "consecutive sorted pairs",
+ "bands": {
+  "plateau_abs": 0.25,
+  "plateau_kill": 0.9,
+  "slope_abs": 0.05,
+  "slope_kill": 0.15,
+  "closed_gap_eps": 1e-08,
+  "jacobi_residual_max": 1e-08
+ },
+ "clauses": {
+  "a": "anchors q = 2, 3 reproduced by the ladder code to 1e-10",
+  "b": "parity rule on the ladder: odd q -> all q-1 gaps > closed_gap_eps; even q -> central gap < closed_gap_eps, others open",
+  "c": "plateau: mean of q S(q) over the last even/odd pair (55/89, 89/144) within plateau_abs of 32G/pi",
+  "d": "the ln phi clock: |ln(S(89)/S(144)) - ln_phi| < slope_abs, earned as clock (F ratio) x flatness (Thouless)"
+ }
+}

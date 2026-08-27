@@ -1,0 +1,6 @@
+EQ 1 PASS  q = 2: E^2 = 4 cos^2 k2 + (1+s)^2; bands +-[0, 2 sqrt 2], Dirac touch = c25  | CAS worst 8.6e-16; edge 2 sqrt 2 = 2.828427124746
+EQ 2 PASS  q = 3: tr M + 2 cos 3 theta = E^3 - 6E; edges exact via factoring  | CAS worst 9.3e-15; edges ['-2.7321', '-2.0000', '-0.7321', '0.7321', '2.0000', '2.7321']
+EQ 3 PASS  Bloch construction (corner +-1, k2 in {0, pi/q}) reproduces both anchors  | q=2 worst 6.1e-16, q=3 worst 1.1e-16, Jacobi residual 4.0e-16
+EQ 4 PASS  Catalan G by accelerated series; imported plateau 32 G / pi (LC-14)  | G = 0.915965594177216, 32G/pi = 9.3299489290
+EQ 5 PASS  q even: central gap closed (Dirac); q odd: all gaps open  | q=2 central gap 9.8e-16; q=3 min gap 1.2679
+EQ 6 PASS  q S(q) trend at the anchors; deviations shrink toward the plateau  | q=2: qS = 11.3137 (+1.984); q=3: qS = 8.7846 (-0.545); q=5: qS = 9.2171 (-0.113); q=8: qS = 9.6168 (+0.287)
