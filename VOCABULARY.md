@@ -140,7 +140,40 @@ delta [detuning] · k [Schmidt ratio]
 - phi does NOT fall out of alpha^-1, g_e, the Omegas, the 2D
   Madelung constant, or the Kerr Davies point (LC-11, LC-12,
   notes/otto25_mechanization.md: excluded at 788 to 2e5 sigma, or
-  net-zero information). phi's one verified physics home is Hardy's
-  maximum (P-21).
+  net-zero information).
+
+### The phi taxonomy (correcting an overstatement caught in review)
+
+The golden numbers enter the ledger by exactly three routes, and the
+refusals above concern only the third. The statements apply to the
+whole class, not the single number: 1/phi = 1 + phi and every
+(a phi + b)/(c phi + d) share the field Q(sqrt 5) and the
+eventually-all-ones continued-fraction tail, so an admission or a
+refusal of phi is one of the entire orbit.
+
+1. AS THE ANSWER (algebra): Hardy's maximum p = phi^5 falls out of
+   y^2 - 3y + 1 = 0 in y = k + 1/k (P-21/R-16, exact in Q(sqrt 5)).
+   The one verified place where a physical quantity IS a golden
+   number. (The Kepler-pyramid ratio pi phi^5 is exact geometry of
+   the ideal shape - a math-let, not physics; the monument cannot
+   decide, notes/otto25_mechanization.md.)
+2. AS THE ADDRESS (Diophantine): the golden winding is the
+   most-irrational rotation number, and criticality there is
+   universal - imported as golden-mean-shenker-scaling (delta =
+   2.83361, exponent ln delta/ln phi = 2.164). Here phi names WHERE
+   and ln phi is the YARDSTICK (each Fibonacci approximant step
+   contracts distances to phi by phi^2), but the universal constants
+   at that address are NOT functions of phi: the claim that the
+   staircase scales by phi^2 is in the refuted bin
+   (staircase-phi-squared-scaling: 2.618 is not 2.834). Logarithms
+   are therefore not refused - ln phi already serves as the ledger's
+   golden-criticality unit, and the graph's observable layer runs on
+   log-linear edges throughout (Arrhenius, nat bands, bit
+   accounting). What ln phi does NOT yet have is an entropy/growth
+   edge (Fibonacci growth rate, cat-map Lyapunov 2 ln(1+phi)): no
+   artifact computes one - unearned, which is a different bin than
+   refused; P-7 (A-1, golden flux) is the queued door.
+3. AS A FITTED CONSTANT: refused wherever computed - the block
+   above.
 - The ALF period is NOT an integer subharmonic (P-19, branch
   alf-v2, pending merge - recorded here as pending, not landed).
