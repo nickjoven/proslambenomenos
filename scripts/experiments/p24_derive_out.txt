@@ -1,0 +1,6 @@
+EQ 1 PASS  d2(cos)/dtheta2 = -cos  =>  <cos theta(t)> = e^{-D t}, tau1 = 1/D  | worst CAS residual 0.0e+00
+EQ 2 PASS  telegraph C(t) = e^{-2 r t}, r = 1/(2 T_MFPT); barrier = eps exactly  | barrier 1.000000; tau2 pins ['0.22:165.6', '0.28:64.0']
+EQ 3 PASS  saddle at Delta* = pi(N-3)/(N-2); relaxed rest is uniform  | N=8: dE/dDelta at Delta* = 5.6e-17, barrier 0.4607; N=16: dE/dDelta at Delta* = -2.8e-16, barrier 1.1331; N=32: dE/dDelta at Delta* = -1.5e-16, barrier 1.5495
+EQ 4 PASS  Langer rate with derived prefactor (zero mode dropped, xN nucleation)  | 8_0.16: r=4.686e-02; 16_0.16: r=1.987e-03; 16_0.24: r=2.105e-02
+EQ 5 PASS  Delta_E grows with N, saturates at 2K; NO extensive protection - the lifetime gain with N inverts at large D (crossover derived)  | barriers 0.4607 < 1.1331 < 1.5495 < 1.9423 < 2; tau32/tau8 at D=0.16: 128.2x, at D=0.6: 0.87x
+EQ 6 PASS  event budgets > 60 everywhere; bands: Poisson + 0.35 nat (ratios) / 0.7 nat (absolute Langer)  | rung3 8_0.16:117; 16_0.16:89; 16_0.24:147; 16_0.3:162; 32_0.3:168 | rung2 0.22:91; 0.28:234

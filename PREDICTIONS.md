@@ -989,3 +989,63 @@ mistyped one); p23_results.json is authoritative. Two transcription
 slips in one line (P-23a, this) are a process signal: ledger numbers
 must be pasted from the artifact, never retyped - recorded here so
 the habit has a name and a cost.
+
+## P-24 — 2026-08-26 — the memory hierarchy: how substrates forget
+question: from a computational standpoint the fundamental objects
+in this repo's verified stock are not bits but the dynamical and
+topological structures bits are read off from. Claim to test: three
+classical substrates - an untended phase, a locked phase (the P-22
+Z2 doublet as a bit), and a winding number on an N-ring - hold one
+piece of information with lifetimes whose FORMS are derivable in
+advance: exponential-of-nothing (1/D), exponential-of-a-barrier
+(Kramers, barrier = eps exactly), and exponential-of-a-barrier that
+grows with N only until it saturates at 2K, with an N-fold
+nucleation penalty - so classical 1D topology buys NO extensive
+protection, and the lifetime ordering between rings of different
+sizes INVERTS at a derived noise crossover. A chat-level guess that
+the topological barrier scales extensively with N died in the
+derivation layer before this registration (EQ5); what is registered
+is the closed form that killed it.
+method: derivation layer scripts/experiments/p24_derive.py (run
+first, committed): rung-1 exact decay e^{-Dt} by CAS eigenfunction
+identity (EQ1); rung-2 telegraph autocorrelation e^{-2rt} with
+r from exact MFPT quadrature and barrier = eps by CAS (EQ2);
+rung-3 saddle in CLOSED FORM - clamp one bond, the relaxed rest is
+uniform (verified by numeric relaxation), saddle at Delta* =
+pi(N-3)/(N-2), barrier Delta_E(N) = E(Delta*) - N K(1-cos(2pi/N))
+(EQ3); the full Langer rate with derived prefactor - both Hessians
+from the closed-form configurations, cyclic-Jacobi eigenvalues,
+global-rotation zero mode dropped from both determinants, unstable
+curvature, times N nucleation sites (EQ4); the saturation
+Delta_E -> 2K and the size-ordering crossover (EQ5); Poisson/CLT
+bands and event budgets > 60 per cell (EQ6). All pins in
+p24_registration.json. Registered simulations: seeded
+Euler-Maruyama / Langevin at the pinned dt, seeds, grids.
+expects: (a) rung 1: ensemble <cos theta> at the four pinned times
+lands inside its derived CLT band around e^{-Dt} at D = 0.5,
+M = 4000 walkers. (b) rung 2: committed-telegraph hop counts at
+D = 0.22 and 0.28 inside Poisson bands of the pinned MFPT rates,
+and the two-point Arrhenius slope reproduces the CAS barrier
+inside the propagated band. (c) rung 3, five (N, D) cells:
+measured committed slip rates inside |ln r_meas - ln r_Langer| <
+2/sqrt(N_events) + 0.7 (absolute, finite-barrier allowance
+declared); the two same-D ratio clauses (16 vs 8 at D = 0.16,
+32 vs 16 at D = 0.30) inside 0.35 nat + Poisson of the derived
+ratios; slip purity: at least 98 percent of committed winding
+changes are single steps. (d) the crossover: the measured
+lifetime ORDER between N = 8 and N = 32 at D = 0.16 (32 wins)
+agrees in SIGN with the derived 128x, tested at the same seeds
+budget - and the derived inversion at D = 0.6 is recorded as a
+pinned prediction for the figure, not simulated to convergence
+(budget declared).
+changes-my-mind: any rung-3 cell off the Langer rate by more than
+a factor e^{0.7} at converged dt kills the derived-prefactor
+account; a ratio clause failing kills the N-scaling law
+(nucleation x N against saturating barrier); slip purity below 98
+percent kills the single-slip picture; rung-2 Arrhenius missing
+the CAS barrier kills the Kramers reading of the locked bit.
+not-claimed-in-advance: quantum or 2D substrates; extensivity
+statements beyond this ring class; optimized/engineered
+protection (error correction); any Landauer/work accounting
+(a later line); electron clouds (out of scope for this classical
+line - declared per request).
