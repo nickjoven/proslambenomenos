@@ -1068,3 +1068,26 @@ repeat within the same T3 budget. This is the quantity Langer
 computes. Overwind escapes (w: 1 to 2) are counted but derived
 negligible (barrier about 3.7 at N = 16). Ancestry: this amendment
 precedes the computation commit.
+
+## R-19 — 2026-08-26 — resolves P-24
+outcome: all four clauses as registered (protocol per P-24a);
+the mind-change did not fire. Numbers pasted from
+p24_results.json by script, per the R-18a rule.
+(a) rung 1, M = 4000 walkers at D = 0.5: t=0.5: 0.7762 vs 0.7788, t=1.0: 0.5989 vs 0.6065, t=2.0: 0.3598 vs 0.3679, t=4.0: 0.1082 vs 0.1353 - every point
+inside its CLT band around the CAS-derived e^(-Dt).
+(b) rung 2: D=0.22: 185 hops vs 181 predicted, D=0.28: 476 hops vs 469 predicted; two-point Arrhenius slope 0.970
+against the quadrature pin 0.976 and the CAS barrier
+1 (band 0.245).
+(c) rung 3, escape-from-w=1 with reset: 8_0.16: 114 escapes, rate 0.04560 vs Langer 0.04686 (0.027 nat, purity 1.000); 16_0.16: 107 escapes, rate 0.00238 vs Langer 0.00199 (0.180 nat, purity 1.000); 16_0.24: 163 escapes, rate 0.02329 vs Langer 0.02105 (0.101 nat, purity 1.000); 16_0.3: 147 escapes, rate 0.04900 vs Langer 0.05412 (0.099 nat, purity 1.000); 32_0.3: 160 escapes, rate 0.03200 vs Langer 0.03355 (0.047 nat, purity 0.994). Both ratio
+clauses inside their bands: ratio_16_0.16_over_8_0.16: -2.954 vs -3.161 (band 0.731); ratio_32_0.3_over_16_0.3: -0.426 vs -0.478 (band 0.673). Every committed escape but one
+was a single winding step.
+(d) the order clause: tau16/tau8 measured 19.2 against the
+derived 23.6 at D = 0.16 - size helps exactly as the
+saturating-barrier law says, and the derived inversion at D = 0.6
+(ratio 0.87) stands as a pinned prediction on the figure
+page. Reading: the memory hierarchy is derived physics end to end -
+the untended phase forgets at 1/D, the locked bit at the exact
+MFPT with barrier eps, and the 1D winding number at the Langer
+rate under a barrier that saturates at 2K: no extensive
+topological protection, a closed-form crossover instead. Filed as
+memory-hierarchy-of-substrates; figure page p24_plots.html.
