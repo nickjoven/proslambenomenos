@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p14_derive.py, scripts/experiments/p14_registration.json, scripts/experiments/p14_spectral_shadow.py, scripts/experiments/p14_results.json, scripts/verify/p14_isometric_spectra.py -->
 # P-14: the commutator kernel is spectrally audible - what held, what fired
 
+Symbols: see the VOCABULARY.md symbol graph - V = (sqrt Z)''/sqrt Z falls out of Z in the tau gauge - C2 profiles only (this line found the boundary).
+
 Registered before computing (PREDICTIONS.md P-14); resolution R-10,
 whose mind-change condition FIRED on the k-resolved clause. This
 note reports both halves with their labels.

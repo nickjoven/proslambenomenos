@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p10_mm_dimension.py, scripts/experiments/p10_results.json, scripts/experiments/p10_symbolic.py -->
 # P-10: dimension from pure order (Myrheim-Meyer)
 
+Symbols: see the VOCABULARY.md symbol graph - d_hat falls out of order + count; the unordered-vs-Gamma factor 2 is recorded as a convention trap.
+
 Registered before computing (PREDICTIONS.md P-10, commit 3ce3997);
 run 2026-08-24 in worktree wt-p10-order-dimension, seed 20260824.
 Derivation and every checked equality: scripts/experiments/

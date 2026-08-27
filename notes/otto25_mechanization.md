@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/otto25_mech.py, scripts/experiments/otto25_mech.json -->
 # Mechanizing Otto 2025: every "=" executed, four bins
 
+Symbols: see the VOCABULARY.md symbol graph - the verified-refusals block (phi vs alpha, g_e, Omegas, Madelung) is indexed in the symbol graph.
+
 Target: H. H. Otto, "What Tells Geometrical Reciprocity about the
 Universe and its Mass Constituents?" (2025, ResearchGate; the
 companion of the 2018 JMP flat-lattice-multiverse paper audited

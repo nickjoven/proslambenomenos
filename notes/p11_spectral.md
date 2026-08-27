@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p11_derive.py, scripts/experiments/p11_spectral.py, scripts/experiments/p11_results.json, scripts/verify/p11_spectral_metric.py -->
 # P-11: the representation decides the metric
 
+Symbols: see the VOCABULARY.md symbol graph - geodesic distance falls out of the commutator only in the source-pullback representation (a verified refusal otherwise).
+
 Registered before computing (PREDICTIONS.md P-11); resolution R-9.
 Distance with no paths anywhere in its definition: d(p,q) =
 sup { f(q) - f(p) : ||[D, f]|| <= 1 } (Connes 1994; finite-space

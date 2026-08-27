@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/symb.py, scripts/experiments/p13_symbolic.py, scripts/experiments/p13_profiles.py, scripts/experiments/p13_acoustic_chain.py, scripts/experiments/p13_results.json, scripts/experiments/p13_jz_diagnosis.py, scripts/experiments/p13_jz_diagnosis.json, scripts/verify/p13_acoustic_metric.py -->
 # P-13: the acoustic metric, and what it does not see, on a chain
 
+Symbols: see the VOCABULARY.md symbol graph - c = sqrt(J/m) and Z = sqrt(mJ) fall out of (m, J); the bijection leaks only at the band edge.
+
 Registered before computing (PREDICTIONS.md P-13); every "=" below
 carries an EQ id checked by the stdlib symbolic layer
 (`scripts/experiments/p13_symbolic.py`, output committed) — symbolic

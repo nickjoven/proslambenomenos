@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p17_derive.py, scripts/experiments/p17_registration.json, scripts/experiments/p17_bell.py, scripts/experiments/p17_results.json, catalog/c32_bell_experiments.py, scripts/verify/p17_bell_ladder.py -->
 # P-17: the Bell ladder - expansion is cheap, contraction is a theorem
 
+Symbols: see the VOCABULARY.md symbol graph - S <= 2 falls out of enumeration; 2 sqrt 2 falls out of the Landau identity.
+
 Registered before computing (PREDICTIONS.md P-17); resolution R-12,
 all clauses as registered; constants litchecked in LC-10. The 2022
 Nobel experiments honour a theorem about mechanical models; the most

@@ -1,6 +1,8 @@
 <!-- evidence: scripts/experiments/p18_derive.py, scripts/experiments/p18_registration.json, scripts/experiments/p18_smooth.py, scripts/experiments/p18_results.json, scripts/verify/p18_smooth_retest.py -->
 # P-18: the C2 retest - the corners were the failure, the theory was not
 
+Symbols: see the VOCABULARY.md symbol graph - shift_k falls out of V at first order on C2 profiles; omega_k falls out of the metric for k in [5, 60].
+
 Registered before computing (PREDICTIONS.md P-18); resolution R-13,
 all six clauses as registered, mind-change not fired. This closes
 open item A-6 and completes the arc that R-10 left honest but
