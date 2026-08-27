@@ -1,0 +1,39 @@
+id: memory-hierarchy-of-substrates
+statement: >
+  Three classical substrates hold one piece of information with
+  lifetimes whose complete forms - exponents AND prefactors - were
+  derived before any simulation ran (P-24 with protocol amendment
+  P-24a). The untended phase forgets at exactly tau = 1/D (CAS
+  eigenfunction identity; four ensemble points inside CLT bands).
+  The locked phase (the P-22 Z2 doublet read as a bit) forgets at
+  the exact mean-first-passage time with Arrhenius barrier equal to
+  eps exactly: measured two-point slope 0.970 beside the CAS
+  barrier 1 within the propagated band. The winding number on an
+  N-site ring forgets by single phase slips whose escape rate is
+  the full Langer expression - closed-form saddle at Delta* =
+  pi(N-3)/(N-2) with the relaxed remainder uniform, Hessian
+  determinants with the rotation zero mode removed, times N
+  nucleation sites: five (N, D) cells land 0.03 to 0.18 nat from
+  the derived rates with 99.4 to 100 percent single-step purity,
+  and both same-D size ratios sit inside their bands. The barrier
+  Delta_E(N) saturates at 2K, so classical 1D topology buys NO
+  extensive protection: lifetime rises with N only while the
+  twisted state's own strain relaxes (measured 19.2 against
+  derived 23.6 for N 16 vs 8 at D = 0.16), and the derived
+  ordering inverts by D = 0.6. At N = 4 the barrier is exactly
+  zero - that ring cannot hold the bit at all. Scope: overdamped
+  classical dynamics, dimensionless units, this ring class; a
+  chat-level guess of extensive protection was killed by the
+  closed form at EQ5 before registration and is recorded there.
+premises: []
+prediction: P-24
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p24_derive.py (CAS decay identity, exact MFPT, closed-form saddle verified against numeric relaxation, Jacobi-eigenvalue Langer prefactors, derived bands; pins in p24_registration.json); scripts/experiments/p24_memory.py with p24_results.json (seeded ensembles, escape-with-reset per P-24a); figure page scripts/experiments/p24_plots.py; independently reimplemented by scripts/verify/p24_memory_hierarchy.py with its own integrator, own Hessians and eigensolver, and a fresh (N, D) cell the experiment never ran"
+    method: reimplementation
+null_system: "the null is extensive topological protection - lifetime growing without bound in N, as engineering intuition about topological memory suggests: the closed form kills it (Delta_E saturates at 2K while nucleation contributes a factor N against), and the extensive-protection mutant dies on exactly this saturation"
+falsifier: "scripts/verify/p24_memory_hierarchy.py --mutant extensive-protection"
+novelty:
+  status: classical
+  citation: "thermally activated phase slips with rate proportional to system size: Langer, Ambegaokar, Phys. Rev. 164, 498 (1967); McCumber, Halperin, Phys. Rev. B 1, 1054 (1970); Kramers/Langer rate theory: Langer, Ann. Phys. 54, 258 (1969); the contribution here is the registered closed-form discrete-ring saddle and the end-to-end derived-then-measured hierarchy"
+status: verified
