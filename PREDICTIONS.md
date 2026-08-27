@@ -1049,3 +1049,22 @@ statements beyond this ring class; optimized/engineered
 protection (error correction); any Landauer/work accounting
 (a later line); electron clouds (out of scope for this classical
 line - declared per request).
+
+## P-24a — 2026-08-26 — two protocol corrections before any run
+Caught at feasibility review, before the registered computation ran:
+(i) clause (d) as worded names N = 32 at D = 0.16, a cell whose
+event budget (about 1e6 time units) is outside the registered T3
+table; the order test is hereby the two BUDGETED cells N = 8 vs
+N = 16 at D = 0.16, whose derived lifetime ratio from the pinned
+Langer rates is 23.6; the N = 32 and D = 0.6 entries stay derived-
+only pins for the figure, as the entry already declared for D=0.6.
+(ii) clause (c)'s implied free-running slip count would spend most
+of the run in the w = 0 sector, whose slip barrier (approaching 2K)
+exceeds the w = 1 escape barrier that the pinned Langer rates
+price; the registered protocol is therefore escape-from-w-equals-1
+with reset: start at the uniform twist, integrate to the first
+committed winding change, record the escape time and size, reset,
+repeat within the same T3 budget. This is the quantity Langer
+computes. Overwind escapes (w: 1 to 2) are counted but derived
+negligible (barrier about 3.7 at N = 16). Ancestry: this amendment
+precedes the computation commit.
