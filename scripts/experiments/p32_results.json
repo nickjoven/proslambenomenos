@@ -1,0 +1,409 @@
+{
+ "clauses": {
+  "a": true,
+  "b": false,
+  "c": true,
+  "d": false,
+  "e": true
+ },
+ "table": [
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 4,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 4,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 5,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 5,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 6,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 6,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 7,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 7,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 8,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 8,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 9,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "alt",
+   "N": 9,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 4,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 4,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 5,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 5,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 6,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 6,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 7,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 7,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 8,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 8,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 9,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "control",
+   "N": 9,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 4,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 4,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 5,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 5,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 6,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 6,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 7,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 7,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 8,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 8,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 9,
+   "target": 0.0625,
+   "width": 0.0007999999988823892
+  },
+  {
+   "kind": "bias",
+   "geom": "seam",
+   "N": 9,
+   "target": 0.125,
+   "width": 0.0007999999988824447
+  },
+  {
+   "kind": "pin",
+   "geom": "alt",
+   "N": 4,
+   "target": 0.5,
+   "width": 0.11875065053172879
+  },
+  {
+   "kind": "pin",
+   "geom": "alt",
+   "N": 5,
+   "target": 0.5,
+   "width": 0.11740342103876161
+  },
+  {
+   "kind": "pin",
+   "geom": "alt",
+   "N": 6,
+   "target": 0.5,
+   "width": 0.032797891838708904
+  },
+  {
+   "kind": "pin",
+   "geom": "alt",
+   "N": 7,
+   "target": 0.5,
+   "width": 0.04159517166262994
+  },
+  {
+   "kind": "pin",
+   "geom": "alt",
+   "N": 8,
+   "target": 0.5,
+   "width": 0.12173228014435156
+  },
+  {
+   "kind": "pin",
+   "geom": "alt",
+   "N": 9,
+   "target": 0.5,
+   "width": 0.11855289601662683
+  },
+  {
+   "kind": "pin",
+   "geom": "control",
+   "N": 4,
+   "target": 0.5,
+   "width": 0.07396849684882922
+  },
+  {
+   "kind": "pin",
+   "geom": "control",
+   "N": 5,
+   "target": 0.5,
+   "width": 0.07396849684882922
+  },
+  {
+   "kind": "pin",
+   "geom": "control",
+   "N": 6,
+   "target": 0.5,
+   "width": 0.07396849684882922
+  },
+  {
+   "kind": "pin",
+   "geom": "control",
+   "N": 7,
+   "target": 0.5,
+   "width": 0.07396849684882922
+  },
+  {
+   "kind": "pin",
+   "geom": "control",
+   "N": 8,
+   "target": 0.5,
+   "width": 0.07396849684882922
+  },
+  {
+   "kind": "pin",
+   "geom": "control",
+   "N": 9,
+   "target": 0.5,
+   "width": 0.07396849684882922
+  },
+  {
+   "kind": "pin",
+   "geom": "seam",
+   "N": 4,
+   "target": 0.5,
+   "width": 0.022156565016484997
+  },
+  {
+   "kind": "pin",
+   "geom": "seam",
+   "N": 5,
+   "target": 0.5,
+   "width": 0.029345556098269165
+  },
+  {
+   "kind": "pin",
+   "geom": "seam",
+   "N": 6,
+   "target": 0.5,
+   "width": 0.0349647008202737
+  },
+  {
+   "kind": "pin",
+   "geom": "seam",
+   "N": 7,
+   "target": 0.5,
+   "width": 0.03397876140370498
+  },
+  {
+   "kind": "pin",
+   "geom": "seam",
+   "N": 8,
+   "target": 0.5,
+   "width": 0.033018404623726294
+  },
+  {
+   "kind": "pin",
+   "geom": "seam",
+   "N": 9,
+   "target": 0.5,
+   "width": 0.032855790463509116
+  }
+ ],
+ "seam_pin_ratio": [
+  0.2995405606493096,
+  0.3967304642981081,
+  0.4726971928567333,
+  0.45936801275207745,
+  0.4463846911909892,
+  0.44418626662992894
+ ],
+ "f_gap": 0.0,
+ "even_odd_gap": 0.0,
+ "all_floor": false,
+ "gap_pin": -0.08893438830564265,
+ "alt_pin_widths": {
+  "4": 0.11875065053172879,
+  "5": 0.11740342103876161,
+  "6": 0.032797891838708904,
+  "7": 0.04159517166262994,
+  "8": 0.12173228014435156,
+  "9": 0.11855289601662683
+ }
+}
