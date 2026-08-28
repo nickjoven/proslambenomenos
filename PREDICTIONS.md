@@ -1856,3 +1856,38 @@ LC-19 (Bernoulli convolutions - a different skeleton, queued as
 its own candidate line); any physical identification between
 driven oscillators and electrons in fields beyond the shared
 premise named above.
+
+## R-26 — 2026-08-28 — resolves P-29 (all clauses; one instrument-domain correction)
+First run: clause (e) fired on three competitors (1/11, 1/12,
+1/13) whose tongue widths read 0.0 while their bandwidths were
+healthy - an instrument fault, not physics: the Omega bracket
+0.6 K/q missed windows displaced by the rho = 0 tongue, whose
+K/(2 pi) = 0.0796 width shifts the whole staircase (at Omega =
+1/11 the eleventh-iterate deficit is 0.165 - the window sits far
+right of the naive center). The bracket was replaced by the
+RIGOROUS per-step bound |Omega - rho| <= K/(2 pi) + 1e-3, under
+which the crossing is unique by monotonicity; no registered band
+was touched, and the earlier feasibility estimate (K/2)^q in EQ5
+is recorded as wrong-but-harmless (the true small parameter is
+nearer K/(4 pi); all scored widths sit above the floor).
+Second run, all clauses: (a) the mediant carries the WIDEST
+TONGUE against every competitor in all 10 registered intervals;
+(b) the mediant carries the LARGEST BANDWIDTH against every
+competitor in all 10 intervals; (c) the grading transfers beyond
+the winner: Spearman between tongue widths and bandwidths over
+mediant + competitors is 0.891-1.000 across the 8 eligible
+intervals; (d) the control broke the bridge on exactly one side
+in the direction derived at registration: under pure-second-
+harmonic forcing (exactly conjugate to the standard map at
+(2 Omega, 2K), EQ4 at 1e-8), the competitor 3/8 beats the
+mediant 2/5 in [1/3, 1/2] (7.93e-3 vs 4.66e-3) while the
+untouched butterfly keeps S(2/5) = 1.8434 > S(3/8) = 1.2021;
+(e) every scored width above 1e-9, every S above 1e-6. The
+composite mechanism claim stands on its named premise: the
+mediant ordering follows from first-harmonic two-frequency
+competition - remove the first harmonic and the ordering follows
+the CONJUGATED denominators instead, exactly as the conjugacy
+demands. First premises-bearing claim filed
+(farey-bridge-mediant-mechanism, premises: harper-golden-ladder,
+golden-ladder-gap-integers). Results:
+scripts/experiments/p29_results.json.
