@@ -556,3 +556,36 @@ claims-checked:
   Gisler 2022 (nanowire, FOM 0.298); Fein et al. 2019 Nat. Phys.
   (25 kDa interference, lambda = 133 Hz per Janse); Asenbaum 2017
   (Rb interferometry); Armano 2018 (LISA Pathfinder).
+
+## LC-18 — 2026-08-28 — the gap-labeling literature
+prediction: P-28
+claims-checked:
+- Satija, Frontiers in Physics (2026), "The Hofstadter butterfly:
+  bridging condensed matter, topology, and number theory" (the
+  review A-12 cites): the gap-labeling relation N = s + t phi with
+  N the integrated density of states and t the Chern number of
+  Hall conductivity (their eqs. 6-7 region), identified through
+  the Streda formula (their eq. 9). Small audit note: the review's
+  "for rational flux p/q, there are q gaps" counts the closed
+  gaps; the ladder has q-1 gap indices and P-7's parity rule
+  closes the central one for even q — and EQ1 shows the
+  Diophantine label is AMBIGUOUS (t = +-q/2) at exactly that gap:
+  the number theory and the spectrum agree on which gap cannot be
+  labeled.
+- Thouless-Kohmoto-Nightingale-den Nijs, PRL 49, 405 (1982): the
+  Hall conductance of a filled gap is the integer t of the
+  Diophantine equation r = s q + t p (TKNN). Imported as the
+  physical meaning of t; the Hall conductance itself (Kubo route)
+  is NOT recomputed here - our computed content is the label
+  arithmetic plus the Streda slope from band counting.
+- Streda, J. Phys. C 15, L717 (1982): sigma_xy = e^2/h dN/dB at
+  fixed E in a gap. Mechanized here as the exact rational
+  identity (EQ4): across unimodular (Farey-neighbor) flux pairs,
+  the band-count slope dN/dalpha equals t with no error term.
+- Wannier, pss(b) 88, 757 (1978) and Claro-Wannier, PRB 19, 6068
+  (1979): the gap-labeling ansatz N = s + t alpha predates TKNN;
+  the |t| <= q/2 window convention. Context import.
+- Avila-Jitomirskaya, Ann. Math. 170, 303 (2009): the Ten Martini
+  theorem (Cantor spectrum at irrational flux). Context only: the
+  irrational limit is NOT-CLAIMED in P-28; all statements are at
+  the ladder's rational rungs.

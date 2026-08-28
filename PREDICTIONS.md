@@ -1715,3 +1715,58 @@ or a settled ruling on whether relative measurements count -
 at which point Asenbaum-class data either closes the discrete
 window or does not, with nothing in between at current precision.
 Results: scripts/experiments/p27_results.json.
+
+## P-28 — 2026-08-28 — the gap integers of the golden ladder
+question: A-12 - P-7 computed the golden flux ladder's spectra and
+deliberately left Chern content not-claimed. Do the ladder's gaps
+carry their Diophantine/Streda labels in the computed spectra -
+principal gaps at t = +-1, the Fibonacci map r = F_j <-> |t| =
+F_{n-j} (derived exactly in EQ2, including the edge gap's LARGE
+Fibonacci Chern |t| = F_{n-2}), exact integer Streda slopes across
+Farey-neighbor rungs from independent band counting, and a gap
+hierarchy ordered by |t|?
+method: derivation layer scripts/experiments/p28_derive.py runs
+first and pins scripts/experiments/p28_registration.json: label
+existence/uniqueness with the even-q central ambiguity landing on
+P-7's closed gap (EQ1), the Fibonacci congruence F_{n-1} F_j =
+(-1)^{j+1} F_{n-j} (mod F_n) and THE MAP with sign-flipped mirrors
+(EQ2, exhaustive, q = 2 vacuous), kernels.eig.eigh anchored
+against the P-7 Jacobi route at 3.6e-15 and the c25 q = 2 closure
+(EQ3 - first experiment-side kernels consumer), unimodularity of
+consecutive rungs and the exact rational Streda slope identity
+(EQ4), and the feasibility pins (EQ5: width floor 1e-9, hierarchy
+tiers |t| in {1,2,3}, edge-gap resolution required only through
+q = 13 since |t(r=1)| = F_{n-2} grows along the ladder).
+Experiment scripts/experiments/p28_labels.py: for each rung q in
+{3,5,8,13,21,34,55,89,144}, spectra by kernels.eigh at the two
+P-7 Chambers corners (corner +-1, k2 in {0, pi/q}), bands as
+consecutive sorted edge pairs, gaps with widths, every open gap
+(width > 1e-9) assigned its (s, t).
+expects: (a) at every rung q >= 5, the two WIDEST open gaps sit at
+r = F_{n-1} and F_{n-2} carrying t = +1 and -1; (b) hierarchy:
+median open-gap width strictly decreasing across tiers |t| = 1, 2,
+3 at every rung q >= 13; (c) every open Fibonacci-position gap
+obeys the EQ2 map, and the edge gap r = 1 is resolved (open at
+floor) through q = 13 carrying |t| = F_{n-2}; the rung where r = 1
+drops below the floor is reported, not scored; (d) Streda from
+independent band counting: for consecutive rung pairs from 5/8 up
+and labels t in {+1, -1, +2}, the two gaps' energy windows overlap
+and counting bands below the overlap midpoint at the finer rung
+returns r' with (r'/q' - r/q)/(p'/q' - p/q) = t exactly; (e) the
+even-q central gap width stays below 1e-12 at q in {8, 34, 144}
+(parity interop re-verified in this pipeline).
+changes-my-mind: any open principal gap carrying a label other
+than +-1 kills the labeling claim outright; any open
+Fibonacci-position gap off the EQ2 map kills the Fibonacci-Chern
+statement; any overlapping Streda pair returning a non-integer or
+wrong-integer slope kills the Streda mechanization; hierarchy
+inversion between tiers 1 and 2 at two or more rungs kills the
+hierarchy clause (a single-rung inversion is recorded and the
+clause fails for that rung).
+not-claimed-in-advance: the irrational limit (Cantor spectrum,
+dry Ten Martini - LC-18 context); gaps below the 1e-9 floor;
+Hall conductance in physical units or by Kubo (TKNN meaning
+imported, not recomputed); lambda != 1; tiers |t| >= 4 (their
+positions are not Fibonacci and no claim is registered about
+them); gap-width scaling exponents along the ladder (reported for
+the P-7 ln-phi context, unscored).
