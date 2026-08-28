@@ -507,3 +507,52 @@ claims-checked:
   1/sqrt(N) count fluctuation lands 0.4 orders from the observed
   Lambda. P-26 scores the DYNAMICS that produce that magnitude,
   on DR2 BAO, and finds them priced out (R-23).
+
+## LC-17 — 2026-08-28 — the postquantum-classical-gravity squeeze sources
+prediction: P-27
+claims-checked:
+- Oppenheim, PRX 13, 041040 (2023): the postquantum theory of
+  classical gravity - consistent CQ coupling requires stochastic
+  metric fluctuations; formally renormalisable per arXiv
+  2402.17844. Imported as the theory under test; not recomputed.
+- Oppenheim, Sparaciari, Soda, Weller-Davies, Nature Comms 14,
+  7910 (2023) / arXiv 2203.01982 (one arXiv version only): the
+  decoherence-diffusion trade-off. Their Section V squeezes,
+  eqs. (44)/(46)/(47), pinned with their stated inputs (Cavendish
+  sigma_a ~ 1e-7 m/s^2, N ~ 1e26, r_N ~ 1e-15 m, V_b ~ r_E^2 h;
+  fullerene M = 1e-24 kg, lambda < 10/s, V ~ 1e-25 m^3, R ~ 1e-9
+  m). AUDIT FINDINGS (EQ2): the averaging time T in eq. (42) is
+  never given a value in Section V (Janse et al. attest dT =
+  100 s); the three printed lower bounds reproduce exactly from
+  the stated inputs, while the three printed upper bounds sit
+  +2.26 / -1.35 / +1.65 orders from their own inputs' arithmetic
+  (continuous / discrete / nonlocal) - order-of-magnitude prose,
+  now mechanized with signed deltas. Their verdicts imported:
+  ultra-local continuous models with Phi-independent diffusion are
+  ruled out (need ~20 orders of suppression); discrete and
+  nonlocal-continuous classes survive with ~24 and ~31 orders of
+  window.
+- Janse, Uitenbroek, van Everdingen, Plugge, Hensen, Oosterkamp,
+  PRR 6, 033076 (2024) / arXiv 2403.08912: the modern upper-bound
+  review through FOM_D2 = N S_a (their eq. 3, Table I, 45
+  experiments + the stylized Cavendish row). Machine-parsed into
+  scripts/experiments/janse_table1.json. AUDIT FINDINGS (EQ3/EQ4):
+  all 46 rows internally consistent on S_a = S_F/m and
+  FOM = N S_a^2 to 5%; the Monteiro '20 row's printed N is 8x the
+  SiO2-composition value (its FOM column is nonetheless internally
+  consistent); their eqs. (4)-(5) are FOM rescalings of OSSW's
+  printed bounds from the Gisler row (FOM 0.298 vs Cavendish
+  1e14), reproduced to a factor 3; their eq. (5) lower bound 1e-35
+  is underivable from any stated input set (OSSW printed 1e-40;
+  Fein-updated M^2/(R lambda) = 1.3e-38) - the source of their
+  "one order of magnitude" gap statement for Asenbaum, recorded as
+  convention-dependent. Their applicability caveats imported
+  unresolved: differential/relative acceleration measurements
+  (Asenbaum atom interferometry FOM 2.41e-11, LISA Pathfinder
+  1.78e-5) may not validly bound D2, and the same experiment
+  serving as both upper and lower bound is an open question their
+  text raises.
+- Experiment primaries behind the pinned rows (not re-derived):
+  Gisler 2022 (nanowire, FOM 0.298); Fein et al. 2019 Nat. Phys.
+  (25 kDa interference, lambda = 133 Hz per Janse); Asenbaum 2017
+  (Rb interferometry); Armano 2018 (LISA Pathfinder).
