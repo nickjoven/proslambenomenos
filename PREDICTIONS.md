@@ -1679,3 +1679,39 @@ relativistic completions; other hybrid models (Tilloy-Diosi,
 Kafri-Taylor-Milburn); the correct V_lambda / R_lambda superposition-
 volume conventions (recorded as the source of the 1e-35 vs 1e-40
 discrepancy, not resolved).
+
+## R-24 — 2026-08-28 — resolves P-27 (mind-change FIRED on sign stability; recorded, not rescued)
+Clauses (a)-(e) all held: the unit mechanization and six-bound
+recomputation stand; the ultra-local continuous class is excluded
+under every rule (window -17.0 at OSSW-2022 down to -41.6 with
+Asenbaum); the discrete class survives the direct-on-Earth rule at
++9.5 orders (Gisler FOM 0.298) and reads -0.6 with Asenbaum
+admitted; the nonlocal class is positive everywhere on printed
+bounds, with the Asenbaum/Janse-convention cell at +1.4 against
+their stated "one order"; the closure figures of merit stand
+(discrete shuts at FOM = 1e-10 m^2 s^-3, nonlocal at 1e-17 under
+the OSSW lower bound, 1e-12 under Janse's 1e-35).
+THE FIRING: the registered sign-stability check found three
+verdict flips between the printed bounds and the same bounds
+recomputed from the sources' own stated inputs - all three in the
+contested Asenbaum rows: discrete/OSSW-lower -0.62 -> +0.73,
+discrete/Fein-lower -1.11 -> +0.24, nonlocal/Janse-e35 +1.38 ->
+-0.27. Per the registration, those cells' verdicts are recorded as
+UNDECIDABLE AT SOURCE PRECISION rather than rescued: the question
+"does atom interferometry close the discrete class" has its answer
+living entirely inside the sources' own order-of-magnitude
+arithmetic (printed upper bounds sit +2.26/-1.35/+1.65 orders from
+their own inputs, EQ2), on top of the already-imported
+applicability question (differential/relative measurements as D2
+bounds) and the underivable 1e-35 lower-bound convention. What
+survives both arithmetics and every inclusion rule: continuous
+EXCLUDED (margin >= 14 orders); discrete SURVIVES the
+uncontested rule (margin >= 8 orders) and is UNDECIDED under
+Asenbaum; nonlocal SURVIVES (margin >= 4 orders except the one
+fragile cell). The decisive next number is not incremental: the
+discrete class needs FOM = 1e-10 m^2 s^-3 from an UNCONTESTED
+absolute on-Earth measurement (Gisler sits at 3e-1; nine orders),
+or a settled ruling on whether relative measurements count -
+at which point Asenbaum-class data either closes the discrete
+window or does not, with nothing in between at current precision.
+Results: scripts/experiments/p27_results.json.
