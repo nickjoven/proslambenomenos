@@ -2128,3 +2128,77 @@ the EQ1 refinement); voltage-step physics beyond the rotation-
 number analogy; the unexplained P-9 non-monotonicity at K = 1.4
 (not this line's target); parameter dependence beyond the single
 registered (J, A, nu, K) point; any claim at N outside 4..9.
+
+## R-29 — 2026-08-28 — resolves P-32 (clauses b and d FIRED; diagnosed, not rescued)
+Held: (a) the P-9 reproduction landed on all twelve pins with
+r(N) = 0.300, 0.397, 0.473, 0.459, 0.446, 0.444 and no parity
+alternation; (c) the seam+bias half-widths show no alternation;
+(e) the integer step exists in every bias cell.
+FIRED, both with clean diagnoses:
+(b) every ALT+bias half-step "width" measured exactly 0.00080,
+identical across N and geometry - which is the TOLERANCE SMEAR of
+an unlocked staircase, 2 TOL / (d rho / d I) with the off-plateau
+slope measured at 1.0000 in every probed cell (diagnostic in this
+entry's evidence chain). The instrument's width floor (1e-5) was
+mis-derived: the correct null width is the smear 8.0e-4, and
+against THAT null there is NO half-integer locking at the
+registered operating point (A = 0.9, nu = 1/8) in ANY geometry.
+The imported effect did not transfer at this single operating
+point; whether it transfers anywhere in this family is not
+answered by P-32 and is re-registered (P-33) with the corrected
+null and a declared operating-point grid.
+(d) the metric fired for the opposite reason than guarded
+against: the PINNING side has a large f-organization - under
+ALT+pinning the frustrated classes {6, 7} have 1/2-plateau widths
+0.089 NARROWER than the clean/defect classes, thirty times the
+resolution - the registered expectation (classes silent under
+pinning) was simply wrong. The frustration arithmetic organizes
+the pinned ring strongly; direction: frustration NARROWS the
+plateau. This appeared through a registered metric but its
+direction was not registered in advance, so it is recorded here
+as a diagnosed observation and promoted to a registered clause at
+a FRESH coupling in P-33.
+Results: scripts/experiments/p32_results.json.
+
+## P-33 — 2026-08-28 — the factorial re-registered (corrected null, declared grid)
+question: with the instrument corrected (the null width is the
+derived tolerance smear w0 = 2 TOL / slope, measured per cell by
+the registered finite-difference formula off-plateau; locking
+present iff width > 2 w0), does the half-integer step appear
+ANYWHERE on a declared bias operating grid, and does its
+organization follow the EQ1 frustration classes - and does the
+newly observed pinning-side f-organization persist at a fresh
+coupling?
+method: same codebase and cells as P-32 with: (1) bias cells run
+over the declared grid A in {0.5, 0.9, 1.3, 1.7} x nu in
+{1/8, 1/6}, geometries {control, seam, alt}, N = 4..9, half-step
+target rho = nu/2; per cell the null w0 from the off-plateau
+slope at I = nu/2 + 0.01; the cell's sup-width over the grid
+recorded; (2) integer-step positive control at each grid point on
+the control geometry; (3) pinning cells at the FRESH coupling
+K = 1.2 (untouched by P-32/P-9), ALT geometry, N = 4..9,
+attractor-controlled initial conditions.
+expects: (a) two-outcome clause, both outcomes explicit: EITHER
+the half-step appears (sup-width > 2 w0) in at least one ALT cell
+and the f-classes organize the sup-widths (frustrated group
+{6, 7} separated from {4, 5, 8, 9} by >= 3e-3, direction
+recorded) - the transfer succeeds and the organizing variable is
+identified - OR no cell on the whole grid exceeds 2 w0 and the
+transfer failure of the imported effect to this uniform-bias
+circle-map family is CONFIRMED across the declared grid (a
+recorded negative import, LC-23's ring-closure caveat standing as
+the suspected reason); (b) the pinning f-organization persists at
+K = 1.2: f-gap_pin <= -3e-3 (frustrated narrower), the direction
+observed in R-29; (c) integer-step positive control present at
+every grid point.
+changes-my-mind: (a) f-organization appearing with plain even/odd
+organizing INSTEAD (the {6} cell siding with {4, 8} against
+{5, 7, 9} in sup-widths) revives the imported parity claim
+as-stated and kills the ring-closure refinement; (b) failing
+(gap_pin > -3e-3 at K = 1.2) makes R-29's pinning observation a
+K = 1.0 accident - recorded, and the promotion is withdrawn;
+(c) failing voids the grid's operating points.
+not-claimed-in-advance: as P-32, plus: no claim that the declared
+grid is exhaustive (a negative outcome is scoped to the grid);
+the mechanism of the pinning-side narrowing (reported, not
+modeled).
