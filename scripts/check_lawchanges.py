@@ -39,6 +39,7 @@ def covered_files():
     files.append("tests/run_spec.py")
     files += sorted(str(p.relative_to(ROOT)) for p in (ROOT / "tests" / "spec").glob("*.spec"))   # LAW-20: the specs ARE the law's tests
     files.append("catalog/_common.py")   # LAW-16: the catalog harness decides what self-testing means
+    files += sorted(str(p.relative_to(ROOT)) for p in (ROOT / "kernels").glob("*.py"))   # LAW-34: kernels imported by falsifiers must be pinned
     return sorted(set(files))
 
 
