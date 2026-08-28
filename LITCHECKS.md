@@ -738,3 +738,32 @@ claims-checked:
   the Farey skeleton is our registered question, absent from his
   paper (LC-19's census: Farey/mediant/Stern occur zero times
   there).
+
+## LC-23 — 2026-08-28 — the parity-factorial design imports
+prediction: P-32
+claims-checked:
+- Imported from LC-3/LC-4 (not re-fetched): Frolov et al., PRB 74,
+  020503(R) (2006) and Lazarides (Supercond. Sci. Technol. 21,
+  045003 (2008); PRB 77, 214419 (2008)): in driven 0-pi Josephson
+  arrays the half-turn offset CREATES half-integer Shapiro steps,
+  with alternating 0-pi arrays giving half-integer steps for EVEN
+  junction number and integer steps for odd - an explicit N-parity
+  claim. LC-3's reconciliation hypothesis, never tested until now:
+  the sign difference with E1's shrink-not-shift finding is the
+  DRIVE TYPE (per-site pinning vs bias coupling to phase
+  differences).
+- P-9/R-6 (in-repo): no parity under per-site pinning on the
+  one-seam ring, N = 4..9, attractor-controlled protocol; widths
+  pinned in p9_results_attractor.json; the N = 7 non-monotonicity
+  at K = 1.4 remains unexplained and is NOT this line's target.
+- The derived refinement (EQ1, pure arithmetic, ours): an
+  alternating-0-pi RING of N bonds carries net frustration
+  f(N) = (floor(N/2)/2) mod 1 and, for odd N, an alternation
+  defect. The imported even/odd claim therefore CANNOT be the
+  whole story on a ring: evens split into {4, 8} (f = 0, clean)
+  and {6} (f = 1/2), odds into {5, 9} (defect, f = 0) and {7}
+  (defect + f = 1/2). P-32 registers f as the organizing variable
+  and lets the data choose between f and plain parity. (The
+  Josephson papers concern open/biased ARRAY geometries; the ring
+  closure constraint is the source of the refinement - this
+  difference is declared, not hidden.)
