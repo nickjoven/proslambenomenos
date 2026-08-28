@@ -631,3 +631,44 @@ claims-checked:
   finite-orbit windows of the two-map system {beta x, beta x + 1
   - beta} as the third instrument - a registered claim there
   would need its own shared premise stated in advance.
+
+## LC-20 — 2026-08-28 — the indefinite-causal-order sources
+prediction: P-30
+claims-checked:
+- Oreshkov, Costa, Brukner, Nat. Comms 3, 1092 (2012) / arXiv
+  1105.4464: the causal game (Alice generates a and guesses x; Bob
+  generates b, b' and guesses y; p = (1/2)[P(x=b|b'=0) +
+  P(y=a|b'=1)]), the causal bound 3/4 (their eq. 2, derived from
+  Causal Structure + Free Choice + Closed Laboratories), the
+  process matrix W = (1/4)[1 + (sz^A2 sz^B1 + sz^A1 sx^B1
+  sz^B2)/sqrt2] (their eq. 7), the protocol CJ operators (their
+  eqs. 20-23), the reduced-process intermediates (eqs. 25-26),
+  and the value (2+sqrt2)/4. THEIR OWN CAVEATS imported verbatim:
+  whether (2+sqrt2)/4 is maximal is stated as an open question,
+  and the paper itself notes both their bound and violation
+  "match the corresponding numbers in the CHSH-Bell inequality" -
+  P-30's EQ1 makes that exact (the affine map p = (S+4)/8). No
+  physical realization of the OCB process is known (their
+  discussion; CTC models break linearity).
+- van der Lugt, Barrett, Chiribella, Nat. Comms 14 (2023) / arXiv
+  2208.00719: Theorem 1 - under Definite Causal Order,
+  Relativistic Causality, Free Interventions: p(b=0, a2=x1|y=0) +
+  p(b=1, a1=x2|y=0) + p(b XOR c = yz|x1=x2=0) <= 7/4; the quantum
+  switch with control entangled to spacelike Bob achieves 1/2 +
+  1/2 + (2+sqrt2)/4 = 1.8536, stated by them as MAXIMAL for
+  commuting-Bob scenarios via Tsirelson. Imported context: the
+  switch in isolation violates no bipartite causal inequality
+  (their refs [5, 6], extended to quantum-controlled circuits in
+  [43, 44]).
+- Liu et al., PRX Quantum (2026), "Toward an Experimental
+  Device-Independent Verification of Indefinite Causal Order"
+  (arXiv 2508.04643): photonic implementation of the VLBC
+  scenario, spacelike-separated entangled photons, causal
+  inequality violated by 24 standard deviations - WITH loopholes
+  the authors flag; they expect loophole-free ICO tests to need
+  "many generations of experiments" (the Bell-test arc). Imported
+  as experimental status, not recomputed.
+- Chiribella, D'Ariano, Perinotti, Valiron, PRA 88, 022318
+  (2013): the quantum switch supermap W = |0><0| (x) FE +
+  |1><1| (x) EF (VLBC eq. 7 convention). Basis of the circuit
+  implementation.
