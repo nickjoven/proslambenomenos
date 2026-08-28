@@ -1439,3 +1439,33 @@ the curve's steepest region). A registration design error of the
 P-22a class, not caught pre-run this time; the matched-clock
 clause is re-registered properly as P-25 on fresh seeds. The
 physics claims are filed on clauses (a), (b), (d) only.
+
+## P-25 — 2026-08-27 — the matched clocks
+question: R-21's fired clause compared the two walk instruments at
+mismatched diffusion scales. Registered properly: with the clocks
+matched (continuous time t evaluated AT the step count n), do the
+continuous-time and even-step spectral-dimension readings of the
+SAME sprinkled causet agree within a band DERIVED from the exact
+Poissonization identity - so that P-15's instrument transfers to
+irregular graphs with its error budget known rather than assumed?
+method: derivation layer inside scripts/experiments/p25_clocks.py
+(derive block runs and prints before the fresh-seed ensembles):
+the identity e^{-t lambda} = e^{-t} sum_k t^k (1 - lambda)^k / k!
+checked per-eigenvalue on a concrete spectrum (exact algebra), so
+Tr e^{-tL} at t = n is the Poisson-mean-n mixture of even/odd step
+returns; the agreement band at each n is the derived smearing
+bound band(n) = n |D2(n)| / 2 + 0.06, with D2 the second central
+difference of ln Pbar in step count computed from the measured
+spectrum itself (fit-free), plus the small odd-step contribution.
+Cells: fresh seeds (seed0 251251), N in {64, 128}, two seeds each,
+n in {4, 6, 8, 12, 16, 24}.
+expects: for every cell and every n, |ds_ct(t = n) - ds_disc(n)|
+inside band(n); and the large-n tail (n >= 16) inside 0.06
+absolute.
+changes-my-mind: any cell violating its derived band by more than
+a factor 2 kills the Poissonization account of the residual and
+with it the claim that the two clocks measure one object; a tail
+violation kills the instrument transfer outright.
+not-claimed-in-advance: anything about which clock is preferable;
+lazy or weighted walks; scales below n = 4 (the smearing bound is
+the statement there, not agreement).
