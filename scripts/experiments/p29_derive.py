@@ -107,7 +107,12 @@ def tongue_width(p, q, K, harmonic=1, span=None):
     upper edge where min G = 0 (G is increasing in Omega)."""
     rho = p / q
     if span is None:
-        span = 0.6 * K / q
+        # rigorous bracket: each step moves theta by Omega +- K/2pi,
+        # so the rotation-p/q window lies within |Omega - rho| <=
+        # K/(2 pi). A narrower q-scaled span misses windows near
+        # the rho = 0 tongue, whose K/2pi width displaces the whole
+        # staircase (caught by clause (e), R-26).
+        span = K / (2 * math.pi) + 1e-3
     lo0, hi0 = rho - span, rho + span
 
     def bis(target_max):
