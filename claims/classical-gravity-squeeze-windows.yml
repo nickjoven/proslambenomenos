@@ -1,0 +1,46 @@
+id: classical-gravity-squeeze-windows
+statement: >
+  Oppenheim's postquantum classical gravity lives inside a two-sided
+  squeeze on the spacetime diffusion D2 (interferometric coherence
+  below, force noise above; OSSW eqs. 44/46/47), and the computed
+  window table over kernel class, inclusion rule and lower-bound
+  convention decomposes into robust and source-precision-fragile
+  verdicts. Robust under BOTH the sources' printed bounds and the
+  same bounds recomputed from their own stated inputs (which differ
+  by +2.26/-1.35/+1.65 orders on the upper side while the lower
+  bounds reproduce exactly): the ultra-local continuous class is
+  excluded under every inclusion rule (window -17.0 to -41.6
+  orders); the ultra-local discrete class survives the uncontested
+  direct-on-Earth rule (+9.5 to +10.8 orders through the Gisler
+  nanowire row, FOM 0.298 of Janse Table I, itself audited to
+  internal consistency at 46 of 46 rows on two identities with one
+  composition inconsistency recorded); the nonlocal continuous
+  class survives every rule with margin at least +4.3 outside one
+  cell. FRAGILE, and recorded as undecidable at source precision
+  (R-24's fired sign-stability clause): all three verdicts in the
+  contested atom-interferometry rows flip sign between printed and
+  recomputed arithmetic (discrete -0.62 to +0.73, discrete/Fein
+  -1.11 to +0.24, nonlocal/Janse-convention +1.38 to -0.27), so
+  whether Asenbaum-class data closes the discrete window is not
+  determined by the sources' own order-of-magnitude arithmetic -
+  independently of the imported, unresolved question of whether
+  differential measurements bound D2 at all. Closure figures of
+  merit: the discrete class shuts at FOM = 1e-10 m^2 s^-3 from an
+  uncontested absolute measurement (best current: 3e-1), the
+  nonlocal class at 1e-17 (OSSW lower-bound convention) or 1e-12
+  (Janse's underivable 1e-35). Scope: the Newtonian-limit squeezes
+  as printed; no ruling on the differential-measurement question,
+  no ruling on the theory's viability, non-gravitational hybrid
+  models untouched.
+premises: []
+prediction: P-27
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p27_derive.py (mechanized dimensional analysis, six-bound recomputation with signed deltas, the 46-row Table I audit, the FOM rescaling rule, closure figures of merit; pins in p27_registration.json with the machine-parsed janse_table1.json); scripts/experiments/p27_score.py with p27_results.json (the registered window table and the fired sign-stability clause); independently reimplemented by scripts/verify/p27_squeeze_windows.py with its own random-rescaling route to dimensional consistency and its own bound arithmetic"
+    method: reimplementation
+null_system: "the null was the sources' own headline reading - that modern force-noise data cleanly narrows the surviving windows; the derived nulls came first: exact lower-bound reproduction, the signed upper-bound deltas, and the FOM rescaling identity - and the sign-stability check then showed the borderline cells' verdicts live entirely inside those deltas"
+falsifier: "scripts/verify/p27_squeeze_windows.py --mutant lambda-flip"
+novelty:
+  status: classical
+  citation: "Oppenheim PRX 13, 041040 (2023); Oppenheim-Sparaciari-Soda-Weller-Davies Nature Comms 14, 7910 (2023); Janse et al. PRR 6, 033076 (2024). The contribution is the mechanized audit (unstated averaging time, signed printed-vs-derived deltas, the underivable 1e-35, the Monteiro row), the unified window table under explicit conventions, and the sign-fragility finding for the contested cells"
+status: verified
