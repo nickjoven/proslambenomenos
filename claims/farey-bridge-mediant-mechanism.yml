@@ -1,0 +1,40 @@
+id: farey-bridge-mediant-mechanism
+statement: >
+  Arnold tongues of the subcritical sine circle map (K = 0.5) and
+  the band structure of Harper's equation at lambda = 1 share the
+  mediant skeleton as MECHANISM, not resemblance: in all 10
+  registered Farey intervals (neighbor pairs bc - ad = 1 inside
+  (0, 1/2], b + d <= 8), the mediant - the unique
+  minimal-denominator interior fraction, verified exhaustively -
+  carries both the widest tongue and the largest Harper bandwidth
+  against every interior competitor (q <= 13), each instrument
+  computed on its own data with its own derive-layer anchors (the
+  rho = 0 width K/pi hit at 1e-10; the K^q resonance ratios 3.998
+  and 7.992 against 4 and 8; S(1/2) = 4 sqrt 2 at 1e-12); the
+  grading transfers beyond the winner (Spearman between tongue
+  widths and bandwidths 0.891-1.000 across the 8 intervals with
+  at least four competitors); and the correspondence breaks where
+  its premise is broken, in the direction derived in advance:
+  pure-second-harmonic forcing is exactly conjugate to the
+  standard map at (2 Omega, 2K), so the competitor 3/8 must and
+  does dethrone the mediant 2/5 on the tongue side (7.93e-3
+  against 4.66e-3) while the untouched butterfly keeps the
+  mediant largest (1.8434 against 1.2021). The shared premise is
+  first-harmonic two-frequency competition; remove it and the
+  ordering follows the conjugated denominators, as the conjugacy
+  demands. Scope: subcritical K = 0.5, lambda = 1, the registered
+  intervals and competitor caps; orderings and ranks only - width
+  values, scaling exponents, criticality, and the kneading-tree
+  systems recorded in LC-19 are not claimed.
+premises: [harper-golden-ladder, golden-ladder-gap-integers]
+prediction: P-29
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p29_derive.py (interval table with exhaustive mediant minimality, both instruments anchored, the control conjugacy verified at 1e-8 with the inversion direction pinned pre-run; pins in p29_registration.json); scripts/experiments/p29_bridge.py with p29_results.json (registered clauses, one instrument-domain bracket correction recorded in R-26); independently reimplemented by scripts/verify/p29_farey_bridge.py with its own rotation-number staircase route to tongue widths and its own bandwidth sums"
+    method: reimplementation
+null_system: "the nulls were exact number theory derived first (mediant minimality per interval, the conjugacy identity with its pinned inversion); the spectra and dynamics could only confirm or break the orderings - and the designed kill switch was the control: had the mediant survived second-harmonic forcing, the premise story would have been dead"
+falsifier: "scripts/verify/p29_farey_bridge.py --mutant harmonic-blind"
+novelty:
+  status: classical
+  citation: "Arnold 1961; Hofstadter 1976; Stern 1858/Brocot 1860 (LC-7); Satija 2026 review. The folklore that tongues and butterfly are both Farey-organized is old; the contribution is the registered two-instrument mediant test with a derived, direction-pinned premise-breaking control"
+status: verified
