@@ -1,0 +1,77 @@
+<title>The Second Bridge</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root {
+  --bg:#FBFAF7; --ink:#1F242A; --mut:#6B6A64; --hair:#E2DFD6; --card:#F3F1EA;
+  --c1:#B4552D; --c2:#3D6B54; --c3:#4B6A8A; --c4:#8A8272; --c5:#7A5C8F;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+} }
+:root[data-theme="dark"] {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+}
+body { background:var(--bg); color:var(--ink); margin:0;
+  font-family:"Source Sans 3", sans-serif; line-height:1.5; }
+main { max-width:940px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font-family:Fraunces, serif; font-weight:700; font-size:2rem; margin:0 0 4px; }
+h2 { font-family:Fraunces, serif; font-weight:560; font-size:1.3rem;
+  border-top:1px solid var(--hair); padding-top:22px; margin-top:34px; }
+.sub { color:var(--mut); margin:0 0 6px; }
+.prov { font-family:"JetBrains Mono", monospace; font-size:.72rem; color:var(--mut); }
+.fig { width:100%; height:auto; margin:14px 0; }
+.axis { stroke:var(--mut); stroke-width:1.4; }
+.tick { fill:var(--mut); font:11px "JetBrains Mono", monospace; }
+.alab { fill:var(--mut); font:12px "Source Sans 3", sans-serif; }
+.stem { stroke-width:1.6; }
+.dot { stroke:var(--bg); stroke-width:1.2; }
+.bar { opacity:.85; }
+.edge { fill:none; stroke-width:2.2; }
+.mfill { fill:var(--mut); }
+.node { fill:var(--card); stroke:var(--mut); stroke-width:1.4; }
+.nlab { fill:var(--ink); font:600 12px "JetBrains Mono", monospace; }
+.c1 { stroke:var(--c1); fill:var(--c1); } .c2 { stroke:var(--c2); fill:var(--c2); }
+.c3 { stroke:var(--c3); fill:var(--c3); } .c4 { stroke:var(--c4); fill:var(--c4); }
+.c5 { stroke:var(--c5); fill:var(--c5); }
+.c1.edge,.c2.edge { fill:none; }
+.stmt { background:var(--card); border:1px solid var(--hair); border-radius:10px;
+  padding:14px 18px; margin:14px 0; }
+.tag { display:block; font:600 11px "JetBrains Mono", monospace; color:var(--mut);
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+.eq { display:block; font-family:"JetBrains Mono", monospace; font-size:.85rem; margin:4px 0; }
+.note { color:var(--mut); font-size:.85rem; }
+</style>
+<main>
+<h1>The second bridge</h1>
+<p class="sub">The kneading tree refuses the mediant: finite orbits at algebraic landmarks, certified nothing at the rationals — the distinction between organizing skeletons, computed with proofs on both sides.</p>
+<p class="prov">proslambenomenos · P-31 / R-28 · Bandt Adv. Math. 324, 437 · third premises-bearing claim · exact arithmetic, 0.1 s · LC-22</p>
+
+<section>
+<h2>Two skeletons, one parameter line</h2>
+<div class="stmt"><span class="tag">backed statement · clauses (a)–(d) · R-28</span>
+<span class="eq">closes (exact ℚ(β) set closure): t₂..t₅ (multinacci), s₂, s₃ (doubling) — sizes 4, 8, 10, 12 / 6, 8</span>
+<span class="eq">diverges (denominator certificate &gt; 1e6, a proof not a timeout): 3/5, 5/9, 4/7, 8/13, 13/21</span>
+The sharpest cell: structure at s₂ = 0.569840, certified nothing at the mediant 4/7 = 0.571429 — 1.588e-3 apart. Even the golden landmark's own Fibonacci convergents die while the landmark closes.</div>
+<svg viewBox="0 0 880 240" class="fig" role="img" aria-label="parameter line"><line x1="60" x2="840" y1="120" y2="120" class="axis"/><line x1="112.0" x2="112.0" y1="120" y2="72" class="c2 stem"/><circle cx="112.0" cy="120" r="5" class="c2 dot"/><text x="112.0" y="67" class="tick" text-anchor="middle">t5</text><line x1="172.7" x2="172.7" y1="120" y2="50" class="c2 stem"/><circle cx="172.7" cy="120" r="5" class="c2 dot"/><text x="172.7" y="45" class="tick" text-anchor="middle">t4</text><line x1="274.1" x2="274.1" y1="120" y2="28" class="c5 stem"/><circle cx="274.1" cy="120" r="5" class="c5 dot"/><text x="274.1" y="23" class="tick" text-anchor="middle">s3</text><line x1="322.1" x2="322.1" y1="120" y2="94" class="c2 stem"/><circle cx="322.1" cy="120" r="5" class="c2 dot"/><text x="322.1" y="89" class="tick" text-anchor="middle">t3</text><line x1="393.3" x2="393.3" y1="120" y2="168" class="c1 stem"/><circle cx="393.3" cy="120" r="5" class="c1 dot"/><text x="393.3" y="180" class="tick" text-anchor="middle">5/9</text><line x1="479.0" x2="479.0" y1="120" y2="72" class="c5 stem"/><circle cx="479.0" cy="120" r="5" class="c5 dot"/><text x="479.0" y="67" class="tick" text-anchor="middle">s2</text><line x1="488.6" x2="488.6" y1="120" y2="190" class="c1 stem"/><circle cx="488.6" cy="120" r="5" class="c1 dot"/><text x="488.6" y="202" class="tick" text-anchor="middle">4/7</text><line x1="660.0" x2="660.0" y1="120" y2="212" class="c1 stem"/><circle cx="660.0" cy="120" r="5" class="c1 dot"/><text x="660.0" y="224" class="tick" text-anchor="middle">3/5</text><line x1="752.3" x2="752.3" y1="120" y2="146" class="c1 stem"/><circle cx="752.3" cy="120" r="5" class="c1 dot"/><text x="752.3" y="158" class="tick" text-anchor="middle">8/13</text><line x1="768.2" x2="768.2" y1="120" y2="50" class="c2 stem"/><circle cx="768.2" cy="120" r="5" class="c2 dot"/><text x="768.2" y="45" class="tick" text-anchor="middle">t2</text><line x1="774.3" x2="774.3" y1="120" y2="168" class="c1 stem"/><circle cx="774.3" cy="120" r="5" class="c1 dot"/><text x="774.3" y="180" class="tick" text-anchor="middle">13/21</text><text x="440" y="230" class="alab" text-anchor="middle">t = 1/β · green/purple: orbit closes (multinacci / doubling, exact arithmetic) · rust: divergence certified by denominator growth — including the mediant 4/7 and the golden landmark's own convergents 8/13, 13/21</text></svg>
+</section>
+
+<section>
+<h2>The golden closure</h2>
+<div class="stmt"><span class="tag">backed statement · EQ3 anchor · derived by hand, reproduced exactly</span>
+<span class="eq">orbit(1−t, t) at β = φ  =  {0, 2−φ, φ−1, 1} — size 4</span>
+φ is the first multinacci (x² = x+1 heading xⁿ = xⁿ⁻¹+...+1) — the taxonomy's address route, now with its own exact orbit.</div>
+<svg viewBox="0 0 880 220" class="fig" role="img" aria-label="golden orbit network"><defs><marker id="arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="mfill"/></marker></defs><path d="M 364 104 Q 440 64 516 104" class="c2 edge" marker-end="url(#arr)"/><path d="M 364 136 Q 242 212 120 136" class="c1 edge" marker-end="url(#arr)"/><path d="M 516 104 Q 638 64 760 104" class="c2 edge" marker-end="url(#arr)"/><path d="M 516 136 Q 440 212 364 136" class="c1 edge" marker-end="url(#arr)"/><path d="M 752 96 C 734 56 786 56 768 96" class="c1 edge"/><path d="M 112 96 C 94 56 146 56 128 96" class="c2 edge"/><circle cx="120" cy="120" r="15" class="node"/><text x="120" y="124" class="nlab" text-anchor="middle">0</text><circle cx="364" cy="120" r="15" class="node"/><text x="364" y="124" class="nlab" text-anchor="middle">2−φ</text><circle cx="516" cy="120" r="15" class="node"/><text x="516" y="124" class="nlab" text-anchor="middle">φ−1</text><circle cx="760" cy="120" r="15" class="node"/><text x="760" y="124" class="nlab" text-anchor="middle">1</text><text x="440" y="214" class="alab" text-anchor="middle">the golden closure, size 4 — green arrows g₀ = φx, rust arrows g₁ = φx+1−φ; g₁(2−φ) = 0 exists because 1−t sits on the CLOSED edge of g₁'s domain (the derived subtlety, kept as the open-edge mutant)</text></svg>
+</section>
+
+<section>
+<h2>Sizes and certificates</h2>
+<div class="stmt"><span class="tag">the composite, two bridges together</span>
+<span class="eq">P-29: mediant transfers (tongues ↔ bands) because both carry two-frequency competition — the control dethroned the mediant when the premise broke</span>
+<span class="eq">P-31: kneading does NOT transfer — closures at algebraic landmarks, certified divergence at every Farey-predicted point</span>
+Which tree organizes a system follows from the system's premise. Visual resemblance between landscapes carries no evidential weight; the premise does.</div>
+<svg viewBox="0 0 880 250" class="fig" role="img" aria-label="sizes and certificates"><rect x="60" y="160" width="36" height="40" class="c2 bar"/><text x="78" y="216" class="tick" text-anchor="middle">t2</text><text x="78" y="154" class="tick" text-anchor="middle">4</text><rect x="118" y="120" width="36" height="80" class="c2 bar"/><text x="136" y="216" class="tick" text-anchor="middle">t3</text><text x="136" y="114" class="tick" text-anchor="middle">8</text><rect x="176" y="100" width="36" height="100" class="c2 bar"/><text x="194" y="216" class="tick" text-anchor="middle">t4</text><text x="194" y="94" class="tick" text-anchor="middle">10</text><rect x="234" y="80" width="36" height="120" class="c2 bar"/><text x="252" y="216" class="tick" text-anchor="middle">t5</text><text x="252" y="74" class="tick" text-anchor="middle">12</text><rect x="292" y="140" width="36" height="60" class="c5 bar"/><text x="310" y="216" class="tick" text-anchor="middle">s2</text><text x="310" y="134" class="tick" text-anchor="middle">6</text><rect x="350" y="120" width="36" height="80" class="c5 bar"/><text x="368" y="216" class="tick" text-anchor="middle">s3</text><text x="368" y="114" class="tick" text-anchor="middle">8</text><text x="240" y="238" class="alab" text-anchor="middle">orbit sizes at the landmarks</text><rect x="480" y="128" width="44" height="72" class="c1 bar"/><text x="502" y="216" class="tick" text-anchor="middle">3/5</text><text x="502" y="122" class="tick" text-anchor="middle">1.6e+06</text><rect x="556" y="123" width="44" height="77" class="c1 bar"/><text x="578" y="216" class="tick" text-anchor="middle">5/9</text><text x="578" y="117" class="tick" text-anchor="middle">2.0e+06</text><rect x="632" y="139" width="44" height="61" class="c1 bar"/><text x="654" y="216" class="tick" text-anchor="middle">4/7</text><text x="654" y="133" class="tick" text-anchor="middle">1.0e+06</text><rect x="708" y="121" width="44" height="79" class="c1 bar"/><text x="730" y="216" class="tick" text-anchor="middle">8/13</text><text x="730" y="115" class="tick" text-anchor="middle">2.1e+06</text><rect x="784" y="99" width="44" height="101" class="c1 bar"/><text x="806" y="216" class="tick" text-anchor="middle">13/21</text><text x="806" y="93" class="tick" text-anchor="middle">4.8e+06</text><text x="632" y="238" class="alab" text-anchor="middle">divergence certificates (max denominator reached)</text></svg>
+<p class="note">No timeout is used as evidence in either direction: closure is exact set closure in ℚ(β); divergence is the bounded-denominator lemma's contrapositive. Every scored number lives in p31_results.json against pins in p31_registration.json.</p>
+</section>
+</main>

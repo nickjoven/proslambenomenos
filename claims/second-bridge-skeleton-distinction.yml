@@ -1,0 +1,44 @@
+id: second-bridge-skeleton-distinction
+statement: >
+  The kneading tree of the Bernoulli two-map system (g0 = beta x on
+  [0, t], g1 = beta x + 1 - beta on [1-t, 1], t = 1/beta) is a
+  different organizing skeleton from the Farey/mediant tree of
+  P-29's systems, computed with certificates on both sides: the
+  multivalued orbit of the overlap boundary CLOSES, in exact
+  Q(beta) arithmetic, at every registered algebraic landmark - the
+  multinacci ladder t_2..t_5 with orbit sizes 4, 8, 10, 12 (the
+  golden closure {0, 2-phi, phi-1, 1} derived by hand including
+  the closed-edge subtlety) and the doubling ladder s_2 (the
+  supergolden parameter, size 6) and s_3 (size 8) - while at every
+  registered rational the orbit provably DIVERGES by the
+  denominator certificate (a finite orbit has bounded
+  denominators; growth past 1e6 was observed at 3/5, 5/9, the
+  mediant 4/7, and the golden landmark's own Fibonacci convergents
+  8/13 and 13/21), with no timeout used as evidence anywhere. The
+  distinction lands sharpest at 1.588e-3: finite structure at
+  s_2 = 0.569840, certified nothing at the mediant 4/7 = 0.571429.
+  Where the Farey systems put their largest window at denominator
+  addition, this system puts its closures at algebraic landmarks
+  and nothing at the interval's simple rationals - even the best
+  rational approximants of a landmark diverge while the landmark
+  closes. Together with the first bridge, the composite statement:
+  which tree organizes a system follows from the system's premise
+  - the mediant from first-harmonic two-frequency competition
+  (P-29's derived control), the kneading landmarks from expansion
+  redundancy at algebraic parameters (this line's certificates).
+  Scope: the registered starting set (the overlap boundary), the
+  registered landmarks and rationals, defining degrees not
+  certified minimal; none of Bandt's theorems re-claimed;
+  Bernoulli-convolution measure properties untouched.
+premises: [farey-bridge-mediant-mechanism]
+prediction: P-31
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p31_derive.py (both landmark ladders at 1e-40 with interleaving, the exact Q(beta) kit, the golden size-4 anchor, the denominator certificate, the 1.588e-3 separation; pins in p31_registration.json); scripts/experiments/p31_bridge2.py with p31_results.json (registered closures and certificates, all first run); independently reimplemented by scripts/verify/p31_second_bridge.py via 60-digit Decimal orbits and its own Fraction BFS"
+    method: reimplementation
+null_system: "the null was transfer - that kneading structure might sit where the Farey tree predicts; the registered kill was a rational closing, and every rational instead produced a divergence certificate; the derived nulls came first: the exact golden closure, the interleaved ladders, and the bounded-denominator lemma that turns non-closure into proof rather than timeout"
+falsifier: "scripts/verify/p31_second_bridge.py --mutant open-edge"
+novelty:
+  status: classical
+  citation: "Bandt, Adv. Math. 324, 437 (2018) - the system, the landmark families, and finite orbits are his subject; Stern-Brocot/mediant theory per LC-7. The contribution is the registered two-skeleton comparison with certificates (absent from the source - LC-19's census: Farey, mediant, and Stern occur zero times there), the exact-arithmetic orbit instrument, and the orbit-size ladder"
+status: verified
