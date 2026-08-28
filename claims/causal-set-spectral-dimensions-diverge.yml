@@ -1,0 +1,42 @@
+id: causal-set-spectral-dimensions-diverge
+statement: >
+  On the same sprinkled 2D causal sets (unit causal diamond in
+  lightcone coordinates, seeded, link counts landing on the exact
+  quadrature pins E[links] = N(N-1) int (1-a)(1-b)(1-ab)^{N-2} at
+  every cell), the two published definitions of the spectral
+  dimension diverge at short scales in direction and in refinement
+  trend, and the divergence is definitional, not numerical. The
+  walk definition (Eichhorn-Mizera, on the undirected Hasse graph)
+  is superdiffusive on our sprinklings with window peaks
+  2.664/3.222/3.687 at N = 64/128/256 - growing by 1.023 across
+  the ladder, the EM signature driven by the ln N link-degree
+  growth - and falls toward zero at the lattice scale (all cells
+  below 0.2 at t = 0.1). The d'Alembertian definition (heat kernel
+  of the regularised nonlocal operator, computed from the SOURCE
+  closed form g = -Z e^{Z/2} E2(Z/2) after the derive layer caught
+  the PRD paper's printed eq. 15 failing its own IR limit by
+  exactly 4/sqrt(pi) - 2, LC-15) goes to 2 at short scales with a
+  fixed N-independent curve whose maximum is 2.260 at s = 1.34,
+  reproducing their Fig. 2, with the unregularised identity
+  d_s = 4 rho s recovered at ratio 1.000. Furthermore (R-22) the
+  walk definition is protocol-dependent WITHIN itself at
+  accessible N: the continuous-time and even-step clocks differ by
+  parity effects of the near-bipartite Hasse graph (odd/even
+  return ratio 0.195 at five steps), so the short-scale spectral
+  dimension of a causal set is a convention-laden quantity and the
+  cross-paper disagreement is the expected condition. Scope: 2D
+  sprinklings, N up to 256, the registered seeds; no claim about
+  which definition is right, none about the interpolation BBMM
+  speculate about, none above d = 2.
+premises: []
+prediction: P-16
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p16_derive.py (K0, the source closed-form operator with exact asymptotics, the printed-formula defect derived and measured, exact link quadrature, cycle anchors for both walk instruments; pins in p16_registration.json); scripts/experiments/p16_walk.py with p16_results.json (registered ensembles); scripts/experiments/p25_clocks.py with p25_results.json (the matched-clock line, fired and recorded); independently reimplemented by scripts/verify/p16_two_dimensions.py on a fresh sprinkling with its own links, eigensolver, and operator quadrature"
+    method: reimplementation
+null_system: "the null is that the two definitions measure one object: they do not - opposite short-scale directions (walk to 0 through a growing peak, d'Alembertian to 2), opposite refinement behaviour (N-dependent vs N-independent), and even the walk's own two clocks separate by derivable parity effects; the link-count nulls certify the substrate so the divergence cannot be blamed on the sprinkling"
+falsifier: "scripts/verify/p16_two_dimensions.py --mutant walk-reduces"
+novelty:
+  status: classical
+  citation: "Eichhorn-Mizera 2014; Belenchia-Benincasa-Marciano-Modesto 2016; Aslanbeigi-Saravani-Sorkin 2014; the contribution is the side-by-side registered computation on one substrate, the eq.-15 defect (LC-15), and the intra-walk protocol dependence"
+status: verified

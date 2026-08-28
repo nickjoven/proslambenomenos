@@ -428,3 +428,39 @@ claims-checked:
   novelty split registered in P-19 (mechanism classical, formula
   possibly classical, discriminator and protocol not found) stands,
   with the formula question still open pending CASJ 1994 access.
+
+## LC-15 — 2026-08-27 — the causal-set spectral-dimension literature, and a printed-formula defect
+prediction: P-16
+claims-checked:
+- Eichhorn, Mizera, Class. Quantum Grav. 31, 125007 (2014): random
+  walk on the sprinkled causet's Hasse diagram, undirected,
+  transition probability 1/degree, d_s = -2 dln P/dln sigma;
+  finding: d_s INCREASES at small scales (superdiffusion from the
+  causet's radical nonlocality); a "causal spectral dimension" from
+  two-walker meeting probability gives similar results (their
+  footnote 1). Reproduced on our sprinklings in R-21 at growth
+  1.023 across N = 64..256.
+- Belenchia, Benincasa, Marciano, Modesto, PRD 93, 044017 (2016):
+  heat kernel of the REGULARISED nonlocal d'Alembertian gives
+  universal dimensional reduction d_s -> 2 in all dimensions (their
+  eq. 12); numerics show a superdiffusive maximum at s ~ l and slow
+  approach to the Hausdorff value from above (their Fig. 2); the
+  unregularised operator gives the meaningless d_s = 4 rho s in
+  d = 2 (their eq. 14 - reproduced by us at ratio 1.000); their
+  conclusion explicitly flags the possible "universal description
+  which interpolates" between their result and EM's.
+- THE DEFECT: BBMM's printed eq. (15) - the d = 2 minimal operator
+  with a = -2, b = {4, -8, 4} and Gaussian weight
+  exp(-(sqrt(pi)/4) xi^2) - fails the paper's own stated IR limit
+  g -> -k^2: the psi-sum identity sum b_n psi(n+1) = -2 forces
+  g(0) = 4/sqrt(pi) - 2 = 0.256758, confirmed numerically to 1e-6
+  by two independent implementations (E1 closed form and direct
+  double quadrature agreeing to 4e-4). The SOURCE operator
+  (Aslanbeigi, Saravani, Sorkin, JHEP 1406, 024, eq. 5:
+  g = -Z e^{Z/2} E2(Z/2)) has the correct limits exactly (IR -Z;
+  UV -2 + 8/Z - 48/Z^2), and reproduces BBMM's own Fig. 2
+  (maximum 2.260 at s = 1.34) - so their numerics evidently used
+  the source form and eq. (15) as printed carries a transcription
+  defect in the prefactor/weight.
+- Carlip, arXiv:1506.08775 (their note added): similar
+  dimensional-reduction results, contemporaneous - context only.
