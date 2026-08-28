@@ -1564,3 +1564,62 @@ physical correctness of w0waCDM (only its price); parameter
 inference beyond the 13-point Gaussian compression; the parameter-
 codebook price of w0wa's two extra parameters (reported context
 under a declared (k/2) log2(13) MDL convention, not a clause).
+
+## R-23 — 2026-08-28 — resolves P-26 (all clauses; the scorecard is decisive)
+First full run: clause (c) read exactly zero — the no-backreaction
+validation mode excluded rho_Lambda from the recorded E^2 as well
+as from the dynamics, so the measurement read back its own omission
+— and per the registration a (c) failure voids the walk
+implementation and everything downstream; that run is void. Three
+implementation corrections, all made before any clause was
+accepted, none touching a band: (1) the recorded E^2 now always
+carries rho_Lambda (only the marching H drops it in validation
+mode); (2) the lightcone volume now initializes to its exact
+radiation-era closed form at a_init via the eta-moments I0 =
+(2/5) a^3 t, I1 = (2/3) a^2 t^2, I2 = (8/7) a t^3, I3 = 2 t^4
+(which reassemble to (8 pi/105) t^4, EQ1) — DNY themselves specify
+V_0 at the start, and the zero-initialized volume artificially
+amplified the first steps' fluctuations, killing 99.3 percent of
+alpha = 0.005 realizations at birth; (3) the beat threshold as
+first coded used an alpha = 0 realization, which is not LCDM but
+Einstein-de Sitter (the walk is the only dark energy; chi2 1457.2
+on the native grid) — replaced by the LCDM best fit injected
+through the same native-node pipeline (grid bias +0.020, cancelled
+in the comparison). A units slip in the reported h r_d conversion
+(c vs c/100) was also fixed; the fit itself was never wrong.
+Second run, all clauses: (a) Omega_m 0.2970 and h r_d 101.56 Mpc
+against the published 0.2975 +- 0.0086 and 101.54 +- 0.73, chi2
+10.55 on 11 dof — the 13-point Gaussian compression reproduces the
+source fit; (b) w0waCDM buys dchi2 = 4.74 on BAO alone (registered
+band [2.0, 8.5], derived center 4.84 from the source's own
+characterization via their eq. 22), best fit in the published
+quadrant (w0 = -0.18 > -1, wa = -2.70 < 0, prior-railed exactly as
+the source warns); (c) production-walk amplitude 0.45444 against
+the derived 2 sqrt(165 pi) alpha = 0.45535 at alpha = 0.01, inside
+3 SE + 1 percent; (d) THE ANSWER — of 90000 registered
+realizations, ZERO beat the LCDM minimum. Survivors to a = 1:
+19873 of 20000 at alpha = 0.005, 3873 of 20000 at alpha = 0.01,
+0 of 30000 at alpha in {0.02, 0.04} across all three Omega_m
+values. Best surviving chi2: 33.37 (alpha 0.005) and 41.88 (alpha
+0.01) against threshold 10.57 — the LUCKIEST of 19873 survivors
+sits dchi2 = +22.8 on the wrong side; the MEDIAN survivor sits at
+chi2 1555, i.e. the typical everpresent realization fails DR2 BAO
+about as badly as a no-dark-energy universe, because the walk's
+mean is zero and a sustained ~3-sigma-of-its-own-amplitude
+excursion is what mimicking Lambda requires. Net bits: -33.3 to
+-39.5 where anything survived, -14.9 to -16.9 at the floor
+elsewhere. Every cell negative; clause (e) survival monotone
+(0.994, 0.194, 0.000, 0.000). The squeeze is the mechanism: small
+alpha converges to Einstein-de Sitter (chi2 1457), large alpha
+dies before today (radiation-era sigma_OmegaLambda = 68.5 alpha),
+and no in-between realization holds a lucky Omega_Lambda both
+large enough and steady enough across z < 2.33. Context rows: the
+same currency prices DNY's own published SNe record at net -10.0
+bits (16 winners in 90000, dchi2 3.4), and w0waCDM on BAO alone at
+net -0.28 bits under the declared MDL codebook — the DR2
+preference for evolving dark energy lives in the CMB-lensing and
+SNe combinations (imported: LC-16), not in the BAO likelihood
+scored here. c31's coincidence entry stays a coincidence entry:
+the ORDER OF MAGNITUDE of Lambda is the one thing the mechanism
+gets right, and the dynamics that produce that magnitude are what
+DR2 BAO excludes. Results: scripts/experiments/p26_results.json.
