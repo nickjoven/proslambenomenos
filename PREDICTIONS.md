@@ -1410,3 +1410,32 @@ registered output is the divergence, not a verdict); dimensions
 above 2; curved sprinklings; the meeting-probability causal d_s;
 BBMM's d = 3, 4 curves; Chern or continuum limits of the walk;
 any claim that the interpolation BBMM speculate about exists.
+
+## R-21 — 2026-08-27 — resolves P-16 (mind-change FIRED on the instrument clause)
+outcome: the three physics clauses held; the instrument-agreement
+clause failed as registered and the mind-change fired - recorded,
+diagnosed with a labeled computation, not rescued. Numbers pasted
+from p16_results.json by script.
+(a) every cell inside the quadrature band: N64_r0: links 192 (pin 180.3); N64_r1: links 157 (pin 180.3); N64_r2: links 177 (pin 180.3); N128_r0: links 458 (pin 444.7); N128_r1: links 438 (pin 444.7); N128_r2: links 419 (pin 444.7); N256_r0: links 1092 (pin 1060.5); N256_r1: links 1068 (pin 1060.5); N256_r2: links 1063 (pin 1060.5).
+(b) the EM signature on our own sprinklings: seed-mean window
+peaks 2.664 / 3.222 / 3.687 at N = 64/128/256 -
+growth 1.023 against the registered 0.10 floor. The walk
+spectral dimension INCREASES with refinement, far above 2, exactly
+as Eichhorn-Mizera report and as the ln N degree growth predicts.
+(d) the divergence as derived at EQ7: walk d_s at the lattice
+scale peaks at 0.198 (all cells below 1) while the
+d'Alembertian curve sits at 2.031 at its smallest s - opposite
+directions, neither crowned.
+(c) FAILED as registered: continuous-time vs even-step values
+differed by up to 2.9. Post-firing diagnosis (labeled, computed on
+a fresh N = 96 graph): the CLAUSE compared the instruments at
+different diffusion scales - ct at t = 0.2/lambda_1 (about 0.5)
+against disc at the floor n = 4. At MATCHED scales, ct(t = n) vs
+disc(n) agree to 0.08/0.09/0.04/0.01 at n = 8/12/16/24, with the
+n = 4 residual 0.60 identified as Poisson smearing (the exact
+identity e^{-t lambda} = e^{-t} sum t^k (1-lambda)^k / k! makes
+ct a Poisson-mean-n mixture of disc powers; spread sqrt(n) across
+the curve's steepest region). A registration design error of the
+P-22a class, not caught pre-run this time; the matched-clock
+clause is re-registered properly as P-25 on fresh seeds. The
+physics claims are filed on clauses (a), (b), (d) only.
