@@ -1,0 +1,65 @@
+<title>The Order Ladder</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root {
+  --bg:#FBFAF7; --ink:#1F242A; --mut:#6B6A64; --hair:#E2DFD6; --card:#F3F1EA;
+  --c1:#B4552D; --c2:#3D6B54; --c3:#4B6A8A; --c4:#8A8272; --c5:#7A5C8F;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+} }
+:root[data-theme="dark"] {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+}
+body { background:var(--bg); color:var(--ink); margin:0;
+  font-family:"Source Sans 3", sans-serif; line-height:1.5; }
+main { max-width:940px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font-family:Fraunces, serif; font-weight:700; font-size:2rem; margin:0 0 4px; }
+h2 { font-family:Fraunces, serif; font-weight:560; font-size:1.3rem;
+  border-top:1px solid var(--hair); padding-top:22px; margin-top:34px; }
+.sub { color:var(--mut); margin:0 0 6px; }
+.prov { font-family:"JetBrains Mono", monospace; font-size:.72rem; color:var(--mut); }
+.fig { width:100%; height:auto; margin:14px 0; }
+.grid { stroke:var(--hair); stroke-width:1; }
+.axis { stroke:var(--mut); stroke-width:1.2; }
+.tick { fill:var(--mut); font:11px "JetBrains Mono", monospace; }
+.alab { fill:var(--mut); font:12px "Source Sans 3", sans-serif; }
+.clab { fill:var(--ink); font:600 13px "Source Sans 3", sans-serif; }
+.dot { stroke:var(--bg); stroke-width:1.4; }
+.bar { opacity:.85; }
+.c1 { stroke:var(--c1); fill:var(--c1); } .c2 { stroke:var(--c2); fill:var(--c2); }
+.c3 { stroke:var(--c3); fill:var(--c3); } .c4 { stroke:var(--c4); fill:var(--c4); }
+.c5 { stroke:var(--c5); fill:var(--c5); }
+.stmt { background:var(--card); border:1px solid var(--hair); border-radius:10px;
+  padding:14px 18px; margin:14px 0; }
+.tag { display:block; font:600 11px "JetBrains Mono", monospace; color:var(--mut);
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+.eq { display:block; font-family:"JetBrains Mono", monospace; font-size:.85rem; margin:4px 0; }
+.note { color:var(--mut); font-size:.85rem; }
+</style>
+<main>
+<h1>The order ladder</h1>
+<p class="sub">Indefinite causal order, priced Bell-ladder style: exhaustive polytope bounds, exact quantum values, and the null that shows what order coherence costs to certify.</p>
+<p class="prov">proslambenomenos · P-30 / R-27 · OCB Nat. Comms 3, 1092 · VLBC Nat. Comms 14 · Liu PRX Quantum 2026 (24σ, loopholed) · LC-20</p>
+
+<section>
+<h2>Three ladders, one geometry</h2>
+<div class="stmt"><span class="tag">backed statement · clauses (a)–(c), (e) · R-27</span>
+<span class="eq">OCB: 3/4 (8192 strategies, exhaustive) &lt; (2+√2)/4 (pinned process, spectrum {0×8, ½×8} by anticommutation) &lt; 1</span>
+<span class="eq">VLBC: 7/4 (131072 strategies, exhaustive) &lt; 1+(2+√2)/4 (exact switch circuit) &lt; 2</span>
+<span class="eq">p = (S+4)/8 and p = 1+(S+4)/8 send the Bell rungs onto both — at 1e-12 in the computed values</span>
+Giving up definite order buys, in these games, what giving up local realism bought in P-17: the same √2, one affine map apart. (Two-sided honesty: OCB's middle-rung maximality is open in the source; VLBC's is proven there via Tsirelson.)</div>
+<svg viewBox="0 0 880 300" class="fig" role="img" aria-label="three ladders"><line x1="176.5" x2="176.5" y1="30" y2="230" class="grid"/><text x="176.5" y="22" class="tick" text-anchor="middle">2</text><line x1="415.5" x2="415.5" y1="30" y2="230" class="grid"/><text x="415.5" y="22" class="tick" text-anchor="middle">2√2</text><line x1="753.5" x2="753.5" y1="30" y2="230" class="grid"/><text x="753.5" y="22" class="tick" text-anchor="middle">4</text><line x1="133" x2="797" y1="60" y2="60" class="axis"/><circle cx="176.5" cy="60" r="7" class="c3 dot"/><circle cx="415.5" cy="60" r="7" class="c3 dot"/><circle cx="753.5" cy="60" r="7" class="c3 dot"/><text x="12" y="64" class="clab">Bell (P-17)</text><text x="868" y="64" class="tick" text-anchor="end">S</text><line x1="133" x2="797" y1="122" y2="122" class="axis"/><circle cx="176.5" cy="122" r="7" class="c1 dot"/><circle cx="415.5" cy="122" r="7" class="c1 dot"/><circle cx="753.5" cy="122" r="7" class="c1 dot"/><text x="12" y="126" class="clab">OCB causal game</text><text x="868" y="126" class="tick" text-anchor="end">S = 8p − 4</text><line x1="133" x2="797" y1="184" y2="184" class="axis"/><circle cx="176.5" cy="184" r="7" class="c2 dot"/><circle cx="415.5" cy="184" r="7" class="c2 dot"/><circle cx="753.5" cy="184" r="7" class="c2 dot"/><text x="12" y="188" class="clab">VLBC switch game</text><text x="868" y="188" class="tick" text-anchor="end">S = 8(p−1) − 4</text><text x="440" y="276" class="alab" text-anchor="middle">every computed rung lands on the Bell rungs at 1e-12 — ordered/local at 2, quantum at 2√2, algebraic at 4</text></svg>
+</section>
+
+<section>
+<h2>The null that prices the switch</h2>
+<div class="stmt"><span class="tag">backed statement · clause (d) · R-27</span>
+<span class="eq">p_switch(a₁a₂|x₁x₂) = ½·p_(A₁≺A₂) + ½·p_(A₂≺A₁) — entrywise, machine zero</span>
+The coherent switch is bipartitely indistinguishable from classical order mixing. Only the entangled spacelike observer reveals the coherence — and the reveal costs exactly a Tsirelson violation (the third term of the VLBC inequality is a CHSH game riding inside the causal game).</div>
+<svg viewBox="0 0 880 260" class="fig" role="img" aria-label="separability null"><rect x="62.0" y="50.0" width="18.1" height="150.0" class="c2 bar"/><rect x="82.0" y="50.0" width="18.1" height="150.0" class="c4 bar"/><text x="83.8" y="216" class="tick" text-anchor="middle" font-size="8">00|00</text><rect x="109.5" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="129.4" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="131.2" y="216" class="tick" text-anchor="middle" font-size="8">00|01</text><rect x="157.0" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="176.9" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="178.8" y="216" class="tick" text-anchor="middle" font-size="8">00|10</text><rect x="204.5" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="224.4" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="226.2" y="216" class="tick" text-anchor="middle" font-size="8">00|11</text><rect x="252.0" y="125.0" width="18.1" height="75.0" class="c2 bar"/><rect x="271.9" y="125.0" width="18.1" height="75.0" class="c4 bar"/><text x="273.8" y="216" class="tick" text-anchor="middle" font-size="8">01|00</text><rect x="299.5" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="319.4" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="321.2" y="216" class="tick" text-anchor="middle" font-size="8">01|01</text><rect x="347.0" y="125.0" width="18.1" height="75.0" class="c2 bar"/><rect x="366.9" y="125.0" width="18.1" height="75.0" class="c4 bar"/><text x="368.8" y="216" class="tick" text-anchor="middle" font-size="8">01|10</text><rect x="394.5" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="414.4" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="416.2" y="216" class="tick" text-anchor="middle" font-size="8">01|11</text><rect x="442.0" y="125.0" width="18.1" height="75.0" class="c2 bar"/><rect x="461.9" y="125.0" width="18.1" height="75.0" class="c4 bar"/><text x="463.8" y="216" class="tick" text-anchor="middle" font-size="8">10|00</text><rect x="489.5" y="125.0" width="18.1" height="75.0" class="c2 bar"/><rect x="509.4" y="125.0" width="18.1" height="75.0" class="c4 bar"/><text x="511.2" y="216" class="tick" text-anchor="middle" font-size="8">10|01</text><rect x="537.0" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="557.0" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="558.8" y="216" class="tick" text-anchor="middle" font-size="8">10|10</text><rect x="584.5" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="604.5" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="606.2" y="216" class="tick" text-anchor="middle" font-size="8">10|11</text><rect x="632.0" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="652.0" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="653.8" y="216" class="tick" text-anchor="middle" font-size="8">11|00</text><rect x="679.5" y="125.0" width="18.1" height="75.0" class="c2 bar"/><rect x="699.5" y="125.0" width="18.1" height="75.0" class="c4 bar"/><text x="701.2" y="216" class="tick" text-anchor="middle" font-size="8">11|01</text><rect x="727.0" y="125.0" width="18.1" height="75.0" class="c2 bar"/><rect x="747.0" y="125.0" width="18.1" height="75.0" class="c4 bar"/><text x="748.8" y="216" class="tick" text-anchor="middle" font-size="8">11|10</text><rect x="774.5" y="200.0" width="18.1" height="0.0" class="c2 bar"/><rect x="794.5" y="200.0" width="18.1" height="0.0" class="c4 bar"/><text x="796.2" y="216" class="tick" text-anchor="middle" font-size="8">11|11</text><text x="440" y="246" class="alab" text-anchor="middle">p(a₁a₂|x₁x₂): coherent switch (green) vs 50/50 classical order mixture (grey) — identical in all 16 cells, worst difference 0.0e+00</text></svg>
+<p class="note">The OCB process has no known physical realization (its own discussion; CTC models break linearity); the switch does, and the 2026 photonic experiment violates the VLBC bound at 24σ with flagged loopholes. Every scored number lives in p30_results.json against pins in p30_registration.json.</p>
+</section>
+</main>
