@@ -1,0 +1,159 @@
+{
+ "EQ1": {
+  "V_matter_coef": 0.17135959928671599,
+  "V_radiation_coef": 0.23935944027350806
+ },
+ "EQ2": {
+  "sigma_over_alpha_matter": 45.535163899664,
+  "sigma_over_alpha_radiation": 68.49412404988297
+ },
+ "EQ3": {
+  "dny_bits_bought": 2.4525815695111395,
+  "dny_bits_spent": 12.45763738099176,
+  "dny_net_bits": -10.005055811480622,
+  "dchi2_of_1p7sigma": 4.835297833985071,
+  "dchi2_of_3p1sigma": 12.495082555722536
+ },
+ "EQ4": {},
+ "EQ5": {
+  "s_star_at_om0.3": 29.582311792738455,
+  "chi2_at_om0.3": 10.634742939171414
+ },
+ "EQ6": {
+  "se_log2_at_K16": 0.36067376022224085,
+  "floor_bits_at_20000": 14.287712379549449,
+  "instantaneous_collapse_prob": {
+   "0.005": 5.610213326845415e-06,
+   "0.01": 0.014042215276934278,
+   "0.02": 0.13609078523536033,
+   "0.04": 0.2914937198557819
+  }
+ },
+ "data": {
+  "source": "arXiv:2503.14738v3 (DESI DR2 Results II), Table 4; LRG3/ELG1 rows excluded per caption (superseded by LRG3+ELG1)",
+  "extraction": "machine-parsed from arXiv HTML by this script; no hand transcription",
+  "rows": [
+   {
+    "tracer": "BGS",
+    "zeff": 0.295,
+    "DV_over_rd": 7.942,
+    "DV_err": 0.075
+   },
+   {
+    "tracer": "LRG1",
+    "zeff": 0.51,
+    "DM_over_rd": 13.588,
+    "DM_err": 0.167,
+    "DH_over_rd": 21.863,
+    "DH_err": 0.425,
+    "r_MH": -0.459
+   },
+   {
+    "tracer": "LRG2",
+    "zeff": 0.706,
+    "DM_over_rd": 17.351,
+    "DM_err": 0.177,
+    "DH_over_rd": 19.455,
+    "DH_err": 0.33,
+    "r_MH": -0.404
+   },
+   {
+    "tracer": "LRG3+ELG1",
+    "zeff": 0.934,
+    "DM_over_rd": 21.576,
+    "DM_err": 0.152,
+    "DH_over_rd": 17.641,
+    "DH_err": 0.193,
+    "r_MH": -0.416
+   },
+   {
+    "tracer": "ELG2",
+    "zeff": 1.321,
+    "DM_over_rd": 27.601,
+    "DM_err": 0.318,
+    "DH_over_rd": 14.176,
+    "DH_err": 0.221,
+    "r_MH": -0.434
+   },
+   {
+    "tracer": "QSO",
+    "zeff": 1.484,
+    "DM_over_rd": 30.512,
+    "DM_err": 0.76,
+    "DH_over_rd": 12.817,
+    "DH_err": 0.516,
+    "r_MH": -0.5
+   },
+   {
+    "tracer": "Lya",
+    "zeff": 2.33,
+    "DM_over_rd": 38.988,
+    "DM_err": 0.531,
+    "DH_over_rd": 8.632,
+    "DH_err": 0.101,
+    "r_MH": -0.431
+   }
+  ],
+  "published_lcdm": {
+   "Omega_m": 0.2975,
+   "Omega_m_err": 0.0086,
+   "h_rd_Mpc": 101.54,
+   "h_rd_err": 0.73,
+   "corr": -0.92,
+   "source": "eq. (17)"
+  },
+  "published_preferences": {
+   "BAO_alone_w0wa_sigma": 1.7,
+   "DESI_CMB_dchi2_MAP": -12.5,
+   "DESI_CMB_sigma": 3.1,
+   "with_SNe_sigma": {
+    "PantheonPlus": 2.8,
+    "Union3": 3.8,
+    "DESY5": 4.2
+   },
+   "source": "Sec. VII text, machine-grepped"
+  }
+ },
+ "ensemble_spec": {
+  "seed0": 262626,
+  "main_cells": [
+   {
+    "alpha": 0.005,
+    "Omega_m": 0.2975,
+    "N_seeds": 20000
+   },
+   {
+    "alpha": 0.01,
+    "Omega_m": 0.2975,
+    "N_seeds": 20000
+   },
+   {
+    "alpha": 0.02,
+    "Omega_m": 0.2975,
+    "N_seeds": 20000
+   },
+   {
+    "alpha": 0.04,
+    "Omega_m": 0.2975,
+    "N_seeds": 20000
+   }
+  ],
+  "sensitivity_cells": [
+   {
+    "alpha": 0.02,
+    "Omega_m": 0.25,
+    "N_seeds": 5000
+   },
+   {
+    "alpha": 0.02,
+    "Omega_m": 0.35,
+    "N_seeds": 5000
+   }
+  ],
+  "n_cells_price_bits": 2.584962500721156,
+  "a_init": 1e-05,
+  "steps": 512,
+  "z_eq_convention": 3400,
+  "note": "r_d and H0 enter only through the profiled scale s, per realization - an upper bound on Model 1's BAO performance, so the bit price charged is a lower bound. Collapsed realizations (H^2 <= 0 before a=1) count in N_seeds and cannot beat."
+ }
+}
