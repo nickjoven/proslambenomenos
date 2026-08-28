@@ -184,5 +184,16 @@ refusal of phi is one of the entire orbit.
   trend (P-16/R-21), and the walk's own two clocks separate by
   derivable parity effects of the triangle-free Hasse graph
   (P-25/R-22) - definition- and protocol-dependence, both computed.
-- The ALF period is NOT an integer subharmonic (P-19, branch
-  alf-v2, pending merge - recorded here as pending, not landed).
+- The ALF period is NOT an integer subharmonic (P-19/R-14, landed
+  via PR 61).
+- Lambda's observed magnitude falls out of Sorkin's 1/sqrt(N)
+  counting to 0.4 orders (c31, coincidence-unruled) - but the
+  DYNAMICS that would make that edge live are refused: the ZAS/DNY
+  Model 1 walk, with its exactly-derived amplitude
+  sigma_OmegaLambda = 2 sqrt(165 pi) alpha (matter era) and
+  (8/3) sqrt(210 pi) alpha (radiation era) falling out of the
+  lightcone-volume closed forms (3 pi/55) t^4 and (8 pi/105) t^4,
+  is priced out on DESI DR2 BAO at every registered amplitude
+  (P-26/R-23: zero beats in 90000 - a mean-zero walk does not hold
+  Omega_Lambda). The magnitude edge stays a coincidence entry; no
+  dynamical edge is earned.
