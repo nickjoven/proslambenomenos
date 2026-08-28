@@ -179,5 +179,10 @@ refusal of phi is one of the entire orbit.
    stay in the unearned bin until their artifacts exist.
 3. AS A FITTED CONSTANT: refused wherever computed - the block
    above.
+- d_s is NOT one object on a causal set: the walk and d'Alembertian
+  definitions diverge at short scale in direction and refinement
+  trend (P-16/R-21), and the walk's own two clocks separate by
+  derivable parity effects of the triangle-free Hasse graph
+  (P-25/R-22) - definition- and protocol-dependence, both computed.
 - The ALF period is NOT an integer subharmonic (P-19, branch
   alf-v2, pending merge - recorded here as pending, not landed).
