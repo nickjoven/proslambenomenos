@@ -2202,3 +2202,41 @@ not-claimed-in-advance: as P-32, plus: no claim that the declared
 grid is exhaustive (a negative outcome is scoped to the grid);
 the mechanism of the pinning-side narrowing (reported, not
 modeled).
+
+## R-30 — 2026-08-28 — resolves P-33 (clause c FIRED; the stop rule closes the bias side)
+Held: (a) the two-outcome clause resolved to TRANSFER FAILURE
+CONFIRMED ACROSS THE DECLARED GRID - zero of 288 bias cells
+exceeds twice its corrected null anywhere on A in {0.5, 0.9, 1.3,
+1.7} x nu in {1/8, 1/6}; (b) the pinning f-organization PERSISTS
+at the fresh coupling: at K = 1.2 the ALT 1/2-plateau widths are
+0.1667, 0.1537, 0.0370, 0.0159, 0.1666, 0.1522 for N = 4..9 -
+f-gap -0.1508, fifty times resolution - and in fact ALL FOUR EQ1
+classes separate in order: clean {4, 8} > defect {5, 9} > half
+{6} > both {7}. Frustration narrows the pinned plateau,
+class by class.
+FIRED: (c) the integer-step positive control failed at EVERY grid
+point - and the diagnosis is an identity, not an operating-point
+problem: the site-mean advance TELESCOPES. The coupling terms
+cancel in antisymmetric pairs around the ring (each bond
+contributes sin(...) to one site and its negation to the other),
+so the site-mean rotation number satisfies rho = I identically -
+verified at 6.8e-16 across geometries and drives - and NO Shapiro
+step of any order can exist in this observable, for any geometry,
+by algebra. P-32's clause (e) "positive control" had been fooled
+by the same tolerance smear. This is the SECOND firing on the
+positive-control clause family; per the stop rule the bias side
+closes here with the finding recorded rather than a third
+registration: the Josephson voltage lives ACROSS junctions
+(difference variables), not in the mean phase drift, and a
+faithful Shapiro analog would need both the difference observable
+and per-junction nonlinearity in the driven loop - which is
+exactly the sharpened form of LC-3's drive-type reading. E1's
+pinned ring has the nonlinearity without the drive; this bias
+ring had the drive without an effective nonlinearity in its
+observable; the Josephson arrays have both. The reconciliation
+A-2 asked for is thereby recorded: the literature's parity effect
+could never have appeared in either of our families, and the
+thing that DOES organize our rings is the EQ1 frustration
+arithmetic on the pinned side - the line's positive product
+(claim frustration-classes-organize-the-pinned-ring).
+Results: scripts/experiments/p33_results.json.
