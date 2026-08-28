@@ -1799,3 +1799,60 @@ not-claimed Chern scope is now an earned claim
 (golden-ladder-gap-integers). Runtime 0.5 s - kernels.eigh's
 first experiment-side consumer. Results:
 scripts/experiments/p28_results.json.
+
+## P-29 — 2026-08-28 — the Farey bridge (first premises-bearing composite)
+question: A-13 - Arnold tongues and Hofstadter bands are both
+organized by the rationals. The composite claim under test: they
+share the MEDIANT skeleton because they share a premise
+(first-harmonic two-frequency competition) - in every registered
+Farey interval the mediant hosts the largest substructure on BOTH
+instruments, the grading agrees beyond the winner, and the
+correspondence breaks exactly where the premise is broken, in the
+direction derived in advance.
+method: derivation layer scripts/experiments/p29_derive.py runs
+first and pins scripts/experiments/p29_registration.json: the
+interval table (all Farey-neighbor pairs bc - ad = 1 inside
+(0, 1/2] with b + d <= 8: 10 intervals, 8 with >= 4 competitors;
+mediant minimality exhaustive to q = 40), tongue-instrument
+anchors (exact rho = 0 width K/pi at 1e-10; the 1/3-2/3 symmetry;
+K^q resonance ratios 3.998/7.992 vs 4/8), butterfly anchors
+(S(1/2) = 4 sqrt 2 at 1e-12; S(8/13) equal to the P-7 pipeline at
+1e-9), and the DERIVED control: the pure-second-harmonic map is
+exactly conjugate to the standard map at (2 Omega, 2K) (verified
+1e-8), which pins the inversion Delta_std(3/4, 1) >
+Delta_std(4/5, 1) - so under sin(4 pi theta) forcing the
+competitor 3/8 must beat the mediant 2/5 in [1/3, 1/2] BEFORE the
+registered run. Experiment scripts/experiments/p29_bridge.py at
+K = 0.5: tongue widths by tangency bisection (Omega to 1e-12) and
+bandwidths S by the two-corner eigh pipeline, for every mediant
+and competitor (q <= 13, width floor 1e-9) of every registered
+interval.
+expects: (a) tongues - in all 10 intervals, Delta(mediant) >
+Delta(r) for every competitor; (b) butterfly - in all 10
+intervals, S(mediant) > S(r) for every competitor; (c) grading -
+Spearman rank correlation between {Delta(r)} and {S(r)} over
+mediant + competitors is >= 0.5 in every interval with >= 4
+competitors (8 intervals); (d) the control - under second-harmonic
+forcing in [1/3, 1/2], Delta_2(3/8) > Delta_2(2/5), the derived
+inversion, while the butterfly side (untouched by the forcing
+change) keeps S(2/5) largest: the bridge breaks on exactly one
+side, in the pinned direction; (e) instrument floors - every
+scored width above 1e-9 and every scored S above 1e-6 (report
+any exclusions).
+changes-my-mind: any interval where the mediant loses on EITHER
+instrument kills the composite's mechanism claim (resemblance
+would survive; mechanism would not); a median Spearman below 0
+kills the grading clause outright; the control FAILING to invert
+(mediant still winning under second-harmonic forcing) would mean
+the mediant ordering does not come from first-harmonic
+competition and the premise story is wrong - that is the
+composite's designed kill switch.
+not-claimed-in-advance: criticality (K = 1) or supercritical
+overlap; irrational-limit statements; tongue-butterfly
+correspondence at the level of WIDTH VALUES or scaling exponents
+(only orderings and ranks are claimed; the log-log width relation
+is reported unscored); the kneading-tree systems recorded in
+LC-19 (Bernoulli convolutions - a different skeleton, queued as
+its own candidate line); any physical identification between
+driven oscillators and electrons in fields beyond the shared
+premise named above.
