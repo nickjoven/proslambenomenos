@@ -710,3 +710,31 @@ claims-checked:
   to 2e5 experimental sigma - numerology dies by measurement;
   here an ANOMALY died by theory correction. Both failure modes
   are now on the ledger.
+
+## LC-22 — 2026-08-28 — the second-bridge sources (Bandt, in depth)
+prediction: P-31
+claims-checked:
+- Bandt, Adv. Math. 324, 437 (2018), "Finite orbits in multivalued
+  maps and Bernoulli convolutions" (extends LC-19's census): the
+  two-map system pinned verbatim from their eq. (1): g0: [0, t] ->
+  [0, 1], g0(x) = beta x and g1: [1-t, 1] -> [0, 1], g1(x) =
+  beta x + 1 - beta, with t = 1/beta and overlap D = [1-t, t];
+  finite orbits of the multivalued map ("network-like orbits", the
+  branching tree closing on itself) occur at special algebraic
+  parameters; the landmark families: multinacci phi_n (x^n =
+  x^{n-1} + ... + 1; "the most obvious landmarks", their Section
+  quoted in LC-19) and the doubling numbers psi_n (x^{n+1} =
+  2 x^n - x + 1; "another family of Pisot numbers... We call them
+  doubling numbers"; their Fig. 1 is drawn at s_2). Their golden
+  phase-transition observation (structure below t_2, blur above)
+  imported in LC-19.
+- The supergolden number psi_2 = 1.754877666... (root of x^3 =
+  2 x^2 - x + 1): our computed value matches the classical
+  constant; s_2 = 1/psi_2 = 0.569840...
+- What P-31 does NOT take from Bandt: none of his theorems are
+  re-claimed; the orbit computations are our own instrument (exact
+  Q(beta) arithmetic), the starting set (the overlap boundary
+  {1-t, t}) is our registered choice, and the comparison against
+  the Farey skeleton is our registered question, absent from his
+  paper (LC-19's census: Farey/mediant/Stern occur zero times
+  there).
