@@ -1891,3 +1891,61 @@ demands. First premises-bearing claim filed
 (farey-bridge-mediant-mechanism, premises: harper-golden-ladder,
 golden-ladder-gap-integers). Results:
 scripts/experiments/p29_results.json.
+
+## P-30 — 2026-08-28 — the order ladder
+question: A-16 - indefinite causal order attacks the symbol
+graph's deepest primitive. Priced with the P-17 machinery: is the
+order ladder, computed end to end (causal bound by exhaustive
+enumeration, the OCB process value from the pinned eq.-7 matrix
+and eq.-20-23 protocol, the VLBC switch value from an exact
+circuit, the switch's bipartite invisibility), the Bell ladder
+under the derived affine map p = (S+4)/8 - and does the coherent
+switch buy NOTHING over a classical order mixture until a
+spacelike observer is added?
+method: derivation layer scripts/experiments/p30_derive.py runs
+first and pins scripts/experiments/p30_registration.json: the
+affine Bell-order correspondence (EQ1, exact), the OCB process
+spectrum {0 x8, 1/2 x8} by anticommutation (EQ2), process
+validity as trace-and-replace identities with a pinned invalid
+loop perturbation (EQ3), the reduced-process anchor P(y|a,b'=1) =
+(1/2)[1+(-1)^{y+a}/sqrt2] (EQ4), and the switch third-term anchor
+(2+sqrt2)/4 with Kraus completeness (EQ5). Experiment
+scripts/experiments/p30_ladder.py, all exact complex arithmetic
+at 1e-12, no stochastics: (1) OCB causal rung by EXHAUSTIVE
+enumeration over deterministic one-way-signalling strategies
+(message bit, both orders, 4 x 4 x 256 each; vertex maximum
+suffices for mixtures by linearity); (2) the OCB process rung
+from eqs. (7) + (20)-(23); (3) the VLBC rung: exhaustive
+deterministic DRF strategies for Theorem 1's inequality (both
+lambda orders, Bob spacelike) AND the exact switch circuit
+(|Phi+> control-Bob, target |0>, measure-reprepare Alices, the
+pinned Bob/Charlie angles); (4) the separability null: the
+switch's Alice-marginal p(a1 a2 | x1 x2) with |+> control and
+B, C discarded, against the 50/50 classical mixture of the two
+fixed-order wirings, entrywise.
+expects: (a) OCB causal maximum = 3/4 exactly, both orders,
+enumeration counts reported; (b) OCB process value = (2+sqrt2)/4
+within 1e-12, with validity checks passing; (c) VLBC: exhaustive
+DRF maximum = 7/4 exactly; switch value = 1 + (2+sqrt2)/4 within
+1e-12; algebraic maximum = 2 (unconstrained assignments); (d) the
+separability null: switch Alice-marginal equals the classical
+order mixture entrywise within 1e-12 for all 16 cells - order
+coherence is bipartitely invisible; (e) the ladder assembly: both
+computed ladders land on the Bell rungs under S = 8p - 4 (OCB)
+and S = 8(p - 1) - 4 (VLBC) within 1e-12, with the two-sided
+honesty imported: the OCB middle rung's maximality is OPEN in the
+source, the VLBC middle rung's maximality is PROVEN there via
+Tsirelson for commuting-Bob.
+changes-my-mind: any enumeration exceeding its registered bound
+kills the implementation (halt, audit); the process value or
+switch value missing its pinned target kills the respective
+import; the separability null FAILING would contradict the
+imported no-bipartite-violation theorems - that is
+discovery-grade and mandates a halt-and-audit, not a claim.
+not-claimed-in-advance: physicality of the OCB process (open in
+the source; CTC realizations break linearity per their
+discussion); global maxima over all processes or games beyond the
+imported statements; the 24-sigma experiment's loophole status
+(imported as flagged); any gravitational-order-superposition
+story; an information-causality-style contraction for order (the
+P-17 analog is noted as a future line, not attempted).
