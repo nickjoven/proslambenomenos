@@ -464,3 +464,46 @@ claims-checked:
   defect in the prefactor/weight.
 - Carlip, arXiv:1506.08775 (their note added): similar
   dimensional-reduction results, contemporaneous - context only.
+
+## LC-16 — 2026-08-28 — the everpresent-Lambda vs DESI DR2 sources
+prediction: P-26
+claims-checked:
+- DESI Collaboration, arXiv 2503.14738v3 (DESI DR2 Results II,
+  PRD 112, 083515): BAO from 14M+ galaxies/quasars; Table 4 per-
+  tracer D_V/r_d, D_M/r_d, D_H/r_d with printed D_M-D_H
+  correlations (machine-parsed into
+  scripts/experiments/desi_dr2_table4.json; LRG3/ELG1 rows excluded
+  per the table's own caption as superseded by LRG3+ELG1); flat
+  LCDM fit to BAO alone: Omega_m = 0.2975 +- 0.0086, h r_d =
+  101.54 +- 0.73 Mpc, corr -0.92 (their eq. 17) — REPRODUCED by
+  our 13-point Gaussian compression in R-23 (0.2970, 101.56);
+  BAO-ALONE preference for w0waCDM is characterized by the paper
+  itself as equivalent to 1.7 sigma (their Sec. VII.1) — the
+  headline preferences need more data: dchi2_MAP = -12.5 (3.1
+  sigma) for DESI+CMB, driven per their own text by CMB lensing
+  (dropping to 2.4 sigma / -8.0 under simple early-universe
+  priors), and 2.8 / 3.8 / 4.2 sigma with Pantheon+ / Union3 /
+  DESY5 SNe respectively; their eq. 22 sigma<->dchi2 map
+  reproduced by us to 0.005 at the 3.1-sigma point (EQ3).
+- Wang, Mota, arXiv 2504.15222 (EPJC): the contest — tensions
+  among CMB, BAO and SN datasets undermine the combined-analysis
+  claim; individual datasets cannot independently detect cosmic
+  acceleration at significant levels under dynamical dark energy.
+  Imported as the reason P-26 scores only the BAO likelihood it
+  can recompute, with combination verdicts imported not asserted.
+- Das, Nasiri, Yazdi, arXiv 2307.13743 (Aspects of Everpresent
+  Lambda II): Model 1 (the Zwane-Afshordi-Sorkin lineage,
+  arXiv 1703.06265) update Lambda_t = [Lambda V + 8 pi alpha xi
+  sqrt(dV)]/V_t with xi standard normal, V the past-lightcone
+  4-volume, alpha explored over 0.001-0.025, V_0 SPECIFIED at the
+  z ~ 1e5 start (the detail our first run got wrong; R-23);
+  their verdicts imported: Pantheon+SH0ES best seed chi2 1481.9 vs
+  LCDM 1485.3 with 16 of 90000 seeds better (our EQ3 prices this
+  at net -10.0 bits); CMB fails by dchi2 >= +156 vs LCDM even
+  with their LSS suppression (2495.6 baseline, 2358.5 suppressed,
+  vs LCDM ~2339); their own framing: the models are works in
+  progress, not quantitative improvements on LCDM.
+- Sorkin's order-of-magnitude success stays what c31 recorded:
+  1/sqrt(N) count fluctuation lands 0.4 orders from the observed
+  Lambda. P-26 scores the DYNAMICS that produce that magnitude,
+  on DR2 BAO, and finds them priced out (R-23).
