@@ -672,3 +672,41 @@ claims-checked:
   (2013): the quantum switch supermap W = |0><0| (x) FE +
   |1><1| (x) EF (VLBC eq. 7 convention). Basis of the circuit
   implementation.
+
+## LC-21 — 2026-08-28 — the muon g-2 dissolution (A-17 hygiene)
+prediction: none (ledger hygiene; the bit-accounting lesson entry)
+claims-checked:
+- Muon g-2 Collaboration, PRL (2025), "Measurement of the Positive
+  Muon Anomalous Magnetic Moment to 127 ppb" (final report arXiv
+  2506.03069-family; muon-g-2.fnal.gov/result2025.pdf): final
+  combined a_mu(exp) = 116 592 070.5(14.8) x 10^-11 at 127 ppb;
+  the E821+E989 world average quoted by WP25 is
+  116 592 071.5(14.5) x 10^-11.
+- Muon g-2 Theory Initiative, arXiv 2505.21476 (White Paper 2025,
+  May 27 2025): a_mu(SM) = 116 592 033(62) x 10^-11, with the
+  hadronic vacuum polarization now taken from LATTICE QCD (the
+  2020 data-driven e+e- route is set aside: the low-energy
+  cross-section datasets are mutually inconsistent even with
+  CMD-3 excluded). Experiment minus theory: 38(63) x 10^-11 =
+  0.6 sigma. CONSISTENT.
+- The arithmetic of the dissolution, computed from the pinned
+  numbers: WP2020 had a_mu(SM) = 116 591 810(43) x 10^-11 and the
+  2021-era tension 251(59) x 10^-11 = 4.25 sigma. Between 2020
+  and 2025 the THEORY value moved by +223 x 10^-11 (3.8 of the
+  old combined sigma) while the EXPERIMENT moved by about
+  +10 x 10^-11 (0.17 of it). The anomaly was a property of the
+  theory estimate, not of the muon.
+- The ledger lesson (the canonical uncertain-null case): every
+  model tuned to "explain" the 251 x 10^-11 gap - SUSY slices,
+  dark photons, leptoquark fits - spent its parameters buying
+  surprisal against a null that was itself mis-estimated; the
+  purchased number no longer exists. In bit-accounting terms this
+  is the sharpest available warning that BITS BOUGHT AGAINST AN
+  UNCERTAIN NULL ARE NOT BANKED, which is why this repo derives
+  nulls before computing (register-then-compute) and why P-27's
+  fired sign-stability clause treated order-of-magnitude source
+  arithmetic as part of the error budget. Interop: the Otto
+  mechanization (LC-12) binned alpha^-1 and g_e formulas at 788
+  to 2e5 experimental sigma - numerology dies by measurement;
+  here an ANOMALY died by theory correction. Both failure modes
+  are now on the ledger.
