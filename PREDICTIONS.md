@@ -1982,3 +1982,60 @@ priced, not attacked: giving up definite order buys, in these
 games, precisely what giving up local realism bought in P-17 -
 the same sqrt-2 geometry, one affine map apart. Results:
 scripts/experiments/p30_results.json.
+
+## P-31 — 2026-08-28 — the second bridge (the distinction is the claim)
+question: A-18 - P-29 proved the mediant skeleton transfers
+between tongues and bands because they share a premise. The
+complementary registered composite: the kneading tree of the
+Bernoulli two-map system is a DIFFERENT skeleton - its structure
+(finite multivalued orbits of the overlap boundary) sits at the
+algebraic landmark ladders (multinacci t_n, doubling s_n) and
+provably NOWHERE the Farey tree would put it: not at the simple
+rationals of the interval, not at the Fibonacci convergents of t_2
+itself, and not at the mediant - with every divergence CERTIFIED
+by exact denominator growth, not by timeout.
+method: derivation layer scripts/experiments/p31_derive.py runs
+first and pins scripts/experiments/p31_registration.json: the
+multinacci and doubling ladders by exact Fraction bisection to
+1e-40 with their interleaving (t_4 < s_3 < t_3 < s_2 < t_2), the
+exact Q(beta) kit (Fraction-coefficient polynomials mod the
+defining polynomial, sign decisions by bracket refinement,
+boundary membership decided algebraically), the golden anchor (the
+overlap-boundary orbit at t_2 closes on {0, 2-phi, phi-1, 1},
+size 4, hand-derived including the closed-edge subtlety), the
+rational divergence certificate (finite orbit implies bounded
+denominators; growth past 1e6 certifies divergence; tail-monotone
+at t = 3/5), and the separation of predictions (mediant(1/2, 3/5)
+= 4/7 vs s_2, gap 1.588e-3). Experiment
+scripts/experiments/p31_bridge2.py, orbit cap 20000, exact
+arithmetic throughout.
+expects: (a) the overlap-boundary orbit CLOSES at every multinacci
+rung n = 2, 3, 4, 5, with the golden size exactly 4 and all sizes
+recorded (the kneading ladder's analog of the P-28 orbit table);
+(b) the orbit also closes at the doubling landmarks s_2 and s_3;
+(c) the orbit DIVERGES with the denominator certificate (> 1e6)
+at every registered rational: 3/5, 5/9, 4/7 (the mediant), and
+the Fibonacci convergents 8/13 and 13/21 of t_2 itself; (d) the
+skeleton distinction assembled: structure at s_2 = 0.569840
+(finite), certified nothing at 4/7 = 0.571429 (the mediant,
+1.588e-3 away) - the kneading tree refuses the mediant; (e) sizes
+and certificates reported for the whole table, no timeouts used
+as evidence anywhere (closure = exact set closure; divergence =
+denominator certificate; the cap is only an implementation guard).
+changes-my-mind: a multinacci rung failing to close kills the
+landmark import and the line halts for audit; a REGISTERED
+RATIONAL CLOSING (finite orbit at 3/5, 4/7, 5/9, 8/13 or 13/21)
+would put kneading structure exactly where the Farey tree predicts
+it - the distinction claim dies and a transfer claim would need
+its own fresh registration; the doubling rungs failing to close
+fires clause (b) and is recorded as address-curve organization
+(informative, diagnosed, not rescued - the multinacci clauses and
+the rational certificates stand independently).
+not-claimed-in-advance: any of Bandt's theorems (his results are
+context, not premises); irreducibility of the defining polynomials
+(defining degree is used, minimal degree is not certified);
+absolute continuity or singularity of any Bernoulli convolution;
+the measure-zero window statement in full generality (only the
+registered rationals are certified); orbit structure for starting
+points other than the overlap boundary; any transfer TO the Farey
+systems (P-29 owns that side).
