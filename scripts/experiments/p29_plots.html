@@ -1,0 +1,69 @@
+<title>The Farey Bridge</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root {
+  --bg:#FBFAF7; --ink:#1F242A; --mut:#6B6A64; --hair:#E2DFD6; --card:#F3F1EA;
+  --c1:#B4552D; --c2:#3D6B54; --c3:#4B6A8A; --c4:#8A8272; --c5:#7A5C8F;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+} }
+:root[data-theme="dark"] {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+}
+body { background:var(--bg); color:var(--ink); margin:0;
+  font-family:"Source Sans 3", sans-serif; line-height:1.5; }
+main { max-width:940px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font-family:Fraunces, serif; font-weight:700; font-size:2rem; margin:0 0 4px; }
+h2 { font-family:Fraunces, serif; font-weight:560; font-size:1.3rem;
+  border-top:1px solid var(--hair); padding-top:22px; margin-top:34px; }
+.sub { color:var(--mut); margin:0 0 6px; }
+.prov { font-family:"JetBrains Mono", monospace; font-size:.72rem; color:var(--mut); }
+.fig { width:100%; height:auto; margin:14px 0; }
+.grid { stroke:var(--hair); stroke-width:1; }
+.axis { stroke:var(--mut); stroke-width:1.2; }
+.tick { fill:var(--mut); font:11px "JetBrains Mono", monospace; }
+.alab { fill:var(--mut); font:12px "Source Sans 3", sans-serif; }
+.ftitle { fill:var(--ink); font:600 13px "Source Sans 3", sans-serif; }
+.leg { font:600 12px "Source Sans 3", sans-serif; }
+.line { fill:none; stroke-width:2; }
+.dot { stroke:var(--bg); stroke-width:1.2; }
+.bump { stroke-width:2; opacity:.75; }
+.bar { opacity:.85; }
+.c1 { stroke:var(--c1); fill:var(--c1); } .c2 { stroke:var(--c2); fill:var(--c2); }
+.c3 { stroke:var(--c3); fill:var(--c3); } .c4 { stroke:var(--c4); fill:var(--c4); }
+.c5 { stroke:var(--c5); fill:var(--c5); }
+.c1.line,.c2.line,.c3.line,.c4.line,.c5.line { fill:none; }
+.stmt { background:var(--card); border:1px solid var(--hair); border-radius:10px;
+  padding:14px 18px; margin:14px 0; }
+.tag { display:block; font:600 11px "JetBrains Mono", monospace; color:var(--mut);
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+.eq { display:block; font-family:"JetBrains Mono", monospace; font-size:.85rem; margin:4px 0; }
+.note { color:var(--mut); font-size:.85rem; }
+</style>
+<main>
+<h1>The Farey bridge</h1>
+<p class="sub">Arnold tongues and Hofstadter bands share the mediant skeleton as mechanism — with a control, derived in advance, that breaks the bridge on exactly one side.</p>
+<p class="prov">proslambenomenos · P-29 / R-26 · first premises-bearing claim · K = 0.5, λ = 1 · LC-19</p>
+
+<section>
+<h2>The mediant wins everywhere, on both instruments</h2>
+<div class="stmt"><span class="tag">backed statement · clauses (a)–(c) · R-26</span>
+<span class="eq">mediant (a+c)/(b+d) = unique minimal-q interior fraction (exhaustive) — and it carries the widest tongue AND the largest bandwidth in all 10 registered intervals</span>
+<span class="eq">grading transfers beyond the winner: Spearman(Δ, S) = 0.891–1.000 across the 8 eligible intervals</span>
+Each instrument computed on its own data, its own anchors: ρ=0 width K/π at 1e-10; K^q ratios 3.998/7.992 vs 4/8; S(1/2) = 4√2 at 1e-12.</div>
+<svg viewBox="0 0 860 360" class="fig" role="img" aria-label="one grading, two instruments: tongue width vs Harper bandwidth"><text x="64" y="16" class="ftitle">one grading, two instruments: tongue width vs Harper bandwidth</text><line x1="64" x2="844" y1="316.0" y2="316.0" class="grid"/><text x="56" y="320.0" class="tick" text-anchor="end">-7.1</text><text x="64.0" y="334" class="tick" text-anchor="middle">-0.16</text><line x1="64" x2="844" y1="242.5" y2="242.5" class="grid"/><text x="56" y="246.5" class="tick" text-anchor="end">-5.8</text><text x="259.0" y="334" class="tick" text-anchor="middle">-0.00</text><line x1="64" x2="844" y1="169.0" y2="169.0" class="grid"/><text x="56" y="173.0" class="tick" text-anchor="end">-4.6</text><text x="454.0" y="334" class="tick" text-anchor="middle">0.16</text><line x1="64" x2="844" y1="95.5" y2="95.5" class="grid"/><text x="56" y="99.5" class="tick" text-anchor="end">-3.4</text><text x="649.0" y="334" class="tick" text-anchor="middle">0.31</text><line x1="64" x2="844" y1="22.0" y2="22.0" class="grid"/><text x="56" y="26.0" class="tick" text-anchor="end">-2.1</text><text x="844.0" y="334" class="tick" text-anchor="middle">0.47</text><line x1="64" x2="844" y1="316" y2="316" class="axis"/><line x1="64" x2="64" y1="22" y2="316" class="axis"/><circle cx="64.0" cy="215.0" r="4.5" class="c4 dot"/><circle cx="70.0" cy="289.7" r="4.5" class="c4 dot"/><circle cx="74.3" cy="300.2" r="4.5" class="c4 dot"/><circle cx="74.8" cy="278.4" r="4.5" class="c4 dot"/><circle cx="76.4" cy="292.8" r="4.5" class="c4 dot"/><circle cx="77.8" cy="270.4" r="4.5" class="c4 dot"/><circle cx="126.5" cy="276.6" r="4.5" class="c4 dot"/><circle cx="152.9" cy="205.7" r="4.5" class="c4 dot"/><circle cx="153.7" cy="195.4" r="4.5" class="c4 dot"/><circle cx="161.3" cy="242.0" r="4.5" class="c4 dot"/><circle cx="164.8" cy="249.8" r="4.5" class="c4 dot"/><circle cx="167.5" cy="251.3" r="4.5" class="c4 dot"/><circle cx="168.3" cy="237.6" r="4.5" class="c4 dot"/><circle cx="244.6" cy="227.3" r="4.5" class="c4 dot"/><circle cx="255.0" cy="183.8" r="4.5" class="c4 dot"/><circle cx="261.3" cy="170.8" r="4.5" class="c4 dot"/><circle cx="274.2" cy="201.1" r="4.5" class="c4 dot"/><circle cx="276.8" cy="199.2" r="4.5" class="c4 dot"/><circle cx="359.6" cy="181.4" r="4.5" class="c4 dot"/><circle cx="380.6" cy="155.9" r="4.5" class="c4 dot"/><circle cx="395.6" cy="138.9" r="4.5" class="c4 dot"/><circle cx="402.8" cy="154.7" r="4.5" class="c4 dot"/><circle cx="411.7" cy="154.3" r="4.5" class="c4 dot"/><circle cx="544.0" cy="119.3" r="4.5" class="c4 dot"/><circle cx="574.7" cy="96.4" r="4.5" class="c4 dot"/><circle cx="592.2" cy="101.4" r="4.5" class="c4 dot"/><circle cx="778.3" cy="69.6" r="4.5" class="c4 dot"/><circle cx="844.0" cy="37.8" r="4.5" class="c1 dot"/><text x="836" y="40" class="leg c4" text-anchor="end">competitors</text><text x="836" y="57" class="leg c1" text-anchor="end">mediants</text><text x="454" y="356" class="alab" text-anchor="middle">log₁₀ S(p/q) (Harper bandwidth)</text><text x="16" y="169" class="alab" transform="rotate(-90 16 169)" text-anchor="middle">log₁₀ Δ(p/q) (tongue width)</text></svg>
+<svg viewBox="0 0 860 340" class="fig" role="img" aria-label="rank correspondence"><text x="268" y="26" class="ftitle" text-anchor="end">ranked by tongue width</text><text x="592" y="26" class="ftitle">ranked by bandwidth</text><line x1="286" x2="574" y1="48" y2="48" class="c1 bump"/><text x="268" y="52" class="tick c1" text-anchor="end">2/5 · 3.53e-04</text><text x="592" y="52" class="tick c1">2/5 · 1.843</text><line x1="286" x2="574" y1="198" y2="168" class="c4 bump"/><text x="268" y="202" class="tick c4" text-anchor="end">4/11 · 1.02e-06</text><text x="592" y="172" class="tick c4">4/11 · 0.845</text><line x1="286" x2="574" y1="108" y2="108" class="c4 bump"/><text x="268" y="112" class="tick c4" text-anchor="end">3/8 · 1.56e-05</text><text x="592" y="112" class="tick c4">3/8 · 1.202</text><line x1="286" x2="574" y1="288" y2="288" class="c4 bump"/><text x="268" y="292" class="tick c4" text-anchor="end">5/13 · 1.50e-07</text><text x="592" y="292" class="tick c4">5/13 · 0.712</text><line x1="286" x2="574" y1="228" y2="228" class="c4 bump"/><text x="268" y="232" class="tick c4" text-anchor="end">5/12 · 3.79e-07</text><text x="592" y="232" class="tick c4">5/12 · 0.783</text><line x1="286" x2="574" y1="78" y2="78" class="c4 bump"/><text x="268" y="82" class="tick c4" text-anchor="end">3/7 · 4.41e-05</text><text x="592" y="82" class="tick c4">3/7 · 1.302</text><line x1="286" x2="574" y1="138" y2="138" class="c4 bump"/><text x="268" y="142" class="tick c4" text-anchor="end">4/9 · 7.21e-06</text><text x="592" y="142" class="tick c4">4/9 · 1.028</text><line x1="286" x2="574" y1="168" y2="198" class="c4 bump"/><text x="268" y="172" class="tick c4" text-anchor="end">5/11 · 1.46e-06</text><text x="592" y="202" class="tick c4">5/11 · 0.835</text><line x1="286" x2="574" y1="258" y2="258" class="c4 bump"/><text x="268" y="262" class="tick c4" text-anchor="end">6/13 · 3.53e-07</text><text x="592" y="262" class="tick c4">6/13 · 0.712</text><text x="430" y="332" class="alab" text-anchor="middle">interval [1/3, 1/2] · mediant 2/5 in rust · Spearman 0.983</text></svg>
+</section>
+
+<section>
+<h2>The kill switch that did not fire — because it inverted as derived</h2>
+<div class="stmt"><span class="tag">backed statement · clause (d) · R-26</span>
+<span class="eq">θ → θ + Ω + (K/2π)·sin(4πθ)  ≅  standard map at (2Ω, 2K)  (conjugacy verified 1e-8, inversion direction pinned pre-run)</span>
+Remove the first harmonic and the competitor 3/8 dethrones the mediant 2/5 on the tongue side — while the untouched butterfly keeps S(2/5) = 1.8434 &gt; S(3/8) = 1.2021. The ordering follows the premise, not the picture.</div>
+<svg viewBox="0 0 860 240" class="fig" role="img" aria-label="the control"><text x="16" y="30" class="ftitle">first harmonic (the premise intact)</text><rect x="240" y="40" width="61" height="18" class="c1 bar"/><text x="232" y="54" class="tick" text-anchor="end">2/5 (mediant)</text><text x="305" y="54" class="tick">3.53e-04</text><rect x="240" y="66" width="41" height="18" class="c4 bar"/><text x="232" y="80" class="tick" text-anchor="end">3/8</text><text x="285" y="80" class="tick">1.56e-05</text><text x="16" y="110" class="ftitle">second harmonic (premise broken; conjugate to (2Ω, 2K))</text><rect x="240" y="120" width="322" height="18" class="c1 bar"/><text x="232" y="134" class="tick" text-anchor="end">2/5 (mediant)</text><text x="566" y="134" class="tick">4.66e-03</text><rect x="240" y="146" width="520" height="18" class="c2 bar"/><text x="232" y="160" class="tick" text-anchor="end">3/8</text><text x="764" y="160" class="tick">7.93e-03</text></svg>
+<p class="note">First premises-bearing claim: premises harper-golden-ladder and golden-ladder-gap-integers (both verified — no conditional cap). Kneading-tree systems (Bernoulli convolutions, LC-19) are a different skeleton, deliberately not claimed. Every scored number lives in p29_results.json against pins in p29_registration.json.</p>
+</section>
+</main>
