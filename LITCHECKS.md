@@ -589,3 +589,45 @@ claims-checked:
   theorem (Cantor spectrum at irrational flux). Context only: the
   irrational limit is NOT-CLAIMED in P-28; all statements are at
   the ladder's rational rungs.
+
+## LC-19 — 2026-08-28 — the Farey bridge sources, and the Bandt distinction
+prediction: P-29
+claims-checked:
+- Stern 1858 / Brocot 1860-61 / GKP 1989 (LC-7 interop): the
+  mediant (a+c)/(b+d) of Farey neighbors is the unique
+  minimal-denominator fraction in the open interval - re-verified
+  exhaustively per registered interval (EQ1, scan to q = 40).
+- Arnold 1961 / standard circle-map theory: subcritical (K < 1)
+  sine-map tongues at every rational rotation number, with width
+  ~ K^q at small K (the q-th order resonance mechanism) -
+  MEASURED as our EQ2 anchor (width ratios 3.998 / 7.992 against
+  2^2 / 2^3 for q = 2, 3), not assumed. c23 (Adler) and c27
+  (finite-T plateau bias) are the repo's own tongue-adjacent
+  instruments.
+- Hofstadter 1976: the butterfly's recursive structure follows
+  the continued-fraction/Farey organization of the flux; P-7 and
+  P-28 are the repo's computed instances (bandwidth ladder, gap
+  labels). The composite's butterfly observable S(p/q) is P-7's
+  own object.
+- Bandt, Adv. Math. 324, 437 (2018), "Finite orbits in
+  multivalued maps and Bernoulli convolutions" (the reader's
+  candidate inspiration, examined): the (t, x) parameter
+  landscapes ("projections") of Bernoulli-convolution densities
+  are organized by KNEADING/address curves with landmarks at
+  Pisot, Perron, multinacci and doubling parameters - the terms
+  Farey, mediant, and Stern-Brocot do not occur in the paper
+  (machine census: 0 hits each vs kneading 69, Pisot 68). The
+  skeleton is the substitution/kneading tree, NOT the mediant
+  tree, so the projections do not transfer to P-29's registered
+  mechanism - recorded here precisely so the visual resemblance
+  is never cited as evidence. What DOES transfer: (i) phi enters
+  as the FIRST MULTINACCI (x^2 = x + 1 heading the ladder
+  x^n = x^{n-1} + ... + 1), and Bandt's own Fig. 2 finding that
+  the golden parameter t2 ~ 0.618 "apparently marks a phase
+  transition" (structure below, blur above) is a new
+  ADDRESS-route datum for the VOCABULARY phi taxonomy, imported
+  not computed; (ii) a second-bridge candidate is queued (A-18):
+  Farey tree vs kneading tree as organizing skeletons, with
+  finite-orbit windows of the two-map system {beta x, beta x + 1
+  - beta} as the third instrument - a registered claim there
+  would need its own shared premise stated in advance.
