@@ -1347,3 +1347,66 @@ filing was the eps clauses holding; they did not). The frame map
 and the flyback finding stay available for a future registered
 line; the diagnosis above is recorded as diagnosis, not as claimed
 science.
+
+## P-16 — 2026-08-27 — the two spectral dimensions of a causal set (the reserved number, worded)
+question: the literature disagrees with itself about the small-scale
+spectral dimension of causal sets: Eichhorn-Mizera (CQG 31, 125007)
+walk a random walker on the sprinkled causet's undirected Hasse
+graph and find d_s INCREASING at short scales, while Belenchia-
+Benincasa-Marciano-Modesto (PRD 93, 044017) take the heat kernel of
+the regularised nonlocal d'Alembertian and find universal reduction
+to 2 - and BBMM's own conclusion names the gap ("might be a hint of
+a universal description which interpolates"). Claim to test: on the
+SAME substrate family, both definitions computed side by side
+diverge at short scale in DIRECTION (walk to 0 through a growing
+superdiffusive peak; d'Alembertian to 2) and in REFINEMENT trend
+(the walk peak grows with N; the continuum curve is N-independent)
+- the disagreement is definitional and computable, and no winner is
+crowned.
+method: derivation layer scripts/experiments/p16_derive.py (run
+first, committed): K0 to 1e-10; the d = 2 minimal operator taken
+from the SOURCE closed form (Aslanbeigi-Saravani-Sorkin JHEP 1406,
+024 eq. 5: g = -Z e^{Z/2} E2(Z/2)) with exact IR/UV asymptotics
+-z and -2 + 8/z - 48/z^2, after the derive layer caught that
+BBMM's printed eq. (15) fails its own IR limit by exactly
+4/sqrt(pi) - 2 = 0.256758 (psi-sum derivation, numerically
+confirmed to 1e-6; recorded as LC-15 - their numerics evidently
+used the correct source operator, since our source-operator curve
+reproduces their Fig. 2: maximum 2.260 at s = 1.34, slow
+approach to 2 from above). Heat-kernel instrument d_s(s) =
+-2s<g_reg>_P exact to 1.2e-7 against finite differences; the
+unregularised identity d_s = 4 rho s (their eq. 14) reproduced at
+1.000 with a deep cutoff. Walk side: sprinklings into the unit
+causal square (lightcone coordinates, seeded), Hasse links by
+bitset interval-emptiness, links null pinned by EXACT quadrature
+E[links] = N(N-1) int (1-a)(1-b)(1-ab)^{N-2}; both walk
+instruments (continuous-time 2t<lambda>_P and even-step discrete
+from the same normalized-Laplacian spectrum, cyclic Jacobi)
+anchored on the cycle graph at d_s = 1. Registered ensembles:
+N in {64, 128, 256}, three seeds each, seed0 160016.
+expects: (a) measured link counts inside 6 sigma-heuristic of the
+exact quadrature pins (180.3 / 444.7 / 1060.5) at every cell.
+(b) walk superdiffusion on our sprinklings - the EM signature:
+window-peak d_s above 2.15 at every N >= 128, and the seed-mean
+peak grows from N = 64 to N = 256 by more than 0.10.
+(c) instrument agreement: even-step and continuous-time walk d_s
+within 0.15 at the window centre, every cell.
+(d) the divergence, as derived at EQ7: walk d_s at the lattice
+scale falls below 1 while the d'Alembertian curve stays within 0.1
+of 2 as s -> 0; the walk peak is N-dependent while the continuum
+curve is N-independent by construction. Both curves published side
+by side; neither crowned.
+changes-my-mind: no superdiffusive peak (walk d_s never above 2.15
+at N = 256) kills the EM reproduction and the nonlocality account
+(the link-count null decides whether the substrate or the
+instrument failed); a peak SHRINKING with N kills the
+refinement-trend reading; the d'Alembertian curve missing its own
+derived limits kills the quadrature and voids clause (d);
+instrument disagreement beyond 0.15 kills the transfer of P-15's
+tool to irregular graphs and voids clause (b) rather than the
+physics.
+not-claimed-in-advance: which definition is the right one (the
+registered output is the divergence, not a verdict); dimensions
+above 2; curved sprinklings; the meeting-probability causal d_s;
+BBMM's d = 3, 4 curves; Chern or continuum limits of the walk;
+any claim that the interpolation BBMM speculate about exists.
