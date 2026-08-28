@@ -1949,3 +1949,36 @@ imported statements; the 24-sigma experiment's loophole status
 (imported as flagged); any gravitational-order-superposition
 story; an information-causality-style contraction for order (the
 P-17 analog is noted as a future line, not attempted).
+
+## R-27 — 2026-08-28 — resolves P-30 (all clauses, first run)
+All five clauses held with no amendments, 0.6 s wall clock: (a)
+the OCB causal maximum is 3/4 over 8192 exhaustive deterministic
+one-way-signalling strategies (both orders; mixtures bounded by
+vertex linearity); (b) the pinned eq.-7 process with the
+eq.-20-23 protocol yields 0.853553390593 = (2+sqrt2)/4 at 1e-12,
+with the process valid (spectrum {0 x8, 1/2 x8} from the EQ2
+anticommutation closed form, trace-and-replace identities
+passing); (c) the VLBC DRF maximum is 7/4 over 131072 exhaustive
+deterministic strategies (two lambda orders, Bob spacelike), the
+exact switch circuit gives 1/2 + 1/2 + 0.853553390593 =
+1 + (2+sqrt2)/4, and the algebraic maximum is 2; (d) THE NULL
+THAT LANDS THE POINT: the coherent switch's Alice-marginal
+p(a1 a2 | x1 x2) equals the 50/50 classical mixture of the two
+fixed-order wirings ENTRYWISE AT MACHINE ZERO (worst cell 0.0) -
+order coherence is bipartitely invisible, and the entangled
+spacelike observer is what makes it visible, at exactly a
+Tsirelson price; (e) the ladder assembly: S = 8p - 4 sends the
+computed OCB ladder to (2.0000000000, 2.8284271247, 4.0000000000)
+and S = 8(p-1) - 4 sends the computed VLBC ladder to the same
+three numbers - the order ladder IS the Bell ladder under the
+derived affine maps, for these two games. Two-sided honesty as
+registered: the OCB middle rung's maximality is OPEN in the
+source (so the order-Tsirelson identification is proven only on
+the VLBC side, where van der Lugt et al. prove it via Tsirelson
+for commuting-Bob); the OCB process has no known physical
+realization; the 24-sigma experiment (LC-20) is imported with its
+loopholes flagged. The symbol graph's order primitive survives
+priced, not attacked: giving up definite order buys, in these
+games, precisely what giving up local realism bought in P-17 -
+the same sqrt-2 geometry, one affine map apart. Results:
+scripts/experiments/p30_results.json.
