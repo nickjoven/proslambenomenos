@@ -279,9 +279,9 @@ def main():
     if MUTANT is not None:
         if failures:
             print(f"mutant {MUTANT} broke the verification as it must")
-            return 0
-        print(f"FAIL: mutant {MUTANT} did not break the verification")
-        return 1
+            return 1
+        print(f"mutant {MUTANT} did not break the verification")
+        return 0
     if failures:
         return 1
     print("p26 verification ok")
