@@ -2068,3 +2068,63 @@ mediant follows from two-frequency competition (P-29's control),
 the kneading landmarks from expansion redundancy at algebraic
 parameters (this line's certificates). Results:
 scripts/experiments/p31_results.json.
+
+## P-32 — 2026-08-28 — the drive-geometry parity factorial
+question: A-2 - the untested reconciliation: LC-3 proposed that
+E1's no-parity result and the Josephson literature's even/odd
+half-integer-step claim differ because of the DRIVE TYPE. Run the
+2 x 2 factorial on one codebase - drive (per-site pinning vs
+uniform bias + AC) x geometry (one pi seam vs alternating 0-pi
+bonds), N = 4..9 - and let the registered frustration arithmetic
+(EQ1: f(N) = (floor(N/2)/2) mod 1 plus the odd-N defect; classes
+{4,8} clean, {5,9} defect, {6} half, {7} both) compete with plain
+even/odd parity as the organizing variable of the half-integer
+step.
+method: derivation layer scripts/experiments/p32_derive.py runs
+first and pins scripts/experiments/p32_registration.json: the
+frustration classes (arithmetic), the instrument identities
+(rho(I+1) = rho(I)+1 and the sign symmetry at 1e-12), the
+ground-state anchors (seam strain 1/(2N) for every N; clean ALT
+cancellation at N = 4; the N = 6 residual winding 1/2), the
+twelve P-9 pinned widths as reproduction bands, and the declared
+validation cell (N = 4 seam+bias half-step: stable, and zero).
+Experiment scripts/experiments/p32_factorial.py (pmap over cells):
+pinning cells K = 1.0, J = 0.6, rho = 1/2 plateau in Omega,
+attractor-controlled initial conditions; bias cells K = 0,
+J = 0.6, A = 0.9, nu = 1/8, steps at rho = nu (integer) and
+rho = nu/2 (half) in I; widths by coarse scan (step 1e-3) + edge
+bisection; width floor 1e-5; effective width resolution 3e-3
+(TOL-edge systematic).
+expects: (a) reproduction - the seam+pinning widths land within
+5e-3 of all twelve P-9 pins, no parity alternation; (b) THE
+QUESTION - the ALT+bias half-step widths are organized by f: the
+f = 1/2 group {6, 7} separates from the f = 0 group {4, 5, 8, 9}
+by a gap >= 3e-3 with the frustrated group ABOVE (half-integer
+steps born from the half-turn frustration, the Frolov mechanism);
+in particular {6} (even) sides with {7} (odd) - plain even/odd
+FAILS to organize a ring; (c) seam+bias - no parity alternation
+in the half-step widths (successive differences do not alternate
+beyond 3e-3; the validation cell suggests they sit at zero);
+(d) the drive factor - the f-gap under ALT+pinning (1/2-plateau
+widths) is smaller than 3e-3 while the bias gap in (b) exceeds
+it: the drive type is what activates the frustration classes;
+(e) positive control - the integer step rho = nu has width above
+the floor in every bias cell (control, seam, ALT; all N).
+changes-my-mind: (a) any reproduction miss or parity alternation
+- halt and audit (P-9's protocol would be in question); (b) no
+f-gap - the derived arithmetic does not organize the dynamics and
+the reconciliation stays open, recorded; the even/odd split
+organizing INSTEAD of f (with {6} siding with {4, 8}) - the
+imported parity claim transfers as stated and the ring-closure
+refinement is dynamically irrelevant, recorded; every ALT+bias
+half-width at the floor - the imported effect does not transfer
+to this drive/geometry family at these parameters, recorded as
+the honest transfer failure; (d) reversed (pinning gap >= bias
+gap) - the geometry alone carries the classes and LC-3's
+drive-type reading is revised in the R-entry.
+not-claimed-in-advance: the open-array geometries of the
+Josephson papers (our ring closure is declared as the source of
+the EQ1 refinement); voltage-step physics beyond the rotation-
+number analogy; the unexplained P-9 non-monotonicity at K = 1.4
+(not this line's target); parameter dependence beyond the single
+registered (J, A, nu, K) point; any claim at N outside 4..9.
