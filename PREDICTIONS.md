@@ -1770,3 +1770,32 @@ imported, not recomputed); lambda != 1; tiers |t| >= 4 (their
 positions are not Fibonacci and no claim is registered about
 them); gap-width scaling exponents along the ladder (reported for
 the P-7 ln-phi context, unscored).
+
+## R-25 — 2026-08-28 — resolves P-28 (all clauses, first run)
+All five clauses held with no amendments: (a) at every rung q >= 5
+the two widest gaps are the principal pair at r = F_{n-1} (t = +1)
+and r = F_{n-2} (t = -1); the t = +1 width saturates along the
+ladder at 1.5391, 1.6474, 1.6691, 1.6816, 1.6834, 1.6848, 1.6850,
+1.6851 (q = 5..144) - an O(1) gap surviving toward the irrational
+limit. (b) The tier hierarchy holds at every rung q >= 13; at
+q = 89 the medians are 1.685 / 0.332 / 0.147 for |t| = 1/2/3.
+(c) Every open Fibonacci-position gap obeys the EQ2 map, and the
+edge gap r = 1 - required resolved only through q = 13 - stayed
+above the floor through q = 144, carrying the full alternating
+Fibonacci Chern sequence t = -1, +2, -3, +5, -8, +13, -21, +34,
+-55 with widths 1.27, 0.157, 9.06e-2, 2.25e-2, 8.25e-3, 2.46e-3,
+8.14e-4, 2.55e-4, 8.21e-5: per-rung ratio ~ 0.324, i.e. width ~
+q^{-2.34} (unscored context: the critical point's power-law gap
+scaling is exactly why a |t| = 55 gap is still open at q = 144;
+exponential closing would have killed it at q = 21). (d) Streda
+mechanized: 18 Farey-neighbor gap pairs (t in {+1, -1, +2}, rungs
+5/8 through 89/144), every energy window overlapping and every
+band-counted slope landing on its integer exactly - Fractions
+arithmetic, no tolerance. (e) The even-q central gaps close at
+2.6e-15 / 7.8e-15 / 1.5e-14 (q = 8/34/144) while EQ1 shows their
+Diophantine label is the single AMBIGUOUS case t = +-q/2: the
+number theory and the spectrum point at the same gap. P-7's
+not-claimed Chern scope is now an earned claim
+(golden-ladder-gap-integers). Runtime 0.5 s - kernels.eigh's
+first experiment-side consumer. Results:
+scripts/experiments/p28_results.json.
