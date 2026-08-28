@@ -1,0 +1,44 @@
+id: everpresent-lambda-prices-out-on-dr2-bao
+statement: >
+  On the DESI DR2 BAO likelihood as compressed to the paper's own
+  Table 4 (13 points, printed per-tracer correlations, the single
+  scale c/(H0 r_d) profiled in closed form) - a compression that
+  reproduces the collaboration's published flat-LCDM fit (Omega_m
+  0.2970 against their 0.2975, h r_d 101.56 against their 101.54
+  Mpc) and prices w0waCDM at dchi2 = 4.74 against the 4.84 derived
+  from the source's own preference characterization through their
+  eq. 22 - the concrete everpresent-Lambda dynamics
+  (Das-Nasiri-Yazdi Model 1, the Zwane-Afshordi-Sorkin lineage,
+  with the fluctuation amplitude derived exactly as
+  sigma_OmegaLambda = 2 sqrt(165 pi) alpha in the matter era and
+  (8/3) sqrt(210 pi) alpha in the radiation era) is priced out: of
+  90000 registered realizations across alpha in {0.005, 0.01,
+  0.02, 0.04} and Omega_m in {0.25, 0.2975, 0.35}, zero beat the
+  LCDM minimum. The best survivor sits dchi2 = +22.8 on the wrong
+  side; the median survivor sits at no-dark-energy levels (chi2
+  1555 against 1457 for Einstein-de Sitter on the same pipeline);
+  survival is monotone in alpha (0.994, 0.194, 0.000, 0.000); and
+  the net bit score - surprisal bought minus seed and grid
+  selection spent - is negative in every registered cell (-14.9 to
+  -39.5 bits). The mechanism is a squeeze: the walk's mean is
+  zero, so small alpha converges to Einstein-de Sitter, large
+  alpha dies before today through the radiation-era amplitude, and
+  no realization holds an accidental Omega_Lambda both large
+  enough and steady enough across z < 2.33. Scope: BAO alone, the
+  registered seeds, steps and cells (survival fractions are
+  discretization-pinned upper bounds; the zero-beat verdict is
+  not); CMB and SNe verdicts imported (LC-16), DNY Models 2/3
+  unexamined, bouncing continuations excluded, and the
+  order-of-magnitude coincidence recorded in c31 untouched.
+premises: []
+prediction: P-26
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p26_derive.py (lightcone-volume closed forms by Beta integrals, the exact walk-amplitude coefficients, the bit identities cross-validated against the source's own published conversion, distance anchors, closed-form scale profiling; pins in p26_registration.json with the machine-parsed desi_dr2_table4.json); scripts/experiments/p26_score.py with p26_results.json (registered ensembles); independently reimplemented by scripts/verify/p26_everpresent_scorecard.py with its own Simpson integrator, explicit block chi2, grid fit, marcher, and an analytic-volume amplitude route"
+    method: reimplementation
+null_system: "the null was that Model 1 realizations reach the LCDM likelihood at fair prices; the derived nulls came first: the amplitude coefficients 2 sqrt(165 pi) alpha and (8/3) sqrt(210 pi) alpha, the floor price log2(N_seeds) per cell, the sigma<->dchi2 conversion reproducing the source's own -12.5, and the Einstein-de Sitter chi2 1457 that both anchors the no-dark-energy end and exposed the first threshold design error (R-23)"
+falsifier: "scripts/verify/p26_everpresent_scorecard.py --mutant eds-threshold"
+novelty:
+  status: classical
+  citation: "Sorkin 1990s-2007 (everpresent Lambda); Zwane-Afshordi-Sorkin 2017; Das-Nasiri-Yazdi 2023 (Model 1, SNe and CMB tests); DESI DR2 2025 (Table 4). The contribution is the registered scoring of Model 1 against DR2 BAO specifically, the exact amplitude coefficients, and the bit-ledger pricing of the seed selection"
+status: verified
