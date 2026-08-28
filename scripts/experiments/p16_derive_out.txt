@@ -1,0 +1,7 @@
+EQ 1 PASS  K0 quadrature vs reference and self-consistency  | |K0(1) - ref| = 5.6e-17, depth split 2.8e-16
+EQ 2 PASS  ASS eq. (5) closed form: IR -> -z, UV -> -2 + 8/z - 48/z^2 exact; BBMM printed eq. (15) fails its own IR limit by 4/sqrt(pi) - 2  | IR ratios ['0.9763', '0.9965', '0.9995']; b1(z) = 7.8823/7.9471 vs 8 - 48/z; defect 0.256757 vs derived 0.256758; UV agreement 3.3e-05
+EQ 3 PASS  g_reg = a g/(a - g): IR -> -z, UV -> -(a^2/b1) z (their eq. 6)  | IR ratio 0.9970; UV ratios 1.005, 1.002
+EQ 4 PASS  d_s(s) = -2s<g_reg>: UV -> 2, IR -> 2, max between; unregularised = 4 rho s  | instr vs FD 1.2e-07; ds(0.005) = 1.941, ds(300) = 2.081, max 2.260 at s = 1.34; 4rhos ratios 1.000/1.000
+EQ 5 PASS  E[links] exact quadrature; mean Hasse degree grows ~ 2 ln N  | N=64: L = 180.3, deg = 5.64; N=128: L = 444.7, deg = 6.95; N=256: L = 1060.5, deg = 8.29
+EQ 6 PASS  cycle anchors: continuous-time and even-step walk d_s -> 1 in window  | ct ['1.005', '1.002', '1.001'], disc ['0.994', '0.997', '0.998']
+EQ 7 PASS  short scale: walk d_s -> 0 linearly (exact on any finite graph); d'Alembertian d_s -> 2 (their eq. 12) - opposite directions, derived  | walk ds(1e-3) = 2.00e-03; dalembertian ds(0.005) = 1.941
