@@ -2039,3 +2039,32 @@ the measure-zero window statement in full generality (only the
 registered rationals are certified); orbit structure for starting
 points other than the overlap boundary; any transfer TO the Farey
 systems (P-29 owns that side).
+
+## R-28 — 2026-08-28 — resolves P-31 (all clauses, first run)
+All five clauses held with no amendments, 0.1 s wall clock, exact
+arithmetic end to end: (a) the overlap-boundary orbit closes at
+every multinacci rung with sizes 4, 8, 10, 12 (n = 2..5; the
+golden 4 as hand-derived, including the closed-edge subtlety);
+(b) it also closes at both doubling landmarks, sizes 6 (s_2, the
+supergolden parameter) and 8 (s_3); (c) it DIVERGES with the
+denominator certificate at every registered rational - 3/5
+(1.59e6), 5/9 (1.95e6), 4/7 (1.05e6), and t_2's own Fibonacci
+convergents 8/13 (2.10e6) and 13/21 (4.83e6) - no timeout used as
+evidence anywhere; (d) the skeleton distinction assembled: finite
+structure at s_2 = 0.569840 and certified nothing at the mediant
+4/7 = 0.571429, 1.588e-3 away. The kneading tree refuses the
+mediant: where P-29's systems put their largest window at
+denominator addition, the Bernoulli system puts its closures at
+algebraic landmarks and provably nothing at the interval's simple
+rationals - even the best Farey approximants of the golden
+landmark itself diverge while the landmark closes. The registered
+kill (a rational closing) stayed quiet. Orbit-size ladder
+(4, 8, 10, 12 / 6, 8) recorded unscored. Third premises-bearing
+claim filed (second-bridge-skeleton-distinction, premise
+farey-bridge-mediant-mechanism): the two bridges together now
+state, with computed evidence on both sides, that WHICH tree
+organizes a system is a consequence of the system's premise - the
+mediant follows from two-frequency competition (P-29's control),
+the kneading landmarks from expansion redundancy at algebraic
+parameters (this line's certificates). Results:
+scripts/experiments/p31_results.json.
