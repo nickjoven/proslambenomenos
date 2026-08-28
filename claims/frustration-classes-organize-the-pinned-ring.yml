@@ -1,0 +1,39 @@
+id: frustration-classes-organize-the-pinned-ring
+statement: >
+  On the pinned circle-map ring (per-site pinning K, sine coupling
+  J = 0.6) with alternating 0-pi bonds, the derived ring-closure
+  arithmetic organizes the 1/2-plateau: the net frustration
+  f(N) = (floor(N/2)/2) mod 1 together with the odd-N alternation
+  defect partitions N = 4..9 into four classes ({4,8} clean, {5,9}
+  defect, {6} half-frustrated, {7} both), and the measured plateau
+  widths order by class - at the registered fresh coupling K = 1.2:
+  0.1667/0.1666 (clean), 0.1537/0.1522 (defect), 0.0370 (half),
+  0.0159 (both) - clean above defect above half above both, with
+  the f-gap at -0.151, fifty times the width resolution, and the
+  same direction observed at K = 1.0 (R-29). Frustration NARROWS
+  the pinned plateau, class by class; plain even/odd parity does
+  NOT organize the data ({6} sides with {7} against {4,8}). The
+  companion negative result (R-30, closed by the stop rule): in
+  the uniform-bias driven family the site-mean rotation number
+  obeys rho = I identically - the coupling telescopes around the
+  ring (verified at 9e-17) - so no Shapiro step of any order can
+  appear in that observable, for any geometry; the imported
+  Josephson parity effect could not have transferred to either of
+  our families, and the sharpened drive-type reconciliation is
+  recorded in R-30. Scope: N = 4..9, J = 0.6, K in {1.0, 1.2},
+  the registered protocols and initial conditions; open-array
+  Josephson geometries and difference-variable observables are
+  not claimed; the mechanism of the narrowing is reported, not
+  modeled.
+premises: []
+prediction: P-33
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p32_derive.py (frustration classes by arithmetic, instrument identities, ground-state anchors, P-9 pins; p32_registration.json); scripts/experiments/p32_factorial.py with p32_results.json (R-29: two fired clauses diagnosed); scripts/experiments/p33_regrid.py with p33_results.json (the declared grid, the fresh-K class hierarchy, the telescoping diagnosis); independently reimplemented by scripts/verify/p32_parity_factorial.py with its own integrator and plateau search"
+    method: reimplementation
+null_system: "the nulls were derived or pinned first: the frustration arithmetic, the instrument identities, the P-9 reproduction pins, and - after the first firing - the corrected tolerance-smear null 2 TOL/slope that exposed every bias-side width as an unlocked staircase artifact; the final theorem-let (rho = I by telescoping) turns the bias-side negative into an identity rather than a measurement"
+falsifier: "scripts/verify/p32_parity_factorial.py --mutant class-blind"
+novelty:
+  status: classical
+  citation: "Frolov 2006 / Lazarides 2008 (the imported parity claim, LC-3/LC-4/LC-23); Wiley-Strogatz-Girvan 2006 (twisted states); P-9/R-6 in-repo. The contribution is the ring-closure refinement of the parity claim (mod-4 plus defect), the four-class width hierarchy on the pinned ring, and the telescoping identity that explains why neither of our families could show the imported effect"
+status: verified
