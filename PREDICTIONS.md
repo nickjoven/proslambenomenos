@@ -1469,3 +1469,27 @@ violation kills the instrument transfer outright.
 not-claimed-in-advance: anything about which clock is preferable;
 lazy or weighted walks; scales below n = 4 (the smearing bound is
 the statement there, not agreement).
+
+## R-22 — 2026-08-27 — resolves P-25 (mind-change FIRED; the line stops here)
+outcome: both clauses failed as registered and the mind-change
+fired - the second consecutive firing on instrument agreement,
+which is itself the finding. Numbers pasted by script.
+(bands/tail) N64_r0: worst 0.274 vs band 0.160, tail 0.274/0.087; N64_r1: worst 0.547 vs band 0.350, tail 0.200/0.052; N128_r0: worst 0.592 vs band 0.397, tail 0.076/0.061; N128_r1: worst 0.536 vs band 0.408, tail 0.110/0.061 - three of four cells
+exceed the 0.06 tail bound at n = 16.
+Post-firing diagnosis (labeled, computed): the derived band
+carried only the Poisson-smearing term; the omitted contribution
+is PARITY. Hasse graphs are triangle-free and near-bipartite (the
+mu-spectrum of the N = 128 cell is +--symmetric to 0.043), so
+odd-step returns are suppressed - measured odd/even ratios 0.195
+at n = 5 recovering to 0.996 at n = 23 - and the Poisson mixture
+(all k) systematically differs from the even-step clock by a
+cell-dependent amount of exactly the size that fired the bands.
+Decision: no third registration. Two firings establish the honest
+result - on sprinkled causal sets at accessible N, the walk
+spectral dimension is PROTOCOL-DEPENDENT even within the walk
+definition (clock choice and parity handling), which sharpens
+P-16's thesis: the short-scale d_s of a causal set is a
+convention-laden quantity, and cross-paper disagreement is the
+expected condition, not an anomaly. The P-16 claim is filed on
+its physics clauses only; the clock non-identity is recorded here
+as a negative result with its mechanism demonstrated.
