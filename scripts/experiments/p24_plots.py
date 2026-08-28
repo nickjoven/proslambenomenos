@@ -11,6 +11,11 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))
+from kernels.eig import jacobi_classical                       # noqa: E402
+from kernels.figpage import plot, ring_svg                     # noqa: E402
+from kernels.quad import mfpt_double_well                      # noqa: E402
+
 REG = json.loads((HERE / "p24_registration.json").read_text())
 RES = json.loads((HERE / "p24_results.json").read_text())
 OUT_PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "p24_plots.html"
@@ -20,24 +25,9 @@ EPS = REG["eps2"]
 
 # ---------- shared physics helpers (closed forms only) ----------
 def mfpt(D, n=1500):
-    hy = math.pi / n
-    U = lambda x: -(EPS / 2) * math.cos(2 * x) / D   # noqa: E731
-    ys = [-math.pi / 2 + j * hy for j in range(n + 1)]
-    emu = [math.exp(-U(y)) for y in ys]
-    cum = [0.0]
-    for j in range(n):
-        cum.append(cum[-1] + 0.5 * (emu[j] + emu[j + 1]) * hy)
-    def inner(xv):
-        j = (xv + math.pi / 2) / hy
-        j0 = min(int(j), n - 1)
-        return cum[j0] + (j - j0) * (cum[j0 + 1] - cum[j0])
-    nx = n // 2
-    hx = (math.pi / 2) / nx
-    tot = 0.0
-    for i in range(nx + 1):
-        w = 0.5 if i in (0, nx) else 1.0
-        tot += w * math.exp(U(i * hx)) * inner(i * hx)
-    return tot * hx / D
+    """kernels.quad.mfpt_double_well on this page's historical grid
+    (its n counted the fine y-axis, the kernel's counts the x-axis)."""
+    return mfpt_double_well(EPS, D, n=n // 2)
 
 
 def E_delta(Delta, N):
@@ -56,24 +46,7 @@ def barrier(N):
     return E_delta(dstar(N), N) - E1(N)
 
 
-def _jacobi_eigs(A, sweeps=400):
-    n = len(A)
-    a = [row[:] for row in A]
-    for _ in range(sweeps):
-        off = max((abs(a[i][j]), i, j) for i in range(n) for j in range(i + 1, n))
-        if off[0] < 1e-12:
-            break
-        _, p, q = off
-        th = math.pi / 4 if a[p][p] == a[q][q] else \
-            0.5 * math.atan2(2 * a[p][q], a[q][q] - a[p][p])
-        c, s = math.cos(th), math.sin(th)
-        for k in range(n):
-            apk, aqk = a[p][k], a[q][k]
-            a[p][k], a[q][k] = c * apk - s * aqk, s * apk + c * aqk
-        for k in range(n):
-            akp, akq = a[k][p], a[k][q]
-            a[k][p], a[k][q] = c * akp - s * akq, s * akp + c * akq
-    return sorted(a[i][i] for i in range(n))
+_jacobi_eigs = jacobi_classical
 
 
 def _hessian(bonds):
@@ -111,75 +84,7 @@ def langer_tau(N, D):
     return 1.0 / (langer_pref(N) * math.exp(-barrier(N) / D))
 
 
-# ---------- svg helpers ----------
-def plot(series, W=860, H=320, title="", xl="", yl="", logy=False,
-         pad=(64, 16, 44, 22), yfmt="{:.2f}", xfmt="{:.2f}"):
-    L, R, B, Tp = pad
-    def ty(v):
-        return math.log10(v) if logy else v
-    xs = [x for s in series for x, _ in s["pts"]]
-    ys = [ty(y) for s in series for _, y in s["pts"] if (not logy) or y > 0]
-    x0, x1 = min(xs), max(xs)
-    y0, y1 = min(ys), max(ys)
-    if y1 - y0 < 1e-12:
-        y0, y1 = y0 - 0.5, y1 + 0.5
-    y0, y1 = y0 - 0.06 * (y1 - y0), y1 + 0.06 * (y1 - y0)
-    X = lambda x: L + (x - x0) / (x1 - x0) * (W - L - R)      # noqa: E731
-    Y = lambda y: Tp + (y1 - ty(y)) / (y1 - y0) * (H - Tp - B)  # noqa: E731
-    o = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="{title}">']
-    if title:
-        o.append(f'<text x="{L}" y="{Tp - 6}" class="ftitle">{title}</text>')
-    for k in range(5):
-        yy = y0 + (y1 - y0) * k / 4
-        ypix = Tp + (y1 - yy) / (y1 - y0) * (H - Tp - B)
-        o.append(f'<line x1="{L}" x2="{W - R}" y1="{ypix:.1f}" y2="{ypix:.1f}" class="grid"/>')
-        lab = yfmt.format(10 ** yy if logy else yy)
-        o.append(f'<text x="{L - 8}" y="{ypix + 4:.1f}" class="tick" text-anchor="end">{lab}</text>')
-        xx = x0 + (x1 - x0) * k / 4
-        o.append(f'<text x="{X(xx):.1f}" y="{H - B + 18}" class="tick" text-anchor="middle">{xfmt.format(xx)}</text>')
-    o.append(f'<line x1="{L}" x2="{W - R}" y1="{H - B}" y2="{H - B}" class="axis"/>')
-    o.append(f'<line x1="{L}" x2="{L}" y1="{Tp}" y2="{H - B}" class="axis"/>')
-    for s in series:
-        pts = [(x, y) for x, y in s["pts"] if (not logy) or y > 0]
-        if s.get("dots"):
-            for x, y in pts:
-                o.append(f'<circle cx="{X(x):.1f}" cy="{Y(y):.1f}" r="4.5" class="{s["cls"]} dot"/>')
-                if s.get("err"):
-                    e = s["err"]
-                    o.append(f'<line x1="{X(x):.1f}" x2="{X(x):.1f}" y1="{Y(max(y - e, 1e-12)):.1f}" y2="{Y(y + e):.1f}" class="{s["cls"]} ebar"/>')
-        else:
-            p = " ".join(f"{X(x):.1f},{Y(y):.1f}" for x, y in pts)
-            dash = ' stroke-dasharray="6 5"' if s.get("dash") else ""
-            o.append(f'<polyline points="{p}" class="{s["cls"]} line"{dash}/>')
-    for i, s in enumerate(series):
-        if s.get("label"):
-            o.append(f'<text x="{W - R - 8}" y="{Tp + 18 + 17 * i}" class="leg {s["cls"]}" text-anchor="end">{s["label"]}</text>')
-    o.append(f'<text x="{(L + W - R) / 2:.0f}" y="{H - 4}" class="alab" text-anchor="middle">{xl}</text>')
-    o.append(f'<text x="16" y="{(Tp + H - B) / 2:.0f}" class="alab" transform="rotate(-90 16 {(Tp + H - B) / 2:.0f})" text-anchor="middle">{yl}</text>')
-    o.append('</svg>')
-    return "".join(o)
-
-
-def ring_svg(bonds, label, cls, W=250, H=250):
-    """Draw N phases as arrows on a circle; bonds = list of successive
-    phase differences (site phase = cumulative sum)."""
-    N = len(bonds)
-    cx, cy, Rr, ar = W / 2, H / 2 - 6, W / 2 - 34, 13
-    o = [f'<svg viewBox="0 0 {W} {H}" class="ringfig" role="img" aria-label="{label}">']
-    phase = 0.0
-    for i in range(N):
-        a = 2 * math.pi * i / N - math.pi / 2
-        x, y = cx + Rr * math.cos(a), cy + Rr * math.sin(a)
-        dx, dy = math.cos(phase), math.sin(phase)
-        o.append(f'<line x1="{x - ar * dx:.1f}" y1="{y - ar * dy:.1f}" x2="{x + ar * dx:.1f}" y2="{y + ar * dy:.1f}" class="{cls} arrow"/>')
-        o.append(f'<circle cx="{x + ar * dx:.1f}" cy="{y + ar * dy:.1f}" r="2.6" class="{cls} tip"/>')
-        phase += bonds[i]
-    o.append(f'<circle cx="{cx}" cy="{cy}" r="{Rr}" class="ringpath"/>')
-    o.append(f'<text x="{cx}" y="{H - 6}" class="rlab" text-anchor="middle">{label}</text>')
-    o.append('</svg>')
-    return "".join(o)
-
-
+# ---------- svg helpers: kernels.figpage plot / ring_svg ----------
 # ---------- figure 1: rung 1 ----------
 D1 = REG["rung1"]["D"]
 rng = random.Random(4711)

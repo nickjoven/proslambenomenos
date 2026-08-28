@@ -9,33 +9,16 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))
+from kernels.eig import jacobi_cyclic  # noqa: E402
+
 REG = json.loads((HERE / "p7_registration.json").read_text())
 RES = json.loads((HERE / "p7_results.json").read_text())
 OUT_PATH = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "p7_plots.html"
 
 
 def jacobi_eigs(A, tol=1e-10, max_sweeps=30):
-    n = len(A)
-    a = [row[:] for row in A]
-    for _ in range(max_sweeps):
-        off = math.sqrt(sum(a[i][j] ** 2 for i in range(n) for j in range(i + 1, n)))
-        if off < tol:
-            break
-        skip = tol / (n * n)
-        for p in range(n - 1):
-            for q_ in range(p + 1, n):
-                if abs(a[p][q_]) < skip:
-                    continue
-                t = 0.5 * math.atan2(2 * a[p][q_], a[q_][q_] - a[p][p]) \
-                    if a[p][p] != a[q_][q_] else math.pi / 4
-                c, s_ = math.cos(t), math.sin(t)
-                for k in range(n):
-                    x, y = a[p][k], a[q_][k]
-                    a[p][k], a[q_][k] = c * x - s_ * y, s_ * x + c * y
-                for k in range(n):
-                    x, y = a[k][p], a[k][q_]
-                    a[k][p], a[k][q_] = c * x - s_ * y, s_ * x + c * y
-    return sorted(a[i][i] for i in range(n))
+    return jacobi_cyclic(A, tol=tol, max_sweeps=max_sweeps)
 
 
 def bands(p, q):
