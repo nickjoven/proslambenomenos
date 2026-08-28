@@ -1,0 +1,38 @@
+{
+ "clauses": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": true,
+  "e": true
+ },
+ "ocb_causal": {
+  "max": 0.75,
+  "strategies": 8192
+ },
+ "ocb_process": 0.8535533905932738,
+ "vlbc": {
+  "causal_max": 1.75,
+  "strategies": 131072,
+  "switch_terms": [
+   0.49999999999999983,
+   0.4999999999999999,
+   0.8535533905932736
+  ],
+  "switch_value": 1.8535533905932735,
+  "algebraic_max": 2.0
+ },
+ "separability_worst": 0.0,
+ "ladders": {
+  "S_ocb": [
+   2.0,
+   2.8284271247461907,
+   4.0
+  ],
+  "S_vlbc": [
+   2.0,
+   2.828427124746188,
+   4.0
+  ]
+ }
+}

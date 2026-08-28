@@ -1,0 +1,45 @@
+id: order-ladder-priced
+statement: >
+  The order ladder, computed end to end, is the Bell ladder under
+  a derived affine map - for the two canonical causal games. The
+  Oreshkov-Costa-Brukner causal game has causal maximum 3/4 by
+  exhaustive enumeration over deterministic one-way-signalling
+  strategies (8192, both orders; a wider four-letter-message class
+  leaves the bound unmoved), and the pinned OCB process (eq. 7,
+  spectrum {0 x8, 1/2 x8} in closed form by anticommutation, valid
+  under the trace-and-replace identities) with the pinned protocol
+  achieves (2+sqrt2)/4; the algebraic maximum is 1. The van der
+  Lugt-Barrett-Chiribella device-independent inequality has DRF
+  maximum 7/4 by exhaustive enumeration (131072 deterministic
+  strategies over both hidden orders with a spacelike Bob), the
+  exact quantum-switch circuit (control entangled to Bob's qubit)
+  achieves 1 + (2+sqrt2)/4, and the algebraic maximum is 2. The
+  map p = (S+4)/8 sends the Bell rungs {2, 2 sqrt 2, 4} onto the
+  first ladder and p = 1 + (S+4)/8 onto the second, at 1e-12 in
+  the computed values: giving up definite order buys, in these
+  games, what giving up local realism bought in the P-17 ladder -
+  the same sqrt-2 geometry. The null that prices the switch: its
+  Alice-marginal p(a1 a2 | x1 x2) equals the 50/50 classical
+  mixture of the two fixed-order wirings entrywise at machine zero
+  - order coherence is bipartitely invisible, and only the
+  entangled spacelike observer reveals it, at exactly a Tsirelson
+  cost. Scope and two-sided honesty: the OCB middle rung's
+  maximality is an open question in the source (the
+  order-Tsirelson identification is proven only on the VLBC side,
+  by their Tsirelson argument for commuting-Bob); the OCB process
+  has no known physical realization; the 24-sigma photonic
+  violation is imported with its loopholes flagged (LC-20);
+  qubit games with these settings only; no information-causality
+  analog attempted.
+premises: [bell-ladder-priced]
+prediction: P-30
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p30_derive.py (the affine correspondence, the anticommutation spectrum, validity identities with a pinned loop perturbation, reduced-process and switch third-term anchors; pins in p30_registration.json); scripts/experiments/p30_ladder.py with p30_results.json (registered enumerations, process and circuit values, the separability null); independently reimplemented by scripts/verify/p30_order_ladder.py with a wider message class, its own trace evaluation, and density-matrix switch evolution"
+    method: reimplementation
+null_system: "the nulls were derived first: the affine map, the closed-form spectrum, the validity identities, the reduced-process channel, and the third-term CHSH anchor; the enumerations and circuits could only land on or off the pinned rungs - and the separability null was registered with a halt-and-audit trigger had it failed, since that would contradict the imported no-bipartite-violation theorems"
+falsifier: "scripts/verify/p30_order_ladder.py --mutant two-way"
+novelty:
+  status: classical
+  citation: "Oreshkov-Costa-Brukner 2012 (who themselves note the CHSH number coincidence); van der Lugt-Barrett-Chiribella 2023; Chiribella et al. 2013; Liu et al. PRX Quantum 2026. The contribution is the end-to-end mechanization on one codebase - both exhaustive polytope bounds, both quantum values, the machine-zero bipartite-invisibility null, and the affine identification made exact"
+status: verified
