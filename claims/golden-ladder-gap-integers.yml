@@ -1,0 +1,44 @@
+id: golden-ladder-gap-integers
+statement: >
+  Every open gap of the P-7 golden flux ladder carries its
+  gap-labeling integers, computed: on the rungs (p, q) =
+  (F_{n-1}, F_n), q = 3..144, at lambda = 1 with the P-7 Chambers
+  corners, the two widest gaps at every rung q >= 5 are the
+  principal pair r = F_{n-1} (t = +1) and r = F_{n-2} (t = -1),
+  with the t = +1 width saturating at 1.6851 along the ladder; the
+  Fibonacci map derived exactly in the registration - the gap at
+  r = F_j carries |t| = F_{n-j}, from the congruence
+  F_{n-1} F_j = (-1)^{j+1} F_{n-j} (mod F_n), mirrors
+  sign-flipped - holds for every open Fibonacci-position gap, and
+  the edge gap r = 1 stays resolved through q = 144 carrying the
+  full alternating Fibonacci Chern sequence t = -1, +2, -3, +5,
+  -8, +13, -21, +34, -55, its width shrinking as a power law
+  (per-rung ratio 0.324, about q^{-2.3}) - the critical point's
+  power-law gap scaling is what keeps a |t| = 55 gap open at
+  q = 144. The Streda relation is mechanized, not assumed: across
+  consecutive Farey-neighbor rungs from 5/8 to 89/144, for t in
+  {+1, -1, +2}, the gaps' energy windows overlap and counting
+  bands below the overlap midpoint returns the finer rung's r'
+  with (r'/q' - r/q)/(p'/q' - p/q) equal to t exactly in rational
+  arithmetic, 18 of 18 pairs. The gap the labeling cannot name is
+  the gap the spectrum closes: for even q the Diophantine label is
+  ambiguous (t = +-q/2) exactly at the central gap, and the
+  computed central widths at q = 8, 34, 144 are below 1.5e-14
+  (P-7's parity rule, re-derived from number theory). Tier
+  hierarchy: median open-gap width strictly decreasing over
+  |t| = 1, 2, 3 at every rung q >= 13. Scope: lambda = 1, the
+  ladder's rational rungs, gaps above the 1e-9 floor; the
+  irrational limit, Kubo Hall conductance, and |t| >= 4 tier
+  positions are not claimed.
+premises: []
+prediction: P-28
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p28_derive.py (label uniqueness with the even-q ambiguity, the Fibonacci congruence and map exhaustive, kernels.eigh anchored against the P-7 Jacobi route at 3.6e-15, the exact rational Streda slope identity; pins in p28_registration.json); scripts/experiments/p28_labels.py with p28_results.json (registered spectral clauses, all held first run); independently reimplemented by scripts/verify/p28_gap_integers.py via characteristic-polynomial bisection and a brute-force Diophantine solver, no shared spectral code"
+    method: reimplementation
+null_system: "the nulls were derived first and are exact: the Diophantine label arithmetic, the Fibonacci congruence, the ambiguity-at-central coincidence, and the rational slope identity; the spectra could only confirm or break the assignment - principal-pair position, hierarchy ordering, window overlap, and band counts were the falsifiable spectral content"
+falsifier: "scripts/verify/p28_gap_integers.py --mutant shifted-window"
+novelty:
+  status: classical
+  citation: "Wannier 1978; Claro-Wannier 1979; TKNN 1982; Streda 1982; Satija 2026 review (LC-18). The contribution is the registered end-to-end mechanization on one ladder - labels, map, Streda by band counting, and the central-gap/label-ambiguity coincidence - converting P-7's not-claimed Chern scope into computed content"
+status: verified
