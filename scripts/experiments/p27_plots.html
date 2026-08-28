@@ -1,0 +1,81 @@
+<title>The Classical-Gravity Squeeze</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root {
+  --bg:#FBFAF7; --ink:#1F242A; --mut:#6B6A64; --hair:#E2DFD6; --card:#F3F1EA;
+  --c1:#B4552D; --c2:#3D6B54; --c3:#4B6A8A; --c4:#8A8272; --c5:#7A5C8F;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+} }
+:root[data-theme="dark"] {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+}
+body { background:var(--bg); color:var(--ink); margin:0;
+  font-family:"Source Sans 3", sans-serif; line-height:1.5; }
+main { max-width:960px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font-family:Fraunces, serif; font-weight:700; font-size:2rem; margin:0 0 4px; }
+h2 { font-family:Fraunces, serif; font-weight:560; font-size:1.3rem;
+  border-top:1px solid var(--hair); padding-top:22px; margin-top:34px; }
+.sub { color:var(--mut); margin:0 0 6px; }
+.prov { font-family:"JetBrains Mono", monospace; font-size:.72rem; color:var(--mut); }
+.fig { width:100%; height:auto; margin:14px 0; }
+.grid { stroke:var(--hair); stroke-width:1; }
+.axis { stroke:var(--mut); stroke-width:1.2; }
+.tick { fill:var(--mut); font:11px "JetBrains Mono", monospace; }
+.alab { fill:var(--mut); font:12px "Source Sans 3", sans-serif; }
+.ftitle { fill:var(--ink); font:600 13px "Source Sans 3", sans-serif; }
+.leg { font:600 12px "Source Sans 3", sans-serif; }
+.clab { fill:var(--ink); font:600 13px "Source Sans 3", sans-serif; }
+.mut { fill:var(--mut); font-weight:400; }
+.line { fill:none; stroke-width:2; }
+.dot { stroke:var(--bg); stroke-width:1.2; }
+.c1 { stroke:var(--c1); fill:var(--c1); } .c2 { stroke:var(--c2); fill:var(--c2); }
+.c3 { stroke:var(--c3); fill:var(--c3); } .c4 { stroke:var(--c4); fill:var(--c4); }
+.c5 { stroke:var(--c5); fill:var(--c5); }
+.c1.line,.c2.line,.c3.line,.c4.line,.c5.line { fill:none; }
+.barpos { fill:var(--c2); opacity:.8; }
+.barneg { fill:var(--c1); opacity:.8; }
+.barfrag { fill:var(--c5); opacity:.65; }
+.bard { fill:var(--c3); opacity:.85; }
+.flipline { stroke:var(--mut); stroke-width:1.4; stroke-dasharray:4 3; }
+.stmt { background:var(--card); border:1px solid var(--hair); border-radius:10px;
+  padding:14px 18px; margin:14px 0; }
+.tag { display:block; font:600 11px "JetBrains Mono", monospace; color:var(--mut);
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+.eq { display:block; font-family:"JetBrains Mono", monospace; font-size:.85rem; margin:4px 0; }
+.note { color:var(--mut); font-size:.85rem; }
+</style>
+<main>
+<h1>The classical-gravity squeeze</h1>
+<p class="sub">If spacetime is classical, coherence must be paid for in diffusion. The surviving windows for Oppenheim's postquantum gravity, computed with their fragility exposed.</p>
+<p class="prov">proslambenomenos · P-27 / R-24 · OSSW Nature Comms 14, 7910 · Janse PRR 6, 033076 · sign-stability clause FIRED · LC-17</p>
+
+<section>
+<h2>The squeeze</h2>
+<div class="stmt"><span class="tag">backed statement · clauses (b)–(d) · R-24</span>
+<span class="eq">interferometry: D₂ ≥ M²/(Vλ) — coherence observed ⟹ diffusion required (λ in the denominator, unit-mechanized)</span>
+<span class="eq">force noise: D₂ ≤ σ_a²·N·ΔT·r_N⁴/(m_N G²) — the diffusion would shake test masses</span>
+Ultra-local continuous: excluded under every rule. Discrete: survives the uncontested rule by 9.5 orders. The contested atom-interferometry cells: undecidable at the sources' own precision.</div>
+<svg viewBox="0 0 900 512" class="fig" role="img" aria-label="squeeze windows"><line x1="320" x2="320" y1="24" y2="472" class="grid"/><text x="320" y="18" class="tick" text-anchor="middle">1e-45</text><line x1="389" x2="389" y1="24" y2="472" class="grid"/><text x="389" y="18" class="tick" text-anchor="middle">1e-40</text><line x1="458" x2="458" y1="24" y2="472" class="grid"/><text x="458" y="18" class="tick" text-anchor="middle">1e-35</text><line x1="526" x2="526" y1="24" y2="472" class="grid"/><text x="526" y="18" class="tick" text-anchor="middle">1e-30</text><line x1="595" x2="595" y1="24" y2="472" class="grid"/><text x="595" y="18" class="tick" text-anchor="middle">1e-25</text><line x1="664" x2="664" y1="24" y2="472" class="grid"/><text x="664" y="18" class="tick" text-anchor="middle">1e-20</text><line x1="732" x2="732" y1="24" y2="472" class="grid"/><text x="732" y="18" class="tick" text-anchor="middle">1e-15</text><line x1="801" x2="801" y1="24" y2="472" class="grid"/><text x="801" y="18" class="tick" text-anchor="middle">1e-10</text><line x1="870" x2="870" y1="24" y2="472" class="grid"/><text x="870" y="18" class="tick" text-anchor="middle">1e-5</text><text x="8" y="44" class="clab">ultra-local continuous <tspan class="mut">[D₂]</tspan></text><rect x="375.0" y="56" width="233.8" height="14" class="barneg"/><text x="312" y="67" class="tick" text-anchor="end">Cavendish · -17.0 — excluded</text><rect x="175.3" y="80.48" width="433.5" height="14" class="barneg"/><text x="312" y="91.48" class="tick" text-anchor="end">Gisler · -31.5 — excluded</text><rect x="117.2" y="104.96000000000001" width="491.6" height="14" class="barneg"/><text x="312" y="115.96000000000001" class="tick" text-anchor="end">Armano · -35.7 — excluded</text><rect x="36.5" y="129.44" width="572.2" height="14" class="barneg"/><text x="312" y="140.44" class="tick" text-anchor="end">Asenbaum · -41.6 — excluded</text><text x="8" y="175.92000000000002" class="clab">ultra-local discrete <tspan class="mut">[l_P³D₂/m_P]</tspan></text><rect x="595.0" y="187.92000000000002" width="330.0" height="14" class="barpos"/><text x="312" y="198.92000000000002" class="tick" text-anchor="end">Cavendish · +24.0</text><rect x="595.0" y="212.4" width="130.3" height="14" class="barpos"/><text x="312" y="223.4" class="tick" text-anchor="end">Gisler · +9.5</text><rect x="595.0" y="236.88" width="72.2" height="14" class="barpos"/><text x="312" y="247.88" class="tick" text-anchor="end">Armano · +5.3</text><rect x="586.5" y="261.36" width="8.5" height="14" class="barfrag"/><text x="312" y="272.36" class="tick" text-anchor="end">Asenbaum · -0.6 / +0.7 — undecidable</text><text x="8" y="307.84000000000003" class="clab">nonlocal continuous <tspan class="mut">[l_P²D₂]</tspan></text><rect x="388.8" y="319.84000000000003" width="426.2" height="14" class="barpos"/><text x="312" y="330.84000000000003" class="tick" text-anchor="end">Cavendish · +31.0</text><rect x="388.8" y="344.32000000000005" width="226.5" height="14" class="barpos"/><text x="312" y="355.32000000000005" class="tick" text-anchor="end">Gisler · +16.5</text><rect x="388.8" y="368.80000000000007" width="168.4" height="14" class="barpos"/><text x="312" y="379.80000000000007" class="tick" text-anchor="end">Armano · +12.3</text><rect x="388.8" y="393.2800000000001" width="87.8" height="14" class="barpos"/><text x="312" y="404.2800000000001" class="tick" text-anchor="end">Asenbaum · +6.4</text><text x="595" y="443.7600000000001" class="alab" text-anchor="middle">D₂ scale (class units) — bar spans lower→upper bound; green survives, rust excluded, striped undecidable at source precision</text></svg>
+</section>
+
+<section>
+<h2>The ladder, and what would decide it</h2>
+<div class="stmt"><span class="tag">backed statement · clause (e) · R-24</span>
+<span class="eq">FOM_D2 = N·S_a — the one number an experiment contributes; the discrete class shuts at 1e-10 m²s⁻³ (uncontested, absolute, on Earth)</span>
+Best uncontested today: Gisler's nanowire at 3e-1. Nine orders. The contested rows (Asenbaum, LISA Pathfinder) already sit below the closure lines — IF relative measurements count, which is imported, open, and now also arithmetic-fragile.</div>
+<svg viewBox="0 0 860 380" class="fig" role="img" aria-label="the figure-of-merit ladder: 45 experiments vs the closure lines"><text x="64" y="16" class="ftitle">the figure-of-merit ladder: 45 experiments vs the closure lines</text><line x1="64" x2="844" y1="336.0" y2="336.0" class="grid"/><text x="56" y="340.0" class="tick" text-anchor="end">-19</text><text x="64.0" y="354" class="tick" text-anchor="middle">-26</text><line x1="64" x2="844" y1="257.5" y2="257.5" class="grid"/><text x="56" y="261.5" class="tick" text-anchor="end">-10</text><text x="259.0" y="354" class="tick" text-anchor="middle">-19</text><line x1="64" x2="844" y1="179.0" y2="179.0" class="grid"/><text x="56" y="183.0" class="tick" text-anchor="end">-2</text><text x="454.0" y="354" class="tick" text-anchor="middle">-12</text><line x1="64" x2="844" y1="100.5" y2="100.5" class="grid"/><text x="56" y="104.5" class="tick" text-anchor="end">7</text><text x="649.0" y="354" class="tick" text-anchor="middle">-5</text><line x1="64" x2="844" y1="22.0" y2="22.0" class="grid"/><text x="56" y="26.0" class="tick" text-anchor="end">16</text><text x="844.0" y="354" class="tick" text-anchor="middle">2</text><line x1="64" x2="844" y1="336" y2="336" class="axis"/><line x1="64" x2="64" y1="22" y2="336" class="axis"/><polyline points="64.0,38.8 844.0,38.8" class="c4 line" stroke-dasharray="6 5"/><polyline points="64.0,255.9 844.0,255.9" class="c1 line" stroke-dasharray="6 5"/><polyline points="64.0,274.0 844.0,274.0" class="c5 line" stroke-dasharray="6 5"/><polyline points="64.0,319.2 844.0,319.2" class="c2 line" stroke-dasharray="6 5"/><circle cx="80.6" cy="146.3" r="4.5" class="c3 dot"/><circle cx="95.7" cy="69.8" r="4.5" class="c3 dot"/><circle cx="104.0" cy="55.5" r="4.5" class="c3 dot"/><circle cx="123.6" cy="94.8" r="4.5" class="c3 dot"/><circle cx="126.7" cy="104.7" r="4.5" class="c3 dot"/><circle cx="226.4" cy="119.9" r="4.5" class="c3 dot"/><circle cx="228.2" cy="112.4" r="4.5" class="c3 dot"/><circle cx="279.7" cy="123.8" r="4.5" class="c3 dot"/><circle cx="295.3" cy="132.8" r="4.5" class="c3 dot"/><circle cx="296.0" cy="132.8" r="4.5" class="c3 dot"/><circle cx="297.8" cy="140.6" r="4.5" class="c3 dot"/><circle cx="297.8" cy="138.9" r="4.5" class="c3 dot"/><circle cx="301.3" cy="146.6" r="4.5" class="c3 dot"/><circle cx="309.8" cy="112.1" r="4.5" class="c3 dot"/><circle cx="321.9" cy="106.8" r="4.5" class="c3 dot"/><circle cx="326.0" cy="108.2" r="4.5" class="c3 dot"/><circle cx="381.8" cy="141.6" r="4.5" class="c3 dot"/><circle cx="385.3" cy="138.1" r="4.5" class="c3 dot"/><circle cx="391.6" cy="170.2" r="4.5" class="c3 dot"/><circle cx="398.0" cy="161.1" r="4.5" class="c3 dot"/><circle cx="408.1" cy="96.9" r="4.5" class="c3 dot"/><circle cx="417.7" cy="124.3" r="4.5" class="c3 dot"/><circle cx="424.8" cy="125.5" r="4.5" class="c3 dot"/><circle cx="440.8" cy="113.8" r="4.5" class="c3 dot"/><circle cx="442.7" cy="153.5" r="4.5" class="c3 dot"/><circle cx="446.4" cy="144.7" r="4.5" class="c3 dot"/><circle cx="463.6" cy="134.0" r="4.5" class="c3 dot"/><circle cx="474.5" cy="143.2" r="4.5" class="c3 dot"/><circle cx="474.5" cy="107.0" r="4.5" class="c3 dot"/><circle cx="478.5" cy="118.2" r="4.5" class="c3 dot"/><circle cx="479.3" cy="166.1" r="4.5" class="c3 dot"/><circle cx="484.4" cy="146.3" r="4.5" class="c3 dot"/><circle cx="493.7" cy="136.5" r="4.5" class="c3 dot"/><circle cx="512.8" cy="138.2" r="4.5" class="c3 dot"/><circle cx="566.5" cy="150.3" r="4.5" class="c3 dot"/><circle cx="600.5" cy="158.4" r="4.5" class="c3 dot"/><circle cx="627.8" cy="91.6" r="4.5" class="c3 dot"/><circle cx="649.6" cy="85.3" r="4.5" class="c3 dot"/><circle cx="675.4" cy="128.7" r="4.5" class="c3 dot"/><circle cx="693.5" cy="132.2" r="4.5" class="c3 dot"/><circle cx="775.6" cy="38.8" r="4.5" class="c3 dot"/><circle cx="819.4" cy="163.0" r="4.5" class="c3 dot"/><circle cx="259.9" cy="261.5" r="4.5" class="c1 dot"/><circle cx="300.6" cy="157.8" r="4.5" class="c1 dot"/><circle cx="319.7" cy="226.7" r="4.5" class="c1 dot"/><circle cx="783.4" cy="208.4" r="4.5" class="c1 dot"/><text x="836" y="40" class="leg c4" text-anchor="end">Cavendish (OSSW input)</text><text x="836" y="57" class="leg c1" text-anchor="end">discrete class closes</text><text x="836" y="74" class="leg c5" text-anchor="end">nonlocal closes (Janse conv.)</text><text x="836" y="91" class="leg c2" text-anchor="end">nonlocal closes (OSSW conv.)</text><text x="836" y="108" class="leg c3" text-anchor="end">absolute on-Earth measurements</text><text x="836" y="125" class="leg c1" text-anchor="end">differential/relative (contested)</text><text x="454" y="376" class="alab" text-anchor="middle">log₁₀ test mass [kg]</text><text x="16" y="179" class="alab" transform="rotate(-90 16 179)" text-anchor="middle">log₁₀ FOM = N·S_a [m²s⁻³]</text></svg>
+</section>
+
+<section>
+<h2>The firing</h2>
+<div class="stmt"><span class="tag">backed statement · R-24 mind-change · sign stability</span>
+<span class="eq">printed upper bounds sit +2.26 / −1.35 / +1.65 orders from their own stated inputs (lower bounds: exact)</span>
+All three contested verdicts flip sign when the printed bounds are replaced by the same bounds recomputed from the sources' own inputs. "Atom interferometry closes the discrete class" is not a conclusion — it is a rounding choice.</div>
+<svg viewBox="0 0 900 260" class="fig" role="img" aria-label="deltas and flips"><line x1="560" x2="560" y1="14" y2="230" class="axis"/><rect x="560.0" y="26" width="135.4" height="16" class="bard"/><text x="-2" y="39" class="tick">cont_upper printed − derived · +2.26 orders</text><rect x="478.9" y="58" width="81.1" height="16" class="bard"/><text x="-2" y="71" class="tick">disc_upper printed − derived · -1.35 orders</text><rect x="560.0" y="90" width="98.9" height="16" class="bard"/><text x="-2" y="103" class="tick">nonloc_upper printed − derived · +1.65 orders</text><circle cx="522.9" cy="130" r="5" class="c1 dot"/><circle cx="604.0" cy="130" r="5" class="c2 dot"/><line x1="522.9" x2="604.0" y1="130" y2="130" class="flipline"/><text x="8" y="135" class="tick">flip: disc/ossw (Asenbaum) · -0.62 → +0.73</text><circle cx="493.3" cy="162" r="5" class="c1 dot"/><circle cx="574.3" cy="162" r="5" class="c2 dot"/><line x1="493.3" x2="574.3" y1="162" y2="162" class="flipline"/><text x="8" y="167" class="tick">flip: disc/fein (Asenbaum) · -1.11 → +0.24</text><circle cx="642.9" cy="194" r="5" class="c1 dot"/><circle cx="544.0" cy="194" r="5" class="c2 dot"/><line x1="642.9" x2="544.0" y1="194" y2="194" class="flipline"/><text x="8" y="199" class="tick">flip: nonloc/janse_e35 (Asenbaum) · +1.38 → -0.27</text><text x="560" y="252" class="alab" text-anchor="middle">orders of magnitude (0 = printed value / verdict boundary); dots: window under printed vs recomputed bounds</text></svg>
+<p class="note">Every number on this page traces to p27_results.json against pins in p27_registration.json and the machine-parsed janse_table1.json; the audit trail (unstated averaging time, the underivable 1e-35, the Monteiro row) lives in LC-17.</p>
+</section>
+</main>
