@@ -1,0 +1,522 @@
+{
+ "clauses": {
+  "b": true,
+  "c": true,
+  "d": true,
+  "e": true,
+  "sign_stability": false,
+  "a": true
+ },
+ "windows_printed": [
+  {
+   "class": "cont",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 1e-41,
+   "lower": 1e-24,
+   "window_orders": -17.0,
+   "verdict": "excluded"
+  },
+  {
+   "class": "cont",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 2.9799999999999997e-56,
+   "lower": 1e-24,
+   "window_orders": -31.525783735923746,
+   "verdict": "excluded"
+  },
+  {
+   "class": "cont",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "ossw",
+   "upper": 1.78e-60,
+   "lower": 1e-24,
+   "window_orders": -35.74957999769111,
+   "verdict": "excluded"
+  },
+  {
+   "class": "cont",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "ossw",
+   "upper": 2.41e-66,
+   "lower": 1e-24,
+   "window_orders": -41.617982957425134,
+   "verdict": "excluded"
+  },
+  {
+   "class": "disc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 0.1,
+   "lower": 1e-25,
+   "window_orders": 24.0,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 0.1,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 23.50566229071051,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 2.98e-16,
+   "lower": 1e-25,
+   "window_orders": 9.474216264076254,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 2.98e-16,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 8.979878554786767,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "ossw",
+   "upper": 1.7799999999999998e-20,
+   "lower": 1e-25,
+   "window_orders": 5.250420002308894,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "fein",
+   "upper": 1.7799999999999998e-20,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 4.756082293019406,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "ossw",
+   "upper": 2.41e-26,
+   "lower": 1e-25,
+   "window_orders": -0.6179829574251317,
+   "verdict": "excluded"
+  },
+  {
+   "class": "disc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "fein",
+   "upper": 2.41e-26,
+   "lower": 3.121315789473684e-25,
+   "window_orders": -1.1123206667146193,
+   "verdict": "excluded"
+  },
+  {
+   "class": "nonloc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 1e-09,
+   "lower": 1e-40,
+   "window_orders": 31.0,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "janse_e35",
+   "upper": 1e-09,
+   "lower": 1e-35,
+   "window_orders": 26.0,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 1e-09,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 28.88747294045394,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 2.98e-24,
+   "lower": 1e-40,
+   "window_orders": 16.474216264076254,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "janse_e35",
+   "upper": 2.98e-24,
+   "lower": 1e-35,
+   "window_orders": 11.474216264076254,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 2.98e-24,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 14.361689204530194,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "ossw",
+   "upper": 1.78e-28,
+   "lower": 1e-40,
+   "window_orders": 12.250420002308894,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "janse_e35",
+   "upper": 1.78e-28,
+   "lower": 1e-35,
+   "window_orders": 7.250420002308894,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "fein",
+   "upper": 1.78e-28,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 10.137892942762832,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "ossw",
+   "upper": 2.41e-34,
+   "lower": 1e-40,
+   "window_orders": 6.382017042574868,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "janse_e35",
+   "upper": 2.41e-34,
+   "lower": 1e-35,
+   "window_orders": 1.3820170425748683,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "fein",
+   "upper": 2.41e-34,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 4.269489983028807,
+   "verdict": "survives"
+  }
+ ],
+ "windows_recomputed": [
+  {
+   "class": "cont",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 5.531111141232931e-44,
+   "lower": 9.999999999999997e-25,
+   "window_orders": -19.25718761480163,
+   "verdict": "excluded"
+  },
+  {
+   "class": "cont",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 1.6482711200874134e-58,
+   "lower": 9.999999999999997e-25,
+   "window_orders": -33.782971350725376,
+   "verdict": "excluded"
+  },
+  {
+   "class": "cont",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "ossw",
+   "upper": 9.845377831394616e-63,
+   "lower": 9.999999999999997e-25,
+   "window_orders": -38.00676761249274,
+   "verdict": "excluded"
+  },
+  {
+   "class": "cont",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "ossw",
+   "upper": 1.3329977850371365e-68,
+   "lower": 9.999999999999997e-25,
+   "window_orders": -43.875170572226764,
+   "verdict": "excluded"
+  },
+  {
+   "class": "disc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 2.24505815553745,
+   "lower": 9.999999999999999e-26,
+   "window_orders": 25.351227595362452,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 2.24505815553745,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 24.856889886072963,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 6.6902733035016005e-15,
+   "lower": 9.999999999999999e-26,
+   "window_orders": 10.825443859438707,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 6.6902733035016005e-15,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 10.33110615014922,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "ossw",
+   "upper": 3.996203516856661e-19,
+   "lower": 9.999999999999999e-26,
+   "window_orders": 6.601647597671346,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "fein",
+   "upper": 3.996203516856661e-19,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 6.107309888381859,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "ossw",
+   "upper": 5.410590154845254e-25,
+   "lower": 9.999999999999999e-26,
+   "window_orders": 0.7332446379373206,
+   "verdict": "survives"
+  },
+  {
+   "class": "disc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "fein",
+   "upper": 5.410590154845254e-25,
+   "lower": 3.121315789473684e-25,
+   "window_orders": 0.23890692864783286,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 2.2450581555374498e-11,
+   "lower": 9.999999999999997e-41,
+   "window_orders": 29.351227595362452,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "janse_e35",
+   "upper": 2.2450581555374498e-11,
+   "lower": 1e-35,
+   "window_orders": 24.351227595362452,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "ossw-2022 (Cavendish)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 2.2450581555374498e-11,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 27.238700535816392,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "ossw",
+   "upper": 6.6902733035016e-26,
+   "lower": 9.999999999999997e-41,
+   "window_orders": 14.825443859438707,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "janse_e35",
+   "upper": 6.6902733035016e-26,
+   "lower": 1e-35,
+   "window_orders": 9.825443859438707,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "direct-on-Earth best (Gisler)",
+   "note": "absolute",
+   "lower_convention": "fein",
+   "upper": 6.6902733035016e-26,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 12.712916799892646,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "ossw",
+   "upper": 3.9962035168566604e-30,
+   "lower": 9.999999999999997e-41,
+   "window_orders": 10.601647597671347,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "janse_e35",
+   "upper": 3.9962035168566604e-30,
+   "lower": 1e-35,
+   "window_orders": 5.601647597671346,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ LISA Pathfinder (Armano)",
+   "note": "QUESTIONED differential",
+   "lower_convention": "fein",
+   "upper": 3.9962035168566604e-30,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 8.489120538125285,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "ossw",
+   "upper": 5.410590154845254e-36,
+   "lower": 9.999999999999997e-41,
+   "window_orders": 4.733244637937321,
+   "verdict": "survives"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "janse_e35",
+   "upper": 5.410590154845254e-36,
+   "lower": 1e-35,
+   "window_orders": -0.2667553620626794,
+   "verdict": "excluded"
+  },
+  {
+   "class": "nonloc",
+   "rule": "+ atom interferometry (Asenbaum)",
+   "note": "QUESTIONED differential/relative",
+   "lower_convention": "fein",
+   "upper": 5.410590154845254e-36,
+   "lower": 1.2957674302631577e-38,
+   "window_orders": 2.6207175783912593,
+   "verdict": "survives"
+  }
+ ],
+ "closure": {
+  "disc_close": 1e-10,
+  "nonloc_close_ossw": 9.999999999999998e-18,
+  "nonloc_close_janse": 1e-12
+ },
+ "flips": [
+  [
+   "disc",
+   "+ atom interferometry (Asenbaum)",
+   "ossw",
+   -0.6179829574251317,
+   0.7332446379373206
+  ],
+  [
+   "disc",
+   "+ atom interferometry (Asenbaum)",
+   "fein",
+   -1.1123206667146193,
+   0.23890692864783286
+  ],
+  [
+   "nonloc",
+   "+ atom interferometry (Asenbaum)",
+   "janse_e35",
+   1.3820170425748683,
+   -0.2667553620626794
+  ]
+ ]
+}
