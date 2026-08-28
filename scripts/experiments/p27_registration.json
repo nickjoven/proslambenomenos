@@ -1,0 +1,73 @@
+{
+ "inputs": {
+  "N": 1e+26,
+  "sigma_a": 1e-07,
+  "T": 100.0,
+  "r_N": 1e-15,
+  "m_N": 1e-26,
+  "r_E": 6371000.0,
+  "h_atm": 10000.0,
+  "M_l": 1e-24,
+  "lam": 10.0,
+  "V_l": 1e-25,
+  "R_l": 1e-09
+ },
+ "printed": {
+  "cont_upper": 1e-41,
+  "cont_lower": 1e-24,
+  "disc_upper": 0.1,
+  "disc_lower": 1e-25,
+  "nonloc_upper": 1e-09,
+  "nonloc_lower": 1e-40
+ },
+ "fom_cav": 100000000000000.0,
+ "fein": {
+  "M": 4.15135e-23,
+  "lam": 133.0
+ },
+ "EQ1": {},
+ "EQ2": {
+  "recomputed": {
+   "cont_upper": 5.531111141232931e-44,
+   "cont_lower": 9.999999999999997e-25,
+   "disc_upper": 2.24505815553745,
+   "disc_lower": 9.999999999999999e-26,
+   "nonloc_upper": 2.2450581555374498e-11,
+   "nonloc_lower": 9.999999999999997e-41
+  },
+  "printed": {
+   "cont_upper": 1e-41,
+   "cont_lower": 1e-24,
+   "disc_upper": 0.1,
+   "disc_lower": 1e-25,
+   "nonloc_upper": 1e-09,
+   "nonloc_lower": 1e-40
+  },
+  "signed_deltas_orders": {
+   "cont_upper": 2.2571876148016305,
+   "cont_lower": 9.64327466553287e-17,
+   "disc_upper": -1.3512275953624522,
+   "disc_lower": 9.64327466553287e-17,
+   "nonloc_upper": 1.6487724046375478,
+   "nonloc_lower": 9.64327466553287e-17
+  }
+ },
+ "EQ3": {
+  "bad_sa": [],
+  "bad_fom": [],
+  "bad_n": [
+   "Monteiro \u201920 [ 26 ]"
+  ]
+ },
+ "EQ4": {
+  "disc_upper_gisler": 2.98e-16,
+  "nonloc_upper_gisler": 2.98e-24,
+  "fein_disc_lower": 3.121315789473684e-25,
+  "fein_nonloc_lower": 1.2957674302631577e-38
+ },
+ "EQ5": {
+  "disc_close": 1e-10,
+  "nonloc_close_ossw": 9.999999999999998e-18,
+  "nonloc_close_janse": 1e-12
+ }
+}
