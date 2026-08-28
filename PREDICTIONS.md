@@ -1493,3 +1493,74 @@ convention-laden quantity, and cross-paper disagreement is the
 expected condition, not an anomaly. The P-16 claim is filed on
 its physics clauses only; the clock non-identity is recorded here
 as a negative result with its mechanism demonstrated.
+
+## P-26 — 2026-08-28 — the everpresent-Lambda scorecard on DESI DR2 BAO
+question: catalog c31 records that Sorkin's causal-set mechanism
+lands within 0.4 orders of magnitude of the observed Lambda, and
+DESI DR2 now prefers evolving dark energy over LCDM (contested;
+LC-16). Scored in the bit accounting on the one likelihood this
+repo can recompute honestly — the DR2 Table 4 BAO Gaussian
+compression — does the concrete everpresent-Lambda dynamics
+(Das-Nasiri-Yazdi Model 1, the Zwane-Afshordi-Sorkin lineage) buy
+more surprisal than it spends in seed and grid selection, or does
+it price out the way its own SNe record (16 winning seeds of
+90000) suggests?
+method: derivation layer scripts/experiments/p26_derive.py runs
+first and pins scripts/experiments/p26_registration.json: the
+past-lightcone 4-volume closed forms V = (3 pi/55) t^4 (matter) and
+(8 pi/105) t^4 (radiation) by Beta-function integrals, the exact
+dimensionless walk amplitude sigma_OmegaLambda = 2 sqrt(165 pi)
+alpha (matter era) and (8/3) sqrt(210 pi) alpha (radiation era),
+the bit identities bits = dchi2/(2 ln 2) and the 2-dof sigma<->dchi2
+map validated against DESI's own published -12.5, distance anchors
+(EdS closed forms; the w0wa rho_DE closed form vs quadrature), and
+the closed-form profile-out of the single scale s = c/(H0 r_d).
+Data: Table 4 of arXiv 2503.14738v3, machine-parsed (13 points:
+BGS D_V plus six tracer 2x2 (D_M, D_H) blocks with their printed
+correlations; LRG3/ELG1 rows excluded per the table's own caption).
+Experiment scripts/experiments/p26_score.py: (1) LCDM fit (Omega_m
+free, s profiled in closed form); (2) w0waCDM fit under the DESI
+priors w0 in [-3, 1], wa in [-3, 2]; (3) Model 1 ensemble — the
+DNY update S -> S + (8 pi/3) alpha xi sqrt(dV) on S = rho_Lambda V
+in 8 pi G/3 = 1 units, V by the incremental eta-moment accumulator,
+self-consistent Friedmann marching on 512 log-a steps from
+a = 1e-5, Omega_r = Omega_m/3400 convention, per-realization s
+profiled (this absorbs each realization's early history into r_d —
+generous to the model, so the bit price charged is a lower bound);
+cells and seeds exactly as pinned in the registration JSON
+(seed0 262626: alpha in {0.005, 0.01, 0.02, 0.04} at
+Omega_m = 0.2975 with 20000 seeds each; Omega_m in {0.25, 0.35} at
+alpha = 0.02 with 5000 each; realizations with H^2 <= 0 before
+a = 1 are dead and cannot beat but stay in N_seeds). A 200-seed
+wall-clock benchmark at alpha = 0.03, seed0 111 (not a registered
+cell) sized the ensemble; only its timing was inspected.
+expects: (a) instrument validation — the LCDM fit recovers the
+published eq. (17) values within their own 1 sigma: |Omega_m -
+0.2975| <= 0.0086 and |h r_d - 101.54 Mpc| <= 0.73 (h r_d =
+2997.92458/s*); (b) the w0waCDM improvement on BAO alone lands
+dchi2 in [2.0, 8.5] (derived center 4.84 from the paper's own
+1.7 sigma via their eq. 22) with the best fit in the published
+quadrant w0 > -1, wa < 0; (c) the production walk in
+no-backreaction EdS mode (Omega_m = 1, alpha = 0.01, 4000 walkers)
+reproduces sigma_OmegaLambda = 2 sqrt(165 pi) alpha within 3 SE +
+1 percent; (d) THE QUESTION — in every cell, net bits =
+dchi2_best/(2 ln 2) - log2(N_seeds/max(K_beat, 1)) - log2(6) <= 0,
+where dchi2_best is the best realization's improvement over the
+LCDM minimum and K_beat the number of realizations beating it;
+(e) the surviving fraction is monotone non-increasing in alpha
+across the four main cells.
+changes-my-mind: any cell with net bits > 0 — then everpresent-
+Lambda genuinely outperforms LCDM on DR2 BAO at fair prices, c31
+upgrades from a coincidence entry to live phenomenology, and the
+A-14 premise dies; (a) failing halts the scorecard (instrument
+fault — report, do not score); (b) above 11 contradicts the
+source's own 1.7 sigma characterization and voids the data
+compression; (c) failing voids the walk implementation and
+everything downstream.
+not-claimed-in-advance: CMB and SNe verdicts (imported: DNY's
+Model 1 CMB dchi2 >= +156 against LCDM stands, uncontested here);
+DNY Models 2/3; bouncing continuations of dead realizations; the
+physical correctness of w0waCDM (only its price); parameter
+inference beyond the 13-point Gaussian compression; the parameter-
+codebook price of w0wa's two extra parameters (reported context
+under a declared (k/2) log2(13) MDL convention, not a clause).
