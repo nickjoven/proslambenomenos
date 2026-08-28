@@ -1623,3 +1623,59 @@ scored here. c31's coincidence entry stays a coincidence entry:
 the ORDER OF MAGNITUDE of Lambda is the one thing the mechanism
 gets right, and the dynamics that produce that magnitude are what
 DR2 BAO excludes. Results: scripts/experiments/p26_results.json.
+
+## P-27 — 2026-08-28 — the classical-gravity squeeze windows
+question: A-15 - Oppenheim's postquantum classical gravity is the
+rival worldview with a COMPUTABLE exposure: the decoherence-
+diffusion trade-off (LC-17) squeezes the spacetime diffusion D2
+between interferometric coherence (below) and force-noise
+experiments (above). Computed from the pinned sources and the
+machine-parsed Janse Table I: what parameter space actually
+survives, per kernel class, under each inclusion rule for the
+contested differential measurements - and what figure of merit
+closes each window?
+method: derivation layer scripts/experiments/p27_derive.py runs
+first and pins scripts/experiments/p27_registration.json:
+mechanized dimensional analysis of the three squeeze inequalities
+(D2 in kg^2 s m^-3, lambda in every lower bound's denominator),
+the six OSSW printed bounds recomputed from their own stated
+inputs (lower bounds exact; upper bounds carry signed deltas
++2.26/-1.35/+1.65 orders, pinned), the 46-row Table I audit, the
+FOM rescaling rule bound_new = bound_OSSW x FOM/1e14, and the
+closure figures of merit. Experiment
+scripts/experiments/p27_score.py then computes the window table:
+for each kernel class (ultra-local continuous, ultra-local
+discrete, nonlocal continuous) x input set (OSSW 2022 printed;
+Janse direct-on-Earth best row; plus the questioned rows Asenbaum
+and Armano), the surviving window in orders of magnitude
+log10(upper/lower), under both lower-bound conventions where they
+differ (OSSW printed 1e-40 vs Janse eq. (5) 1e-35, both pinned),
+with every bound traced to its pinned row and rule. No ensembles,
+no estimator noise: all arithmetic is exact given the pins.
+expects: (a) the derive layer's unit mechanization and bound
+recomputation stand as pinned (any failure halts the line); (b)
+the ultra-local continuous class has NEGATIVE window under every
+input set (the OSSW verdict, reproduced); (c) the discrete-class
+window is positive at ~9-10 orders under the direct-on-Earth rule
+(Gisler) and NEGATIVE if the Asenbaum row is admitted as a valid
+upper bound; (d) the nonlocal-continuous window stays positive
+under every rule, landing within 1.5 orders of Janse's stated
+"one order" gap when computed with their own 1e-35 convention
+against the Asenbaum row; (e) the closure figures of merit stand
+as pinned (discrete closes at FOM = 1e-10 m^2 s^-3; nonlocal at
+1e-17 under the OSSW lower bound, 1e-12 under Janse's).
+changes-my-mind: any window changing SIGN when a printed bound is
+replaced by our recomputed value (the 1.3-2.7-order deltas must
+not flip a verdict - if one does, the order-of-magnitude squeeze
+is too soft to support any verdict and the line records that
+instead); a Table I inconsistency spreading beyond the single
+Monteiro row on recheck.
+not-claimed-in-advance: whether differential/relative acceleration
+measurements validly bound D2 (imported open question - the crux,
+left two-sided); whether one experiment can serve as both bounds
+(their own open question); the viability of postquantum classical
+gravity (windows are computed, worldviews are not adjudicated);
+relativistic completions; other hybrid models (Tilloy-Diosi,
+Kafri-Taylor-Milburn); the correct V_lambda / R_lambda superposition-
+volume conventions (recorded as the source of the 1e-35 vs 1e-40
+discrepancy, not resolved).
