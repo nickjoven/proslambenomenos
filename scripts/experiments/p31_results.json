@@ -1,0 +1,67 @@
+{
+ "clauses": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": true,
+  "e": true
+ },
+ "multinacci": {
+  "t2": {
+   "closed": true,
+   "size": 4
+  },
+  "t3": {
+   "closed": true,
+   "size": 8
+  },
+  "t4": {
+   "closed": true,
+   "size": 10
+  },
+  "t5": {
+   "closed": true,
+   "size": 12
+  },
+  "s2": {
+   "closed": true,
+   "size": 6
+  },
+  "s3": {
+   "closed": true,
+   "size": 8
+  }
+ },
+ "doubling": {
+  "s2": {
+   "closed": true,
+   "size": 6
+  },
+  "s3": {
+   "closed": true,
+   "size": 8
+  }
+ },
+ "rationals": {
+  "3/5": {
+   "verdict": "diverges",
+   "stat": 1594323
+  },
+  "5/9": {
+   "verdict": "diverges",
+   "stat": 1953125
+  },
+  "4/7": {
+   "verdict": "diverges",
+   "stat": 1048576
+  },
+  "8/13": {
+   "verdict": "diverges",
+   "stat": 2097152
+  },
+  "13/21": {
+   "verdict": "diverges",
+   "stat": 4826809
+  }
+ }
+}
