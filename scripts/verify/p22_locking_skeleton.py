@@ -3,7 +3,10 @@
 and locking-protects-mod-pi-observable, by independent live
 reimplementation: its own Euler-Maruyama integrator with fresh seeds,
 its own Bessel continued fraction, its own mini mobility quadrature -
-nothing read from any results file.
+nothing read from any results file. The reimplemented pieces live in
+the law-gate-pinned kernels/ layer (LAW-34: adler_em, mod_pi_track,
+bessel_ratio, mobility_quad), so this falsifier's arithmetic cannot
+change silently.
 
 Checks: (1) deterministic beat at delta = 1.5, eps = 1 lands on
 sqrt(1.25) within a band that includes the winding-quantization term
@@ -23,8 +26,13 @@ mean of <cos 2 theta> beside its I1/I0(kappa) value with
     Bessel ratio moves by ~0.19, so FAIL.
 """
 import math
-import random
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from kernels.quad import mobility_quad                         # noqa: E402
+from kernels.sde import adler_em, mod_pi_track                 # noqa: E402
+from kernels.specfun import bessel_ratio                       # noqa: E402
 
 MUTANT = None
 if "--mutant" in sys.argv:
@@ -39,61 +47,12 @@ DT = 0.002
 
 
 def em(theta0, delta, eps, D, T, k, seed):
-    rng = random.Random(seed)
-    g = rng.gauss
-    s = math.sin
-    n = int(T / DT)
-    amp = math.sqrt(2 * D * DT)
-    th = theta0
-    for _ in range(n):
-        th += (delta - eps * s(k * th)) * DT + (amp * g(0.0, 1.0) if D > 0 else 0.0)
-    return th
+    return adler_em(theta0, delta, eps, D, T, k, seed, DT)
 
 
 def em_avg(eps, D, T, seed):
-    rng = random.Random(seed)
-    g = rng.gauss
-    s = math.sin
-    c = math.cos
-    n = int(T / DT)
-    amp = math.sqrt(2 * D * DT)
-    th = 0.0
-    well = 0
-    hops = 0
-    c1 = c2 = 0.0
-    for _ in range(n):
-        th += (-eps * s(2 * th)) * DT + amp * g(0.0, 1.0)
-        w = round(th / math.pi)
-        if w != well and abs(th - math.pi * w) < math.pi / 4:
-            hops += 1
-            well = w
-        c1 += c(th)
-        c2 += c(2 * th)
-    return c1 / n, c2 / n, hops
-
-
-def bessel_ratio(x, depth=60):
-    r = 0.0
-    for k in range(depth, 1, -1):
-        r = x / (2 * k + x * r)
-    return x / (2 + x * r)
-
-
-def mobility_quad(delta, eps, D, n=1600):
-    h = 2 * math.pi / n
-    Us = [(-delta * (i * h) - eps * math.cos(i * h)) / D for i in range(2 * n + 1)]
-    terms = []
-    for i in range(n + 1):
-        w = Us[i:i + n + 1]
-        m = max(w)
-        s = 0.5 * (math.exp(w[0] - m) + math.exp(w[-1] - m))
-        s += sum(math.exp(x - m) for x in w[1:-1])
-        terms.append(-Us[i] + m + math.log(s * h))
-    tmax = max(terms)
-    tot = 0.5 * (math.exp(terms[0] - tmax) + math.exp(terms[-1] - tmax))
-    tot += sum(math.exp(t - tmax) for t in terms[1:-1])
-    return 2 * math.pi * D * (-math.expm1(-2 * math.pi * delta / D)) * \
-        math.exp(-(tmax + math.log(tot * h)))
+    hops, c1, c2 = mod_pi_track(eps, D, T, seed, DT)
+    return c1, c2, len(hops)
 
 
 def main():
@@ -135,7 +94,7 @@ def main():
     delta, eps, D, Tm, M = 0.9, 1.0, 0.3, 700.0, 4
     vs = [(em(0.0, delta, eps, D, Tm, 1, 100 + m)) / Tm for m in range(M)]
     v_meas = sum(vs) / M
-    v_pin = mobility_quad(delta, eps, D)
+    v_pin = mobility_quad(delta, eps, D, n=1600)
     band = max(0.10 * v_pin, 4 * math.sqrt(2 * D / (Tm * M)))
     if abs(v_meas - v_pin) > band:
         print(f"FAIL: mobility {v_meas:.4f} vs quadrature {v_pin:.4f} "

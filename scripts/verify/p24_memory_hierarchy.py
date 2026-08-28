@@ -4,7 +4,9 @@ independent live reimplementation: its own closed-form barrier, its
 own Hessians and Jacobi eigensolver for the Langer prefactor, its own
 Langevin integrator on a FRESH cell (N = 8, D = 0.20) the experiment
 never ran, and a fresh rung-1 ensemble - nothing read from results
-files.
+files. The reimplemented pieces live in the law-gate-pinned kernels/
+layer (LAW-34: jacobi_classical, ring_escape, diffuse_ensemble), so
+this falsifier's arithmetic cannot change silently.
 
 Checks: (1) rung 1: ensemble <cos theta> at t = 1.5, D = 0.5 inside
 its CLT band around e^{-Dt}; (2) the closed-form saddle identity
@@ -21,8 +23,12 @@ saturation: Delta_E(64) < 2K.
     the derived difference is about 0.77 nat, so FAIL.
 """
 import math
-import random
 import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from kernels.eig import jacobi_classical                       # noqa: E402
+from kernels.sde import diffuse_ensemble, ring_escape          # noqa: E402
 
 MUTANT = None
 if "--mutant" in sys.argv:
@@ -45,26 +51,6 @@ def barrier(N):
     return E_delta(ds, N) - N * K * (1 - math.cos(2 * math.pi / N))
 
 
-def jacobi(A, sweeps=400):
-    n = len(A)
-    a = [r[:] for r in A]
-    for _ in range(sweeps):
-        off = max((abs(a[i][j]), i, j) for i in range(n) for j in range(i + 1, n))
-        if off[0] < 1e-12:
-            break
-        _, p, q = off
-        th = math.pi / 4 if a[p][p] == a[q][q] else \
-            0.5 * math.atan2(2 * a[p][q], a[q][q] - a[p][p])
-        c, s = math.cos(th), math.sin(th)
-        for k in range(n):
-            apk, aqk = a[p][k], a[q][k]
-            a[p][k], a[q][k] = c * apk - s * aqk, s * apk + c * aqk
-        for k in range(n):
-            akp, akq = a[k][p], a[k][q]
-            a[k][p], a[k][q] = c * akp - s * akq, s * akp + c * akq
-    return sorted(a[i][i] for i in range(n))
-
-
 def hessian(bonds):
     n = len(bonds)
     c = [K * math.cos(b) for b in bonds]
@@ -80,60 +66,18 @@ def hessian(bonds):
 
 def langer_rate(N, D):
     ds = math.pi * (N - 3) / (N - 2)
-    lmin = jacobi(hessian([2 * math.pi / N] * N))
-    lsad = jacobi(hessian([ds] + [(2 * math.pi - ds) / (N - 1)] * (N - 1)))
+    lmin = jacobi_classical(hessian([2 * math.pi / N] * N))
+    lsad = jacobi_classical(hessian([ds] + [(2 * math.pi - ds) / (N - 1)] * (N - 1)))
     lam_u = -[x for x in lsad if x < -1e-9][0]
     logdet = sum(math.log(x) for x in lmin if abs(x) > 1e-9) \
         - sum(math.log(x) for x in lsad if x > 1e-9) - math.log(lam_u)
     return N * (lam_u / (2 * math.pi)) * math.exp(0.5 * logdet) * math.exp(-barrier(N) / D)
 
 
-def escape_run(N, D, T, seed, dt=0.005):
-    rng = random.Random(seed)
-    g = rng.gauss
-    amp = math.sqrt(2 * D * dt)
-    phi = [2 * math.pi * i / N for i in range(N)]
-    events = singles = 0
-    pending = None
-    check = max(1, int(0.05 / dt))
-    n = int(T / dt)
-    for step in range(n):
-        grad = [0.0] * N
-        for i in range(N):
-            dr = phi[(i + 1) % N] - phi[i]
-            dl = phi[i] - phi[(i - 1) % N]
-            grad[i] = K * (math.sin(dr) - math.sin(dl))
-        for i in range(N):
-            phi[i] += grad[i] * dt + amp * g(0.0, 1.0)
-        if step % check == 0:
-            tot = 0.0
-            for i in range(N):
-                d = phi[(i + 1) % N] - phi[i]
-                tot += (d + math.pi) % (2 * math.pi) - math.pi
-            w = round(tot / (2 * math.pi))
-            if w != 1:
-                if pending == w:
-                    events += 1
-                    if abs(w - 1) == 1:
-                        singles += 1
-                    phi = [2 * math.pi * i / N for i in range(N)]
-                    pending = None
-                else:
-                    pending = w
-            else:
-                pending = None
-    return events, singles
-
-
 def main():
     # (1) rung 1 fresh ensemble
-    D, M, t_end, dt = 0.5, 800, 1.5, 0.002
-    rng = random.Random(99)
-    th = [0.0] * M
-    for _ in range(int(t_end / dt)):
-        amp = math.sqrt(2 * D * dt)
-        for i in range(M):
-            th[i] += amp * rng.gauss(0.0, 1.0)
+    D, M, t_end = 0.5, 800, 1.5
+    th = diffuse_ensemble(M, D, t_end, 0.002, 99)
     C = sum(math.cos(x) for x in th) / M
     pred = math.exp(-D * t_end)
     band = 5 * math.sqrt(0.5 * (1 - math.exp(-2 * D * t_end)) / M)
@@ -162,13 +106,13 @@ def main():
 
     # (3) fresh-cell escape rate vs own Langer rate
     N, Dv, T = 8, 0.20, 900.0
-    ev, singles = escape_run(N, Dv, T, seed=1234)
+    ev, singles = ring_escape(N, Dv, T, 1234, 0.005, K=K)
     r_meas = ev / T
     r_lang = langer_rate(N, Dv)
     nat = abs(math.log(max(r_meas, 1e-12)) - math.log(r_lang))
     band = 2 / math.sqrt(max(ev, 1)) + 0.7
     if MUTANT == "barrier-free":
-        ev2, _ = escape_run(N, 0.30, 300.0, seed=1235)
+        ev2, _ = ring_escape(N, 0.30, 300.0, 1235, 0.005, K=K)
         dln = abs(math.log(max(ev2 / 300.0, 1e-12)) - math.log(max(r_meas, 1e-12)))
         if dln > 0.2:
             print(f"FAIL: escape rate moves {dln:.2f} nat between D = 0.2 and 0.3 - "

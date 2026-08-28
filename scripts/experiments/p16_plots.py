@@ -11,18 +11,17 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE.parents[1]))
+from kernels.causet import hasse_links, sprinkle  # noqa: E402
+
 REG = json.loads((HERE / "p16_registration.json").read_text())
 RES = json.loads((HERE / "p16_results.json").read_text())
 OUT = Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "p16_plots.html"
 
-src = (HERE / "p16_walk.py").read_text().replace('if __name__ == "__main__":', 'if False:')
-ns = {"__name__": "m", "__file__": str(HERE / "p16_walk.py")}
-exec(compile(src, "p16_walk.py", "exec"), ns)
-
 # ---------- figure A: the causet ----------
 N = 128
-pts = ns["sprinkle"](N, REG["seed0"] + 97 * N + 0)
-links = ns["hasse_links"](pts)
+pts = sprinkle(N, REG["seed0"] + 97 * N + 0)
+links = hasse_links(pts)
 W = H = 460
 oA = [f'<svg viewBox="0 0 {W} {H}" class="fig" role="img" aria-label="sprinkled causal set">']
 oA.append(f'<text x="16" y="20" class="ftitle">one sprinkling, N = 128: {len(links)} Hasse links (pin 444.7)</text>')
