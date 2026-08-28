@@ -18,6 +18,14 @@ owner:
   - id: O-5
     item: close PR 60 in favor of PR #61 (same content, renumbered P-18 -> P-19 with R-14 lineage disclosure and the LAW-28 pin, plus the P-20 eps-budget line and its recorded failure)
 agent:
+  - id: A-14
+    item: NEXT SESSION BEGINS HERE - review the 2026-08-27 paradigm scan (chat + these items), then the everpresent-Lambda vs DESI line - c31's Sorkin mechanism PREDICTS fluctuating Lambda and DESI DR2 prefers evolving dark energy at 3.1-4.2 sigma (contested, dataset tensions) - import the Zwane-Afshordi-Sorkin phenomenology, score LCDM vs w0wa vs everpresent-Lambda in the bit accounting against DR2 constraints; arXiv 2503.14738, 2504.15222
+  - id: A-15
+    item: the decoherence-diffusion import - Oppenheim's postquantum classical gravity (PRX 13, 041040) is the unconsidered rival worldview with a COMPUTABLE tradeoff inequality - import it (LC), compute the excluded region from published interferometry + mass-precision bounds, register what parameter space survives
+  - id: A-16
+    item: the order ladder - indefinite causal order near device-independent (PRX Quantum 2026, loopholes remain) attacks the symbol graph's deepest primitive; price it with the P-17 machinery - enumerate causally-ordered strategies, the causal polytope bound, the quantum-switch violation, the cost - Bell-ladder style, two-sided risk
+  - id: A-17
+    item: LC hygiene - record the 2025 muon g-2 dissolution (final Fermilab 127 ppb AGREES with lattice-revised SM; the 4.2 sigma anomaly evaporated on the THEORY side) - the canonical uncertain-null case for the bit ledger, and every numerology that explained the gap now explains a number that no longer exists
   - id: A-2
     item: E1 N-parity check (Lazarides 2008 reconciliation) - needs a P-line first
   - id: A-3
