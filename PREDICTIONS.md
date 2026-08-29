@@ -2322,3 +2322,39 @@ the census PRICES the 2 pi rather than deriving it, and the
 price is zero net bits - which is itself the answer to how much
 a derivation of the constant would be worth. Results:
 scripts/experiments/p34_results.json.
+
+## R-32 — 2026-08-29 — resolves P-2 (mixed; two value-bands fired, attributed)
+Held: (a) disjoint totals, no negative widths, symmetry spot at
+6e-17; (d) THE DIMENSION - removing tongues wider than r and
+fitting log mu(r) over r in [3e-4, 3e-2] gives D = 0.879 for the
+critical unlocked set, inside the registered [0.84, 0.90] and
+0.009 from Jensen-Bak-Bohr's 0.870 - our P-29 tangency instrument
+reproduces the classical fractal dimension. The substantive
+sub-conditions of (b) and (c) also held: the subcritical locked
+total converges (q<=32 to q<=40 delta 3e-9) with complement
+0.80786 - positive measure, the KAM side - and the critical
+complement decreases strictly across Q = 8..40
+(0.424, 0.350, 0.310, 0.285, 0.268).
+FIRED: the VALUE windows of (b) ([0.15, 0.60]) and (c) (< 0.12 at
+q <= 40). Attribution: both were guessed, not derived - and the
+derivable estimate was in the same script: the finite-Q
+complement at criticality is dominated by unresolved q > Q
+tongues at scale ~ sum phi(q) c/q^3, the same order as measured
+(heuristic tail figure 0.19 vs measured 0.27; the c_max
+proxy is itself not a true bound, which is the second lesson). A
+value window at fixed Q was never the right observable; the
+Q-scaling and mu(r) were. No post-hoc windows are derived to
+rescore the same deterministic data; the firings stand as
+instrument-band errors, third of their kind this week - the
+AGENTS item-8 checklist now needs its corollary applied in
+practice: EVERY numeric band, not only detector nulls, must trace
+to a derivation or a pinned source.
+Resolution of P-2 as registered: the non-smoothness at K = 1 is
+real and measured (a fractal, measure-zero-trending complement
+with D = 0.879 at criticality against a converged positive
+complement 0.808 subcritically); the rigorous half is Swiatek's
+theorem, imported in LC-25, not reproved; and the two-anchor
+framing remains interpretive exactly as the 2026-08-20
+registration predicted - no claim is filed on it. The oldest
+dangling registration closes. Results:
+scripts/experiments/p2_results.json.
