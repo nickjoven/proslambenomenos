@@ -1,0 +1,59 @@
+control_N64_g0.02 fold 2.0317 onset 2.026744 channel paired dW_first None n_slipped 2 sector_off 0.0e+00
+twist0_N64_g0.02 fold 1.9632 onset 1.9582186663302648 channel single dW_first 1 n_slipped 2 sector_off 9.4e-16
+twist1_N64_g0.02 fold 1.9633 onset 1.9582548309895913 channel single dW_first -1 n_slipped 2 sector_off 1.1e-16
+control_N96_g0.02 fold 2.0211 onset 2.0160506105263156 channel paired dW_first None n_slipped 2 sector_off 0.0e+00
+twist0_N96_g0.02 fold 1.9762 onset 1.9762065733118372 channel single dW_first 1 n_slipped 2 sector_off 1.3e-15
+twist1_N96_g0.02 fold 1.9762 onset 1.976230582711729 channel single dW_first -1 n_slipped 2 sector_off 1.1e-16
+control_N128_g0.02 fold 2.0157 onset 2.0107460157480315 channel paired dW_first None n_slipped 2 sector_off 0.0e+00
+twist0_N128_g0.02 fold 1.9825 onset 1.98247069428566 channel single dW_first 1 n_slipped 2 sector_off 9.4e-16
+twist1_N128_g0.02 fold 1.9825 onset 1.9824888678874522 channel single dW_first -1 n_slipped 2 sector_off 1.1e-16
+control_N64_g0.01 fold 2.0317 onset 2.026744 channel paired dW_first None n_slipped 2 sector_off 0.0e+00
+twist0_N64_g0.01 fold 1.9632 onset 1.9582186663302648 channel single dW_first 1 n_slipped 2 sector_off 7.8e-16
+twist1_N64_g0.01 fold 1.9633 onset 1.9582548309895913 channel single dW_first -1 n_slipped 2 sector_off 1.1e-16
+control_N64_g0.04 fold 2.0317 onset 2.026744 channel paired dW_first None n_slipped 2 sector_off 0.0e+00
+twist0_N64_g0.04 fold 1.9632 onset 1.9632186663302649 channel single dW_first 1 n_slipped 2 sector_off 9.4e-16
+twist1_N64_g0.04 fold 1.9633 onset 1.9632548309895914 channel single dW_first -1 n_slipped 2 sector_off 1.1e-16
+validation dt/2: onset 2.026744 channel paired
+{
+ "64": {
+  "ratio": 0.9661983697299354,
+  "fold_ratio": 0.966290453418143,
+  "band": 0.005039679732942017,
+  "b_holds": true,
+  "split": 3.6164659326543e-05,
+  "c_holds": true,
+  "e_holds": true
+ },
+ "96": {
+  "ratio": 0.9802425433634655,
+  "fold_ratio": 0.9778234015609759,
+  "band": 0.005059801277456064,
+  "b_holds": true,
+  "split": 2.400939989177786e-05,
+  "c_holds": true,
+  "e_holds": true
+ },
+ "128": {
+  "ratio": 0.985942414188517,
+  "fold_ratio": 0.983501320304861,
+  "band": 0.005069958280222344,
+  "b_holds": true,
+  "split": 1.8173601792126348e-05,
+  "c_holds": true,
+  "e_holds": true
+ },
+ "gamma_variants": {
+  "0.01": {
+   "ratio": 0.9661983697299354,
+   "fold_ratio": 0.966290453418143,
+   "band": 0.005039679732942017,
+   "d_holds": true
+  },
+  "0.04": {
+   "ratio": 0.9686653808571424,
+   "fold_ratio": 0.966290453418143,
+   "band": 0.005039679732942017,
+   "d_holds": true
+  }
+ }
+}
