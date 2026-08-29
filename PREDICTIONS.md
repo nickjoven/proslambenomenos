@@ -2462,3 +2462,31 @@ control - would mean the channel derivation missed a competing
 branch and fires the clause, not the mind-change.
 not-claimed-in-advance: as P-35, plus supercritical cascade
 statistics beyond the first event and its channel.
+
+## R-34 — 2026-08-29 — resolves P-36 (as expected)
+All five clauses held at every registered cell (three N, three
+configurations, both gamma variants, the dt/2 validation):
+(a) winding on its lattice at 1.3e-15 worst; (b) onset ratios
+0.96620 / 0.98024 / 0.98594 at N = 64 / 96 / 128 against derived
+fold ratios 0.96629 / 0.97782 / 0.98350, inside bands of ~0.005;
+(c) sector splits 3.6e-5 / 2.4e-5 / 1.8e-5, three orders under
+the floor; (d) gamma 0.01 ratio unchanged, gamma 0.04 at 0.96867,
+in band; (e) the channel in every cell - control's first event
+paired and winding-neutral (two contact bonds, dW = 0), each
+twisted sector's first event a single slip with mirror dW = +1 /
+-1. The mind-change condition did not fire: the bundle class does
+NOT do dynamical selection beyond its derived static budget - but
+the budget itself is real, O(1/N), and the holonomy picks which
+channel breaks first. P-4's registered question, four ledger
+entries later, has its answer: the threshold moves by exactly the
+strain the pi bond pre-loads (the clamp had silently erased it),
+and the "orbits on the base vs the double cover" half of the
+question is the paired/single channel dichotomy, derived and
+observed. Unregistered observation: onsets sit one grid step
+below the fold at gamma <= 0.02 and on it at gamma = 0.04 - the
+inertial transient nudges the marginal level over; the absolute
+onset was left unregistered for exactly this reason.
+Claim filed: holonomy-selects-the-slip-channel (verified;
+falsifier scripts/verify/p36_free_ring.py, mutants channel-blind
+and naive-budget). Results:
+scripts/experiments/p36_results.json.

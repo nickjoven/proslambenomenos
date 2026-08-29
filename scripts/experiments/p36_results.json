@@ -1,0 +1,382 @@
+{
+ "cells": {
+  "control_N64_g0.02": {
+   "fold": 2.0317439999999998,
+   "onset": 2.026744,
+   "detail": {
+    "event": true,
+    "event_t": 212.0,
+    "worst_sector_off": 0.0,
+    "dW_first": null,
+    "channel": "paired",
+    "slipped_bonds": [
+     [
+      31,
+      1233
+     ],
+     [
+      32,
+      -1233
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist0_N64_g0.02": {
+   "fold": 1.9632186663302649,
+   "onset": 1.9582186663302648,
+   "detail": {
+    "event": true,
+    "event_t": 243.0,
+    "worst_sector_off": 9.43689570931383e-16,
+    "dW_first": 1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      31,
+      1186
+     ],
+     [
+      32,
+      -1186
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist1_N64_g0.02": {
+   "fold": 1.9632548309895914,
+   "onset": 1.9582548309895913,
+   "detail": {
+    "event": true,
+    "event_t": 243.0,
+    "worst_sector_off": 1.1102230246251565e-16,
+    "dW_first": -1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      31,
+      1191
+     ],
+     [
+      32,
+      -1191
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "control_N96_g0.02": {
+   "fold": 2.0210506105263155,
+   "onset": 2.0160506105263156,
+   "detail": {
+    "event": true,
+    "event_t": 213.0,
+    "worst_sector_off": 0.0,
+    "dW_first": null,
+    "channel": "paired",
+    "slipped_bonds": [
+     [
+      47,
+      1225
+     ],
+     [
+      48,
+      -1225
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist0_N96_g0.02": {
+   "fold": 1.9762065733118372,
+   "onset": 1.9762065733118372,
+   "detail": {
+    "event": true,
+    "event_t": 233.0,
+    "worst_sector_off": 1.3322676295501878e-15,
+    "dW_first": 1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      47,
+      1197
+     ],
+     [
+      48,
+      -1198
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist1_N96_g0.02": {
+   "fold": 1.976230582711729,
+   "onset": 1.976230582711729,
+   "detail": {
+    "event": true,
+    "event_t": 233.0,
+    "worst_sector_off": 1.1102230246251565e-16,
+    "dW_first": -1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      47,
+      1199
+     ],
+     [
+      48,
+      -1199
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "control_N128_g0.02": {
+   "fold": 2.0157460157480314,
+   "onset": 2.0107460157480315,
+   "detail": {
+    "event": true,
+    "event_t": 216.0,
+    "worst_sector_off": 0.0,
+    "dW_first": null,
+    "channel": "paired",
+    "slipped_bonds": [
+     [
+      63,
+      1232
+     ],
+     [
+      64,
+      -1232
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist0_N128_g0.02": {
+   "fold": 1.98247069428566,
+   "onset": 1.98247069428566,
+   "detail": {
+    "event": true,
+    "event_t": 248.0,
+    "worst_sector_off": 9.43689570931383e-16,
+    "dW_first": 1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      63,
+      1199
+     ],
+     [
+      64,
+      -1200
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist1_N128_g0.02": {
+   "fold": 1.9824888678874522,
+   "onset": 1.9824888678874522,
+   "detail": {
+    "event": true,
+    "event_t": 248.0,
+    "worst_sector_off": 1.1102230246251565e-16,
+    "dW_first": -1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      63,
+      1202
+     ],
+     [
+      64,
+      -1201
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "control_N64_g0.01": {
+   "fold": 2.0317439999999998,
+   "onset": 2.026744,
+   "detail": {
+    "event": true,
+    "event_t": 212.0,
+    "worst_sector_off": 0.0,
+    "dW_first": null,
+    "channel": "paired",
+    "slipped_bonds": [
+     [
+      31,
+      1676
+     ],
+     [
+      32,
+      -1676
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist0_N64_g0.01": {
+   "fold": 1.9632186663302649,
+   "onset": 1.9582186663302648,
+   "detail": {
+    "event": true,
+    "event_t": 232.0,
+    "worst_sector_off": 7.771561172376096e-16,
+    "dW_first": 1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      31,
+      1595
+     ],
+     [
+      32,
+      -1595
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist1_N64_g0.01": {
+   "fold": 1.9632548309895914,
+   "onset": 1.9582548309895913,
+   "detail": {
+    "event": true,
+    "event_t": 232.0,
+    "worst_sector_off": 1.1102230246251565e-16,
+    "dW_first": -1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      31,
+      1599
+     ],
+     [
+      32,
+      -1599
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "control_N64_g0.04": {
+   "fold": 2.0317439999999998,
+   "onset": 2.026744,
+   "detail": {
+    "event": true,
+    "event_t": 214.0,
+    "worst_sector_off": 0.0,
+    "dW_first": null,
+    "channel": "paired",
+    "slipped_bonds": [
+     [
+      31,
+      783
+     ],
+     [
+      32,
+      -783
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist0_N64_g0.04": {
+   "fold": 1.9632186663302649,
+   "onset": 1.9632186663302649,
+   "detail": {
+    "event": true,
+    "event_t": 232.0,
+    "worst_sector_off": 9.43689570931383e-16,
+    "dW_first": 1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      31,
+      755
+     ],
+     [
+      32,
+      -755
+     ]
+    ],
+    "n_slipped": 2
+   }
+  },
+  "twist1_N64_g0.04": {
+   "fold": 1.9632548309895914,
+   "onset": 1.9632548309895914,
+   "detail": {
+    "event": true,
+    "event_t": 232.0,
+    "worst_sector_off": 1.1102230246251565e-16,
+    "dW_first": -1,
+    "channel": "single",
+    "slipped_bonds": [
+     [
+      31,
+      756
+     ],
+     [
+      32,
+      -756
+     ]
+    ],
+    "n_slipped": 2
+   }
+  }
+ },
+ "validation_dt_half": {
+  "onset": 2.026744,
+  "fold": 2.0317439999999998,
+  "channel": "paired"
+ },
+ "clauses": {
+  "64": {
+   "ratio": 0.9661983697299354,
+   "fold_ratio": 0.966290453418143,
+   "band": 0.005039679732942017,
+   "b_holds": true,
+   "split": 3.6164659326543e-05,
+   "c_holds": true,
+   "e_holds": true
+  },
+  "96": {
+   "ratio": 0.9802425433634655,
+   "fold_ratio": 0.9778234015609759,
+   "band": 0.005059801277456064,
+   "b_holds": true,
+   "split": 2.400939989177786e-05,
+   "c_holds": true,
+   "e_holds": true
+  },
+  "128": {
+   "ratio": 0.985942414188517,
+   "fold_ratio": 0.983501320304861,
+   "band": 0.005069958280222344,
+   "b_holds": true,
+   "split": 1.8173601792126348e-05,
+   "c_holds": true,
+   "e_holds": true
+  },
+  "gamma_variants": {
+   "0.01": {
+    "ratio": 0.9661983697299354,
+    "fold_ratio": 0.966290453418143,
+    "band": 0.005039679732942017,
+    "d_holds": true
+   },
+   "0.04": {
+    "ratio": 0.9686653808571424,
+    "fold_ratio": 0.966290453418143,
+    "band": 0.005039679732942017,
+    "d_holds": true
+   }
+  }
+ }
+}

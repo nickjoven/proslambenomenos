@@ -1,0 +1,78 @@
+<title>The Reopened Ring</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root { --bg:#f7f5f0; --ink:#1b2230; --mut:#5b6675; --hair:#d8d3c8; --card:#ffffff; --c1:#1f7a4d; --c2:#a83232; --c3:#2b5fa3; --c4:#9a6b1f; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#12161d; --ink:#e6e9ee; --mut:#98a3b3; --hair:#2c3542; --card:#191f28; --c1:#4cc38a; --c2:#e06c6c; --c3:#7fb0e0; --c4:#d2a24c; } }
+:root[data-theme="dark"] { --bg:#12161d; --ink:#e6e9ee; --mut:#98a3b3; --hair:#2c3542; --card:#191f28; --c1:#4cc38a; --c2:#e06c6c; --c3:#7fb0e0; --c4:#d2a24c; }
+body { background:var(--bg); color:var(--ink); margin:0;
+  font-family:"STIX Two Text", Georgia, serif; font-size:17px; line-height:1.55; }
+main { max-width:920px; margin:0 auto; padding:40px 22px 80px; }
+h1 { font-family:Fraunces, Georgia, serif; font-weight:640; font-size:2.6rem;
+  margin:0 0 4px; text-wrap:balance; }
+h2 { font-family:Fraunces, Georgia, serif; font-weight:560; font-size:1.45rem;
+  margin:0 0 10px; }
+.sub { color:var(--mut); margin:0 0 6px; }
+.prov { font-family:"JetBrains Mono", ui-monospace, monospace; font-size:.72rem;
+  color:var(--mut); letter-spacing:.04em; }
+section { margin-top:52px; }
+.stmt { background:var(--card); border-left:3px solid var(--rc, var(--ink));
+  padding:14px 18px; margin:14px 0 20px; }
+.stmt .eq { font-family:"JetBrains Mono", ui-monospace, monospace; font-size:.95rem;
+  display:block; margin:6px 0; }
+.stmt .tag { font-family:"JetBrains Mono", ui-monospace, monospace; font-size:.7rem;
+  color:var(--mut); text-transform:uppercase; letter-spacing:.08em; }
+.row { display:flex; gap:16px; flex-wrap:wrap; }
+.row > svg { flex:1 1 380px; }
+.fig, .ringfig { width:100%; height:auto; }
+svg text { fill:var(--ink); }
+.ftitle { font:600 .82rem "JetBrains Mono", monospace; }
+.tick, .alab, .rlab { font:400 .72rem "JetBrains Mono", monospace; fill:var(--mut); }
+.leg { font:600 .74rem "JetBrains Mono", monospace; }
+.grid { stroke:var(--hair); stroke-width:1; }
+.axis { stroke:var(--mut); stroke-width:1.2; fill:none; }
+.line { fill:none; stroke-width:2.2; }
+.ink { stroke:var(--ink); fill:var(--ink); }
+.dot { stroke:var(--bg); stroke-width:1.5; }
+.ebar { stroke-width:1.4; }
+.arrow { stroke-width:2.6; }
+.ringpath { fill:none; stroke:var(--hair); stroke-width:1; }
+p { max-width:66ch; }
+.note { color:var(--mut); font-size:.9rem; }
+</style>
+<main>
+<h1>The Reopened Ring</h1>
+<p class="sub">P-35/P-36 · the holonomy budget P-4 could not measure — a free π ring under a dead load: an O(1/N) strain budget, exactly degenerate sectors, and a slip channel the bundle class picks</p>
+<p class="prov">proslambenomenos · P-35/R-33 · P-36/R-34 · claim holonomy-selects-the-slip-channel · 2026-08-29</p>
+
+<section>
+<h2>What the clamp destroyed, derived back</h2>
+<div class="stmt"><span class="tag">backed statement · EQ4 / EQ8 / EQ9</span>
+<span class="eq">control fold = 2N/(N−1) — the contact pair saturates together, symmetrically</span>
+<span class="eq">twisted loop constraint Σs = ±π de-centers the profile — the top bond saturates alone, fold ratio 0.96629 / 0.97782 / 0.98350 at N = 64 / 96 / 128</span>
+R-3 showed the clamped P-4 ring was gauge-equivalent to its control; on the free ring the π bond pre-spends
+an O(1/N) share of the strain budget, and the two twisted sectors are exactly degenerate by reflection.</div>
+<svg viewBox="0 0 860 320" class="fig" role="img" aria-label="the fold profiles: sin(sⱼ) climbing around the loop"><text x="64" y="16" class="ftitle">the fold profiles: sin(sⱼ) climbing around the loop</text><line x1="64" x2="844" y1="276.0" y2="276.0" class="grid"/><text x="56" y="280.0" class="tick" text-anchor="end">-1.1</text><text x="64.0" y="294" class="tick" text-anchor="middle">0</text><line x1="64" x2="844" y1="212.5" y2="212.5" class="grid"/><text x="56" y="216.5" class="tick" text-anchor="end">-0.6</text><text x="259.0" y="294" class="tick" text-anchor="middle">16</text><line x1="64" x2="844" y1="149.0" y2="149.0" class="grid"/><text x="56" y="153.0" class="tick" text-anchor="end">0.0</text><text x="454.0" y="294" class="tick" text-anchor="middle">32</text><line x1="64" x2="844" y1="85.5" y2="85.5" class="grid"/><text x="56" y="89.5" class="tick" text-anchor="end">0.6</text><text x="649.0" y="294" class="tick" text-anchor="middle">47</text><line x1="64" x2="844" y1="22.0" y2="22.0" class="grid"/><text x="56" y="26.0" class="tick" text-anchor="end">1.1</text><text x="844.0" y="294" class="tick" text-anchor="middle">63</text><line x1="64" x2="844" y1="276" y2="276" class="axis"/><line x1="64" x2="64" y1="22" y2="276" class="axis"/><polyline points="64.0,35.6 76.4,35.6 88.8,35.6 101.1,35.6 113.5,35.6 125.9,35.6 138.3,35.6 150.7,35.6 163.0,35.6 175.4,35.6 187.8,35.6 200.2,35.6 212.6,35.6 225.0,35.6 237.3,35.6 249.7,35.6 262.1,35.6 274.5,35.6 286.9,35.6 299.2,35.6 311.6,35.6 324.0,35.6 336.4,35.6 348.8,35.6 361.1,35.6 373.5,35.6 385.9,35.6 398.3,35.6 410.7,35.6 423.0,35.6 435.4,35.6 447.8,35.6 460.2,35.6 472.6,35.6 485.0,35.6 497.3,35.6 509.7,35.6 522.1,35.6 534.5,35.6 546.9,35.6 559.2,35.6 571.6,35.6 584.0,35.6 596.4,35.6 608.8,35.6 621.1,35.6 633.5,35.6 645.9,35.6 658.3,35.6 670.7,35.6 683.0,35.6 695.4,35.6 707.8,35.6 720.2,35.6 732.6,35.6 745.0,35.6 757.3,35.6 769.7,35.6 782.1,35.6 794.5,35.6 806.9,35.6 819.2,35.6 831.6,35.6 844.0,35.6" class="c2 line" stroke-dasharray="6 5"/><polyline points="64.0,262.4 76.4,262.4 88.8,262.4 101.1,262.4 113.5,262.4 125.9,262.4 138.3,262.4 150.7,262.4 163.0,262.4 175.4,262.4 187.8,262.4 200.2,262.4 212.6,262.4 225.0,262.4 237.3,262.4 249.7,262.4 262.1,262.4 274.5,262.4 286.9,262.4 299.2,262.4 311.6,262.4 324.0,262.4 336.4,262.4 348.8,262.4 361.1,262.4 373.5,262.4 385.9,262.4 398.3,262.4 410.7,262.4 423.0,262.4 435.4,262.4 447.8,262.4 460.2,262.4 472.6,262.4 485.0,262.4 497.3,262.4 509.7,262.4 522.1,262.4 534.5,262.4 546.9,262.4 559.2,262.4 571.6,262.4 584.0,262.4 596.4,262.4 608.8,262.4 621.1,262.4 633.5,262.4 645.9,262.4 658.3,262.4 670.7,262.4 683.0,262.4 695.4,262.4 707.8,262.4 720.2,262.4 732.6,262.4 745.0,262.4 757.3,262.4 769.7,262.4 782.1,262.4 794.5,262.4 806.9,262.4 819.2,262.4 831.6,262.4 844.0,262.4" class="c2 line" stroke-dasharray="6 5"/><polyline points="64.0,262.4 76.4,258.8 88.8,255.2 101.1,251.6 113.5,248.0 125.9,244.4 138.3,240.8 150.7,237.2 163.0,233.6 175.4,230.0 187.8,226.4 200.2,222.8 212.6,219.2 225.0,215.6 237.3,212.0 249.7,208.4 262.1,204.8 274.5,201.2 286.9,197.6 299.2,194.0 311.6,190.4 324.0,186.8 336.4,183.2 348.8,179.6 361.1,176.0 373.5,172.4 385.9,168.8 398.3,165.2 410.7,161.6 423.0,158.0 435.4,154.4 447.8,150.8 460.2,147.2 472.6,143.6 485.0,140.0 497.3,136.4 509.7,132.8 522.1,129.2 534.5,125.6 546.9,122.0 559.2,118.4 571.6,114.8 584.0,111.2 596.4,107.6 608.8,104.0 621.1,100.4 633.5,96.8 645.9,93.2 658.3,89.6 670.7,86.0 683.0,82.4 695.4,78.8 707.8,75.2 720.2,71.6 732.6,68.0 745.0,64.4 757.3,60.8 769.7,57.2 782.1,53.6 794.5,50.0 806.9,46.4 819.2,42.8 831.6,39.2 844.0,35.6" class="c3 line"/><polyline points="64.0,254.7 76.4,251.3 88.8,247.8 101.1,244.3 113.5,240.8 125.9,237.4 138.3,233.9 150.7,230.4 163.0,226.9 175.4,223.4 187.8,220.0 200.2,216.5 212.6,213.0 225.0,209.5 237.3,206.0 249.7,202.6 262.1,199.1 274.5,195.6 286.9,192.1 299.2,188.7 311.6,185.2 324.0,181.7 336.4,178.2 348.8,174.7 361.1,171.3 373.5,167.8 385.9,164.3 398.3,160.8 410.7,157.4 423.0,153.9 435.4,150.4 447.8,146.9 460.2,143.4 472.6,140.0 485.0,136.5 497.3,133.0 509.7,129.5 522.1,126.0 534.5,122.6 546.9,119.1 559.2,115.6 571.6,112.1 584.0,108.7 596.4,105.2 608.8,101.7 621.1,98.2 633.5,94.7 645.9,91.3 658.3,87.8 670.7,84.3 683.0,80.8 695.4,77.3 707.8,73.9 720.2,70.4 732.6,66.9 745.0,63.4 757.3,60.0 769.7,56.5 782.1,53.0 794.5,49.5 806.9,46.0 819.2,42.6 831.6,39.1 844.0,35.6" class="c1 line"/><text x="836" y="40" class="leg c2" text-anchor="end">bond capacity ±1</text><text x="836" y="74" class="leg c3" text-anchor="end">control at its fold — both contact bonds saturate</text><text x="836" y="91" class="leg c1" text-anchor="end">twisted at its fold — the top bond saturates alone</text><text x="454" y="316" class="alab" text-anchor="middle">bonds, walked from the contact</text><text x="16" y="149" class="alab" transform="rotate(-90 16 149)" text-anchor="middle">sin(covariant strain)</text></svg>
+</section>
+
+<section>
+<h2>The budget, measured</h2>
+<div class="stmt"><span class="tag">backed statement · R-34 clauses (b)(c)(d)</span>
+<span class="eq">onset ratios 0.96620 / 0.98024 / 0.98594 — every cell inside its ~0.005 band around the derived ratio</span>
+<span class="eq">sector splits 3.6e-5 / 2.4e-5 / 1.8e-5 — the exact-degeneracy instrument floor, three orders under one grid step</span>
+No dynamical selection beyond the static budget: P-4's mind-change condition, finally measurable, did not fire.</div>
+<svg viewBox="0 0 860 300" class="fig" role="img" aria-label="the O(1/N) budget, derived then measured"><text x="64" y="16" class="ftitle">the O(1/N) budget, derived then measured</text><line x1="64" x2="844" y1="256.0" y2="256.0" class="grid"/><text x="56" y="260.0" class="tick" text-anchor="end">0.960</text><text x="64.0" y="274" class="tick" text-anchor="middle">56</text><line x1="64" x2="844" y1="197.5" y2="197.5" class="grid"/><text x="56" y="201.5" class="tick" text-anchor="end">0.967</text><text x="259.0" y="274" class="tick" text-anchor="middle">76</text><line x1="64" x2="844" y1="139.0" y2="139.0" class="grid"/><text x="56" y="143.0" class="tick" text-anchor="end">0.974</text><text x="454.0" y="274" class="tick" text-anchor="middle">96</text><line x1="64" x2="844" y1="80.5" y2="80.5" class="grid"/><text x="56" y="84.5" class="tick" text-anchor="end">0.981</text><text x="649.0" y="274" class="tick" text-anchor="middle">116</text><line x1="64" x2="844" y1="22.0" y2="22.0" class="grid"/><text x="56" y="26.0" class="tick" text-anchor="end">0.987</text><text x="844.0" y="274" class="tick" text-anchor="middle">136</text><line x1="64" x2="844" y1="256" y2="256" class="axis"/><line x1="64" x2="64" y1="22" y2="256" class="axis"/><polyline points="64.0,243.5 142.0,201.1 220.0,168.3 298.0,142.2 376.0,121.0 454.0,103.3 532.0,88.5 610.0,75.8 688.0,64.8 766.0,55.2 844.0,46.8" class="c1 line"/><circle cx="142.0" cy="201.8" r="4.5" class="c4 dot"/><circle cx="454.0" cy="82.8" r="4.5" class="c4 dot"/><circle cx="766.0" cy="34.5" r="4.5" class="c4 dot"/><text x="836" y="40" class="leg c1" text-anchor="end">derived fold ratio (the static strain budget)</text><text x="836" y="57" class="leg c4" text-anchor="end">measured onset ratio, registered cells</text><text x="454" y="296" class="alab" text-anchor="middle">ring size N</text><text x="16" y="139" class="alab" transform="rotate(-90 16 139)" text-anchor="middle">onset(twisted) / onset(control)</text></svg>
+</section>
+
+<section>
+<h2>The holonomy selects the channel</h2>
+<div class="stmt"><span class="tag">backed statement · R-34 clause (e)</span>
+<span class="eq">control: first event is a paired slip through the two contact bonds — winding-neutral, invisible to net W (R-33's diagnosis)</span>
+<span class="eq">twisted: first event is a single slip — ΔW = +1 in sector −½ and −1 in sector +½, mirror images, in every cell</span>
+P-4 asked which orbits close on the base vs the double cover; this is that question with an answer.</div>
+<svg viewBox="0 0 860 210" class="fig" role="img" aria-label="channels"><text x="234.0" y="32" class="leg ink" text-anchor="middle">N=64</text><text x="362.0" y="32" class="leg ink" text-anchor="middle">N=96</text><text x="490.0" y="32" class="leg ink" text-anchor="middle">N=128</text><text x="618.0" y="32" class="leg ink" text-anchor="middle">γ=.01</text><text x="746.0" y="32" class="leg ink" text-anchor="middle">γ=.04</text><text x="158" y="74" class="leg ink" text-anchor="end">control</text><rect x="173" y="49" width="122" height="40" rx="6" fill="none" stroke="var(--c2)" stroke-width="1.6"/><text x="234.0" y="74" class="leg" fill="var(--c2)" text-anchor="middle">ΔW = 0 · paired</text><rect x="301" y="49" width="122" height="40" rx="6" fill="none" stroke="var(--c2)" stroke-width="1.6"/><text x="362.0" y="74" class="leg" fill="var(--c2)" text-anchor="middle">ΔW = 0 · paired</text><rect x="429" y="49" width="122" height="40" rx="6" fill="none" stroke="var(--c2)" stroke-width="1.6"/><text x="490.0" y="74" class="leg" fill="var(--c2)" text-anchor="middle">ΔW = 0 · paired</text><rect x="557" y="49" width="122" height="40" rx="6" fill="none" stroke="var(--c2)" stroke-width="1.6"/><text x="618.0" y="74" class="leg" fill="var(--c2)" text-anchor="middle">ΔW = 0 · paired</text><rect x="685" y="49" width="122" height="40" rx="6" fill="none" stroke="var(--c2)" stroke-width="1.6"/><text x="746.0" y="74" class="leg" fill="var(--c2)" text-anchor="middle">ΔW = 0 · paired</text><text x="158" y="120" class="leg ink" text-anchor="end">sector −½</text><rect x="173" y="95" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="234.0" y="120" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = +1 · single</text><rect x="301" y="95" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="362.0" y="120" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = +1 · single</text><rect x="429" y="95" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="490.0" y="120" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = +1 · single</text><rect x="557" y="95" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="618.0" y="120" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = +1 · single</text><rect x="685" y="95" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="746.0" y="120" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = +1 · single</text><text x="158" y="166" class="leg ink" text-anchor="end">sector +½</text><rect x="173" y="141" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="234.0" y="166" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = -1 · single</text><rect x="301" y="141" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="362.0" y="166" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = -1 · single</text><rect x="429" y="141" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="490.0" y="166" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = -1 · single</text><rect x="557" y="141" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="618.0" y="166" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = -1 · single</text><rect x="685" y="141" width="122" height="40" rx="6" fill="none" stroke="var(--c1)" stroke-width="1.6"/><text x="746.0" y="166" class="leg" fill="var(--c1)" text-anchor="middle">ΔW = -1 · single</text></svg>
+<p class="note">Every number on this page lives in p36_results.json (registered grid), p36_channel.json (the
+derived channel structure), and p35_derive.json (the pre-registration layer); the falsifier
+scripts/verify/p36_free_ring.py re-derives the folds and re-runs both channels with its own integrator.</p>
+</section>
+
+</main>

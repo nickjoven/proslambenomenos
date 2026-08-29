@@ -1,0 +1,40 @@
+id: holonomy-selects-the-slip-channel
+statement: >
+  On a free ring of N inertial sine-coupled phase oscillators with
+  one pi bond, loaded by a soft-ramped dead point force at the
+  antipode (J = 1, gamma = 0.02, N in {64, 96, 128}), the
+  holonomy acts through a derived static strain budget and selects
+  the slip channel, and nothing beyond: (1) the quasi-static fold
+  of the control ring is the contact pair saturating together,
+  with the closed form 2N/(N-1); the twisted ring's loop
+  constraint (covariant strains summing to +-pi) de-centers the
+  profile so the top bond saturates alone, at the lower fold with
+  twisted/control ratio 0.96629 / 0.97782 / 0.98350 at
+  N = 64 / 96 / 128 - an O(1/N) deficit; (2) the measured
+  bond-slip onset ratio sits inside the registered band around the
+  derived fold ratio at every N and at gamma in {0.01, 0.04}; (3)
+  the first supercritical event of the control is a paired,
+  winding-neutral slip through the two contact bonds, while the
+  twisted ring's first event is a single slip changing the
+  covariant winding by one - the two channels derived from which
+  constraint binds, and observed in every registered cell; (4) the
+  covariant winding lives on the half-integer lattice for the
+  twisted ring (integer for control) at every settled sample, and
+  the two twisted sectors are degenerate by the ring reflection
+  through the pi bond, with the measured onset split below the
+  one-grid-step floor. Scope: this model class and protocol; the
+  supercritical cascade beyond the first event is not claimed;
+  stick-slip friction and bowed strings are not touched (R-3
+  settled the clamped geometry).
+premises: []
+prediction: P-36
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p35_derive.py with p35_derive.json (the pre-registration layer: sectors, nulls, telescoping identity, the exact fold, windows); scripts/experiments/p36_channel.py with p36_channel.json (the closed form, top-only saturation, the address demotion); scripts/experiments/p35_ring.py with p35_results.json (R-33: the channel-blind detector); scripts/experiments/p36_ring.py with p36_results.json (the registered grid); independently reimplemented by scripts/verify/p36_free_ring.py with its own fold solver and velocity-Verlet integrator"
+    method: reimplementation
+null_system: "derived before registration: the site-mean is holonomy-blind by the telescoping identity (1e-15); the linear spectrum null is the strain window [sqrt(cos(pi/N)), 1]; the sector degeneracy is exact by reflection, making any measured split a self-calibrating instrument floor; the contact-timescale band [3.56, 5.33] is excluded from gap structure; and after R-33, the two detector responses that had been missing (net-W blindness to the paired channel; the loaded-ring address) were derived rather than patched"
+falsifier: "scripts/verify/p36_free_ring.py --mutant channel-blind"
+novelty:
+  status: unchecked
+  citation: "P-4/R-3 in-repo (the vacuous clamped registration and its audit); the reopen recipe is R-3's own. Frenkel-Kontorova depinning literature is adjacent and has not been consulted for this specific geometry; a litcheck would be the route to checked-novel"
+status: verified
