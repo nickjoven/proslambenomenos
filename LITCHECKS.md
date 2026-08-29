@@ -875,3 +875,50 @@ log-spaced r in [3e-4, 3e-2] gives 1 - D with D in [0.84, 0.90]
 estimator, hence the wide band); (e) not-claimed: the two-anchor
 framing (interpretive per the registration), rigorous completeness
 (Swiatek's, imported), subcritical scaling exponents.
+
+## LC-26 — 2026-08-29 — the P-36 result against the literature
+prediction: P-36 (claim holonomy-selects-the-slip-channel)
+claims-checked:
+- Half-integer winding sectors on a one-pi-bond loop: CLASSICAL in
+  superconductivity. Bulaevskii-Kuzii-Sobyanin 1977 (the pi
+  junction); Sigrist-Rice; half-flux-quantum observed in tricrystal
+  rings (Kirtley-Tsuei) and in SFS pi-loops (half-integer flux
+  quantization). Our EQ1/EQ5 kinematics is the phase-oscillator
+  translation of the half flux quantum; the exact +-1/2 sector
+  doublet is the semifluxon polarity doublet (Goldobin-Koelle-
+  Kleiner family; annular 0-pi long junctions,
+  cond-mat/0404091, cond-mat/0209214).
+- Frustration lowering the critical drive: CONSISTENT in direction
+  with pi-SQUID / 0-pi junction physics, where the spontaneous
+  current modifies the critical-current pattern, and with
+  polarity-dependent depinning of asymmetric fractional vortices
+  (arXiv 1303.6080). No contradiction anywhere.
+- The oscillator-network side (Wiley-Strogatz-Girvan twisted
+  states and the ring-of-Kuramoto literature): winding is INTEGER
+  throughout; searches found no treatment of a single pi bond
+  making the sector lattice half-integer in this model class.
+- NOT FOUND in either literature: (i) the point-load geometry -
+  semifluxon depinning is under UNIFORM bias in a sine-Gordon
+  field (on-site Josephson term everywhere), whereas our ring is
+  substrate-free with a point dead load, so the contact-pair fold
+  2N/(N-1), the top-only saturation of the frustrated profile, and
+  the exact O(1/N) fold ratio have no analog to compare against;
+  (ii) the first-event channel dichotomy (paired winding-neutral
+  tear at the contact of the unfrustrated ring vs single
+  winding-changing slip of the frustrated one). Both are
+  elementary statics consequences; unstated is the finding, not
+  contradicted.
+- Frenkel-Kontorova depinning (Aubry threshold, breaking of
+  analyticity): a substrate mechanism; our fold is a coupling-
+  saturation mechanism in a substrate-free ring - different
+  equation class (R-3 already established the on-site term kills
+  propagation), so no overlap to reconcile.
+verdict: the result is CONSISTENT with the literature at every
+point of contact and departs from nothing; the kinematic half is
+the half flux quantum in oscillator costume (imported anchors
+above), and the dynamical half (no selection beyond the derived
+budget) agrees with the standard reading that topology is
+kinematic. The load-geometry closed forms and the channel
+dichotomy appear unstated. Claim novelty moves
+unchecked -> checked-novel on this entry, with the classical
+kinematic anchors disclosed in the claim's citation field.

@@ -35,6 +35,7 @@ evidence:
 null_system: "derived before registration: the site-mean is holonomy-blind by the telescoping identity (1e-15); the linear spectrum null is the strain window [sqrt(cos(pi/N)), 1]; the sector degeneracy is exact by reflection, making any measured split a self-calibrating instrument floor; the contact-timescale band [3.56, 5.33] is excluded from gap structure; and after R-33, the two detector responses that had been missing (net-W blindness to the paired channel; the loaded-ring address) were derived rather than patched"
 falsifier: "scripts/verify/p36_free_ring.py --mutant channel-blind"
 novelty:
-  status: unchecked
-  citation: "P-4/R-3 in-repo (the vacuous clamped registration and its audit); the reopen recipe is R-3's own. Frenkel-Kontorova depinning literature is adjacent and has not been consulted for this specific geometry; a litcheck would be the route to checked-novel"
+  status: checked-novel
+  litcheck: "LC-26"
+  citation: "The kinematic half is classical: half-integer sectors are the half flux quantum of pi-junction loops (Bulaevskii 1977; Sigrist-Rice; Kirtley-Tsuei tricrystal and SFS pi-loop experiments) and the sector doublet is the semifluxon polarity doublet (Goldobin et al., annular 0-pi junctions). What LC-26 found unstated: the substrate-free point-load geometry (contact-pair fold 2N/(N-1), top-only saturation, the exact O(1/N) fold ratio) and the paired-vs-single first-event channel dichotomy; elementary consequences, not new physics. P-4/R-3 in-repo"
 status: verified
