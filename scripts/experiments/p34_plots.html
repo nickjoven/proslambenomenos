@@ -1,0 +1,76 @@
+<title>The Horizon Census</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=JetBrains+Mono:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root {
+  --bg:#FBFAF7; --ink:#1F242A; --mut:#6B6A64; --hair:#E2DFD6; --card:#F3F1EA;
+  --c1:#B4552D; --c2:#3D6B54; --c3:#4B6A8A; --c4:#8A8272; --c5:#7A5C8F;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+} }
+:root[data-theme="dark"] {
+  --bg:#14181C; --ink:#E8E4DC; --mut:#98948A; --hair:#2A3038; --card:#1B2127;
+  --c1:#E08A5B; --c2:#7FB89B; --c3:#8FB0D1; --c4:#9A9282; --c5:#B195C9;
+}
+body { background:var(--bg); color:var(--ink); margin:0;
+  font-family:"Source Sans 3", sans-serif; line-height:1.5; }
+main { max-width:940px; margin:0 auto; padding:40px 24px 80px; }
+h1 { font-family:Fraunces, serif; font-weight:700; font-size:2rem; margin:0 0 4px; }
+h2 { font-family:Fraunces, serif; font-weight:560; font-size:1.3rem;
+  border-top:1px solid var(--hair); padding-top:22px; margin-top:34px; }
+.sub { color:var(--mut); margin:0 0 6px; }
+.prov { font-family:"JetBrains Mono", monospace; font-size:.72rem; color:var(--mut); }
+.fig { width:100%; height:auto; margin:14px 0; }
+.grid { stroke:var(--hair); stroke-width:1; }
+.axis { stroke:var(--mut); stroke-width:1.4; }
+.tick { fill:var(--mut); font:11px "JetBrains Mono", monospace; }
+.alab { fill:var(--mut); font:12px "Source Sans 3", sans-serif; }
+.ftitle { fill:var(--ink); font:600 13px "Source Sans 3", sans-serif; }
+.leg { font:600 12px "Source Sans 3", sans-serif; }
+.line { fill:none; stroke-width:2; }
+.dot { stroke:var(--bg); stroke-width:1.2; }
+.bar { opacity:.85; }
+.flagline { stroke:var(--c1); stroke-width:1.4; stroke-dasharray:5 4; }
+.slotbox { fill:var(--card); stroke:var(--c1); stroke-width:2; }
+.slotlab { fill:var(--ink); font:600 15px "JetBrains Mono", monospace; }
+.mline { stroke:var(--mut); stroke-width:1.2; }
+.c1 { stroke:var(--c1); fill:var(--c1); } .c2 { stroke:var(--c2); fill:var(--c2); }
+.c3 { stroke:var(--c3); fill:var(--c3); } .c4 { stroke:var(--c4); fill:var(--c4); }
+.c5 { stroke:var(--c5); fill:var(--c5); }
+.c3.line { fill:none; }
+.stmt { background:var(--card); border:1px solid var(--hair); border-radius:10px;
+  padding:14px 18px; margin:14px 0; }
+.tag { display:block; font:600 11px "JetBrains Mono", monospace; color:var(--mut);
+  letter-spacing:.06em; text-transform:uppercase; margin-bottom:6px; }
+.eq { display:block; font-family:"JetBrains Mono", monospace; font-size:.85rem; margin:4px 0; }
+.note { color:var(--mut); font-size:.85rem; }
+</style>
+<main>
+<h1>The horizon census</h1>
+<p class="sub">Every famous horizon-scale coincidence, priced in bits against one derived codebook — with the detector's null derived before any entry was scored.</p>
+<p class="prov">proslambenomenos · P-34 / R-31 · c33 (CKN) · LC-9 (Verlinde, contested) · LC-24 · claim horizon-census-priced</p>
+
+<section>
+<h2>The instrument's null, first</h2>
+<div class="stmt"><span class="tag">backed statement · EQ1–EQ2 · AGENTS item 8</span>
+<span class="eq">rank({ħ, c, G, H₀}) = 3 ⟹ every coincidence is (k, prefactor) in μ = H₀t_P = 1.178e-61 — slots are few by algebra</span>
+<span class="eq">coverage: p(0.05 dex) = 0.176 · p(0.1) = 0.275 · p(0.3) = 0.374 — factor-two matches are cheap by derivation</span>
+Calibrated on the Gibbons–Hawking theorem row (&lt; 1e-9 dex; an equation, excluded from counting).</div>
+<svg viewBox="0 0 860 300" class="fig" role="img" aria-label="the detector null: how cheap is a coincidence?"><text x="64" y="16" class="ftitle">the detector null: how cheap is a coincidence?</text><line x1="64" x2="844" y1="256.0" y2="256.0" class="grid"/><text x="56" y="260.0" class="tick" text-anchor="end">0.05</text><text x="64.0" y="274" class="tick" text-anchor="middle">0.02</text><line x1="64" x2="844" y1="197.5" y2="197.5" class="grid"/><text x="56" y="201.5" class="tick" text-anchor="end">0.15</text><text x="259.0" y="274" class="tick" text-anchor="middle">0.14</text><line x1="64" x2="844" y1="139.0" y2="139.0" class="grid"/><text x="56" y="143.0" class="tick" text-anchor="end">0.24</text><text x="454.0" y="274" class="tick" text-anchor="middle">0.26</text><line x1="64" x2="844" y1="80.5" y2="80.5" class="grid"/><text x="56" y="84.5" class="tick" text-anchor="end">0.34</text><text x="649.0" y="274" class="tick" text-anchor="middle">0.38</text><line x1="64" x2="844" y1="22.0" y2="22.0" class="grid"/><text x="56" y="26.0" class="tick" text-anchor="end">0.43</text><text x="844.0" y="274" class="tick" text-anchor="middle">0.50</text><line x1="64" x2="844" y1="256" y2="256" class="axis"/><line x1="64" x2="64" y1="22" y2="256" class="axis"/><circle cx="64.0" cy="243.5" r="4.5" class="c3 dot"/><circle cx="112.8" cy="181.2" r="4.5" class="c3 dot"/><circle cx="194.0" cy="119.8" r="4.5" class="c3 dot"/><circle cx="356.5" cy="77.0" r="4.5" class="c3 dot"/><circle cx="519.0" cy="58.9" r="4.5" class="c3 dot"/><circle cx="844.0" cy="34.5" r="4.5" class="c3 dot"/><polyline points="64.0,243.5 112.8,181.2 194.0,119.8 356.5,77.0 519.0,58.9 844.0,34.5" class="c3 line"/><text x="836" y="40" class="leg c3" text-anchor="end">p(match ≤ t) against the codebook</text><text x="454" y="296" class="alab" text-anchor="middle">mismatch tolerance t (dex)</text><text x="16" y="139" class="alab" transform="rotate(-90 16 139)" text-anchor="middle">coverage probability</text></svg>
+</section>
+
+<section>
+<h2>The verdict</h2>
+<div class="stmt"><span class="tag">backed statement · R-31 clause (b)</span>
+<span class="eq">a₀ vs cH₀/2π: −0.03 bits · Weinberg m_π: −0.11 bits · why-now: +0.59 · ν scale: +1.49 · ρ_Λ: +2.13 — none reaches the 3-bit flag</span>
+The two most famous horizon coincidences are worth nothing once the codebook and the census's own size are charged; the best is worth two bits. (The a₀ row's H₀ sensitivity band fired at 1.06 bits — an underived-band error, attributed in R-31; the row spans −0.03 to +1.03 across the H₀ tension, under the flag either way.)</div>
+<svg viewBox="0 0 880 300" class="fig" role="img" aria-label="net bits"><line x1="250" x2="250" y1="20" y2="240" class="axis"/><line x1="610" x2="610" y1="20" y2="240" class="flagline"/><text x="610" y="14" class="tick" text-anchor="middle">3-bit flag</text><rect x="237" y="34" width="13" height="22" class="c2 bar"/><text x="258" y="50" class="tick" text-anchor="start">m_pi · -0.11 bits · 0.067 dex</text><rect x="247" y="76" width="3" height="22" class="c2 bar"/><text x="258" y="92" class="tick" text-anchor="start">a0 (RAR) · -0.03 bits · 0.061 dex</text><rect x="250" y="118" width="71" height="22" class="c5 bar"/><text x="242" y="134" class="tick" text-anchor="end">Omega_L/Omega_m · +0.59 bits · 0.036 dex</text><rect x="250" y="160" width="179" height="22" class="c5 bar"/><text x="242" y="176" class="tick" text-anchor="end">nu mass scale · +1.49 bits · 0.019 dex</text><rect x="250" y="202" width="256" height="22" class="c1 bar"/><text x="242" y="218" class="tick" text-anchor="end">rho_Lambda · +2.13 bits · 0.012 dex</text><text x="440" y="284" class="alab" text-anchor="middle">net bits = surprisal(coverage) − log₂(census of 5) · a₀ and the Weinberg relation price at zero; the best entry earns two bits; none reaches the flag</text></svg>
+</section>
+
+<section>
+<h2>Four mechanisms, one slot</h2>
+<svg viewBox="0 0 880 190" class="fig" role="img" aria-label="slot collision"><rect x="330" y="60" width="220" height="46" rx="8" class="slotbox"/><text x="440" y="88" class="slotlab" text-anchor="middle">ρ ~ ρ_P · μ² (k = 2)</text><text x="80" y="30" class="tick" text-anchor="middle">CKN (c33)</text><line x1="80" x2="440" y1="36" y2="60" class="mline"/><text x="300" y="30" class="tick" text-anchor="middle">Sorkin (c31)</text><line x1="300" x2="440" y1="36" y2="60" class="mline"/><text x="560" y="30" class="tick" text-anchor="middle">Zeldovich 1967</text><line x1="560" x2="440" y1="36" y2="60" class="mline"/><text x="760" y="30" class="tick" text-anchor="middle">holographic DE (Li 2004)</text><line x1="760" x2="440" y1="36" y2="60" class="mline"/><text x="440" y="150" class="alab" text-anchor="middle">four named mechanisms, one slot — the rank-3 dimension algebra leaves nowhere else to land</text><text x="440" y="172" class="alab" text-anchor="middle">they cannot all be right, and the slot they share was cheap (0.012 dex at coverage p ≈ 0.05)</text></svg>
+<p class="note">c33 lands the CKN arithmetic (1.09 dex from observed, vs 122.9 for the naive cutoff) with its own mutant; LC-9 fills its reserved slot with the contested Verlinde status. Every scored number lives in p34_results.json against pins in p34_registration.json.</p>
+</section>
+</main>
