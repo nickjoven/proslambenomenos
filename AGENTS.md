@@ -9,9 +9,11 @@
    `git stash`, `git reset --hard` (LAW-2), or edits of any kind.
 3. **Gate-covered files are integrator-only**: `scripts/check_*.py`,
    `scripts/run_all.py`, `scripts/*.js`, `scripts/verify/*`,
-   `tests/test_checks.py`, `catalog/_common.py`. A task that needs a gate
-   change reports it; the integrator writes the LAWCHANGES entry last,
-   after rebase, with the hashes as they will be on `main`.
+   `tests/run_spec.py`, `tests/spec/*`, `catalog/_common.py`,
+   `kernels/*.py` (LAW-34). A task that needs a gate change reports
+   it; the integrator writes the LAWCHANGES entry last, after
+   rebase, with the hashes as they will be on `main`.
+   (`tests/test_checks.py` retired at LAW-20.)
 4. **IDs are allocated at assignment.** A task prompt that may produce a
    litcheck, prediction, or law entry is told its number (LC-n, P-n).
    The append-only ledgers merge by union (`.gitattributes`), so two

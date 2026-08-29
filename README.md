@@ -57,6 +57,29 @@ memory experiment, the probe-ledger direction for latent
 representations). If this repo one day needs ket, that need enters as
 a recorded decision, not a default.
 
+## Verifying this repo
+
+An outsider needs three things installed: python3 (3.12 on CI),
+pyyaml, and node (the compendium gate shells out to it; everything
+else is stdlib). Then:
+
+    make gates      # the full suite: ~4 minutes, most of it the
+                    # verify gate re-running every falsifier and
+                    # its mutants serially
+    make spec       # the rule fixtures (red/green for every gate
+                    # rule), under a second
+    make gates-all  # the message gate over the full governed
+                    # history
+
+Green means: every ledger parses and appends legally, every claim's
+falsifier runs clean and every registered mutant fails with a FAIL
+line, every catalog fact recomputes, every pinned hash matches.
+Green does NOT mean the claims are important or the models are
+right - it means the corpus says what it did and shows how to check
+it. A 2026-08-29 fresh-context audit (an agent given nothing but
+this tree) independently reproduced the spot-checked numbers with
+its own code; its four bookkeeping findings landed as A-19.
+
 ## The intake law
 
 **Statuses are computed, never declared.** A claim file records

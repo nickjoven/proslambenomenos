@@ -1,5 +1,5 @@
 """Sorkin's everpresent-Lambda count fluctuation: if Lambda is a Poisson fluctuation in the causal-set element count N of the Hubble 4-volume, Lambda ~ 1/sqrt(N) in Planck units lands within 2 orders of magnitude of the observed Lambda*l_P^2 ~ 2.9e-122 (it lands within ~0.4); the naive 1/N misses by ~120 orders, and this was in the literature before the 1998 supernova measurement.
-Source: Sorkin, Int. J. Theor. Phys. 36, 2759 (1997) and earlier (1990); Ahmed, Dodelson, Greene, Sorkin, Phys. Rev. D 69, 103523 (2004); observed Lambda from Planck 2018 (A&A 641, A6 (2020)): H0 = 67.4 km/s/Mpc, Omega_Lambda = 0.685. Mutant: use 1/N instead of 1/sqrt(N)."""
+Source: Sorkin, Int. J. Theor. Phys. 36, 2759 (1997) and earlier (1990); Ahmed, Dodelson, Greene, Sorkin, Phys. Rev. D 69, 103523 (2004); observed Lambda from Planck 2018 (A&A 641, A6 (2020)): H0 = 67.4 km/s/Mpc, Omega_Lambda = 0.685. Convention caveat: N = (1/(H0 t_P))^4 is one of several defensible Hubble-4-volume conventions; a 4! or sphere-volume factor moves the estimate by about an order, inside the 2-order tolerance, which is therefore doing real work. Mutant: use 1/N instead of 1/sqrt(N)."""
 import math
 import sys
 
