@@ -137,3 +137,29 @@ instrument floor, R-32 corollary):
     lesson - no guessed windows).
 (e) spectral address: the 1/8-grid DFT peak sits at n - 1/2
     (twisted) vs n (control) at every pre-onset sample.
+
+## P-35 cells, R-33, and the reopening's second act (2026-08-29)
+
+The quick cells (N = 64, gamma = 0.02, scripts/experiments/
+p35_results.json): sector arithmetic held at 6.8e-13 / 1e-16;
+sector degeneracy held at 3.6e-5 (floor: one grid step = 5e-3);
+twisted onsets at fold - 0.005, both sectors. Clause (b) was
+unmeasurable - no control onset at any level while the raw contact
+strain diverged to 4.7e4 with W pinned at 0.000 - and (e) fired in
+every cell (8/28 bad pre-onset address samples in control).
+Diagnosis in scripts/experiments/p36_channel.py, derived not
+patched: the control fold is the contact PAIR saturating together
+(closed form 2N/(N-1), solver to 2e-6), so its supercritical
+motion is a symmetric paired slip - +2 pi and -2 pi through the
+two contact bonds, net W unchanged, the loaded node tearing out to
+spin at ~ f/gamma. The twisted loop constraint (sum s = +-pi)
+de-centers the profile and saturates the TOP bond alone (bottom
+sin -0.933 at N = 64): a single W-changing slip. The holonomy
+selects the channel. The address observable belongs to the
+unloaded ring only (8.3 rad of profile excursion at half-fold
+moves the DFT peak to -1/8 with no slip anywhere near).
+R-33 records the firings as detector responses underived at
+registration (both 8a); P-36 re-registers with a bond-slip
+detector both channels reach and the channel itself as a derived
+clause. This is the P-32 -> P-33 pattern; the stop rule (two
+firings on one clause line) binds P-36.
