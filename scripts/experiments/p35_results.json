@@ -1,0 +1,63 @@
+{
+ "cells": {
+  "control_N64_g0.02": {
+   "fold": 2.0317439999999998,
+   "onset": null,
+   "detail": {
+    "slip": false,
+    "first_slip_t": null,
+    "worst_sector_off": 6.841726514792632e-13,
+    "post_slip_off": null,
+    "addr_samples": 28,
+    "addr_bad": 8,
+    "gaps_min_med_max": null,
+    "n_slips": 0
+   }
+  },
+  "twist0_N64_g0.02": {
+   "fold": 1.9632186663302649,
+   "onset": 1.9582186663302648,
+   "detail": {
+    "slip": true,
+    "first_slip_t": 242.0,
+    "worst_sector_off": 9.43689570931383e-16,
+    "post_slip_off": 1.7752466163756253e-13,
+    "addr_samples": 9,
+    "addr_bad": 8,
+    "gaps_min_med_max": [
+     1.0,
+     1.0,
+     10.0
+    ],
+    "n_slips": 60
+   }
+  },
+  "twist1_N64_g0.02": {
+   "fold": 1.9632548309895914,
+   "onset": 1.9582548309895913,
+   "detail": {
+    "slip": true,
+    "first_slip_t": 242.0,
+    "worst_sector_off": 1.1102230246251565e-16,
+    "post_slip_off": 1.7752466163756253e-13,
+    "addr_samples": 9,
+    "addr_bad": 8,
+    "gaps_min_med_max": [
+     1.0,
+     1.0,
+     12.0
+    ],
+    "n_slips": 50
+   }
+  }
+ },
+ "validation_dt_half": {
+  "onset": null,
+  "fold": 2.0317439999999998
+ },
+ "clauses": {
+  "64": {
+   "incomplete": true
+  }
+ }
+}

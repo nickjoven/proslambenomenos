@@ -2399,3 +2399,66 @@ mind-change clause always meant.
 not-claimed-in-advance: stick-slip friction, bowed strings, real
 Josephson arrays; the slip-cascade regime beyond onset; any
 statement about the clamped geometry (settled in R-3).
+
+## R-33 — 2026-08-29 — resolves P-35 (mixed; instrument, diagnosed not rescued)
+Held: (a) sector arithmetic - covariant winding on the half-integer
+lattice at 6.8e-13 (control, loaded) and 1e-16 (twisted) at every
+sample; (c) sector degeneracy - the two twisted onsets split by
+3.6e-5, three orders under the one-grid-step floor. Twisted onsets
+landed at fold - 0.005 (one grid step below the derived fold), both
+sectors, N = 64.
+FIRED: (b) was UNMEASURABLE as registered - the control ring showed
+no net-winding change at any grid level while its raw contact
+strain diverged to 4.7e4: the control's supercritical motion is a
+symmetric PAIRED slip (+2 pi and -2 pi through the two contact
+bonds; the loaded node tears out and spins at ~ f/gamma), invisible
+to a net-W detector BY SYMMETRY. (e) fired in all cells including
+control (8 of 28 pre-onset address samples off): the spectral
+address is a sector observable of the UNLOADED ring only - under
+load the phase profile accumulates O(N) radians (8.3 rad at
+half-fold, DFT peak already at -1/8) and the derive layer had
+established the address only at equilibrium.
+Attribution: two detector responses underived at registration -
+the net-W response of the control's post-fold channel (8a) and the
+loaded-ring address response (8a). Both are one-afternoon
+derivations that existed the whole time; both are now in
+scripts/experiments/p36_channel.py. What the diagnosis yielded is
+better than what fired: the control fold has the closed form
+2N/(N-1) (contact pair saturating together, solver agrees to the
+bisection floor), the twisted loop constraint forces TOP-only
+saturation (bottom sin -0.933/-0.956/-0.967 at N = 64/96/128), so
+the holonomy SELECTS THE SLIP CHANNEL - paired and W-neutral
+without the pi bond, single and W-changing with it. P-4's "which
+orbits close on the base vs the double cover" returns as a derived,
+registerable observable. Re-registered as P-36 with a channel-blind
+detector replaced and the address clause demoted.
+Results: scripts/experiments/p35_results.json (quick cells, N = 64).
+
+## P-36 — 2026-08-29 — holonomy selects the slip channel (P-35 re-registered)
+question: P-35's protocol (free pi ring, soft-ramped dead load at
+the antipode, ground-state init, N in {64, 96, 128}, gamma 0.02
+with {0.01, 0.04} variants at 64) with the detector the derive
+addendum shows BOTH channels reach: a bond-slip event = any bond's
+raw covariant strain leaving its initial value by more than 1.5 pi
+(pre-fold bound: |e_j| < pi on the quasi-static branch; event
+amplitude 2 pi; the margin is stated in EQ10). Channel classified
+after a 120-unit settle: net W changed vs unchanged.
+expects: (a) sector arithmetic as P-35(a) - held there,
+re-registered unchanged; (b) onset ratio f*(twisted)/f*(control)
+within fold_ratio(N) +- band(N), band = 2 x 0.005/fold + split +
+1e-4, fold_ratio = 0.96629 / 0.97782 / 0.98350 at N = 64/96/128
+(control fold now the closed form 2N/(N-1)); (c) sector split <=
+one grid step; (d) the ratio stays in band at gamma = 0.01 and
+0.04; (e) CHANNEL: the control's first event leaves net W
+unchanged (paired), the twisted ring's first event changes W by
+exactly +-1 (single) - derived in EQ8/EQ9 from which constraint
+binds at the fold. Absolute onset vs fold stays unregistered.
+changes-my-mind: (b) violated with the same sign at all three N,
+surviving both gamma variants and the independent reimplementation
+in the verify falsifier - the bundle class doing dynamical
+selection beyond its strain budget. A violation of (e) - a
+W-neutral first event on a twisted ring or a net first event on
+control - would mean the channel derivation missed a competing
+branch and fires the clause, not the mind-change.
+not-claimed-in-advance: as P-35, plus supercritical cascade
+statistics beyond the first event and its channel.
