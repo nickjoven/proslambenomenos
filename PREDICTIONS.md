@@ -2289,3 +2289,36 @@ here); coincidences involving particle-scale constants beyond the
 declared census (Dirac large numbers need extra base quantities
 and are out of codebook, noted); the RAR's tightness as data (a
 separate, real regularity); any cosmology.
+
+## R-31 — 2026-08-28 — resolves P-34 (clause d FIRED: an underived band, attributed)
+Held: (a) the census computed - every entry lands on a codebook
+expression: a0 at t = 0.061 dex (k = 1, prefactor 1/2pi - the
+Milgrom expression itself), rho_Lambda at 0.012 dex (k = 2,
+1/4pi), the why-now ratio at 0.036 dex (prefactor 2), m_pi at
+0.067 dex (k = 1/3, prefactor 2 - Weinberg's relation with its
+factor two), the neutrino scale at 0.019 dex (k = 1/2, 4pi);
+(b) THE VERDICT - no entry nets more than 3 bits: the maximum is
+rho_Lambda at +2.13, the why-now ratio +0.59, the neutrino scale
++1.49, and a0 and m_pi price at -0.03 and -0.11 - ZERO net bits:
+against the derived codebook (coverage p(0.1 dex) = 0.275) and
+the census's own size, the two most famous horizon coincidences
+are worth nothing at all, and the best is worth two bits; (c) the
+k = 2 density slot carries four named mechanisms (CKN, Sorkin,
+Zeldovich, holographic DE) - mechanisms are many, slots are few;
+(e) calibration held under both H0.
+FIRED: (d) the a0 entry's net moved 1.06 bits between H0 = 67.4
+and 73.0, past the registered 1.0-bit band. Attribution: my band
+was set without deriving the instrument's own sensitivity - the
+pinned coverage table gives d(surprisal)/dt ~ 40 bits/dex near
+small t, and the H0 tension is 0.035 dex, so up to ~1.4 bits of
+motion was derivable IN ADVANCE from numbers already in the
+registration. An AGENTS item-8(a) miss, one layer up: the
+detector null was derived but its derivative was not. The
+substance is unaffected (a0 nets -0.03 to +1.03 bits across the
+H0 pair, under the 3-bit flag either way); the sensitivity is
+reported with its derived bound rather than scored, and no
+re-registration is spent. Continuation of D-3's recorded path:
+the census PRICES the 2 pi rather than deriving it, and the
+price is zero net bits - which is itself the answer to how much
+a derivation of the constant would be worth. Results:
+scripts/experiments/p34_results.json.
