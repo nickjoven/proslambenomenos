@@ -2358,3 +2358,44 @@ framing remains interpretive exactly as the 2026-08-20
 registration predicted - no claim is filed on it. The oldest
 dangling registration closes. Results:
 scripts/experiments/p2_results.json.
+
+## P-35 — 2026-08-29 — the reopened P-4: holonomy budget on a free ring
+question: R-3's reopen recipe made concrete - on a FREE ring of N
+inertial phase oscillators with one pi bond (loop intact), a
+massless dead-load contact at the antipode (constant point force f,
+soft-ramped; a velocity belt cannot reach the fold on a free ring
+and stick-slip was the source of R-3's S2/S6 artifacts), low
+damping, N in {64, 96, 128}: does the holonomy affect the
+sector-slip onset BEYOND its derived static budget? The budget is
+the quasi-static fold of the point-loaded ring, solved exactly in
+the derive layer (scripts/experiments/p35_derive.py): fold ratio
+twisted/control 0.96629 / 0.97782 / 0.98350 at N = 64 / 96 / 128,
+an O(1/N) shift with derived sign and scaling - the quantity the
+clamped model of P-4 destroyed. Kinematics the observables must
+reach (derived): half-integer covariant winding sectors W = n - 1/2
+and the half-integer spectral address of e^{i theta} (EQ1, EQ5);
+ring reflection makes the two twisted sectors exactly degenerate,
+so any measured sector split is a self-calibrating instrument
+floor (EQ4).
+method: protocol, cells, and clause bands in
+notes/p35_free_ring.md, all fixed before any registered cell ran;
+every band traces to the derive layer or to the measured
+degeneracy floor (no guessed windows).
+expects: (a) sector arithmetic exact at every sample (half-integer
+twisted, integer control, integer slips); (b) onset ratio
+f*(twisted)/f*(control) within fold_ratio(N) +- band(N),
+band = 2 x grid / fold + split + 1e-4 (0.0075 at N = 64 with
+split at one grid step) - i.e. NO dynamical selection beyond the
+static budget; (c) sector split <= one grid step everywhere (the
+instrument null); (d) the ratio stays in band under gamma x
+{0.5, 2}; (e) the spectral address sits at n - 1/2 vs n at every
+pre-onset sample. Absolute onset vs the fold is reported
+unregistered (no derived transient band; P-2's lesson).
+changes-my-mind: (b) violated with the same sign at all three N,
+surviving both gamma variants and the independent
+reimplementation in the verify falsifier - that would mean the
+bundle class does dynamical selection, which is what P-4's
+mind-change clause always meant.
+not-claimed-in-advance: stick-slip friction, bowed strings, real
+Josephson arrays; the slip-cascade regime beyond onset; any
+statement about the clamped geometry (settled in R-3).

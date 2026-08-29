@@ -1,0 +1,169 @@
+{
+ "EQ1": {
+  "exact": [
+   {
+    "N": 64,
+    "sector": 0,
+    "W": "-1/2"
+   },
+   {
+    "N": 64,
+    "sector": 1,
+    "W": "1/2"
+   },
+   {
+    "N": 96,
+    "sector": 0,
+    "W": "-1/2"
+   },
+   {
+    "N": 96,
+    "sector": 1,
+    "W": "1/2"
+   },
+   {
+    "N": 128,
+    "sector": 0,
+    "W": "-1/2"
+   },
+   {
+    "N": 128,
+    "sector": 1,
+    "W": "1/2"
+   }
+  ],
+  "numeric": [
+   {
+    "twisted": true,
+    "W": -0.5000000000000003,
+    "dist_half_int": 3.3306690738754696e-16,
+    "dist_int": null
+   },
+   {
+    "twisted": false,
+    "W": 3.5339496460705744e-16,
+    "dist_half_int": null,
+    "dist_int": 3.5339496460705744e-16
+   }
+  ],
+  "degeneracy_gap": 0.0
+ },
+ "EQ2": {
+  "64": {
+   "stiffness_ratio": 0.9987954562051724,
+   "freq_null_width": 0.0006024533724467984
+  },
+  "96": {
+   "stiffness_ratio": 0.9994645874763657,
+   "freq_null_width": 0.0002677421047344586
+  },
+  "128": {
+   "stiffness_ratio": 0.9996988186962042,
+   "freq_null_width": 0.00015060199237793004
+  }
+ },
+ "EQ3": {
+  "worst_bond_sum": 1.0547118733938987e-15,
+  "worst_mean_residual": 5.204170427930421e-18
+ },
+ "EQ4": {
+  "prediction": {
+   "64": {
+    "fc_control": 2.0317439999999998,
+    "fc_sector1": 1.9632548309895914,
+    "fc_sector0": 1.9632186663302649,
+    "sector_degeneracy_gap": 3.6164659326543e-05,
+    "ratio_twisted": 0.966290453418143,
+    "naive_1_minus_sin": 0.950932325672582
+   },
+   "96": {
+    "fc_control": 2.0210506105263155,
+    "fc_sector1": 1.976230582711729,
+    "fc_sector0": 1.9762065733118372,
+    "sector_degeneracy_gap": 2.400939989177786e-05,
+    "ratio_twisted": 0.9778234015609759,
+    "naive_1_minus_sin": 0.9672809171782238
+   },
+   "128": {
+    "fc_control": 2.0157460157480314,
+    "fc_sector1": 1.9824888678874522,
+    "fc_sector0": 1.98247069428566,
+    "sector_degeneracy_gap": 1.8173601792126348e-05,
+    "ratio_twisted": 0.983501320304861,
+    "naive_1_minus_sin": 0.9754587714770877
+   }
+  },
+  "anchor_N64": {
+   "control": {
+    "fc_measured": 2.04,
+    "fc_predicted": 2.0317439999999998
+   },
+   "sector1": {
+    "fc_measured": 1.98,
+    "fc_predicted": 1.9632548309895914
+   },
+   "sector0": {
+    "fc_measured": 1.98,
+    "fc_predicted": 1.9632186663302649
+   }
+  }
+ },
+ "EQ5": {
+  "control": {
+   "index_exact": 0.0,
+   "dft_peak_index": 0.0,
+   "dft_peak_amp_over_N": 1.0
+  },
+  "twist0": {
+   "index_exact": -0.5,
+   "dft_peak_index": -0.5,
+   "dft_peak_amp_over_N": 1.0
+  },
+  "twist1": {
+   "index_exact": 0.5,
+   "dft_peak_index": 0.5,
+   "dft_peak_amp_over_N": 1.0
+  }
+ },
+ "EQ67": {
+  "64": {
+   "contact_period": 4.445561181484569,
+   "exclusion_band": [
+    3.5564489451876558,
+    5.334673417781483
+   ],
+   "gamma": 0.02,
+   "v_max_subsonic": 0.09993975466275533,
+   "FN_stick_floor(v)": "gamma*N*v/mu_s = 0.0640 at v=0.05",
+   "FN_cap": 4.0,
+   "T_meas_min": 250.0,
+   "round_trip": 64.03858025864352
+  },
+  "96": {
+   "contact_period": 4.444072803564386,
+   "exclusion_band": [
+    3.555258242851509,
+    5.332887364277263
+   ],
+   "gamma": 0.02,
+   "v_max_subsonic": 0.09997322578952655,
+   "FN_stick_floor(v)": "gamma*N*v/mu_s = 0.0960 at v=0.05",
+   "FN_cap": 4.0,
+   "T_meas_min": 250.0,
+   "round_trip": 96.02571012573769
+  },
+  "128": {
+   "contact_period": 4.443552145964784,
+   "exclusion_band": [
+    3.5548417167718274,
+    5.33226257515774
+   ],
+   "gamma": 0.02,
+   "v_max_subsonic": 0.09998493980076222,
+   "FN_stick_floor(v)": "gamma*N*v/mu_s = 0.1280 at v=0.05",
+   "FN_cap": 4.0,
+   "T_meas_min": 250.0,
+   "round_trip": 128.01927995862457
+  }
+ }
+}
