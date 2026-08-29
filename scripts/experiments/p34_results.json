@@ -1,0 +1,102 @@
+{
+ "clauses": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": false,
+  "e": true
+ },
+ "census": {
+  "planck": [
+   {
+    "name": "a0 (RAR)",
+    "t_dex": 0.06123421545191121,
+    "k": 1.0,
+    "prefactor": "1/2pi",
+    "surprisal_bits": 2.293292780691734,
+    "net_bits": -0.028635314195628148
+   },
+   {
+    "name": "rho_Lambda",
+    "t_dex": 0.011781830548107664,
+    "k": 2.0,
+    "prefactor": "1/4pi",
+    "surprisal_bits": 4.451266592591237,
+    "net_bits": 2.1293384977038747
+   },
+   {
+    "name": "Omega_L/Omega_m",
+    "t_dex": 0.03635002203884391,
+    "k": 0.0,
+    "prefactor": "2",
+    "surprisal_bits": 2.9158234740402698,
+    "net_bits": 0.5938953791529076
+   },
+   {
+    "name": "m_pi",
+    "t_dex": 0.06675492057321009,
+    "k": 0.3333333333333333,
+    "prefactor": "2",
+    "surprisal_bits": 2.2151178793235746,
+    "net_bits": -0.10681021556378756
+   },
+   {
+    "name": "nu mass scale",
+    "t_dex": 0.018953600206252474,
+    "k": 0.5,
+    "prefactor": "4pi",
+    "surprisal_bits": 3.8132512430123437,
+    "net_bits": 1.4913231481249816
+   }
+  ],
+  "shoes": [
+   {
+    "name": "a0 (RAR)",
+    "t_dex": 0.026571251866775114,
+    "k": 1.0,
+    "prefactor": "1/2pi",
+    "surprisal_bits": 3.348976000594214,
+    "net_bits": 1.0270479057068518
+   },
+   {
+    "name": "rho_Lambda",
+    "t_dex": 0.011781830548105887,
+    "k": 2.0,
+    "prefactor": "1/4pi",
+    "surprisal_bits": 4.451266592591436,
+    "net_bits": 2.1293384977040737
+   },
+   {
+    "name": "Omega_L/Omega_m",
+    "t_dex": 0.03635002203884391,
+    "k": 0.0,
+    "prefactor": "2",
+    "surprisal_bits": 2.9158234740402698,
+    "net_bits": 0.5938953791529076
+   },
+   {
+    "name": "m_pi",
+    "t_dex": 0.05520059937816413,
+    "k": 0.3333333333333333,
+    "prefactor": "2",
+    "surprisal_bits": 2.397832248357048,
+    "net_bits": 0.07590415346968582
+   },
+   {
+    "name": "nu mass scale",
+    "t_dex": 0.036285081998819635,
+    "k": 0.5,
+    "prefactor": "4pi",
+    "surprisal_bits": 2.9180531930015294,
+    "net_bits": 0.5961250981141673
+   }
+  ]
+ },
+ "max_net_bits": 2.1293384977038747,
+ "k2_mechanisms": [
+  "CKN (c33)",
+  "Sorkin (c31)",
+  "Zeldovich 1967",
+  "holographic DE (Li 2004)"
+ ]
+}
