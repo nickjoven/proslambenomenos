@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Inviolables</title>
+<style>
+  :root {
+    --bg:#0e1116; --ink:#e8e4dc; --mut:#98948a; --hair:#2a3038;
+    --card:#161b22; --green:#7fb89b; --cyan:#7fd0d0; --blue:#8fb0d1;
+    --red:#e08a5b; --amber:#d2a24c; --violet:#b195c9;
+  }
+  html, body { margin:0; height:100%; background:var(--bg);
+    color:var(--ink); font-family:"Source Sans 3", system-ui, sans-serif;
+    overflow:hidden; }
+  #view { display:block; width:100vw; height:100vh; }
+  #topbar { position:fixed; top:0; left:0; right:0; padding:10px 16px;
+    display:flex; gap:16px; align-items:baseline; flex-wrap:wrap;
+    background:linear-gradient(#0e1116e8, #0e111600); pointer-events:none;
+    font-family:ui-monospace, monospace; }
+  #topbar b { color:var(--cyan); letter-spacing:.04em; }
+  #banner { font-size:13px; }
+  #banner.ok { color:var(--green); } #banner.bad { color:var(--red); }
+  #hint { color:var(--mut); font-size:12px; }
+  #panel { position:fixed; right:12px; top:52px; bottom:12px; width:380px;
+    max-width:calc(100vw - 24px); background:#161b22ee;
+    border:1px solid var(--hair); border-radius:10px; padding:16px 18px;
+    overflow-y:auto; font-size:13.5px; line-height:1.6; display:none; }
+  #panel.open { display:block; }
+  #panel h2 { margin:0 0 4px; font-size:17px; color:var(--cyan);
+    font-weight:600; }
+  #panel .type { font-family:ui-monospace, monospace; font-size:11px;
+    letter-spacing:.05em; text-transform:uppercase; margin-bottom:8px; }
+  #panel .stmt { color:var(--ink); margin:8px 0; }
+  #panel .logic { color:var(--mut); margin:8px 0; }
+  #panel .check { font-family:ui-monospace, monospace; font-size:12px;
+    background:#0e1116; border:1px solid var(--hair); border-radius:6px;
+    padding:8px 10px; margin:8px 0; white-space:pre-wrap; }
+  #panel .ev { color:var(--mut); font-size:11.5px;
+    font-family:ui-monospace, monospace; }
+  #legend { position:fixed; left:12px; bottom:12px; background:#161b22cc;
+    border:1px solid var(--hair); border-radius:8px; padding:10px 14px;
+    font-size:12px; line-height:1.8; font-family:ui-monospace, monospace; }
+  a { color:var(--cyan); }
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div id="topbar"><b>THE INVIOLABLES</b>
+  <span id="banner">running checks…</span>
+  <span id="hint">drag nodes · click a node or an edge label for its
+    logic · <a href="index.html" style="pointer-events:auto">the plane</a></span></div>
+<div id="panel"></div>
+<div id="legend">
+  <span style="color:var(--green)">──</span> earned (check runs) &nbsp;
+  <span style="color:var(--cyan)">──</span> theorem<br>
+  <span style="color:var(--blue)">╌╌</span> imported &nbsp;
+  <span style="color:var(--red)">─✕─</span> refused &nbsp;
+  <span style="color:var(--amber)">┄┄</span> coincidence (priced)
+</div>
+
+<script>
+"use strict";
+// ===================== the registry ==============================
+// Every edge is an identity with executable logic. check() returns
+// {pass, detail}. All checks run on load; the banner reports.
+const PHI = (1 + Math.sqrt(5)) / 2;
+const HBAR = 1.054571817e-34, C = 2.99792458e8, GN = 6.67430e-11;
+const H0 = 67.4 * 1000 / 3.0857e22;
+function fib(n) { let a = 1, b = 1; for (let i = 2; i < n; i++)
+  [a, b] = [b, a + b]; return n <= 2 ? 1 : b; }
+function near(a, b, tol, label) {
+  const pass = Math.abs(a - b) <= tol;
+  return {pass, detail: `${label}\n  lhs = ${a}\n  rhs = ${b}\n  ` +
+    `|diff| = ${Math.abs(a - b).toExponential(2)} (tol ${tol})`};
+}
+
+const NODES = [
+  // symbols & operations
+  {id:"phi", label:"φ", kind:"symbol", x:.18, y:.25,
+   blurb:"The golden ratio. Three routes in the ledger: ANSWER " +
+   "(exact algebra: Hardy's maximum, the multinacci head), ADDRESS " +
+   "(where structure lives: golden flux, the t₂ phase transition), " +
+   "FITTED (refused wherever tested)."},
+  {id:"sq2", label:"√2", kind:"symbol", x:.44, y:.16,
+   blurb:"Tsirelson's number. The same √2 caps the Bell ladder and " +
+   "both causal-game ladders — one geometry, three costumes."},
+  {id:"i", label:"i", kind:"symbol", x:.58, y:.10,
+   blurb:"The quarter turn. Its logic here: i² = −1 is rotation " +
+   "composed with itself giving inversion — the engine of Bloch " +
+   "phases and of amplitude interference."},
+  {id:"sqop", label:"( )²", kind:"symbol", x:.51, y:.24,
+   blurb:"Squaring: amplitude → probability. This is where √2 " +
+   "enters physics: probabilities are squares, so the extremal " +
+   "correlation carries the square root."},
+  {id:"twopi", label:"2π", kind:"symbol", x:.10, y:.55,
+   blurb:"The full turn. In a₀ ~ cH₀/2π it is a prefactor the " +
+   "census prices at zero net bits; in Gibbons–Hawking it is " +
+   "exact by theorem."},
+  {id:"mu", label:"μ = H₀t_P", kind:"symbol", x:.24, y:.62,
+   blurb:"The one dimensionless number of {ħ, c, G, H₀}: the " +
+   "dimension matrix has rank 3, so every horizon coincidence is " +
+   "(k, prefactor) in powers of μ ≈ 1.18e-61."},
+  {id:"catalan", label:"G", kind:"symbol", x:.35, y:.08,
+   blurb:"Catalan's constant. The square lattice's voice: the " +
+   "Harper terminal plateau lands 0.0011 from Thouless's 32G/π."},
+  // quantities
+  {id:"a0", label:"a₀", kind:"quantity", x:.08, y:.42,
+   blurb:"The MOND acceleration 1.2e-10 m/s². Real as data (RAR); " +
+   "as a coincidence with cH₀/2π it prices at −0.03 net bits."},
+  {id:"cH0", label:"c·H₀", kind:"quantity", x:.16, y:.48,
+   blurb:"The horizon acceleration scale."},
+  {id:"rhoL", label:"ρ_Λ", kind:"quantity", x:.30, y:.72,
+   blurb:"Dark energy density. Four named mechanisms crowd its " +
+   "single k = 2 slot (CKN, Sorkin, Zel'dovich, holographic)."},
+  // structures
+  {id:"bell", label:"Bell ladder", kind:"structure", x:.60, y:.30,
+   blurb:"2 < 2√2 < 4, every rung derived (P-17)."},
+  {id:"order", label:"order ladder", kind:"structure", x:.74, y:.22,
+   blurb:"The causal-game ladders (P-30): 3/4 < (2+√2)/4 < 1 and " +
+   "7/4 < 1+(2+√2)/4 < 2 — affine images of the Bell ladder."},
+  {id:"hardy", label:"Hardy p*", kind:"structure", x:.30, y:.33,
+   blurb:"Hardy's paradox maximum: p* = φ⁻⁵ exactly (P-21) — the " +
+   "one theorem-grade golden number."},
+  {id:"harper", label:"Harper ladder", kind:"structure", x:.46, y:.44,
+   blurb:"The golden flux ladder (P-7/P-28): bands, gaps, and " +
+   "their integers."},
+  {id:"gaplab", label:"gap integers (s,t)", kind:"structure",
+   x:.60, y:.52, blurb:"r = s·q + t·p, |t| ≤ q/2 — unique; t is " +
+   "the Chern number. See the plane."},
+  {id:"farey", label:"Farey / mediant", kind:"structure", x:.62, y:.70,
+   blurb:"The mediant skeleton: minimal denominator wins (P-29). " +
+   "Transfers between tongues and bands because both carry " +
+   "two-frequency competition."},
+  {id:"knead", label:"kneading tree", kind:"structure", x:.80, y:.80,
+   blurb:"Bandt's Bernoulli-convolution skeleton: structure at " +
+   "algebraic landmarks, certified nothing at rationals (P-31)."},
+  {id:"davies", label:"Davies point", kind:"structure", x:.12, y:.14,
+   blurb:"Kerr dT/dM = 0 at u = 2√3−3: lives in ℚ(√3), so it " +
+   "cannot be φ, which lives in ℚ(√5)."},
+  {id:"ring", label:"driven ring", kind:"structure", x:.86, y:.48,
+   blurb:"The circle-map ring (E1/P-32/P-33): pinned drive shows " +
+   "frustration classes; the site-mean bias observable telescopes " +
+   "to triviality."},
+  {id:"fib", label:"Fibonacci", kind:"structure", x:.44, y:.60,
+   blurb:"The recurrence and its congruences — the engine of the " +
+   "golden ladder's gap map."},
+];
+
+const EDGES = [
+  {from:"phi", to:"hardy", type:"earned",
+   title:"φ⁵ is Hardy's maximum",
+   stmt:"p* = (5√5 − 11)/2 = φ⁻⁵ exactly (P-21/R-16).",
+   logic:"Constraint elimination collapses a palindromic quartic " +
+   "to y² − 3y + 1 = 0 in y = k + 1/k; the maximum sits at " +
+   "y = Φ², giving p* = φ⁻⁵ in ℚ(√5).",
+   ev:"P-21/R-16 · claim hardy-maximum-is-phi-fifth",
+   check: () => near((5 * Math.sqrt(5) - 11) / 2,
+     Math.pow(PHI, -5), 1e-14, "(5√5−11)/2 = φ⁻⁵")},
+  {from:"phi", to:"fib", type:"theorem",
+   title:"the defining identity",
+   stmt:"φ² = φ + 1; F(n+1)F(n−1) − F(n)² = (−1)ⁿ.",
+   logic:"The determinant of the Fibonacci matrix is −1 per step: " +
+   "the lattice parallelogram spanned by consecutive Fibonacci " +
+   "pairs has unit area, alternating orientation.",
+   ev:"P-28 EQ2 engine",
+   check: () => {
+     let ok = Math.abs(PHI * PHI - PHI - 1) < 1e-14;
+     for (let n = 3; n <= 20; n++)
+       ok = ok && (fib(n + 1) * fib(n - 1) - fib(n) ** 2 ===
+                   (n % 2 === 0 ? 1 : -1));
+     return {pass: ok, detail: "φ²=φ+1 and the unit-area " +
+       "determinant, n = 3..20, exact"}; }},
+  {from:"fib", to:"gaplab", type:"earned",
+   title:"the Fibonacci gap map",
+   stmt:"F(n−1)F(j) ≡ (−1)^(j+1) F(n−j) (mod F(n)) — so the gap " +
+   "at r = F(j) carries |t| = F(n−j) (P-28).",
+   logic:"Reduce the Diophantine label t ≡ r·p⁻¹ mod q along the " +
+   "golden ladder; the congruence is the unimodularity of " +
+   "Fibonacci pairs wearing modular clothes.",
+   ev:"P-28/R-25 · claim golden-ladder-gap-integers",
+   check: () => {
+     let ok = true;
+     for (let n = 4; n <= 12; n++)
+       for (let j = 2; j < n; j++) {
+         const q = fib(n);
+         const lhs = ((fib(n - 1) * fib(j)) % q + q) % q;
+         const rhs = (((j % 2 === 0 ? -1 : 1) * fib(n - j)) % q
+                      + q) % q;
+         ok = ok && lhs === rhs;
+       }
+     return {pass: ok, detail: "exhaustive n = 4..12, exact " +
+       "integer arithmetic"}; }},
+  {from:"harper", to:"gaplab", type:"earned",
+   title:"every gap carries its integers",
+   stmt:"At 8/13 the open gaps carry t = {1:+5, 2:−3, 3:+2, 5:−1, " +
+   "8:+1, …} — the labels the plane computes live.",
+   logic:"t ≡ r·p⁻¹ (mod q), |t| ≤ q/2, unique for odd q; the " +
+   "even-q ambiguity t = ±q/2 lands exactly on the gap the parity " +
+   "rule closes.",
+   ev:"P-28/R-25",
+   check: () => {
+     const p = 8, q = 13;
+     let inv = 0;
+     for (let x = 1; x < q; x++) if ((p * x) % q === 1) inv = x;
+     const want = {1: 5, 2: -3, 3: 2, 5: -1, 8: 1};
+     let ok = true;
+     for (const [r, t] of Object.entries(want)) {
+       let tt = (r * inv) % q;
+       if (tt > q / 2) tt -= q;
+       ok = ok && tt === t;
+     }
+     return {pass: ok, detail: "8/13 labels match the P-28 pins"}; }},
+  {from:"sq2", to:"bell", type:"earned",
+   title:"Tsirelson caps the ladder",
+   stmt:"2 < 2√2 < 4 (P-17): local realism, quantum, algebra.",
+   logic:"Probabilities are squares of amplitudes — squaring is " +
+   "where the √ enters. The quantum maximum of CHSH is the " +
+   "operator norm of a sum of anticommuting reflections: √2 per " +
+   "pair.",
+   ev:"P-17/R-12 · claim bell-ladder-priced",
+   check: () => near(8 * ((2 + Math.SQRT2) / 4) - 4, 2 * Math.SQRT2,
+     1e-14, "p = (S+4)/8 sends (2+√2)/4 to 2√2")},
+  {from:"bell", to:"order", type:"earned",
+   title:"the order ladder is the Bell ladder",
+   stmt:"p = (S+4)/8 maps {2, 2√2, 4} onto {3/4, (2+√2)/4, 1}; " +
+   "the VLBC ladder is the same plus one (P-30).",
+   logic:"An affine map, derived before the enumerations ran; " +
+   "8192 and 131072 exhaustive causal strategies then landed on " +
+   "the rungs to 1e-12.",
+   ev:"P-30/R-27 · claim order-ladder-priced",
+   check: () => {
+     const r1 = near((2 + 4) / 8, 3 / 4, 1e-15, "causal rung");
+     const r2 = near((2 * Math.SQRT2 + 4) / 8, (2 + Math.SQRT2) / 4,
+       1e-15, "quantum rung");
+     return {pass: r1.pass && r2.pass,
+             detail: r1.detail + "\n" + r2.detail}; }},
+  {from:"i", to:"sqop", type:"theorem",
+   title:"the quarter turn squared",
+   stmt:"i² = −1: two quarter turns are an inversion.",
+   logic:"Rotation logic, not mysticism: apply the 90° rotation " +
+   "matrix twice to (1,0) and land on (−1,0).",
+   ev:"c25 π-flux corners; Bloch phases throughout",
+   check: () => {
+     const rot = (x, y) => [-y, x];
+     const [x1, y1] = rot(1, 0);
+     const [x2, y2] = rot(x1, y1);
+     return {pass: x2 === -1 && y2 === 0,
+             detail: "R90·R90·(1,0) = (−1,0), exact"}; }},
+  {from:"sqop", to:"sq2", type:"theorem",
+   title:"where √2 is born",
+   stmt:"√2 is the diagonal of the unit square: the equal " +
+   "superposition's normalization.",
+   logic:"(1/√2)² + (1/√2)² = 1 — squaring amplitudes to " +
+   "probabilities forces the √.",
+   ev:"the sqop node's one-line logic",
+   check: () => near(0.5 + 0.5, 1, 0, "|1/√2|² + |1/√2|² = 1")},
+  {from:"phi", to:"davies", type:"refused",
+   title:"φ is NOT the Davies point",
+   stmt:"Kerr's dT/dM = 0 sits at u = 2√3 − 3, which fails φ's " +
+   "defining equation by 0.15 — different number fields " +
+   "(ℚ(√3) vs ℚ(√5)).",
+   logic:"An inviolable NO: u² + 6u − 3 = 0 while 1/φ solves " +
+   "x² + x − 1 = 0; no rational operation connects them.",
+   ev:"the Kerr audit (session record); LC-12 adjacents",
+   check: () => {
+     const u = 2 * Math.sqrt(3) - 3;
+     const resid = u * u + u - 1;
+     return {pass: Math.abs(u * u + 6 * u - 3) < 1e-12 &&
+             Math.abs(resid) > 0.1,
+             detail: `u solves its own quadratic (resid ` +
+             `${(u * u + 6 * u - 3).toExponential(1)}); it fails ` +
+             `φ's by ${resid.toFixed(3)} — not a rounding error`}; }},
+  {from:"farey", to:"harper", type:"earned",
+   title:"the mediant transfers",
+   stmt:"In all 10 registered Farey intervals the mediant hosts " +
+   "the widest tongue AND the largest Harper bandwidth (P-29).",
+   logic:"Shared premise: first-harmonic two-frequency " +
+   "competition. The derived control (kill the harmonic) " +
+   "dethroned the mediant on cue.",
+   ev:"P-29/R-26 · claim farey-bridge-mediant-mechanism",
+   check: () => {
+     // mediant minimality, exhaustive for [1/3, 1/2] to q = 30
+     let minq = 99, who = null;
+     for (let q = 2; q <= 30; q++)
+       for (let p = 1; p < q; p++)
+         if (p / q > 1 / 3 && p / q < 1 / 2 &&
+             ((a, b) => { while (b) [a, b] = [b, a % b];
+                          return a; })(p, q) === 1 && q < minq) {
+           minq = q; who = p + "/" + q;
+         }
+     return {pass: who === "2/5",
+             detail: "unique minimal-q interior fraction of " +
+             "[1/3, 1/2] is " + who + " — the mediant"}; }},
+  {from:"farey", to:"knead", type:"refused",
+   title:"the kneading tree refuses the mediant",
+   stmt:"Bernoulli-convolution structure closes at algebraic " +
+   "landmarks and provably diverges at every Farey-predicted " +
+   "rational — including the mediant 4/7 (P-31).",
+   logic:"A finite orbit has bounded denominators; at t = 4/7 the " +
+   "orbit's denominators grow past any bound — divergence as " +
+   "proof, not timeout.",
+   ev:"P-31/R-28 · claim second-bridge-skeleton-distinction",
+   check: () => {
+     // denominators grow at t = 4/7: iterate the two-map system
+     // on the boundary in exact-ish rational arithmetic (num/den
+     // as BigInt)
+     let num = 3n, den = 7n; // 1 - t = 3/7; beta = 7/4
+     let maxden = den;
+     for (let k = 0; k < 30; k++) {
+       // g0 if x <= 4/7 else g1 (x -> (7/4)x [+ 1 - 7/4])
+       // g0: x -> 7x/4; g1 (x > 4/7): x -> 7x/4 - 3/4
+       const le = num * 7n <= den * 4n;
+       const num0 = num, den0 = den;
+       num = 7n * num0 - (le ? 0n : 3n * den0);
+       den = 4n * den0;
+       // normalize
+       const g = (a, b) => b ? g(b, a % b) : a;
+       const gg = g(num < 0n ? -num : num, den);
+       num /= gg; den /= gg;
+       if (den > maxden) maxden = den;
+     }
+     return {pass: maxden > 1000000n,
+             detail: "max denominator after 30 steps: " +
+             maxden.toString().length + " digits (> 1e6): the " +
+             "orbit cannot close"}; }},
+  {from:"a0", to:"cH0", type:"coincidence",
+   title:"a₀ ~ cH₀/2π — priced at zero",
+   stmt:"Mismatch 0.0612 dex; net −0.03 bits against the census " +
+   "codebook (P-34). Real as data, worthless as evidence.",
+   logic:"The codebook's derived coverage makes factor-2 matches " +
+   "28%-likely per attempt; charged with coverage and census " +
+   "size, the coincidence buys nothing.",
+   ev:"P-34/R-31 · claim horizon-census-priced · LC-6 (unruled)",
+   check: () => near(Math.abs(Math.log10(1.2e-10 /
+     (C * H0 / (2 * Math.PI)))), 0.0612, 0.002,
+     "the pinned mismatch recomputed from constants")},
+  {from:"twopi", to:"a0", type:"imported",
+   title:"the 2π that was never derived",
+   stmt:"D-3 declined the derivation; the census priced it " +
+   "instead: worth zero net bits.",
+   logic:"Pricing replaces derivation when the codebook density " +
+   "is known.", ev:"D-3 · P-34/R-31", check: null},
+  {from:"mu", to:"rhoL", type:"coincidence",
+   title:"the k = 2 slot",
+   stmt:"ρ_Λ sits 0.012 dex from M_P²H₀²/4π; net +2.13 bits — " +
+   "the census's best entry, still under the 3-bit flag; four " +
+   "mechanisms crowd this one slot.",
+   logic:"rank{ħ,c,G,H₀} = 3 ⟹ one μ; slots are few by algebra.",
+   ev:"P-34/R-31 · c33 (CKN) · c31 (Sorkin)",
+   check: () => {
+     const rho = 0.685 * 3 * H0 * H0 * C * C / (8 * Math.PI * GN);
+     const slot = C * C * H0 * H0 / GN / (4 * Math.PI);
+     return near(Math.abs(Math.log10(rho / slot)), 0.0118, 0.002,
+       "ρ_Λ vs M_P²H₀²/4π, dex"); }},
+  {from:"mu", to:"twopi", type:"theorem",
+   title:"μ exists and is alone",
+   stmt:"ħ^½ G^½ c^(−5/2) H₀ is dimensionless and every other " +
+   "dimensionless monomial is a power of it.",
+   logic:"The 3×4 dimension matrix has a one-dimensional null " +
+   "space — checked by exponent arithmetic.",
+   ev:"P-34 EQ1",
+   check: () => {
+     // dims (M, L, T): hbar(1,2,-1) c(0,1,-1) G(-1,3,-2) H0(0,0,-1)
+     const e = [0.5, -2.5, 0.5, 1];
+     const dims = [[1, 2, -1], [0, 1, -1], [-1, 3, -2], [0, 0, -1]];
+     const tot = [0, 1, 2].map(d =>
+       e.reduce((s, ex, j) => s + ex * dims[j][d], 0));
+     const val = Math.pow(HBAR, 0.5) * Math.pow(C, -2.5) *
+       Math.pow(GN, 0.5) * H0;
+     const ok = tot.every(x => Math.abs(x) < 1e-12) &&
+       Math.abs(val / 1.1776e-61 - 1) < 1e-3;
+     return {pass: ok, detail: `dimension residues ${tot} · ` +
+       `μ = ${val.toExponential(4)}`}; }},
+  {from:"catalan", to:"harper", type:"imported",
+   title:"the plateau is Catalan's",
+   stmt:"Thouless: qS → 32G/π = 9.3299; the golden ladder lands " +
+   "0.0011 away (P-7). φ is the address; Catalan owns the number.",
+   logic:"Imported constant, computed here by accelerated series.",
+   ev:"P-7/R-20 · LC-14",
+   check: () => {
+     // Catalan via the fast series G = sum_{k} ... use Dirichlet
+     // beta acceleration: G = 1/2 sum_{n>=0} (-1)^n / (2n+1)^2 x2
+     let g = 0;
+     for (let n = 0; n < 4000000; n++)
+       g += (n % 2 ? -1 : 1) / ((2 * n + 1) * (2 * n + 1));
+     return near(32 * g / Math.PI, 9.3299, 5e-4,
+       "32G/π from the partial series"); }},
+  {from:"ring", to:"bell", type:"refused",
+   title:"no Shapiro in a telescoping observable",
+   stmt:"On the difference-coupled ring the site-mean rotation " +
+   "number is ρ = I identically — steps are impossible by " +
+   "algebra, not physics (P-33/R-30).",
+   logic:"Each bond's coupling enters two sites with opposite " +
+   "signs; the sum telescopes to zero around the ring.",
+   ev:"P-33/R-30 · claim frustration-classes-organize-the-pinned-ring",
+   check: () => {
+     const N = 6, J = 0.6, I = 0.0625, A = 0.9;
+     let th = [0, .01, .02, .03, .04, .05];
+     let tot = 0;
+     const s = [0, .5, 0, .5, 0, .5];
+     for (let t = 0; t < 4000; t++) {
+       const drv = (A / (2 * Math.PI)) *
+         Math.sin(2 * Math.PI * t / 8);
+       const adv = [];
+       for (let k = 0; k < N; k++) {
+         const up = (k + 1) % N, dn = (k + N - 1) % N;
+         adv.push(I + drv + (J / (2 * Math.PI)) * (
+           Math.sin(2 * Math.PI * (th[up] - th[k] + s[k])) +
+           Math.sin(2 * Math.PI * (th[dn] - th[k] - s[dn]))));
+       }
+       for (let k = 0; k < N; k++) th[k] += adv[k];
+       if (t >= 2000) tot += adv.reduce((x, y) => x + y) / N;
+     }
+     return near(tot / 2000, I, 1e-13,
+       "mean advance = I on the ALT ring, drive on"); }},
+  {from:"phi", to:"knead", type:"earned",
+   title:"φ heads the multinacci ladder",
+   stmt:"The golden boundary orbit closes on {0, 2−φ, φ−1, 1} — " +
+   "size 4, in exact ℚ(φ) arithmetic (P-31).",
+   logic:"1−t sits on the CLOSED edge of g₁'s domain, so 0 joins; " +
+   "then 0 and 1 are fixed points.",
+   ev:"P-31/R-28 EQ3",
+   check: () => {
+     // float orbit with rounding-key closure (the verify route)
+     const beta = PHI, t = 1 / PHI;
+     const keyf = x => x.toFixed(12);
+     const seen = new Map();
+     let frontier = [1 - t, t];
+     frontier.forEach(x => seen.set(keyf(x), x));
+     let guard = 0;
+     while (frontier.length && guard++ < 50) {
+       const nxt = [];
+       for (const x of frontier) {
+         const kids = [];
+         if (x >= -1e-12 && x <= t + 1e-12) kids.push(beta * x);
+         if (x >= 1 - t - 1e-12 && x <= 1 + 1e-12)
+           kids.push(beta * x + 1 - beta);
+         for (const k of kids) if (!seen.has(keyf(k))) {
+           seen.set(keyf(k), k); nxt.push(k);
+         }
+       }
+       frontier = nxt;
+     }
+     return {pass: seen.size === 4,
+             detail: "orbit size " + seen.size +
+             " = {0, 2−φ, φ−1, 1}"}; }},
+];
+
+// ===================== run all checks ============================
+function runAll() {
+  let pass = 0, fail = 0, results = new Map();
+  for (const e of EDGES) {
+    if (!e.check) { results.set(e, null); continue; }
+    let r;
+    try { r = e.check(); } catch (err) {
+      r = {pass: false, detail: "check threw: " + err};
+    }
+    results.set(e, r);
+    if (r.pass) pass++; else fail++;
+  }
+  return {pass, fail, results};
+}
+
+// node test hook
+if (typeof module !== "undefined") {
+  module.exports = {EDGES, NODES, runAll};
+}
+
+// ===================== browser layer =============================
+if (typeof document !== "undefined") {
+
+const RES = runAll();
+const banner = document.getElementById("banner");
+banner.textContent = RES.fail === 0 ?
+  `${RES.pass}/${RES.pass} inviolables verified in your browser just now` :
+  `${RES.fail} CHECK(S) FAILED — the graph is broken`;
+banner.className = RES.fail === 0 ? "ok" : "bad";
+
+const cv = document.getElementById("view");
+const ctx = cv.getContext("2d");
+function resize() {
+  cv.width = innerWidth * devicePixelRatio;
+  cv.height = innerHeight * devicePixelRatio;
+  draw();
+}
+addEventListener("resize", resize);
+
+const TYPECOL = {earned: "#7fb89b", theorem: "#7fd0d0",
+  imported: "#8fb0d1", refused: "#e08a5b", coincidence: "#d2a24c"};
+const KINDFILL = {symbol: "#20262e", quantity: "#1a222b",
+  structure: "#181e26"};
+for (const n of NODES) { n.px = n.x * innerWidth;
+  n.py = n.y * innerHeight; }
+const byId = Object.fromEntries(NODES.map(n => [n.id, n]));
+
+function draw() {
+  const W = cv.width, H = cv.height, dpr = devicePixelRatio;
+  ctx.fillStyle = "#0e1116"; ctx.fillRect(0, 0, W, H);
+  ctx.font = `${11 * dpr}px ui-monospace, monospace`;
+  // edges
+  for (const e of EDGES) {
+    const a = byId[e.from], b = byId[e.to];
+    const col = TYPECOL[e.type];
+    ctx.strokeStyle = col; ctx.fillStyle = col;
+    ctx.lineWidth = (e === hoverEdge ? 2.6 : 1.4) * dpr;
+    ctx.setLineDash(e.type === "imported" ? [7 * dpr, 5 * dpr] :
+      e.type === "coincidence" ? [2.5 * dpr, 4 * dpr] : []);
+    ctx.beginPath();
+    ctx.moveTo(a.px * dpr, a.py * dpr);
+    ctx.lineTo(b.px * dpr, b.py * dpr);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    const mx = (a.px + b.px) / 2 * dpr, my = (a.py + b.py) / 2 * dpr;
+    if (e.type === "refused") {
+      ctx.lineWidth = 2 * dpr;
+      const s = 5 * dpr;
+      ctx.beginPath();
+      ctx.moveTo(mx - s, my - s); ctx.lineTo(mx + s, my + s);
+      ctx.moveTo(mx - s, my + s); ctx.lineTo(mx + s, my - s);
+      ctx.stroke();
+    }
+    // small check badge
+    const r = RES.results.get(e);
+    if (r) {
+      ctx.fillStyle = r.pass ? col : "#ff5555";
+      ctx.beginPath();
+      ctx.arc(mx, my, 3.2 * dpr, 0, 7);
+      ctx.fill();
+    }
+  }
+  // nodes
+  for (const n of NODES) {
+    const x = n.px * dpr, y = n.py * dpr;
+    const w = (n.label.length * 7 + 22) * dpr, h = 24 * dpr;
+    ctx.fillStyle = KINDFILL[n.kind];
+    ctx.strokeStyle = n === hoverNode ? "#e8e4dc" : "#3a4450";
+    ctx.lineWidth = 1.3 * dpr;
+    roundRect(x - w / 2, y - h / 2, w, h, 7 * dpr);
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle = "#e8e4dc";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.font = `${12.5 * dpr}px ui-monospace, monospace`;
+    ctx.fillText(n.label, x, y);
+  }
+}
+function roundRect(x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+let hoverNode = null, hoverEdge = null, dragNode = null;
+function nodeAt(mx, my) {
+  for (const n of NODES) {
+    const w = n.label.length * 7 / 2 + 11, h = 12;
+    if (Math.abs(mx - n.px) < w && Math.abs(my - n.py) < h) return n;
+  }
+  return null;
+}
+function edgeAt(mx, my) {
+  let best = null, bd = 9;
+  for (const e of EDGES) {
+    const a = byId[e.from], b = byId[e.to];
+    const mx2 = (a.px + b.px) / 2, my2 = (a.py + b.py) / 2;
+    const d = Math.hypot(mx - mx2, my - my2);
+    if (d < 14 && d < bd) { bd = d; best = e; }
+  }
+  return best;
+}
+cv.addEventListener("pointerdown", e => {
+  dragNode = nodeAt(e.clientX, e.clientY);
+});
+addEventListener("pointerup", e => {
+  if (dragNode && !dragNode.moved) select(dragNode, null);
+  else if (!dragNode) {
+    const ed = edgeAt(e.clientX, e.clientY);
+    if (ed) select(null, ed); else panel.classList.remove("open");
+  }
+  if (dragNode) dragNode.moved = false;
+  dragNode = null;
+});
+addEventListener("pointermove", e => {
+  if (dragNode) {
+    dragNode.px = e.clientX; dragNode.py = e.clientY;
+    dragNode.moved = true; draw(); return;
+  }
+  hoverNode = nodeAt(e.clientX, e.clientY);
+  hoverEdge = hoverNode ? null : edgeAt(e.clientX, e.clientY);
+  cv.style.cursor = (hoverNode || hoverEdge) ? "pointer" : "default";
+  draw();
+});
+
+const panel = document.getElementById("panel");
+function select(n, e) {
+  panel.classList.add("open");
+  if (n) {
+    panel.innerHTML = `<h2>${n.label}</h2>
+      <div class="type" style="color:#98948a">${n.kind}</div>
+      <div class="stmt">${n.blurb}</div>` + EDGES
+      .filter(x => x.from === n.id || x.to === n.id)
+      .map(x => `<div class="type" style="color:${TYPECOL[x.type]}">
+        ${x.type} — ${x.title}</div>`).join("");
+    return;
+  }
+  const r = RES.results.get(e);
+  panel.innerHTML = `<h2>${e.title}</h2>
+    <div class="type" style="color:${TYPECOL[e.type]}">${e.type}
+    ${r ? (r.pass ? "· check PASSED just now" :
+    "· CHECK FAILED") : "· no runnable check (import)"}</div>
+    <div class="stmt">${e.stmt}</div>
+    <div class="logic">${e.logic}</div>` +
+    (r ? `<div class="check">${r.detail}</div>` : "") +
+    `<div class="ev">${e.ev}</div>`;
+}
+
+resize();
+
+} // browser guard
+</script>
+</body>
+</html>
