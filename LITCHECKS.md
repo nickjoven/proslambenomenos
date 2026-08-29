@@ -828,3 +828,50 @@ claims-checked:
 - The calibration non-coincidence: Gibbons-Hawking T = hbar H0 /
   (2 pi k_B) (c7) is an equation, not a coincidence; used to
   calibrate the instrument and excluded from the pigeonhole count.
+
+## LC-25 — 2026-08-29 — the critical-staircase literature (P-2 resolution)
+prediction: P-2
+claims-checked:
+- Jensen, Bak, Bohr, PRL 50, 1637 (1983) and PRA 30, 1960 (1984):
+  at the critical coupling K = 1 of the sine circle map the
+  mode-locked steps form a COMPLETE devil's staircase - the
+  complement (quasiperiodic parameter set) has zero Lebesgue
+  measure and fractal dimension D = 0.870(4), measured via the
+  scaling of the uncovered measure mu(r) ~ r^{1-D} as tongues
+  wider than r are removed. Numerical in the original.
+- Swiatek, Comm. Math. Phys. 119, 109 (1988): the RIGOROUS half -
+  for critical circle maps the set of parameters with irrational
+  rotation number has Lebesgue measure zero. This is the
+  "provable as a statement about the circle-map family" that P-2's
+  registration anticipated; imported as the lemma, not reproved.
+- Herman/Arnold KAM side (subcritical K < 1): the quasiperiodic
+  set has positive measure - the staircase is incomplete below
+  criticality. Classical; our K = 0.5 cells measure it.
+- The P-2 framing sentence ("two dimensional anchors are therefore
+  the minimum") remains INTERPRETIVE per the original
+  registration: the lemma constrains the circle-map family; the
+  anchor count needs a modeling premise the lemma does not supply.
+
+## P-2a — 2026-08-29 — numeric bands fixed before the run (amendment)
+P-2 predates the band discipline; per the P-22a/P-24a pattern the
+bands are pinned here BEFORE the computation, with the AGENTS
+item-8 instrument nulls: (8a) the tangency-bisection width bias is
+~1e-10, negligible against the smallest counted width 3e-4; the
+completeness null for the dimension window - tongues with q > 40
+missed by the sweep - is bounded from the measured width-constant
+tail and reported; (8b) conservation: tongues are disjoint windows,
+so the summed width must stay <= 1 (checked, both K); (8c) domain:
+the Omega bracket is P-29's rigorous per-step bound. Cells: all
+p/q in (0, 1/2], gcd 1, q <= 40, at K in {0.5, 1.0}, widths by the
+P-29 tangency instrument, doubled by the rho <-> 1-rho symmetry
+(verified on a spot pair). Bands: (a) disjoint totals <= 1 + 1e-9;
+(b) K = 0.5: locked total converges (delta from q <= 32 to q <= 40
+below 0.005) with complement in [0.15, 0.60] - the KAM side keeps
+positive measure; (c) K = 1.0: complement below 0.12 at q <= 40
+and strictly decreasing in Q across {8, 16, 24, 32, 40}; (d) the
+dimension: least-squares slope of log mu(r) vs log r over five
+log-spaced r in [3e-4, 3e-2] gives 1 - D with D in [0.84, 0.90]
+(JBB's 0.870 imported for comparison; ours is a coarser
+estimator, hence the wide band); (e) not-claimed: the two-anchor
+framing (interpretive per the registration), rigorous completeness
+(Swiatek's, imported), subcritical scaling exponents.
