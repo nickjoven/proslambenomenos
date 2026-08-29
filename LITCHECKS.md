@@ -767,3 +767,64 @@ claims-checked:
   Josephson papers concern open/biased ARRAY geometries; the ring
   closure constraint is the source of the refinement - this
   difference is declared, not hidden.)
+
+
+## LC-9 — 2026-08-28 — Verlinde emergent gravity: observational status (reserved slot, filled)
+prediction: P-34 (census context; the a0 entry's mechanism claims)
+claims-checked:
+- Verlinde, SciPost Phys. 2, 016 (2017) / arXiv 1611.02269:
+  emergent gravity derives an apparent-dark-matter response tied to
+  the de Sitter scale (the a0 ~ c H0 family). Status by test, as
+  of 2026-08:
+- Brouwer et al., MNRAS 466, 2547 (2017): first weak-lensing test,
+  KiDS-GAMA - EG consistent with the lensing signal with no free
+  parameters. FAVORABLE (early).
+- Lelli, McGaugh, Schombert, MNRAS 468, L68 (2017) / arXiv
+  1702.04355: EG vs the radial acceleration relation - consistent
+  only with substantially decreased stellar mass-to-light ratios,
+  and predicts residual radius correlations not observed. TENSION.
+- Pardo / Tortora et al., MNRAS 473, 2324 (2018): early-type
+  galaxies - mixed. Diez-Tejedor, Gonzalez-Morales, Niz, MNRAS
+  477, 1285 (2018): dwarf spheroidals - EG in tension.
+- Luo et al., ApJ 914, 96 (2021): EG fails the COLOR DEPENDENCE of
+  galaxy-galaxy lensing in SDSS DR7; LCDM favored by reduced
+  chi-square. NEGATIVE.
+- Chae/Hernandez-line wide-binary work (2024, J. High Energy
+  Astrophys.): the claimed low-acceleration binary anomaly argued
+  explicable by a corrected EG formulation - CONTESTED territory
+  (the anomaly itself is disputed).
+- arXiv 2601.01715 (2026): EG vs MOND in dwarf spheroidals - EG
+  claimed closer than MOND for 21 of 23 dSphs, combined 5.2 sigma.
+  FAVORABLE (fresh, not yet independently reproduced).
+Disposition: NOT ruled out, NOT established - an actively
+contested program with negative lensing-color and RAR results
+standing against favorable dSph and early-lensing results. For
+the census, EG is one more MECHANISM claiming the k = 1
+acceleration slot; the slot arithmetic is what P-34 prices.
+
+## LC-24 — 2026-08-28 — the census pins
+prediction: P-34
+claims-checked:
+- a0 = 1.20e-10 m/s^2: McGaugh, Lelli, Schombert, PRL 117, 201101
+  (2016) (the RAR fit; quoted uncertainty ~0.02e-10). Mechanism
+  claimants for the k = 1 acceleration slot: Milgrom 1983 (LC-6),
+  Verlinde 2016 (LC-9).
+- rho_Lambda: Planck 2018 (H0 = 67.4, Omega_L = 0.685). Mechanism
+  claimants for the k = 2 density slot: CKN (c33), Sorkin (c31),
+  Zeldovich 1967 (JETP Lett. 6, 316: Lambda ~ G^2 m^6/hbar^4 -
+  a DIFFERENT construction that lands the same order), holographic
+  dark energy (Li 2004). Four named mechanisms, one slot.
+- Omega_L/Omega_m = 2.17 (Planck 2018): the why-now ratio.
+- m_pi = 139.57 MeV (PDG 2024); the Weinberg relation m^3 ~
+  hbar^2 H0/(G c) (Weinberg, Gravitation and Cosmology 1972,
+  eq. 16.4.6 vicinity - presented THERE as a numerological
+  curiosity, imported as such).
+- neutrino scale sqrt(dm2_atm) = 50.4 meV (PDG 2024); the
+  dark-energy-neutrino coincidence m_nu ~ rho_Lambda^{1/4}
+  (various, e.g. Fardon-Nelson-Weiner 2004 mass-varying
+  neutrinos).
+- H0 sensitivity pair: Planck 67.4 vs SH0ES 73.0 (the tension is
+  0.035 dex - small on census scales, checked anyway).
+- The calibration non-coincidence: Gibbons-Hawking T = hbar H0 /
+  (2 pi k_B) (c7) is an equation, not a coincidence; used to
+  calibrate the instrument and excluded from the pigeonhole count.

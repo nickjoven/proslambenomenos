@@ -2240,3 +2240,52 @@ thing that DOES organize our rings is the EQ1 frustration
 arithmetic on the pinned side - the line's positive product
 (claim frustration-classes-organize-the-pinned-ring).
 Results: scripts/experiments/p33_results.json.
+
+## P-34 — 2026-08-28 — the horizon-coincidence census
+question: A-8 - the famous horizon-scale coincidences (a0 ~
+c H0/2pi; the CKN/Sorkin/Zeldovich dark-energy magnitude; the
+why-now ratio; Weinberg's pion relation; the neutrino-dark-energy
+scale) each carry a literature of proposed mechanisms. Priced
+against a single derived codebook - monomials in {hbar, c, G, H0}
+on a declared exponent lattice with a declared prefactor set -
+how many bits does each coincidence actually earn, once the
+codebook's derived coverage density and the census's own size are
+charged?
+method: derivation layer scripts/experiments/p34_derive.py runs
+first and pins scripts/experiments/p34_registration.json, with
+the AGENTS.md item-8 instrument nulls stated: (a) detector null =
+the coverage function p(t) by exact interval union (p(0.05 dex) =
+0.176, p(0.1) = 0.275, p(0.3) = 0.374 - factor-2 matches are
+cheap BY DERIVATION); (b) conservation identity = the
+mu-degeneracy (rank-3 dimension matrix; every coincidence is a
+(k, prefactor) pair with mu = H0 t_P = 1.18e-61, so slots cannot
+be double-counted); (c) domain = the k-lattice {p/q, q <= 3,
+|k| <= 2}, the 20 prefactors in [1/4pi^2, 4pi^2], the 10.155-dex
+cell with adjacent clouds verified disjoint. Calibration on the
+Gibbons-Hawking theorem row (reproduced at < 1e-9 dex, excluded
+from counting). Experiment scripts/experiments/p34_census.py: for
+each of the five pinned census entries (LC-24), the nearest
+codebook expression and mismatch t in dex; surprisal =
+-log2 p(t); net bits = surprisal - log2(5) (the census's own
+look-elsewhere); the slot-collision count for the k = 2 density
+slot from LC-24's citations; the H0 sensitivity pair.
+expects: (a) the census table computes with every entry matched
+to a codebook expression at some t (coverage guarantees nothing;
+the values are the finding); (b) THE VERDICT - no census entry
+nets more than 3 bits after coverage and census-size charges;
+(c) the k = 2 density slot carries >= 4 named mechanisms (CKN,
+Sorkin, Zeldovich, holographic - LC-24): mechanisms are many,
+slots are few, recorded as arithmetic; (d) stability: no entry's
+net bits moves by more than 1 bit between H0 = 67.4 and 73.0;
+(e) the calibration row stays < 1e-9 dex under both H0 values.
+changes-my-mind: any entry netting > 3 bits is flagged as
+deserving its own mechanism line (the census's positive-detection
+arm - registered two-sidedly, not as a foregone null); the
+coverage function failing its own re-derivation in the verify
+layer voids the instrument.
+not-claimed-in-advance: any mechanism verdict (Milgrom, Verlinde,
+CKN, Sorkin - their statuses live in LC-6/LC-9/c33/c31, not
+here); coincidences involving particle-scale constants beyond the
+declared census (Dirac large numbers need extra base quantities
+and are out of codebook, noted); the RAR's tightness as data (a
+separate, real regularity); any cosmology.
