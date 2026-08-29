@@ -1,0 +1,42 @@
+id: horizon-census-priced
+statement: >
+  The famous horizon-scale numerical coincidences, priced against a
+  single derived codebook (monomials in hbar, c, G, H0 on the
+  declared lattice k in {p/q, q <= 3, |k| <= 2} with twenty
+  declared prefactors in [1/4pi^2, 4pi^2]): the dimension matrix
+  has rank 3, so every such coincidence is a (k, prefactor) pair
+  in powers of mu = H0 t_P = 1.178e-61, and the codebook's derived
+  coverage density (p(0.05 dex) = 0.176, p(0.1) = 0.275, by
+  interval union) makes order-one matches cheap before any census
+  entry is examined. Charged with that coverage and the census's
+  own five-entry look-elsewhere: a0 versus c H0/(2 pi) nets -0.03
+  bits and Weinberg's pion relation nets -0.11 bits - the two most
+  famous entries are worth NOTHING against the codebook - while
+  the why-now ratio nets +0.59, the neutrino-dark-energy scale
+  +1.49, and the best entry, the dark-energy density at the k = 2
+  slot (0.012 dex from M_P^2 H0^2/(4 pi)), nets +2.13 bits. No
+  entry reaches the registered 3-bit mechanism-line flag. The slot
+  arithmetic sharpens the point: four named mechanisms (CKN,
+  Sorkin, Zeldovich, holographic dark energy) crowd the single
+  k = 2 density slot - mechanisms are many, slots are few by the
+  rank-3 algebra. Calibration on the Gibbons-Hawking theorem row
+  (an equation, not a coincidence) at < 1e-9 dex. Scope: the
+  declared codebook and census; mechanism verdicts live in
+  LC-6/LC-9/c31/c33, not here; coincidences needing particle-scale
+  base constants (Dirac large numbers) are out of codebook; the
+  RAR's tightness as a data regularity is untouched; the H0
+  sensitivity of the a0 row is reported with its derived bound
+  (~1.4 bits across the 67.4-73.0 pair) after the registered
+  1-bit band fired as an underived-band error (R-31).
+premises: []
+prediction: P-34
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p34_derive.py (the rank-3 null vector in exact Fractions, the coverage table by interval union, the mu-degeneracy, the theorem-row calibration; pins in p34_registration.json); scripts/experiments/p34_census.py with p34_results.json; catalog/c33_ckn_bound.py (the CKN arithmetic with its naive-cutoff mutant); independently reimplemented by scripts/verify/p34_horizon_census.py via direct Planck-unit formulas and its own interval union"
+    method: reimplementation
+null_system: "the detector null is the coverage density, derived by enumeration before any census entry was scored (AGENTS item 8a); the conservation identity is the mu-degeneracy (8b); the domain is the declared lattice and window (8c); the census's own size is charged as look-elsewhere; the calibration row is a known equation excluded from counting"
+falsifier: "scripts/verify/p34_horizon_census.py --mutant census-of-one"
+novelty:
+  status: classical
+  citation: "Milgrom 1983 / LC-6 (a0); CKN 1999 (c33); Sorkin (c31); Zeldovich 1967; Li 2004; Weinberg 1972 (who presents the pion relation as a curiosity); Fardon-Nelson-Weiner 2004. The contribution is the single-codebook pricing with a derived coverage null, the net-bit table, and the slot-collision count"
+status: verified
