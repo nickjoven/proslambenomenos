@@ -25,3 +25,25 @@
    and packs the handoff. `main` is PR-only with CI on the PR head.
 7. **Report, don't conclude.** Commit messages describe; the message
    gate rejects conclusive vocabulary without a `[claim id]` tag.
+8. **Instrument nulls are part of the derive layer.** Physics nulls
+   (closed forms, amplitudes, congruences) have never been the
+   problem; the fired clauses of 2026-08-28 (R-26 bracket, R-29
+   smear, R-30 telescoping) all came from underived INSTRUMENT
+   nulls. Before a registration commits, its derive layer must
+   state, for every registered detector and observable:
+   (a) the detector's null response - what a tolerance-based
+       detector reads on featureless background (e.g., a locking
+       detector's smear width 2*TOL/slope), so "signal present"
+       is always a comparison against a derived null, never a
+       bare floor;
+   (b) the observable's conservation identities - any exact
+       algebraic constraint (telescoping sums, gauge freedoms,
+       symmetries) that makes a registered outcome trivial or
+       impossible, checked BEFORE positive controls are
+       registered on that observable;
+   (c) the search domain's validity - brackets and scan windows
+       argued from bounds (per-step displacement, monotonicity),
+       not from typical-case guesses.
+   A clause that fires on any of these three is an instrument
+   failure, not a finding, and it costs a re-registration; the
+   checklist exists to spend that cost before the run instead.
