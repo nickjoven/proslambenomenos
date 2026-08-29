@@ -2490,3 +2490,18 @@ Claim filed: holonomy-selects-the-slip-channel (verified;
 falsifier scripts/verify/p36_free_ring.py, mutants channel-blind
 and naive-budget). Results:
 scripts/experiments/p36_results.json.
+
+## R-35 — 2026-08-29 — resolves P-5 (as expected; bookkeeping closure)
+outcome: as expected. LC-6 (2026-08-22) is the resolution's
+substance and has been all along: the published literature contains
+Milgrom's 1999 heuristic identification (a0 as the acceleration
+where the Unruh temperature meets the de Sitter temperature), not a
+derivation - no interpolating function, no BTFR normalisation, no
+surviving relativistic completion follows from it. The claim
+a0-tracks-hubble-conjecture stayed coincidence-unruled and gained
+its literature pointer, exactly as registered. The mind-change
+condition (a parameter-free derivation) did not fire; P-34/R-31
+later priced the same coincidence at -0.03 net bits. This R entry
+was simply never written - the omission was found by the
+2026-08-29 fresh-context corpus audit (A-19 item 3) and is closed
+here with no new computation and no change of any status.
