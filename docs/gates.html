@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Gates</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+  :root{
+    --frame:#121916; --board:#1d2a26; --board2:#1a2723;
+    --chalk:#e9e6da; --dim:#93a49b; --yellow:#e8d48a;
+    --blue:#a9c9e2; --pink:#dfa3a3; --rule:#4a5a53;
+  }
+  html,body{background:var(--frame);color:var(--chalk);margin:0}
+  body{font-family:"Caveat",cursive;font-size:22px;line-height:1.45;
+       padding:26px 12px 60px}
+  .board{max-width:980px;margin:0 auto;background:
+    radial-gradient(1200px 500px at 30% 0%,#223330 0%,var(--board) 55%),
+    var(--board);
+    border:14px solid #3a2e24;border-radius:6px;
+    box-shadow:inset 0 0 60px #0008, 0 10px 40px #000a;
+    padding:38px 44px 46px;position:relative;overflow:hidden}
+  .board::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(#ffffff08 1px,transparent 1.5px),
+                     radial-gradient(#ffffff05 1px,transparent 1.5px);
+    background-size:180px 140px,90px 110px;
+    background-position:7px 13px,40px 60px}
+  h1{font-family:"Caveat",cursive;font-weight:700;font-size:2.4rem;
+     margin:0 0 2px;color:var(--chalk);text-wrap:balance;
+     text-shadow:0 0 6px #e9e6da22}
+  .sub{color:var(--dim);font-size:1.05rem;margin:0 0 6px}
+  .pace{margin-top:40px;border-top:1.5px dashed var(--rule);
+        padding-top:14px}
+  .pace:first-of-type{border-top:0;margin-top:16px}
+  h2{font-family:"Caveat",cursive;font-weight:600;font-size:1.6rem;
+     margin:0 0 10px;color:var(--yellow)}
+  h2 .n{color:var(--dim);margin-right:10px;font-weight:400}
+  .eq{font-family:"STIX Two Text",Georgia,serif;font-style:italic;
+      font-size:1.06rem;line-height:1.9;margin:8px 0 8px 22px;
+      letter-spacing:.01em}
+  .eq b{font-style:normal;font-weight:600}
+  .eq .rm{font-style:normal}
+  .eq .why{font-family:"Caveat",cursive;font-style:normal;
+           color:var(--dim);font-size:.95em;margin-left:14px}
+  .box{display:inline-block;border:1.5px solid var(--chalk);
+       border-radius:3px;padding:2px 12px;
+       box-shadow:1px 1px 0 #e9e6da33}
+  .yellow{color:var(--yellow)} .blue{color:var(--blue)}
+  .pink{color:var(--pink)} .dim{color:var(--dim)}
+  .note{color:var(--dim);font-size:1.02rem;margin:6px 0 0 22px;
+        max-width:64ch}
+  .code{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+        font-style:normal;font-size:.78rem;line-height:1.7;color:var(--yellow);
+        border:1.5px solid var(--chalk);border-radius:3px;
+        box-shadow:1px 1px 0 #e9e6da33;padding:8px 14px;margin:10px 0 10px 22px;
+        white-space:pre-wrap;word-break:break-all;overflow-x:auto;
+        background:#0000002e}
+  table.dict{border-collapse:collapse;margin:12px 0 4px 8px;
+    font-size:1.05rem;width:calc(100% - 16px)}
+  table.dict td,table.dict th{border-bottom:1px dashed var(--rule);
+    padding:5px 14px 5px 4px;text-align:left;vertical-align:top}
+  table.dict th{color:var(--dim);font-weight:600;
+    font-family:"Caveat",cursive;font-size:1.15rem}
+  table.dict td.m{font-family:"STIX Two Text",Georgia,serif;
+    font-style:italic;font-size:.95rem}
+  .live{margin:12px 0 4px 22px;padding:10px 14px;
+    border:1.5px dashed var(--rule);border-radius:4px;background:#0000001f}
+  .live label{display:block;color:var(--dim);font-size:1.02rem;margin:0 0 4px}
+  .live input[type=text],.live textarea{width:100%;box-sizing:border-box;
+    background:#00000040;border:1.5px solid var(--rule);border-radius:3px;
+    color:var(--chalk);font-family:"Caveat",cursive;font-size:1.05em;
+    padding:5px 10px;outline:none}
+  .live input[type=text]:focus,.live textarea:focus{border-color:var(--dim)}
+  .live .verdict{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-style:normal;font-size:.82rem;line-height:1.6;margin-top:8px;
+    white-space:pre-wrap;word-break:break-word}
+  .ok{color:var(--blue)} .bad{color:var(--pink)}
+  .cap{text-align:center;color:var(--dim);font-size:1.02rem;margin:0 0 4px}
+  .foot{margin-top:44px;border-top:1.5px dashed var(--rule);
+        padding-top:12px;color:var(--dim);font-size:1.02rem}
+  .foot a{color:var(--blue)}
+  blockquote{font-family:"STIX Two Text",Georgia,serif;font-style:italic;
+    font-size:1.04rem;line-height:1.8;margin:10px 0 6px 22px;
+    border-left:2px solid var(--rule);padding-left:16px;color:var(--chalk)}
+  sub,sup{font-size:.68em}
+  @media (max-width:640px){.board{padding:24px 16px 30px}
+    .eq{margin-left:6px}.code{margin-left:6px}.live{margin-left:6px}
+    .note{margin-left:6px}blockquote{margin-left:6px}}
+</style>
+</head>
+<body>
+<div class="board">
+<h1>The Gates</h1>
+<p class="sub">the verification doctrine of this repo, written out as it is enforced &mdash;
+eleven computable predicates on the tree, run serially by <span class="yellow">make gates</span>,
+any red blocking the merge. Every statement below is transcribed from the committed gate code;
+the boxed regexes are verbatim; the three small consoles run the same logic live, in your browser.
+Reds are theorems; greens are not.</p>
+
+<!-- ================================================== I -->
+<div class="pace">
+<h2><span class="n">I.</span>The intake law &mdash; statuses are computed, never declared</h2>
+<div class="eq">
+status : Claims &rarr; S,&ensp;S = {refuted, conditional, coincidence&#8209;unruled, proven, argued,
+verified, reproduced, imported, asserted}
+</div>
+<div class="eq">
+status(c) := &Phi;(evidence(c), premises(c), numeric_match(c))&ensp;&mdash;&ensp;&Phi; fixed;&ensp;
+<span class="box pink rm">recorded(c) &ne; &Phi;(c) &rArr; red</span>
+<span class="why">&ldquo;change the evidence, not the label&rdquo;</span>
+</div>
+<div class="eq">
+refutation &isin; E(c) &rArr; <b class="pink">refuted</b>
+<span class="why">wins over everything</span>
+</div>
+<div class="eq">
+proof &isin; E(c) &and; method(comp) &isin; {reimplementation, external} &rArr; <b>proven</b>;&ensp;
+proof alone &rArr; <b>argued</b>
+<span class="why">prose-grade, attested not enforced; machine: true is disabled until an executor exists (LAW-3)</span>
+</div>
+<div class="eq">
+comp &isin; E(c): method &isin; {reimplementation, external} &rArr; <b>verified</b>;&ensp;
+method = rerun only &rArr; <b>reproduced</b>
+<span class="why">the same algorithm twice is not independence</span>
+</div>
+<div class="eq">
+citation only &rArr; <b>imported</b>;&ensp;E(c) = &empty; &rArr; <b>asserted</b>
+</div>
+<div class="eq">
+caps:&ensp;&exist;p &isin; premises(c): status(p) &notin; SETTLED &rArr; <b>conditional</b>,&ensp;
+<span class="rm">SETTLED = {proven, verified, imported}</span>
+<span class="why">argued &notin; SETTLED &mdash; an argument settles nothing downstream</span>
+</div>
+<div class="eq">
+numeric_match present &and; (p &ge; 0.05 &or; p missing) &rArr; <b>coincidence&#8209;unruled</b>
+</div>
+<div class="eq">
+premise graph acyclic (DFS over premises; a gray&rarr;gray edge is a cycle &rArr; red)
+</div>
+</div>
+
+<!-- ================================================== II -->
+<div class="pace">
+<h2><span class="n">II.</span>The message gate &mdash; the narrative layer is audited</h2>
+<div class="eq">
+the banned-vocabulary scanner, verbatim from <span class="rm">scripts/check_messages.py</span>:
+</div>
+<code class="code">CONCLUSIVE = re.compile(
+    r"(?i)\b(proves?|proof of|exact(?:ly)?|confirms?|closes?|(?&lt;!-)novel(?!-)|"
+    r"establish(?:es|ed)?|demonstrat(?:es|ed|ion)|definitive(?:ly)?|"
+    r"guarantee[sd]?|settle[sd]|resolve[sd]?|"
+    r"first (?:proof|derivation)|zero free parameters|class 5)\b")
+TAG = re.compile(r"\[claim ([a-z0-9-]+)\]")
+SUPPORTING = {"proven", "verified", "refuted"}</code>
+<div class="eq">
+hits(m) &ne; &empty; &and; tags(m) = &empty; &rArr; <b class="pink">red</b>
+<span class="why">conclusive words need a claim to point at</span>
+</div>
+<div class="eq">
+hits(m) &ne; &empty; &and; &not;&exist;t &isin; tags(m): status(t) &isin; SUPPORTING &rArr; <b class="pink">red</b>
+<span class="why">LAW-5: at least ONE tag must support; coverage tags of capped claims may ride along</span>
+</div>
+<div class="eq">
+touched(m) &#8840; tags(m) &rArr; <b class="pink">red</b>
+<span class="why">every commit touching claims/&lt;id&gt;.yml carries [claim id] &mdash; the narrative cannot silently edit the evidence</span>
+</div>
+<div class="eq">
+note the guard <span class="rm yellow">(?&lt;!-)novel(?!-)</span>: the vocabulary term
+<span class="rm">checked-novel</span> is not conclusive language (LAW-7); bare
+<span class="rm">novel</span> still is.
+</div>
+<div class="live">
+<label>live &mdash; type a commit message; statuses here are the spec&rsquo;s own fixtures,
+{good &#8614; proven, weak &#8614; argued}:</label>
+<input type="text" id="msg-in" value="tighten the bracket; the run confirms the bound" spellcheck="false">
+<div class="verdict" id="msg-out"></div>
+</div>
+<p class="note">try appending [claim weak] &mdash; still red (argued does not support) &mdash;
+then [claim good].</p>
+</div>
+
+<!-- ================================================== III -->
+<div class="pace">
+<h2><span class="n">III.</span>Statement tripwires &mdash; agreement and novelty</h2>
+<div class="eq">
+the numeric-agreement tripwire, verbatim from <span class="rm">scripts/check_claims.py</span>:
+</div>
+<code class="code">NUMERIC_AGREEMENT = re.compile(
+    r"(?i)\b(agrees? with|matches? (?:the )?(?:observed|measured)|"
+    r"within [0-9.]+\s*%|[0-9.]+\s*sigma\b|"
+    r"(?:observed|measured|PDG|Planck 20\d\d)\b.{0,40}\b(?:gives?|value))")</code>
+<div class="eq">
+NUMERIC_AGREEMENT(statement) &ne; &empty; &and; numeric_match absent &rArr; <b class="pink">red</b>
+<span class="why">&ldquo;the pigeonhole cap is not optional&rdquo; &mdash; a tripwire, not a wall: paraphrase can evade it, and the residual is recorded (F3)</span>
+</div>
+<div class="eq">
+novelty is a state machine:&ensp;novelty.status &isin;
+<span class="box rm">{unchecked, classical, folklore, checked&#8209;novel}</span>
+</div>
+<div class="eq">
+classical &or; folklore &rArr; citation &ne; &ldquo;&thinsp;&rdquo;;&ensp;
+checked&#8209;novel &rArr; litcheck = LC&#8209;n &and; LC&#8209;n &isin; headings(LITCHECKS.md)
+</div>
+<div class="eq">
+unchecked &rArr; NOVELTY_VOCAB &cap; statement = &empty;
+<span class="why">while unchecked, novelty vocabulary is banned in the statement</span>
+</div>
+<code class="code">NOVELTY_VOCAB = re.compile(
+    r"(?i)\b(novel|original|new result|first (?:proof|derivation)|"
+    r"previously unknown|discover\w*)\b")</code>
+<div class="live">
+<label>live &mdash; type a claim statement; both tripwires run:</label>
+<input type="text" id="stmt-in" value="the spectrum matches the observed value within 0.3 %" spellcheck="false">
+<div class="verdict" id="stmt-out"></div>
+</div>
+</div>
+
+<!-- ================================================== IV -->
+<div class="pace">
+<h2><span class="n">IV.</span>The pin law &mdash; the gates cannot be edited silently</h2>
+<div class="eq">
+Covered = scripts/check_*.py &cup; scripts/*.js &cup; scripts/verify/*.py &cup;
+{run_all.py, tests/run_spec.py} &cup; tests/spec/*.spec &cup; {catalog/_common.py} &cup; kernels/*.py
+</div>
+<div class="eq">
+H : files &rarr; {0,1}<sup>256</sup>,&ensp;H = SHA&#8209;256;&ensp;
+entry<sub>last</sub> : dom(entry<sub>last</sub>) &rarr; {0,1}<sup>256</sup>
+<span class="why">the final LAWCHANGES.md entry is the pin &mdash; every amendment re-pins the whole covered set</span>
+</div>
+<div class="eq">
+&exist;f &isin; Covered: f &notin; dom(entry<sub>last</sub>) &rArr; <b class="pink">red</b>
+<span class="why">new gate, no entry &mdash; a new covered file forces a full re-pin</span>
+</div>
+<div class="eq">
+&exist;f &isin; Covered: entry<sub>last</sub>(f) &ne; H(f) &rArr; <b class="pink">red</b>
+<span class="why">edit without an entry</span>
+</div>
+<div class="eq">
+&exist;f &isin; dom(entry<sub>last</sub>): f &notin; tree &rArr; <b class="pink">red</b>
+<span class="why">gate deleted silently</span>
+</div>
+<div class="eq">
+each entry: date &and; direction &isin; <span class="box rm">{strengthen, weaken, neutral}</span> &and; a why.
+&ensp;Amending the law stays legal; amending it without a dated, directed, justified entry does not.
+</div>
+<div class="live">
+<label>live &mdash; a line of covered text, pinned at page load via crypto.subtle; edit one byte:</label>
+<input type="text" id="pin-in" value='SUPPORTING = {"proven", "verified", "refuted"}' spellcheck="false">
+<div class="verdict" id="pin-out">computing SHA-256&hellip;</div>
+</div>
+</div>
+
+<!-- ================================================== V -->
+<div class="pace">
+<h2><span class="n">V.</span>Append-only &mdash; rulings cannot be unmade quietly</h2>
+<div class="eq">
+Ledgers = {DECLINED, LITCHECKS, LAWCHANGES, PREDICTIONS}.md
+</div>
+<div class="eq">
+&forall;L &isin; Ledgers, &forall;n:&ensp;<span class="box yellow rm">L<sub>n</sub> &#8849; L<sub>n+1</sub></span>
+&ensp;&mdash;&ensp;committed history only grows
+<span class="why">enforced over git log -p: no commit may remove a non-empty line</span>
+</div>
+<div class="eq">
+strictly, &#8849; here is subsequence order (insertions anywhere pass &mdash; the union merge driver
+appends); in practice every legal step appends, so history is prefix-ordered.
+</div>
+<div class="eq">
+an edit = a deletion + an insertion &rArr; still <b class="pink">red</b>;&ensp;
+L &notin; tree &and; history(L) &ne; &empty; &rArr; <b class="pink">red</b>
+<span class="why">a deleted ledger is the strongest possible violation (F1)</span>
+</div>
+<div class="eq">
+residual: the owner can still rewrite local history &mdash; closed fully only by a remote with
+protected history (trust rung 3).
+</div>
+</div>
+
+<!-- ================================================== VI -->
+<div class="pace">
+<h2><span class="n">VI.</span>Register, then compute</h2>
+<div class="eq">
+every P&#8209;n carries, before the attempt runs:&ensp;expects: &and; changes&#8209;my&#8209;mind:
+&ensp;&mdash;&ensp;<span class="box yellow rm">bands fixed at t<sub>register</sub> &lt; t<sub>compute</sub></span>
+</div>
+<div class="eq">
+the order is ancestry, not clock time:&ensp;commit(P&#8209;n heading) &#8828;<sub>anc</sub>
+commit(claim citing P&#8209;n) in the commit DAG
+<span class="why">an uncommitted claim passes only if its prediction is already committed; the protected remote makes the ordering third-party-attested</span>
+</div>
+<div class="eq">
+scope: post-enactment claim &and; (numeric_match &or; novelty = checked&#8209;novel) &rArr;
+prediction required;&ensp;post-enactment LC entries carry a prediction: line
+</div>
+</div>
+
+<!-- ================================================== VII -->
+<div class="pace">
+<h2><span class="n">VII.</span>The falsifier contract &mdash; a check that cannot fail is a restatement</h2>
+<div class="eq">
+&forall;v &isin; scripts/verify/*.py:&ensp;rc(v, clean tree) = 0, re-run on every gate pass
+<span class="why">cited computational evidence cannot rot silently; new scripts are rostered by the glob</span>
+</div>
+<div class="eq">
+&forall; registered mutant m of v:&ensp;<span class="box rm">rc(v, m) = 1 &and;
+&ldquo;FAIL&rdquo; &isin; stdout &and; Traceback &notin; stderr</span>
+</div>
+<table class="dict">
+<tr><th>rc</th><th>stdout</th><th>stderr</th><th>verdict (LAW-16)</th></tr>
+<tr><td class="m">1</td><td class="m">&ldquo;FAIL&rdquo; or &ldquo;NOT CONFIRMED&rdquo;</td><td class="m">clean</td>
+    <td class="m"><span class="blue rm">counts &mdash; the mutant ran and failed</span></td></tr>
+<tr><td class="m">1</td><td class="m">&mdash;</td><td class="m">Traceback</td>
+    <td class="m"><span class="pink rm">crashed &ne; failing mutant</span></td></tr>
+<tr><td class="m">1</td><td class="m">no FAIL line</td><td class="m">&mdash;</td>
+    <td class="m"><span class="pink rm">silent nonzero &ne; failure</span></td></tr>
+<tr><td class="m">2</td><td class="m">anything</td><td class="m">&mdash;</td>
+    <td class="m"><span class="pink rm">usage error (unknown mutant, missing file) &ne; failure</span></td></tr>
+<tr><td class="m">0</td><td class="m">PASS</td><td class="m">&mdash;</td>
+    <td class="m"><span class="pink rm">a passing mutant is rejected</span></td></tr>
+</table>
+<div class="eq">
+a settled-by-computation claim citing scripts/verify must name null_system &and; falsifier (LAW-11),
+and the falsifier must be one of the claim&rsquo;s OWN cited scripts
+<span class="why">LAW-16: no borrowed falsifiers</span>
+</div>
+<div class="eq">
+the lesson underneath: a script for which no failing mutant can be written is restating
+the claim, not testing it
+<span class="why">the J&sup2; sector error, LC-5; the rc-2 &ldquo;fails as required&rdquo; audit, 2026-08-22</span>
+</div>
+</div>
+
+<!-- ================================================== VIII -->
+<div class="pace">
+<h2><span class="n">VIII.</span>The derive layer &mdash; instrument nulls before the run</h2>
+<div class="eq">
+before a registration commits, for every registered detector d and observable O, three
+obligations (AGENTS.md item 8) &mdash; each learned from a fired clause:
+</div>
+<div class="eq">
+(a)&ensp;null(d) derived, e.g. a locking detector&rsquo;s tolerance smear
+<span class="box rm">w<sub>0</sub> = 2&hairsp;TOL / slope</span>;&ensp;
+&ldquo;signal present&rdquo; &hArr; reading compared against null(d), never a bare floor
+<span class="why">R-29 on P-32: every &ldquo;width&rdquo; read 0.00080 &mdash; the smear itself, not a signal</span>
+</div>
+<div class="eq">
+(b)&ensp;identities(O) checked BEFORE positive controls: any exact constraint (telescoping sums,
+gauge freedoms, symmetries) making a registered outcome trivial or impossible
+<span class="why">R-30 on P-33: the coupling terms telescope &rArr; &rho; &equiv; I identically &mdash; no step of any order can live in that observable, by algebra</span>
+</div>
+<div class="eq">
+(c)&ensp;the search domain argued from bounds (per-step displacement, monotonicity), not
+typical-case guesses
+<span class="why">R-26: the 0.6&hairsp;K/q bracket missed shifted windows; replaced by the rigorous |&Omega; &minus; &rho;| &le; K/2&pi; + &epsilon;, unique crossing by monotonicity</span>
+</div>
+<div class="eq">
+a clause that fires on (a) &or; (b) &or; (c) is an <b class="pink">instrument failure, not a finding</b>,
+and costs a re-registration (P-33, P-36 after P-35&rsquo;s R-33); the checklist spends that cost
+before the run instead.
+</div>
+</div>
+
+<!-- ================================================== IX -->
+<div class="pace">
+<h2><span class="n">IX.</span>Prose carries no load</h2>
+<div class="eq">
+&forall; notes/*.md: lines 1..3 contain
+<span class="box rm">&lt;!-- commentary --&gt;</span> &or;
+<span class="box rm">&lt;!-- evidence: p<sub>1</sub>, &hellip;, p<sub>n</sub> --&gt;</span>
+</div>
+<div class="eq">
+commentary &rArr; no settled-status verdicts (&ldquo;is proven&rdquo;, &ldquo;was refuted&rdquo;, &hellip;)
+anywhere in the note
+</div>
+<div class="eq">
+evidence &rArr; each p<sub>i</sub> exists &and; suffix(p<sub>i</sub>) &isin;
+{.py, .js, .json, .ipynb, .yml, .yaml} &or; (.html under compendium | notebooks)
+<span class="why">.md is not evidence &mdash; prose cannot vouch for prose</span>
+</div>
+<div class="eq">
+and every rule above is itself fixtured red/green in a controlled grammar (LAW-20):
+</div>
+<code class="code">RULE gate.n "label": GIVEN fixture WHEN gate RUNS
+     THEN ACCEPT | REJECT MENTIONING "token" | EQUALS json</code>
+<div class="eq">
+a RULE naming a gate that does not exist fails &mdash; which is how a new gate is written test-first.
+</div>
+</div>
+
+<!-- ================================================== X -->
+<div class="pace">
+<h2><span class="n">X.</span>What green means</h2>
+<blockquote>&ldquo;Green means: every ledger parses and appends legally, every claim&rsquo;s
+falsifier runs clean and every registered mutant fails with a FAIL line, every catalog fact
+recomputes, every pinned hash matches. Green does NOT mean the claims are important or the
+models are right &mdash; it means the corpus says what it did and shows how to check it.&rdquo;
+<span class="rm dim">&mdash; README, &ldquo;Verifying this repo&rdquo;</span></blockquote>
+<div class="eq">
+a green gate is consistency accounting, not truth: statuses derive from <b>recorded</b> evidence,
+undeclared premises are invisible, and the checker cannot read mathematics.
+</div>
+<div class="eq">
+<span class="box yellow rm">reds are theorems; greens are not.</span>
+</div>
+</div>
+
+<p class="foot">Transcribed from: scripts/check_claims.py &middot; check_messages.py &middot;
+check_lawchanges.py &middot; check_append_only.py &middot; check_predictions.py &middot;
+check_verify_scripts.py &middot; check_notes.py &middot; tests/spec/*.spec &middot; AGENTS.md &middot;
+README (&ldquo;Verifying this repo&rdquo;). Run them yourself: <span class="yellow">make gates</span>.
+Companions: <a href="graph.html">the inviolables graph</a> &middot;
+<a href="index.html">the butterfly plane</a>.</p>
+</div>
+
+<script>
+"use strict";
+// The three consoles run transliterations of the gates' own regexes.
+// Python (?i) -> /i flag; (?<!-)novel(?!-) survives as-is (JS lookbehind).
+
+// ---------- II. message gate ---------------------------------------
+const CONCLUSIVE = /\b(proves?|proof of|exact(?:ly)?|confirms?|closes?|(?<!-)novel(?!-)|establish(?:es|ed)?|demonstrat(?:es|ed|ion)|definitive(?:ly)?|guarantee[sd]?|settle[sd]|resolve[sd]?|first (?:proof|derivation)|zero free parameters|class 5)\b/gi;
+const TAG = /\[claim ([a-z0-9-]+)\]/g;
+const SUPPORTING = new Set(["proven", "verified", "refuted"]);
+const STATUSES = { good: "proven", weak: "argued" }; // the spec's fixtures
+
+function checkMessage(msg) {
+  const tags = [...msg.matchAll(TAG)].map((m) => m[1]);
+  const hits = [...new Set([...msg.matchAll(CONCLUSIVE)]
+    .map((m) => m[0].toLowerCase()))].sort();
+  const violations = [];
+  for (const t of tags) {
+    if (!(t in STATUSES)) violations.push(`[claim ${t}] names no claim`);
+  }
+  if (hits.length) {
+    if (!tags.length) {
+      violations.push(`uses [${hits.join(", ")}] with no [claim <id>] tag`);
+    } else if (!tags.some((t) => SUPPORTING.has(STATUSES[t]))) {
+      const shown = tags.map((t) => `${t}: ${STATUSES[t] || "?"}`).join(", ");
+      violations.push(`conclusive language [${hits.join(", ")}] but no tagged `
+        + `claim has a supporting status ({${shown}})`);
+    }
+  }
+  return violations;
+}
+
+function wireMessage() {
+  const inp = document.getElementById("msg-in");
+  const out = document.getElementById("msg-out");
+  const render = () => {
+    const v = checkMessage(inp.value);
+    if (!v.length) {
+      out.textContent = "message gate: clean";
+      out.className = "verdict ok";
+    } else {
+      out.textContent = "message gate: " + v.length + " violation(s)\n  "
+        + v.join("\n  ");
+      out.className = "verdict bad";
+    }
+  };
+  inp.addEventListener("input", render);
+  render();
+}
+
+// ---------- III. statement tripwires -------------------------------
+const NUMERIC_AGREEMENT = /\b(agrees? with|matches? (?:the )?(?:observed|measured)|within [0-9.]+\s*%|[0-9.]+\s*sigma\b|(?:observed|measured|PDG|Planck 20\d\d)\b[^\n]{0,40}\b(?:gives?|value))/i;
+const NOVELTY_VOCAB = /\b(novel|original|new result|first (?:proof|derivation)|previously unknown|discover\w*)\b/i;
+
+function checkStatement(stmt) {
+  const out = [];
+  const m = NUMERIC_AGREEMENT.exec(stmt);
+  if (m) {
+    out.push(`statement asserts numeric agreement ('${m[0]}') — without a `
+      + `numeric_match block this is red; with p >= 0.05 or p missing, `
+      + `status caps at coincidence-unruled`);
+  }
+  const n = NOVELTY_VOCAB.exec(stmt);
+  if (n) {
+    out.push(`novelty vocabulary ('${n[0]}') — banned while `
+      + `novelty.status = unchecked`);
+  }
+  return out;
+}
+
+function wireStatement() {
+  const inp = document.getElementById("stmt-in");
+  const out = document.getElementById("stmt-out");
+  const render = () => {
+    const v = checkStatement(inp.value);
+    if (!v.length) {
+      out.textContent = "no tripwire fires (paraphrase can evade — "
+        + "the residual is recorded, F3)";
+      out.className = "verdict ok";
+    } else {
+      out.textContent = v.map((x) => "tripwire: " + x).join("\n");
+      out.className = "verdict bad";
+    }
+  };
+  inp.addEventListener("input", render);
+  render();
+}
+
+// ---------- IV. pin law: live SHA-256 ------------------------------
+async function sha256hex(text) {
+  const buf = await crypto.subtle.digest("SHA-256",
+    new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)]
+    .map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+function wirePin() {
+  const inp = document.getElementById("pin-in");
+  const out = document.getElementById("pin-out");
+  if (!(window.crypto && crypto.subtle)) {
+    out.textContent = "crypto.subtle unavailable in this context — "
+      + "the pin demo needs a secure context (https or file)";
+    out.className = "verdict bad";
+    return;
+  }
+  let pinned = null;
+  const render = async () => {
+    const cur = await sha256hex(inp.value);
+    if (pinned === null) return; // race before the pin exists
+    if (cur === pinned) {
+      out.textContent = `law gate: clean\n  pinned  ${pinned.slice(0, 12)}…`
+        + `\n  current ${cur.slice(0, 12)}…`;
+      out.className = "verdict ok";
+    } else {
+      out.textContent = "law gate: 1 violation(s)\n  edited since the last "
+        + `LAWCHANGES entry\n  (recorded ${pinned.slice(0, 12)}…, `
+        + `current ${cur.slice(0, 12)}…)`;
+      out.className = "verdict bad";
+    }
+  };
+  sha256hex(inp.value).then((h) => { pinned = h; render(); });
+  inp.addEventListener("input", render);
+}
+
+wireMessage();
+wireStatement();
+wirePin();
+</script>
+</body>
+</html>
