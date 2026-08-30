@@ -2505,3 +2505,51 @@ later priced the same coincidence at -0.03 net bits. This R entry
 was simply never written - the omission was found by the
 2026-08-29 fresh-context corpus audit (A-19 item 3) and is closed
 here with no new computation and no change of any status.
+
+## P-37 — 2026-08-30 — the price of a bit (A-11, the line P-24 reserved)
+question: on rung 2 - the locked double well U = -(eps/2) cos 2
+theta, eps = 1, overdamped with kT = D, the substrate whose
+forgetting P-24 derived to the prefactor - what does writing one
+bit cost, and does the measured (work, error) surface respect the
+two rigorous floors while showing the repo-native WALL: the
+substrate's own hop rate forbids slow writing? Protocol: V = U -
+h(t) cos theta, h ramped 0 -> a -> 0 linearly over tau (closed
+loop, Delta F = 0), Sekimoto work, error p = wrong-well occupancy
+at commit t = tau, start in equilibrium (the unknown bit).
+method: derive layer scripts/experiments/p37_derive.py, run and
+committed BEFORE this entry (pins in p37_registration.json): the
+floor W >= D[ln 2 - H(p)] (second law + coarse-graining
+monotonicity, exact curve); the speed limit W >= D[ln 2 - H(p)] +
+W_2^2/tau (thermodynamic optimal transport, mobility 1), with W_2
+computed on the circle by the cut-scanned quantile method against
+the EMPIRICAL commit sample - both bounds are theorems about
+measured objects; the critical tilt h_c = 2 eps (wrong well
+vanishes: V''(pi) = 2 eps - h), a grid {1.2, 2.4} straddling it;
+the two-state frozen-Kramers overlay p_kin (magnitudes
+UNREGISTERED, P-2's lesson - only the ordering is registered);
+Jarzynski null-cell design condition (sig_W/D)^2 <= 0.5 at
+M = 2000, adequacy shown in the layer (1.005 +- 0.029 and 0.990
++- 0.020); domain: dt = 0.002, tau grids {1..32}/{1..12} capped
+at T_MFPT/5, M = 1500, seeds 20260830 + cell index; the four
+wall cells (below) at M = 6000, deliberately at T/3 and T/2.
+expects: (a) nulls - Jarzynski |<e^{-W/D}> - 1| <= 3 SE at the
+two null cells; the dt/2 validation cell within 3 sqrt(2) SE;
+(b) floor at EVERY cell: W_mean >= D[ln 2 - H(p_hat)] - 3 SE_W;
+(c) floor plus speed limit at every cell: W_mean >= D[ln 2 -
+H(p_hat)] + W_2^2(empirical)/tau - 3 SE_W; (d) THE WALL, scoped
+to a = 2.4 with pre-registered pairs: p_hat(55) > p_hat(16) at
+D = 0.22 and p_hat(32) > p_hat(12) at D = 0.28, each by >= 3
+sigma combined at M = 6000 - error is non-monotone in tau because
+the substrate forgets while you write (overlay gaps 0.0102 and
+0.0149); (e) import - the fresh MFPT quadrature within the
+printed precision (0.05) of both P-24 pins (verified in the
+layer, registered as standing).
+changes-my-mind: (b) or (c) violated beyond its band at any cell,
+surviving the dt/2 protocol and the falsifier's independent
+reimplementation. The bounds are theorems; a surviving violation
+means the instrument's work-error bookkeeping is mis-derived, and
+that failure would be the finding.
+not-claimed-in-advance: optimal protocols; tightness or
+saturation of either bound; quantum costs (the bounds coincide
+but the prices differ - see LC-27); rungs 1 and 3; engineered
+feedback or measurement-based erasure.
