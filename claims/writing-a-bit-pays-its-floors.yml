@@ -1,0 +1,37 @@
+id: writing-a-bit-pays-its-floors
+statement: >
+  On rung 2 of the P-24 memory hierarchy - the locked double well
+  U = -(eps/2) cos 2 theta with kT = D - writing one bit by a
+  closed-loop linear ramp of a tilt field pays both derived
+  floors at every registered cell (26 cells, D in {0.22, 0.28},
+  a in {1.2, 2.4} straddling the derived critical tilt h_c = 2
+  eps, tau in derived grids): the mean Sekimoto work stays above
+  D[ln 2 - H(p)] and above D[ln 2 - H(p)] + W_2^2/tau with W_2
+  computed on the circle against the empirical commit sample -
+  and the H(p) refund and the 1/tau speed charge are both
+  load-bearing (each has a mutant). The Jarzynski identity holds
+  on the instrument's null cells and the dt/2 validation passes.
+  The wall: because the substrate forgets at its P-24-pinned hop
+  rate while you write, error is non-monotone in duration - at
+  D = 0.22 the registered pair held with its gap (0.0062) above
+  the registered combined-noise floor (0.0059): error 0.0088 at
+  tau = 16 vs 0.0150 at tau = 55 while work fell from 1.51 to
+  1.05; at D = 0.28 the registered pair fired (gap 0.0053 under
+  its 0.0084 floor, direction consistent, attributed in R-36 to
+  a power budget leaning on the deliberately unregistered
+  Kramers overlay) and the wall there is reported unregistered. Scope: this substrate
+  and protocol family, the registered grids and seeds; protocol
+  optimality, bound tightness, quantum costs, and rungs 1 and 3
+  are not claimed.
+premises: []
+prediction: P-37
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p37_derive.py with p37_registration.json (the layer: both floors, the critical tilt, the Kramers overlay, the Jarzynski sampling condition, domains); scripts/experiments/p37_write.py with p37_results.json (the 26 registered cells, nulls, wall pairs); independently reimplemented by scripts/verify/p37_price_of_bit.py with its own integrator, rejection-sampled starts, and a stricter fixed-cut W_2"
+    method: reimplementation
+null_system: "derived before registration: the Jarzynski closed-loop identity as the 8b conservation null with its sampling-condition design rule; the dt/2 work-integral bias band; binomial CLT on p; the Kramers two-state overlay computed but its magnitudes refused registration (P-2's lesson) - which is also where the one firing came from: the power budget used what the bands refused, and R-36 extends the corollary to power calculations"
+falsifier: "scripts/verify/p37_price_of_bit.py --mutant entropy-blind"
+novelty:
+  status: unchecked
+  citation: "the floors are classical (LC-27: Landauer 1961 lineage; Proesmans-Ehrich-Bechhoefer 2020; Van Vu-Saito 2023/2025); the contribution is the priced surface on THIS substrate with the wall inherited from P-24's derived forgetting rate, and the discipline artifacts around it"
+status: verified

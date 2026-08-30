@@ -236,8 +236,12 @@ def run_cell(D, a, tau, M, dt, seed, record_final=False):
             Ws[i] += -math.cos(th) * dh
             ths[i] = th + dt * (-dV(th, h)) + sq * rng.gauss(0, 1)
         hprev = h
+    # registered p = WRONG-well occupancy: the wrong well is at
+    # theta = pi, i.e. wrap(th) at distance > pi/2 from 0. (An
+    # earlier readout counted the right well under this name; the
+    # label fix is recorded in the note - dynamics unchanged.)
     wrong = sum(1 for th in ths
-                if abs(((th + math.pi) % TAU) - math.pi) < math.pi / 2)
+                if abs(((th + math.pi) % TAU) - math.pi) >= math.pi / 2)
     p = wrong / M
     out = {"W_mean": sum(Ws) / M,
            "W_se": (sum((w - sum(Ws) / M) ** 2 for w in Ws)

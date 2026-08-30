@@ -2553,3 +2553,39 @@ not-claimed-in-advance: optimal protocols; tightness or
 saturation of either bound; quantum costs (the bounds coincide
 but the prices differ - see LC-27); rungs 1 and 3; engineered
 feedback or measurement-based erasure.
+
+## R-36 — 2026-08-30 — resolves P-37 (mixed; one wall pair fired, attributed)
+Held: (a) both Jarzynski nulls (0.9880 +- 0.0107, 0.9990 +-
+0.0189) and the dt/2 cell (0.0487 vs 0.0469, band 0.0177);
+(b) the Landauer-with-errors floor at all 26 cells; (c) the floor
+PLUS the transport speed limit at all 26 cells - the measured
+surface sits a factor 2.5-6 above the combined bound (this linear
+ramp is far from optimal, as expected and not claimed); (e) the
+P-24 pin import (0.0499 and 6.5e-5, both under the 0.05 printed
+precision). The wall: at D = 0.22 the registered pair held -
+error 0.0088 at tau = 16 vs 0.0150 at tau = 55, gap 0.0062
+against 3 sigma = 0.0059 - writing slower COSTS FIDELITY because
+the substrate forgets while you write; and the work meanwhile
+FELL from 1.51 to 1.05: the tradeoff is real and priced.
+FIRED: the D = 0.28 wall pair - gap 0.0053 at 1.9 sigma,
+direction consistent, under the registered 3 sigma. Attribution:
+the pair's power was budgeted from the Kramers overlay whose
+magnitudes the registration itself refused to register; the
+overlay's prefactor under-predicts the best-cell error at
+eps/D = 3.6, and half the expected gap vanished. A design-power
+error - the unregistered magnitude leaked into the DESIGN through
+the M = 6000 choice; the R-32 corollary needs extending from
+clause bands to power calculations. Not rescued: the clause
+stands fired; the D = 0.28 direction is reported as consistent
+and unregistered.
+Also recorded: a readout-label bug found at the first run - the
+right-well population was reported under the wrong-well name.
+The floor clauses are insensitive (H(p) is symmetric), the wall
+clause was re-read from the SAME seeded trajectories with the
+registered definition, and the fix is a one-line readout change
+committed with this entry. The mind-change condition did not
+fire: both bounds held everywhere, surviving dt/2 and the
+falsifier's independent reimplementation.
+Claim filed: writing-a-bit-pays-its-floors (verified; falsifier
+scripts/verify/p37_price_of_bit.py, mutants half-work and
+entropy-blind). Results: scripts/experiments/p37_results.json.
