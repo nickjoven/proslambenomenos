@@ -1,0 +1,110 @@
+
+<title>Axes Are Moves</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf8;--ink:#22201c;--mute:#6b665c;--line:#ddd7cb;--accent:#2f6f8f;--accent-ink:#1f4d63;--dot:#c0392b;--good:#2a7a4b;--grid:#ece7dc;--cell:#e3ddd0;--mirror:#8a5fb0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--cell:#262a33;--mirror:#b895dd}}
+:root[data-theme="dark"]{--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--cell:#262a33;--mirror:#b895dd}
+body{background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:18px;line-height:1.55;margin:0;padding:32px 20px 80px}
+main{max-width:800px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:2rem;margin:0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.35rem;margin:0 0 8px}
+h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.05rem;margin:0 0 6px}
+p{max-width:64ch;margin:0 0 12px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px}
+.ctl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:12px 0}
+label{font-weight:700}
+button{font:inherit;font-weight:700;background:var(--accent);color:#fff;border:0;border-radius:6px;padding:8px 16px;cursor:pointer}
+.read{font-family:"IBM Plex Mono",monospace;font-size:.92rem;background:var(--grid);border-radius:6px;padding:8px 12px;margin-top:8px}
+svg{width:100%;height:auto;display:block}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+figure{margin:0}figcaption{font-size:.92rem;color:var(--mute);margin-top:6px}
+.q{border-left:5px solid var(--accent);padding-left:16px}
+.ans{display:none;margin-top:10px}.ans.show{display:block}
+.small{color:var(--mute);font-size:.95rem}
+</style>
+<main>
+<header>
+<h1>Axes Are Moves</h1>
+<p class="small">Runway, step 1c. You have x and y: "step sideways" and "step forward." Here are four more axes, each added the same way — as a new <em>kind of move</em> — and each one is also a new way of "do this and nothing changes."</p>
+</header>
+
+<section>
+<p>One grid, one budget. Every panel below has the same budget of moves; only the <b>kinds</b> of move differ. Blue is everything you can reach; red is the outer edge; green is where you start.</p>
+<div class="ctl"><label for="n">budget:</label><input id="n" type="range" min="3" max="14" value="8"><span id="nv">8</span></div>
+</section>
+
+<section>
+<div class="grid2">
+<figure><h3>1. Sideways and forward only (x, y)</h3><svg id="p1" viewBox="0 0 300 300"></svg><figcaption>The step-1b diamond. Two axes. Symmetry: slide the picture anywhere, it looks the same.</figcaption></figure>
+<figure><h3>2. Add a <b>heading</b> axis: a car that drives forward or turns</h3><svg id="p2" viewBox="0 0 300 300"></svg><figcaption>Moves: go forward one cell in the direction you face, or turn 45° (left or right). The turn rule is fair — left and right cost the same — yet the visible reach is <b>not round</b>: it leans the way the car started facing. A hidden axis (which way you face) warps the shadow. Symmetry it adds: turn everything together and nothing changes.</figcaption></figure>
+<figure><h3>3. Add a <b>scale</b> axis: steps or zooms</h3><svg id="p3" viewBox="0 0 300 300"></svg><figcaption>Moves: a step, or a zoom ×2 / ÷2 about the start. Reach becomes nested copies of the same shape — rings. "Equally far" now includes "equally zoomed." Symmetry it adds: scale everything together and nothing changes.</figcaption></figure>
+<figure><h3>4. Add a <b>flip</b> axis to the lopsided rule</h3><svg id="p4" viewBox="0 0 300 300"></svg><figcaption>Start from step 1b's falsifier (moving left costs double — lopsided). Add one move: <em>mirror the world</em> (cost 1). Purple is the mirrored reach. Lopsided plus its mirror is symmetric again. A flip is an axis with only two positions, and it still restores a symmetry the rule had lost.</figcaption></figure>
+</div>
+<div class="read" id="read"></div>
+</section>
+
+<section>
+<h2>The pattern</h2>
+<p>Every axis here was added by adding a kind of move, and every kind of move brought a symmetry: <b>slide</b> (x, y), <b>turn</b> (heading), <b>zoom</b> (scale), <b>mirror</b> (flip). And step 1's axis was <b>push</b> (time). "Axis of symmetry" is not a line drawn on a picture — it is a move you are allowed to make without anything changing.</p>
+<p>Panel 2 is the important warning. The rule was fair and the reach still wasn't round, because one of the axes was hidden from the picture. When a shadow looks lopsided, the first question is not "what's wrong with the rule" but "<em>which axis am I not seeing?</em>"</p>
+</section>
+
+<section class="q">
+<h2>The one question</h2>
+<p>In panel 2 the car's reach leans forward. Someone says: "so forward is a special direction — the rule isn't fair." <b>What would you check?</b></p>
+<button id="reveal">show what the page checks</button>
+<div class="ans" id="ans">
+<p>Start the car facing a different way. The page re-runs panel 2 with every starting heading and overlays them: <span id="union"></span>. The union is round. The rule never preferred forward; the <em>start</em> did — and "start facing east" is a choice on the hidden heading axis, not a fact about the moves. Fairness lives on all the axes at once, including the ones the picture doesn't show.</p>
+<svg id="p2u" viewBox="0 0 300 300" style="max-width:300px"></svg>
+</div>
+</section>
+
+<section>
+<h2>Where it could break</h2>
+<p class="small">Which sentence, which panel, which control. Notes so far: round smuggles in a pull; shapes that project to the same thing; dissect round out of uniformity; add axes by adding moves.</p>
+</section>
+</main>
+<script>
+(function(){
+const G=31, C=15, cw=300/G;
+function cells(){ return Array.from({length:G},()=>Array(G).fill(Infinity)); }
+function bfs(moves){ // moves: function(state)->[[state,cost]]; state key string; returns dist map keyed
+  const d=new Map(); const start=JSON.stringify(moves.start); d.set(start,0); const open=[[0,moves.start]];
+  while(open.length){ open.sort((a,b)=>a[0]-b[0]); const [dc,s]=open.shift(); const k=JSON.stringify(s); if(dc>d.get(k)) continue;
+    for(const [t,c] of moves.next(s)){ const tk=JSON.stringify(t); const nd=dc+c; if(nd<(d.has(tk)?d.get(tk):Infinity)){ d.set(tk,nd); open.push([nd,t]); } } }
+  return d; }
+function paint(svgId, reachable, extra){ let s=''; for(let i=0;i<G;i++)for(let j=0;j<G;j++){ const v=reachable(i,j); let f='var(--cell)', op='';
+    if(v==='edge') f='var(--dot)'; else if(v==='in'){ f='var(--accent)'; op=' opacity=".55"'; } else if(v==='mirror'){ f='var(--mirror)'; op=' opacity=".6"'; }
+    s+=`<rect x="${(j*cw).toFixed(1)}" y="${(i*cw).toFixed(1)}" width="${(cw-.5).toFixed(1)}" height="${(cw-.5).toFixed(1)}" fill="${f}"${op}/>`; }
+  s+=`<rect x="${(C*cw).toFixed(1)}" y="${(C*cw).toFixed(1)}" width="${(cw-.5).toFixed(1)}" height="${(cw-.5).toFixed(1)}" fill="var(--good)"/>`+(extra||''); document.getElementById(svgId).innerHTML=s; }
+function inb(i,j){ return i>=0&&j>=0&&i<G&&j<G; }
+function run(){ const N=+document.getElementById('n').value; document.getElementById('nv').textContent=N;
+  // 1: 4-dir
+  const d1=bfs({start:[C,C], next:([i,j])=>[[ [i+1,j],1],[[i-1,j],1],[[i,j+1],1],[[i,j-1],1]].filter(([t])=>inb(t[0],t[1]))});
+  paint('p1',(i,j)=>{ const v=d1.get(JSON.stringify([i,j])); return v===undefined||v>N?'out':(v>N-1?'edge':'in'); });
+  // 2: car with 8 headings, start facing east (h=0)
+  const H=[[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1],[1,0],[1,1]];
+  const carNext=([i,j,h])=>{ const out=[]; const [di,dj]=H[h]; if(inb(i+di,j+dj)) out.push([[i+di,j+dj,h],1]); out.push([[i,j,(h+1)%8],1]); out.push([[i,j,(h+7)%8],1]); return out; };
+  const d2=bfs({start:[C,C,0], next:carNext});
+  const proj=(d)=>{ const m=cells(); for(const [k,v] of d){ const [i,j]=JSON.parse(k); if(v<m[i][j]) m[i][j]=v; } return m; };
+  const m2=proj(d2);
+  paint('p2',(i,j)=>{ const v=m2[i][j]; return v>N?'out':(v>N-1?'edge':'in'); }, `<text x="6" y="14" font-size="11" fill="var(--mute)">starts facing →</text>`);
+  // 3: scale: state (i,j,s) with s in {-2..2}; step cost 1 at scale 2^s (moves by 2^s cells); zoom cost 1
+  const d3=bfs({start:[C,C,0], next:([i,j,s])=>{ const out=[]; const step=Math.pow(2,Math.max(s,0)); for(const [di,dj] of [[step,0],[-step,0],[0,step],[0,-step]]) if(inb(i+di,j+dj)) out.push([[i+di,j+dj,s],1]); if(s<2) out.push([[i,j,s+1],1]); if(s>-2) out.push([[i,j,s-1],1]); return out; }});
+  const m3=proj(d3);
+  paint('p3',(i,j)=>{ const v=m3[i][j]; return v>N?'out':(v>N-1?'edge':'in'); });
+  // 4: lopsided + mirror move: state (i,j,f) f in {0,1}; left costs 2 when f=0, right costs 2 when f=1; mirror toggles f (cost 1). Visible position is mirrored when f=1.
+  const d4=bfs({start:[C,C,0], next:([i,j,f])=>{ const out=[]; const lc=f?1:2, rc=f?2:1; if(inb(i,j-1)) out.push([[i,j-1,f],lc]); if(inb(i,j+1)) out.push([[i,j+1,f],rc]); if(inb(i+1,j)) out.push([[i+1,j,f],1]); if(inb(i-1,j)) out.push([[i-1,j,f],1]); out.push([[i,j,1-f],1]); return out; }});
+  const m4a=cells(), m4b=cells(); for(const [k,v] of d4){ const [i,j,f]=JSON.parse(k); const jj=f?(2*C-j):j; if(!inb(i,jj)) continue; if(f===0){ if(v<m4a[i][jj]) m4a[i][jj]=v; } else { if(v<m4b[i][jj]) m4b[i][jj]=v; } }
+  paint('p4',(i,j)=>{ const a=m4a[i][j]<=N, b=m4b[i][j]<=N; if(a&&b) return 'in'; if(a) return 'edge'; if(b) return 'mirror'; return 'out'; }, `<text x="6" y="14" font-size="11" fill="var(--mute)">red: reach as-is · purple: reach after a mirror move · blue: both</text>`);
+  document.getElementById('read').textContent=`budget ${N}. Panel 2's reach is lopsided with a fair rule; panel 4's lopsided rule becomes symmetric with one extra move.`;
+  // union over headings for the question
+  const u=cells(); for(let h0=0;h0<8;h0++){ const d=bfs({start:[C,C,h0], next:carNext}); const m=proj(d); for(let i=0;i<G;i++)for(let j=0;j<G;j++) if(m[i][j]<u[i][j]) u[i][j]=m[i][j]; }
+  paint('p2u',(i,j)=>{ const v=u[i][j]; return v>N?'out':(v>N-1?'edge':'in'); }); let cnt=0; for(let i=0;i<G;i++)for(let j=0;j<G;j++) if(u[i][j]<=N) cnt++; document.getElementById('union').textContent=`all eight starting headings, ${cnt} cells in the union`;
+}
+document.getElementById('n').oninput=run; run();
+document.getElementById('reveal').onclick=()=>document.getElementById('ans').classList.add('show');
+})();
+</script>

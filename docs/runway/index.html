@@ -1,0 +1,62 @@
+<title>The Runway</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf8;--ink:#22201c;--mute:#6b665c;
+ --line:#ddd7cb;--accent:#2f6f8f;--accent-ink:#1f4d63}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+ --bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;
+ --line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea}}
+:root[data-theme="dark"]{--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;
+ --mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea}
+body{background:var(--bg);color:var(--ink);margin:0;
+ font-family:"Atkinson Hyperlegible",system-ui,sans-serif;
+ font-size:18px;line-height:1.55;padding:40px 20px 80px}
+main{max-width:680px;margin:0 auto}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:2.1rem;
+ margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--mute);margin:0 0 26px;max-width:60ch}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+li{background:var(--panel);border:1px solid var(--line);
+ border-radius:8px;padding:16px 20px}
+li a{font-family:Fraunces,Georgia,serif;font-weight:600;
+ font-size:1.2rem;color:var(--accent-ink);text-decoration:none}
+li a:hover,li a:focus-visible{text-decoration:underline;outline:none}
+li p{margin:6px 0 0;color:var(--mute);max-width:58ch}
+.step{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;
+ color:var(--mute)}
+.ask{margin-top:28px;border-left:3px solid var(--accent);
+ padding:10px 16px;background:var(--panel);border-radius:0 8px 8px 0}
+.foot{margin-top:30px;color:var(--mute);font-size:.9rem}
+.foot a{color:var(--accent-ink)}
+</style>
+<main>
+<h1>The Runway</h1>
+<p class="sub">A no-calculus track toward the half turn: each page is one
+idea, one interactive object, and nothing you have to take on faith.
+Read them in order; each earns the next.</p>
+<ol>
+ <li><span class="step">Step 1</span><br>
+  <a href="step1.html">Return Before Radius</a>
+  <p>Three shapes, one track: "round" defined by coming back, before
+  any mention of a radius.</p></li>
+ <li><span class="step">Step 1b</span><br>
+  <a href="step1b.html">Where Round Comes From</a>
+  <p>Reachable sets: run every allowed move and watch the circle
+  appear as a consequence, not a definition.</p></li>
+ <li><span class="step">Step 1c</span><br>
+  <a href="step1c.html">Axes Are Moves</a>
+  <p>An axis is not a place, it is something you do — moves, mirrors,
+  and what composing them buys.</p></li>
+ <li><span class="step">Step 1d</span><br>
+  <a href="step1d.html">Reach in Three Dimensions</a>
+  <p>The reach of moves in 3D, its shadow back in 2D, and the bridge
+  table the next step will stand on.</p></li>
+</ol>
+<div class="ask"><strong>The open question this track is waiting on:</strong>
+where does step&nbsp;1d break for you — the first sentence, picture, or
+control that stops earning its keep? Step&nbsp;2 (amplitude: the half
+turn) is built from that answer.</div>
+<p class="foot">Part of <a href="../index.html">the plane</a> ·
+<a href="../graph.html">the inviolables</a> ·
+<a href="../gates.html">the gates</a>.</p>
+</main>

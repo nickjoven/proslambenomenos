@@ -1,0 +1,135 @@
+
+<title>Reach in Three Dimensions</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf8;--ink:#22201c;--mute:#6b665c;--line:#ddd7cb;--accent:#2f6f8f;--accent-ink:#1f4d63;--dot:#c0392b;--good:#2a7a4b;--grid:#ece7dc;--cell:#e3ddd0;--top:#5f93b3;--left:#3f7494;--right:#2a5b78;--etop:#d9665a;--eleft:#c0392b;--eright:#9a2d22}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--cell:#262a33;--top:#8bbbd9;--left:#5e93b6;--right:#3f6f8f;--etop:#f0857a;--eleft:#d9665a;--eright:#a8463c}}
+:root[data-theme="dark"]{--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--cell:#262a33;--top:#8bbbd9;--left:#5e93b6;--right:#3f6f8f;--etop:#f0857a;--eleft:#d9665a;--eright:#a8463c}
+body{background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:18px;line-height:1.55;margin:0;padding:32px 20px 80px}
+main{max-width:820px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:2rem;margin:0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.35rem;margin:0 0 8px}
+h3{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.05rem;margin:0 0 6px}
+p{max-width:64ch;margin:0 0 12px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px}
+.ctl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:12px 0}
+label{font-weight:700}select,input[type=range]{font:inherit}
+button{font:inherit;font-weight:700;background:var(--accent);color:#fff;border:0;border-radius:6px;padding:8px 16px;cursor:pointer}
+.read{font-family:"IBM Plex Mono",monospace;font-size:.92rem;background:var(--grid);border-radius:6px;padding:8px 12px;margin-top:8px}
+svg{width:100%;height:auto;display:block}
+.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;align-items:start}
+@media (max-width:640px){.grid2{grid-template-columns:1fr}}
+figure{margin:0}figcaption{font-size:.92rem;color:var(--mute);margin-top:6px}
+table{border-collapse:collapse;font-size:.95rem;width:100%}td,th{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{font-weight:700}
+.q{border-left:5px solid var(--accent);padding-left:16px}
+.ans{display:none;margin-top:10px}.ans.show{display:block}
+.small{color:var(--mute);font-size:.95rem}
+</style>
+<main>
+<header>
+<h1>Reach in Three Dimensions</h1>
+<p class="small">Runway, step 1d. The same dissection with a real up-and-down axis — drawn as stacked blocks, turned so you can see the shape, and then flattened to its shadow so you can see what a shadow loses.</p>
+</header>
+
+<section>
+<p>Start on one block. Choose which moves are allowed. Colour every block reachable within the budget; the outer layer (red) is "exactly as far as the budget allows."</p>
+<div class="ctl">
+<label for="rule">moves:</label>
+<select id="rule">
+<option value="6">6 directions: ±x, ±y, ±z</option>
+<option value="26">26 directions: those plus every diagonal</option>
+<option value="inf">any direction — cost is straight-line distance</option>
+</select>
+<label for="n">budget:</label><input id="n" type="range" min="2" max="7" value="5"><span id="nv">5</span>
+<label for="view">turn:</label><input id="view" type="range" min="0" max="360" value="35"><span id="vv">35°</span>
+</div>
+<div class="grid2">
+<figure><svg id="iso" viewBox="0 0 520 460" role="img" aria-label="three-dimensional reach as stacked blocks"></svg><figcaption>Blocks, seen from above-and-to-the-side. Drag the "turn" slider: the shape looks the same from every side — that sameness is the symmetry the rule has.</figcaption></figure>
+<div>
+<figure><svg id="shadow" viewBox="0 0 220 220" role="img" aria-label="shadow on the floor"></svg><figcaption><b>Shadow on the floor</b> (every block squashed down to its x, y).</figcaption></figure>
+<figure style="margin-top:12px"><svg id="slices" viewBox="0 0 220 160" role="img" aria-label="horizontal slices"></svg><figcaption><b>Slices</b>, bottom to top: the reach cut at each height.</figcaption></figure>
+</div>
+</div>
+<div class="read" id="read"></div>
+</section>
+
+<section>
+<h2>What the three rules give</h2>
+<p>Six directions: an <b>octahedron</b> — a diamond in every slice, shrinking to a point at the top and bottom. Twenty-six: a <b>cube</b> — the same square in every slice. Any direction: the <b>ball</b> — round slices that shrink. Three dimensions did not add a new idea; it added a new axis and the same dissection ran through it.</p>
+<p>Now the shadow. The octahedron's shadow is a diamond; the cube's is a square; the ball's is a round disc. <b>The shadow of the 3-D reach is exactly the 2-D reach from step 1b.</b> Looking at the floor alone, you cannot tell whether the thing casting it had a third axis. That's the hidden-axis lesson from step 1c, now with a spatial axis doing the hiding: a shadow keeps the symmetries of the floor and throws away every axis it flattened.</p>
+</section>
+
+<section class="q">
+<h2>The one question</h2>
+<p>You are shown only the diamond shadow. Someone says "that's a two-dimensional reach with four moves." <b>Can you tell?</b></p>
+<button id="reveal">answer</button>
+<div class="ans" id="ans">
+<p>No — and the slices are how you would find out. A shadow is one projection; the slices are a different one, and an octahedron's slices shrink while a flat diamond has only one slice. Two projections that disagree reveal the axis a single projection hid. Step 1 made this point with a track (one projection: how far round); step 1c with a car (the heading axis); here it is with up-and-down. It is the same point each time: <em>one projection never settles what the thing is; two can.</em></p>
+</div>
+</section>
+
+<section>
+<h2>Bridges to dynamics that this vocabulary can carry — and the ones it can't yet</h2>
+<p>The words so far: <b>move, rule, budget, reach, edge, shadow, slice, return, track, hidden axis, symmetry</b>. Here is what each honestly buys in the language of things that change, with nothing added.</p>
+<table>
+<tr><th>in these words</th><th>the dynamics it is</th><th>valid?</th></tr>
+<tr><td>the edge of reach at budget n, then n+1, then n+2…</td><td>a <b>front</b> moving outward; the rule is the law of how fronts spread (Huygens: every point on a front is a new start). Round fronts = a medium with no preferred direction; diamond fronts = a medium with four.</td><td>yes — it is the counting form of wave propagation, and the corner from later steps is a front with a kink</td></tr>
+<tr><td>the track of pushes (step 1)</td><td>a <b>trajectory</b>; repeating = a periodic orbit; never repeating = quasi-periodic</td><td>yes — the hopper is already a dynamical system, the rule is its law</td></tr>
+<tr><td>the car's reach (step 1c)</td><td>the <b>reachable set</b> of a system with a constraint on how it may move; "every start heading, union is round" = you can steer anywhere (controllability)</td><td>yes — this is the counting form of a constrained vehicle, and the leaning reach is the known signature of such constraints</td></tr>
+<tr><td>a move that changes nothing (a symmetry)</td><td>a quantity the moves leave unchanged: under pushes, how many times you've gone round; under a flip, whether you are mirrored (a two-valued count)</td><td>yes, as <b>invariants</b>; the full "symmetry gives a conserved quantity" story needs rates, which we don't have yet</td></tr>
+<tr><td>a lopsided shadow with a fair rule</td><td>a <b>hidden variable</b>: the system has a coordinate you aren't plotting</td><td>yes as a question to ask; not yet as a claim that every lopsided thing has one</td></tr>
+<tr><td>scale moves (step 1c rings)</td><td>self-similarity: the same pattern at every zoom</td><td>partly — the word is earned, the dynamics of scaling (why patterns repeat across zooms) is not</td></tr>
+<tr><td>force, push-back, weight, energy, speed</td><td>—</td><td><b>no.</b> Every one needs "how fast is the change changing," which is a rate of a rate. These words are not on the page and the page must not pretend they are. They arrive with an amplitude axis and a rule for rates, later.</td></tr>
+<tr><td>waves adding up, interference, cancelling</td><td>—</td><td><b>no.</b> Needs an amplitude that can be positive or negative and a rule for adding it; reach is only yes/no.</td></tr>
+<tr><td>curvature</td><td>count the blocks on the edge of reach as the budget grows: on a flat grid the count grows one way; on a grid drawn on a cone or a ball it grows differently</td><td>earnable next — it is a counting statement (the rate the edge grows) and needs no new words; not done on this page</td></tr>
+</table>
+<p class="small">So the valid bridges are: fronts, trajectories, reachable sets, invariants, hidden variables. The invalid ones are everything with a rate of a rate or a signed amplitude. The next honest axis to add is <b>amplitude</b> — a move that makes a thing bigger or smaller and can go negative — and that is where step 2's half turn ("comes back flipped") turns out to live.</p>
+</section>
+
+<section>
+<h2>Where it could break</h2>
+<p class="small">Which sentence, which control, which picture. Notes so far: round smuggles in a pull; shapes that project to the same thing; dissect round out of uniformity; add axes by adding moves; now a real third axis and its shadow.</p>
+</section>
+</main>
+<script>
+(function(){
+const rule=document.getElementById('rule'), n=document.getElementById('n'), view=document.getElementById('view');
+function dist(R, N){ const d={}; const key=(x,y,z)=>`${x},${y},${z}`; const mv=[];
+  if(R==='6'){ for(const a of [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]]) mv.push([...a,1]); }
+  else if(R==='26'){ for(let x=-1;x<=1;x++)for(let y=-1;y<=1;y++)for(let z=-1;z<=1;z++) if(x||y||z) mv.push([x,y,z,1]); }
+  const set=new Map();
+  if(R==='inf'){ for(let x=-N;x<=N;x++)for(let y=-N;y<=N;y++)for(let z=-N;z<=N;z++){ const r=Math.hypot(x,y,z); if(r<=N+1e-9) set.set(key(x,y,z),r); } return set; }
+  set.set(key(0,0,0),0); const open=[[0,0,0,0]];
+  while(open.length){ open.sort((a,b)=>a[0]-b[0]); const [dc,x,y,z]=open.shift(); if(dc>set.get(key(x,y,z))) continue; if(dc>=N) continue;
+    for(const [dx,dy,dz,c] of mv){ const nx=x+dx,ny=y+dy,nz=z+dz; if(Math.max(Math.abs(nx),Math.abs(ny),Math.abs(nz))>N) continue; const nd=dc+c; const k=key(nx,ny,nz); if(nd<(set.has(k)?set.get(k):Infinity)){ set.set(k,nd); open.push([nd,nx,ny,nz]); } } }
+  return set; }
+function draw(){ const N=+n.value, R=rule.value, th=(+view.value)*Math.PI/180; document.getElementById('nv').textContent=N; document.getElementById('vv').textContent=view.value+'°';
+  const set=dist(R,N); const blocks=[]; for(const [k,v] of set){ const [x,y,z]=k.split(',').map(Number); blocks.push({x,y,z,edge:v>N-1+1e-9}); }
+  // isometric-ish projection with rotation th about z
+  const s=18, cx=260, cy=250, c=Math.cos(th), sn=Math.sin(th);
+  const P=(x,y,z)=>{ const rx=x*c-y*sn, ry=x*sn+y*c; return [cx+(rx-ry)*s*0.87, cy+(rx+ry)*s*0.5-z*s]; };
+  blocks.sort((a,b)=>{ const da=(a.x*c-a.y*sn)+(a.x*sn+a.y*c)-a.z*0.001, db=(b.x*c-b.y*sn)+(b.x*sn+b.y*c)-b.z*0.001; return (da-db)||(a.z-b.z); });
+  let out=''; for(const b of blocks){ const isS=b.x===0&&b.y===0&&b.z===0;
+    const [ax,ay]=P(b.x-.5,b.y-.5,b.z+.5),[bx,by]=P(b.x+.5,b.y-.5,b.z+.5),[cx2,cy2]=P(b.x+.5,b.y+.5,b.z+.5),[dx,dy]=P(b.x-.5,b.y+.5,b.z+.5);
+    const [ex,ey]=P(b.x-.5,b.y+.5,b.z-.5),[fx,fy]=P(b.x+.5,b.y+.5,b.z-.5),[gx,gy]=P(b.x+.5,b.y-.5,b.z-.5);
+    const t=isS?'var(--good)':(b.edge?'var(--etop)':'var(--top)'), l=isS?'var(--good)':(b.edge?'var(--eleft)':'var(--left)'), r=isS?'var(--good)':(b.edge?'var(--eright)':'var(--right)');
+    out+=`<polygon points="${ax},${ay} ${bx},${by} ${cx2},${cy2} ${dx},${dy}" fill="${t}" stroke="var(--bg)" stroke-width=".6"/>`;
+    out+=`<polygon points="${dx},${dy} ${cx2},${cy2} ${fx},${fy} ${ex},${ey}" fill="${l}" stroke="var(--bg)" stroke-width=".6"/>`;
+    out+=`<polygon points="${bx},${by} ${cx2},${cy2} ${fx},${fy} ${gx},${gy}" fill="${r}" stroke="var(--bg)" stroke-width=".6"/>`; }
+  document.getElementById('iso').innerHTML=out;
+  // shadow
+  const sh=new Map(); for(const b of blocks){ const k=`${b.x},${b.y}`; if(!sh.has(k)||(!b.edge&&sh.get(k)==='edge')) sh.set(k, b.edge?'edge':'in'); }
+  // an x,y is an edge of the shadow only if every block above it is edge
+  const shadowEdge=new Map(); for(const b of blocks){ const k=`${b.x},${b.y}`; shadowEdge.set(k,(shadowEdge.has(k)?shadowEdge.get(k):true)&&b.edge); }
+  const W=2*N+1, cw=220/W; let so=''; for(let x=-N;x<=N;x++)for(let y=-N;y<=N;y++){ const k=`${x},${y}`; let f='var(--cell)',op=''; if(sh.has(k)){ f=shadowEdge.get(k)?'var(--dot)':'var(--accent)'; if(!shadowEdge.get(k)) op=' opacity=".55"'; } so+=`<rect x="${((x+N)*cw).toFixed(1)}" y="${((y+N)*cw).toFixed(1)}" width="${(cw-.5).toFixed(1)}" height="${(cw-.5).toFixed(1)}" fill="${f}"${op}/>`; }
+  document.getElementById('shadow').innerHTML=so;
+  // slices
+  const ns=Math.min(2*N+1,7); const zs=[]; for(let i=0;i<ns;i++) zs.push(Math.round(-N+(2*N)*i/(ns-1))); const sw=220/ns; let sl='';
+  zs.forEach((z,i)=>{ const cells=blocks.filter(b=>b.z===z); const sc=sw/W*0.9; cells.forEach(b=>{ sl+=`<rect x="${(i*sw+(b.x+N)*sc+2).toFixed(1)}" y="${(150-(b.y+N+1)*sc).toFixed(1)}" width="${Math.max(sc-.3,0.8).toFixed(1)}" height="${Math.max(sc-.3,0.8).toFixed(1)}" fill="${b.edge?'var(--dot)':'var(--accent)'}"/>`; }); sl+=`<text x="${(i*sw+sw/2).toFixed(1)}" y="158" font-size="9" fill="var(--mute)" text-anchor="middle">z=${z}</text>`; });
+  document.getElementById('slices').innerHTML=sl;
+  const names={'6':'octahedron (diamond slices, shrinking)','26':'cube (same square every slice)','inf':'ball (round slices, shrinking)'};
+  document.getElementById('read').textContent=`budget ${N}: ${blocks.length} blocks - ${names[R]}; shadow = the step-1b shape for the same rule`; }
+rule.onchange=draw; n.oninput=draw; view.oninput=draw; draw();
+document.getElementById('reveal').onclick=()=>document.getElementById('ans').classList.add('show');
+})();
+</script>
