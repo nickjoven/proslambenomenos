@@ -1,0 +1,114 @@
+
+<title>Where Round Comes From</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf8;--ink:#22201c;--mute:#6b665c;--line:#ddd7cb;--accent:#2f6f8f;--accent-ink:#1f4d63;--dot:#c0392b;--good:#2a7a4b;--grid:#ece7dc;--cell:#e3ddd0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--cell:#262a33}}
+:root[data-theme="dark"]{--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--cell:#262a33}
+body{background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:18px;line-height:1.55;margin:0;padding:32px 20px 80px}
+main{max-width:780px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:2rem;margin:0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.35rem;margin:0 0 8px}
+p{max-width:64ch;margin:0 0 12px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px}
+.ctl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:12px 0}
+label{font-weight:700}
+select,input[type=range]{font:inherit}
+button{font:inherit;font-weight:700;background:var(--accent);color:#fff;border:0;border-radius:6px;padding:8px 16px;cursor:pointer}
+button.alt{background:transparent;color:var(--accent-ink);border:2px solid var(--accent)}
+button:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px}
+.read{font-family:"IBM Plex Mono",monospace;font-size:.95rem;background:var(--grid);border-radius:6px;padding:10px 12px;margin-top:10px}
+svg{width:100%;height:auto;display:block}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.row figure{margin:0}.row figcaption{font-size:.9rem;color:var(--mute);text-align:center;margin-top:4px}
+.q{border-left:5px solid var(--accent);padding-left:16px}
+.ans{display:none;margin-top:10px}.ans.show{display:block}
+.small{color:var(--mute);font-size:.95rem}
+</style>
+<main>
+<header>
+<h1>Where Round Comes From</h1>
+<p class="small">Runway, step 1b — a dissection. "Round" is not a shape you start with. It is what <em>uniform reach</em> looks like once you decide which moves are allowed. Change the moves and the round thing changes; make one direction special and it disappears.</p>
+</header>
+
+<section>
+<h2>Reach</h2>
+<p>Stand on one cell of a grid. Pick a <b>rule for moves</b>. Colour every cell you can reach with a budget of <b>n</b> moves. The coloured region is your <em>reach</em>; its edge is everything exactly n moves away — "equally far" in the only sense the rule knows.</p>
+<div class="ctl">
+<label for="rule">moves allowed:</label>
+<select id="rule">
+<option value="4">up, down, left, right (4 directions)</option>
+<option value="8">those plus diagonals (8 directions)</option>
+<option value="16">16 directions (knight-length steps too), each costing its true length</option>
+<option value="inf">any direction, any length — cost is the straight-line distance</option>
+<option value="lop">4 directions, but moving LEFT costs double</option>
+</select>
+<label for="n">budget n:</label><input id="n" type="range" min="2" max="18" value="10"><span id="nv">10</span>
+</div>
+<svg id="reach" viewBox="0 0 420 420" role="img" aria-label="reach region on a grid"></svg>
+<div class="read" id="reachread"></div>
+</section>
+
+<section>
+<h2>What you just saw</h2>
+<p>Four directions give a <b>diamond</b>. Eight give a <b>square</b>. Sixteen give a shape with more corners, closer to round. Any direction at all gives the <b>round</b> one. Nothing round was drawn in advance — the round thing is what the edge of "equally far" turns into as the rule stops preferring any direction. <em>Round is the projection of uniformity.</em></p>
+<p>And the last rule — left costs double — is the falsifier. Every direction is still allowed; only one is made special. The reach goes lopsided and there is no round thing to be found. Roundness needed uniformity, not the other way round.</p>
+</section>
+
+<section>
+<h2>The same dissection by dimension</h2>
+<p>Hold the rule fixed ("any direction") and change how many directions exist at all.</p>
+<div class="row">
+<figure><svg id="d1" viewBox="0 0 200 60" role="img" aria-label="one dimension"></svg><figcaption>1 dimension: a line. Equally far = <b>two points</b>. That's the whole "circle" here.</figcaption></figure>
+<figure><svg id="d2" viewBox="0 0 200 200" role="img" aria-label="two dimensions"></svg><figcaption>2 dimensions: the edge of reach is the round loop.</figcaption></figure>
+<figure><svg id="d3" viewBox="0 0 200 200" role="img" aria-label="three dimensions as slices"></svg><figcaption>3 dimensions, shown as slices: a stack of round loops that shrink toward the top and bottom — a ball, cut.</figcaption></figure>
+</div>
+<p class="small">Step 1's band lives in the first picture: on a line that loops, "equally far both ways" is two points, and the hopper could never see roundness because there was none to see. Round needs at least two directions to be uniform across.</p>
+</section>
+
+<section class="q">
+<h2>Which of these is the real circle?</h2>
+<button id="reveal">answer</button>
+<div class="ans" id="ans">
+<p><b>None of them, and all of them.</b> Each is "equally far under its rule." The diamond is the circle of a city grid; the square is the circle of a chessboard king; the round one is the circle of open ground. Asking which is real is asking which rule is real — and the rule is a choice about moves, not a fact about shape. What is <em>not</em> a choice: whichever rule you pick, if it treats all directions alike, the reach has a centre, a single size, and looks the same turned any way. Those are the things "round" actually means. The smooth curve is the one case people draw first, which is why step 1 had to take it away.</p>
+</div>
+</section>
+
+<section>
+<h2>Where it could break</h2>
+<p class="small">Which sentence, which control, which picture. Your notes so far: round smuggles in a pull; show shapes that project to the same thing; dissect roundness out of uniformity under constraints — this page is the third.</p>
+</section>
+</main>
+<script>
+(function(){
+const G=41, C=Math.floor(G/2);
+const MOVES={
+ "4":[[1,0,1],[-1,0,1],[0,1,1],[0,-1,1]],
+ "8":[[1,0,1],[-1,0,1],[0,1,1],[0,-1,1],[1,1,1],[1,-1,1],[-1,1,1],[-1,-1,1]],
+ "16":[[1,0,1],[-1,0,1],[0,1,1],[0,-1,1],[1,1,Math.SQRT2],[1,-1,Math.SQRT2],[-1,1,Math.SQRT2],[-1,-1,Math.SQRT2],[2,1,Math.sqrt(5)],[2,-1,Math.sqrt(5)],[-2,1,Math.sqrt(5)],[-2,-1,Math.sqrt(5)],[1,2,Math.sqrt(5)],[1,-2,Math.sqrt(5)],[-1,2,Math.sqrt(5)],[-1,-2,Math.sqrt(5)]],
+ "lop":[[1,0,1],[-1,0,2],[0,1,1],[0,-1,1]]
+};
+function dist(rule){
+  const d=Array.from({length:G},()=>Array(G).fill(Infinity)); d[C][C]=0;
+  if(rule==="inf"){ for(let i=0;i<G;i++)for(let j=0;j<G;j++) d[i][j]=Math.hypot(i-C,j-C); return d; }
+  const mv=MOVES[rule]; const q=[[C,C]]; // Dijkstra-lite with a simple priority loop (small grid)
+  const open=[[0,C,C]];
+  while(open.length){ open.sort((a,b)=>a[0]-b[0]); const [dc,i,j]=open.shift(); if(dc>d[i][j]) continue;
+    for(const [di,dj,c] of mv){ const a=i+di,b=j+dj; if(a<0||b<0||a>=G||b>=G) continue; const nd=dc+c; if(nd<d[a][b]){ d[a][b]=nd; open.push([nd,a,b]); } } }
+  return d;
+}
+const reach=document.getElementById('reach'), rr=document.getElementById('reachread'), rule=document.getElementById('rule'), n=document.getElementById('n');
+function drawReach(){ const N=+n.value; document.getElementById('nv').textContent=N; const d=dist(rule.value); const cw=420/G; let s=''; let inside=0, edge=0;
+  for(let i=0;i<G;i++)for(let j=0;j<G;j++){ const v=d[i][j]; let f='var(--cell)'; if(v<=N+1e-9){ inside++; const isEdge=v>N-1+1e-9; if(isEdge) edge++; f=isEdge?'var(--dot)':'var(--accent)'; }
+    s+=`<rect x="${(j*cw).toFixed(1)}" y="${(i*cw).toFixed(1)}" width="${(cw-0.6).toFixed(1)}" height="${(cw-0.6).toFixed(1)}" fill="${f}"${v<=N+1e-9&&!(v>N-1+1e-9)?' opacity=".55"':''}/>`; }
+  s+=`<rect x="${(C*cw).toFixed(1)}" y="${(C*cw).toFixed(1)}" width="${(cw-0.6).toFixed(1)}" height="${(cw-0.6).toFixed(1)}" fill="var(--good)"/>`;
+  reach.innerHTML=s; const names={"4":"diamond","8":"square","16":"many-cornered, nearly round","inf":"round","lop":"lopsided - no round thing here"};
+  rr.textContent=`budget ${N}: ${inside} cells reachable; the outer band (red) is "exactly as far as the budget allows" - shape: ${names[rule.value]}`; }
+rule.onchange=drawReach; n.oninput=drawReach; drawReach();
+// dimension panels
+(function(){ let s=`<line x1="10" y1="30" x2="190" y2="30" stroke="var(--line)" stroke-width="3"/><rect x="96" y="22" width="8" height="16" fill="var(--good)"/>`; s+=`<rect x="36" y="22" width="8" height="16" fill="var(--dot)"/><rect x="156" y="22" width="8" height="16" fill="var(--dot)"/>`; document.getElementById('d1').innerHTML=s; })();
+(function(){ const pts=[]; for(let k=0;k<=72;k++){ const a=2*Math.PI*k/72; pts.push(`${(100+70*Math.cos(a)).toFixed(1)},${(100+70*Math.sin(a)).toFixed(1)}`);} document.getElementById('d2').innerHTML=`<polyline points="${pts.join(' ')}" fill="none" stroke="var(--dot)" stroke-width="4"/><rect x="96" y="96" width="8" height="8" fill="var(--good)"/>`; })();
+(function(){ let s=''; const zs=[-0.9,-0.6,-0.3,0,0.3,0.6,0.9]; zs.forEach((z,i)=>{ const r=70*Math.sqrt(1-z*z); const cy=100-60*z; const pts=[]; for(let k=0;k<=72;k++){ const a=2*Math.PI*k/72; pts.push(`${(100+r*Math.cos(a)).toFixed(1)},${(cy+0.35*r*Math.sin(a)).toFixed(1)}`);} s+=`<polyline points="${pts.join(' ')}" fill="none" stroke="var(--dot)" stroke-width="3" opacity="${0.45+0.5*(1-Math.abs(z))}"/>`; }); s+=`<rect x="96" y="96" width="8" height="8" fill="var(--good)"/>`; document.getElementById('d3').innerHTML=s; })();
+document.getElementById('reveal').onclick=()=>document.getElementById('ans').classList.add('show');
+})();
+</script>

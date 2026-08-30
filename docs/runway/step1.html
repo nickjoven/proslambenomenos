@@ -1,0 +1,138 @@
+
+<title>Return Before Radius</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf8;--ink:#22201c;--mute:#6b665c;--line:#ddd7cb;--accent:#2f6f8f;--accent-ink:#1f4d63;--dot:#c0392b;--good:#2a7a4b;--grid:#ece7dc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36}}
+:root[data-theme="dark"]{--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36}
+body{background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:18px;line-height:1.55;margin:0;padding:32px 20px 80px}
+main{max-width:760px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:2rem;margin:0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.35rem;margin:0 0 8px}
+p{max-width:62ch;margin:0 0 12px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px}
+.ctl{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin:12px 0}
+label{font-weight:700}
+input[type=number]{width:4em;font:inherit}
+input[type=range]{width:240px}
+button{font:inherit;font-weight:700;background:var(--accent);color:#fff;border:0;border-radius:6px;padding:8px 16px;cursor:pointer}
+button.alt{background:transparent;color:var(--accent-ink);border:2px solid var(--accent)}
+button:focus-visible{outline:3px solid var(--accent-ink);outline-offset:2px}
+.read{font-family:"IBM Plex Mono",monospace;font-size:.95rem;background:var(--grid);border-radius:6px;padding:10px 12px;margin-top:10px}
+svg{width:100%;height:auto;display:block}
+.q{border-left:5px solid var(--accent);padding-left:16px}
+.ans{display:none;margin-top:10px}.ans.show{display:block}
+.small{color:var(--mute);font-size:.95rem}
+.note{background:var(--grid);border-radius:6px;padding:12px 14px;font-size:.95rem}
+</style>
+<main>
+<header>
+<h1>Return Before Radius</h1>
+<p class="small">Runway, step 1, third draft — built on your suggestion: two shapes are the same when their records are indistinguishable.</p>
+</header>
+
+<section>
+<h2>Three shapes, one set of pushes</h2>
+<p>Below are three shapes that look nothing alike: a flat band whose two edges count as the same spot, a square loop, and a lumpy loop. A hopper stands on each. <b>One push moves all three hoppers the same fraction of the way around their own shape.</b> That fraction is the only thing you control.</p>
+<div class="ctl">
+<label for="num">fraction per push =</label>
+<input id="num" type="number" min="1" max="99" value="1"> / <input id="den" type="number" min="1" max="99" value="4">
+<button id="push">push once</button>
+<button id="push10" class="alt">push 10</button>
+<button id="reset" class="alt">reset</button>
+<button id="golden" class="alt">use the golden number</button>
+</div>
+<svg id="shapes" viewBox="0 0 760 250" role="img" aria-label="three shapes with a hopper each"></svg>
+<div class="read" id="read">pushes: 0</div>
+</section>
+
+<section>
+<h2>One record</h2>
+<p>Each push adds one column to the track. The mark is <em>how far around</em> the hopper stood — as a fraction of its shape. All three shapes write the <b>same column every time</b>, so there is one track, not three.</p>
+<svg id="track" viewBox="0 0 760 170" role="img" aria-label="the shared track"></svg>
+<div class="read" id="trackread">the track repeats after: — pushes</div>
+</section>
+
+<section class="q">
+<h2>Which shape made this track?</h2>
+<button id="which">answer</button>
+<div class="ans" id="whichans">
+<p><b>There is no answer.</b> The track is identical for all three. Anything the record cannot tell apart, the rule does not care about: the band, the square and the lump are <em>the same shape as far as returning goes</em>. Roundness, corners, lumps, a top and a bottom — none of it reaches the record. That is what "a circle" means here, and it is all it means: <b>whatever leaves this kind of track.</b></p>
+<p>This is why the round picture in the first draft was misleading: it was one of these three, pretending to be the only one.</p>
+</div>
+</section>
+
+<section>
+<h2>Repeat or never</h2>
+<p>With 1/4 the track repeats every 4 columns; with 3/7 every 7. With the golden number — 0.618033…, not a fraction of whole numbers — it never repeats; new marks keep landing in the spaces between old ones. Stop it anywhere and the spaces between marks come in at most three sizes (Steinhaus, 1950s); the readout under the band counts them.</p>
+<div class="ctl"><label for="n3">marks:</label><input id="n3" type="range" min="3" max="60" value="13"><span id="n3v">13</span></div>
+<svg id="gaps" viewBox="0 0 760 90" role="img" aria-label="gaps between golden marks"></svg>
+<div class="read" id="gapread"></div>
+</section>
+
+<section class="q">
+<h2>The one question</h2>
+<p>Someone tells you: "I pushed the golden hopper 100 times and it stood exactly on its starting spot." <b>What would you check before believing it?</b></p>
+<button id="reveal">show what the page checks</button>
+<div class="ans" id="ans">
+<p>Push 100 times and measure. It ends <span id="far"></span> of the way around from the start — near, never zero. A fraction of whole numbers returns exactly; the golden number only comes near. <b>Exact return versus near return</b> is step 1.</p>
+</div>
+</section>
+
+<section>
+<h2>The first shape the track can tell apart</h2>
+<p>Glue the band's edges <em>with a flip</em> — the top of the right edge meets the bottom of the left. Now the hopper comes back upside-down, and the record changes: it takes <b>two</b> trips round to be back exactly as you started. The track <em>can</em> see that. That is step 2, and it's the first time a shape earns a name of its own.</p>
+<p class="small">Which sentence stopped making sense, which control surprised you, what picture did you want? Your two notes so far — "round smuggles in a pull" and "show two shapes that project to the same thing" — are the reason this is the third draft.</p>
+</section>
+</main>
+<script>
+(function(){
+const PHI=(Math.sqrt(5)-1)/2;
+let golden=false, pos=0, hist=[0];
+const L=40, R=720, X=p=>L+(R-L)*p;
+function frac(){ return golden?PHI:(+document.getElementById('num').value)/(+document.getElementById('den').value); }
+function near(a,b){ const d=((a-b)%1+1)%1; return Math.min(d,1-d)<1e-9; }
+// shape 1: band (x from 60 to 260 at y 130); shape 2: square loop centred 390; shape 3: lumpy loop centred 620
+function bandPt(p){ return [60+200*p, 130]; }
+function squarePt(p){ const s=4*p; if(s<1) return [320+140*s, 60]; if(s<2) return [460, 60+140*(s-1)]; if(s<3) return [460-140*(s-2), 200]; return [320, 200-140*(s-3)]; }
+function lumpPt(p){ const a=2*Math.PI*p; const r=70+14*Math.sin(3*a)+9*Math.cos(5*a); return [620+r*Math.cos(a), 130+r*Math.sin(a)]; }
+function poly(f,n){ const pts=[]; for(let i=0;i<=n;i++){ const [x,y]=f(i/n); pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);} return pts.join(' '); }
+function drawShapes(){
+  let s='';
+  s+=`<rect x="60" y="110" width="200" height="40" fill="var(--grid)" stroke="var(--line)"/><text x="60" y="100" font-size="12" fill="var(--mute)">band: left edge = right edge</text>`;
+  s+=`<polyline points="${poly(squarePt,400)}" fill="none" stroke="var(--line)" stroke-width="3"/><text x="320" y="30" font-size="12" fill="var(--mute)">square loop</text>`;
+  s+=`<polyline points="${poly(lumpPt,400)}" fill="none" stroke="var(--line)" stroke-width="3"/><text x="560" y="30" font-size="12" fill="var(--mute)">lumpy loop</text>`;
+  for(const f of [bandPt,squarePt,lumpPt]){ const [x0,y0]=f(0); s+=`<rect x="${(x0-4).toFixed(1)}" y="${(y0-10).toFixed(1)}" width="8" height="20" fill="var(--good)"/>`; }
+  hist.slice(0,-1).forEach(p=>{ for(const f of [bandPt,squarePt,lumpPt]){ const [x,y]=f(p); s+=`<rect x="${(x-2).toFixed(1)}" y="${(y-6).toFixed(1)}" width="4" height="12" fill="var(--accent)" opacity=".55"/>`; } });
+  for(const f of [bandPt,squarePt,lumpPt]){ const [x,y]=f(pos); s+=`<rect x="${(x-8).toFixed(1)}" y="${(y-12).toFixed(1)}" width="16" height="24" fill="var(--dot)"/>`; }
+  document.getElementById('shapes').innerHTML=s;
+}
+function drawTrack(){
+  const n=hist.length, cols=Math.max(n,40), cw=(R-L)/cols; let s=`<text x="${L}" y="14" font-size="13" fill="var(--mute)">push →</text>`;
+  hist.forEach((p,i)=>{ const x=L+i*cw; s+=`<rect x="${x.toFixed(1)}" y="24" width="${Math.max(cw-1,1).toFixed(1)}" height="120" fill="var(--grid)"/><rect x="${x.toFixed(1)}" y="${(24+120*(1-p)-2).toFixed(1)}" width="${Math.max(cw-1,1).toFixed(1)}" height="4" fill="${i===n-1?'var(--dot)':'var(--accent)'}"/>`; });
+  s+=`<text x="${L}" y="164" font-size="13" fill="var(--mute)">each column: how far around the hopper stood (bottom = start, top = all the way round = start again)</text>`;
+  document.getElementById('track').innerHTML=s;
+  let per='—'; for(let k=1;k<n;k++){ if(near(hist[n-1],hist[n-1-k]) && near(hist[0],hist[k])){ per=k; break; } }
+  document.getElementById('trackread').textContent=`the track repeats after: ${per} pushes${per==='—'?' (no repeat yet)':''}`;
+}
+function doPush(){ pos=(pos+frac())%1; hist.push(pos); drawShapes(); drawTrack(); document.getElementById('read').textContent=`pushes: ${hist.length-1}${near(pos,0)?' — all three back on their start':''}`; }
+document.getElementById('push').onclick=doPush;
+document.getElementById('push10').onclick=()=>{for(let i=0;i<10;i++)doPush();};
+document.getElementById('reset').onclick=()=>{pos=0;hist=[0];golden=false;drawShapes();drawTrack();document.getElementById('read').textContent='pushes: 0';};
+document.getElementById('golden').onclick=()=>{pos=0;hist=[0];golden=true;drawShapes();drawTrack();document.getElementById('read').textContent='golden number set — push';};
+['num','den'].forEach(id=>document.getElementById(id).oninput=()=>{golden=false;});
+drawShapes(); drawTrack();
+document.getElementById('which').onclick=()=>document.getElementById('whichans').classList.add('show');
+const gs=document.getElementById('gaps'), gr=document.getElementById('gapread'), n3=document.getElementById('n3');
+function gaps(){ const n=+n3.value; document.getElementById('n3v').textContent=n; const pts=[]; for(let k=0;k<n;k++) pts.push((k*PHI)%1); pts.sort((a,b)=>a-b);
+  const g=[]; for(let i=0;i<n;i++) g.push(((pts[(i+1)%n]-pts[i])+1)%1); const sizes=[...new Set(g.map(x=>x.toFixed(6)))]; const cols=['var(--accent)','var(--dot)','var(--good)'];
+  let s=`<rect x="${L}" y="30" width="${R-L}" height="30" fill="var(--grid)" stroke="var(--line)"/>`;
+  for(let i=0;i<n;i++){ const k=sizes.indexOf(g[i].toFixed(6)); const a=pts[i], b=pts[i]+g[i];
+    if(b<=1) s+=`<rect x="${X(a).toFixed(1)}" y="33" width="${((R-L)*g[i]).toFixed(1)}" height="24" fill="${cols[k%3]}"/>`;
+    else s+=`<rect x="${X(a).toFixed(1)}" y="33" width="${((R-L)*(1-a)).toFixed(1)}" height="24" fill="${cols[k%3]}"/><rect x="${X(0)}" y="33" width="${((R-L)*(b-1)).toFixed(1)}" height="24" fill="${cols[k%3]}"/>`; }
+  pts.forEach(p=>{ s+=`<line x1="${X(p).toFixed(1)}" y1="30" x2="${X(p).toFixed(1)}" y2="60" stroke="var(--ink)" stroke-width="2"/>`; });
+  gs.innerHTML=s; gr.textContent=`${n} marks → ${sizes.length} distinct space size${sizes.length>1?'s':''} (never more than three; the last space wraps from the right edge to the left)`; }
+n3.oninput=gaps; gaps();
+document.getElementById('reveal').onclick=()=>{ let p=0; for(let i=0;i<100;i++) p=(p+PHI)%1; const far=Math.min(p,1-p); document.getElementById('far').textContent=far.toFixed(4); document.getElementById('ans').classList.add('show'); };
+})();
+</script>
