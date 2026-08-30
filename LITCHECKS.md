@@ -922,3 +922,33 @@ kinematic. The load-geometry closed forms and the channel
 dichotomy appear unstated. Claim novelty moves
 unchecked -> checked-novel on this entry, with the classical
 kinematic anchors disclosed in the claim's citation field.
+
+## LC-27 — 2026-08-30 — the price-of-a-bit anchors (P-37 imports)
+prediction: P-37
+claims-checked:
+- Landauer with errors: the floor kT[ln 2 - H(p)] for erasure to
+  residual error p is standard stochastic thermodynamics
+  (Landauer 1961; the H(p) refinement is folklore-classical,
+  derivable from the second law + coarse-graining, and is derived
+  rather than imported in p37_derive.py EQ2).
+- Finite-time Landauer: Proesmans, Ehrich, Bechhoefer, PRL 125,
+  100602 (2020) - W >= kT ln 2 + c/tau for finite-duration
+  erasure; the 1/tau excess our speed-limit clause bounds from
+  below.
+- The speed limit itself: thermodynamic optimal transport -
+  dissipation >= W_2^2 / (mu tau) for overdamped dynamics
+  (Aurell et al. 2011 lineage; Van Vu & Saito's unification,
+  PRX 13, 011013 (2023)). Imported as the theorem; our W_2 is
+  computed, not fitted.
+- Time-cost-error three-way tradeoff: Van Vu & Saito, PRX 15,
+  041029 (2025), arXiv:2408.04576 - tau * C * eps >= 1 - eta for
+  erasure/cooling/copying. Imported as the adjacent landmark; the
+  registered clauses use the two bounds above, not this one (its
+  thermokinetic cost C is a different instrument).
+- Quantum vs classical erasure: Neuser, Xuereb, Bakhshinezhad,
+  Huber, arXiv:2607.27341 (2026) - same ideal bound, strictly
+  higher finite-time quantum cost. Cited as the reason P-37's
+  not-claimed excludes quantum prices.
+- Work convention: Sekimoto's stochastic energetics (dW =
+  (dV/d lambda) d lambda); fluctuation identity: Jarzynski, PRL
+  78, 2690 (1997) - used as the 8b instrument null, not a claim.
