@@ -68,3 +68,23 @@ wt-done:
 
 spec:
 	$(PYTHON) tests/run_spec.py
+
+# ---- LLM-efficiency tooling (2026-08-30): replayable mechanics ----
+# land: the whole landing pipeline, one digest. Run from a task
+# worktree: make land TITLE="..." MSG=path/to/msgfile [BODY=file]
+land:
+	scripts/tools/land.sh "$(TITLE)" "$(MSG)" $(BODY)
+
+# law-pin: append LAW-$(N) with the full covered-set hash pin;
+# prose comes from WHY=file (first line = header suffix)
+law-pin:
+	$(PYTHON) scripts/tools/law_pin.py $(N) $(WHY)
+
+# rentry: R-entry skeleton with numbers pasted from results JSON
+# (R-18a rule). make rentry R=R-37 P=P-38 JSON=path
+rentry:
+	$(PYTHON) scripts/tools/rentry.py $(R) $(P) $(JSON)
+
+# jstest: extract + syntax-check + stub-run a page's inline JS
+jstest:
+	scripts/tools/jstest.sh $(FILE)
