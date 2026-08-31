@@ -445,6 +445,114 @@ const EDGES = [
      return {pass: seen.size === 4,
              detail: "orbit size " + seen.size +
              " = {0, 2−φ, φ−1, 1}"}; }},
+  // ------- the 2026-08-30 literature pass (A-20) -------
+  {from:"order", to:"sq2", type:"theorem",
+   title:"the ICO Tsirelson bound is the rung",
+   stmt:"Liu–Chiribella 2025: the indefinite-causal-order maximum " +
+   "of the OCB game is (1+α+√(1+α²))/2 in bias α; at α = 1 the " +
+   "success probability is exactly (2+√2)/4 — the ladder's rung.",
+   logic:"Their closed form, proved for arbitrary no-signalling " +
+   "supermaps, lands on the number P-30's 8192-strategy " +
+   "enumeration priced from the other side. Two independent " +
+   "routes, one algebraic point.",
+   ev:"arXiv:2403.02749 · Nat. Commun. 16, 3314 (2025) · P-30/R-27",
+   check: () => {
+     const f = (a) => (1 + a + Math.sqrt(1 + a * a)) / 2;
+     const r1 = near(f(1) / 2, (2 + Math.SQRT2) / 4, 1e-15,
+       "closed form at α=1, per game round");
+     let mono = true;
+     for (let k = 1; k < 40; k++)
+       mono = mono && f(k / 20) > f((k - 1) / 20);
+     return {pass: r1.pass && mono,
+             detail: r1.detail + "\n  α-family strictly " +
+             "increasing on [0,2] (40-point scan)"}; }},
+  {from:"harper", to:"fib", type:"imported",
+   title:"every labeled gap is open (Sturmian)",
+   stmt:"Band–Beckus–Loewy 2024: for Sturmian Hamiltonians at " +
+   "every nonzero coupling, ALL gap-labeled gaps are open — the " +
+   "gap integers name real gaps.",
+   logic:"Imported theorem; its algebraic engine recomputed here " +
+   "exactly: the Fibonacci trace map (a,b,c) → (b,c,bc−a) " +
+   "conserves the Fricke invariant a²+b²+c²−abc−4, verified in " +
+   "exact rational arithmetic (BigInt) where floats would have " +
+   "dissolved after three steps.",
+   ev:"arXiv:2402.16703 · the P-28 gap-integer instrument",
+   check: () => {
+     const g = (x, y) => y ? g(y, x % y) : (x < 0n ? -x : x);
+     const red = ([n, d]) => { const c = g(n < 0n ? -n : n, d);
+       return [n / c, d / c]; };
+     const mul = (A, B) => red([A[0] * B[0], A[1] * B[1]]);
+     const sub = (A, B) => red([A[0] * B[1] - B[0] * A[1],
+       A[1] * B[1]]);
+     const add = (A, B) => red([A[0] * B[1] + B[0] * A[1],
+       A[1] * B[1]]);
+     // I = a² + b² + c² − abc − 4, exact
+     const I = (a, b, c) => sub(sub(
+       add(add(mul(a, a), mul(b, b)), mul(c, c)),
+       mul(mul(a, b), c)), [4n, 1n]);
+     let a = [3n, 2n], b = [5n, 3n], c = [7n, 4n];
+     const I0 = I(a, b, c);
+     let ok = true, maxden = 0n;
+     for (let s = 0; s < 10; s++) {
+       [a, b, c] = [b, c, sub(mul(c, b), a)];
+       const In = I(a, b, c);
+       ok = ok && In[0] === I0[0] && In[1] === I0[1];
+       if (c[1] > maxden) maxden = c[1];
+     }
+     return {pass: ok,
+             detail: "Fricke invariant " + I0[0] + "/" + I0[1] +
+             " conserved through 10 exact steps (denominators to " +
+             String(maxden).length + " digits)"}; }},
+  {from:"hardy", to:"sqop", type:"imported",
+   title:"the arena exists, loophole-free",
+   stmt:"USTC 2024: first loophole-free Hardy test — P_Hardy = " +
+   "4.646×10⁻⁴ over 4.3×10⁹ trials. The probability is a squared " +
+   "amplitude; its ceiling is φ⁻⁵.",
+   logic:"The experiment realizes the paradox whose maximum this " +
+   "graph proves is φ⁻⁵ exactly; the measured value sits a factor " +
+   "~194 below the ceiling (settings chosen for loophole " +
+   "robustness, not for the maximum — the gap is design, not " +
+   "physics).",
+   ev:"arXiv:2401.03505 · PRL 133, 060201 (2024) · P-21/R-16",
+   check: () => {
+     const ceil = (5 * Math.sqrt(5) - 11) / 2;
+     const meas = 4.646e-4;
+     const r = near(ceil, Math.pow(PHI, -5), 1e-14,
+       "ceiling = φ⁻⁵ exactly");
+     return {pass: r.pass && meas < ceil,
+             detail: r.detail + "\n  measured " + meas +
+             " < ceiling " + ceil.toFixed(6) + " (factor " +
+             (ceil / meas).toFixed(1) + ")"}; }},
+  {from:"fib", to:"i", type:"imported",
+   title:"φ as a quantum dimension, braided",
+   stmt:"Fibonacci anyons on a superconducting processor (2024): " +
+   "the fusion rule τ×τ = 1+τ forces quantum dimension d = φ; " +
+   "braiding phases are tenth roots of unity.",
+   logic:"φ as ANSWER, not fit: the largest eigenvalue of the " +
+   "fusion matrix [[0,1],[1,1]] solves λ² = λ+1 exactly; the " +
+   "F-matrix [[1/φ, 1/√φ],[1/√φ, −1/φ]] is an involution; " +
+   "(e^{4πi/5})⁵ = 1. A digital emulation of the anyon model — " +
+   "not intrinsic topological order — the algebra is what is " +
+   "exact.",
+   ev:"arXiv:2404.00091 · Nat. Phys. 20 (2024)",
+   check: () => {
+     const lam = (0 + 1 + Math.sqrt((0 - 1) ** 2 + 4)) / 2;
+     const r1 = near(lam, PHI, 1e-15, "λ_max[[0,1],[1,1]] = φ");
+     const a = 1 / PHI, b = 1 / Math.sqrt(PHI);
+     const F = [[a, b], [b, -a]];
+     let worst = 0;
+     for (let r = 0; r < 2; r++)
+       for (let cc = 0; cc < 2; cc++) {
+         const v = F[r][0] * F[0][cc] + F[r][1] * F[1][cc];
+         worst = Math.max(worst, Math.abs(v - (r === cc ? 1 : 0)));
+       }
+     const th = 4 * Math.PI / 5;
+     const re = Math.cos(5 * th), im = Math.sin(5 * th);
+     return {pass: r1.pass && worst < 1e-15 &&
+             Math.abs(re - 1) < 1e-12 && Math.abs(im) < 1e-12,
+             detail: r1.detail + "\n  F² = 𝟙 to " +
+             worst.toExponential(1) +
+             "; (e^{4πi/5})⁵ = 1 to 1e-12"}; }},
 ];
 
 // ===================== run all checks ============================
