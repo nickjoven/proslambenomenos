@@ -31,7 +31,9 @@ if ! git diff --cached --quiet; then
   git commit -q -F "$MSGFILE"
 fi
 
-make gates 2>&1 | tail -1 | grep -q "worst rc: 0" || {
+# grep the whole output: under a parent make, "Leaving directory"
+# trails the verdict line (the dogfood run caught this)
+make gates 2>&1 | grep -q "worst rc: 0" || {
   echo "land.sh: gates red" >&2; make gates 2>&1 | tail -20; exit 1; }
 python3 scripts/check_messages.py origin/main..HEAD
 
