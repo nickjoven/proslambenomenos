@@ -45,7 +45,13 @@
        registered on that observable;
    (c) the search domain's validity - brackets and scan windows
        argued from bounds (per-step displacement, monotonicity),
-       not from typical-case guesses.
+       not from typical-case guesses;
+   (d) the lessons ledger consulted: run
+       `python3 scripts/tools/lessons.py <domain keywords>` and
+       cite the matching L-n ids in the registration's method
+       block. Case knowledge lives COLD in LESSONS.md (triggers,
+       rules, citations), surfaced mechanically at registration
+       time - this file stays small and invariant.
    A clause that fires on any of these three is an instrument
    failure, not a finding, and it costs a re-registration; the
    checklist exists to spend that cost before the run instead.

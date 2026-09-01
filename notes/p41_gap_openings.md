@@ -39,3 +39,45 @@ eigensolver (the pinned kernel uses Householder + QL - different
 algorithm family), own extended-gcd labels, and keeps the P-40
 firing alive as the scan-blind mutant: asserting the scan finds
 all edges at q = 89 fails exactly as the registered run did.
+
+## Audit note (2026-09-01): the q = 13 comparison
+
+Owner-prompted comparison of R-39's firing against the ledger's
+prior q = 13 record. The finding sharpens the attribution: the
+P-40 scan budget did not merely lack a derivation - it
+contradicted a pinned number. R-25 (P-28, four days earlier, same
+Fibonacci ladder) pinned the per-rung width shrinkage at 0.324 =
+phi^-2.34; P-40's own validation gaps (0.088 / 0.032 / 0.012 at
+q = 8/13/21) display the same law. The narrowest BAND shrinks by
+0.368-0.376 per rung (~ phi^-2) while the 60q scan's spacing
+shrinks only as phi^-1 per rung - a geometric race with one
+outcome. Recomputed with the P-41 instruments (min band width vs
+scan spacing 5.5/60q, lambda = 1):
+
+    q     min band    ratio    scan spacing
+    8     9.82e-2     -        1.15e-2
+    13    3.69e-2     0.376    7.05e-3
+    21    1.36e-2     0.369    4.37e-3
+    34    5.12e-3     0.376    2.70e-3
+    55    1.88e-3     0.368    1.67e-3   (survives by 13%)
+    89    7.06e-4     0.375    1.03e-3   SPACING EXCEEDS BAND
+    144   2.60e-4     0.368    6.37e-4   SPACING EXCEEDS BAND
+
+The crossover lands between q = 55 and q = 89 - exactly where the
+firing happened - and P-40's clean cells were one rung from
+failure. Three validation points and a division would have
+derived the required density before registration.
+
+The wider q = 13 pattern in the ledger: P-28 handled the same
+problem correctly (its edge-gap clause promised resolution only
+through q = 13 BECAUSE the derivation supported no more; reality
+then outperformed the promise); the 8/13 skip-rung Streda mutant
+was discarded as non-discriminating for a global-structure
+reason; P-31's convergents 8/13 and 13/21 diverged in the
+kneading tree as a computed refusal. Common thread: q ~ 13 is the
+last rung where the golden ladder is cheap, and every instrument
+judgment formed at q <= 21 is one to five rungs from wrong at a
+rate the ledger can state in closed form. The standing rule now
+lives in AGENTS.md item 8a: where a pinned or derivable scaling
+law exists, validation quantities MUST be extrapolated to the
+registered cells before the detector budget is set.
