@@ -2904,3 +2904,59 @@ Falsifier routes: stabilizer identities (the four signed contexts
 live in the GHZ group of size 8) and the X-basis branch expansion.
 Claim filed: switch-data-is-ghz-data. Results:
 scripts/experiments/p42_results.json.
+## P-43 — 2026-09-01 — the shadow is the same square; the bodies are not
+question: Liu-Chiribella remark their causal-vs-ICO picture
+'coincides' with the CHSH picture. Is the coincidence an affine
+isomorphism of the underlying polytopes, or only of a
+two-dimensional shadow? Item 2 of the theoretical press; lessons
+L-8 consulted.
+method: derive layer scripts/experiments/p43_derive.py, run and
+committed BEFORE this entry (pins in p43_registration.json): both
+polytopes' vertex sets from exhaustive deterministic strategies
+(0/1-valued conditional distributions are extreme, so vertices =
+deduped strategies); affine dimensions by incremental Fraction
+elimination; the two shadows and their extreme points in exact
+rationals; the CHSH quantum circle achieved CONSTRUCTIVELY
+(closed-form singlet settings landing on (cos phi, sin phi) at
+machine epsilon - an earlier 4-angle hill-climb stalled at
+cos(pi/12) and was replaced by the construction, recorded); disc
+completeness IMPORTED (LC-32), mirroring P-39's split.
+expects: (a) local CHSH polytope: 16 vertices, affine dimension 8
+(exact); (b) causal OCB polytope: 2368 vertices, affine dimension
+24 (exact - the registration's pins); (c) REFUSAL: the pairs
+differ in both invariants, so no affine isomorphism exists - the
+coincidence is a shadow, not a body; (d) the shadow identity is
+EXACT: causal extremes {(1,1/2),(1/2,1),(0,1/2),(1/2,0)} on the
+radius-1/2 circle, CHSH extremes {(+-1,0),(0,+-1)} on the unit
+circle, and T(u,v) = ((u+1)/2,(v+1)/2) carries one set onto the
+other as rationals; the constructive settings land on the circle
+at 1e-12 across the phi grid.
+changes-my-mind: (a) or (b) pins failing under the falsifier's
+independent elimination and encodings - a matching (dim, V) pair
+would reopen the isomorphism question and be handed to a deeper
+invariant, reported as such.
+not-claimed-in-advance: facet structure and deeper combinatorial
+invariants (vertex counts and dimensions suffice for the refusal;
+nothing further is computed); the completeness of either quantum
+disc (imported); multipartite scenarios.
+
+## R-42 — 2026-09-01 — resolves P-43 (as expected)
+All four clauses held. (a) Local CHSH polytope: 16 vertices,
+affine dimension 8, exact. (b) Causal OCB polytope: 2368
+vertices, affine dimension 24, exact - the pins land. (c) The
+REFUSAL: (16, 8) vs (2368, 24) - no affine isomorphism exists
+between the bodies; Liu-Chiribella's 'coincidence' with the CHSH
+picture is a genuine identity of the two-dimensional SHADOW and
+nothing more. (d) The shadow identity is exact: four extreme
+points on each circle, carried onto each other by
+T(u,v) = ((u+1)/2, (v+1)/2) as rationals, and the CHSH circle
+achieved constructively (closed-form singlet settings on
+(cos phi, sin phi) at 1.1e-16; the abandoned hill-climb that
+stalled at cos(pi/12) is recorded in the layer - a flat 4-angle
+landscape defeating per-coordinate steps, replaced by
+construction rather than by a better search). The mind-change did
+not fire. Reading: the square-in-circle picture is a low-
+dimensional UNIVERSAL of two very different convex bodies - the
+right conflation-guard is now computed: same shadow, different
+objects, like the halves of R-41. Claim filed: shadow-not-body.
+Results: scripts/experiments/p43_results.json.

@@ -1,0 +1,60 @@
+{
+ "EQ1": {
+  "vertices": 16,
+  "dim": 8
+ },
+ "EQ2": {
+  "vertices": 2368,
+  "dim": 24
+ },
+ "EQ3": {
+  "same_dim": false,
+  "same_vertices": false,
+  "affinely_isomorphic_possible": false
+ },
+ "EQ4": {
+  "causal_shadow_points": 9,
+  "causal_extremes_on_circle": [
+   [
+    "0",
+    "1/2"
+   ],
+   [
+    "1/2",
+    "0"
+   ],
+   [
+    "1/2",
+    "1"
+   ],
+   [
+    "1",
+    "1/2"
+   ]
+  ],
+  "chsh_shadow_points": 4,
+  "chsh_extremes_on_circle": [
+   [
+    "-1",
+    "0"
+   ],
+   [
+    "0",
+    "-1"
+   ],
+   [
+    "0",
+    "1"
+   ],
+   [
+    "1",
+    "0"
+   ]
+  ],
+  "map_matches": true,
+  "chsh_quantum_reach_min_over_phi": {
+   "worst_settings_error": 1.1102230246251565e-16,
+   "reach": 1.0
+  }
+ }
+}

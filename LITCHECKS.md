@@ -1038,3 +1038,19 @@ claims-checked:
   construction - what P-42 adds is the EXACT equality including
   the remainder factorization, and the refusal separating the
   switch's 1/2 from the semifluxon/winding 1/2 (LC-26's family).
+## LC-32 — 2026-09-01 — the P-43 import (the quantum disc)
+prediction: P-43
+claims-checked:
+- The two-functional quantum region for CHSH-type pairs is the
+  disc (completeness side): Tsirelson's characterizations (1980,
+  1987 lineage), Landau 1988, Masanes (quant-ph/0309137) - the
+  boundary curve of the two-CHSH region. IMPORTED for
+  completeness only; achievability is earned constructively in
+  the line (closed-form singlet settings).
+- The causal-side circle completeness is Liu-Chiribella's ICO
+  bound, already imported as LC-29; P-43 adds no new import
+  there.
+- The observation this line prices: their remark that the two
+  pictures 'coincide' (Nat. Commun. 16, 3314, Figure 1
+  discussion) - true of the shadow (now exact), false of the
+  bodies (now refused).
