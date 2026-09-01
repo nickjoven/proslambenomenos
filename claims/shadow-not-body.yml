@@ -1,0 +1,28 @@
+id: shadow-not-body
+statement: >
+  The 'coincidence' between the causal-vs-ICO picture and the
+  CHSH picture is exactly a shadow identity and nothing more. The
+  bodies: the local CHSH polytope has 16 vertices in affine
+  dimension 8; the causal OCB polytope has 2368 vertices in
+  affine dimension 24 (both exact, exhaustive, rational) - no
+  affine isomorphism exists. The shadows: both classical regions
+  project to a square whose four extreme points lie ON the
+  respective quantum circle (exact rationals), and the affine map
+  T(u,v) = ((u+1)/2, (v+1)/2) carries one extreme set onto the
+  other; the CHSH quantum circle is achieved constructively by
+  closed-form singlet settings at machine epsilon, with disc
+  completeness imported (LC-32). Scope: these two scenarios and
+  these invariants; facet-level combinatorics is not computed and
+  not claimed.
+premises: []
+prediction: P-43
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p43_derive.py with p43_registration.json (the layer: both vertex sets, exact dimensions, shadows, the constructive circle); scripts/experiments/p43_bodies.py with p43_results.json (the registered clauses); independently reimplemented by scripts/verify/p43_shadow_body.py with its own encodings and a reversed-pivot elimination"
+    method: reimplementation
+null_system: "everything on the classical side is exact rational arithmetic over exhaustive strategy sets (0/1-valued distributions are vertices by extremality of the product simplex); the one numeric ingredient (the singlet settings) is a closed-form construction verified at 1e-16, adopted after a hill-climb stalled at cos(pi/12) - the stall recorded per the falsifier discipline"
+falsifier: "scripts/verify/p43_shadow_body.py --mutant body-blind"
+novelty:
+  status: unchecked
+  citation: "Liu-Chiribella's remark supplies the shadow-level observation; the body-level refusal (16,8) vs (2368,24), and the exact rational form of the shadow identity, are - as far as consulted - unstated; a litcheck would be the route to checked-novel"
+status: verified
