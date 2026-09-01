@@ -952,3 +952,30 @@ claims-checked:
 - Work convention: Sekimoto's stochastic energetics (dW =
   (dV/d lambda) d lambda); fluctuation identity: Jarzynski, PRL
   78, 2690 (1997) - used as the 8b instrument null, not a claim.
+
+## LC-28 — 2026-09-01 — the P-38 imports (the Hardy-order bridge)
+prediction: P-38
+claims-checked:
+- The scenario and the possibilistic conditions: van der Lugt &
+  Ormrod, "Possibilistic and maximal indefinite causal order in
+  the quantum switch," Quantum 8, 1543 (2024), arXiv:2311.00557.
+  Their eq. (4) is the four-implication pattern P-38 recomputes;
+  their W (eq. 3) is the X-controlled switch our simulation
+  implements. IMPORTED and rederived as data.
+- The reduction theorem (their Theorem 1): definite causal order
+  + relativistic causality + free interventions imply outcome
+  variables replaceable by setting-independent hidden variables -
+  i.e. exactly the class our 4096-strategy exhaustion covers.
+  IMPORTED, not reproved; the indefiniteness conclusion rests on
+  it. Their Appendix D (one switch does not suffice) also
+  imported as context.
+- The logical lineage: GHZ 1989 / Mermin 1990 possibilistic
+  nonlocality (the template), and Hardy 1992/1993 (the
+  probability-free style the repo first earned in P-21). The
+  bridge edge in the graph cites this line.
+- Adjacent, deliberately NOT imported: Baumann-Baumeler-Tselentis
+  (arXiv:2412.17551) on fixed-order inequalities stays the
+  deferred refused candidate from the 2026-08-30 scan; the
+  Liu-Chiribella ICO Tsirelson bound (LC-adjacent via the A-20
+  graph edge) is a separate, probabilistic statement about a
+  different game family.

@@ -553,6 +553,74 @@ const EDGES = [
              detail: r1.detail + "\n  F² = 𝟙 to " +
              worst.toExponential(1) +
              "; (e^{4πi/5})⁵ = 1 to 1e-12"}; }},
+  {from:"hardy", to:"order", type:"earned",
+   title:"the possibilistic bridge",
+   stmt:"Hardy's probability-free template, run on causal order " +
+   "itself: in the three-switch GHZ scenario the four parity " +
+   "implications hold with forbidden events at amplitude-level " +
+   "zero, while no deterministic local-order strategy satisfies " +
+   "more than 3 of 4 (P-38, after van der Lugt–Ormrod 2024).",
+   logic:"XOR the four conditions and every outcome variable " +
+   "cancels, leaving 0 = 1: at least one condition fails " +
+   "classically, and flipping any single output flips exactly two " +
+   "conditions — only odd satisfaction counts exist. The switch " +
+   "hits the algebraic Mermin ceiling 4 against the classical 2. " +
+   "The reduction from definite causal order to this strategy " +
+   "class is imported (LC-28); the data and the ceiling are " +
+   "earned.",
+   ev:"P-38/R-37 · claim switch-parity-ceiling · Quantum 8, 1543",
+   check: () => {
+     // exhaustive: 4096 deterministic local-order strategies
+     let best = 0, bestM = -9;
+     const hist = {};
+     for (let r = 0; r < 4096; r++) {
+       const g = (sw, wh) => (r >> (sw * 4 + wh)) & 1;
+       // layout per switch: bit1 = a1@x=1, bit2 = a3@x=0
+       const conds = [
+         [(g(0, 1) + g(1, 1) + g(2, 1)) % 2, 0],
+         [(g(0, 1) + g(1, 2) + g(2, 2)) % 2, 1],
+         [(g(0, 2) + g(1, 1) + g(2, 2)) % 2, 1],
+         [(g(0, 2) + g(1, 2) + g(2, 1)) % 2, 1]];
+       let sat = 0, M = 0;
+       conds.forEach(([p2, w], i) => {
+         sat += (p2 === w) ? 1 : 0;
+         const e = p2 === 0 ? 1 : -1;
+         M += i === 0 ? e : -e;
+       });
+       best = Math.max(best, sat); bestM = Math.max(bestM, M);
+       hist[sat] = (hist[sat] || 0) + 1;
+     }
+     // quantum side: conditioned Y-pair parity per revealed sign
+     const amp = (yb, xs) => {
+       const iy = yb === 0 ? [0, -1] : [0, 1];
+       const sx = xs === 0 ? 1 : -1;
+       return [(1 + iy[0] * sx) / 2, (iy[1] * sx) / 2];
+     };
+     const cmul = (a, b) =>
+       [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]];
+     let qok = true;
+     for (const s of [0, 1]) {
+       const pairs = s === 0 ? [[0, 0], [1, 1]] : [[0, 1], [1, 0]];
+       for (let b3 = 0; b3 < 2; b3++)
+         for (let c3 = 0; c3 < 2; c3++) {
+           let re = 0, im = 0;
+           for (const [u, v] of pairs) {
+             const z = cmul(amp(b3, u), amp(c3, v));
+             re += z[0]; im += z[1];
+           }
+           const pr = (re * re + im * im) / 2;
+           const want = ((b3 ^ c3) === (1 ^ s));
+           if (want && pr < 1e-12) qok = false;
+           if (!want && pr > 1e-12) qok = false;
+         }
+     }
+     const pass = best === 3 && bestM === 2 && qok &&
+       hist[1] === 2048 && hist[3] === 2048;
+     return {pass, detail: "4096 strategies: max " + best +
+       "/4 conditions, histogram {1:" + (hist[1] || 0) + ", 3:" +
+       (hist[3] || 0) + "}, Mermin " + bestM +
+       " vs switch 4\n  conditioned Y-pair parities fixed as " +
+       "registered (amplitude-level)"}; }},
 ];
 
 // ===================== run all checks ============================
