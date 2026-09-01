@@ -31,10 +31,13 @@ if ! git diff --cached --quiet; then
   git commit -q -F "$MSGFILE"
 fi
 
-# grep the whole output: under a parent make, "Leaving directory"
-# trails the verdict line (the dogfood run caught this)
-make gates 2>&1 | grep -q "worst rc: 0" || {
-  echo "land.sh: gates red" >&2; make gates 2>&1 | tail -20; exit 1; }
+# capture, then grep: piping make into grep -q dies of SIGPIPE
+# under pipefail when invoked from a parent make (dogfood run 2);
+# clearing MAKEFLAGS keeps the sub-make independent of the parent
+GATES_OUT=$(MAKEFLAGS= MAKELEVEL= make gates 2>&1) || true
+echo "$GATES_OUT" | grep -q "worst rc: 0" || {
+  echo "land.sh: gates red" >&2
+  echo "$GATES_OUT" | tail -20; exit 1; }
 python3 scripts/check_messages.py origin/main..HEAD
 
 git push -q -u origin "$BRANCH"
