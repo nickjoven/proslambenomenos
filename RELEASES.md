@@ -83,3 +83,20 @@ The published artifact (claude.ai) is presentation, not preservation.
   c29); spec suite in a controlled grammar (55 rules, TDD red -> green)
   and the notes gate (LAW-20) - eleven gates; multi-actor worktree
   infrastructure (AGENTS.md); LC-8; LAW-14..20. 29 claims. (2026-08-23)
+- link-008 — nulls before numbers: the derive-layer era. P-10..P-37
+  registered and resolved (R-7..R-36; P-2 and P-5 finally closed;
+  P-4 reopened per R-3's own recipe and answered as P-35/P-36 - the
+  holonomy prices in at its derived O(1/N) strain budget and selects
+  the slip channel). The instrument arc: AGENTS item 8 (detector
+  nulls, conservation identities, domain validity as derive-layer
+  obligations) with the R-32 corollary extended through power
+  calculations (R-36); frustration classes; the horizon census
+  pricing coincidences in net bits; the memory hierarchy and the
+  price of a bit; the critical staircase reproduced by our own
+  tongue instrument. Claims 29 -> 54 (26 verified, 17 proven, 6
+  refuted honest); LAW-21..44 (covered set 63 files); LC-9..27;
+  kernels/ extracted; the Pages site (plane, inviolables graph with
+  21 running checks, gates board, walk, runway) and the
+  fresh-context corpus audit that reproduced spot-checked numbers
+  with independent code. Tooling: make land / law-pin / rentry /
+  jstest. 54 claims. (2026-08-30)
