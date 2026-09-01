@@ -999,3 +999,21 @@ claims-checked:
   un-imported (SDP values, no in-repo check); the A-20 graph
   edge's alpha = 1 statement is subsumed by this line's
   family-wide result.
+## LC-30 — 2026-09-01 — the P-40/P-41 import (Dry Ten Martini)
+prediction: P-41
+claims-checked:
+- Band, Beckus & Loewy, "The Dry Ten Martini Problem for Sturmian
+  Hamiltonians," arXiv:2402.16703 (2024): all gap-labeling gaps
+  open for every Sturmian frequency and every nonzero coupling.
+  IMPORTED - the theorem concerns the quasiperiodic operator and
+  arbitrary coupling; P-41 earns its approximant shadow (all
+  labeled gaps open at q = F_m up to 144, lambda in {1, 2}) with
+  our own spectra and exact labels, and ties the instrument to
+  their engine (the trace map) at machine precision.
+- The gap labeling theorem itself (Johnson/Bellissard lineage;
+  IDS at gaps in the frequency module) - classical import
+  underlying the label arithmetic.
+- Periodic-approximant band theory (discriminant, periodic/
+  antiperiodic edge interlacing): textbook (Toda, Reed-Simon
+  lineage); used as the instrument's foundation, with the
+  P-40 -> P-41 detector lesson recorded in R-39.

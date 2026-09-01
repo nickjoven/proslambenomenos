@@ -1,0 +1,32 @@
+id: approximant-gaps-all-open
+statement: >
+  At the periodic approximants of the Fibonacci Hamiltonian -
+  period q = F_m for q in {34, 55, 89, 144}, exact rational
+  rotation words, coupling lambda in {1.0, 2.0} - every one of
+  the q - 1 gaps allowed by the gap-labeling theorem is OPEN:
+  band edges computed as eigenvalues of the periodic and
+  antiperiodic operators (a certified-complete route adopted
+  after the P-40 scan detector missed narrow bands at q >= 89,
+  R-39), cross-checked against the discriminant at 3.3e-11, with
+  minimum widths 4.5e-3 / 1.7e-3 / 6.2e-4 / 2.3e-4 - the
+  smallest 230x above the validated floor 1e-6. The label of the
+  k-th gap is the unique s with s F_(m-1) = k (mod F_m),
+  |s| <= q/2, an exact bijection at every q; and the transfer
+  instrument satisfies the Fibonacci trace-map recursion at
+  machine precision, tying it to the engine of the imported
+  theorem. Scope: these approximants and couplings; the
+  quasiperiodic operator and arbitrary coupling are the imported
+  theorem (LC-30), not claimed; gap-width scaling is reported
+  unregistered.
+premises: []
+prediction: P-41
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p40_derive.py with p40_registration.json (the layer: words, discriminant, labels, trace tie, validated floor); scripts/experiments/p40_gaps.py with p40_results.json (R-39: the scan detector firing); scripts/experiments/p41_gaps.py with p41_results.json (the eigen-route cells); independently reimplemented by scripts/verify/p41_gap_openings.py with its own cyclic-Jacobi eigensolver and extended-gcd labels"
+    method: reimplementation
+null_system: "the closed-gap detector is the edge COUNT (a closed gap is a double root the scan route loses and the eigen-route cannot); the discriminant retained as a per-edge cross-check (Delta = +-2 at every eigenvalue, midpoint conditions); the floor validated at q <= 21 rather than guessed; R-39 records the detector that fired and why - scan density validated where bands are wide, never derived where they are narrow"
+falsifier: "scripts/verify/p41_gap_openings.py --mutant scan-blind"
+novelty:
+  status: classical
+  citation: "Band-Beckus-Loewy 2024 (the theorem); Johnson/Bellissard gap labeling; standard periodic band theory. The contribution is the earned approximant computation with exact labels and the recorded detector lesson - repo discipline, not new mathematics"
+status: verified
