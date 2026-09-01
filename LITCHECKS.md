@@ -1054,3 +1054,33 @@ claims-checked:
   pictures 'coincide' (Nat. Commun. 16, 3314, Figure 1
   discussion) - true of the shadow (now exact), false of the
   bodies (now refused).
+
+## LC-33 — 2026-09-01 — the Crouzeix status (P-44 imports)
+prediction: P-44
+claims-checked:
+- The manuscript: Jin, "The Numerical Range Is a 2-Spectral Set,"
+  preprints.org 10.20944/preprints202607.1919.v4 (2026-08-07).
+  Claims the full Crouzeix conjecture (K = 2, optimal) via a
+  mass-parameterized positive-real completion theorem. NOT
+  peer-reviewed; the proof's correctness is IMPORTED as a status,
+  not asserted by this repo.
+- Independent second proof: Lorist & Schwenninger,
+  arXiv:2608.03841 (2026-08-04, rev. 2026-08-17) - same
+  double-layer platform, different escape (perturbation lemma for
+  2-dilations on iterates).
+- Expert endorsement: Townsend-Greenbaum essay (2026-08-15)
+  reporting that both authors and Michel Crouzeix checked Jin's
+  manuscript and believe it correct; Hartz circulating a
+  recasting connecting the two proofs.
+- The historical obstruction the new proofs evade:
+  Ransford-Schwenninger (arXiv:1708.08633) - the
+  Crouzeix-Palencia lemma alone cannot beat 1 + sqrt2; Jin uses
+  the full Cayley family plus the algebraic defect location.
+- The audited Lean (jinshanmu/CrouzeixConjecture at 9df0783,
+  audited in ~/code/crouzeix-audit): covers the mass-2 endpoint -
+  the load-bearing path of Theorem 1; v4's mass-m generalization
+  and section 7 are manuscript-only. The repo's only later commit
+  publishes a conversation record; the audit's process complaints
+  (ISSUE_DRAFT, unfiled) stand but are moot for the mathematics.
+- OPEN and not claimed anywhere: the completely bounded Crouzeix
+  conjecture.
