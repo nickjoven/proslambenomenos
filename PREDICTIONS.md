@@ -2960,3 +2960,77 @@ dimensional UNIVERSAL of two very different convex bodies - the
 right conflation-guard is now computed: same shadow, different
 objects, like the halves of R-41. Claim filed: shadow-not-body.
 Results: scripts/experiments/p43_results.json.
+
+## P-44 — 2026-09-01 — the Jin engine corroborated (scope: instrument, not proof)
+question: Jin's claimed proof of Crouzeix's conjecture
+(preprints.org 202607.1919.v4) rests on new intermediate objects
+- the mass-2 numerical-range double layer, a matrix Caratheodory
+completion with its defect confined to the adjoint algebra, an
+exact sampling cancellation, and an ordered-Gramian chain
+I <= P~ <= 2I forcing ||T|| <= 2. A fresh-context survey agent
+hand-verified the argument and built a stdlib verification layer
+(committed as p44_spotcheck.py / p44_ellipse.py, provenance
+noted). The registered question: do those NEW objects verify
+numerically under seeded, legitimate, exhaustively-checked
+instances, with the inequality exactly tight at the known
+extremizer? SCOPE: this corroborates the manuscript's engine; it
+does NOT verify the proof. The proof's status is imported (LC-33:
+the manuscript; the independent Lorist-Schwenninger proof;
+expert endorsements; the audited Lean covering the mass-2
+endpoint). Lessons L-7, L-8, L-9 consulted.
+method: derive layer = the survey scripts rerun and pinned
+(mass defects 5e-15 / 7e-15; ellipse membership discrimination
+7e-13 vs 6e-2; cancellation 1e-11; 400-instance hunt clean; ramp
+tight from the correct side). Registered runner
+scripts/experiments/p44_gramian.py with seed 20260901. The
+ellipse carries the membership clause because the DISK silently
+trivializes the adjoint-algebra defect (the survey's own trap,
+recorded).
+expects: (a) mass defects <= 1e-13 on disk and ellipse, density
+samples PSD at -1e-12; (b) Caratheodory (eigmin ReH >= -1e-9) and
+membership discrimination: right-basis offdiagonal <= 1e-9,
+wrong-basis >= 1e-2, on the ellipse; (c) the Gramian chain over
+400 fresh legitimate instances (n in 2..5, condition to 1e3):
+eigmin(2G-P)/|G| >= -1e-9, eigmin(P-G)/|G| >= -1e-9, k=1 slack
+>= -1e-9, and ||T|| <= 2; (d) extremal tightness on the
+near-Jordan ramp: ||T|| >= 1.999 at eps = 0.01 with the 2G-P
+slack positive, strictly decreasing along the ramp, and <= 1e-6
+at the end - saturation from the correct side; (e) the
+Psi-cancellation at 1e-9 and the sampled Gram PSD at -1e-7
+(ellipse).
+changes-my-mind: a single legitimate instance violating (c)
+beyond band, surviving the falsifier's independent small-n route
+- that would refute Theorem 2 + Proposition 1 jointly and be
+reported upstream as such; conversely nothing here can PROVE the
+manuscript, and the claim's scope says so.
+not-claimed-in-advance: the proof's correctness (imported
+status); the completely-bounded Crouzeix conjecture (open, noted
+in LC-33); the mass-m generalization beyond spot dimension; any
+Lean statement (the audit repo's scope).
+
+## R-43 — 2026-09-01 — resolves P-44 (as expected; one runner error fixed against the pinned instrument)
+All five clauses held. (a) Mass two on both domains (disk 4.9e-15,
+ellipse 1.0e-14; density samples PSD). (b) Caratheodory holds
+(eigmin ReH >= 0.947) and the adjoint-algebra membership
+discriminates at TEN ORDERS on the ellipse (right basis 1.4e-12,
+wrong basis 6.0e-2) - the domain where the defect is nonscalar,
+per the survey's own recorded trap. (c) The Gramian chain
+I <= P~ <= 2I and the k = 1 term clean over 400 seeded legitimate
+instances (worst slacks 3.4e-13 / 2.1e-24 / -1.3e-16 within
+band), ||T|| max 1.039. (d) Extremal tightness: on the pinned
+near-Jordan family, ||T|| = 1.9996 at eps = 0.01 with the 2G-P
+slack positive, strictly decreasing (9.7e-3 -> 4.0e-8), and
+saturating from the correct side. (e) Psi-cancellation at 1.0e-11
+and the sampled Gram PSD. One implementation error is on record:
+the runner's first draft substituted its own Jordan family
+([[0,1],[0,eps]], radius 1/2 + O(eps)) for the derive layer's
+pinned one ([[eps,1],[0,-eps]], radius 1/2 + O(eps^2)) and fired
+clause (d) at ||T|| = 1.980 - an L-9 lesson repeated inside the
+very line that consulted it; restored to the registered
+instrument, one-line fix, dynamics of nothing changed. The
+falsifier reruns the chain with closed-form 2x2 eigenvalues, a
+literal fixed instance, its own scalar-mass quadrature, and two
+deterministic mutants. The mind-change did not fire - and by
+scope, nothing here proves the manuscript: the corroboration is
+of the ENGINE. Claim filed: jin-engine-corroborated. Results:
+scripts/experiments/p44_results.json.
