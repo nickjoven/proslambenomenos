@@ -13,7 +13,8 @@
   }
   html, body { margin:0; height:100%; background:var(--bg); color:var(--ink);
     font-family:"Source Sans 3", system-ui, sans-serif; overflow:hidden; }
-  #view { display:block; width:100vw; height:100vh; }
+  #view { display:block; width:100vw; height:100vh;
+    touch-action:none; overscroll-behavior:none; }
   .hud { position:fixed; left:0; right:0; pointer-events:none;
     font-family:ui-monospace, Menlo, monospace; }
   #topbar { top:0; padding:10px 16px; display:flex; gap:18px;
@@ -24,6 +25,7 @@
     background:linear-gradient(#0e111600, #0e1116e8); min-height:24px; }
   #minimap { position:fixed; top:10px; right:12px; background:#0e1116c0;
     border:1px solid var(--hair); border-radius:6px; }
+  @media (max-width: 520px) { #minimap { display:none; } }
   #panel { position:fixed; inset:0; display:grid; place-items:center;
     background:#0e1116e6; z-index:5; }
   #panel .card { background:var(--card); border:1px solid var(--hair);
@@ -53,7 +55,7 @@
 <div class="hud" id="topbar"><b>THE HORIZON CENSUS</b>
   <span id="pos"></span>
   <span id="hint" style="color:var(--mut); font-size:12px">
-    WASD / arrows move · drag or Q,E turn · <b style="color:var(--ink)">Tab</b> scoreboard</span></div>
+    WASD / arrows move · Q/E strafe · drag to look · <b style="color:var(--ink)">Tab</b> scoreboard</span></div>
 <div class="hud" id="plaque"></div>
 
 <div id="panel">
@@ -103,7 +105,9 @@ const CENSUS = [
 ];
 const CELL_DEX = 10.155, SCALE = 6, MARGIN = 4;
 const X0 = MARGIN + 1.7 * SCALE;
-const WORLD_W = MARGIN * 2 + CELL_DEX * SCALE + 3;
+// the door IS the next k-slot: exactly one cell from slot center
+const DOOR_X = X0 + CELL_DEX * SCALE;
+const WORLD_W = DOOR_X + MARGIN + 1;
 const WORLD_H = 17, MIDY = WORLD_H / 2;
 const R_OBJ = 0.30;
 
@@ -125,7 +129,7 @@ CENSUS.forEach(([name, expr, pref, dm, net], j) => OBJS.push({
   y: MIDY + (j % 2 ? -2.0 : 2.0),
   kind: "census", name, expr, dm, net, color: netColor(net)
 }));
-OBJS.push({x: WORLD_W - MARGIN + 1, y: MIDY, kind: "door",
+OBJS.push({x: DOOR_X, y: MIDY, kind: "door",
            name: "the next k-slot", color: "#d2a24c"});
 
 // ---- state -------------------------------------------------------
@@ -156,11 +160,12 @@ function cast(px, py, dx, dy, maxd) {
   }
   for (const o of OBJS) {
     const fx = px - o.x, fy = py - o.y;
+    const a2 = dx * dx + dy * dy;   // rays are NOT unit length
     const b = fx * dx + fy * dy;
     const c = fx * fx + fy * fy - R_OBJ * R_OBJ;
-    const disc = b * b - c;
+    const disc = b * b - a2 * c;
     if (disc <= 0) continue;
-    const t = -b - Math.sqrt(disc);
+    const t = (-b - Math.sqrt(disc)) / a2;
     if (t > 0 && t < best.d) best = {d: t, kind: o.kind, obj: o};
   }
   return best;
@@ -192,7 +197,9 @@ function render() {
     const rx = dirx + planex * camx, ry = diry + planey * camx;
     const hit = cast(player.x, player.y, rx, ry, 60);
     if (hit.kind === "sky") continue;
-    const dPerp = hit.d * (rx * dirx + ry * diry) / Math.hypot(rx, ry);
+    // with d = dir + plane*camx and plane ⊥ dir, d·dir = 1, so
+    // the ray parameter IS the perpendicular depth
+    const dPerp = hit.d;
     const h = Math.min(H, H / Math.max(dPerp * 0.55, 0.2));
     const fog = Math.max(0.08, 1 - dPerp / 34);
     const color = hit.kind === "wall" ? "#4a5462" : hit.obj.color;
@@ -200,15 +207,45 @@ function render() {
     ctx.fillRect(sx, (H - h) / 2, colw, h);
   }
 
+  // dex tick marks: the floor itself measures the walk
+  {
+    ctx.textAlign = "center";
+    const tickFont = Math.round(10 * devicePixelRatio);
+    ctx.font = `${tickFont}px ui-monospace, monospace`;
+    const dirx2 = Math.cos(player.ang), diry2 = Math.sin(player.ang);
+    const px2 = -diry2 * 0.66, py2 = dirx2 * 0.66;
+    const inv2 = 1 / (px2 * diry2 - dirx2 * py2);
+    for (let d = -1; d <= Math.ceil(CELL_DEX); d++) {
+      const tx0 = X0 + d * SCALE;
+      const relx = tx0 - player.x, rely = MIDY - player.y;
+      if (Math.abs(relx) > 20) continue;
+      const txc = inv2 * (diry2 * relx - dirx2 * rely);
+      const tyz = inv2 * (-py2 * relx + px2 * rely);
+      if (tyz <= 0.3) continue;
+      const sxc = (W / 2) * (1 + txc / tyz);
+      if (sxc < 0 || sxc > W) continue;
+      const hcol = Math.min(H, H / Math.max(tyz * 0.55, 0.2));
+      const yfloor = (H + hcol) / 2;
+      const alpha = Math.max(0.15, 1 - tyz / 22);
+      ctx.fillStyle = `rgba(152,148,138,${alpha.toFixed(2)})`;
+      ctx.fillRect(sxc - 1, yfloor - 8, 2, 8);
+      if (d % 2 === 0 && tyz < 14)
+        ctx.fillText(`${d >= 0 ? "+" : ""}${d}`, sxc,
+                     Math.min(H - 4, yfloor + tickFont + 2));
+    }
+  }
+
   // floating labels for near, in-view objects
   ctx.textAlign = "center";
   const fontPx = Math.round(13 * devicePixelRatio);
   ctx.font = `${fontPx}px ui-monospace, monospace`;
   for (const o of OBJS) {
-    if (o.kind === "pillar") continue;
     const relx = o.x - player.x, rely = o.y - player.y;
     const dist = Math.hypot(relx, rely);
-    if (dist > 16 || dist < 0.6) continue;
+    // pillars label only at close range so the forest stays a
+    // forest at a distance but is readable up close
+    if (o.kind === "pillar" ? (dist > 6 || dist < 0.6)
+                            : (dist > 16 || dist < 0.6)) continue;
     // camera transform
     const inv = 1 / (planex * diry - dirx * planey);
     const tx = inv * (diry * relx - dirx * rely);
@@ -236,16 +273,17 @@ function render() {
     pl.innerHTML = `<span style="color:${best.o.color}"><b>${best.o.name}</b>
       = ${best.o.expr} &nbsp;·&nbsp; |mismatch| = ${Math.abs(best.o.dm).toFixed(4)}
       dex &nbsp;·&nbsp; net ${best.o.net >= 0 ? "+" : ""}${best.o.net.toFixed(2)} bits</span>`;
-  } else if ((player.x - (WORLD_W - MARGIN + 1)) ** 2 +
+  } else if ((player.x - DOOR_X) ** 2 +
              (player.y - MIDY) ** 2 < 9) {
     pl.innerHTML = `<span style="color:#d2a24c"><b>the next k-slot.</b>
-      You crossed ${CELL_DEX} dex to get here — most of it empty.
-      That emptiness is why coincidences are cheap.</span>`;
+      It sits exactly one cell — ${CELL_DEX} dex — from the slot
+      center you left, and most of that was empty. The emptiness is
+      why coincidences are cheap.</span>`;
   } else {
     const inCloud = Math.abs(dex) < 1.8;
     pl.innerHTML = `<span style="color:#98948a">${inCloud
       ? "walk up to a colored monolith to read its plaque"
-      : "…" + Math.max(0, ((WORLD_W - MARGIN + 1 - player.x) / SCALE))
+      : "…" + Math.max(0, ((DOOR_X - player.x) / SCALE))
           .toFixed(1) + " dex of nothing to the next k-slot…"}</span>`;
   }
   // minimap
@@ -319,6 +357,11 @@ cv.addEventListener("pointerdown", e => {
   dragging = {x: e.clientX, y: e.clientY};
 });
 window.addEventListener("pointerup", () => dragging = null);
+window.addEventListener("pointercancel", () => dragging = null);
+window.addEventListener("blur", () => {
+  for (const k in keys) keys[k] = false;
+  dragging = null;
+});
 window.addEventListener("pointermove", e => {
   if (!dragging || showPanel) return;
   const ddx = e.clientX - dragging.x, ddy = e.clientY - dragging.y;
