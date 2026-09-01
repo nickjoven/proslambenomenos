@@ -1,0 +1,284 @@
+<title>Five Kinds of Zero</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap">
+<style>
+  :root{
+    --frame:#121916; --board:#1d2a26;
+    --chalk:#e9e6da; --dim:#93a49b; --yellow:#e8d48a;
+    --blue:#a9c9e2; --pink:#dfa3a3; --green:#a8d4b0; --rule:#4a5a53;
+  }
+  html,body{background:var(--frame);color:var(--chalk);margin:0}
+  body{font-family:"Caveat",cursive;font-size:22px;line-height:1.45;
+       padding:26px 12px 60px}
+  .board{max-width:980px;margin:0 auto;background:
+    radial-gradient(1200px 500px at 30% 0%,#223330 0%,var(--board) 55%),
+    var(--board);
+    border:14px solid #3a2e24;border-radius:6px;
+    box-shadow:inset 0 0 60px #0008, 0 10px 40px #000a;
+    padding:38px 44px 46px;position:relative;overflow:hidden}
+  .board::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background-image:radial-gradient(#ffffff08 1px,transparent 1.5px),
+                     radial-gradient(#ffffff05 1px,transparent 1.5px);
+    background-size:180px 140px,90px 110px;
+    background-position:7px 13px,40px 60px}
+  h1{font-family:"Caveat",cursive;font-weight:700;font-size:2.4rem;
+     margin:0 0 2px;color:var(--chalk);text-shadow:0 0 6px #e9e6da22}
+  .sub{color:var(--dim);font-size:1.05rem;margin:0 0 6px;max-width:72ch}
+  .pace{margin-top:40px;border-top:1.5px dashed var(--rule);
+        padding-top:14px}
+  .pace:first-of-type{border-top:0;margin-top:16px}
+  h2{font-family:"Caveat",cursive;font-weight:600;font-size:1.6rem;
+     margin:0 0 10px;color:var(--yellow)}
+  h2 .n{color:var(--dim);margin-right:10px;font-weight:400}
+  .eq{font-family:"STIX Two Text",Georgia,serif;font-style:italic;
+      font-size:1.06rem;line-height:1.9;margin:8px 0 8px 22px;
+      letter-spacing:.01em}
+  .eq b{font-style:normal;font-weight:600}
+  .eq .rm{font-style:normal}
+  .eq .why{font-family:"Caveat",cursive;font-style:normal;
+           color:var(--dim);font-size:.95em;margin-left:14px}
+  .box{display:inline-block;border:1.5px solid var(--chalk);
+       border-radius:3px;padding:2px 12px;
+       box-shadow:1px 1px 0 #e9e6da33}
+  .live{font-family:ui-monospace,monospace;font-size:.78em;
+        color:var(--green);margin:6px 0 4px 22px;white-space:pre-wrap}
+  .yellow{color:var(--yellow)} .blue{color:var(--blue)}
+  .pink{color:var(--pink)} .dim{color:var(--dim)} .green{color:var(--green)}
+  .note{color:var(--dim);font-size:1.02rem;margin:6px 0 0 22px;
+        max-width:66ch}
+  table.tx{border-collapse:collapse;margin:12px 0 4px 8px;
+    font-size:1.02rem;width:calc(100% - 16px)}
+  table.tx td,table.tx th{border-bottom:1px dashed var(--rule);
+    padding:6px 14px 6px 4px;text-align:left;vertical-align:top}
+  table.tx th{color:var(--dim);font-weight:600;
+    font-family:"Caveat",cursive;font-size:1.15rem}
+  table.tx td.m{font-family:"STIX Two Text",Georgia,serif;
+    font-style:italic;font-size:.95rem}
+  .foot{margin-top:44px;border-top:1.5px dashed var(--rule);
+        padding-top:12px;color:var(--dim);font-size:1.02rem}
+  .foot a{color:var(--blue)}
+  sub,sup{font-size:.68em}
+  @media (max-width:640px){.board{padding:24px 16px 30px}
+    .eq{margin-left:6px}.live{margin-left:6px}}
+</style>
+
+<div class="board">
+<h1>Five Kinds of Zero</h1>
+<p class="sub">Every number on the ledger carries an accuracy, and the accuracy is a claim
+about the <em>instrument</em>, not the physics. This board sorts the earned frontier's
+numbers &mdash; 0.0, 2&times;10<sup>&minus;12</sup>, 3.6&times;10<sup>&minus;5</sup>,
+2.3&times;10<sup>&minus;4</sup>, 10<sup>&minus;6</sup> &mdash; into their five species,
+and recomputes the specimens live on this board. Green figures were computed in your
+browser just now.</p>
+
+<!-- ================================================== I -->
+<div class="pace">
+<h2><span class="n">I.</span>The taxonomy</h2>
+<table class="tx">
+<tr><th>species</th><th>size</th><th>what a deviation would mean</th></tr>
+<tr><td class="m"><span class="yellow rm">exact by algebra</span></td>
+    <td class="m">0, literally</td>
+    <td class="m">a bug in the algebra &mdash; not noise, not roundoff</td></tr>
+<tr><td class="m"><span class="blue rm">machine epsilon</span></td>
+    <td class="m">~10<sup>&minus;16</sup>&hellip;10<sup>&minus;12</sup></td>
+    <td class="m">float roundoff on an exact identity; grows ~ &radic;N<sub>ops</sub>&middot;&epsilon;</td></tr>
+<tr><td class="m"><span class="green rm">solver floor</span></td>
+    <td class="m">the bracket &times; 2<sup>&minus;iters</sup></td>
+    <td class="m">the bisection stopped; the mathematics beneath is exact</td></tr>
+<tr><td class="m"><span class="pink rm">detector coverage</span></td>
+    <td class="m">a COUNT, not a size</td>
+    <td class="m">something was missed entirely &mdash; the q = 89 lesson</td></tr>
+<tr><td class="m"><span class="dim rm">statistical band</span></td>
+    <td class="m">&sigma;/&radic;M</td>
+    <td class="m">noise doing what noise does; only crossings beyond the band speak</td></tr>
+</table>
+<p class="note">The species determines the verdict: an "error" of 10<sup>&minus;13</sup> is
+a catastrophe in species one, business as usual in species two, and invisible in species
+five. The ledger's discipline is to say which species every number belongs to.</p>
+</div>
+
+<!-- ================================================== II -->
+<div class="pace">
+<h2><span class="n">II.</span>Exact by algebra &mdash; the switch's forbidden events (P-38)</h2>
+<div class="eq">
+GHZ branches (even minus): |+++&rang;, |+&minus;&minus;&rang;, |&minus;+&minus;&rang;, |&minus;&minus;+&rang;
+&ensp;&rArr;&ensp; a<sub>1</sub>&oplus;b<sub>1</sub>&oplus;c<sub>1</sub> = (# of minus) mod 2 = <b>0 on every branch</b>
+<span class="why">not small &mdash; absent: the odd-parity amplitudes never exist</span>
+</div>
+<div class="eq">
+so the forbidden mass is&ensp;<span class="box yellow rm">exactly 0.0</span>&ensp;before any float is spent
+<span class="why">the 64-dim simulation prints 0.0 because cancellation happens at the amplitude level, not the probability level</span>
+</div>
+<div class="live" id="live2">computing&hellip;</div>
+<p class="note">Same species: Fraction arithmetic in the causal enumerations (C(&alpha;)
+equals its closed form <em>as a rational</em>, not to a tolerance), BigInt conservation of
+the Fricke invariant, the label bijections. Where the whole computation lives in &#8474;,
+zero means zero.</p>
+</div>
+
+<!-- ================================================== III -->
+<div class="pace">
+<h2><span class="n">III.</span>Machine epsilon &mdash; sitting on the circle at 2&times;10<sup>&minus;12</sup> (P-39)</h2>
+<div class="eq">
+the identity is exact:&ensp;(1+sin&theta;*)/2 + &alpha;(1+cos&theta;*)/2 = (1+&alpha;+&radic;(1+&alpha;&sup2;))/2&ensp;at tan&theta;* = 1/&alpha;
+</div>
+<div class="eq">
+but sin, cos, &radic; are each computed to &epsilon; &asymp; 2.2&times;10<sup>&minus;16</sup>,
+and the contraction chains ~10&sup3; of them
+&ensp;&rArr;&ensp;<span class="box blue rm">residual ~ 10<sup>&minus;13&hellip;&minus;12</sup></span>
+<span class="why">the gap 2.1&times;10<sup>&minus;12</sup> at &alpha; = 4 is the arithmetic, not the physics</span>
+</div>
+<div class="live" id="live3">computing&hellip;</div>
+<p class="note">Same species: the trace-map recursion at 5&times;10<sup>&minus;15</sup>, the
+no-signalling marginals at 3&times;10<sup>&minus;17</sup>, the discriminant cross-checks at
+3&times;10<sup>&minus;11</sup> (a longer chain, hence the larger epsilon multiple).</p>
+</div>
+
+<!-- ================================================== IV -->
+<div class="pace">
+<h2><span class="n">IV.</span>Solver floors &mdash; the 3.6&times;10<sup>&minus;5</sup> that was never physics (P-35)</h2>
+<div class="eq">
+ring reflection &rArr; the two twisted folds are <b>equal by theorem</b>; the solver
+bisects 60 times on a bracket of 4:&ensp;4&middot;2<sup>&minus;60</sup> &asymp; 3.5&times;10<sup>&minus;18</sup>&hellip;
+<span class="why">so why did the ledger read 3.6&times;10<sup>&minus;5</sup>?</span>
+</div>
+<div class="eq">
+because the solved quantity feeds through a second bisection (the constraint root c),
+and the FOLD's sensitivity to c near the saddle is a square root:
+&delta;fold ~ &radic;&delta;c
+&ensp;&rArr;&ensp;<span class="box green rm">floor &asymp; &radic;(bracket&middot;2<sup>&minus;60</sup>&middot;&hellip;) ~ 10<sup>&minus;5</sup></span>
+<span class="why">a solver floor pushed through a square-root sensitivity &mdash; the split it produced was correctly read as instrument, and the measured onset split then landed three orders under the grid step</span>
+</div>
+<div class="live" id="live4">computing&hellip;</div>
+<p class="note">The rule: a solver floor is exact mathematics wearing a finite number of
+iterations; its size is computable in advance, and quoting it as if it were physics is the
+error the sector-degeneracy clause was built to catch.</p>
+</div>
+
+<!-- ================================================== V -->
+<div class="pace">
+<h2><span class="n">V.</span>Coverage and floors &mdash; 2.3&times;10<sup>&minus;4</sup> over 10<sup>&minus;6</sup> (P-40/P-41)</h2>
+<div class="eq">
+the q = 89 firing: a scan of spacing 5.5/60q misses any band narrower &mdash; and the
+narrowest band shrinks by &phi;<sup>&minus;2</sup> per rung while the spacing gains only
+&phi;<sup>&minus;1</sup>
+&ensp;&rArr;&ensp;<span class="box pink rm">coverage fails at a computable rung</span>
+<span class="why">between q = 55 and 89 &mdash; where it fired. Counts, not tolerances, catch this: 176 &ne; 178</span>
+</div>
+<div class="eq">
+the repaired detector: edges ARE eigenvalues (periodic + antiperiodic) &mdash; complete by
+construction; then the smallest true gap, 2.3&times;10<sup>&minus;4</sup> at q = 144, is
+<b>physics</b>, sitting 230&times; above the <b>validated</b> floor 10<sup>&minus;6</sup>
+<span class="why">a floor is not a guess when the validation cells measured past it with margin</span>
+</div>
+<div class="live" id="live5">computing&hellip;</div>
+</div>
+
+<!-- ================================================== VI -->
+<div class="pace">
+<h2><span class="n">VI.</span>Ledger of the lecture</h2>
+<div class="eq">
+zero <b>means</b>: an amplitude that never existed (II) &middot; arithmetic meeting its word
+size (III) &middot; a bisection that stopped where predicted (IV) &middot; a count that came
+out full (V) &middot; noise inside its band (P-37's Jarzynski nulls, the fifth species)
+</div>
+<div class="eq">
+and the two firings of the frontier were both species confusions: a power budget
+(species five) leaned on an unregistered curve, and a coverage detector (species four)
+was trusted on a tolerance argument. The species is the lesson.
+<span class="why">LESSONS.md L-4, L-5, L-6 &mdash; consulted at registration, per AGENTS 8d</span>
+</div>
+</div>
+
+<p class="foot">Specimens: P-38/R-37 &middot; P-39/R-38 &middot; P-35/R-33 &middot; P-40/R-39
+&middot; P-41/R-40. Companions: <a href="graph.html">the inviolables</a> &middot;
+<a href="gates.html">the gates</a> &middot; <a href="index.html">the plane</a> &middot;
+<a href="walk.html">the walk</a>.</p>
+</div>
+
+<script>
+"use strict";
+// ---- II: forbidden mass, exactly zero, from the branch algebra ----
+(function () {
+  const BR = [[0,0,0],[0,1,1],[1,0,1],[1,1,0]];
+  const parities = new Set(BR.map(b => (b[0]+b[1]+b[2]) % 2));
+  // conditioned Y-pair parity per revealed sign (P-38 falsifier route)
+  const amp = (yb, xs) => {
+    const iy = yb === 0 ? [0,-1] : [0,1];
+    const sx = xs === 0 ? 1 : -1;
+    return [(1 + iy[0]*sx)/2, (iy[1]*sx)/2];
+  };
+  const cm = (a,b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  let forbidden = 0;
+  for (const s of [0,1]) {
+    const pairs = s === 0 ? [[0,0],[1,1]] : [[0,1],[1,0]];
+    for (let b3 = 0; b3 < 2; b3++)
+      for (let c3 = 0; c3 < 2; c3++) {
+        let re = 0, im = 0;
+        for (const [u,v] of pairs) {
+          const z = cm(amp(b3,u), amp(c3,v));
+          re += z[0]; im += z[1];
+        }
+        const pr = (re*re + im*im)/2;
+        if ((b3 ^ c3) !== (1 ^ s)) forbidden = Math.max(forbidden, pr);
+      }
+  }
+  document.getElementById("live2").textContent =
+    `XXX parities across the 4 GHZ branches: {${[...parities]}} — fixed at 0` +
+    `\nworst forbidden Y-pattern probability, amplitudes summed then squared: ${forbidden}` +
+    (forbidden === 0 ? "  ← the float prints 0.0 because the amplitudes cancelled first"
+                     : "  ← UNEXPECTED");
+})();
+
+// ---- III: the epsilon-sized gap on an exact identity --------------
+(function () {
+  const rows = [];
+  for (const al of [0.5, 1, 2, 4]) {
+    const th = Math.atan2(1, al);
+    const got = (1 + Math.sin(th))/2 + al*(1 + Math.cos(th))/2;
+    const bound = (1 + al + Math.sqrt(1 + al*al))/2;
+    rows.push(`α=${al}: |achieved − bound| = ${Math.abs(got-bound).toExponential(2)}`);
+  }
+  rows.push(`machine ε = ${Number.EPSILON.toExponential(2)} — this short closed-form ` +
+            `chain lands on 0 to ε; the repo's full 16×16 contraction (~10³ ops) ` +
+            `accumulates to ~10⁻¹², which is species two at work, not a physics gap`);
+  document.getElementById("live3").textContent = rows.join("\n");
+})();
+
+// ---- IV: a solver floor, predicted then produced ------------------
+(function () {
+  // bisect a toy fold: f(c) = 1 - c^2 has its "existence edge" at
+  // c = 1; a 60-step bisection on [0, 4] lands within 4·2^-60 of it,
+  // but reading the fold THROUGH a square-root sensitivity g(c) =
+  // sqrt(1 - c) turns resolution r into sqrt(r):
+  let lo = 0, hi = 4;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi)/2;
+    if (mid <= 1) lo = mid; else hi = mid;
+  }
+  const r = hi - 1;
+  document.getElementById("live4").textContent =
+    `bisection residual after 60 steps on [0,4]: ${r.toExponential(2)}` +
+    `\nthe same residual read through a √ sensitivity: ${Math.sqrt(r).toExponential(2)}` +
+    `\n→ two stacked solvers with a saddle between them sit at ~10⁻⁹…10⁻⁵, ` +
+    `which is where P-35's 3.6×10⁻⁵ solver split lived — instrument, not physics`;
+})();
+
+// ---- V: the coverage race, recomputed -----------------------------
+(function () {
+  const PHI = (1 + Math.sqrt(5))/2;
+  const fibs = [8, 13, 21, 34, 55, 89, 144];
+  // min band width shrinks ~0.372 per rung (measured in-repo);
+  // scan spacing shrinks as 1/q. Extrapolate from the q=8 anchor:
+  let band = 9.82e-2;
+  const rows = ["q     band(extrap)  scan spacing   verdict"];
+  for (const q of fibs) {
+    const spacing = 5.5/(60*q);
+    rows.push(`${String(q).padEnd(5)} ${band.toExponential(2)}      ${spacing.toExponential(2)}      ` +
+              (spacing > band ? "MISSED — fired here" : "resolved"));
+    band *= 0.372;
+  }
+  rows.push(`per-rung factor 0.372 ≈ φ⁻² = ${(PHI**-2).toFixed(3)}; ` +
+            `spacing gains only φ⁻¹ — the race has one outcome, at a computable rung`);
+  document.getElementById("live5").textContent = rows.join("\n");
+})();
+</script>
