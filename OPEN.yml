@@ -2,25 +2,12 @@
 # recap artifact. Two kinds: owner (needs Nick; carries the exact
 # command) and agent (can proceed without asking). Keep entries short;
 # history lives in git and the handoff chain, not here.
-owner:
-  - id: O-1
-    item: open the harmonics PR for unseal-fermion-mass-running (branch already pushed; E18-E24 + the owner-push fix)
-    command: "cd ~/code/harmonics && gh pr create --base main --head unseal-fermion-mass-running --fill"
-  - id: O-2
-    item: harmonics MANIFEST proof_chains.A status after E18 (check_manifest_claims must stay green)
-    command: "cd ~/code/harmonics && grep -n 'proof_chains' -A6 MANIFEST.yml"
-  - id: O-3
-    item: delete merged branches at your discretion
-    command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa p13-acoustic c31-everpresent p11-spectral p10-order-dimension p14-shadow p15-specdim p17-bell open-yml-4"
-  - id: O-4
-    item: "link-008 SEALED 2026-08-30 (owner authorization via question set); P-7 wording was already done (2026-08-27, R-20) - O-4 closes when the owner confirms the tag"
-    command: "cd ~/code/proslambenomenos && make gates"
-  - id: O-5
-    item: close PR 60 in favor of PR #61 (same content, renumbered P-18 -> P-19 with R-14 lineage disclosure and the LAW-28 pin, plus the P-20 eps-budget line and its recorded failure)
+owner: []
 agent:
   - id: A-5
     item: "TABLED 2026-08-30 by the owner: runway step 2 (amplitude / the half turn) - the owner judges the other principled walks (the plane, the graph, the gates, the boards) a better starting point than the runway track; the four committed pages stay live at docs/runway/ and the step-1d question stands, but nothing proceeds here until the owner reopens it"
 decided_since_parent:
+  - "2026-08-30 owner question set (four questions, all approved): (1) link-008 SEALED - RELEASES entry PR 99, annotated tag with 75 note/catalog digests pushed, describing the derive-layer era P-10..P-37; P-7 wording found already done (2026-08-27, R-20) - the O-4 item was half stale. (2) O-1/O-2 harmonics: PR 344 opened for unseal-fermion-mass-running; drift suite (SPINE integrity + mutation gate) worst rc 0. (3) O-3/O-5: 8 remaining merged branches deleted (6 were already gone), PR 60 found already closed. (4) parked pushes: tokenctl and toolbox created as private remotes and pushed; the dotfiles git/pre-push-template branch NO LONGER EXISTS (main is synced with origin) - the 2-ahead/4-behind note was stale, resolved on another box. Owner section now empty"
   - "2026-08-30: LLM-efficiency tooling slice landed (user-approved from the efficiency audit): scripts/tools/ (non-gate-covered) - land.sh (the whole landing pipeline as one command with a one-block digest), open_edit.py (structured OPEN.yml close/queue/retext/decided with validation per op), law_pin.py (LAW entry with the full covered-set hash loop), rentry.py (R-entry skeleton with numbers pasted from results JSON per R-18a), jstest.sh + dom_stub.js (inline-JS extraction, syntax check, stub run). Makefile targets land/law-pin/rentry/jstest. All smoke-tested; this landing itself ran through make land as the dogfood test"
   - "2026-08-30: A-20 executed - four edges added to the inviolables graph, all with running checks (21/21 under node): Liu-Chiribella 2025 as a THEOREM edge order-sq2 (their closed form (1+a+sqrt(1+a^2))/2 at a=1 IS the (2+sqrt2)/4 rung, checked at 1e-15 plus a monotonicity scan); Band-Beckus-Loewy 2024 as IMPORTED harper-fib (Dry Ten Martini for Sturmian; the Fricke invariant of the trace map conserved through 10 exact BigInt-rational steps as the runnable skeleton); USTC 2024 loophole-free Hardy as IMPORTED hardy-sqop (measured 4.646e-4 under the phi^-5 ceiling, factor ~194, gap stated as design not physics); Fibonacci anyons as IMPORTED fib-i (lambda_max of [[0,1],[1,1]] = phi exact, F-matrix involution to 1e-15, tenth-root braiding phases; digital emulation caveat in the blurb). The two REFUSED candidates deferred with sizing verdicts: Baumann-Baumeler-Tselentis needs the specific k-cycle inequality read before the enumeration is sized (abstract insufficient), and the interacting-gap-label refusal needs (t,s) values transcribed from figures - neither meets the in-browser-check bar yet; both stay available in the scan report. A-5 tabled by the owner the same day"
   - "2026-08-30: A-5 first half executed - the four runway pages (Return Before Radius, Where Round Comes From, Axes Are Moves, Reach in Three Dimensions) recovered from their artifacts (the only surviving copies), frame-runtime wrappers stripped, committed as docs/runway/step1{,b,c,d}.html with an index that states the open step-1d question; cross-linked from the plane. A-5 narrows to step 2, gated on the user's step-1d read"
