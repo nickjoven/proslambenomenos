@@ -1,0 +1,92 @@
+{
+ "EQ1": {
+  "8": {
+   "ones": 5,
+   "expect": 5,
+   "ok": true
+  },
+  "13": {
+   "ones": 8,
+   "expect": 8,
+   "ok": true
+  },
+  "21": {
+   "ones": 13,
+   "expect": 13,
+   "ok": true
+  }
+ },
+ "EQ2": {
+  "lam1.0_E0.3": {
+   "recursion_worst": 1.7763568394002505e-15,
+   "rotation_tie_worst": 7.771561172376096e-16
+  },
+  "lam2.0_E-0.7": {
+   "recursion_worst": 5.329070518200751e-15,
+   "rotation_tie_worst": 8.881784197001252e-16
+  },
+  "lam1.0_E1.9": {
+   "recursion_worst": 1.3322676295501878e-15,
+   "rotation_tie_worst": 8.881784197001252e-16
+  }
+ },
+ "EQ3": {
+  "q8_lam1.0": {
+   "edges_found": 16,
+   "expected": 16,
+   "min_gap": 0.08767347682796167,
+   "max_gap": 0.6899370374059843,
+   "ok": true
+  },
+  "q8_lam2.0": {
+   "edges_found": 16,
+   "expected": 16,
+   "min_gap": 0.1295215846323492,
+   "max_gap": 1.5049578248355018,
+   "ok": true
+  },
+  "q13_lam1.0": {
+   "edges_found": 26,
+   "expected": 26,
+   "min_gap": 0.03214779881226404,
+   "max_gap": 0.6888168733057527,
+   "ok": true
+  },
+  "q13_lam2.0": {
+   "edges_found": 26,
+   "expected": 26,
+   "min_gap": 0.04189998136288642,
+   "max_gap": 1.503974412236817,
+   "ok": true
+  },
+  "q21_lam1.0": {
+   "edges_found": 42,
+   "expected": 42,
+   "min_gap": 0.012221510309815109,
+   "max_gap": 0.6839648705333179,
+   "ok": true
+  },
+  "q21_lam2.0": {
+   "edges_found": 42,
+   "expected": 42,
+   "min_gap": 0.0157284716198145,
+   "max_gap": 1.4976967229269746,
+   "ok": true
+  }
+ },
+ "EQ4": {
+  "8": {
+   "bijection": true,
+   "range_ok": true
+  },
+  "13": {
+   "bijection": true,
+   "range_ok": true
+  },
+  "21": {
+   "bijection": true,
+   "range_ok": true
+  }
+ },
+ "EQ5": {}
+}

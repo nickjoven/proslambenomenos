@@ -2733,3 +2733,109 @@ value 1.0 at alpha = 1 - caught immediately against P-30's pinned
 upgrades to EARNED across the family. Claim filed:
 biased-ocb-on-the-circle. Results:
 scripts/experiments/p39_results.json.
+## P-40 — 2026-09-01 — gap openings at the approximants (A-23, the earned frontier)
+question: Band, Beckus & Loewy (arXiv:2402.16703) proved Dry Ten
+Martini for Sturmian Hamiltonians: every labeled gap is open at
+every nonzero coupling. A-20 imported this with only the
+trace-map engine as its runnable check. The earned upgrade: at
+the periodic approximants of the Fibonacci Hamiltonian (period
+q = F_m, exact rational rotation words), do our own instruments
+show every one of the q - 1 labeled gaps OPEN, with the label
+arithmetic exact and the instrument tied to the theorem's engine?
+method: derive layer scripts/experiments/p40_derive.py, run and
+committed BEFORE this entry (pins in p40_registration.json):
+discriminant Delta(E) by transfer product, band edges as the 2q
+simple roots of Delta^2 - 4 (scan + bisection at 1e-13; a closed
+gap would produce a double root and break the simple-root count,
+so the count is the closed-gap detector - 8a); exact letter
+counts; exact modular-inverse labels; the trace-map recursion
+verified on substitution words at machine precision and the
+rotation word tied to the substitution word by trace equality
+(a letter-map complement error in the layer's first pass broke
+the tie at O(1) and was caught - recorded). Validation at q in
+{8, 13, 21}: min gap widths 0.012-0.13, three-plus orders above
+the registered floor (8c: floor validated, not guessed).
+expects: at every registered cell - q in {34, 55, 89, 144},
+lambda in {1.0, 2.0}: (a) instrument integrity: exactly 2q simple
+edges, q disjoint bands with |Delta| <= 2 at midpoints and > 2 in
+gap midpoints; (b) ALL q - 1 gaps open with width > 1e-6 (the
+validated floor, seven orders above resolution); (c) the label
+map k -> s with s F_{m-1} = k (mod F_m), |s| <= q/2, is an exact
+bijection; (d) the trace-map recursion and the rotation-tie hold
+at 1e-9 at the registered (lambda, E) samples.
+changes-my-mind: a registered cell with a genuinely closed or
+below-floor labeled gap, surviving the falsifier's independent
+route (band edges as periodic/antiperiodic eigenvalues via the
+pinned cyclic-Jacobi kernel, no discriminant scan) - that would
+contradict the imported theorem's approximant shadow and be
+reported as our instrument error or a real tension, whichever
+the diagnosis supports.
+not-claimed-in-advance: the quasiperiodic limit itself and
+arbitrary coupling (the theorem, imported LC-30); gap-width
+scaling laws in q or lambda (reported unregistered); other
+Sturmian frequencies.
+
+## R-39 — 2026-09-01 — resolves P-40 (mixed; the detector fired, diagnosed)
+Held: (b) every measurable cell has all q - 1 labeled gaps open
+with margin (min widths 4.5e-3 / 1.7e-3 / 6.2e-4 at q = 34 / 55 /
+89, floors cleared by 600x at worst); (c) the label bijections
+exact at all four q; (d) the trace-map recursion and rotation-tie
+at machine precision.
+FIRED: (a) at three of eight cells - q89/lam1.0 found 176 of 178
+edges, q144 found 286 and 270 of 288. Diagnosis: the scan
+detector undersamples - a NARROW BAND falling between two scan
+points leaves Delta dipping through the |2| line and back with no
+sign change at the samples, deleting BOTH its edges. The scan
+density (60 q points) was validated at q <= 21 where the
+narrowest band is wide, and never derived from the narrowest band
+it must resolve at the registered q - the R-36 lesson (power and
+resolution budgets must trace to derived or validated quantities
+at the REGISTERED cells, not the validation cells) repeated in a
+spectral costume. Not rescued: the three cells stand unmeasured
+under this instrument. Re-registered as P-41 with a
+certified-complete detector: band edges as the eigenvalues of the
+periodic and antiperiodic q x q operators - a route that cannot
+miss a band because every edge IS an eigenvalue - with the
+discriminant retained as a cross-check at midpoints only.
+Results: scripts/experiments/p40_results.json.
+
+## P-41 — 2026-09-01 — gap openings at the approximants (P-40 re-registered)
+question: P-40's question with the detector the diagnosis
+demands: at q = F_m in {34, 55, 89, 144}, lambda in {1.0, 2.0},
+are all q - 1 labeled gaps open?
+method: band edges = eigenvalues of the periodic (corner +1) and
+antiperiodic (corner -1) tridiagonal operators via the pinned
+kernels eigensolver; bands = consecutive pairs of the sorted
+union (standard interlacing); the discriminant now serves as
+CROSS-CHECK only (|Delta| <= 2 at band midpoints, >= 2 at gap
+midpoints, and every periodic eigenvalue has Delta = +2, every
+antiperiodic Delta = -2, at 1e-6). Everything else carries over
+from P-40's layer unchanged: the floor 1e-6, the exact labels,
+the trace-map tie.
+expects: (a) integrity: 2q edges from the eigen-route at every
+cell, bands disjoint, the discriminant cross-checks pass; (b) all
+q - 1 gaps open above the floor at every cell; (c) label
+bijections exact; (d) trace clauses as P-40(d).
+changes-my-mind: as P-40, with the falsifier's independent route
+now an OWN Sturm-sequence bisection eigensolver (not the pinned
+kernel, not a scan).
+not-claimed-in-advance: as P-40.
+
+## R-40 — 2026-09-01 — resolves P-41 (as expected)
+All four clauses held at all eight cells; numbers from
+p41_results.json. (a) the eigen-route found every edge - 2q at
+every cell, including the three cells the P-40 scan could not
+measure - with the discriminant cross-checks at 3.3e-11 worst
+(every periodic eigenvalue sits on Delta = +2, every antiperiodic
+on Delta = -2, and the midpoint conditions hold); (b) ALL labeled
+gaps open at every cell: min widths 4.5e-3 / 1.7e-3 / 6.2e-4 /
+2.3e-4 at q = 34 / 55 / 89 / 144, the smallest still 230x above
+the validated floor; (c) label bijections exact at all four q;
+(d) trace-map recursion and rotation-tie at machine precision.
+The mind-change did not fire. The Dry Ten Martini import now has
+an earned approximant shadow: at every computed approximant and
+both couplings, every gap the labeling theorem allows is open -
+computed, not cited. The narrowing trend (min width roughly
+halving per Fibonacci step) is reported unregistered. Claim
+filed: approximant-gaps-all-open. Results:
+scripts/experiments/p41_results.json.
