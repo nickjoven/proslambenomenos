@@ -26,6 +26,13 @@ MAIN=~/code/proslambenomenos
 [ "$WT" = "$(cd $MAIN && pwd)" ] && {
   echo "land.sh: refusing to run in the main checkout" >&2; exit 2; }
 
+# refuse junk message files (the PR-104 'placeholder' blemish)
+FIRST_LINE=$(head -1 "$MSGFILE" | tr -d '[:space:]')
+if [ ${#FIRST_LINE} -lt 12 ] || grep -qi '^placeholder' "$MSGFILE"; then
+  echo "land.sh: commit message file looks like a stub" >&2
+  exit 2
+fi
+
 git add -A
 if ! git diff --cached --quiet; then
   git commit -q -F "$MSGFILE"
