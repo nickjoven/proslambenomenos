@@ -1,0 +1,34 @@
+id: biased-ocb-on-the-circle
+statement: >
+  For the biased OCB correlation I_alpha = P(a1=b|c=0) + alpha
+  P(a2=x1|c=1), computed with our own instruments on the grid
+  alpha in {0, 1/4, 1/2, 3/4, 1, 3/2, 2, 4}: the causal value is
+  C(alpha) = max(1 + alpha/2, 1/2 + alpha), obtained EXACTLY by
+  exhausting all 8192 deterministic one-way-signalling strategies
+  in rational arithmetic (the causal (P_A, P_B) set has 9 points
+  with extremes (1, 1/2) and (1/2, 1), which lie on the Tsirelson
+  circle - the square is inscribed); and the imported ICO bound
+  B(alpha) = (1 + alpha + sqrt(1 + alpha^2))/2 is ACHIEVED, to
+  2.1e-12 at worst, by the theta-rotated process family W(theta)
+  = (1/4)[1 + cos(theta) sz^A2 sz^B1 + sin(theta) sz^A1 sx^B1
+  sz^B2] at theta* = atan2(1, alpha), every member a valid
+  process (spectrum {0 x8, 1/2 x8}, no-causal-loop identity). The
+  ICO advantage B - C is zero at alpha = 0, positive for every
+  grid alpha > 0, and maximal at alpha = 1 with value
+  (sqrt2 - 1)/2: the unbiased game is where indefinite causal
+  order buys the most. Scope: this correlation family and these
+  instruments; the upper-bound proof is IMPORTED (LC-29) - what
+  is earned is both curves, the achieving family, and the
+  geometry.
+premises: []
+prediction: P-39
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p39_derive.py with p39_registration.json (the layer: exhaustion in Fractions, the rotated family, validity, geometry); scripts/experiments/p39_family.py with p39_results.json (the registered clauses); independently reimplemented by scripts/verify/p39_alpha_family.py via Pauli-orthogonality bookkeeping (no matrices) and a fresh enumeration encoding"
+    method: reimplementation
+null_system: "the process-validity checks (spectrum, trace, the no-causal-loop trace-and-replace identity) run at every grid point, so the family never silently leaves the process cone; the game-role assignment is determined by computation at the theta endpoints, and the layer's first-pass role inversion was caught against P-30's pinned value - the anchor doing its job"
+falsifier: "scripts/verify/p39_alpha_family.py --mutant symmetric-blind"
+novelty:
+  status: classical
+  citation: "Liu & Chiribella, Nat. Commun. 16, 3314 (2025), arXiv:2403.02749 (the bound, the circle, the biased family via their ref [39]). The contribution is the earned two-sided reproduction across the family with an explicitly constructed achieving process - repo discipline, not new physics"
+status: verified

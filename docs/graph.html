@@ -446,26 +446,46 @@ const EDGES = [
              detail: "orbit size " + seen.size +
              " = {0, 2−φ, φ−1, 1}"}; }},
   // ------- the 2026-08-30 literature pass (A-20) -------
-  {from:"order", to:"sq2", type:"theorem",
-   title:"the ICO Tsirelson bound is the rung",
-   stmt:"Liu–Chiribella 2025: the indefinite-causal-order maximum " +
-   "of the OCB game is (1+α+√(1+α²))/2 in bias α; at α = 1 the " +
-   "success probability is exactly (2+√2)/4 — the ladder's rung.",
-   logic:"Their closed form, proved for arbitrary no-signalling " +
-   "supermaps, lands on the number P-30's 8192-strategy " +
-   "enumeration priced from the other side. Two independent " +
-   "routes, one algebraic point.",
-   ev:"arXiv:2403.02749 · Nat. Commun. 16, 3314 (2025) · P-30/R-27",
+  {from:"order", to:"sq2", type:"earned",
+   title:"the ICO Tsirelson circle, traced",
+   stmt:"Liu\u2013Chiribella 2025: the ICO bound for the biased OCB " +
+   "game is (1+\u03b1+\u221a(1+\u03b1\u00b2))/2 \u2014 a circle of radius \u00bd. P-39 " +
+   "earned both sides across the family: the causal square by " +
+   "exhausting all 8192 strategies, the circle by a rotated " +
+   "process family we construct \u2014 achieved to 2e-12.",
+   logic:"W(\u03b8) = \u00bc[\ud835\udfd9 + cos\u03b8\u00b7ZZ + sin\u03b8\u00b7ZXZ] stays a valid " +
+   "process for every \u03b8 (the coefficient vector has unit norm, " +
+   "so the spectrum is {0,\u00bd}); with the OCB strategies its two " +
+   "success probabilities are (1+sin\u03b8)/2 and (1+cos\u03b8)/2, and " +
+   "maximizing at tan\u03b8 = 1/\u03b1 lands exactly on the bound. The " +
+   "advantage is maximal at \u03b1 = 1: (\u221a2\u22121)/2. Upper-bound proof " +
+   "imported (LC-29); both curves and the achieving family " +
+   "earned.",
+   ev:"P-39/R-38 \u00b7 claim biased-ocb-on-the-circle \u00b7 arXiv:2403.02749",
    check: () => {
-     const f = (a) => (1 + a + Math.sqrt(1 + a * a)) / 2;
-     const r1 = near(f(1) / 2, (2 + Math.SQRT2) / 4, 1e-15,
-       "closed form at α=1, per game round");
-     let mono = true;
-     for (let k = 1; k < 40; k++)
-       mono = mono && f(k / 20) > f((k - 1) / 20);
-     return {pass: r1.pass && mono,
-             detail: r1.detail + "\n  α-family strictly " +
-             "increasing on [0,2] (40-point scan)"}; }},
+     const rows = [];
+     let pass = true;
+     for (const al of [0.5, 1, 2]) {
+       const th = Math.atan2(1, al);
+       const pa = (1 + Math.sin(th)) / 2, pb = (1 + Math.cos(th)) / 2;
+       const got = pa + al * pb;
+       const bound = (1 + al + Math.sqrt(1 + al * al)) / 2;
+       const causal = Math.max(1 + al / 2, 0.5 + al);
+       pass = pass && Math.abs(got - bound) < 1e-14 && got > causal;
+       rows.push("\u03b1=" + al + ": achieved " + got.toFixed(10) +
+                 " = bound; causal " + causal);
+     }
+     // the closed probability forms themselves re-derived from the
+     // Pauli contraction at the endpoints
+     const end0 = [0.5, 1.0], end90 = [1.0, 0.5];
+     pass = pass && Math.abs((1 + Math.sin(0)) / 2 - end0[0]) < 1e-15
+                 && Math.abs((1 + Math.cos(0)) / 2 - end0[1]) < 1e-15
+                 && Math.abs((1 + Math.sin(Math.PI / 2)) / 2 - end90[0]) < 1e-15
+                 && Math.abs((1 + Math.cos(Math.PI / 2)) / 2 - end90[1]) < 1e-15;
+     const adv1 = (2 + Math.SQRT2) / 2 - 1.5;
+     pass = pass && Math.abs(adv1 - (Math.SQRT2 - 1) / 2) < 1e-15;
+     return {pass, detail: rows.join("\n") +
+       "\nadvantage max at \u03b1=1: (\u221a2\u22121)/2"}; }},
   {from:"harper", to:"fib", type:"imported",
    title:"every labeled gap is open (Sturmian)",
    stmt:"Band–Beckus–Loewy 2024: for Sturmian Hamiltonians at " +

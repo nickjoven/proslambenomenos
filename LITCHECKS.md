@@ -979,3 +979,23 @@ claims-checked:
   Liu-Chiribella ICO Tsirelson bound (LC-adjacent via the A-20
   graph edge) is a separate, probabilistic statement about a
   different game family.
+
+## LC-29 — 2026-09-01 — the P-39 import (the alpha-family bound)
+prediction: P-39
+claims-checked:
+- The ICO Tsirelson bound B(alpha) = (1 + alpha +
+  sqrt(1 + alpha^2))/2 for the biased OCB correlation (their
+  eqs. 6-7), the circle geometry (radius 1/2 around (1/2, 1/2)),
+  and the single-trigger decomposition proof method: Liu &
+  Chiribella, Nat. Commun. 16, 3314 (2025), arXiv:2403.02749.
+  IMPORTED - the upper-bound proof is not reproduced; what P-39
+  earns is both curves (causal by exhaustion, quantum by an
+  achieving family we construct) and their geometry.
+- The biased family's origin their paper credits as ref [39],
+  where a specific ICO process attains the value - our
+  theta-rotated W(theta) plays that role, constructed and
+  validated independently rather than transcribed.
+- Adjacent, unchanged: their GYNI/LGYNI numerical bounds stay
+  un-imported (SDP values, no in-repo check); the A-20 graph
+  edge's alpha = 1 statement is subsumed by this line's
+  family-wide result.
