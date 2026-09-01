@@ -2589,3 +2589,78 @@ falsifier's independent reimplementation.
 Claim filed: writing-a-bit-pays-its-floors (verified; falsifier
 scripts/verify/p37_price_of_bit.py, mutants half-work and
 entropy-blind). Results: scripts/experiments/p37_results.json.
+
+## P-38 — 2026-09-01 — the Hardy-order bridge (A-21, the earned frontier)
+question: van der Lugt & Ormrod (Quantum 8, 1543 (2024)) give a
+POSSIBILISTIC, GHZ-style proof that the quantum switch's causal
+order is indefinite - Hardy's logical template applied to causal
+order. The earned re-derivation: does our own simulation of their
+three-switch GHZ scenario (controls GHZ-entangled, switches
+X-controlled, agents measure-and-reprepare on x = 1, a Y
+measurement on the outgoing control) reproduce the four parity
+implications possibilistically - forbidden events at zero, not
+merely small - and does exhaustive enumeration of deterministic
+local-order strategies certify the classical ceiling their
+imported reduction theorem needs?
+method: derive layer scripts/experiments/p38_derive.py, run and
+committed BEFORE this entry (pins in p38_registration.json): own
+64-dim stdlib simulation; all 4096 deterministic per-switch
+response strategies enumerated; the Mermin functional on the four
+patterns; item-8 nulls (normalization, a no-signalling marginal
+check making relativistic causality a verified property of the
+data, and the definite-wiring control showing the coherence is
+load-bearing). The reduction from definite causal order +
+relativistic causality + free choice to the enumerated class is
+IMPORTED (their Theorem 1; LC-28), not reproved.
+expects: (a) the four parity conditions hold with total forbidden
+probability mass <= 1e-14 per pattern and each pattern
+normalized to 1 +- 1e-12; (b) the allowed outcomes are UNIFORM:
+32 outcomes at 1/32 (XXX pattern), 8 at 1/8 (each Y pattern),
+every allowed probability within 1e-12 of its value; (c) the
+exhaustive ceiling: no strategy satisfies 4 conditions, the
+maximum is 3, and the satisfaction histogram is {1: 2048,
+3: 2048} - odd counts only, the parity signature; (d) Mermin
+functional: classical max = 2 (exhaustive), switch value = 4 =
+the algebraic maximum - "maximal indefiniteness" in
+ladder-priced form; (e) nulls: no-signalling marginal invariance
+<= 1e-12; the definite-FE world satisfies the XXX condition and
+puts violation mass 1/2 +- 1e-12 on each Y-pattern condition.
+changes-my-mind: any clause failing under the falsifier's
+independent reimplementation (X-basis branch expansion, its own
+enumeration encoding) - a surviving nonzero forbidden mass would
+mean the possibilistic reading of the switch is wrong as
+computed, and would be reported as our error or the paper's,
+whichever the diagnosis supports.
+not-claimed-in-advance: experimental realizations; the
+gravitational-switch discussion in the same paper; the reduction
+theorem itself (imported); fixed-order inequalities (the scan's
+refused candidate stays deferred); any statement about
+single-switch scenarios (their Appendix D shows one switch does
+not suffice - imported context, not rederived).
+
+## R-37 — 2026-09-01 — resolves P-38 (as expected)
+All five clauses held; numbers pasted by script from
+p38_results.json. (a) forbidden parity mass 0.0 - the true zero
+of the amplitude structure, not a small float - at every pattern,
+totals at 1e-16 of unity; (b) allowed outcomes uniform: 32 x 1/32
+(XXX), 8 x 1/8 (each Y pattern); (c) the exhaustion: 4096
+deterministic local-order strategies, maximum 3 of 4 conditions,
+histogram {1: 2048, 3: 2048} - only odd satisfaction counts
+occur, the parity signature; (d) Mermin functional: classical
+max 2, switch value 4 = the algebraic ceiling - van der Lugt &
+Ormrod's "maximal" statement lands in the ladder-priced form the
+repo already speaks; (e) no-signalling marginal invariance at
+2.8e-17 and the definite-wiring control satisfying the XXX
+condition while dumping violation mass exactly 1/2 on each
+Y-pattern condition - the coherence is load-bearing, the
+bookkeeping alone reproduces nothing. The falsifier's independent
+route (X-basis branch expansion: the x = (1,1) switch reveals its
+branch sign in a1; the revealed sign conditions the remaining
+controls into a Bell pair whose Y-parity is fixed) reproduces
+every clause with different mathematics. The mind-change did not
+fire. The Hardy-order bridge is EARNED: Hardy's possibilistic
+template, which this ledger first met as P-21's phi^-5 maximum,
+now runs on causal order itself - the graph's two earned clusters
+are joined by computation, not citation. Claim filed:
+switch-parity-ceiling. Results:
+scripts/experiments/p38_results.json.

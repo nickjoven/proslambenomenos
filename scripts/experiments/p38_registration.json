@@ -1,0 +1,133 @@
+{
+ "EQ1_EQ4": {
+  "patterns": [
+   {
+    "inputs": [
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "vars": [
+     "a1",
+     "b1",
+     "c1"
+    ],
+    "parity": 0,
+    "total": 0.9999999999999998,
+    "worst_forbidden": 0.0,
+    "n_allowed": 32,
+    "min_allowed": 0.031249999999999993,
+    "max_allowed": 0.031249999999999993
+   },
+   {
+    "inputs": [
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "vars": [
+     "a1",
+     "b3",
+     "c3"
+    ],
+    "parity": 1,
+    "total": 0.9999999999999998,
+    "worst_forbidden": 0.0,
+    "n_allowed": 8,
+    "min_allowed": 0.12499999999999997,
+    "max_allowed": 0.12499999999999997
+   },
+   {
+    "inputs": [
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "vars": [
+     "a3",
+     "b1",
+     "c3"
+    ],
+    "parity": 1,
+    "total": 0.9999999999999998,
+    "worst_forbidden": 0.0,
+    "n_allowed": 8,
+    "min_allowed": 0.12499999999999997,
+    "max_allowed": 0.12499999999999997
+   },
+   {
+    "inputs": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "vars": [
+     "a3",
+     "b3",
+     "c1"
+    ],
+    "parity": 1,
+    "total": 0.9999999999999998,
+    "worst_forbidden": 0.0,
+    "n_allowed": 8,
+    "min_allowed": 0.12499999999999997,
+    "max_allowed": 0.12499999999999997
+   }
+  ],
+  "nulls": {
+   "nosig_A_worst": 2.7755575615628914e-17,
+   "definite_FE_violation_mass": [
+    0,
+    0.5,
+    0.5,
+    0.5
+   ]
+  }
+ },
+ "EQ2_EQ3": {
+  "n_strategies": 4096,
+  "max_conditions_satisfied": 3,
+  "histogram": {
+   "1": 2048,
+   "3": 2048
+  },
+  "mermin_classical_max": 2,
+  "mermin_algebraic_max": 4
+ }
+}
