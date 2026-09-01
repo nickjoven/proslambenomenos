@@ -701,6 +701,62 @@ const EDGES = [
        (hist[3] || 0) + "}, Mermin " + bestM +
        " vs switch 4\n  conditioned Y-pair parities fixed as " +
        "registered (amplitude-level)"}; }},
+  {from:"ring", to:"order", type:"refused",
+   title:"not the same half",
+   stmt:"The switch's parity \u00bd and the ring's winding \u00bd are " +
+   "different objects (P-42): the switch's is an all-vs-nothing " +
+   "obstruction \u2014 no global assignment exists \u2014 while the " +
+   "ring's is the label of a global configuration that plainly " +
+   "does. And the switch's data is exactly GHZ's data (machine " +
+   "zero), so what differs between Bell and causal-order tests is " +
+   "only the hidden-variable class the same data excludes.",
+   logic:"Over GF(2) the four switch parities have coefficient " +
+   "rank 3 but augmented rank 4 \u2014 inconsistent, all-vs-nothing " +
+   "(Abramsky\u2013Brandenburger\u2013Barbosa: hence nonzero \u010cech " +
+   "obstruction, imported). The \u03c0 ring's covariant strains are " +
+   "one simultaneous assignment summing to \u2212\u03c0: a global " +
+   "section, zero obstruction. Same numeral, different " +
+   "mathematics.",
+   ev:"P-42/R-41 \u00b7 claim switch-data-is-ghz-data \u00b7 LC-31",
+   check: () => {
+     const rows = [[1,0,1,0,1,0,0],[1,0,0,1,0,1,1],
+                   [0,1,1,0,0,1,1],[0,1,0,1,1,0,1]];
+     const M = rows.map(r => r.slice());
+     let r = 0;
+     for (let col = 0; col < 6; col++) {
+       let piv = -1;
+       for (let i = r; i < M.length; i++)
+         if (M[i][col]) { piv = i; break; }
+       if (piv < 0) continue;
+       [M[r], M[piv]] = [M[piv], M[r]];
+       for (let i = 0; i < M.length; i++)
+         if (i !== r && M[i][col])
+           M[i] = M[i].map((v, j) => v ^ M[r][j]);
+       r++;
+     }
+     const inconsistent = M.some(row =>
+       row.slice(0, 6).every(v => v === 0) && row[6] === 1);
+     const N = 64, TAU2 = 2 * Math.PI;
+     const d = -Math.PI / N;
+     const th = [0];
+     for (let j = 0; j < N - 1; j++)
+       th.push(th[th.length - 1] + d + (j === 0 ? Math.PI : 0));
+     const wrap = (x) => ((x + Math.PI) % TAU2 + TAU2) % TAU2 - Math.PI;
+     let W = 0, mx = -9, mn = 9;
+     for (let j = 0; j < N; j++) {
+       const s = wrap(th[(j + 1) % N] - th[j]
+                      - (j === 0 ? Math.PI : 0));
+       W += s; mx = Math.max(mx, s); mn = Math.min(mn, s);
+     }
+     W /= TAU2;
+     const section = (mx - mn) < 1e-12 && Math.abs(W + 0.5) < 1e-12;
+     return {pass: inconsistent && section,
+             detail: "switch parity system over GF(2): " +
+             (inconsistent ? "INCONSISTENT (no global assignment)"
+                           : "consistent?!") +
+             "\nring: one global assignment, spread " +
+             (mx - mn).toExponential(1) + ", W = " + W.toFixed(12)};
+   }},
 ];
 
 // ===================== run all checks ============================

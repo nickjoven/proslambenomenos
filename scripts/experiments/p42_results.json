@@ -1,0 +1,41 @@
+{
+ "clauses": {
+  "a": true,
+  "b": true,
+  "c": true,
+  "d": true
+ },
+ "worst_model_diff": 1.3877787807814457e-16,
+ "factorization": {
+  "factorizes": true,
+  "worst_nonuniformity": 0.0,
+  "detail": {
+   "XXX": {
+    "triples": 4,
+    "completions_each": 8
+   },
+   "XYY": {
+    "triples": 4,
+    "completions_each": 2
+   },
+   "YXY": {
+    "triples": 4,
+    "completions_each": 2
+   },
+   "YYX": {
+    "triples": 4,
+    "completions_each": 2
+   }
+  }
+ },
+ "avn": {
+  "rank_A": 3,
+  "rank_aug": 4,
+  "inconsistent": true
+ },
+ "ring": {
+  "winding": -0.49999999999999867,
+  "strain_spread": 2.220446049250313e-15,
+  "global_section": true
+ }
+}

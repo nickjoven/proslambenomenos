@@ -1017,3 +1017,24 @@ claims-checked:
   antiperiodic edge interlacing): textbook (Toda, Reed-Simon
   lineage); used as the instrument's foundation, with the
   P-40 -> P-41 detector lesson recorded in R-39.
+
+## LC-31 — 2026-09-01 — the P-42 imports (sheaf contextuality)
+prediction: P-42
+claims-checked:
+- Contextuality as no-global-section of the support presheaf, and
+  strong contextuality: Abramsky & Brandenburger, New J. Phys. 13,
+  113036 (2011). IMPORTED as the criterion; our exhaustions
+  compute it.
+- AvN (all-vs-nothing) arguments over Z2 and their cohomological
+  witness: Abramsky, Barbosa, Kishida, Lal, Mansfield, "Contextuality,
+  cohomology and paradox" (CSL 2015 / arXiv:1502.03097). IMPORTED:
+  we compute the GF(2) inconsistency and cite the implication to
+  nonvanishing Cech obstruction rather than computing cohomology.
+- GHZ stabilizer structure (the four signed contexts as stabilizer
+  elements): textbook (Gottesman lineage); recomputed here by
+  Pauli group arithmetic, not imported.
+- The van der Lugt-Ormrod scenario (LC-28) supplies the switch
+  side; the reading that its data embeds GHZ is explicit in their
+  construction - what P-42 adds is the EXACT equality including
+  the remainder factorization, and the refusal separating the
+  switch's 1/2 from the semifluxon/winding 1/2 (LC-26's family).

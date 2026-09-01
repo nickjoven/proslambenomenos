@@ -2839,3 +2839,68 @@ computed, not cited. The narrowing trend (min width roughly
 halving per Fibonacci step) is reported unregistered. Claim
 filed: approximant-gaps-all-open. Results:
 scripts/experiments/p41_results.json.
+
+## P-42 — 2026-09-01 — the switch's data is GHZ's data; its half is not the ring's half
+question: two identity questions from the theoretical press,
+lessons L-9 consulted. (1) Is P-38's switch empirical model,
+restricted to the registered contexts, EXACTLY the GHZ model
+tensored with deterministic copies and independent fair coins? If
+so, indefinite causal order contributes no correlations in this
+scenario - the entire content is which hidden-variable class the
+data excludes, and resource-language conflates data with causal
+hypothesis. (2) Do the switch's parity 1/2 and the pi ring's
+winding 1/2 differ by the Abramsky-Brandenburger criterion -
+global-section existence - making their identification a REFUSAL?
+method: derive layer scripts/experiments/p42_derive.py, run and
+committed BEFORE this entry (pins in p42_registration.json): own
+3-qubit GHZ computation at the four paradox contexts; P-38's
+switch joints marginalized; exact factorization test on the full
+outcome space; the AvN system's GF(2) ranks in integer
+arithmetic; the ring's ground-state section recomputed. The AvN
+-> nonvanishing-cohomology implication is IMPORTED (LC-31,
+Abramsky-Brandenburger-Barbosa), not reproved.
+expects: (a) switch marginals equal the GHZ model with worst
+difference <= 1e-14 per outcome per context; (b) the remainder
+factorizes EXACTLY: equal completion counts per GHZ triple and
+conditional uniformity with worst nonuniformity <= 1e-14 (the
+counts themselves pinned: 8 completions at XXX, 2 at each Y
+pattern); (c) AvN: coefficient rank 3, augmented rank 4 over
+GF(2) - inconsistent, exact integers; (d) the ring section:
+uniform covariant strain with spread <= 1e-12 and winding within
+1e-12 of -1/2 - a global section exists, so the ring's half
+carries ZERO contextual obstruction while the switch's carries a
+nonzero one (by (c) + the import); the identification of the two
+halves is REFUSED.
+changes-my-mind: (a) or (b) failing beyond band under the
+falsifier's independent routes (stabilizer-identity GHZ; the
+X-basis branch route for the switch) - a real difference between
+the models would be reported as the discovery it would be.
+not-claimed-in-advance: resource-theoretic statements beyond this
+scenario (other switch protocols may generate non-GHZ
+correlations); the cohomology computation itself (imported
+implication); any claim about experimental switches.
+
+## R-41 — 2026-09-01 — resolves P-42 (as expected)
+All four clauses held. (a) The switch triple-marginals equal the
+GHZ empirical model with worst difference 1.4e-16 - the two data
+sets are THE SAME at machine zero. (b) The remainder factorizes
+without residue: completion counts (8, 2, 2, 2) as pinned,
+conditional nonuniformity 0.0 - the switch scenario's data is GHZ
+tensored with deterministic copies and exactly fair coins.
+(c) AvN over GF(2): coefficient rank 3, augmented rank 4 -
+inconsistent, so (imported AB-Barbosa) the contextual obstruction
+is nonzero. (d) The ring's half is one globally consistent
+configuration (strain spread 2.2e-15, winding -1/2 at 1e-13) -
+zero obstruction. The mind-change did not fire. READINGS: (1) in
+this scenario indefinite causal order contributes no correlations
+whatsoever; every bit of novelty lives in WHICH hidden-variable
+class the same GHZ data excludes - definite orders here, local
+states there - and resource language that does not say so
+conflates data with causal hypothesis; (2) the graph's two halves
+are hereby REFUSED as one object: the switch's half is a
+no-global-section obstruction, the ring's half is a global
+section's topological label. Same numeral, different mathematics.
+Falsifier routes: stabilizer identities (the four signed contexts
+live in the GHZ group of size 8) and the X-basis branch expansion.
+Claim filed: switch-data-is-ghz-data. Results:
+scripts/experiments/p42_results.json.
