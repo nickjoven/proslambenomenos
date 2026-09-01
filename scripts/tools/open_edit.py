@@ -24,6 +24,13 @@ def repo_open():
     root = subprocess.run(["git", "rev-parse", "--show-toplevel"],
                           capture_output=True, text=True,
                           check=True).stdout.strip()
+    branch = subprocess.run(["git", "rev-parse", "--abbrev-ref",
+                             "HEAD"], capture_output=True,
+                            text=True, check=True,
+                            cwd=root).stdout.strip()
+    if branch in ("main", "master"):
+        sys.exit("open_edit: refusing to edit OPEN.yml on the "
+                 "read-only main checkout - use a task worktree")
     return root + "/OPEN.yml"
 
 
