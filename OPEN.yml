@@ -13,7 +13,7 @@ owner:
     item: delete merged branches at your discretion
     command: "cd ~/code/proslambenomenos && git push origin --delete x9-kinematic-gap math-catalog lc7-brocot handoff-interface open-yml-packet2 p3-iwasawa p13-acoustic c31-everpresent p11-spectral p10-order-dimension p14-shadow p15-specdim p17-bell open-yml-4"
   - id: O-4
-    item: JUNCTURE remainder - word P-7 (A-1); seal link-008 over the P-18..P-36 landing if satisfied (the P-4 half was decided 2026-08-29 - reopened and resolved, A-4/R-34)
+    item: "link-008 SEALED 2026-08-30 (owner authorization via question set); P-7 wording was already done (2026-08-27, R-20) - O-4 closes when the owner confirms the tag"
     command: "cd ~/code/proslambenomenos && make gates"
   - id: O-5
     item: close PR 60 in favor of PR #61 (same content, renumbered P-18 -> P-19 with R-14 lineage disclosure and the LAW-28 pin, plus the P-20 eps-budget line and its recorded failure)
