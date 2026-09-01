@@ -2664,3 +2664,72 @@ now runs on causal order itself - the graph's two earned clusters
 are joined by computation, not citation. Claim filed:
 switch-parity-ceiling. Results:
 scripts/experiments/p38_results.json.
+
+## P-39 — 2026-09-01 — the alpha-family (A-22, the earned frontier)
+question: Liu & Chiribella (Nat. Commun. 16, 3314 (2025)) proved
+the ICO Tsirelson bound for the biased OCB correlation I_alpha =
+P(a1=b|c=0) + alpha P(a2=x1|c=1): B(alpha) = (1 + alpha +
+sqrt(1+alpha^2))/2, geometrically a circle of radius 1/2 around
+(1/2, 1/2) with the causal square inscribed. A-20 imported the
+alpha = 1 point as a graph edge. The earned extension: does P-30's
+instrument family - exhaustive causal enumeration and the OCB
+process machinery - reproduce BOTH sides across the family: the
+causal value C(alpha) = max(1 + alpha/2, 1/2 + alpha) by exact
+exhaustion, and the bound B(alpha) as ACHIEVED by a process family
+we construct ourselves, the theta-rotated W(theta) = (1/4)[1 +
+cos(theta) sz^A2 sz^B1 + sin(theta) sz^A1 sx^B1 sz^B2]?
+method: derive layer scripts/experiments/p39_derive.py, run and
+committed BEFORE this entry (pins in p39_registration.json): 8192
+deterministic one-way-signalling strategies in Fraction
+arithmetic; W(theta) validity via P-30's checks (spectrum, trace,
+the no-causal-loop trace-and-replace identity); full-contraction
+probabilities in OCB's eq. 20-23 conventions with the game roles
+determined by computation (a role mis-assignment in the layer's
+first pass produced value 1.0 at alpha = 1 and was caught against
+P-30's pinned (2+sqrt2)/4 - recorded, the layer doing its job).
+The upper-bound proof is IMPORTED (LC-29), the achieving family
+and both curves are earned.
+expects: (a) enumerated C(alpha) equals the closed form EXACTLY
+(rationals) on the grid alpha in {0, 1/4, 1/2, 3/4, 1, 3/2, 2,
+4}; the extreme points (1, 1/2) and (1/2, 1) occur; the
+(P_A, P_B) point set has exactly 9 elements; (b) W(theta*) at
+every grid alpha: spectrum {0 x8, 1/2 x8} at 1e-9, Tr = 4 at
+1e-10, the no-loop identity at 1e-10; (c) the achieved value sits
+on the imported bound at 1e-11 at every grid alpha; (d) geometry:
+the four causal extreme points on the circle at 1e-12; advantage
+B - C equal to 0 at alpha = 0, positive at every grid alpha > 0,
+grid-maximal at alpha = 1 with value (sqrt2 - 1)/2 at 1e-12.
+changes-my-mind: any clause failing under the falsifier's
+independent Pauli-basis route (no matrices - trace orthogonality
+bookkeeping) and its own enumeration encoding.
+not-claimed-in-advance: the upper-bound proof (imported); GYNI /
+LGYNI (numerical SDP values, the scan's caveat); multipartite
+generalizations; optimality of the OCB local strategies among all
+local operations (that is part of the imported theorem).
+
+## R-38 — 2026-09-01 — resolves P-39 (as expected)
+All four clauses held; numbers from p39_results.json. (a) the
+8192-strategy exhaustion lands on C(alpha) = max(1 + alpha/2,
+1/2 + alpha) EXACTLY at all eight grid rationals; the causal
+(P_A, P_B) set has exactly 9 points including the extremes
+(1, 1/2) and (1/2, 1); (b) every W(theta*) is a valid process
+(spectrum {0 x8, 1/2 x8}, Tr = 4, the no-causal-loop identity) -
+the rotation never leaves the process cone; (c) the achieved
+values sit on the imported bound with worst gap 2.1e-12 across
+the grid: the theta-rotated OCB family TRACES the Tsirelson
+circle, so achievability is earned for the whole family, not
+imported at one point; (d) the causal extremes lie on the circle
+at machine zero (the square is inscribed), the advantage is 0 at
+alpha = 0 exactly, positive at every grid alpha > 0, and
+grid-maximal at alpha = 1 with value (sqrt2 - 1)/2 at 1e-16 -
+the unbiased game is where indefinite causal order buys the most,
+and the bias kills the advantage smoothly toward both ends. The
+falsifier reproduces everything through the Pauli-orthogonality
+route (no matrices) and its own enumeration encoding. One
+instrument error is on record from the layer: the first pass
+mis-assigned the game roles (guesses vs inputs) and produced
+value 1.0 at alpha = 1 - caught immediately against P-30's pinned
+(2+sqrt2)/4. The mind-change did not fire. The A-20 theorem edge
+upgrades to EARNED across the family. Claim filed:
+biased-ocb-on-the-circle. Results:
+scripts/experiments/p39_results.json.
