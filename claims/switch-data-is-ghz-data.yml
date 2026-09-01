@@ -1,0 +1,33 @@
+id: switch-data-is-ghz-data
+statement: >
+  In the van der Lugt-Ormrod three-switch scenario at the four
+  registered contexts, the empirical model IS the GHZ model: the
+  triple-marginals equal the GHZ distributions with worst
+  difference 1.4e-16, and the remaining six outputs factorize
+  without residue into deterministic copies and exactly fair
+  independent coins (completion counts 8/2/2/2, conditional
+  nonuniformity 0.0). Indefinite causal order contributes no
+  correlations in this scenario; its entire content is which
+  hidden-variable class the shared data excludes (definite causal
+  orders, via the imported reduction theorem) versus Bell's (local
+  states). Further: the scenario's parity system is
+  all-vs-nothing over GF(2) (coefficient rank 3, augmented 4), so
+  its contextual obstruction is nonzero (implication imported,
+  LC-31), while the pi-ring's half-integer winding is a globally
+  consistent configuration (strain spread 2.2e-15) with zero
+  obstruction - the identification of the switch's 1/2 with the
+  ring's 1/2 is REFUSED: same numeral, different mathematics.
+  Scope: this scenario and these contexts; other switch protocols
+  may generate non-GHZ correlations and are not claimed.
+premises: []
+prediction: P-42
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p42_derive.py with p42_registration.json (own GHZ statevector model, switch marginals, exact factorization, GF(2) ranks, the ring section); scripts/experiments/p42_identity.py with p42_results.json (the registered clauses); independently reimplemented by scripts/verify/p42_same_data.py via stabilizer-group arithmetic and the X-basis branch route"
+    method: reimplementation
+null_system: "the factorization test is exhaustive over the full outcome space (no sampling); the GF(2) ranks are integer arithmetic; the two quantum routes (statevector vs stabilizer/branch) cross-check each other at 5.6e-17; the ring side reuses P-35's pinned ground state as the anchor (L-9)"
+falsifier: "scripts/verify/p42_same_data.py --mutant coin-blind"
+novelty:
+  status: unchecked
+  citation: "the GHZ embedding is explicit in van der Lugt-Ormrod's construction (LC-28); the exact-equality-with-factorization statement and the AvN-vs-global-section refusal separating the two halves are, as far as consulted, unstated in this form - a litcheck would be the route to checked-novel"
+status: verified
