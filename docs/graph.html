@@ -488,15 +488,17 @@ const EDGES = [
        "\nadvantage max at \u03b1=1: (\u221a2\u22121)/2"}; }},
   {from:"harper", to:"fib", type:"imported",
    title:"every labeled gap is open (Sturmian)",
-   stmt:"Band–Beckus–Loewy 2024: for Sturmian Hamiltonians at " +
-   "every nonzero coupling, ALL gap-labeled gaps are open — the " +
-   "gap integers name real gaps.",
-   logic:"Imported theorem; its algebraic engine recomputed here " +
-   "exactly: the Fibonacci trace map (a,b,c) → (b,c,bc−a) " +
-   "conserves the Fricke invariant a²+b²+c²−abc−4, verified in " +
-   "exact rational arithmetic (BigInt) where floats would have " +
-   "dissolved after three steps.",
-   ev:"arXiv:2402.16703 · the P-28 gap-integer instrument",
+   stmt:"Band\u2013Beckus\u2013Loewy 2024: for Sturmian Hamiltonians at " +
+   "every nonzero coupling, ALL gap-labeled gaps are open. P-41 " +
+   "earned its approximant shadow: at q = F_m up to 144, both " +
+   "couplings, every one of the q\u22121 labeled gaps is open \u2014 " +
+   "computed, not cited (min width 2.3\u00d710\u207b\u2074 at q = 144).",
+   logic:"Imported theorem; two engines recomputed here exactly: " +
+   "the Fricke invariant of the trace map in BigInt rationals, " +
+   "and a live approximant spectrum \u2014 the q = 13 periodic and " +
+   "antiperiodic operators diagonalized in your browser, all 12 " +
+   "labeled gaps found open with exact modular labels.",
+   ev:"arXiv:2402.16703 \u00b7 P-41/R-40 \u00b7 claim approximant-gaps-all-open",
    check: () => {
      const g = (x, y) => y ? g(y, x % y) : (x < 0n ? -x : x);
      const red = ([n, d]) => { const c = g(n < 0n ? -n : n, d);
@@ -506,23 +508,81 @@ const EDGES = [
        A[1] * B[1]]);
      const add = (A, B) => red([A[0] * B[1] + B[0] * A[1],
        A[1] * B[1]]);
-     // I = a² + b² + c² − abc − 4, exact
      const I = (a, b, c) => sub(sub(
        add(add(mul(a, a), mul(b, b)), mul(c, c)),
        mul(mul(a, b), c)), [4n, 1n]);
      let a = [3n, 2n], b = [5n, 3n], c = [7n, 4n];
      const I0 = I(a, b, c);
-     let ok = true, maxden = 0n;
+     let ok = true;
      for (let s = 0; s < 10; s++) {
        [a, b, c] = [b, c, sub(mul(c, b), a)];
        const In = I(a, b, c);
        ok = ok && In[0] === I0[0] && In[1] === I0[1];
-       if (c[1] > maxden) maxden = c[1];
      }
-     return {pass: ok,
-             detail: "Fricke invariant " + I0[0] + "/" + I0[1] +
-             " conserved through 10 exact steps (denominators to " +
-             String(maxden).length + " digits)"}; }},
+     // live approximant: q = 13, lambda = 1; edges = eigenvalues
+     // of periodic/antiperiodic tridiagonal + corner, via cyclic
+     // Jacobi; all 12 gaps open; labels via modular inverse
+     const q = 13, p2 = 8, lam = 1.0;
+     const word = [];
+     for (let n = 0; n < q; n++)
+       word.push(((n * p2) % q) >= q - p2 ? 1 : 0);
+     const eig = (corner) => {
+       const A = [];
+       for (let i = 0; i < q; i++)
+         A.push(new Array(q).fill(0));
+       for (let n = 0; n < q; n++) {
+         A[n][n] = lam * word[n];
+         const j = (n + 1) % q, h = n + 1 < q ? 1 : corner;
+         A[n][j] += h; A[j][n] += h;
+       }
+       for (let sw = 0; sw < 80; sw++) {
+         let off = 0;
+         for (let i = 0; i < q - 1; i++)
+           for (let j = i + 1; j < q; j++)
+             off = Math.max(off, Math.abs(A[i][j]));
+         if (off < 1e-11) break;
+         for (let i = 0; i < q - 1; i++)
+           for (let j = i + 1; j < q; j++) {
+             if (Math.abs(A[i][j]) < 1e-13) continue;
+             const th = 0.5 * Math.atan2(2 * A[i][j],
+               A[j][j] - A[i][i]);
+             const co = Math.cos(th), si = Math.sin(th);
+             for (let k = 0; k < q; k++) {
+               const aik = A[i][k], ajk = A[j][k];
+               A[i][k] = co * aik - si * ajk;
+               A[j][k] = si * aik + co * ajk;
+             }
+             for (let k = 0; k < q; k++) {
+               const aki = A[k][i], akj = A[k][j];
+               A[k][i] = co * aki - si * akj;
+               A[k][j] = si * aki + co * akj;
+             }
+           }
+       }
+       const out = [];
+       for (let i = 0; i < q; i++) out.push(A[i][i]);
+       return out.sort((x, y) => x - y);
+     };
+     const edges = eig(1).concat(eig(-1)).sort((x, y) => x - y);
+     let minGap = 1e9;
+     for (let i = 0; i < q - 1; i++)
+       minGap = Math.min(minGap, edges[2 * i + 2] - edges[2 * i + 1]);
+     // labels: s * 8 = k (mod 13); inverse of 8 mod 13 is 5
+     const seen = new Set();
+     let labOk = true;
+     for (let k = 1; k < q; k++) {
+       let s = (5 * k) % q;
+       if (s > 6) s -= q;
+       labOk = labOk && (((s * p2) % q + q) % q === k % q)
+         && Math.abs(s) <= 6 && !seen.has(s);
+       seen.add(s);
+     }
+     return {pass: ok && edges.length === 2 * q && minGap > 1e-6
+             && labOk,
+             detail: "Fricke invariant conserved (10 exact steps)" +
+             "\n  q = 13 live spectrum: " + edges.length +
+             " edges, all 12 gaps open (min " +
+             minGap.toExponential(2) + "), labels bijective"}; }},
   {from:"hardy", to:"sqop", type:"imported",
    title:"the arena exists, loophole-free",
    stmt:"USTC 2024: first loophole-free Hardy test — P_Hardy = " +
