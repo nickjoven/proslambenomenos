@@ -1,0 +1,365 @@
+<title>The Half Turn</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f7f5f0;--panel:#fffdf8;--ink:#22201c;--mute:#6b665c;--line:#ddd7cb;--accent:#2f6f8f;--accent-ink:#1f4d63;--dot:#c0392b;--good:#2a7a4b;--grid:#ece7dc;--half:#8a5fb0}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--half:#b895dd}}
+:root[data-theme="dark"]{--bg:#16181c;--panel:#1e2127;--ink:#ebe7df;--mute:#a39d91;--line:#343842;--accent:#7fb7d6;--accent-ink:#a9d3ea;--dot:#ef6f60;--good:#5cc48a;--grid:#2a2e36;--half:#b895dd}
+body{background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,sans-serif;font-size:18px;line-height:1.55;margin:0;padding:32px 20px 80px}
+main{max-width:780px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:2rem;margin:0;text-wrap:balance}
+h2{font-family:Fraunces,Georgia,serif;font-weight:500;font-size:1.35rem;margin:0 0 8px}
+p{max-width:64ch;margin:0 0 12px}
+section{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px}
+.ctl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:12px 0 4px}
+label{font-weight:700}
+input[type=range]{width:220px;accent-color:var(--accent)}
+button{font:inherit;font-weight:700;background:var(--accent);color:#fff;border:0;border-radius:6px;padding:8px 16px;cursor:pointer}
+button.alt{background:transparent;color:var(--accent-ink);border:2px solid var(--accent)}
+button:focus-visible{outline:3px solid var(--dot);outline-offset:2px}
+canvas{display:block;width:100%;height:auto;border-radius:6px;background:var(--grid);touch-action:none}
+.read{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.9rem;color:var(--mute);margin-top:8px;min-height:1.4em}
+.bridge{border-left:4px solid var(--half);padding:12px 16px;background:var(--panel);border-radius:0 8px 8px 0;max-width:66ch}
+.bridge b{color:var(--half)}
+.fine{color:var(--mute);font-size:.92rem;max-width:66ch}
+.crumb{color:var(--mute);font-size:.95rem}
+.crumb a{color:var(--accent-ink)}
+em{font-style:normal;font-weight:700}
+</style>
+<main>
+<p class="crumb"><a href="./">the runway</a> · step 2 · after
+<a href="step1.html">Return Before Radius</a></p>
+<h1>The Half Turn</h1>
+<p>Step 1 said <em>round means coming back</em>. This page is about the
+things that come back <em>wrong</em> — upside down — and only come back
+right if you go around twice. That one idea is the doorway to
+amplitudes, interference, and the half-steps your superconductor
+reading keeps running into.</p>
+
+<section>
+<h2>1 · Arrows that add</h2>
+<p>Forget numbers. The object of this page is an <em>arrow</em>: it has
+a length and a direction, nothing else. Two arrows add head-to-tail.
+Drag the second arrow's direction and watch what the sum does.</p>
+<canvas id="c1" width="900" height="300" aria-label="two arrows adding head to tail"></canvas>
+<div class="read" id="r1"></div>
+<p class="fine">The important case is the last one: two arrows of equal
+length, pointing opposite ways, add to <em>nothing</em>. Numbers that
+size can never cancel like this; arrows can. Hold that.</p>
+</section>
+
+<section>
+<h2>2 · The quarter turn is a move</h2>
+<p>Step 1c said an axis is something you <em>do</em>. Here is the only
+move this page needs: <em>turn the arrow a quarter to the left</em>.
+Do it repeatedly and count.</p>
+<div class="ctl">
+<button id="qbtn">quarter turn</button>
+<button id="qreset" class="alt">reset</button>
+</div>
+<canvas id="c2" width="900" height="300" aria-label="an arrow being quarter-turned"></canvas>
+<div class="read" id="r2">no turns yet — the arrow points right</div>
+<p class="fine">Two quarter turns make a flip — the <em>half turn</em>,
+the arrow that cancels its old self. Four make a round. In step 1's
+language: the quarter turn is a move whose round is four. Everything
+this page does next is built from that one fact.</p>
+</section>
+
+<section>
+<h2>3 · Squares make chances</h2>
+<p>Here is the one rule connecting arrows to the world: the
+<em>chance</em> of a thing is the <em>square built on its arrow</em> —
+the arrow's length, times itself. When a thing can happen two ways, you
+do not add the chances. You add the <em>arrows</em>, then square.</p>
+<div class="ctl">
+<label for="angle2">way&nbsp;2's direction</label>
+<input type="range" id="angle2" min="0" max="360" value="40">
+</div>
+<canvas id="c3" width="900" height="340" aria-label="two path arrows, their sum, and the square on the sum"></canvas>
+<div class="read" id="r3"></div>
+<p class="fine">Slide until the two ways point opposite: the square
+vanishes — a thing that can happen two ways can thereby happen
+<em>less</em>, even not at all. That is interference, and it is why the
+half turn matters: a half turn between two ways is the difference
+between bright and dark.</p>
+</section>
+
+<section>
+<h2>4 · The loop that flips you</h2>
+<p>Now the payoff. Walk a loop while carrying an arrow. On an ordinary
+loop, one lap brings the arrow home. But some loops have a
+<em>twist</em> in them — cross the marked seam and your arrow takes a
+half turn. Drag the walker around and watch the carried arrow.</p>
+<canvas id="c4" width="900" height="420" aria-label="a ring with a twist seam; a walker carries an arrow around it"></canvas>
+<div class="read" id="r4">drag the walker around the ring</div>
+<p class="fine">One lap: the arrow returns <em>flipped</em> — the loop
+is round (you came back!) but the arrow's round is <em>two laps</em>.
+Step 1 defined round as coming back; this loop splits the definition in
+half: the place comes back in one lap, the arrow in two. Things that
+live on this loop come in <em>halves</em>.</p>
+</section>
+
+<section class="bridge">
+<b>The bridge to your reading.</b> In a superconducting ring, the
+current carries exactly such an arrow (its phase), and "the arrow must
+come home" is why the trapped flux comes in whole steps — the winding
+integer. Put one <b>π junction</b> in the ring — one seam that
+half-turns the arrow — and the steps shift by exactly one half: the
+half flux quantum, the semifluxon. Same mechanics you just dragged.
+The two-ways-cancel rule of section 3 is the amplitude story; the
+seam of section 4 is the π ring this project measured (the graph's
+<i>ring</i> node; the folds and slips of P-35/P-36 are what it costs
+to change laps). One caution the project computed the hard way: not
+every ½ is this ½ — the flipping-loop half is the label of a state
+that exists; there are other halves (the all-or-nothing kind) that are
+the absence of one. Different animals, same numeral.
+</section>
+
+<section>
+<h2>Where does this break?</h2>
+<p class="fine">Same question as the earlier steps, one page later:
+which section stops earning its keep first — the arrows, the squares,
+or the seam? Step 3 (why <em>squares</em>, of all rules) is the
+natural next door; it opens onto why the world adds arrows at all.</p>
+<p class="crumb">Companions: <a href="./">the runway</a> ·
+<a href="../graph.html">the inviolables</a> ·
+<a href="../accuracies.html">five kinds of zero</a></p>
+</section>
+</main>
+
+<script>
+"use strict";
+const css = (v) => getComputedStyle(document.documentElement)
+  .getPropertyValue(v).trim();
+
+function setup(id) {
+  const cv = document.getElementById(id);
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const w = cv.width, h = cv.height;
+  cv.style.maxWidth = w + "px";
+  cv.width = w * dpr; cv.height = h * dpr;
+  const ctx = cv.getContext("2d");
+  ctx.scale(dpr, dpr);
+  ctx.lineCap = "round"; ctx.lineJoin = "round";
+  return [cv, ctx, w, h];
+}
+
+function arrow(ctx, x0, y0, x1, y1, color, width) {
+  ctx.strokeStyle = color; ctx.fillStyle = color;
+  ctx.lineWidth = width || 3.5;
+  ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+  const a = Math.atan2(y1 - y0, x1 - x0), s = 11;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x1 - s * Math.cos(a - 0.42), y1 - s * Math.sin(a - 0.42));
+  ctx.lineTo(x1 - s * Math.cos(a + 0.42), y1 - s * Math.sin(a + 0.42));
+  ctx.closePath(); ctx.fill();
+}
+
+// ---------- 1: arrows add ----------
+(() => {
+  const [cv, ctx, W, H] = setup("c1");
+  let th = 0.6;
+  const L = 95;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const x0 = W * 0.18, y0 = H * 0.62;
+    const x1 = x0 + L, y1 = y0;
+    const x2 = x1 + L * Math.cos(th), y2 = y1 - L * Math.sin(th);
+    arrow(ctx, x0, y0, x1, y1, css("--accent"));
+    arrow(ctx, x1, y1, x2, y2, css("--half"));
+    arrow(ctx, x0, y0, x2, y2, css("--dot"), 4.5);
+    ctx.fillStyle = css("--mute");
+    ctx.font = "15px 'Atkinson Hyperlegible', sans-serif";
+    ctx.fillText("way 1", x0 + L * 0.35, y0 + 24);
+    ctx.fillText("way 2 (drag me)", x1 + 12, (y1 + y2) / 2 - 10);
+    ctx.fillText("the sum", x0 + (x2 - x0) * 0.45 - 20,
+                 y0 + (y2 - y0) * 0.45 - 12);
+    const sum = Math.hypot(x2 - x0, y2 - y0) / L;
+    const r1 = document.getElementById("r1");
+    r1.textContent = "sum length: " + sum.toFixed(2) +
+      " arrow-lengths" + (sum < 0.08 ?
+      "  — CANCELLED: two somethings made a nothing" :
+      sum > 1.92 ? "  — lined up: as big as it gets" : "");
+  }
+  let drag = false;
+  cv.addEventListener("pointerdown", (e) => {
+    drag = true; cv.setPointerCapture(e.pointerId); move(e);
+  });
+  cv.addEventListener("pointermove", move);
+  cv.addEventListener("pointerup", () => drag = false);
+  function move(e) {
+    if (!drag) return;
+    const r = cv.getBoundingClientRect();
+    const sx = (e.clientX - r.left) * (W / r.width);
+    const sy = (e.clientY - r.top) * (H / r.height);
+    const x1 = W * 0.18 + L, y1 = H * 0.62;
+    th = Math.atan2(y1 - sy, sx - x1);
+    draw();
+  }
+  matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener?.("change", draw);
+  draw();
+})();
+
+// ---------- 2: the quarter turn ----------
+(() => {
+  const [, ctx, W, H] = setup("c2");
+  let n = 0, shown = 0;   // shown animates toward n*90deg
+  const cx = W * 0.5, cy = H * 0.55, L = 100;
+  const NAMES = ["home — pointing right", "a quarter: pointing up",
+    "TWO quarters: FLIPPED — the half turn",
+    "three quarters: pointing down",
+    "four quarters: home again — the round is four"];
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // ghost of home
+    ctx.setLineDash([5, 6]);
+    ctx.strokeStyle = css("--mute"); ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + L, cy);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    const a = -shown * Math.PI / 2;
+    arrow(ctx, cx, cy, cx + L * Math.cos(a), cy + L * Math.sin(a),
+          css("--accent"), 5);
+    ctx.fillStyle = css("--mute");
+    ctx.font = "15px 'Atkinson Hyperlegible', sans-serif";
+    ctx.fillText("turns so far: " + n, 20, 30);
+  }
+  function tick() {
+    if (Math.abs(shown - n) > 0.001) {
+      shown += (n - shown) * 0.18;
+      draw();
+      requestAnimationFrame(tick);
+    } else { shown = n; draw(); }
+  }
+  document.getElementById("qbtn").addEventListener("click", () => {
+    n += 1;
+    document.getElementById("r2").textContent =
+      "after " + n + " quarter turn" + (n === 1 ? "" : "s") + ": " +
+      NAMES[((n % 4) + 4) % 4 === 0 && n > 0 ? 4 : ((n % 4) + 4) % 4];
+    tick();
+  });
+  document.getElementById("qreset").addEventListener("click", () => {
+    n = 0; shown = 0;
+    document.getElementById("r2").textContent =
+      "no turns yet — the arrow points right";
+    draw();
+  });
+  matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener?.("change", draw);
+  draw();
+})();
+
+// ---------- 3: squares make chances ----------
+(() => {
+  const [, ctx, W, H] = setup("c3");
+  const slider = document.getElementById("angle2");
+  const L = 80;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const th = slider.value * Math.PI / 180;
+    const x0 = W * 0.12, y0 = H * 0.55;
+    const x1 = x0 + L, y1 = y0;
+    const x2 = x1 + L * Math.cos(th), y2 = y1 - L * Math.sin(th);
+    arrow(ctx, x0, y0, x1, y1, css("--accent"));
+    arrow(ctx, x1, y1, x2, y2, css("--half"));
+    arrow(ctx, x0, y0, x2, y2, css("--dot"), 4.5);
+    const s = Math.hypot(x2 - x0, y2 - y0);
+    // the square on the sum, drawn literally
+    const sq = Math.min(s, 190);
+    const sx = W * 0.62, sy = H * 0.78;
+    ctx.fillStyle = css("--dot");
+    ctx.globalAlpha = 0.28;
+    ctx.fillRect(sx, sy - sq, sq, sq);
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = css("--dot"); ctx.lineWidth = 2.5;
+    ctx.strokeRect(sx, sy - sq, sq, sq);
+    ctx.fillStyle = css("--mute");
+    ctx.font = "15px 'Atkinson Hyperlegible', sans-serif";
+    ctx.fillText("the square on the sum = the chance", sx - 10,
+                 sy + 24);
+    const rel = (s / (2 * L)) ** 2;
+    document.getElementById("r3").textContent =
+      "chance, as a share of the brightest case: " +
+      (rel * 100).toFixed(0) + "%" +
+      (rel < 0.005 ? "  — DARK: the two ways cancelled" : "");
+  }
+  slider.addEventListener("input", draw);
+  matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener?.("change", draw);
+  draw();
+})();
+
+// ---------- 4: the loop that flips ----------
+(() => {
+  const [cv, ctx, W, H] = setup("c4");
+  const cx = W * 0.5, cy = H * 0.52, R = 150;
+  let pos = 0.25;   // walker position in laps; arrow gets a half
+                    // turn per lap (pi times laps walked)
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // ring
+    ctx.strokeStyle = css("--line"); ctx.lineWidth = 10;
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, 7); ctx.stroke();
+    // the seam (top of the ring)
+    const st = -Math.PI / 2;
+    ctx.strokeStyle = css("--half"); ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.moveTo(cx + (R - 16) * Math.cos(st), cy + (R - 16) * Math.sin(st));
+    ctx.lineTo(cx + (R + 16) * Math.cos(st), cy + (R + 16) * Math.sin(st));
+    ctx.stroke();
+    ctx.fillStyle = css("--half");
+    ctx.font = "700 15px 'Atkinson Hyperlegible', sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("the seam: crossing = half turn", cx, cy - R - 24);
+    // walker
+    const wa = 2 * Math.PI * pos - Math.PI / 2;
+    const wx = cx + R * Math.cos(wa), wy = cy + R * Math.sin(wa);
+    ctx.fillStyle = css("--accent");
+    ctx.beginPath(); ctx.arc(wx, wy, 12, 0, 7); ctx.fill();
+    // carried arrow: base orientation tangent? use fixed frame:
+    // angle = pi * (laps + fraction past seam), i.e. pi * pos'
+    const ca = Math.PI * (pos - 0.25);
+    arrow(ctx, wx, wy, wx + 52 * Math.cos(-ca), wy - 52 * Math.sin(-ca),
+          css("--dot"), 4.5);
+    ctx.fillStyle = css("--mute");
+    ctx.font = "15px 'Atkinson Hyperlegible', sans-serif";
+    ctx.textAlign = "left";
+    const walked = pos - 0.25;   // laps walked, signed
+    ctx.fillText("laps walked: " + walked.toFixed(2), 20, 30);
+    const mod2 = ((walked % 2) + 2) % 2;
+    const state = Math.abs(mod2 - 1) < 0.03
+      ? "FLIPPED — one lap is not a round for the arrow"
+      : (mod2 < 0.03 || mod2 > 1.97) && Math.abs(walked) > 0.5
+        ? "HOME — two laps was the arrow's round"
+        : "";
+    document.getElementById("r4").textContent =
+      "half-turns the arrow has made: " + Math.abs(walked).toFixed(2)
+      + (state ? "  — " + state : "");
+  }
+  let drag = false;
+  cv.addEventListener("pointerdown", (e) => {
+    drag = true; cv.setPointerCapture(e.pointerId); move(e);
+  });
+  cv.addEventListener("pointermove", move);
+  cv.addEventListener("pointerup", () => drag = false);
+  cv.addEventListener("pointercancel", () => drag = false);
+  function move(e) {
+    if (!drag) return;
+    const r = cv.getBoundingClientRect();
+    const sx = (e.clientX - r.left) * (W / r.width);
+    const sy = (e.clientY - r.top) * (H / r.height);
+    const a = Math.atan2(sy - cy, sx - cx);
+    let newFrac = ((a + Math.PI / 2) / (2 * Math.PI) + 1) % 1;
+    const oldFrac = ((pos % 1) + 1) % 1;
+    let d = newFrac - oldFrac;
+    if (d > 0.5) d -= 1;
+    if (d < -0.5) d += 1;
+    pos += d;
+    draw();
+  }
+  matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener?.("change", draw);
+  draw();
+})();
+</script>
