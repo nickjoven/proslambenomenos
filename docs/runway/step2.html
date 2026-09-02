@@ -91,8 +91,10 @@ loop, one lap brings the arrow home. But some loops have a
 half turn. Drag the walker around and watch the carried arrow.</p>
 <canvas id="c4" width="900" height="420" aria-label="a ring with a twist seam; a walker carries an arrow around it"></canvas>
 <div class="read" id="r4">drag the walker around the ring</div>
-<p class="fine">One lap: the arrow returns <em>flipped</em> — the loop
-is round (you came back!) but the arrow's round is <em>two laps</em>.
+<p class="fine">Away from the seam the arrow keeps its bearing; the
+seam is where it turns. One lap: the arrow returns <em>flipped</em> —
+the loop is round (you came back!) but the arrow's round is <em>two
+laps</em>.
 Step 1 defined round as coming back; this loop splits the definition in
 half: the place comes back in one lap, the arrow in two. Things that
 live on this loop come in <em>halves</em>.</p>
@@ -317,9 +319,12 @@ function arrow(ctx, x0, y0, x1, y1, color, width) {
     const wx = cx + R * Math.cos(wa), wy = cy + R * Math.sin(wa);
     ctx.fillStyle = css("--accent");
     ctx.beginPath(); ctx.arc(wx, wy, 12, 0, 7); ctx.fill();
-    // carried arrow: base orientation tangent? use fixed frame:
-    // angle = pi * (laps + fraction past seam), i.e. pi * pos'
-    const ca = Math.PI * (pos - 0.25);
+    // carried arrow: fixed in the lab frame between seam crossings;
+    // every crossing of the seam (pos through an integer, the seam
+    // sits at pos = 0) is one half turn - the flip happens AT the
+    // seam, as the prose says, not spread around the lap
+    const flips = Math.floor(pos);   // seam crossings, signed
+    const ca = Math.PI * flips;
     arrow(ctx, wx, wy, wx + 52 * Math.cos(-ca), wy - 52 * Math.sin(-ca),
           css("--dot"), 4.5);
     ctx.fillStyle = css("--mute");
@@ -327,15 +332,15 @@ function arrow(ctx, x0, y0, x1, y1, color, width) {
     ctx.textAlign = "left";
     const walked = pos - 0.25;   // laps walked, signed
     ctx.fillText("laps walked: " + walked.toFixed(2), 20, 30);
-    const mod2 = ((walked % 2) + 2) % 2;
-    const state = Math.abs(mod2 - 1) < 0.03
+    const odd = ((flips % 2) + 2) % 2 === 1;
+    const state = odd
       ? "FLIPPED — one lap is not a round for the arrow"
-      : (mod2 < 0.03 || mod2 > 1.97) && Math.abs(walked) > 0.5
+      : flips !== 0
         ? "HOME — two laps was the arrow's round"
         : "";
     document.getElementById("r4").textContent =
-      "half-turns the arrow has made: " + Math.abs(walked).toFixed(2)
-      + (state ? "  — " + state : "");
+      "seam crossings, and half-turns the arrow has made: "
+      + Math.abs(flips) + (state ? "  — " + state : "");
   }
   let drag = false;
   cv.addEventListener("pointerdown", (e) => {
