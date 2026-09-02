@@ -1,0 +1,39 @@
+id: ring-energy-continuity
+statement: >
+  On the P-35/P-36 inertial ring of N sine-coupled phase
+  oscillators with one pi bond, damped everywhere and dead-loaded
+  at one site (theta_dd_j = -gamma v_j + sin D_j - sin D_{j-1}
+  + f delta_{jb}, D_j = theta_{j+1} - theta_j - A_j), the site
+  energy h_j = v_j^2/2 + (u_{j-1} + u_j)/2 with u_j = 1 - cos D_j
+  and the bond current J_j = -(1/2) sin(D_j)(v_j + v_{j+1})
+  satisfy the local continuity identity dh_j/dt + (J_j - J_{j-1})
+  = -gamma v_j^2 + f v_j delta_{jb}, with the gauge field entering
+  only through D (no seam term at the pi bond), and the current
+  telescoping to dE/dt = f v_b - gamma sum v^2: (1) at one million
+  random states of both rings at two velocity scales the per-site
+  residual sits at 0.042 of the derived floating-point bound
+  32 eps T_j, the global balance and the telescoping sum at 0.024
+  and 0.0086 of theirs, the twisted ring's seam sites at 0.033;
+  (2) the P-36 Euler-Cromer integrator's discrete balance, with
+  force-times-displacement bookkeeping, converges at first order
+  on the P-36 grid (nine cells, ratios 2.0000-2.0002 along the
+  dt = 0.02 ladder) and through the slip at the first grid level
+  above the twist0 fold (ratios 2.014 / 2.007 global, 2.015 /
+  2.008 per-site along the dt = 0.001 ladder), so the per-site
+  decomposition of a slip aftermath into stored, in-flowed,
+  dissipated and injected energy is a resolved observable with an
+  exact null. Scope: the identity and its instrument; the shape
+  of the aftermath (the footprint radius zero, the 6.4 percent
+  leak into the ring) is reported in R-44 and not claimed.
+premises: []
+prediction: P-45
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p45_derive.py with p45_derive.json (the derive layer: the bound, the three mutants verified failing, the two validation ladders); scripts/experiments/p45_continuity.py with p45_results.json (the registered million states, nine grid ladders, the slip ladder, seed 20260902); independently reimplemented by scripts/verify/p45_continuity.py with forward-mode dual-number derivatives, its own seed and ring size, and its own velocity-Verlet trajectory"
+    method: reimplementation
+null_system: "the residual bound is the floating-point floor scaled by each state's own term magnitudes (no fixed number); the three mutants were verified failing before pinning - current-blind (J without the velocity average) fails per site at O(1) and is INVISIBLE to the global balance (any current telescopes on a ring), sink-blind fails per site and globally, gauge-blind (A dropped from u) is identical to the clean identity on the control ring and fails only at the twisted ring's two seam sites; the convergence clause is the order-discrimination band [2^0.5, 2^1.5] around a first-order scheme's ratio 2, not a value window, after the rotor validation cell showed contraction of |r - 2| at noise level; the slip cell sits above the derived fold so the event's existence is dt-independent"
+falsifier: "scripts/verify/p45_continuity.py --mutant current-blind"
+novelty:
+  status: classical
+  citation: "the identity is the discrete continuity equation of lattice heat transport (Lepri, Livi, Politi, Phys. Rep. 377, 1 (2003), eqs. 11, 16, 17) with V = 1 - cos D on the covariant strain, a sink and a point source added; LC-34 imports the convention. The contribution is the instrument - the per-state bound, the seam test, the discrete balance through a slip - applied so the P-36 aftermath has a derived observable (L-2)"
+status: verified
