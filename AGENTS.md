@@ -49,9 +49,11 @@
    (d) the lessons ledger consulted: run
        `python3 scripts/tools/lessons.py <domain keywords>` and
        cite the matching L-n ids in the registration's method
-       block. Case knowledge lives COLD in LESSONS.md (triggers,
-       rules, citations), surfaced mechanically at registration
-       time - this file stays small and invariant.
+       block; `scripts/tools/rentry.py` runs the same query on the
+       results' own key vocabulary at the R entry, so the ledger
+       is read at both ends of a line. Case knowledge lives COLD
+       in LESSONS.md (triggers, rules, citations), surfaced
+       mechanically - this file stays small and invariant.
    A clause that fires on any of these three is an instrument
    failure, not a finding, and it costs a re-registration; the
    checklist exists to spend that cost before the run instead.

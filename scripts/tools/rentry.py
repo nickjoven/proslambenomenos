@@ -13,12 +13,24 @@ Walks the JSON and prints:
   - a skeleton with the registered clause letters (from a top-level
     'clauses' dict when present) marked HELD/FIRED per its booleans
 
+  - the lessons ledger consulted at R time (AGENTS.md 8d, second
+    end): lessons.py is run on the results JSON's own key
+    vocabulary and the matching L-n entries are printed, so the
+    rules that apply to these readings are on screen while the
+    prose is written
+  - a '### readings (unregistered)' block: one line per reading,
+    each naming the identity it was checked against and the size
+    of the coupling term (L-10)
+
 The interpretation sentences stay the author's job - this emits no
 prose. Output goes to stdout for review, never straight into the
 ledger.
 """
 import datetime
 import json
+import os
+import re
+import subprocess
 import sys
 
 
@@ -43,6 +55,43 @@ def fmt(v):
     return str(v)
 
 
+def vocabulary(data, cap=60):
+    """Words of length >= 4 from the JSON's key paths, in first-seen
+    order: the results' own domain keywords, never a guess."""
+    seen = []
+    for path, _ in leaves(data):
+        for w in re.split(r"[^a-zA-Z]+", path):
+            w = w.lower()
+            if len(w) >= 4 and w not in seen:
+                seen.append(w)
+    return seen[:cap]
+
+
+def consult_lessons(data):
+    here = os.path.dirname(os.path.abspath(__file__))
+    keys = vocabulary(data)
+    r = subprocess.run([sys.executable, os.path.join(here, "lessons.py")]
+                       + keys, capture_output=True, text=True)
+    print("### lessons matched on the results' vocabulary "
+          f"({len(keys)} keys; cite the ids that apply)")
+    out = r.stdout.strip()
+    if r.returncode == 3 or not out:
+        print("  none matched - say so in the R entry if the domain is new")
+        return
+    in_rule = False
+    for line in out.splitlines():
+        if line.startswith("## ") or line.startswith("cite:"):
+            in_rule = False
+            print("  " + line)
+        elif line.startswith("RULE:"):
+            in_rule = True
+        elif line.startswith("CITATIONS:"):
+            in_rule = False
+        if in_rule:
+            print("    " + line)
+    print()
+
+
 def main():
     if len(sys.argv) < 4:
         sys.exit(__doc__)
@@ -58,6 +107,11 @@ def main():
             else:
                 print(f"({k}) [composite - see numbers]: ...")
     print()
+    print("### readings (unregistered) - one line each: reading; "
+          "identity checked against; coupling term size (L-10)")
+    print("  ...")
+    print()
+    consult_lessons(data)
     print(f"### numbers from {jpath} (pasted by rentry.py; delete "
           "this block after writing the entry)")
     n = 0

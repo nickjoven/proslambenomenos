@@ -97,3 +97,35 @@ CITATIONS: P-39 layer (game-role inversion caught against P-30's
 (2+sqrt2)/4; the falsifier's double normalization caught the same
 way); P-40 layer (the letter-map complement caught by the
 trace-tie check).
+
+## L-10 — a causal verb names its coupling term
+TRIGGERS: momentum, drift, transfer, handed, hands, drag, torque,
+feeds, pumps, exchange, flux, aftermath, reading, gloss
+RULE: a verb that moves a quantity between two subsystems (hands,
+transfers, drags, feeds, pumps, drains into) is a statement about
+the COUPLING term of the exact identity, and is checked against
+that term's integrated size before it is written - in the claim
+statement, the registration, the R entry, the note and the OPEN log
+alike. If the integral is bounded small, the loss is the
+subsystem's own dissipation and the gain is the drive's; the verb
+is wrong even when every number beside it is right. Unregistered
+readings get the same check: name the identity, compute the term.
+CITATIONS: R-44 (the "mean drag" that was a spin-up; the 182
+"out-flow" that was pre-event pumping); P-46/R-45 (the correcting
+line's own clause (2), "the ring hands its drift to the rotor",
+against its own bound 4/Omega ~ 0.2 on 77 units of ring momentum -
+under 0.3 percent transferred, the rest dissipated in the ring;
+caught in the 2026-09-02 audit of PR 113, the lesson candidate
+R-45 proposed and left unadded).
+
+## L-11 — an absent check point fires
+TRIGGERS: check point, sample, skip, missing, window, empty, holds
+RULE: a registered check point that is absent from the run's data
+is a FIRED clause, not a skipped one; a runner raises on a missing
+point, and a verdict that is a boolean AND over "whatever was
+found" is a loosened check that cannot fail on absence. Count the
+compared points in the results against the registered list.
+CITATIONS: P-46 runner (`if D in sm:` guarding the drift checks;
+all four points were present so nothing fired, but the guard would
+have passed a missing one as held); P-47 layer (a loosened-check
+mutant that could not fail, caught there before registration).
