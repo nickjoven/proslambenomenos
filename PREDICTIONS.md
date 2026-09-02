@@ -3512,3 +3512,62 @@ quench-counts-share-one-density (falsifier
 scripts/verify/p47_half_sector.py by direct convolution and
 velocity-Verlet, mutants shift-blind and count-blind). Results:
 scripts/experiments/p47_results.json.
+
+## R-45a — 2026-09-02 — audit corrections on record (R-43, R-44, R-45; the P-44 and P-46 claim texts)
+Three corrections from the 2026-09-02 adversarial audit of PRs 110,
+112 and 113 (every falsifier and mutant rerun at its expected exit
+code; no registered clause fires, no status moves). The entries
+stand; these sit beside them, append-only.
+(1) R-45 and the P-46 claim's clause (2): "the ring hands its
+pre-event rigid drift f/(N gamma) to the rotor" is wrong as
+physics. By the line's own identity dP_ring/dt = -gamma P_ring - T
+and its registered bound, the integrated torque obeys
+|int T e^{-gamma(t-s)} ds| <= 4/Omega(10) = 0.189 / 0.219 / 0.295
+against P_ring(event) = 77.26 / 43.69 / 16.75 at gamma 0.02 / 0.04
+/ 0.1 (p46_results.json): at most 0.2 to 1.8 percent of the ring's
+momentum can reach the rotor through the torque. The ring's drift
+is dissipated by the ring's own damping at rate gamma; the rotor is
+spun up by the load directly. What moves from ring to rotor is the
+load's momentum flux, not the ring's momentum. The claim text is
+amended in this commit; clause (b) and its numbers stand. The
+mechanism the numbers hide, on record for the first time (own rerun
+of the registered integrator, N = 64, gamma = 0.1, Delta in
+[50, 60]): the slip carries the pi twist from the ring's bonds onto
+the rotor's bond pair (D_b + D_{b-1} = -0.098 at t = 0, +3.067
+after the event, mod 2 pi), so the two rotor-adjacent sites are
+driven nearly in anti-phase (v_{b+1} + v_{b-1} peak-to-peak 0.045
+against 0.126 for v_{b+1} alone) - which is why P_ring is clean at
+unit samples. The derive table's stiffness anchor cos(pi/(N-2))
+assumed the ring keeps the twist; the registered bands use the
+measured c, so no verdict moves. L-10.
+(2) R-44's unregistered footprint reading, "10-percent radius ZERO
+... nothing spreads": the radius is thresholded at 0.1 x peak with
+the peak the rotor's own kinetic energy (1566.3), while the ring's
+sites carry site energies of order 1 (excess by offset -1.00,
+-0.78, -1.04, -1.07, -1.03 at offsets 1 to 5, p45_results.json).
+In the rotor regime the metric cannot read anything but zero;
+"nothing spreads" was the metric, not the aftermath. With R-45's
+two corrections, three misreadings stood in R-44's readings. L-12.
+(3) R-43, the P-44 claim's null_system and LAW-50: "two
+deterministic mutants (sup-blind, mass-blind)". They are one test:
+sup-blind (f x 1.5, tau 0.5) and mass-blind (tau 0.75, f x 1) give
+tau^2 |lambda|^2 = 0.5625 |lambda|^2 in both, and the chain and its
+k = 1 term depend on lambda only through tau lambda; the two runs
+print the identical chain -1.25e-4 / 7.30e-8 / 1.64e-11. |T|
+(2.99940 against 1.99960) is not checked in mutant mode. The
+falsifier still runs and fails as LAW-16 requires; its
+discriminating power is one perturbation, not two. The claim text
+is amended; a distinct second mutant is a gate change, queued.
+L-13.
+On record from the same audit, not corrections: P-46 clause (b)
+holds by 10 to 1000x under a bound that follows from |T| <= 2
+unless the rotor stalls, and at gamma 0.1 its 1/gamma check point
+is the Delta = 10 reference itself (deviation identically 0); the
+A_1 bands (0.02 to 0.2 percent wide) are the Euler-Cromer discrete
+map's, and the tail law is carried by offset 2 at 3 to 5 percent
+deviation under 5 to 13 percent floors. P-45's falsifier: its
+ladder check is one-sided (ratios >= 2^0.5; its own velocity-Verlet
+reads 4.0 globally), it has no slip coverage, and its twisted cell
+at F = 1.97 (N = 48, twisted fold 1.9497) slips at t = 29 of 60
+with the rotor at 47 and 0.94 rad per step - taken up by LAW-54 in
+this line.
