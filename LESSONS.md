@@ -129,3 +129,31 @@ CITATIONS: P-46 runner (`if D in sm:` guarding the drift checks;
 all four points were present so nothing fired, but the guard would
 have passed a missing one as held); P-47 layer (a loosened-check
 mutant that could not fail, caught there before registration).
+
+## L-12 — a reading's metric must be able to read otherwise
+TRIGGERS: footprint, radius, threshold, peak, fraction, excess,
+profile, reading, metric
+RULE: before reporting a reading from a derived metric, state what
+the metric would read on the alternative it is meant to exclude; a
+threshold set by the largest term in play (a rotor's own energy, a
+peak) cannot see the small terms it is meant to measure and reads
+its null by construction. Put the scale of the excluded alternative
+next to the reading. L-1 is this rule for detectors.
+CITATIONS: R-44 (the 10-percent footprint radius thresholded on the
+rotor's kinetic energy 1566 against ring sites of order 1 - "nothing
+spreads" was the metric; corrected at R-45a).
+
+## L-13 — mutants must differ in what they perturb, and a falsifier states its coverage
+TRIGGERS: mutant, falsifier, parametrization, coverage,
+reimplementation, distinct, null_system
+RULE: two mutants are two tests only if the quantity the check reads
+differs between them - trace each perturbation to that quantity (a
+product tau*lambda, a ratio, a sum) and confirm the perturbed values
+differ, else record one mutant. And the claim's null_system states
+the falsifier's COVERAGE: which clauses the reimplementation carries
+and which rest on the experiment alone; a verified status asserts
+reimplementation, so a clause without one is named as such.
+CITATIONS: P-44 (sup-blind and mass-blind both set tau^2 |lambda|^2
+to 0.5625 |lambda|^2, identical chain numbers; R-45a); P-45 (clause
+(2) carried no reimplementation until LAW-54); the 2026-09-02 audit
+count - 2 of 62 claims named a limit of their falsifier.
