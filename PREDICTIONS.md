@@ -3372,3 +3372,108 @@ draining. Claim filed: slip-aftermath-is-off-band (falsifier
 scripts/verify/p46_aftermath.py, mutants bond-blind, rate-blind,
 band-blind; the response there by direct tridiagonal solve, not
 the root). Results: scripts/experiments/p46_results.json.
+
+## P-47 — 2026-09-02 — quench counts on the pi ring share one density: exact half-sector statistics
+question: A-26 executed as a registered line. Quench the P-35/P-36
+free ring (N inertial phase oscillators, sine bonds J = 1, one pi
+bond on the twisted ring, no load) through a Langevin bath whose
+temperature ramps linearly from T_i = 2 to 0 over tau_Q, and count
+the covariant winding W = sum_j wrap(D_j)/2 pi at the end. Three
+things are exact before any run. THE COUNT: sum_j D_j = -sum_j A_j
+identically on a ring, so sum_j wrap(D_j) = -sum A - 2 pi (number
+of wraps) and W sits on the integer lattice (control) or the
+half-integer lattice (twisted) at EVERY state, thermal or frozen -
+a defect count with no threshold and no smear (L-1 has nothing to
+bite on: the count is arithmetic). THE SHARED DENSITY: at
+temperature T every bond carries exp(cos D/T), the pi bond
+included (its energy is 1 - cos of the covariant strain), so with
+S = sum_j wrap(D_j) the ring's closure reads ONE density rho_N(S)
+- the N-fold convolution of the single-bond wrapped density - at
+S = 2 pi n (control) or 2 pi (n - 1/2) (twisted). The twist shifts
+the lattice and touches nothing else: (E_c, E_tw) = (<W^2>_control,
+<W^2>_twisted) lie on a one-parameter curve traced by T, the fast
+limit has both at N <u^2>_{T_i}/4 pi^2, the slow limit has
+E_c -> 0 and E_tw -> 1/4. THE FLOOR: W^2 >= 1/4 at every twisted
+sample, exactly - the half quantum the pi ring cannot shed, the
+semifluxon's classical shadow. The registered prediction is the
+shared density applied to the FROZEN counts: both rings quenched
+at the same tau_Q freeze at the same effective temperature (the
+twist is invisible to the local physics that sets the freeze), so
+the twisted ring's counting statistics are predicted from the
+control's with no free parameter, at every quench rate. What is
+NOT predicted: how the control's count falls with tau_Q. The
+winding changes only by a bond wrapping through pi, an activated
+event with barrier 2 J, so the freeze is set by the phase-slip
+rate rather than by the spin-wave correlation length the textbook
+Kibble-Zurek argument uses; the derive layer's ladder at N = 32
+read the control's <W^2> at 1.15 / 1.23 / 0.90 / 0.70 / 0.37 for
+tau_Q = 0 / 5 / 20 / 80 / 320 with errors of 0.06 to 0.19 - a slow
+fall with local exponents 0.23, 0.18, 0.47, nothing a power law
+would be pinned to at this statistics (L-3, L-5). The scaling is
+REPORTED; the ordering fast-above-slow is the only rate clause.
+method: derive layer scripts/experiments/p47_derive.py with
+p47_derive.json. rho_N by the characteristic-function integral
+(stdlib quadrature); the curve for N = 32 and 64; the fast null
+N <u^2>_{T_i}/4 pi^2 = 1.904 / 3.808 at T_i = 2 equals the curve's
+value at T_i to four digits (the closure correction is
+O(e^{-N/xi}), invisible). THE ANCHOR (L-9): equilibrium sampling by
+the Langevin ring at T = 0.5 and 0.35 (gaps 20 and 60 units,
+chosen from the activated slip rate ~ N e^{-2/T} so consecutive
+samples decorrelate; below T ~ 0.3 equilibrium sampling by
+dynamics is out of reach, which is the freeze physics itself) lands
+on rho_N's lattice moments: z = 0.79 / -0.25 (T 0.5, control /
+twisted) and 0.07 / 1.01 (T 0.35), with the inner-lattice
+probabilities matching to 0.01. A first anchor at T = 0.25 with
+10-unit gaps read a degenerate twisted sample (every W = +-1/2, a
+sample SE of zero) and was diagnosed as correlated sampling, not
+physics - recorded, and the error is now model-based (from the
+predicted lattice distribution) wherever the sample is degenerate.
+THE PROTOCOL: burn-in 20 units at T_i, ramp over tau_Q, settle 20
+units at T = 0, read W; the count at the ramp's end is kept
+alongside because the T = 0 descent still changes W after fast
+quenches (48 of 60 realizations at tau_Q = 0, 2 of 60 at 20, none
+at 80 and 320) - the fast null is therefore registered on the
+RAMP-END count at tau_Q = 0 (the equilibrium count at T_i), while
+the shared-density clause is registered on the FINAL count at
+every rung (validation z = -1.10 / -0.97 / -1.10 / -1.06 / -0.78).
+THE INTEGRATOR: Euler-Cromer with Maruyama noise (v' = v + dt a +
+sqrt(2 gamma T dt) xi), gamma = 1, dt = 0.05; a first dt/2 cell
+with 60 realizations read 1.03 against 0.45 and looked like a
+discretization effect; the powered check (120 realizations each,
+dt = 0.05 vs 0.0125, same seed) reads 0.750 +- 0.086 against
+0.833 +- 0.106, z = -0.61 - statistics, not dt. Lessons consulted:
+L-1, L-3, L-4 (every band here is a model SE or a binomial SE
+from the registered M), L-5, L-8, L-9. Registered runner
+scripts/experiments/p47_quench.py, seed 20260903.
+expects: N = 64, gamma = 1, T_i = 2, dt = 0.05, tau_Q in {0, 5,
+20, 80, 320}, M = 200 realizations per ring per rung. (a) Every
+sample of every run on its lattice at 1e-12 (control integer,
+twisted half-integer). (b) The fast null: at tau_Q = 0 the
+ramp-end <W^2> of both rings equals N <u^2>_{T_i}/4 pi^2 = 3.808
+within 3 SE. (c) The shared density at every rung: with T_eff
+inverted from the control's final <W^2> on the N = 64 curve, the
+twisted ring's final <W^2> lies within 3 combined SE (the model SE
+of the predicted twisted distribution, plus the control's SE
+propagated through the curve) of the prediction, AND its
+probability of |W| = 1/2 lies within 3 combined binomial SE of the
+predicted one. (d) The floor: min W^2 = 1/4 over every twisted
+sample at every rung. (e) Ordering: the control's final <W^2> at
+tau_Q = 0 exceeds its value at tau_Q = 320 by more than 3 combined
+SE. Reported unregistered: the control's local exponents along the
+ladder; T_eff per rung; the settle-changed counts; the full
+histograms.
+changes-my-mind: (c) violated at any rung with (a), (b) and (d)
+held - the frozen twisted statistics would NOT be the control's
+density on the shifted lattice, i.e. the twist would enter the
+freeze, which the local-physics argument excludes; that is the
+mind-change. (b) violated - the bath is not at T_i after the
+burn-in (instrument). (a) or (d) violated - an arithmetic
+impossibility; the code is wrong. (e) violated - the quench rate
+does not reach the count at all in this range (reported as such;
+not a mind-change about the shared density).
+not-claimed-in-advance: any Kibble-Zurek exponent or scaling law
+(reported, not registered: the freeze here is activated, the
+ladder is short, the statistics are 200 per cell); N-dependence
+(one N registered; the N = 32 layer is validation); the loaded
+ring; the overdamped limit; real annular Josephson junctions and
+their fluxon-trapping experiments (LC-36 context only).
