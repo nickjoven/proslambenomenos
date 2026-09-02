@@ -3034,3 +3034,123 @@ deterministic mutants. The mind-change did not fire - and by
 scope, nothing here proves the manuscript: the corroboration is
 of the ENGINE. Claim filed: jin-engine-corroborated. Results:
 scripts/experiments/p44_results.json.
+
+## P-45 — 2026-09-01 — ring energy continuity: the slip footprint as a derived current
+question: the P-35/P-36 inertial pi ring (theta_dd_j = -gamma v_j
++ sin D_j - sin D_{j-1} + f delta_{jb}, D_j = theta_{j+1} -
+theta_j - A_j, the p36_ring.py instrument unchanged) carries an
+exact local energy-continuity identity in the lattice
+heat-transport convention (LC-34: Lepri-Livi-Politi 2003 eqs. 11
+and 17 with V = 1 - cos D, F = -sin D): with site energy
+h_j = v_j^2/2 + (u_{j-1} + u_j)/2, u_j = 1 - cos D_j, and bond
+current J_j = -(1/2) sin(D_j) (v_j + v_{j+1}),
+  dh_j/dt + (J_j - J_{j-1}) = -gamma v_j^2 + f v_j delta_{jb},
+local change plus current divergence equals local dissipation
+plus local injection, and summed over the ring the current
+telescopes to dE/dt = f v_b - gamma sum v^2. This is the L-2 move
+for the slip aftermath: the "footprint" of a slip stops being a
+description of where excess energy sits and becomes the
+integrated divergence of a derived current - a bookkeeping
+observable with an exact null. Registered question: does the
+identity hold at the floating-point floor over random states of
+both rings, does A enter only through D (no seam term at the pi
+bond), and does the P-36 integrator's discrete balance converge
+at first order on the registered grid and through the slip?
+method: derive layer scripts/experiments/p45_derive.py with
+p45_derive.json, everything measured before this entry was
+written. (i) Residual bound: the residual at a random state is
+evaluated by the chain rule from the EOM (no dt anywhere,
+species-two zero) in ~30 rounded double operations on terms whose
+absolute sum T_j is computed alongside; the registered bound is
+32 eps T_j (eps = 2^-52), the floating-point floor scaled by the
+state's own term magnitudes, so it tracks the velocity scale
+automatically; the layer reads worst ratios 0.037 (site), 0.034
+(seam), 0.023 (global) at both vmax = 2 and vmax = 100 over 80k
+states. (ii) Mutants verified failing before pinning (L-8):
+current-blind (J = -sin(D_j) v_j, no average) fails per site at
+O(1) (3.5) on both rings but is INVISIBLE to the global balance
+(its residual telescopes away too: 3.6e-15), which is why the
+site-resolved clause is the load-bearing one; sink-blind (drop
+gamma v^2) fails per site at gamma v^2 (0.08) and globally at
+O(1) (2.16); gauge-blind (u from theta_{j+1} - theta_j, A
+dropped) is identical to the clean identity on the control ring
+(1.3e-15) and fails only at the two seam sites of the twisted
+ring at O(1) (3.6) - the deterministic seam-only signature of
+"A enters only through D". (iii) Discrete balance: under
+Euler-Cromer in the P-36 update order, injection is the exact
+work of the load over the step (f dt v'_b), dissipation
+gamma dt v'^2, current post-step; the defect D(dt) = sup over
+unit samples of |E(t) - E(0) - W_inj + W_diss| is first order,
+D = C dt + O(dt^2), ratio r = D(dt)/D(dt/2) = 2 + O(dt). Per L-3
+the registered observable is the convergence, not a value at a
+resolution: monotone decrease along dt, dt/2, dt/4 with both
+ratios inside the ORDER-DISCRIMINATION band [2^0.5, 2^1.5] - the
+geometric midpoints between a first-order scheme's 2 and its
+neighbours 1 (no convergence) and 4 (second order); order is
+discrete, so the midpoint band is the derived classifier.
+Validation cells pinned: smooth (control N = 64 at fold - 0.10,
+dt = 0.02 ladder) r1 = 2.0001, r2 = 2.0001 global and local;
+rotor (control N = 16 at fold + 0.02, dt = 0.001 ladder,
+event at 206 in all three) r1 = 2.0093, r2 = 2.0051 global,
+2.0016, 2.0017 local. Contraction of |r - 2| itself is at noise
+level in the rotor cell (1.6e-3 vs 1.7e-3) and is therefore
+REPORTED, not registered - the clause that would have fired on
+instrument grounds was removed by the derive layer, which is what
+the layer is for. (iv) Step size for the slip (8c): the torn-out
+node spins at ~ f/gamma ~ 100, so the slip ladder starts at
+dt0 = 0.001 (0.098 rad per step at that speed), four rungs below
+P-36's 0.02, which advanced the rotor by ~2 rad per step. (v)
+Slip cell chosen at f = fold + 0.005, the first P-36 grid level
+ABOVE the derived twist0 fold: no equilibrium exists there, so
+the event's existence is dt-independent (P-36's onset one grid
+step below the fold was an inertial-transient effect and could
+vanish under refinement). Lessons consulted: L-2 (the whole
+point), L-3 (the ratio band pinned/derived, not guessed), L-8
+(mutants verified), L-4/L-5 surfaced and not applicable (no
+statistical power clause; no ladder in q). Registered runner
+scripts/experiments/p45_continuity.py, seed 20260902.
+expects: (a) over one million random states at N = 64 (control
+and twisted rings, 400k each at vmax = 2 and 100k each at
+vmax = 100; f = the slip-cell load, gamma = 0.02), every site
+residual of the identity is within the bound 32 eps T_j (worst
+ratio <= 1); (b) the global balance dE/dt = f v_b - gamma sum v^2,
+computed from E directly (a different code path from the site
+sum), and the telescoping sum of the current divergence are each
+within their bounds 32 eps T at every state (worst ratios <= 1);
+(c) twist invariance: on the twisted ensembles the two seam sites
+the pi bond touches sit at the same bound as every other site
+(worst seam ratio <= 1); (d) on the P-36 grid pre-onset -
+{control, twist0, twist1} x N in {64, 96, 128}, f = fold - 0.10,
+ramp 200, hold 100 - the global and the site-resolved sup-defects
+both decrease monotonically along the dt = 0.02 / 0.01 / 0.005
+ladder with both successive ratios in [2^0.5, 2^1.5] (first
+order, discriminated from orders 0 and 2); (e) at the slip cell
+(twist0, N = 64, f = fold + 0.005, ramp 200, run to the P-36 event
+plus 40 units) the event occurs at every rung of the dt = 0.001 /
+0.0005 / 0.00025 ladder and the global and site-resolved
+sup-defects converge as in (d) THROUGH the slip - so the
+site-resolved decomposition (stored, in-flowed, dissipated,
+injected) is a resolved observable at the loaded site and its
+neighbours. Reported unregistered: the aftermath footprint at
+event + 40 (peak excess site energy, the 10-percent radius, the
+excess profile by offset from the load) and the loaded site's
+four-way decomposition; the ratios' deviations from 2 against the
+pinned validation values.
+changes-my-mind: (a) or (b) violated at any state, surviving the
+falsifier's independent implementation - the identity as written
+would be wrong (an algebra error in the derive layer, recorded as
+such and re-derived). (c) violated with (a) held - A would enter
+somewhere other than through D, a seam term the derivation
+missed. (d) or (e) firing with (a)-(c) held is an INSTRUMENT
+statement about the Euler-Cromer bookkeeping or the step size,
+not about the identity; it costs a re-registration per AGENTS 8,
+not a mind-change.
+not-claimed-in-advance: any statement about the slip aftermath's
+SHAPE (the footprint radius, the excess profile, the fraction of
+injected energy that leaves the loaded site) - those are read off
+and reported, with wavebench recording of aftermaths against this
+current queued as the follow-up; thermal transport, Fourier's law
+or conductivity of the ring (LC-34's context, not its claim);
+anything about the overdamped P-37 substrate (Sekimoto's
+convention covers it and is already cited at LC-27); Kibble-Zurek
+counting on the pi ring (queued separately).
