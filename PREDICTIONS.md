@@ -3324,3 +3324,51 @@ crossing the band) and the released strain wave's shape - recorded
 on the wavebench page, not measured; the DC torque coefficient;
 N-dependence of any of it (one N); the control ring's paired slip
 (two rotors; not run); anything about real Josephson arrays.
+
+## R-45 — 2026-09-02 — resolves P-46 (as expected)
+All three clauses held at all three cells (events at 217.0 / 221.0
+/ 243.0 for gamma 0.02 / 0.04 / 0.1). (a) Both momentum identities
+at the floor at every step of every trajectory: the total recursion
+at 0.016 of its bound, the ring-share recursion with the two-bond
+torque at 0.020 - the slip leaves no trace in P at any step. (b)
+Drift transfer: with the ring's share 63.20 / 29.15 / 6.11 at
+Delta = 10, the deviations from P_ring(10) e^{-gamma(Delta - 10)}
+at 1/gamma, 2/gamma, 3/gamma and the late point were 6.6e-3,
+3.9e-3, 1.7e-3, 7.1e-4 (gamma 0.02); 1.5e-3, 1.9e-2, 7.4e-4,
+3.0e-5 (0.04); 0, 2.6e-2, 1.6e-3, 1.5e-4 (0.1), against bounds
+0.189 / 0.219 / 0.295 - the ring hands its drift to the rotor at
+rate gamma to a part in 10^4 of the drift it had, and at the late
+point holds 0.19 / 0.0002 / 0.0002 against the 0.77 / 0.44 / 0.17
+that one percent of its event share would be. (c) Evanescence:
+A_1 = 1.0178e-2 / 2.0331e-2 / 5.0970e-2 against the exact discrete
+response bands [1.0170, 1.0191]e-2 / 2.0334e-2 / 5.0942e-2 with
+floors 1.4e-5 / 5.2e-6 / 3.2e-5 - inside at all three; A_2 =
+8.860e-6 against 8.406e-6 +- 1.1e-6 (gamma 0.04, ratio 4.358e-4
+vs |w| 4.135e-4) and 1.2876e-4 against 1.3227e-4 +- 6.1e-6 (gamma
+0.1, ratio 2.526e-3 vs 2.595e-3) - inside, the deviations 5 and 3
+percent sitting within the in-band wave floors 13 and 5 percent.
+The footprint above the band is the evanescent tail at the derived
+per-site ratio; at gamma = 0.02 that ratio is 1.03e-4 and the
+offset-2 signal 1.0e-6 sat under a wave floor of 1.3e-5 for any
+window in the run, as the layer said it would - offset 1 there
+reads 1.0178e-2 inside a band 0.2 percent wide. Unregistered
+readings: the rotor's spin-up fraction 0.569 / 0.870 / 0.982 at
+Delta = 40 / 100 / 200 (gamma 0.02) against 1 - e^{-gamma Delta} =
+0.551 / 0.865 / 0.982 - the R-44 "mean drag" was this curve; the
+loaded site's energy split at gamma 0.02: pre-event out-flow 183.2
+(the ring's drift being pumped; R-44's 182), post-event in-flow
+0.4, post-event injected 68193 and dissipated on the site 63362,
+the remainder the rotor's kinetic energy; the cycle-windowed DC
+torque, K = -0.738 +- 0.004 at gamma 0.1 (313 turns) and 0.139 +-
+0.519 at 0.04 (782 turns), the coefficient still unpinned and
+still opposite in sign to the validation cell at one gamma - and
+in absolute terms 5.8e-4 and 2.7e-6 of the torque that would hold
+one percent of the drift; A_3 at 18x and 321x under its floor.
+The wavebench page scripts/experiments/p46_waves.html records 240
+frames of the gamma = 0.02 aftermath (site-energy excess, current,
+velocity, Delta in [0, 120]): the released strain wave circling
+the loop, the rotor's one-site footprint, the ring's drift
+draining. Claim filed: slip-aftermath-is-off-band (falsifier
+scripts/verify/p46_aftermath.py, mutants bond-blind, rate-blind,
+band-blind; the response there by direct tridiagonal solve, not
+the root). Results: scripts/experiments/p46_results.json.

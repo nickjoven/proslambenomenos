@@ -1,0 +1,37 @@
+id: slip-aftermath-is-off-band
+statement: >
+  On the P-35/P-36 dead-loaded free pi ring (twist0, N = 64, one
+  grid level above the derived fold, gamma in {0.02, 0.04, 0.1}),
+  the aftermath of the top-bond slip in the P-45 current is:
+  (1) total momentum P = sum v obeys dP/dt = f - gamma P at every
+  instant and the ring's share obeys dP_ring/dt = -gamma P_ring
+  - (sin D_b - sin D_{b-1}), both at the floating-point floor at
+  every Euler-Cromer step through the slip (residual ratios 0.016
+  and 0.020); (2) the ring hands its pre-event rigid drift
+  f/(N gamma) to the rotor at rate gamma: P_ring(Delta) tracks
+  P_ring(10) e^{-gamma(Delta - 10)} within the derived 4/Omega(10)
+  bound at 1/gamma, 2/gamma, 3/gamma and a late point, at all three
+  gammas, the late-point shares 0.19 / 2e-4 / 2e-4 against the
+  0.77 / 0.44 / 0.17 of a one-percent held drift; (3) above the
+  band the footprint is the evanescent tail of a driven
+  semi-infinite chain: the neighbour's velocity amplitude A_1
+  equals the exact discrete linear response (1.0178e-2 / 2.0331e-2
+  / 5.0970e-2 inside bands 0.2 / 0.02 / 0.06 percent wide) and the
+  next site's A_2 equals A_1 |w| with |w| the evanescent root
+  ~ c/Omega^2 (4.36e-4 vs 4.13e-4 at gamma 0.04, 2.53e-3 vs 2.60e-3
+  at 0.1, within the derived in-band wave floors). Scope: the
+  evanescent phase Delta >= 10; the launch phase and the released
+  wave's shape are recorded, not claimed; the DC torque coefficient
+  is not pinned and not claimed; one N.
+premises: []
+prediction: P-46
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p46_derive.py with p46_derive.json (the derive layer: the exact identities, the discrete-map response, the linear-chain anchor, the two lock-in floors, the N = 32 validation cells, the removed torque clause); scripts/experiments/p46_aftermath.py with p46_results.json and p46_waves.html (the registered cells and the wavebench recording); independently reimplemented by scripts/verify/p46_aftermath.py with velocity-Verlet, its own event detector and lock-in, and the response by direct complex tridiagonal solve"
+    method: reimplementation
+null_system: "the lock-in reads two derived floors from each run - the in-band wave's leakage 2a/(T(Omega - 2)) and the demodulated 2-Omega term's A_d/(Omega T) - and the floors decided the registered offsets before the run (offset 2 unmeasurable at gamma = 0.02, offset 3 nowhere); the linear-chain anchor caught the lock-in's factor 2, the (dt Omega)^2 formula error and the phase-reference detuning before registration; the DC-torque clause was removed when its coefficient read opposite signs above the floors at the two validation gammas; the mutants - bond-blind (one rotor bond in the ring-share identity), rate-blind (drift decaying at 2 gamma), band-blind (tail ratio 1/Omega) - each verified failing"
+falsifier: "scripts/verify/p46_aftermath.py --mutant band-blind"
+novelty:
+  status: classical
+  citation: "the momentum law is the summed equation of motion; the off-band response is the one-dimensional lattice Green's function (Economou, Green's Functions in Quantum Physics, 3rd ed. 2006, ch. 5) in its damped, discrete-time form, imported at LC-35; the contribution is the instrument - the bond-phase lock-in with derived floors applied to a slip aftermath so the footprint has a null - and the correction of R-44's two unregistered misreadings"
+status: verified
