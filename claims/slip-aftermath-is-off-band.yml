@@ -7,8 +7,11 @@ statement: >
   instant and the ring's share obeys dP_ring/dt = -gamma P_ring
   - (sin D_b - sin D_{b-1}), both at the floating-point floor at
   every Euler-Cromer step through the slip (residual ratios 0.016
-  and 0.020); (2) the ring hands its pre-event rigid drift
-  f/(N gamma) to the rotor at rate gamma: P_ring(Delta) tracks
+  and 0.020); (2) the ring's pre-event rigid drift
+  f/(N gamma) decays at rate gamma by the ring's own damping while
+  the rotor spins up under the load, the two coupled only by a
+  torque whose integral is bounded by 4/Omega(10) (R-45a: no
+  momentum is handed over): P_ring(Delta) tracks
   P_ring(10) e^{-gamma(Delta - 10)} within the derived 4/Omega(10)
   bound at 1/gamma, 2/gamma, 3/gamma and a late point, at all three
   gammas, the late-point shares 0.19 / 2e-4 / 2e-4 against the
@@ -29,7 +32,7 @@ evidence:
   - kind: computation
     ref: "scripts/experiments/p46_derive.py with p46_derive.json (the derive layer: the exact identities, the discrete-map response, the linear-chain anchor, the two lock-in floors, the N = 32 validation cells, the removed torque clause); scripts/experiments/p46_aftermath.py with p46_results.json and p46_waves.html (the registered cells and the wavebench recording); independently reimplemented by scripts/verify/p46_aftermath.py with velocity-Verlet, its own event detector and lock-in, and the response by direct complex tridiagonal solve"
     method: reimplementation
-null_system: "the lock-in reads two derived floors from each run - the in-band wave's leakage 2a/(T(Omega - 2)) and the demodulated 2-Omega term's A_d/(Omega T) - and the floors decided the registered offsets before the run (offset 2 unmeasurable at gamma = 0.02, offset 3 nowhere); the linear-chain anchor caught the lock-in's factor 2, the (dt Omega)^2 formula error and the phase-reference detuning before registration; the DC-torque clause was removed when its coefficient read opposite signs above the floors at the two validation gammas; the mutants - bond-blind (one rotor bond in the ring-share identity), rate-blind (drift decaying at 2 gamma), band-blind (tail ratio 1/Omega) - each verified failing"
+null_system: "the lock-in reads two derived floors from each run - the in-band wave's leakage 2a/(T(Omega - 2)) and the demodulated 2-Omega term's A_d/(Omega T) - and the floors decided the registered offsets before the run (offset 2 unmeasurable at gamma = 0.02, offset 3 nowhere); the linear-chain anchor caught the lock-in's factor 2, the (dt Omega)^2 formula error and the phase-reference detuning before registration; the DC-torque clause was removed when its coefficient read opposite signs above the floors at the two validation gammas; the mutants - bond-blind (one rotor bond in the ring-share identity), rate-blind (drift decaying at 2 gamma), band-blind (tail ratio 1/Omega) - each verified failing; coverage (R-45a): the reimplementation covers all three clauses on one small cell (N = 16, gamma = 0.1); clause (2)'s bound follows from |T| <= 2 unless the rotor stalls, so it discriminates only a stalled rotor or a mean torque above 4 gamma/Omega(10), and its rate-blind mutant fails only at the 2/gamma and 3/gamma points; the tail law is discriminated at the ~10 percent level (band-blind is 18x off); the A_1 bands are the discrete map's"
 falsifier: "scripts/verify/p46_aftermath.py --mutant band-blind"
 novelty:
   status: classical
