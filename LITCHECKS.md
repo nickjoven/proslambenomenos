@@ -1144,3 +1144,38 @@ claims-checked:
   physics is elementary; what P-46 registers is the instrument -
   the lock-in against the bond phase, its two derived floors, and
   which offsets they leave measurable.
+
+## LC-36 — 2026-09-02 — the P-47 context (Kibble-Zurek counting on rings)
+prediction: P-47
+claims-checked:
+- The mechanism: Kibble, J. Phys. A 9, 1387 (1976); Zurek, Nature
+  317, 505 (1985) - defects frozen in by a finite-rate crossing of
+  a transition, density set by the freeze-out correlation length
+  xi-hat ~ tau_Q^{nu/(1+z nu)}. Imported as CONTEXT only: P-47
+  registers no exponent. Its ring has no substrate and no finite-T
+  transition; the winding changes by activated phase slips, and
+  the derive layer's ladder fell too slowly and too noisily for a
+  power to be pinned (L-3).
+- The physical realization of the count: Monaco, Mygind, Rivers,
+  "Zurek-Kibble domain structures: the dynamics of spontaneous
+  vortex formation in annular Josephson tunnel junctions," PRL 89,
+  080603 (2002), arXiv:cond-mat/0112321 - fluxons trapped in an
+  annular junction after a quench through T_c, trapping frequency
+  scaling with quench time as sigma = 0.27 +- 0.05 against their
+  prediction 0.25. Their observable IS a winding count on a ring;
+  the pi-ring version of it (the semifluxon floor at |W| = 1/2)
+  is what P-47's floor clause states classically. Not reproduced,
+  not claimed.
+- Winding statistics on a ring after a quench: Das, Sabbatini,
+  Zurek, "Winding up superfluid in a torus via Bose Einstein
+  condensation," Sci. Rep. 2, 352 (2012), arXiv:1102.5474 - the
+  dispersion of winding numbers in a stochastic-GP torus follows
+  the KZ scaling. Cited as the observable's precedent (the
+  variance of W as the defect count); their scaling is in a
+  different model class and is not imported into any clause.
+- The shared-density statement itself - one density of the summed
+  strain read at integer vs half-integer points - is the
+  transfer-matrix bookkeeping of a ring with a gauge twist;
+  elementary, not searched for as a claim. What P-47 registers is
+  that it survives the QUENCH (the frozen counts share the
+  density), which is the twist-blindness of the freeze.
