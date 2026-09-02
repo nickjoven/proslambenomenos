@@ -1118,3 +1118,29 @@ claims-checked:
   aftermath in these variables. The footprint observable is a
   reading of the current, reported unregistered in R-44; a claim
   about its shape would need its own registration.
+
+## LC-35 — 2026-09-02 — the P-46 import (the off-band response of a chain)
+prediction: P-46
+claims-checked:
+- The evanescent response of a driven chain above its band: the
+  one-dimensional lattice Green's function, Economou, "Green's
+  Functions in Quantum Physics," 3rd ed., Springer (2006), ch. 5
+  (the tight-binding chain: G(E) with the square-root branch
+  sqrt(E^2 - 4V^2) outside the band and the geometric decay of
+  G(l, m; E) in |l - m| there). The harmonic chain with stiffness
+  c and damping gamma maps onto it with E <-> Omega^2 - i gamma
+  Omega - 2c and V <-> -c; P-46's root w + 1/w = 2 - z/c and the
+  end-site amplitude are that Green's function for the
+  semi-infinite (free-end) case. Imported as classical linear
+  response; P-46 uses the exact Euler-Cromer discrete version of
+  the same algebra, derived in its layer, because the registered
+  band at gamma = 0.02 is the size of the (dt Omega)^2 error.
+- The convention for the site energy and current is LC-34's
+  (Lepri-Livi-Politi 2003); the momentum identity is the summed
+  equation of motion and needs no source.
+- Not found stated: the dead-loaded free ring's aftermath in these
+  terms (a rotor above the band handing the ring's drift back on
+  the damping time, with the footprint an evanescent tail). The
+  physics is elementary; what P-46 registers is the instrument -
+  the lock-in against the bond phase, its two derived floors, and
+  which offsets they leave measurable.
