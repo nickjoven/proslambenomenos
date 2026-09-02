@@ -3477,3 +3477,38 @@ ladder is short, the statistics are 200 per cell); N-dependence
 (one N registered; the N = 32 layer is validation); the loaded
 ring; the overdamped limit; real annular Josephson junctions and
 their fluxon-trapping experiments (LC-36 context only).
+
+## R-46 — 2026-09-02 — resolves P-47 (as expected)
+All five clauses held at all five rungs, 200 realizations per ring
+per rung, N = 64. (a) Every one of the 2000 samples on its lattice
+at 9.1e-15 worst. (b) The fast null on the ramp-end count at
+tau_Q = 0: control 3.785 +- 0.361, twisted 3.930 +- 0.342 against
+3.808 (z = -0.06, 0.36). (c) The shared density at every rung -
+the twisted ring's final <W^2> against the value predicted from
+the control's through the N = 64 curve: 1.880 vs 1.940 (z -0.23),
+1.730 vs 1.660 (0.31), 1.490 vs 1.520 (-0.14), 1.060 vs 1.105
+(-0.31), 0.860 vs 0.800 (0.52) at tau_Q = 0 / 5 / 20 / 80 / 320;
+and its probability of |W| = 1/2 against the predicted one: 0.520
+vs 0.537, 0.540 vs 0.575, 0.575 vs 0.597, 0.675 vs 0.679, 0.735 vs
+0.764 (z -0.43, -0.85, -0.53, -0.09, -0.72; binomial SE 0.04). Ten
+comparisons, worst 0.85 sigma: the frozen counts of the twisted
+ring ARE the control's density on the half-integer lattice, at
+every quench rate, with the effective temperature inverted from
+the control alone (0.726 / 0.631 / 0.586 / 0.459 / 0.364). (d) The
+floor: min W^2 = 1/4 over every twisted sample at every rung. (e)
+Ordering: the control's final count 1.940 at tau_Q = 0 against
+0.800 at 320, z = 5.8. Unregistered readings: the T = 0 settle
+changed the count in 168 / 104 / 19 / 0 / 0 control realizations
+along the ladder (the fast quench's count is set by the descent,
+the slow quench's by the ramp); the control's local exponents
+0.06 / 0.23 / 0.23 across the three ladder steps - the two slow
+steps agree with each other and sit near the 0.25 the annular
+junction experiments of LC-36 predict for their quench, which is
+noted as a number and not as a result: two steps, one N, an
+activated freeze, 200 samples. The full histograms are in the
+results file; at tau_Q = 320 the control holds W = 0 in 90 of 200
+and the twisted ring holds |W| = 1/2 in 147 of 200. Claim filed:
+quench-counts-share-one-density (falsifier
+scripts/verify/p47_half_sector.py by direct convolution and
+velocity-Verlet, mutants shift-blind and count-blind). Results:
+scripts/experiments/p47_results.json.

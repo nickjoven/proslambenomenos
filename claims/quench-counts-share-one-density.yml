@@ -1,0 +1,32 @@
+id: quench-counts-share-one-density
+statement: >
+  On the P-35/P-36 free ring of N = 64 inertial sine-coupled phase
+  oscillators with a Langevin bath (gamma = 1) ramped linearly from
+  T_i = 2 to 0 over tau_Q in {0, 5, 20, 80, 320}, the covariant
+  winding is an exact defect count (on its integer or half-integer
+  lattice at every sample, 9e-15 worst over 2000), the twisted
+  ring's W^2 never drops below the half-quantum floor 1/4, the
+  instantaneous quench's ramp-end count reproduces the equilibrium
+  variance N<u^2>_{T_i}/4 pi^2 for both rings, and at EVERY quench
+  rate the twisted ring's frozen counting statistics are the
+  control's density of the summed strain read on the half-integer
+  lattice: the twisted <W^2> and its probability of |W| = 1/2,
+  predicted from the control's <W^2> alone through the equilibrium
+  curve, land within their registered bands at all five rungs, worst 0.85 of a combined standard error (200 realizations
+  per cell). The instantaneous quench holds more winding than the
+  slowest (1.94 vs 0.80, at 5.8 combined standard errors). Scope: no Kibble-Zurek exponent
+  is claimed - the freeze is activated and the ladder short; the
+  local exponents 0.06 / 0.23 / 0.23 are reported. One N; one gamma;
+  the unloaded ring.
+premises: []
+prediction: P-47
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p47_derive.py with p47_derive.json (the shared density by characteristic-function quadrature, the equilibrium anchor at two temperatures, the N = 32 validation ladder, the powered dt check); scripts/experiments/p47_quench.py with p47_results.json (the registered ladder, seed 20260903); independently reimplemented by scripts/verify/p47_half_sector.py with the density by direct N-fold convolution, its own velocity-Verlet Langevin ring, anchor, floor cell and quench at N = 16"
+    method: reimplementation
+null_system: "the count has no detector null because it is arithmetic (sum D_j = -sum A_j on a ring); the fast null is the equilibrium variance at T_i, registered on the ramp-end count because the T = 0 descent changes the count after fast quenches (168 of 200 at tau_Q = 0, none at 80 and 320); every band is a model SE from the predicted lattice distribution or a binomial SE from the registered M, with the control's error propagated through the curve; the derive layer's first anchor at T = 0.25 read a degenerate sample from correlated sampling (slips at N e^{-8}) and moved to temperatures where the slip rate decorrelates; a thin dt/2 cell that read a 3-sigma effect was replaced by a powered one that read z = -0.61; the mutants shift-blind (no lattice shift) and count-blind (the unwrapped sum, a topological constant) each verified failing, after a first loosened-check mutant that could not fail was discarded (L-8)"
+falsifier: "scripts/verify/p47_half_sector.py --mutant shift-blind"
+novelty:
+  status: classical
+  citation: "the shared density is the transfer-matrix bookkeeping of a ring with a gauge twist; the winding-number variance as the defect count follows Das-Sabbatini-Zurek (Sci. Rep. 2, 352, 2012) and the annular-junction fluxon counts of Monaco-Mygind-Rivers (PRL 89, 080603, 2002), both at LC-36; the contribution is the exact half-sector counter applied through a quench with the twisted statistics predicted from the control's, and the refusal to register an exponent the ladder cannot pin"
+status: verified
