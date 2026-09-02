@@ -1084,3 +1084,37 @@ claims-checked:
   (ISSUE_DRAFT, unfiled) stand but are moot for the mathematics.
 - OPEN and not claimed anywhere: the completely bounded Crouzeix
   conjecture.
+
+## LC-34 — 2026-09-01 — the P-45 imports (lattice energy continuity)
+prediction: P-45
+claims-checked:
+- The convention: Lepri, Livi, Politi, "Thermal conduction in
+  classical low-dimensional lattices," Phys. Rep. 377, 1 (2003),
+  arXiv:cond-mat/0112193 - their eq. (11) local energy
+  h_n = p_n^2/2m + U(x_n) + [V(x_{n+1}-x_n) + V(x_n-x_{n-1})]/2 and
+  eq. (17) local flux j_n = (a/2)(x_dot_{n+1} + x_dot_n)
+  F(x_{n+1}-x_n), F = -V'. P-45's h_j and J_j are these with a = 1,
+  U = 0, V(D) = 1 - cos D on the covariant strain D_j (the gauge
+  field A_j inside D is the only change; the identity's form is
+  unchanged). Imported as the CONVENTION, not as a result: their
+  subject - Fourier's law, anomalous conductivity, the divergence
+  with system size in one dimension - is not claimed anywhere in
+  P-45, whose ring is driven at a point and damped everywhere.
+- The identity itself is the discrete continuity equation
+  dh_n/dt + (j_n - j_{n-1})/a = 0 of the same review (their eq. (16),
+  for the undamped, unforced chain); P-45 adds the
+  sink -gamma v^2 and the source f v delta and checks the sum
+  telescopes. Elementary; classical; nothing new in the algebra.
+  What P-45 registers is the instrument: the floating-point
+  bound, the seam-blindness, and the discrete balance of the
+  P-36 integrator through a slip - repo discipline on a textbook
+  identity so the slip footprint has an exact null.
+- The overdamped analogue (P-37's substrate): Sekimoto's
+  stochastic energetics, already cited at LC-27 as the work
+  convention there. Not re-imported; P-45 is the inertial ring
+  and does not touch the overdamped line.
+- Not found stated for this geometry (and not needed): a
+  published treatment of the free pi ring's point-loaded slip
+  aftermath in these variables. The footprint observable is a
+  reading of the current, reported unregistered in R-44; a claim
+  about its shape would need its own registration.

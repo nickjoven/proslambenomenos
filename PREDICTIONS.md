@@ -3154,3 +3154,58 @@ or conductivity of the ring (LC-34's context, not its claim);
 anything about the overdamped P-37 substrate (Sekimoto's
 convention covers it and is already cited at LC-27); Kibble-Zurek
 counting on the pi ring (queued separately).
+
+## R-44 — 2026-09-01 — resolves P-45 (as expected)
+All five clauses held. (a) One million random states (400k control
+and 400k twisted at vmax = 2, 100k each at vmax = 100): worst
+per-site residual 0.042 of the bound 32 eps T_j (absolute 2.2e-15
+at vmax = 2, 1.7e-13 at vmax = 100 - the bound tracked the scale,
+as designed). (b) Global balance from E directly at 0.024 of its
+bound; telescoping sum at 0.0086 of its bound. (c) The twisted
+ring's seam sites at 0.033 of the bound - no seam term, A enters
+only through D. (d) All nine grid cells (three configurations x
+N = 64, 96, 128, pre-onset at fold - 0.10): global and per-site
+sup-defects 1.2e-2 to 2.3e-2 at dt = 0.02, halving at each rung
+with every ratio between 2.0000 and 2.0002, inside the order-one
+band and on top of the pinned smooth validation value 2.0001.
+(e) The slip cell (twist0, N = 64, fold + 0.005): the P-36 event
+at t = 217.0 at all three rungs of the dt = 0.001 ladder; global
+sup-defect 4.46e-2 / 2.21e-2 / 1.10e-2 (ratios 2.0144, 2.0072),
+per-site 7.11e-2 / 3.53e-2 / 1.76e-2 (ratios 2.0151, 2.0081) -
+first order THROUGH the tear-out, and here the deviation from 2
+does contract (reported: the rotor validation cell's non-
+contraction was the small-N case at a coarser effective
+resolution, the registered cell's ratios sit 4x further from 2
+and halve cleanly). The decomposition is therefore a resolved
+observable, and it reads, at event + 40 on the loaded site:
+injected 2827.6, dissipated on the site 1075.5, out-flowed into
+the ring through the two adjacent bonds 182.1, stored (kinetic,
+the rotor) 1569.9; ring-wide, E rose by 1585.8 = 2827.6 injected
+minus 1241.8 dissipated - the 182 that left the loaded site was
+dissipated in the ring (166.3) and stored there (15.8). The
+figures agree across the three rungs to four digits. Unregistered
+footprint at event + 40 (peak excess site energy relative to the
+last pre-event sample): peak 1566 at the loaded site, 10-percent
+radius ZERO; every other site sits at -0.4 to -1.1 - the ring
+LOST energy through the slip relative to its pre-event state,
+which is the rigid drift at f/(N gamma) = 1.54 (kinetic 1.18 per
+site) decelerating once the loaded node took the load alone plus
+the released pre-fold strain. So the aftermath footprint of this
+slip, in the derived current, is: nothing spreads. The rotor
+spins at ~56 at event + 40, from the stored 1566 = v^2/2 (not
+f/gamma = 98: the adjacent bonds carry a mean drag, which is the
+182 out-flow), 6.4 percent of the injected
+power leaks into the ring and is dissipated within it, and the
+excess-energy footprint is one site wide because the drive at
+~56 sits nearly thirty times above the lattice band edge 2. That is a
+reading, not a claim; a claim about aftermath shape needs its
+own registration (A-25 queued: wavebench recordings of slip
+aftermaths against this current). No instrument error on record
+in the registered line; the falsifier's first draft charged its
+rounding budget against too small a term sum (ratio 1.36 on a
+clean identity) and was corrected before pinning (notes). Claim
+filed: ring-energy-continuity (falsifier
+scripts/verify/p45_continuity.py, mutants current-blind,
+sink-blind, gauge-blind - the first is invisible to the global
+balance, the third to the control ring). Results:
+scripts/experiments/p45_results.json.
