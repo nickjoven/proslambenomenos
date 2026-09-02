@@ -3209,3 +3209,118 @@ scripts/verify/p45_continuity.py, mutants current-blind,
 sink-blind, gauge-blind - the first is invisible to the global
 balance, the third to the control ring). Results:
 scripts/experiments/p45_results.json.
+
+## P-46 — 2026-09-02 — the slip aftermath is off-band: momentum exact, drift handed over, footprint evanescent
+question: A-25 executed as a registered line. R-44 left the slip
+aftermath as an unregistered reading and got two things wrong in
+it: the rotor at ~56 was called "held by a mean drag" (it was
+0.55 of terminal at event + 40 because 1 - e^{-0.8} = 0.55: a
+spin-up on the damping time, not a drag), and the 182 called
+out-flow after the slip was accumulated over the whole run, mostly
+BEFORE the event, when the loaded site fed the ring's rigid drift
+(the derive layer's N = 32 cells read pre-event out-flow 98 / 196
+/ 312 at gamma 0.1 / 0.04 / 0.02 and post-event in-flow of 0.2 to
+0.5). The registered question: what is the aftermath's shape in
+the P-45 current? Three derived pieces. (i) MOMENTUM: summing the
+EOM over the ring telescopes the bond forces away, dP/dt = f -
+gamma P with P = sum v, exactly, slip or no slip; under
+Euler-Cromer the discrete recursion P' = P + dt(f - gamma P) is
+exact too; and the ring's share P_ring = sum_{j != b} v_j obeys
+exactly dP_ring/dt = -gamma P_ring - (sin D_b - sin D_{b-1}), the
+rotor's torque on the ring being the two-bond force. So the
+pre-event rigid drift f/(N gamma) (1.54 / 0.77 / 0.31 at gamma
+0.02 / 0.04 / 0.1, N = 64) is HANDED to the rotor: the ring's
+drift decays at rate gamma up to the integrated rotor torque.
+(ii) EVANESCENCE: once the rotor's Omega ~ f/gamma (98 / 49 / 20)
+sits above the band edge 2, the bond force sin D_b - amplitude
+exactly 1 at the bond's own phase - drives site b+1 as the end of
+a semi-infinite damped chain of stiffness c = cos D ~ 1: with
+z = Omega^2 - i gamma Omega the evanescent root w (|w| < 1) solves
+w + 1/w = 2 - z/c, so |w| ~ c/Omega^2 per site, staggered, and the
+end site's velocity amplitude is A_1 = |Omega/(c(1 - w) - z)|
+~ 1/Omega. The footprint above the band is a geometric tail with
+ratio 1.03e-4 / 4.13e-4 / 2.59e-3 per site at the three gammas
+(exact discrete-map values at dt = 0.001, see method). Read by
+lock-in against the bond phase, A_d = 2|(1/T) int v_{b+d} e^{-i
+(theta_b - theta_{b+1})} dt|. (iii) DC TORQUE: NOT registered -
+see method for why.
+method: derive layer scripts/experiments/p46_derive.py with
+p46_derive.json, all before this entry. THE ANCHOR (L-9): the
+lock-in pipeline was pointed first at a linear semi-infinite chain
+driven by a unit sinusoid at its end, integrated with the same
+Euler-Cromer, and had to land on the closed forms. It caught, in
+order: the missing factor 2 (a real sinusoid demodulates to half
+amplitude: A_1 read -0.500 relative); the continuous-time
+response formula being off by ~(dt Omega)^2, the size of the
+gamma = 0.02 band, replaced by the EXACT Euler-Cromer discrete
+response (z_d = -[(q-1)^2/(q dt^2) + gamma(q-1)/(q dt)], q =
+e^{i Omega dt}, velocity factor |q-1|/dt); and, on the nonlinear
+cells, a 1.5-percent detuning when the rotor's phase alone was
+the reference - the ring's residual drift shifts the force's
+phase, so the reference is the bond phase. Anchors now: A_1
+within 2.1e-4 and 1.2e-4 of the closed form at Omega = 20 and 49,
+the per-site ratios within 4e-6 and 2e-7, the offset-3 ratios
+within 2e-5. THE NULLS (8a, L-1): the lock-in reads two floors
+from the run itself - the in-band wave the slip launches
+(amplitude a measured at offsets >= 2) leaks at most
+2a/(T(Omega - 2)), and the demodulated product's 2-Omega term
+leaks A_d/(Omega T) over a window not tied to whole periods (the
+anchors' residuals ARE this floor: 2e-4 and 1e-4 relative at
+Omega T = 2000 and 4900). The floors decide the registered
+offsets (8c): at gamma = 0.02 the wave floor sits at 12x the
+offset-2 signal for any window inside the run, so offset 1 only;
+offsets 1 and 2 at gamma 0.04 (floor 0.14 of A_2 in [300, 400])
+and 0.1 (0.06 in [100, 200]); offset 3 nowhere (floor >= 22x).
+THE CLAUSE THE LAYER REMOVED: the DC rotor torque, T-bar =
+K gamma/Omega^3 by the leading-order lag argument, was to be
+registered with K pinned at N = 32. Step-quantized cycle windows
+leaked A_T dt/T_w, which at Omega^3/gamma scaling read K ~ 50 to
+850; interpolating the rotor-turn crossings brought the floors to
+4e-3 and 0.55, and the two clean readings then DISAGREED: K =
+-0.917 at gamma 0.1 (Omega 19) and +1.899 at gamma 0.04 (Omega
+48), opposite signs, both above their floors. The leading-order
+argument does not capture the coefficient; the torque is REPORTED
+against the scale that would hold the ring's drift at 1 percent
+(0.01 gamma P_ring(event)), not registered. THE DRIFT BAND: the
+deviation of P_ring from P_ring(10) e^{-gamma(Delta - 10)} is
+exactly the integrated rotor torque; over the evanescent phase
+the torque is an oscillation of amplitude <= 2 at Omega, whose
+integral against e^{-gamma(t-s)} is bounded by 4/Omega; Delta = 10
+is the reference because the rotor crosses the band edge inside
+the first unit and reaches Omega ~ 13 to 22 by Delta = 10 (the
+launch phase, Delta < 10, is excluded and not claimed). Validation
+at N = 32 read deviations <= 1.3e-3 against bounds 0.19 to 0.30.
+Lessons consulted: L-1, L-2, L-3, L-8, L-9. Registered runner
+scripts/experiments/p46_aftermath.py; the wavebench recording of
+the gamma = 0.02 aftermath (site-energy excess, current, velocity
+for Delta in [0, 120]) is written by the same run.
+expects: cells twist0, N = 64, f = fold + 0.005, ramp 200, dt =
+0.001, gamma in {0.02, 0.04, 0.1}, run to the P-36 event plus 400
+/ 400 / 200. (a) Both exact identities at the floor at every step
+of all three trajectories: the total-momentum recursion and the
+ring-share recursion with the two-bond torque, residual ratios
+<= 1 against 32 eps times the summands' magnitudes. (b) Drift
+transfer: at Delta in {1/gamma, 2/gamma, 3/gamma} and a late
+point (300 / 300 / 200), |P_ring(Delta) - P_ring(10)
+e^{-gamma(Delta - 10)}| <= 4/Omega-bar(10). (c) Evanescence: in
+the windows [300, 400] / [300, 400] / [100, 200], A_1 lies in the
+band spanned by the exact discrete response over the window's
+Omega range and stiffness range, widened by the two floors, at all
+three gammas; A_2 lies in A_1 times the |w| band, widened by the
+floors, at gamma 0.04 and 0.1. Reported unregistered: the
+cycle-windowed DC torque and its K; A_3; the rotor's spin-up
+fraction at Delta = 40, 100, 200 against 1 - e^{-gamma Delta}; the
+loaded site's energy split pre/post event; the wavebench frames.
+changes-my-mind: (b) violated at the late point with (a) held -
+the ring would keep a share of its drift, i.e. the rotor transmits
+a mean torque the linear-response picture excludes; (c) violated
+at offset 2 with offset 1 held - the tail is not the evanescent
+root, the footprint has structure the linear chain does not; (a)
+violated - an algebra error, recorded and re-derived. (c) violated
+at offset 1 alone is a lock-in instrument statement (8a) and costs
+a re-registration.
+not-claimed-in-advance: the launch phase (Delta < 10, the rotor
+crossing the band) and the released strain wave's shape - recorded
+on the wavebench page, not measured; the DC torque coefficient;
+N-dependence of any of it (one N); the control ring's paired slip
+(two rotors; not run); anything about real Josephson arrays.
