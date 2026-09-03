@@ -3959,3 +3959,227 @@ finding excludes (that the gap is below the floor) was not computed
 before the finding was written down. Lessons: L-12, L-3 (the band
 traces to the derived response; where the floor is wider, the floor is
 the band and is named as such).
+
+## R-47b — 2026-09-03 — corrections to R-47 and R-47a from the adversarial pass: the ladder windows sat inside the slow mode's decay; R-47a's A_1 bands; clause (a)'s content; the falsifier's check (3)
+Six corrections from the 2026-09-03 adversarial audit of PR 116 (a
+context-free agent on a scratch copy; every finding below re-verified
+against p48_results.json and p49_derive.json before entry; the
+falsifier and both mutants rerun at their expected exit codes; no
+registered clause fires, no status moves). (1) R-47a withdrew clause
+(c) as held by leakage, and the same criterion reaches further. With
+omega_1 = 2 sin(pi/64) = 0.09814 the slip's k = 1 relaxation is
+overdamped for gamma > 0.196 with decay time tau = 1/(gamma/2 -
+sqrt(gamma^2/4 - omega_1^2)), and the registered ladder windows sit
+inside it: gamma 0.2 window [60, 120] tau 12.4, start 4.85 tau, end
+9.69 tau; gamma 0.35 window [40, 100] tau 33.2, start 1.20 tau, end
+3.01 tau; gamma 0.45 window [30, 90] tau 44.4, start 0.68 tau, end
+2.03 tau; gamma 0.5 window [30, 80] tau 49.8, start 0.60 tau, end 1.61
+tau; gamma 0.6 window [30, 80] tau 60.6, start 0.50 tau, end 1.32 tau;
+gamma 0.8 window [20, 70] tau 81.8, start 0.24 tau, end 0.86 tau. Only
+the gamma 0.2 window is quiet by three decay times. Every unregistered
+near-band reading R-47 took in those windows is a reading of the
+window's state, not of the ring: the smear factors (A_1 rotor/bond
+0.998 / 0.858 / 0.704 / 0.750 / 0.750 / 0.688), the A_1 deficits, the
+mixing-term percentages, the Omega/2 content, and the stiffness bands
+themselves (cmin 1.000 / 0.974 / 0.931 / 0.921 / 0.904 / 0.824 along
+the ladder; the transient's strain widens the |w| band, the late
+window narrows it - P-49). The rotor's slowing and the event times are
+not transient. P-48's registration computed the rate ("0.02 per unit
+at gamma 0.5") and placed the windows anyway; L-16. (2) R-47a quotes
+A_1 "inside its band (2.7122e-1 in [2.7055, 2.7223]e-1; 1.8357e-1 in
+[1.8357, 1.8374]e-1)". Those are not the late window's bands: [2.7053,
+2.7223]e-1 is the gamma 0.5 [30, 80] window's A_1 band
+(p49_results.json decay[0]) written beside the late window's A_1. The
+late bands (p49_derive.json second_pass.late) are: gamma 0.5 A_1
+2.71224e-01 in [2.71882e-01, 2.71966e-01] (-0.24 percent of the
+bottom, self floor 3.18e-03); gamma 0.35 A_1 1.83569e-01 in
+[1.83692e-01, 1.83697e-01] (-0.07 percent of the bottom, self floor
+2.22e-03). A_1 sits below the band proper at both cells and inside
+only by the self floor; R-48 says so, R-47a did not. (3) R-47's rotor-
+slowing list "0.999 / 0.996 / 0.994 / 0.988 / 0.954" has five values
+for six ladder cells; the JSON's Omega/terminal along gamma 0.2 / 0.35
+/ 0.45 / 0.5 / 0.6 / 0.8 / 1.0 is 0.9999 / 0.9987 / 0.9965 / 0.9943 /
+0.9876 / 0.9544 / 0.8683. (4) Clause (a), the kappa scaling identity,
+is a change of units of the map: (v, dt, gamma, f) -> (v/s, s dt,
+gamma/s, f/kappa) with s = sqrt kappa turns one Euler-Cromer step into
+the other term by term, and the ramp, sampling and event detection are
+step counts, so clauses (a2) and (b) are corollaries. The audit's
+scratch runs fed check (1) maps with Newton's third law broken by one
+percent, with anti-damping, and with a modulated bond force; all
+passed at a twentieth of the floor. The check reads "the step is
+homogeneous in kappa" and cannot read physics; the registration half-
+said it ("carries no new parameter"). The claim's coverage line now
+says it. (5) The falsifier scripts/verify/p48_kappa.py check (3) reads
+the rotor-reference offset-2 ratio in the |w| band at N = 16, gamma
+0.5 - the clause R-47a withdrew - and the bond-reference ratio within
+band plus floors plus the mixing term (A_1/(2 Omega)) v_slow, the
+mechanism R-47a refuted; at N = 16 the two references agree to 0.6
+percent and the mixing term is 0.2 percent of A_2, so the check cannot
+see the failure that occurred at N = 64. Exit codes stand (0; kappa-
+blind 1; load-blind 1; unknown 2). Coverage line added; the
+falsifier's clause is a gate change, queued as A-31. (6) R-47a's fact
+(1) - "the bond-phase reading IS the drive-locked fundamental" - is
+the decomposition's definition (the fundamental is the least-squares
+projection on the bond carrier; slow == rest to the digit at all
+twelve site-cells of p49_derive.json), so the "so ... was never a
+reference effect" that follows it is not carried by it. What carries
+the inference is P-49's clause (c) (the excess falls with the slow
+amplitude) and the direction of a smear (LC-38a: it lowers a channel,
+never raises it). Prose, corrected here. notes/p48_stiffness_clock.md,
+unamended since R-47a, gets its correction paragraph in this commit.
+Lessons: L-12, L-13, L-16.
+
+## R-48a — 2026-09-03 — corrections to R-48 from the adversarial pass: the e^{-6} window holds at two of four cells; readings outside the band proper; clause (d) is the estimator's identity; the cells replicate the derive pass; A-30 recounted
+Seven corrections from the 2026-09-03 adversarial audit of PR 117 (a
+context-free agent on a scratch copy; findings re-verified against
+p49_results.json and p49_derive.json; the falsifier and both mutants
+rerun at their expected exit codes; no registered clause fires, no
+status moves). (1) The registration's "every slip-launched mode has
+decayed by more than e^{-6} at every gamma" is false at two of the
+four cells by LC-38's own rate. The decay exponent at Delta = 300 is
+gamma 0.35: 9.0 at c = 1, 9.0 at the cell's cmin; gamma 0.5: 6.0 at c
+= 1, 6.0 at the cell's cmin; gamma 0.8: 3.7 at c = 1, 3.5 at the
+cell's cmin; gamma 1: 2.9 at c = 1, 2.5 at the cell's cmin. The window
+start came from the gamma 0.5 cell and was applied to all; the
+residual slow content in the late windows is gamma 0.35 x_1 rms 0.023,
+slow_2 rms / A_2 0.010; gamma 0.5 x_1 rms 0.049, slow_2 rms / A_2
+0.034; gamma 0.8 x_1 rms 0.148, slow_2 rms / A_2 0.090; gamma 1 x_1
+rms 0.260, slow_2 rms / A_2 0.058. "The launched transient is gone"
+and "no wave floor" hold at gamma 0.35 and 0.5; the in-band cells at
+0.8 and 1.0 hold inside bands gamma 0.35 0.1 percent; gamma 0.5 0.5
+percent; gamma 0.8 8.3 percent; gamma 1 21.0 percent wide, where a
+residual excess at the percent level is invisible (L-12). The claim's
+null_system is amended to say so; a re-registration of the in-band
+cells at Delta >= 600 is the honest next run and is not made here. (2)
+The readings that R-48 calls "inside" sit outside the band proper and
+inside by the self floor: gamma 0.35 ratio +0.016 percent of the top
+(self floor 0.45 percent); gamma 0.5 ratio -0.096 percent of the top
+(self floor 0.64 percent); gamma 0.8 ratio -1.111 percent of the top
+(self floor 1.05 percent); gamma 1 ratio +0.222 percent of the top
+(self floor 1.48 percent); gamma 0.35 A_1 -0.07 percent of its band
+top; gamma 0.5 A_1 -0.27 percent of its band top; gamma 0.8 A_1 -2.62
+percent of its band top; gamma 1 A_1 -6.64 percent of its band top.
+The sign is now on record. (3) The decided-log line of 2026-09-03 says
+the tail law holds "to within a fifth of a percent of the band top" at
+Omega 5.6, 3.9, 2.35 and 1.69; the Omega 2.35 cell reads -1.11 percent
+of the top (R-48's own number). Corrected in OPEN.yml by a new line;
+the old line stands. (4) Clause (d), the smear identity, is the
+estimator's: the fundamental is defined by least squares on the bond
+carrier, and demodulating it against the rotor's phase multiplies it
+term by term by e^{-i x_1}, so rotor reading = fundamental x |<e^{-i
+x_1}>| up to the reading's own slow and remainder phasors - which are
+exactly the registered tolerance. The registration called it "an
+instrument identity"; R-48 counted it as a held clause. The audit's
+scratch runs fed the falsifier's check (1) the wrong site's velocity
+and synthetic noise: exit 0 both times, the tolerance absorbing
+whatever is not the fundamental. P-49 has three physical clauses and
+one identity; the claim's coverage line says so, and the falsifier's
+check (1) is a gate change, queued as A-32. (5) Clause (c) establishes
+that the excess and the slow amplitude fall together over six windows
+(window [30, 80]: excess +26.9 percent at x_1 rms 0.772; window [80,
+130]: excess +4.1 percent at x_1 rms 0.277; window [130, 180]: excess
++2.1 percent at x_1 rms 0.112; window [180, 230]: excess +0.9 percent
+at x_1 rms 0.062; window [230, 280]: excess +0.2 percent at x_1 rms
+0.051; window [300, 350]: excess -0.1 percent at x_1 rms 0.049); it
+does not establish that the excess is the slow mode's. A-30's own run
+C (rotor clamped from the event) reads +10.46 percent at x_1 rms
+0.750, most of the excess gone at unchanged slow amplitude - co-decay,
+not attribution. (6) The registered cells were measured before they
+were registered: p49_results.json equals p49_derive.json
+second_pass.late bit for bit at all four cells (True), the runner re-
+executes the derive layer's cell_readout, and R-47a quotes the late
+window's readings ahead of the registration in this ledger. R-48 "as
+expected" is a determinism rerun with no predictive content; the tail
+law near the band was found by the derive layer and confirmed by
+nothing new. L-15. (7) A-30's "three coupled contributions" is two
+interventions and a remainder: A +26.85, B (clamp from window start)
++21.23, C (clamp from the event) +10.46 (a30_clamp.txt); A - B = 5.62,
+B - C = 10.77, C = 10.46 sum to A by construction. Run C does not
+remove the launch ripple, it replaces the launch: the real rotor spins
+up from about 2.4 at the event to 3.9 over Delta < 5 and C holds it at
+3.914 from Delta = 0, so the "ripple during the launch" piece is the
+spin-up's, and the slow amplitude is 0.772 -> 0.722 -> 0.750, not
+"unchanged 0.75". The A-30 text is corrected in OPEN.yml; the wall
+stands, worded as two interventions. LC-38b records the attribution
+the pass could not check. Lessons: L-12, L-15, L-16.
+
+## R-46a — 2026-09-03 — corrections to R-46 from the adversarial pass: clause (c)'s variance sub-clause is the identity map in the registered regime; the falsifier's pass is seed-dependent, and a ring with the pi bond cut passes it
+Eight corrections from the 2026-09-03 adversarial audit of PR 115 (a
+context-free agent on a scratch copy; the three gate-level findings
+reproduced by the integrator before entry: exit codes below are the
+integrator's reruns; no registered clause fires; the claim's status is
+left for the owner - see (3)). (1) Clause (c)'s variance sub-clause,
+"<W^2>_tw predicted from the control's <W^2> alone through the
+equilibrium curve, no free parameter", is the identity map where the
+ladder runs: the predicted twisted variance minus the control's
+variance is -5.6e-07 / -4.5e-07 / -5.8e-07 / +7.0e-07 / +2.2e-05 at
+tau_Q 0 / 5 / 20 / 80 / 320 (p47_results.json shared_density.E_tw_pred
+- control.E; T_eff from the control 0.726 / 0.631 / 0.586 / 0.459 /
+0.364), because the half-integer lattice moves the variance only below
+T of about 0.25 and the coldest rung freezes at 0.364. The registered
+z of -0.23 / +0.31 / -0.14 / -0.31 / +0.52 are the two rings'
+variances agreeing with each other. The lattice content of (c) is
+carried by the inner-probability sub-clause alone (p_inner 0.575
+measured against 0.597 predicted at tau_Q 20, control 0.28). (2) L-12,
+on the same sub-clause: a wrong model - the twisted count a rigid
+half-flux riding on the control, W_tw = W_c + 1/2, no pi bond - scored
+on the control's own histograms against the registered bands reads z
++1.21 / +1.43 / +1.59 / +1.21 / +1.91 on the variance and -1.04 /
+-1.46 / -1.50 / -1.11 / -1.99 on the inner probability at the five
+rungs: inside every band. The alternative the clause is meant to
+exclude, "the twist enters the freeze", is unreachable below an effect
+of a third of T_eff. The coverage line now says so and "no free
+parameter, at every quench rate" is softened to what the bands can
+see. (3) The falsifier scripts/verify/p47_half_sector.py (LAW-53)
+passes on correct physics at its pinned seed only: with
+random.Random(4747) replaced by seeds 2 and 4 the unmutated script
+exits 1 ("equilibrium moments off the shared density"; "twisted moment
+at T = 0.2 is not the shifted-lattice value": control <W^2> read
+0.3833 and 0.8500 against 0.0000 at 4747). Cause: the floor cell
+samples the control 60 times at 10-unit gaps at T = 0.2, N = 16, where
+the slip rate N e^-10 is about 7e-4 per unit and one trapped state is
+read sixty times - the correlated-sampling degeneracy the derive layer
+diagnosed and removed (L-9) re-imported into the gate. And a ring with
+the pi bond's coupling cut (sin D_b x 0 at the twisted bond, the twist
+no longer a gauge twist) passes the falsifier, exit 0, its quench
+check reading twisted 0.250 against predicted 0.397 (z -1.34) at N =
+16. Neither registered mutant perturbs what the quench check reads:
+under shift-blind it reads twisted 0.383 vs predicted 0.383 (z -0.00)
+and under count-blind 0.250 vs 0.250 (z -0.00); both mutants die in
+the equilibrium checks (2) and (3), at T = 0.2, a regime the ladder
+never enters. The falsifier discriminates the analysis at a floor cell
+and not the premise; the reimplementation of the registered quench
+clause has no mutant that can fail. Gate change queued as A-33 (a
+premise mutant; a floor cell with a decorrelated sample or a model-SE
+comparison; a mutant that moves check (4)). Whether "verified" stands
+on a reimplementation with these properties is the owner's call; L-13
+says a verified status asserts reimplementation, and the
+reimplementation exists; L-17 says what it must also carry. (4)
+Clauses (a) and (d) are arithmetic: W = -sum A/2 pi - k identically
+and a half-integer squared is at least 1/4; the registration says so
+("the code is wrong"), the claim statement lists them beside the
+physics. Coverage line. The 9e-15 lattice check covers the 2000 final
+samples only; the 2000 ramp-end samples that carry clause (b) are not
+lattice-checked. (5) "the ladder read the count falling too slowly and
+too noisily to pin a power": the control's final variance over tau_Q 5
+/ 20 / 80 / 320 is 1.66 / 1.52 / 1.11 / 0.80, and a weighted log-log
+fit gives exponent -0.178 +- 0.031 with chi^2 1.87 on 2 degrees of
+freedom - one power law fits the N = 64 ladder and is 5.8 standard
+errors from zero. Declining to register an exponent stands (L-3: not
+registered in advance, four points); the stated reason was the N = 32
+layer's (local exponents 0.06 / 0.23 / 0.23 quoted from the
+unregistered list). Wording corrected: not registered, with the fitted
+number on record. (6) The claim's null_system names no falsifier
+coverage (L-13): the reimplementation carries one rung (tau_Q 20) at N
+= 16, M = 60, the variance only; not carried are (b) the fast null,
+(e) the ordering, the inner-probability sub-clause, N = 64 and the
+ladder; its floor check uses a bare 0.1 band. Coverage line added. (7)
+The "same seed" dt check pairs nothing: dt/4 consumes four times the
+Gaussian draws per unit, and its three-SE bound is about half of E; it
+excludes a discretisation effect above fifty percent. Coverage line.
+(8) Every number in R-46 reproduces from the histograms (E, SE, z at
+all rungs; p and z_p; the 9.1e-15; (b) z -0.06 / 0.36; (e) gap 1.140,
+SE 0.198, z 5.77; 147/200 and 90/200 at tau_Q 320). Clause (b) has
+power (the unburnt alternative reads 5.333, 4.2 SE from 3.808); (e) is
+the ladder's one physical result with a margin. Lessons: L-9, L-12,
+L-13, L-17.

@@ -11,12 +11,16 @@ statement: >
   rate the twisted ring's frozen counting statistics are the
   control's density of the summed strain read on the half-integer
   lattice: the twisted <W^2> and its probability of |W| = 1/2,
-  predicted from the control's <W^2> alone through the equilibrium
-  curve, land within their registered bands at all five rungs, worst 0.85 of a combined standard error (200 realizations
-  per cell). The instantaneous quench holds more winding than the
+  predicted from the control's <W^2> through the equilibrium
+  curve, land within their registered bands at all five rungs, worst
+  0.85 of a combined standard error (200 realizations per cell; R-46a:
+  the variance band is the identity map at these temperatures and
+  the lattice content is the inner probability's). The instantaneous quench holds more winding than the
   slowest (1.94 vs 0.80, at 5.8 combined standard errors). Scope: no Kibble-Zurek exponent
-  is claimed - the freeze is activated and the ladder short; the
-  local exponents 0.06 / 0.23 / 0.23 are reported. One N; one gamma;
+  is claimed - not registered in advance, four points; a weighted
+  log-log fit of the control's variance over tau_Q 5 to 320 reads
+  -0.178 +- 0.031 (R-46a); the local exponents 0.06 / 0.23 / 0.23 are
+  reported. One N; one gamma;
   the unloaded ring.
 premises: []
 prediction: P-47
@@ -24,7 +28,7 @@ evidence:
   - kind: computation
     ref: "scripts/experiments/p47_derive.py with p47_derive.json (the shared density by characteristic-function quadrature, the equilibrium anchor at two temperatures, the N = 32 validation ladder, the powered dt check); scripts/experiments/p47_quench.py with p47_results.json (the registered ladder, seed 20260903); independently reimplemented by scripts/verify/p47_half_sector.py with the density by direct N-fold convolution, its own velocity-Verlet Langevin ring, anchor, floor cell and quench at N = 16"
     method: reimplementation
-null_system: "the count has no detector null because it is arithmetic (sum D_j = -sum A_j on a ring); the fast null is the equilibrium variance at T_i, registered on the ramp-end count because the T = 0 descent changes the count after fast quenches (168 of 200 at tau_Q = 0, none at 80 and 320); every band is a model SE from the predicted lattice distribution or a binomial SE from the registered M, with the control's error propagated through the curve; the derive layer's first anchor at T = 0.25 read a degenerate sample from correlated sampling (slips at N e^{-8}) and moved to temperatures where the slip rate decorrelates; a thin dt/2 cell that read a 3-sigma effect was replaced by a powered one that read z = -0.61; the mutants shift-blind (no lattice shift) and count-blind (the unwrapped sum, a topological constant) each verified failing, after a first loosened-check mutant that could not fail was discarded (L-8)"
+null_system: "the count has no detector null because it is arithmetic (sum D_j = -sum A_j on a ring); the fast null is the equilibrium variance at T_i, registered on the ramp-end count because the T = 0 descent changes the count after fast quenches (168 of 200 at tau_Q = 0, none at 80 and 320); every band is a model SE from the predicted lattice distribution or a binomial SE from the registered M, with the control's error propagated through the curve; the derive layer's first anchor at T = 0.25 read a degenerate sample from correlated sampling (slips at N e^{-8}) and moved to temperatures where the slip rate decorrelates; a thin dt/2 cell that read a 3-sigma effect was replaced by a powered one that read z = -0.61; the mutants shift-blind (no lattice shift) and count-blind (the unwrapped sum, a topological constant) each verified failing, after a first loosened-check mutant that could not fail was discarded (L-8); coverage (R-46a): clause (c)'s variance sub-clause is the identity map at every registered rung (the lattice moves the variance only below T of about 0.25; the coldest rung freezes at 0.364), so its content is the inner-probability sub-clause; a rigid half-flux on the control (W_tw = W_c + 1/2, no pi bond) lands inside every registered band, so the clause excludes only a twist that shifts T_eff by a third or more; clauses (a) and (d) are arithmetic checked at float precision; the reimplementation carries one rung (tau_Q 20, N = 16, M = 60, the variance) and not (b), (e), the inner probability, N = 64 or the ladder; its pass is seed-dependent (exits 1 at seeds 2 and 4 of six on correct physics) and a ring with the pi bond cut passes it, and neither mutant moves its quench check - gate change queued as A-33; the dt check pairs nothing and bounds a discretisation effect at fifty percent"
 falsifier: "scripts/verify/p47_half_sector.py --mutant shift-blind"
 novelty:
   status: classical

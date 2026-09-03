@@ -175,3 +175,45 @@ harmonic leakage offset a real 27 percent excess inside floors 11 to
 24 percent wide; the accounting in P-49's layer); P-46 (the bond
 phase chosen where the neighbour's motion was negligible - the
 choice was right there and wrong near the band).
+
+## L-15 — a registration that quotes the derive layer's own cells is a replication
+TRIGGERS: registration, expects, derive layer, same cells, as expected,
+determinism, replication, second pass, held-out
+RULE: when the registration's expected values are the derive layer's
+readings of the very cells to be run, the resolution can only confirm
+determinism; label it a replication in the registration, or register
+cells the derive layer did not run (a held-out window, gamma, N), so
+that "as expected" carries a prediction. The derive layer designs the
+instrument on cells it may keep; the registered cells are new.
+CITATIONS: P-49 (p49_results.json equals p49_derive.json second_pass
+bit for bit at all four late cells; R-47a quoted the late-window
+readings ahead of the registration; R-48a).
+
+## L-16 — a window after a transient is placed per cell, by that cell's rate
+TRIGGERS: window, transient, decay time, overdamped, slow mode,
+late window, ladder, exponent, e^-6
+RULE: a window that is meant to read a quiet state is placed after the
+slowest launched mode has decayed by a stated exponent, computed for
+EACH cell from that cell's own damping and stiffness, and the exponent
+per cell is written into the registration; a start derived at one
+gamma and applied along a ladder is a transient window at the others.
+CITATIONS: P-48 (the ladder windows started at 0.24 to 1.2 decay times
+of the k = 1 mode at gamma 0.35 to 0.8; the near-band readings of R-47
+are window-state readings; R-47b); P-49 (the e^-6 start came from
+gamma 0.5 and holds at 0.35 and 0.5 only: exponents 3.7 and 2.9 at
+gamma 0.8 and 1.0; R-48a).
+
+## L-17 — a reimplementation carries a mutant of the premise, and inherits the derive layer's sampling conditions
+TRIGGERS: falsifier, reimplementation, premise, mutant, seed,
+sampling, floor cell, correlated, gauge twist, bypass
+RULE: a falsifier's mutants perturb the ANALYSIS (a shift, a count);
+one of them must perturb the PREMISE the claim rests on (a seam that
+is not a pure gauge twist, a bond that is cut, a bath that is not the
+control's), and the check that reads the registered clause must move
+under at least one mutant - else the falsifier tests a floor cell and
+not the claim. And a falsifier is run at three seeds before it is
+pinned: a pass that depends on the seed is a sampling degeneracy the
+derive layer already removed (L-9), re-imported into the gate.
+CITATIONS: P-47 (scripts/verify/p47_half_sector.py at LAW-53: exits 1
+on correct physics at seeds 2 and 4 of six; exit 0 with the pi bond's
+coupling cut; neither mutant moves the quench check; R-46a, A-33).
