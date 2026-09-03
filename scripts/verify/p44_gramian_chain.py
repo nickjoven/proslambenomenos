@@ -18,6 +18,15 @@ B = [[eps, 1], [0, -eps]] at eps = 0.01 gives |T| >= 1.999 with
     extremal instance; the k = 1 inequality fails.
 --mutant mass-blind  uses tau = 0.75 (claiming mass 4/3) on the
     extremal instance; the chain breaks.
+--mutant gram-blind  keeps the fixed instance's lambda and replaces
+    its Gramian by one of correlation 0.999 (S' = [[1, 1], [0,
+    0.045]]) - a G that is not the Gramian of the S that carries
+    those lambda as f(beta) with |f| <= 1 on a domain containing
+    W(B); 2G - P turns indefinite (A-27, R-45a item 3: sup-blind and
+    mass-blind both move tau*lambda; this one moves G).
+Mutant mode also checks |T| <= 2 on the extremal instance, so the
+sup-blind mutant is caught by the bound it violates and not only by
+the chain (R-45a).
 """
 import cmath
 import math
@@ -27,7 +36,7 @@ MUTANT = None
 if "--mutant" in sys.argv:
     i = sys.argv.index("--mutant")
     MUTANT = sys.argv[i + 1] if i + 1 < len(sys.argv) else "?"
-KNOWN = {"sup-blind", "mass-blind"}
+KNOWN = {"sup-blind", "mass-blind", "gram-blind"}
 if MUTANT is not None and MUTANT not in KNOWN:
     print(f"usage error: unknown mutant {MUTANT!r}; known: {sorted(KNOWN)}")
     sys.exit(2)
@@ -114,13 +123,22 @@ def main():
           for j in range(2)] for i in range(2)]
     beta = [0.3 + 0.2j, -0.25 + 0.1j]
     lam = [bb / 1.2 for bb in beta]
+    if MUTANT == "gram-blind":
+        Sg = [[1 + 0j, 1 + 0j], [0j, 0.045 + 0j]]
+        G = [[sum(Sg[k][i].conjugate() * Sg[k][j] for k in range(2))
+              for j in range(2)] for i in range(2)]
     c2, c1, ck = chain(G, lam, 0.5)
-    print(f"fixed instance chain: 2G-P {c2:.3e}, P-G {c1:.3e}, "
-          f"k1 {ck:.3e}")
+    print(f"fixed instance chain{' (gram-blind G)' if MUTANT == 'gram-blind' else ''}: "
+          f"2G-P {c2:.3e}, P-G {c1:.3e}, k1 {ck:.3e}")
     if min(c2, c1, ck) < -1e-12:
-        print("FAIL: the Gramian chain breaks on a legitimate "
-              "instance - Theorem 2 + Proposition 1 refuted")
-        failures.append("chain")
+        if MUTANT == "gram-blind":
+            print("FAIL: asserted a Gramian not of the carrying S; the chain "
+                  "breaks - as the legitimacy condition demands")
+            failures.append("gram")
+        else:
+            print("FAIL: the Gramian chain breaks on a legitimate "
+                  "instance - Theorem 2 + Proposition 1 refuted")
+            failures.append("chain")
 
     # (3) extremal tightness and the mutants
     fs = 1.5 if MUTANT == "sup-blind" else 1.0
@@ -130,6 +148,9 @@ def main():
     nT = opnorm2(T3)
     print(f"extremal eps=0.01 (fscale {fs}, tau {tau}): |T| {nT:.5f} "
           f"chain {c2e:.2e}/{c1e:.2e}/{cke:.2e}")
+    if MUTANT is not None and nT > 2.0 + 1e-9:
+        print(f"FAIL: |T| = {nT:.5f} exceeds the bound 2 (mutant mode)")
+        failures.append("normT")
     if MUTANT == "sup-blind":
         if cke < -1e-12 or c2e < -1e-12:
             print("FAIL: asserted |f| <= 1.5 is legitimate; the "
@@ -150,7 +171,7 @@ def main():
             print(f"mutant {MUTANT} broke the verification as it must")
             return 1
         print(f"mutant {MUTANT} did not break the verification")
-        return 0
+        return 3
     if failures:
         return 1
     print("p44 verification ok")
