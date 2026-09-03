@@ -3781,3 +3781,103 @@ not needed) are P-49. Lessons: L-9 (the anchor was clean; the
 disagreement was the ring's), L-12 (a reading inside a floor wider
 than the effect is not a reading), L-13 (two estimators disagreeing
 is a decomposition owed, not a choice).
+
+## P-49 — 2026-09-03 — the late window: the tail law near and in the band, the transient excess, and the smear identity
+question: A-29, after R-47a. P-48's near-band readings sat inside
+the slip's long-wavelength relaxation - at N = 64 the k = 1 mode
+(omega_1 = 0.098) is overdamped for gamma > 0.2 and decays at
+omega_1^2/gamma, 0.02 per unit at gamma 0.5 - and the component
+accounting of R-47a showed the drive-locked offset-2 amplitude
+exceeding the linear root by up to 27 percent while that mode is
+alive, and the rotor-phase reference's agreement to be leakage-
+assisted. Three registered questions: (i) in a LATE window, after
+the relaxation has decayed, does the driven-chain tail law hold at
+the drive-locked amplitudes near the band (Omega 5.6, 3.9) and in
+it (Omega 2.35, 1.69), with derived floors and no wave floor (the
+launched transient is gone, so the window separates the driven tail
+from it by decay, not by frequency); (ii) does the transient excess
+decay monotonically with the slow mode's amplitude to within the
+floor; (iii) is the rotor-phase lock-in of a site's drive-locked
+fundamental exactly that fundamental times the characteristic
+function |<e^{-i x_1}>| of the neighbour's displacement, up to the
+reading's own leakage phasors (an instrument identity).
+method: derive layer scripts/experiments/p49_derive.py (two
+passes) with p49_derive.json, everything measured before this
+entry. Lessons consulted L-3, L-8, L-9, L-12, L-13, L-14 (written
+from R-47a). THE READOUT: the ring is run at N = 64 with the full
+time series at sites b to b+3 over the window; each site's velocity
+is split by least squares into its fundamental locked to the bond
+phase (the drive's own phase), the running mean over one rotor
+period, and the rest; the registered amplitudes A_d are the
+fundamentals. THE BANDS (L-3): the exact discrete root |w| over the
+window's stiffness range [cmin, cmax], the lower end reduced by the
+describing-function factor 2 J_1(delta)/delta of the drive-frequency
+strain amplitude delta = A_1 |1 - w|/Omega (LC-38; 0.9999 / 0.9993 /
+0.9922 / 0.9782 at gamma 0.35 / 0.5 / 0.8 / 1); the floor is the
+2-Omega self floor only, (A_2 + ratio A_1)/(Omega T A_1). THE SMEAR
+IDENTITY: |A_1(rotor)/A_1(bond) - |<e^{-i x_1}>|| <= (|slow| + |rest|
+phasors of the rotor reading)/A_1(bond) + the self floor, a triangle
+inequality on the decomposition. Layer readings, late window
+[300, 380]: ratio A_2/A_1 = 3.3809e-2 / 7.4476e-2 / 2.5560e-1 /
+4.4803e-1 against bands [3.3777, 3.3804]e-2 / [7.4209, 7.4547]e-2 /
+[2.3865, 2.5847]e-1 / [3.6940, 4.4704]e-1 with floors 1.5e-4 / 4.8e-4
+/ 2.7e-3 / 6.6e-3 - inside at all four (+0.02, -0.10, -1.11, +0.22
+percent of the top); A_1 = 1.8357e-1 / 2.7122e-1 inside [1.8369,
+1.8370]e-1 / [2.7188, 2.7197]e-1 with self floors above the band, and
+below its band by 2.6 and 6.6 percent at gamma 0.8 and 1 (in band
+the neighbour's strain amplitude is 0.25 and 0.42 rad and the rotor
+slows to 0.954 and 0.868 of f/gamma; A_1 there is reported, not
+claimed); smear measured 1.0000 / 1.0003 / 1.0025 / 1.0068 against
+predicted 0.9997 / 0.9988 / 0.9891 / 0.9666 within tolerances
+0.0032 / 0.0067 / 0.0331 / 0.0936. The decay ladder at gamma 0.5,
+windows of 50 units starting at Delta 30 / 80 / 130 / 180 / 230 /
+300: x_1 rms 0.772 / 0.277 / 0.112 / 0.062 / 0.051 / 0.049 (the
+last is the site's own drive-frequency motion, A_1/Omega); excess
+over the band top +26.85 / +4.13 / +2.11 / +0.91 / +0.20 / -0.08
+percent against floors ~1 percent; A_1 -4.19 / -1.27 / -0.64 /
+-0.45 / -0.34 / -0.26 percent; smear 0.7500 / 0.9689 / 0.9971 /
+1.0001 / 1.0003 / 1.0005 against 0.7305 / 0.9620 / 0.9937 / 0.9981 /
+0.9987 / 0.9988 within tolerances 0.037 / 0.016 / 0.010 / 0.010 /
+0.009 / 0.009. Mutants (L-8, L-13): smear-blind (asserts no smear)
+fails the identity at the first decay window (0.7500 read against
+1.0 asserted, tolerance 0.037); band-blind (asserts the in-band
+tail ratio is 1/Omega) fails the late in-band cell (0.448 read
+against 0.590 asserted). Anchor (L-9): the P-48 linear-chain anchor
+at Omega 3.9 and 5.6 stands; the P-49 falsifier's own N = 16 ring
+reads the late-window ratio inside the band in band and above it,
+and its N = 48 ring reads the smear 0.784 against 0.780 predicted.
+NULLS (8a): the wave floor is not used - the window is placed where
+the launched transient has decayed by more than e^{-6} at every
+gamma (gamma Delta/2 >= 52 for the underdamped modes, omega_1^2
+Delta/gamma >= 5.8 for the overdamped k = 1 mode at gamma 0.5) and
+the residual slow content is read from the run (period-mean rms
+6e-4 to 1.5e-2 in velocity against A_2 of 6e-3 to 2.6e-1). Registered
+runner scripts/experiments/p49_near_band.py.
+expects: cells twisted sector 0, N = 64, f = fold + 0.005, ramp 200,
+dt = 0.001. (a) Late window [300, 380] at gamma 0.35 / 0.5 / 0.8 /
+1.0: the drive-locked A_2/A_1 lies in [|w(c_min 2J_1(delta)/delta)|,
+|w(c_max)|] widened by the self floor, at all four. (b) At gamma 0.35
+and 0.5 the drive-locked A_1 lies in its band widened by its self
+floor. (c) The decay ladder at gamma 0.5: the excess over the band
+top is non-increasing along the six windows, x_1 rms is
+non-increasing, and the last window's ratio is inside its band and
+floor. (d) The smear identity holds at every cell of (a) and every
+window of (c). Reported unregistered: A_1 in band (gamma 0.8, 1.0);
+A_3/A_2 everywhere (late: 3.34e-2 / 7.44e-2 / 2.61e-1 / 4.30e-1
+against |w| bands - inside at gamma 0.5 and 0.8, 1 and 4 percent
+under at 0.35 and 1, its floors not derived); the functional form
+of the excess in the slow amplitude (near-linear for A_1, faster for
+A_2 - two points above the floor, not a law).
+changes-my-mind: (a) violated at gamma 0.35 or 0.5 - the tail law
+fails near the band even with the ring quiet, and R-47a's reading
+was wrong about what the excess is tied to; (a) violated in band
+only - the propagating root or the describing-function band is the
+wrong instrument there (a re-registration); (c) violated - the
+excess is not the slow mode's; (d) violated - the rotor-phase
+reading is not the smeared fundamental and the R-47a accounting has
+an error, re-derived and recorded.
+not-claimed-in-advance: the mechanism of the transient excess (a
+nonlinear coupling of the slow strain to the drive-frequency
+response, candidate only); A_1 in band; offset 3; the in-band
+rotor slowing as a law; any statement for gamma < 0.35 near the
+band or for N other than 64 (the falsifier's 16 and 48 are its own).

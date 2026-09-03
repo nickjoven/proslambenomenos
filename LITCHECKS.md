@@ -1226,3 +1226,51 @@ claims-checked:
   rotor phase smears by the neighbour's slow displacement, the bond
   phase mixes the site's slow velocity) - P-48 registers the
   instrument.
+
+## LC-38 — 2026-09-03 — the P-49 imports (the late-window instrument near and in the band)
+prediction: P-49
+claims-checked:
+- The describing function of a sine bond. For sin(D_0 + delta cos
+  phi) the component at the drive frequency is cos(D_0) (2 J_1(delta)
+  / delta) delta cos phi, i.e. the bond's effective stiffness at
+  strain amplitude delta is c (2 J_1(delta)/delta) = c (1 - delta^2/8
+  + ...): the sinusoidal-input describing function of the sine
+  nonlinearity (Gelb and Vander Velde, Multiple-Input Describing
+  Functions and Nonlinear System Design, McGraw-Hill 1968, ch. 2; the
+  same first harmonic appears in Krylov-Bogoliubov averaging for the
+  pendulum). Imported as the widening of the linear root's stiffness
+  band on the soft side, [w(c (2 J_1(delta)/delta)), w(c)], with delta
+  measured as A_1 |1 - w| / Omega. Elementary; no result of theirs is
+  claimed.
+- The smear of a windowed complex average under a wandering phase:
+  <e^{i phi(t)}> over the window is the empirical characteristic
+  function of phi, and |<e^{i phi}>| <= 1 with equality only for a
+  constant phase. Elementary (the coherence factor of phase-noise
+  theory, e.g. Rutman, Proc. IEEE 66, 1048 (1978), sec. on the
+  effect of phase fluctuations on a carrier's spectral line); P-49
+  registers the identity that the rotor-phase lock-in of a site's
+  drive-locked fundamental is that fundamental times |<e^{-i x_1}>|
+  with x_1 the neighbour's displacement, exact up to the reading's
+  own slow and harmonic phasors (a triangle inequality).
+- The normal modes of the damped monatomic chain: omega_k = 2 sqrt(c)
+  sin(k/2), each mode's amplitude decaying at gamma/2 when omega_k >
+  gamma/2 and at gamma/2 - sqrt(gamma^2/4 - omega_k^2) ~ omega_k^2/
+  gamma when overdamped (the roots of lambda^2 + gamma lambda +
+  omega_k^2 = 0). Elementary; the FK/discrete-chain phonon spectrum
+  is in Braun and Kivshar, The Frenkel-Kontorova Model (Springer
+  2004), ch. 3. Imported because it decides which slip-launched modes
+  survive into a window: at N = 64 the k = 1 mode (omega_1 = 0.098)
+  is overdamped for gamma > 0.196 and decays at 0.02 per unit at
+  gamma 0.5, the slow relaxation that P-48's windows sat inside; at
+  N = 16 (omega_1 = 0.39) it is underdamped and gone.
+- The driven chain's response inside its band: the same root w + 1/w
+  = 2 - (Omega^2 - i gamma Omega)/c with |w| < 1 now complex with
+  |w| set by the damping (a propagating, damped tail), and the direct
+  tridiagonal solve of the P-46/P-48 falsifiers reproduces it
+  without the root. Economou's lattice Green's function inside the
+  band (LC-35's source, ch. 5) is the continuous-time statement.
+- Not found stated: the transient excess of the offset-2 response
+  while a long-wavelength relaxation is alive on the ring (P-49's
+  reported reading), or a late-window protocol for separating a
+  driven tail from a launched transient by decay rather than
+  frequency. P-49 registers the instrument.
