@@ -1,0 +1,4 @@
+A real rotor: Om 3.9142 x1 rms 0.772 excess +26.85% A1 2.6081e-01 ratio21 9.4749e-02 band [6.7976e-02,7.4692e-02] (18 s)
+   rotor velocity ripple rms 0.1293 (3.3% of Omega)
+B clamp from 30: Om 3.9142 x1 rms 0.722 excess +21.23% A1 2.6288e-01 ratio21 9.0545e-02 band [6.7975e-02,7.4691e-02] (20 s)
+C clamp from 0: Om 3.9142 x1 rms 0.750 excess +10.46% A1 2.6464e-01 ratio21 8.2505e-02 band [6.7866e-02,7.4691e-02] (18 s)
