@@ -3736,3 +3736,48 @@ refused candidates are in P-48. Claim filed: stiffness-is-a-clock
 (falsifier scripts/verify/p48_kappa.py, mutants kappa-blind and
 load-blind; the reference-blind mutant tried and not pinned).
 Results: scripts/experiments/p48_results.json.
+
+## R-47a — 2026-09-03 — correction to R-47: clause (c) held by leakage; the near-band tail law is the late window's
+The A-29 derive layer (scripts/experiments/p49_derive.py, the ring
+rerun at gamma 0.2 / 0.35 / 0.5 / 0.8 with the full time series at
+sites b to b+3 over the P-48 windows) took the two lock-in readings
+apart exactly. Each site's velocity is split by least squares into
+its fundamental locked to the drive phase (the bond phase, since the
+force on b+1 is -sin D_b), its running mean over one rotor period,
+and the rest; each reference then demodulates each component, and
+the complex pieces sum to the reading. Two facts follow. (1) The
+bond-phase reading IS the drive-locked fundamental (the remainder is
+orthogonal to the same carrier by construction), so R-47's "bond-
+reference excess" was never a reference effect: the drive-locked
+amplitude at offset 2 exceeds the linear root band by +24.4 / +26.9 /
++5.7 percent at gamma 0.35 / 0.5 / 0.8 (+4.0 at 0.2). (2) The rotor-
+phase reading is that fundamental times the smear of the neighbour's
+slow phase wander - 0.733 at gamma 0.5 against 0.731 predicted from
+the measured x_1 rms of 0.77 rad, identical at sites 1 and 2 - PLUS
+the slow and harmonic components of the site's motion leaking
+through the reference's modulation, which at site 2 (where the
+fundamental is ten times smaller) pull the reading down by 20
+percent (0.01462 read against 0.01813 smeared fundamental). The
+rotor-reference ratio sat inside the band at every near-band cell
+because that correlated leakage happened to offset the excess
+within floors 11 to 24 percent wide. Clause (c) of P-48 held, its
+numbers stand, and it is not evidence for the tail law near the
+band; the claim's scope is amended in this commit and the
+"registered physics" sentence of R-47 is withdrawn to a reading.
+What replaces it: a LATE window. With the slip's long-wavelength
+relaxation decayed (Delta in [300, 380]; x_1 rms 0.049 / 0.023
+against 0.77 / 0.57 in the P-48 windows), the drive-locked ratio
+reads 7.4476e-2 against a band top of 7.4547e-2 at gamma 0.5 (-0.1
+percent) and 3.3809e-2 against 3.3804e-2 at gamma 0.35 (+0.0
+percent), both references agreeing to 0.05 percent, and A_1 inside
+its band (2.7122e-1 in [2.7055, 2.7223]e-1; 1.8357e-1 in [1.8357,
+1.8374]e-1). The evanescent-tail law holds at Omega 3.9 and 5.6 to a
+tenth of a percent once the ring is quiet; while the slip's slow
+mode is alive it is exceeded by up to 27 percent at offset 2, an
+effect of the ring's state, not of the instrument. Its dependence on
+the slow mode's amplitude and the in-band instrument (the same late
+window, where the launched transient is gone and the wave floor is
+not needed) are P-49. Lessons: L-9 (the anchor was clean; the
+disagreement was the ring's), L-12 (a reading inside a floor wider
+than the effect is not a reading), L-13 (two estimators disagreeing
+is a decomposition owed, not a choice).
