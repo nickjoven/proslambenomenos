@@ -157,3 +157,21 @@ CITATIONS: P-44 (sup-blind and mass-blind both set tau^2 |lambda|^2
 to 0.5625 |lambda|^2, identical chain numbers; R-45a); P-45 (clause
 (2) carried no reimplementation until LAW-54); the 2026-09-02 audit
 count - 2 of 62 claims named a limit of their falsifier.
+
+## L-14 — agreement inside a wide floor is a decomposition owed
+TRIGGERS: floor, band, reference, lock-in, estimator, agreement,
+leakage, smear, component, demodulation
+RULE: when a reading agrees with its band by less than the floor's
+width while another estimator of the same quantity disagrees, do
+not choose the agreeing one - split the reading into its
+components (the drive-locked fundamental, the slow part, the rest)
+and let each reference demodulate each component, so the agreement
+is shown to be the signal's and not the leakage's. A reference that
+is a function of the measured system's own state (a bond phase, a
+neighbour's motion) carries that state into every reading it makes.
+CITATIONS: R-47a (P-48 clause (c): the rotor-phase reference read
+the tail ratio in band at six cells because correlated slow and
+harmonic leakage offset a real 27 percent excess inside floors 11 to
+24 percent wide; the accounting in P-49's layer); P-46 (the bond
+phase chosen where the neighbour's motion was negligible - the
+choice was right there and wrong near the band).
