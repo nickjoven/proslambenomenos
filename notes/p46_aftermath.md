@@ -36,6 +36,15 @@ mutant that drops one bond fails this identity at O(1).
   registered response is the exact Euler-Cromer discrete one; and
   the rotor's phase as reference was detuned by 1.5 percent by the
   ring's residual drift, so the reference is the bond phase.
+- R-45b (2026-09-03): the '(dt Omega)^2' above was the order of the
+  map's frequency error, not of the amplitude gap. The discrete and
+  continuous responses differ in |A_1| by 4.13e-04 / 1.21e-04 /
+  6.64e-05 at gamma 0.02 / 0.04 / 0.1, inside the floors (1.33e-03 /
+  2.58e-04 / 6.27e-04); the registered band is the floor, and clause
+  (c) is integrator-blind at that precision. Under dt halving
+  (p46_results_dt0.0005.json, p46_dt_check.py) A_1 keeps its offset
+  from the map's response to 1e-5 - the residual below the floor is
+  the cell's, not the step's.
 - Two lock-in floors are derived and read from each run: the
   in-band wave leaks 2a/(T(Omega - 2)), and the demodulated
   product's 2-Omega term leaks A_d/(Omega T). The anchors'

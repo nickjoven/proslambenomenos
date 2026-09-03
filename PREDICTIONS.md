@@ -3919,3 +3919,43 @@ bond-phase lock-in with its wave floor for any window in which the
 slip's relaxation is alive. Claim filed: late-window-tail-law
 (falsifier scripts/verify/p49_near_band.py, mutants smear-blind and
 band-blind). Results: scripts/experiments/p49_results.json.
+
+## R-45b — 2026-09-03 — correction to R-45: clause (c)'s band is the floor; the discrete-map reference is within it of the continuum's
+From the 2026-09-03 re-read of the audit residue. Two statements stood
+against P-46 clause (c): the registration's, that the continuous-time
+response formula "was off by ~(dt Omega)^2, the size of the gamma =
+0.02 band", so the band is the EXACT Euler-Cromer response; and the
+re-read's (this session's, never entered in the ledger), that (dt
+Omega)^2 = 0.24 percent at gamma 0.04 against a band 0.02 percent wide
+made the clause a test of the integrator, not the physics. Both sized
+the same gap wrong. Computed (scripts/experiments/p46_dt_check.py ->
+p46_dt_check.json, the derive layer's own evanescent() with and
+without dt over each registered window's Omega and stiffness ranges):
+the discrete map's |A_1| exceeds the continuum's by 4.13e-04 /
+1.21e-04 / 6.64e-05 at gamma 0.02 / 0.04 / 0.1 - (dt Omega)^2 times
+0.043 / 0.050 / 0.171, one to two orders below (dt Omega)^2 itself
+(9.66e-03 / 2.42e-03 / 3.87e-04) - against lock-in floors of 1.33e-03
+/ 2.58e-04 / 6.27e-04 relative. The gap is inside the floor at every
+cell, so the registered clause does not distinguish the discrete
+response from the continuous one; and "bands 0.2 / 0.02 / 0.06 percent
+wide" are the floors - the response bands proper are 2.0e-03 / 6.4e-06
+/ 5.6e-05 wide. What clause (c) reads is the linear evanescent
+response at the floor's precision, integrator-blind. The dt-halving
+rerun (P46_DT=0.0005 python3 scripts/experiments/p46_aftermath.py ->
+p46_results_dt0.0005.json; all three clauses hold, 196 s): A_1 moves
+by -2.98e-04 / -8.46e-05 / -3.61e-05, within every floor, and sits at
+the same offset from the map's own response at either step (+8.19e-04
+-> +8.28e-04; -1.51e-04 -> -1.50e-04; +5.39e-04 -> +5.40e-04), while
+its offset from the continuum shrinks with the gap (+1.23e-03 ->
++9.34e-04 at gamma 0.02). The sub-floor residual A_1 carries is
+therefore dt-independent - the nonlinear cell's departure from the
+linear chain, not discretisation - itself below the floor and
+unregistered. Nothing fires, no status moves; the claim's clause (3)
+and null_system are amended in this commit to say what the band is. On
+the audit side: the counter-figure "(dt Omega)^2 against the band" was
+read from a formula, not from the instrument, and was 24x too large;
+L-12 applies to an audit finding as to a reading - the alternative the
+finding excludes (that the gap is below the floor) was not computed
+before the finding was written down. Lessons: L-12, L-3 (the band
+traces to the derived response; where the floor is wider, the floor is
+the band and is named as such).
