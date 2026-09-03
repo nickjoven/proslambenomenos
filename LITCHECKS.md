@@ -1179,3 +1179,50 @@ claims-checked:
   elementary, not searched for as a claim. What P-47 registers is
   that it survives the QUENCH (the frozen counts share the
   density), which is the twist-blindness of the freeze.
+
+## LC-37 — 2026-09-02 — the P-48 imports (the stiffness clock; resonances of a rotating junction with the lattice)
+prediction: P-48
+claims-checked:
+- The time-unit scaling. The resistively-and-capacitively-shunted
+  junction model is written dimensionless with time in units of the
+  inverse plasma frequency and the damping as the Stewart-McCumber
+  parameter beta_c (Q = sqrt(beta_c)): d^2 phi/d tau^2 +
+  (1/sqrt beta_c) d phi/d tau + sin phi = i/I_c, tau = omega_p t
+  (Stewart 1968; McCumber 1968; textbook form in Tinkham,
+  Introduction to Superconductivity, 2nd ed., sec. 6.3, and in the
+  Gross-Marx lecture notes Applied Superconductivity, ch. 3). P-48's
+  identity - (kappa, gamma, f, t) on the ring equals (1,
+  gamma/sqrt kappa, f/kappa, sqrt kappa t) - is this
+  nondimensionalisation applied to a chain of such junctions with
+  the bond stiffness as the plasma-frequency scale; imported as the
+  convention, and P-48 registers that it holds for the Euler-Cromer
+  MAP as well as the equation, at the floating-point floor (and
+  bit-for-bit when sqrt kappa is dyadic).
+- Resonances of a rotating junction with the lattice's linear waves.
+  Miroshnichenko, Flach, Fistul, Zolotaryuk, Page, "Breathers in
+  Josephson junction ladders: resonances and electromagnetic waves
+  spectroscopy," Phys. Rev. E 64, 066601 (2001) (arXiv:cond-mat/
+  0103280): primary resonances m Omega = omega, PARAMETRIC
+  resonances omega = (1/2 + m) Omega (their eq. 34), combination
+  resonances omega_1 +- omega_2 = m Omega (eq. 35), with the
+  remark that a breather can hardly drive a parametric instability
+  through extended waves alone, which are damped away from its
+  centre - localized excitations do it. P-48's derive layer looked
+  for the m = 0 parametric resonance (Omega/2 inside the band, at
+  gamma 0.45 to 0.8) on the ring and read no subharmonic above the
+  floors: the far-field content there is the slip's overdamped
+  long-wavelength relaxation (decay omega_k^2/gamma), not a
+  parametric response - consistent with their remark for a ring
+  that has no localized mode. Imported as context; no resonance is
+  claimed.
+- The lock-in mixing term. Demodulating against a reference that
+  carries an oscillation of index X at the demodulation frequency
+  mixes the signal's slow component into the reading at (X/2) v_slow
+  (the first sideband of e^{i X sin} - elementary, no source
+  needed). Noted because P-46's bond-phase reference has X = A_1/Omega
+  and was chosen where X and v_slow were both negligible.
+- Not found stated: the ring's aftermath tail law across a damping
+  ladder toward the band edge; the reference-choice trade-off (the
+  rotor phase smears by the neighbour's slow displacement, the bond
+  phase mixes the site's slow velocity) - P-48 registers the
+  instrument.
