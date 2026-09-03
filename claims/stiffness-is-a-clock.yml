@@ -1,0 +1,38 @@
+id: stiffness-is-a-clock
+statement: >
+  On the P-35/P-36 ring with bond stiffness kappa (theta_dd_j =
+  -gamma v_j + kappa (sin D_j - sin D_{j-1}) + f delta_jb), kappa is
+  a time unit and nothing else: (1) the state (theta, v) advanced by
+  one Euler-Cromer step at (kappa, gamma, f, dt) equals (theta,
+  sqrt kappa u) with u advanced at (1, gamma/sqrt kappa, f/kappa,
+  sqrt kappa dt), at the floating-point floor (residuals 0.04 to
+  0.06 of 32 eps at kappa 0.5, 2, 3 over 120000 states) and bit for
+  bit when sqrt kappa is dyadic (kappa 1/4 and 4: zero deviation
+  through the slip); at kappa 0.5, 2, 3 the scaled trajectories
+  through the slip share their event step and part by 1e-10 on
+  phases of 1e4, within the accumulated-rounding bound. So the band
+  top 2 sqrt kappa and the rotor speed f/gamma scale together and
+  "above the band" is the damping statement f/(gamma sqrt kappa) >
+  2. (2) Along the damping ladder that statement names, at kappa =
+  1 and gamma in {0.2, 0.35, 0.45, 0.5, 0.6, 0.8} (rotor at Omega
+  9.84 down to 2.35, band top 2), the slip footprint's offset-2
+  ratio A_2/A_1, demodulated against the rotor's phase, lies in the
+  band of the exact discrete evanescent root |w| over the window's
+  measured stiffness range, widened by the derived floors, at every
+  cell: the P-46 tail law holds to within a fifth of the band edge.
+  Scope: N = 64 (the falsifier at N = 16); the rotor-phase reference
+  (the bond-phase reference of P-46 reads the ratio 4 to 27 percent
+  high near the band, non-monotone along the ladder, reported and
+  not explained); Omega > 2 only; one reduced load.
+premises: []
+prediction: P-48
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p48_derive.py with p48_derive.json (the derive layer: the identity and its mutants, the dyadic bit-identity, the trajectory amplification, the gamma ladder under both references, the refused parametric-resonance candidate, the linear-chain anchor at Omega 3.9 and 5.6); scripts/experiments/p48_kappa.py with p48_results.json (the registered cells, seed 20260903); independently reimplemented by scripts/verify/p48_kappa.py with its own map, its own trajectory at a non-dyadic kappa, its own N = 16 near-band ring with both references and a direct complex tridiagonal solve"
+    method: reimplementation
+null_system: "the identity's residual bound is the floating-point floor scaled by the summands (no fixed number), and the dyadic cells read exactly zero because the arithmetic is identical, which is why the floor-level cells use non-dyadic roots; the tail law's floors are P-46's, computed per run (in-band wave leakage 2a/(T(Omega - 2)), 2-Omega self floor), and the stiffness band is the window's measured [cmin, cmax]; the parametric-resonance candidate (Omega/2 in band for gamma > 0.49, LC-37) was measured and refused - the far field is the slip's overdamped long-wavelength relaxation; the reference was moved to the rotor's phase after the bond phase read the ratio above the band at five cells while the linear-chain anchor at the same frequencies landed on the closed form to 4e-3; mutants kappa-blind (gamma/kappa) and load-blind (f/sqrt kappa) each verified failing at 7e9 and 4e13 of the bound - two different terms of the map (L-13); coverage: the reimplementation carries clause (1) at three kappas and one trajectory and clause (2) at one small cell (N = 16, gamma 0.5) where the two references agree; the six-cell ladder and the bond-reference readings rest on the experiment; a reference-blind mutant does not bite at N = 16 or 32 and is not pinned"
+falsifier: "scripts/verify/p48_kappa.py --mutant kappa-blind"
+novelty:
+  status: classical
+  citation: "the scaling is the plasma-frequency nondimensionalisation of the resistively-and-capacitively-shunted junction (Stewart 1968, McCumber 1968; Tinkham 2nd ed. sec. 6.3) applied to a chain, imported at LC-37; the resonance conditions of a rotating junction with the lattice are Miroshnichenko et al., Phys. Rev. E 64, 066601 (2001), imported there as context; the contribution is the instrument - the identity registered for the map, the damping ladder read with derived floors, the reference trade-off measured"
+status: verified

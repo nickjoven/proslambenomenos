@@ -3693,3 +3693,46 @@ continuum limit (there is none that keeps the slip: kappa is a
 clock and the sine bond has no small-strain limit at fixed
 winding); N-dependence beyond the two ring sizes named; anything
 about real arrays.
+
+## R-47 — 2026-09-02 — resolves P-48 (as expected)
+All four clauses held. (a) The one-step map identity at kappa 0.5 /
+2 / 3, vmax 2 and 100, 20000 states each: worst residuals 0.044 /
+0.062, 0.044 / 0.062, 0.054 / 0.062 of the 32 eps bound (v / theta).
+(a2) Dyadic kappa 1/4 and 4: the trajectories through the slip are
+bit-identical to the scaled unit run - deviation exactly 0 in theta
+and v/sqrt kappa at every sample, events at steps 409000 and 212000
+on both sides. (b) Kappa 0.5 / 2 / 3: identical event steps (294000
+/ 221000 / 215000), phase deviations 1.3e-10 / 2.2e-10 / 8.1e-10
+against the derived bounds 2.7e-6 / 8.4e-6 / 1.2e-5 - the identity
+holds through the tear-out to the accumulated rounding on a rotor
+phase of order 1e4. (c) The tail law under the rotor-phase
+reference at every ladder cell: gamma 0.2 / 0.35 / 0.45 / 0.5 / 0.6 /
+0.8, events at 295 / 380 / 439 / 469 / 530 / 653, measured Omega
+9.840 / 5.616 / 4.358 / 3.914 / 3.240 / 2.348, A_2/A_1 = 1.0593e-2 /
+3.1457e-2 / 5.9770e-2 / 7.4670e-2 / 1.0413e-1 / 2.1772e-1, each inside
+[|w(cmin)|, |w(cmax)|] widened by its floors (the bands and floors
+in p48_results.json; at gamma 0.8 the band is [1.96, 2.59]e-1 with a
+24 percent floor, the widest of the ladder). The evanescent-tail law
+of P-46 holds from Omega = 20 down to Omega = 2.35, a fifth above the
+band top, at the ring's own damping. Reported unregistered, beside
+the registered reference: the bond-phase lock-in of P-46 reads A_2/
+A_1 above the band top by +4.0 / +24.4 / +22.9 / +26.8 / +16.1 /
++4.3 percent along the ladder (non-monotone), and A_1 below its band
+by 0.08 / 1.4 / 2.4 / 3.5 / 3.3 / 5.7 percent; the rotor-phase
+reference smears A_1 by the neighbour's slow displacement to 0.998 /
+0.858 / 0.704 / 0.750 / 0.750 / 0.688 of the bond reading; the first-
+order mixing term of the bond reference covers 2.4 / 7.9 / 8.4 / 7.7 /
+6.5 / 5.3 percent of A_2 - a third of the excess where it peaks. No
+mechanism is claimed for the excess; A-29 queued. The rotor slows to
+0.999 / 0.996 / 0.994 / 0.988 / 0.954 of f/gamma along the ladder and
+to 0.868 in band (gamma 1, Omega 1.709, reported: the ratio 3.93e-1
+there sits outside the propagating-root band with the wave floor
+invalid below the band edge - the in-band instrument is not built).
+The Omega/2 content at offset 4 reads 1.3 / 1.1 / 0.9 / 1.1 / 0.4 / 0.2
+of the wave floor: no subharmonic. The event times lengthen with
+gamma as the saddle-node bottleneck (243 at gamma 0.1 to 777 at 1).
+No instrument error in the registered line; the derive layer's two
+refused candidates are in P-48. Claim filed: stiffness-is-a-clock
+(falsifier scripts/verify/p48_kappa.py, mutants kappa-blind and
+load-blind; the reference-blind mutant tried and not pinned).
+Results: scripts/experiments/p48_results.json.
