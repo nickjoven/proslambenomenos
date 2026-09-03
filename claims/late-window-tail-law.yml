@@ -1,0 +1,39 @@
+id: late-window-tail-law
+statement: >
+  On the P-35/P-36 ring (twisted sector 0, N = 64, f = fold + 0.005,
+  kappa = 1), in a window 300 to 380 units after the slip, when the
+  slip's long-wavelength relaxation has decayed: (1) the drive-locked
+  offset-2 ratio A_2/A_1 of the rotor's footprint equals the driven
+  damped chain's root |w| (w + 1/w = 2 - (Omega^2 - i gamma Omega)/c,
+  exact discrete form) over the window's stiffness range, its lower
+  end reduced by the sine bond's describing-function factor
+  2 J_1(delta)/delta, within the 2-Omega self floor - at gamma 0.35,
+  0.5, 0.8 and 1.0, the rotor at Omega 5.62, 3.92, 2.35 and 1.69
+  against a band top of 2 (readings +0.02, -0.10, -1.11 and +0.22
+  percent of the band top), and A_1 equals the end-site response at
+  gamma 0.35 and 0.5; (2) the excess over that law which P-48 read in
+  early windows is the slow relaxation's: along windows starting at
+  30, 80, 130, 180, 230 and 300 units after the slip at gamma 0.5 the
+  neighbour's slow displacement falls 0.77, 0.28, 0.11, 0.06, 0.05,
+  0.05 rad rms and the excess falls 26.9, 4.1, 2.1, 0.9, 0.2, -0.1
+  percent, monotonically, to inside the floor; (3) the rotor-phase
+  lock-in of a site's drive-locked fundamental is that fundamental
+  times the characteristic function |<e^{-i x_1}>| of the
+  neighbour's displacement about its window mean, within the
+  reading's own slow and harmonic phasors plus the self floor, at all
+  ten cells (0.7500 read against 0.7305 predicted where the smear is
+  largest). Scope: N = 64 (the falsifier at 48 and 16); A_1 in band
+  and A_3 reported, not claimed; the mechanism of the transient
+  excess not claimed.
+premises: []
+prediction: P-49
+evidence:
+  - kind: computation
+    ref: "scripts/experiments/p49_derive.py with p49_derive.json (the component accounting of R-47a, the late-window readouts, the decay ladder, the smear identity, two mutants verified failing); scripts/experiments/p49_near_band.py with p49_results.json (the registered cells); independently reimplemented by scripts/verify/p49_near_band.py with its own ring, its own least-squares decomposition, a direct complex tridiagonal solve for the tail band in band and above, and the smear identity on an N = 48 ring where the smear is 22 percent"
+    method: reimplementation
+null_system: "no wave floor is used - the window is placed where every slip-launched mode has decayed by more than e^{-6} (the underdamped modes at gamma/2, the overdamped k = 1 mode at omega_1^2/gamma) and the residual slow content is read from the run; the floors are the 2-Omega self floor and the describing-function correction of the stiffness band, both computed per cell; the smear identity's tolerance is the triangle inequality on the reading's own decomposition; mutants smear-blind (no smear asserted; fails at 0.7500 against 1.0 with tolerance 0.037) and band-blind (the in-band ratio asserted 1/Omega; fails at 0.448 against 0.590) perturb the instrument identity and the physics band respectively (L-13); coverage: the reimplementation carries clause (1) on an N = 16 ring in band and above and clause (3) on an N = 48 ring; the six-window decay ladder and the N = 64 cells rest on the experiment; a smear-blind mutant at N = 32 did not bite (smear 0.9 percent inside a 1.1 percent tolerance) and is recorded, not pinned"
+falsifier: "scripts/verify/p49_near_band.py --mutant smear-blind"
+novelty:
+  status: classical
+  citation: "the root is Miroshnichenko et al., Phys. Rev. E 64, 066601 (2001), eqs. 38-41 (LC-38a); the describing function is Gelb and Vander Velde (1968); the smear is the empirical characteristic function of the reference's wander (LC-38); the in-band and edge behaviour of the undamped end-driven chain is Liazhkov, Acta Mechanica (2024); the contribution is the instrument - a late window that separates the driven tail from the launched transient by decay, and the decomposition that shows what each reference reads"
+status: verified
