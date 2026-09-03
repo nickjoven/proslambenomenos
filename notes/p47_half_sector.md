@@ -65,3 +65,15 @@ correct data - an L-8 lesson taken literally: a mutant must assert
 something false, so it became count-blind (read the unwrapped
 strain sum, the topological constant -sum A/2 pi, zero variance at
 every temperature), which the anchor kills.
+
+## Corrections on record (R-46a, 2026-09-03)
+
+The variance sub-clause of (c) is the identity map at every registered
+rung; the lattice content is the inner probability's, and a rigid
+half-flux on the control passes every band. The falsifier's pass is
+seed-dependent (the floor cell reads one trapped state sixty times), a
+ring with the pi bond cut passes it, and neither mutant moves the
+quench check: A-33. Clauses (a) and (d) are arithmetic. The N = 64
+ladder fits one power law (-0.178 +- 0.031); the exponent stays
+unregistered because it was not registered in advance, not because the
+ladder cannot pin it.

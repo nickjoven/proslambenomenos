@@ -1317,3 +1317,9 @@ claims-checked:
   at the demodulation frequency; ratio-of-channel estimators with
   error bounds; the overdamped mode-decay crossover omega_k =
   gamma/2 as a cited formula. Those stay elementary in LC-38.
+
+## LC-38b — 2026-09-03 — coverage of LC-38a's attributions (amendment; from the adversarial pass)
+prediction: P-49
+claims-checked:
+- LC-38a attributes the root's form to Miroshnichenko, Flach, Fistul, Zolotaryuk, Page, Phys. Rev. E 64, 066601 (2001) "sec. IV, eqs. 38-41" without quoting the equations. That paper's system is the Josephson-junction ladder, whose linear spectrum LC-38a's own Binder bullet calls gapped ("on-site junctions, three plasmon branches"), not the chain's 2c(1 - cos q); what is imported is the substitution q -> i lambda, omega^2 -> Omega^2 - i gamma Omega, which the repo asserts by that substitution and has not read off the page. Status of the import: attributed, not quoted. The same holds for Liazhkov (2024) eqs. 16, 36, 42. A reader who needs the citation to carry the form should fetch the pages; the repo's derivation stands on its own algebra (P-46 derive layer, Economou ch. 5 at LC-35).
+- LC-38's "at N = 16 (omega_1 = 0.39) it is underdamped and gone": at the falsifier's in-band cell gamma = 1 the k = 1 mode is overdamped (0.39 < gamma/2 = 0.5, rate 0.19 per unit), gone all the same. Wording only.

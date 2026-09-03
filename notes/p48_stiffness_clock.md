@@ -1,6 +1,15 @@
 <!-- evidence: scripts/experiments/p48_derive.py, scripts/experiments/p48_derive.json, scripts/experiments/p48_kappa.py, scripts/experiments/p48_results.json, scripts/verify/p48_kappa.py -->
 # P-48 working document: the stiffness is a clock
 
+CORRECTIONS ON RECORD (R-47a 2026-09-03, R-47b 2026-09-03): clause (c)
+below was held by leakage - the rotor-reference agreement near the
+band is the smeared fundamental plus correlated slow and harmonic
+leakage, and is not evidence for the tail law; the tail law near the
+band is the late window's (P-49). Every near-band reading in this note
+was taken inside the k = 1 mode's decay time (windows starting at 0.24 to 1.2 decay times at gamma 0.35 to 0.8) and is a reading of that
+window's state. Clause (a) is a change of units of the map. See R-47b
+for the list.
+
 The owner asked for a stiffness column kappa as the honest
 refinement axis of the ring, after the audit noted that P-46's
 "evanescent above the band edge" is a property of the lattice. The

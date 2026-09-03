@@ -49,3 +49,16 @@ of the excess with the slow mode; the smear identity. Reported: A_1
 in band (6.6 percent below the linear end-site response at Omega
 1.69 with the neighbour's strain at 0.42 rad and the rotor at 0.868
 of f/gamma), offset 3, the shape of the excess.
+
+## Corrections on record (R-48a, 2026-09-03)
+
+The e^{-6} window holds at gamma 0.35 and 0.5 only (exponents 3.7 and
+2.9 at 0.8 and 1.0); the in-band cells were read with slow content of
+9 and 6 percent of A_2 inside bands 8 and 21 percent wide. The ratio
+sits above the band proper at 0.35 and 1.0, A_1 below its band at 0.35
+and 0.5, inside by the self floor. The smear identity is the
+estimator's (its falsifier check passes on any series). Clause (c) is
+co-decay, not attribution; A-30 is two interventions and a remainder,
+and run C replaces the launch rather than removing its ripple. The
+registered cells equal the derive layer's second pass, so R-48 is a
+replication (L-15).
