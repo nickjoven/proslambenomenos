@@ -3571,3 +3571,125 @@ reads 4.0 globally), it has no slip coverage, and its twisted cell
 at F = 1.97 (N = 48, twisted fold 1.9497) slips at t = 29 of 60
 with the rotor at 47 and 0.94 rad per step - taken up by LAW-54 in
 this line.
+
+## P-48 — 2026-09-02 — the stiffness is a clock; the tail law to within a fifth of the band edge
+question: the owner asked for a bond-stiffness column kappa as the
+honest refinement axis of the ring (P-46's "evanescent above the
+band edge 2" is a lattice statement; N is length, not resolution,
+because the spacing is fixed at 1). The model with stiffness kappa,
+theta_dd_j = -gamma v_j + kappa (sin D_j - sin D_{j-1}) + f delta_jb,
+turned out in the derive layer to carry no new parameter: with
+u = v/sqrt kappa and tau = sqrt kappa t it IS the unit-stiffness
+ring at damping gamma/sqrt kappa and load f/kappa, exactly, and
+exactly for the Euler-Cromer map too when dt scales to sqrt kappa dt
+(the ramp keeps its step count). kappa is a time unit. The band top
+2 sqrt kappa and the rotor speed f/gamma scale together, so "above
+the band" is the DAMPING statement f/(gamma sqrt kappa) > 2, which
+at kappa = 1 is f/gamma > 2; P-46's cells sat at 98 / 49 / 20 by
+choice. The ladder kappa stood in for is therefore a gamma ladder at
+kappa = 1 and fixed reduced load: gamma in {0.2, 0.35, 0.45, 0.5,
+0.6, 0.8}, terminal Omega = f/gamma from 9.8 down to 2.5 (the band
+top is 2). Registered questions: (i) is the scaling an identity of
+the map at the floor, and through the slip; (ii) does the P-46
+evanescent-tail law A_2/A_1 = |w|, w the root of w + 1/w = 2 - z/c
+(exact discrete form), hold down the ladder toward the band edge?
+method: derive layer scripts/experiments/p48_derive.py with
+p48_derive.json, everything measured before this entry was
+written; lessons consulted L-3, L-5, L-8, L-11, L-12, L-13 (and
+L-9 by the anchor below). THE IDENTITY: one Euler-Cromer step of
+the kappa model against one step of the scaled unit model on the
+scaled state, at 5000 random states x two velocity scales,
+residuals against 32 eps times the summands: 0.04 to 0.06 of the
+bound at kappa 0.5 and 2; and exactly ZERO at kappa 1/4 and 4 -
+sqrt kappa dyadic makes the two computations bit-identical
+(recorded because it is a fact about the arithmetic, and because it
+means a dyadic kappa cannot test the identity at the floor, only
+below it). Whole trajectories through the slip at kappa 0.5 and 2
+(N = 64, gamma = 0.1, 300 to 400 thousand steps): identical event
+steps (294000, 221000), phase deviation 1.3e-10 and 2.2e-10 on
+rotor phases of order 1e4, i.e. the accumulated rounding (the
+derived bound 32 eps x steps x max|theta| is 1e-5). Mutants
+kappa-blind (gamma/kappa) and load-blind (f/sqrt kappa) fail the
+one-step identity at 7e9 and 4e13 of the bound (L-8). THE LADDER
+AND ITS INSTRUMENT: the P-46 instrument unchanged (bond-phase
+lock-in, the in-band wave floor 2a/(T(Omega - 2)), the 2-Omega self
+floor A_d/(Omega T), the exact discrete root at the window's
+measured stiffness range [cmin, cmax]) read the tail ratio INSIDE
+its band at gamma 0.1 and 0.2 (0.97 and 1.04 of |w|, floors 5
+percent) and then 26, 28, 33, 23, 19 percent ABOVE the band top at
+gamma 0.35 to 0.8, against floors of 11 to 24 percent - while the
+L-9 linear-chain anchor at Omega 3.9 and 5.6 landed on the closed
+form to 4e-3 (its self floor), so the pipeline is clean and the
+departure is the ring's. Two candidates were run down. (1) The m =
+0 parametric resonance of the rotating junction with the band
+(LC-37: omega = Omega/2 in band for Omega < 4, i.e. gamma > 0.49):
+the Omega/2 content at offsets 2 to 6 sits at 2e-3 against a far-
+field RMS of 3e-2, and that far field grows smoothly through Omega
+= 4 (8e-4, 3e-3, 2.3e-2, 3.1e-2, 3.3e-2 at gamma 0.1 to 0.5) - it is
+the slip's long-wavelength relaxation, overdamped at these gammas
+(omega_1 = 2 sin(pi/64) = 0.098 < gamma/2, decay omega_1^2/gamma =
+0.02 per unit at gamma 0.5), not a resonance. Refused. (2) The
+REFERENCE. The bond phase theta_b - theta_{b+1} carries the
+neighbour's own displacement; with that slow relaxation alive in
+the window (rms 0.04 to 0.07 in velocity, of order 0.5 rad in
+displacement), demodulating against the ROTOR's phase alone puts
+the offset-2 ratio inside the band at every ladder cell (gamma 0.35
+to 0.8: 3.15e-2 / 5.98e-2 / 7.47e-2 / 1.04e-1 / 2.18e-1 against bands
+[3.29, 3.38]e-2 / [5.42, 5.87]e-2 / [6.80, 7.47]e-2 / [1.03, 1.16]e-1
+/ [1.96, 2.59]e-1 with floors 12 / 15 / 13 / 11 / 24 percent), while
+the same reference smears A_1 by the neighbour's slow phase wander
+(A_1 rotor/bond = 0.998, 0.858, 0.704, 0.750, 0.750, 0.688 - the
+smear of a phasor wandering ~0.5 rad). The first-order mixing term
+of a reference carrying an Omega-component of index X = A_1/Omega,
+(X/2) v_slow, covers 8, 8, 8, 7, 5 percent of A_2 - a third of the
+bond-reference excess - and the excess is NOT monotone along the
+ladder (4, 24, 23, 27, 16, 4 percent). So the reference comparison
+is REPORTED with the mechanism as a candidate, not registered (L-3:
+no band for what is not derived), and the registered tail law
+carries the rotor-phase reference, whose Omega-component is the
+rotor's own velocity ripple (2/Omega^2 in phase, negligible) and
+whose smear is common to A_1 and A_2 and cancels in the ratio.
+Small-cell check (the falsifier's N = 16, gamma 0.5): the two
+references agree to 0.6 percent, both in band - the slip's k = 1
+mode is underdamped there (omega_1 = 0.39 > gamma/2) and gone by
+the window; the mixing is a long-ring effect. NULLS (8a): the
+floors are computed per run; the rotor's Omega is measured (it
+reads 0.999, 0.996, 0.994, 0.988, 0.954 of f/gamma along the
+ladder - the back-action that in band, at gamma 1, becomes 0.868).
+Registered runner scripts/experiments/p48_kappa.py, seed 20260903.
+expects: (a) the one-step map identity at kappa in {0.5, 2, 3},
+vmax in {2, 100}, 20000 states each: every residual within 32 eps
+of its summands (worst ratio <= 1); (a2) at kappa in {1/4, 4} the
+trajectories through the slip (N = 64, gamma = 0.1, reduced load
+fold + 0.005, ramp 200, event + 100) are bit-identical to the
+scaled unit run (deviation exactly 0, same event step); (b) at
+kappa in {0.5, 2, 3} the event steps are identical and the phase
+deviation over the run is within 32 eps x steps x max|theta|; (c)
+at kappa = 1, gamma in {0.2, 0.35, 0.45, 0.5, 0.6, 0.8}, windows
+[60,120] / [40,100] / [30,90] / [30,80] / [30,80] / [20,70] after
+the event, the offset-2 ratio A_2/A_1 demodulated against the
+rotor's phase lies in [|w(cmin)|, |w(cmax)|] widened by (wave floor
++ 2-Omega self floor at offset 2)/A_1, with the event occurring at
+every cell. Reported unregistered: the bond-phase reference's A_1
+and A_2 beside the rotor's at every cell, the first-order mixing
+estimate, the Omega/2 content, the rotor's slowing, the event times
+(243 to 777: the saddle-node bottleneck lengthening with gamma), the
+in-band cell gamma = 1 (Omega 1.71, the propagating root).
+changes-my-mind: (a) or (b) violated - the scaling is not an
+identity of the map, an algebra error recorded and re-derived; (a2)
+violated with (a) held - a rounding-order difference the layer did
+not see, an instrument note; (c) violated at any cell with (a)-(b)
+held - the driven-chain tail law fails inside the band's fifth, and
+the near-band footprint has structure beyond the linear root (the
+reported bond-reference excess would then be physics, not
+instrument); (c) violated only at gamma 0.8 (Omega 2.35, floor 24
+percent) is an instrument statement about the floor near the edge
+and costs a re-registration.
+not-claimed-in-advance: the mechanism of the bond-reference excess
+(a candidate, reported); any parametric resonance (looked for,
+absent above the floors, LC-37); the in-band regime Omega < 2
+(instrument not built: the wave floor is negative there); the
+continuum limit (there is none that keeps the slip: kappa is a
+clock and the sine bond has no small-strain limit at fixed
+winding); N-dependence beyond the two ring sizes named; anything
+about real arrays.

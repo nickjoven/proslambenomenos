@@ -98,7 +98,7 @@ def evanescent(Omega, c, gamma, dt=None):
 def integrate_aftermath(N, twisted, sector, gamma, f_target, dt,
                         t_ramp=200.0, after_event=400.0, t_cap=900.0,
                         windows=None, offsets=(1, 2, 3), record=None,
-                        mutant=None):
+                        mutant=None, reference="bond"):
     """Euler-Cromer in the P-36 order with the momentum bookkeeping,
     the P-36 event detector, post-event unit samples of P_ring and
     v_b, lock-in accumulators over the given post-event windows
@@ -203,7 +203,14 @@ def integrate_aftermath(N, twisted, sector, gamma, f_target, dt,
                 # reference = the driving bond's phase theta_b - theta_{b+1}
                 # (the rotor's phase alone is detuned by the ring's
                 # residual drift, ~1 percent over a 100-unit window)
-                e = cmath.exp(complex(0.0, -(th[b] - th[(b + 1) % N])))
+                # P-48: reference="rotor" demodulates against theta_b
+                # alone (the bond phase imports the neighbour's slow
+                # displacement when the slip's long-wavelength
+                # relaxation is still alive in the window)
+                if reference == "rotor":
+                    e = cmath.exp(complex(0.0, -th[b]))
+                else:
+                    e = cmath.exp(complex(0.0, -(th[b] - th[(b + 1) % N])))
                 for d in offsets:
                     ac["lock"][d] += v[(b + d) % N] * e
                 T = sinD[b] - sinD[b - 1]
