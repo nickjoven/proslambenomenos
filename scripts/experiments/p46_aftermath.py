@@ -46,7 +46,11 @@ def main():
     N = 64
     fold = fold_fc(N, -math.pi)
     f = fold + 0.005
-    dt = 0.01 if quick else 0.001
+    # P46_DT (R-45b): a non-default step reruns the cells for the
+    # dt-halving check; results go to a dt-suffixed file, the wave
+    # page is not rewritten, and the registered file is untouched.
+    dt = 0.01 if quick else float(os.environ.get("P46_DT", "0.001"))
+    default_dt = quick or dt == 0.001
     pins = json.load(open(os.path.join(HERE, "p46_derive.json")))
     Kpins = {}
     for g, r in pins["validation_N32"].items():
@@ -207,13 +211,15 @@ def main():
                       "reaches ~1500 and its bonds' currents ~50; the ring's fields sit "
                       "within ±1. Engine: scripts/experiments/wavebench.py. "
                       "Data: scripts/experiments/p46_results.json."))
-            with open(os.path.join(HERE, "p46_waves.html"), "w") as fh:
-                fh.write(html)
+            if default_dt:
+                with open(os.path.join(HERE, "p46_waves.html"), "w") as fh:
+                    fh.write(html)
             res["frames_recorded"] = len(fr["h"])
     out["clauses"] = {"a_holds": verdict["a"], "b_holds": verdict["b2"],
                       "c_holds": verdict["c"]}
     out["seconds_total"] = time.time() - t0
-    name = "p46_results%s.json" % ("_quick" if quick else "")
+    name = "p46_results%s.json" % ("_quick" if quick else ""
+                                   if default_dt else "_dt%g" % dt)
     with open(os.path.join(HERE, name), "w") as fh:
         json.dump(out, fh, indent=1)
     print(json.dumps(out["clauses"]), "in %.0f s" % out["seconds_total"])

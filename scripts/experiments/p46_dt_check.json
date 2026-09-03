@@ -1,0 +1,119 @@
+{
+ "dt_registered": 0.001,
+ "dt_half": 0.0005,
+ "cells": {
+  "gamma_0.02": {
+   "gamma": 0.02,
+   "windows": [
+    {
+     "window": [
+      300.0,
+      400.0
+     ],
+     "omega_bar": 98.30979563128737,
+     "dt_omega_sq": 0.00966481591706549,
+     "A1": 0.010178313778199074,
+     "A1_half": 0.010175283981179986,
+     "discrete_band": [
+      0.010169988648190883,
+      0.010190791963946115
+     ],
+     "discrete_band_half": [
+      0.010166861505305809,
+      0.010187671506415941
+     ],
+     "continuum_band": [
+      0.010165785371309057,
+      0.010186596853803333
+     ],
+     "gap_discrete_minus_continuum_rel": 0.00041347291215587667,
+     "gap_over_dt_omega_sq": 0.04278125064190759,
+     "floor_rel": 0.0013342924021022163,
+     "A1_rel_to_discrete": 0.0008185977680192913,
+     "A1_rel_to_continuum": 0.0012324091481781263,
+     "A1_half_rel_to_discrete_half": 0.0008284243736165209,
+     "A1_half_rel_to_continuum": 0.0009343704912103679,
+     "A1_shift_rel": -0.00029767180351403244,
+     "shift_within_floor": true,
+     "gap_within_floor": true
+    }
+   ]
+  },
+  "gamma_0.04": {
+   "gamma": 0.04,
+   "windows": [
+    {
+     "window": [
+      300.0,
+      400.0
+     ],
+     "omega_bar": 49.205388707345165,
+     "dt_omega_sq": 0.002421170277840931,
+     "A1": 0.020330728755098313,
+     "A1_half": 0.02032900785798845,
+     "discrete_band": [
+      0.02033380114739846,
+      0.020333932214635957
+     ],
+     "discrete_band_half": [
+      0.02033205799268334,
+      0.02033218868265565
+     ],
+     "continuum_band": [
+      0.02033134138475974,
+      0.020331472462553152
+     ],
+     "gap_discrete_minus_continuum_rel": 0.00012098378519009856,
+     "gap_over_dt_omega_sq": 0.049969135296830655,
+     "floor_rel": 0.00025813180957603077,
+     "A1_rel_to_discrete": -0.0001510977843186545,
+     "A1_rel_to_continuum": -3.0132279510430848e-05,
+     "A1_half_rel_to_discrete_half": -0.00015001603359510174,
+     "A1_half_rel_to_continuum": -0.00011477485558519795,
+     "A1_shift_rel": -8.464512662542667e-05,
+     "shift_within_floor": true,
+     "gap_within_floor": true
+    }
+   ]
+  },
+  "gamma_0.1": {
+   "gamma": 0.1,
+   "windows": [
+    {
+     "window": [
+      100.0,
+      200.0
+     ],
+     "omega_bar": 19.681978848646786,
+     "dt_omega_sq": 0.0003873802913985795,
+     "A1": 0.05096969837542053,
+     "A1_half": 0.05096786032582649,
+     "discrete_band": [
+      0.05094222898459106,
+      0.050945093179299905
+     ],
+     "discrete_band_half": [
+      0.05094033219895538,
+      0.05094319721274059
+     ],
+     "continuum_band": [
+      0.050938848779506996,
+      0.05094171287505997
+     ],
+     "gap_discrete_minus_continuum_rel": 6.635809730792808e-05,
+     "gap_over_dt_omega_sq": 0.17129962153818393,
+     "floor_rel": 0.00062676427376063,
+     "A1_rel_to_discrete": 0.0005392263231704941,
+     "A1_rel_to_continuum": 0.0006056202025113144,
+     "A1_half_rel_to_discrete_half": 0.0005403994375927645,
+     "A1_half_rel_to_continuum": 0.0005695367487605907,
+     "A1_shift_rel": -3.6061614108517936e-05,
+     "shift_within_floor": true,
+     "gap_within_floor": true
+    }
+   ]
+  }
+ },
+ "all_gaps_within_floor": true,
+ "all_shifts_within_floor": true
+}
