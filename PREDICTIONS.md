@@ -3881,3 +3881,41 @@ nonlinear coupling of the slow strain to the drive-frequency
 response, candidate only); A_1 in band; offset 3; the in-band
 rotor slowing as a law; any statement for gamma < 0.35 near the
 band or for N other than 64 (the falsifier's 16 and 48 are its own).
+
+## R-48 — 2026-09-03 — resolves P-49 (as expected)
+All four clauses held. (a) Late window [300, 380] at gamma 0.35 /
+0.5 / 0.8 / 1.0 (events 380 / 469 / 653 / 777; Omega 5.617 / 3.917 /
+2.351 / 1.694): the drive-locked A_2/A_1 = 3.3809e-2 / 7.4476e-2 /
+2.5560e-1 / 4.4803e-1 inside [3.3777, 3.3804]e-2 / [7.4209, 7.4547]
+e-2 / [2.3865, 2.5847]e-1 / [3.6940, 4.4704]e-1 with self floors
+1.5e-4 / 4.8e-4 / 2.7e-3 / 6.6e-3 (+0.02 / -0.10 / -1.11 / +0.22
+percent of the top): the driven-chain tail law holds at the drive-
+locked amplitudes from a fifth above the band edge to inside the
+band, once the ring is quiet, with no wave floor. (b) A_1 = 1.8357e-1
+/ 2.7122e-1 inside its band with self floor at gamma 0.35 / 0.5
+(-0.07 / -0.27 percent of the top). (c) The decay ladder at gamma
+0.5: x_1 rms 0.772 / 0.277 / 0.112 / 0.062 / 0.051 / 0.049,
+excess over the band top +26.85 / +4.13 / +2.11 / +0.91 / +0.20 /
+-0.08 percent, both non-increasing, the last window inside its band
+and floor (1.02 percent): the transient excess is the slow mode's
+and is gone with it. (d) The smear identity at all ten cells:
+measured 1.0000 / 1.0003 / 1.0025 / 1.0068 against predicted 0.9997
+/ 0.9988 / 0.9891 / 0.9666 (tolerances 0.0032 / 0.0067 / 0.0331 /
+0.0936) in the late windows and 0.7500 / 0.9689 / 0.9971 / 1.0001 /
+1.0003 / 1.0005 against 0.7305 / 0.9620 / 0.9937 / 0.9981 / 0.9987 /
+0.9988 (tolerances 0.037 / 0.016 / 0.010 / 0.010 / 0.009 / 0.009)
+along the ladder - the rotor-phase lock-in is the drive-locked
+fundamental times the characteristic function of the neighbour's
+displacement, within the reading's own leakage. Reported
+unregistered: A_1 in band, 2.62 and 6.64 percent below its band at
+gamma 0.8 and 1.0 (neighbour strain 0.25 and 0.42 rad; the rotor at
+0.954 and 0.868 of f/gamma); A_1's transient deficit -4.19 / -1.27 /
+-0.64 / -0.45 / -0.34 / -0.26 percent along the ladder, near-linear
+in x_1 rms where above the floor; A_3/A_2 late 3.34e-2 / 7.44e-2 /
+2.61e-1 / 4.30e-1. No instrument error in the registered line; the
+line's instrument (the late window, the drive-locked decomposition,
+the describing-function band, the smear identity) replaces P-46's
+bond-phase lock-in with its wave floor for any window in which the
+slip's relaxation is alive. Claim filed: late-window-tail-law
+(falsifier scripts/verify/p49_near_band.py, mutants smear-blind and
+band-blind). Results: scripts/experiments/p49_results.json.

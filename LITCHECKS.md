@@ -1274,3 +1274,46 @@ claims-checked:
   reported reading), or a late-window protocol for separating a
   driven tail from a launched transient by decay rather than
   frequency. P-49 registers the instrument.
+
+## LC-38a — 2026-09-03 — the P-49 imports, from the literature pass (amendment to LC-38)
+prediction: P-49
+claims-checked:
+- The root itself has a source: Miroshnichenko, Flach, Fistul,
+  Zolotaryuk, Page, Phys. Rev. E 64, 066601 (2001), sec. IV, eqs.
+  38-41 - the tail of a damped chain driven at one site is
+  u_n ~ w^n e^{i Omega t} with w = e^{lambda} the |w| < 1 root
+  obtained from the undamped dispersion omega^2 = 2c(1 - cos q) by
+  q -> i lambda and omega^2 -> Omega^2 - i gamma Omega; Re lambda is
+  the per-site decay and has minima where Omega resonates with the
+  band. P-46/P-48/P-49's root w + 1/w = 2 - z/c is that
+  substitution; imported as the source of the form.
+- The undamped end-driven chain at and inside the band: Liazhkov,
+  Acta Mechanica (2024), doi 10.1007/s00707-024-03929-8 (arXiv:
+  2212.09441) - above the band the evanescent tail with decay
+  g = 2 arccosh(Omega/2) (eq. 16, w = -e^{-g}, the undamped limit
+  of the root); inside the band a propagating tail with the injected
+  energy growing linearly in time (eq. 36); exactly at the band
+  edge no bounded steady state, the energy growing as sqrt t (eq.
+  42). Imported as the caveat behind P-49's in-band and edge cells:
+  with damping the steady state exists and the late window reads
+  it; the undamped edge has none, so a reading near Omega = 2 owes
+  its floor to gamma (P-49's gamma 0.8 cell sits at Omega 2.35 with
+  gamma 0.8 - regularised; not a claim about the undamped edge).
+- Binder, Abraimov, Ustinov, Flach, Zolotaryuk, Phys. Rev. Lett.
+  84, 745 (2000): the rotobreather's neighbours oscillate with
+  amplitude decaying exponentially from the core when no harmonic
+  of Omega resonates with the plane-wave bands - the experimental
+  statement of the tail law, on a ladder with on-site junctions
+  (three plasmon branches), not this chain. Context only.
+- Jorgensen et al., Proc. SPIE 7013 (2008), arXiv:0807.3204, eq. 5
+  and fig. 3: a windowed complex average rotated by a tracked
+  reference phase is reduced in modulus by the reference's residual
+  wander. The one lock-in statement the pass could verify; it is
+  the direction of P-49's smear identity (a smear lowers a single
+  channel, never raises it), so a smear alone cannot produce the
+  excess R-47a found in the drive-locked fundamental - consistent.
+- Not found (the pass returned no surviving source): the mixing of a
+  slow signal component through a reference carrying a component
+  at the demodulation frequency; ratio-of-channel estimators with
+  error bounds; the overdamped mode-decay crossover omega_k =
+  gamma/2 as a cited formula. Those stay elementary in LC-38.
