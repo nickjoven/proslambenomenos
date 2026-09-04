@@ -4183,3 +4183,45 @@ SE 0.198, z 5.77; 147/200 and 90/200 at tau_Q 320). Clause (b) has
 power (the unburnt alternative reads 5.333, 4.2 SE from 3.808); (e) is
 the ladder's one physical result with a margin. Lessons: L-9, L-12,
 L-13, L-17.
+
+## R-48b — 2026-09-04 — reading correction to R-48 and R-48a from A-34: the late-window x_1 rms is the drive ripple; the slow displacement is smaller, and the odd sector is seeded by the slip
+From A-34 (scripts/experiments/a34_odd_mode.py, a34_odd_mode.json /
+.txt; the registered integrator, sector 0, N = 64, dt = 0.001, sites
+b, b+-1, b+-2 recorded from the event to Delta 380 at gamma 0.35 / 0.5
+/ 0.8 / 1.0). (1) P-49's x_1 rms - theta_{b+1} about its window mean -
+equals the drive-locked ripple A_1/(Omega sqrt 2) in the registered
+late window [300, 380] at all four cells: 0.0232 vs 0.0232 / 0.0491 vs
+0.0491 / 0.1476 vs 0.1450 / 0.2597 vs 0.2413. The 0.049 and 0.023 that
+R-47a and R-48 read as the decayed slow wander, and the 0.148 and
+0.260 that R-48a read as residual slow content, are the ripple. The
+slow displacement proper (running mean over one rotor period, even
+channel, site 1) in the late window is 0.0020 / 0.0039 / 0.0141 /
+0.0561 rad rms at gamma 0.35 / 0.5 / 0.8 / 1.0. R-48a's finding (1)
+stands in direction - the in-band cells are the least quiet - and its
+x_1 numbers are re-read: the slow content there is 0.014 and 0.056
+rad, not 0.148 and 0.260; its slow_2 / A_2 figures came from the
+velocity decomposition and are unaffected. (2) The odd sector is not
+at the floor. The slip seeds it: the odd channel (theta_{b+1} -
+theta_{b-1})/2, slow part, reads 0.066 / 0.066 / 0.060 / 0.053 rad rms
+in the [30, 80] window, 0.10 / 0.09 / 0.09 / 0.09 of the even channel,
+at the four cells - the slip is one bond's event and breaks the mirror
+at launch. It decays at a fitted 0.0124 / 0.0117 / 0.0119 / 0.0121 per
+unit over the ladder, the same rate at every gamma to a tenth, which
+is neither the open chain's odd k = 1 prediction (0.0073 / 0.0050 /
+0.0031 / 0.0025) nor the even rate; a gamma-independent slow rate has
+no linear-mode reading and is queued as A-35. The even channel decays
+at 0.0315 (0.0377) / 0.0214 (0.0230) / 0.0151 (0.0165) / 0.0152
+(0.0219) per unit (first three windows, all five) against the k = 2
+prediction 0.0312 / 0.0207 / 0.0126 / 0.0100 at c = 1: on the
+prediction within 15 percent at gamma 0.35 and 0.5, faster than it by
+30 to 100 percent at 0.8 and 1.0 where the ladder mixes modes. (3) For
+the window rule (L-16) the even rate stays the binding one in sector
+0: the odd channel is a tenth of the even at launch and never the
+larger of the two above the floor, except at gamma 0.35 where the even
+channel reaches its floor first (window [230, 280]: even 2.8e-04, odd
+5.6e-03 rad rms, both below the 0.023 ripple). (4) Noted, not read: at
+gamma 1.0 the even channel rises again in the late window (0.0054 in
+[230, 280] to 0.0561 in [300, 380]); the in-band cell is not quiet at
+Delta 300 by any channel, as R-48a said. No registered clause fires;
+no status moves. Lessons: L-12 (x_1 rms could not read below the
+ripple and read the ripple), L-16.

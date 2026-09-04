@@ -1,0 +1,37 @@
+gamma 0.35  event 380.0  (22 s)
+  win [ 30, 80]  x1 0.7063  ripple 0.0227 | even1 6.4013e-01 odd1 6.6030e-02 (odd/even 0.103) | even2 6.3376e-01 odd2 6.7175e-02 | c [0.956, 1.000]
+  win [ 80,130]  x1 0.1721  ripple 0.0231 | even1 1.3509e-01 odd1 3.5566e-02 (odd/even 0.263) | even2 1.3372e-01 odd2 3.6433e-02 | c [0.998, 1.000]
+  win [130,180]  x1 0.0517  ripple 0.0232 | even1 2.7443e-02 odd1 1.9130e-02 (odd/even 0.697) | even2 2.7150e-02 odd2 1.9636e-02 | c [0.999, 1.000]
+  win [180,230]  x1 0.0275  ripple 0.0232 | even1 4.7354e-03 odd1 1.0322e-02 (odd/even 2.180) | even2 4.6731e-03 odd2 1.0601e-02 | c [0.999, 1.000]
+  win [230,280]  x1 0.0239  ripple 0.0232 | even1 2.7662e-04 odd1 5.5738e-03 (odd/even 20.150) | even2 2.8017e-04 odd2 5.7259e-03 | c [0.999, 1.000]
+  win [300,380]  x1 0.0232  ripple 0.0232 | even1 2.0457e-03 odd1 3.2704e-03 (odd/even 1.599) | even2 2.0482e-03 odd2 3.2777e-03 | c [0.999, 1.000]
+  pred: odd k=1 rate 0.0073 (c=1) 0.0069 (cmin) | even k=2 rate 0.0312 (c=1) 0.0297 (cmin)
+  fits: even1 0.0377 / first3 0.0315 | odd1 0.0124 / first3 0.0124
+gamma 0.5  event 469.0  (25 s)
+  win [ 30, 80]  x1 0.7716  ripple 0.0472 | even1 7.0444e-01 odd1 6.6195e-02 (odd/even 0.094) | even2 6.9641e-01 odd2 6.8508e-02 | c [0.925, 1.000]
+  win [ 80,130]  x1 0.2775  ripple 0.0486 | even1 2.4016e-01 odd1 3.3468e-02 (odd/even 0.139) | even2 2.3765e-01 odd2 3.5169e-02 | c [0.990, 1.000]
+  win [130,180]  x1 0.1120  ripple 0.0489 | even1 8.2666e-02 odd1 1.8741e-02 (odd/even 0.227) | even2 8.1774e-02 odd2 1.9786e-02 | c [0.996, 1.000]
+  win [180,230]  x1 0.0619  ripple 0.0490 | even1 2.6610e-02 odd1 1.0749e-02 (odd/even 0.404) | even2 2.6294e-02 odd2 1.1370e-02 | c [0.997, 1.000]
+  win [230,280]  x1 0.0509  ripple 0.0490 | even1 6.6989e-03 odd1 6.2045e-03 (odd/even 0.926) | even2 6.5873e-03 odd2 6.5674e-03 | c [0.997, 1.000]
+  win [300,380]  x1 0.0491  ripple 0.0491 | even1 3.8842e-03 odd1 4.3319e-03 (odd/even 1.115) | even2 3.9152e-03 odd2 4.2325e-03 | c [0.997, 1.000]
+  pred: odd k=1 rate 0.0050 (c=1) 0.0046 (cmin) | even k=2 rate 0.0207 (c=1) 0.0191 (cmin)
+  fits: even1 0.0230 / first3 0.0214 | odd1 0.0117 / first3 0.0126
+gamma 0.8  event 653.0  (27 s)
+  win [ 30, 80]  x1 0.7323  ripple 0.1366 | even1 6.6284e-01 odd1 5.9857e-02 (odd/even 0.090) | even2 6.5241e-01 odd2 6.5785e-02 | c [0.875, 1.000]
+  win [ 80,130]  x1 0.3529  ripple 0.1412 | even1 3.0114e-01 odd1 2.4795e-02 (odd/even 0.082) | even2 2.9761e-01 odd2 2.8037e-02 | c [0.947, 1.000]
+  win [130,180]  x1 0.2126  ripple 0.1430 | even1 1.4595e-01 odd1 1.3794e-02 (odd/even 0.095) | even2 1.4425e-01 odd2 1.5716e-02 | c [0.949, 1.000]
+  win [180,230]  x1 0.1630  ripple 0.1442 | even1 6.5689e-02 odd1 8.3993e-03 (odd/even 0.128) | even2 6.4816e-02 odd2 9.6199e-03 | c [0.956, 1.000]
+  win [230,280]  x1 0.1510  ripple 0.1449 | even1 2.3162e-02 odd1 5.2480e-03 (odd/even 0.227) | even2 2.2709e-02 odd2 6.0376e-03 | c [0.955, 1.000]
+  win [300,380]  x1 0.1476  ripple 0.1450 | even1 1.4136e-02 odd1 5.3928e-03 (odd/even 0.381) | even2 1.4417e-02 odd2 4.6751e-03 | c [0.955, 1.000]
+  pred: odd k=1 rate 0.0031 (c=1) 0.0027 (cmin) | even k=2 rate 0.0126 (c=1) 0.0110 (cmin)
+  fits: even1 0.0165 / first3 0.0151 | odd1 0.0119 / first3 0.0147
+gamma 1  event 777.0  (31 s)
+  win [ 30, 80]  x1 0.6533  ripple 0.2314 | even1 5.5728e-01 odd1 5.2833e-02 (odd/even 0.095) | even2 5.4683e-01 odd2 6.1491e-02 | c [0.786, 1.000]
+  win [ 80,130]  x1 0.3746  ripple 0.2381 | even1 2.5434e-01 odd1 1.9795e-02 (odd/even 0.078) | even2 2.5109e-01 odd2 2.3930e-02 | c [0.825, 1.000]
+  win [130,180]  x1 0.2823  ripple 0.2392 | even1 1.2181e-01 odd1 1.0780e-02 (odd/even 0.088) | even2 1.2022e-01 odd2 1.3275e-02 | c [0.834, 1.000]
+  win [180,230]  x1 0.2568  ripple 0.2407 | even1 4.7705e-02 odd1 6.7309e-03 (odd/even 0.141) | even2 4.6819e-02 odd2 8.3088e-03 | c [0.836, 1.000]
+  win [230,280]  x1 0.2535  ripple 0.2411 | even1 5.3631e-03 odd1 4.3818e-03 (odd/even 0.817) | even2 5.0528e-03 odd2 5.4441e-03 | c [0.841, 1.000]
+  win [300,380]  x1 0.2597  ripple 0.2413 | even1 5.6119e-02 odd1 1.6722e-02 (odd/even 0.298) | even2 5.6404e-02 odd2 8.3455e-03 | c [0.844, 1.000]
+  pred: odd k=1 rate 0.0025 (c=1) 0.0020 (cmin) | even k=2 rate 0.0100 (c=1) 0.0079 (cmin)
+  fits: even1 0.0219 / first3 0.0152 | odd1 0.0121 / first3 0.0159
+total 159 s
