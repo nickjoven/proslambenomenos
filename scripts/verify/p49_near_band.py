@@ -10,9 +10,11 @@ at N = 32 the smear was 0.9 percent inside a 1.1 percent tolerance
 and the smear-blind mutant did not bite - recorded), the rotor-phase lock-in of
 the neighbour's velocity equals the bond-phase lock-in times the
 characteristic function |<e^{-i x_1}>| of the neighbour's own
-displacement about its window mean, within the triangle-inequality
-tolerance (the slow and remainder phasors of the rotor reading plus
-the 2-Omega self floor); (2) the late-window tail law in band: on
+displacement about its window mean, within a tolerance of the slow
+part's own rotor-reference phasor plus twice the 2-Omega self floor
+(LAW-59: the earlier tolerance took the reading's whole remainder
+and passed on any series, R-48a; the harmonic rest is now bounded,
+not absorbed); (2) the late-window tail law in band: on
 an own N = 16 ring at gamma = 1 (rotor at Omega ~ 1.7, band top 2),
 in a window starting 300 units after the slip, the drive-locked
 A_2/A_1 lies in the band of a direct complex tridiagonal solve at
@@ -187,9 +189,19 @@ def main():
     smear_pred = 1.0 if MUTANT == "smear-blind" else abs(sum(cmath.exp(-1j * (x - m)) for x in x1)) / len(x1)
     z_tot = lockin_phasor(v1, ref_r)
     z_fund = lockin_phasor(fund1, ref_r)
-    z_rem = z_tot - z_fund
+    # LAW-59 (A-32): the tolerance names its terms instead of taking the
+    # reading's own remainder (which absorbed any series, R-48a). The slow
+    # part of v_1 (running mean over one rotor period of the non-fundamental
+    # remainder) leaks through the rotor reference by its own phasor; the
+    # harmonic rest is bounded by the 2-Omega self floor 1/(Omega T).
+    per = max(1, int(round(2 * math.pi / Om / DT)))
+    rem = [a - b for a, b in zip(v1, fund1)]
+    half = per // 2
+    slow1 = [sum(rem[max(0, k - half):min(len(rem), k + half + 1)]) / (min(len(rem), k + half + 1) - max(0, k - half))
+             for k in range(len(rem))]
+    z_slow = lockin_phasor(slow1, ref_r)
     meas = 2.0 * abs(z_tot) / A1b
-    tol = 2.0 * abs(z_rem) / A1b + 1.0 / (Om * T)
+    tol = 2.0 * abs(z_slow) / A1b + 2.0 / (Om * T)
     print(f"smear identity (N = {n}, gamma 0.5, window [10, 50), Omega {Om:.3f}): x_1 rms "
           f"{math.sqrt(sum((x - m) ** 2 for x in x1) / len(x1)):.3f}; rotor/bond {meas:.4f} vs |<e^-ix1>| "
           f"{smear_pred:.4f}, tolerance {tol:.4f}")

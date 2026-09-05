@@ -12,18 +12,12 @@ an N = 16 twisted ring for kappa in {0.5, 2, 3}: residuals within
 whole trajectory through the slip at kappa = 3 (a non-dyadic root,
 so the roundings differ): identical event step and the phase
 deviation within 32 eps times the step count times the largest
-phase; (3) the tail law near the band on an own N = 16 ring at
-gamma = 0.5 (rotor at Omega ~ 3.7, band top 2): the offset-2 ratio
-demodulated against the rotor's phase lies in the |w| band of a
-direct complex tridiagonal solve at the window's stiffness range,
-widened by the run's own floors, and the same ratio demodulated
-against the bond phase lies within the band plus those floors plus
-the derived mixing term (A_1/(2 Omega)) v_slow. Coverage (L-13):
-on a ring this small the slip's long-wavelength mode is underdamped
-and gone by the window, so the mixing term is 0.2 percent of A_2
-here and cannot be made to bite - the N = 64 mixing reading (27
-percent at gamma 0.5) rests on the experiment layer alone.
-
+phase; (3) removed at LAW-59 (A-31): the near-band tail-law
+check read the clause R-47a withdrew and encoded the mixing term
+R-47a refuted; the tail law near the band is the P-49 falsifier's
+(LAW-56). Coverage (L-13): clauses (1) and (2) are checks of the
+map's homogeneity in kappa (R-47b: a change of units), carried here;
+the claim's clause (c) rests on scripts/verify/p49_near_band.py.
 --mutant kappa-blind      scales gamma by 1/kappa instead of
     1/sqrt kappa in the identity; check (1) kills it.
 --mutant load-blind       scales f by 1/sqrt kappa instead of
@@ -234,37 +228,12 @@ def main():
     if ra["event"] is None or ra["event"] != rb["event"] or dev > bound:
         print("FAIL: the scaled trajectories part through the slip")
         failed = True
-    # (3) the tail law near the band, two references
-    gamma3 = 0.5
-    f3 = own_fold(N, -math.pi) + 0.02
-    r = run_ring(gamma3, f3, 1.0, dt, int(round(50.0 / dt)), int(round(1.0 / dt)),
-                 int(round(80.0 / dt)), int(round(1500.0 / dt)),
-                 lock=(int(round(30.0 / dt)), int(round(80.0 / dt))))
-    if r["event"] is None:
-        print("FAIL: no slip above the fold at gamma 0.5")
-        sys.exit(1)
-    Om = r["Omega"]
-    ws = []
-    for c in (r["cmin"], r["cmax"]):
-        resp = chain_response(Om, c, gamma3)
-        ws.append(resp[1] / resp[0])
-    Ab, Ar = r["A_bond"], r["A_rotor"]
-    self2 = Ar[2] / (Om * r["T"])
-    fl2 = (r["wave_floor"] + self2) / Ar[1]
-    ratio_r = Ar[2] / Ar[1]
-    ratio_b = Ab[2] / Ab[1]
-    mixing2 = 0.5 * (Ab[1] / Om) * r["slow"][2]
-    fl2b = (r["wave_floor"] + Ab[2] / (Om * r["T"])) / Ab[1]
-    print(f"near-band cell gamma {gamma3}: Omega {Om:.3f}, c in [{r['cmin']:.4f}, {r['cmax']:.4f}], |w| band "
-          f"[{min(ws):.4e}, {max(ws):.4e}] floor {fl2:.1e}; ratio21 rotor-ref {ratio_r:.4e}, "
-          f"bond-ref {ratio_b:.4e}; slow rms at 2 {r['slow'][2]:.2e}, mixing term {mixing2:.2e} "
-          f"({mixing2 / Ab[2]:.1%} of A_2)")
-    if not (min(ws) - fl2 <= ratio_r <= max(ws) + fl2):
-        print("FAIL: offset-2 ratio under the rotor reference off the tail law")
-        failed = True
-    if not (min(ws) - fl2b - mixing2 / Ab[1] <= ratio_b <= max(ws) + fl2b + mixing2 / Ab[1]):
-        print("FAIL: the bond-reference ratio is outside the band plus floors plus the mixing term")
-        failed = True
+    # (3) removed at LAW-59 (A-31, R-47b): it read the offset-2 ratio under
+    # the rotor reference, the clause R-47a withdrew, and the bond-reference
+    # ratio with the (A_1/(2 Omega)) v_slow mixing term, the mechanism
+    # R-47a refuted; at N = 16 neither could see the failure that occurred
+    # at N = 64. The tail law near the band is carried by the P-49
+    # falsifier (LAW-56, scripts/verify/p49_near_band.py, late window).
     if MUTANT is not None:
         if failed:
             print(f"mutant {MUTANT} broke the verification as it must")
