@@ -217,3 +217,17 @@ derive layer already removed (L-9), re-imported into the gate.
 CITATIONS: P-47 (scripts/verify/p47_half_sector.py at LAW-53: exits 1
 on correct physics at seeds 2 and 4 of six; exit 0 with the pi bond's
 coupling cut; neither mutant moves the quench check; R-46a, A-33).
+
+## L-18 — a number cited in a gate entry comes from a repo script
+TRIGGERS: LAW entry, probe, scratch, tolerance, mutant, reproducible,
+seed, audit
+RULE: every figure a LAW entry cites to justify a tolerance or a mutant
+(a probe's reading, a bypass's exit, a seed's z) is produced by a script
+in the repo with a fixed seed, named in the entry, so the next reader
+can rerun it; a scratch realisation quoted into the ledger is a number
+nobody can check. And a correction entry is a reading like any other:
+its mechanism sentence is bounded by what its run measured (L-12).
+CITATIONS: LAW-59 quoted a noise probe's 2.5305 / 0.1605 from an
+auditor's scratch run that no script reproduces (a32_probes.py now
+does, with different numbers and the same verdict); R-48e's mechanism
+sentence went beyond the replay's two runs and was wrong (R-48f).

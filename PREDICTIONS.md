@@ -4354,3 +4354,166 @@ control's error, and catches a cut seam (ratio 4.6), and it passes at
 seeds 4747, 2, 4, 7 and 11. What "verified" now asserts is the
 narrowed statement on that falsifier, which is what L-13 requires.
 Lessons: L-12, L-13.
+
+## R-45c — 2026-09-05 — one figure in R-45b
+R-45b's "24x too large" is the gamma 0.02 cell's ratio of (dt Omega)^2
+to the amplitude gap (23.4); the counter-figure being corrected was
+stated at gamma 0.04, where the ratio is 20.0 (5.8 at gamma 0.1). The
+correction's direction and every other number stand. No clause fires;
+no status moves.
+
+## R-46c — 2026-09-05 — corrections to R-46a and R-46b from the second pass: the inner probability does not distinguish a rigid half-flux at the registered M; the premise check's power; two crossed attributions
+(1) R-46b kept the inner probability as a clause with power. Against
+shift-blind it has (P_c(0) is 0.29 to 0.45 where the twisted ring
+reads 0.52 to 0.74). Against the nearest wrong model, the rigid half-
+flux W_tw = W_c + 1/2 that R-46a itself named, it does not: that model
+predicts P(|W| = 1/2) = P_c(0) + P_c(-1), which at N = 64 sits inside
+every registered band (z 0.30 / 0.02 / 0.44 / 1.37 / 1.26 at tau_Q 0 /
+5 / 20 / 80 / 320 with SE_p 0.04), and at N = 16 in the falsifier's
+quench check reads z 1.05 to 2.96 over ten seeds, under the cut.
+Clause (2) excludes "no shift" and not "a shift with no dynamics"; the
+claim's coverage line now says so, and a cell that would distinguish
+them (colder, larger M) is not registered. (2) The premise check of
+LAW-58 (the twisted bond's strain variance within a factor 2 of the
+other bonds') catches a cut seam (ratio 4.6) and a seam at 30 percent
+coupling (2.9) and admits one at 50 to 70 percent (1.7 to 2.3 across
+seeds, against 0.65 to 1.37 on correct physics): its power reaches
+coupling of about 0.4. Stated in the coverage line; a tighter
+observable is queued as A-37. (3) R-46a item 5 attributed the local
+exponents 0.06 / 0.23 / 0.23 to the N = 32 layer; they are the N = 64
+registered ladder's unregistered readings (p47_results.json), the N =
+32 layer's being 0.23 / 0.18 / 0.47 (p47_derive.json). The claim's
+scope line was right. (4) The claim's statement and null_system named
+two onsets for the lattice's effect on the variance, "below width 0.5"
+and "below T of about 0.25"; from p47_derive.json's N = 64 curve, T
+0.25 is width 0.69 (0.6 percent relative shift) and width 0.5 is T of
+about 0.15 (about 10 percent). Both are now stated with their
+criterion. The decided line's "E_tw_pred - E_c at 1e-6" is 2.2e-5 at
+tau_Q 320. No registered clause fires; no status moves. Lessons: L-12,
+L-13.
+
+## R-47c — 2026-09-05 — the claim stiffness-is-a-clock's clause (2) is uncarried and is now stated as reported; L-15 applies to P-48; the verifier passes at three seeds
+(1) After LAW-59 removed the P-48 falsifier's near-band check, the
+statement's clause (2) - the offset-2 ratio under the rotor reference
+along the ladder in early windows, "stands as a measurement of the
+rotor-reference lock-in" - is read by no gate check: the P-49
+falsifier's above-band cell reads the bond reference in a late window
+at one gamma, a different estimator, window and cell. R-47b had
+already found every one of those readings to be a window-state reading
+(windows starting 0.24 to 1.2 decay times into the k = 1 mode). The
+statement now carries clause (2) as reported, not claimed, and the
+null_system names it uncarried (L-13). The claim's verified status
+rests on clause (1), the map's homogeneity in kappa, which R-47b calls
+a change of units; that is stated in the coverage line, and whether a
+claim whose only carried clause is a change of units keeps its status
+is the owner's call, recorded as open. (2) L-15 was written against
+P-49 and applies to P-48 too: every A_1 of the registered ladder in
+p48_results.json appears verbatim in p48_derive.json (2.609998e-1 at
+gamma 0.5 and the rest); R-47 was a replication of the derive layer's
+own cells, and R-47b did not say so. P-46 and P-47 were not (their
+registered values are absent from their derive files). (3) L-17 asks
+for three seeds before pinning; LAW-59 pinned
+scripts/verify/p48_kappa.py at its one seed 4848. Run 2026-09-05 at
+4848, 7 and 11: exit 0 at all three, no FAIL line. No registered
+clause fires; no status moves. Lessons: L-13, L-15, L-17.
+
+## R-48f — 2026-09-05 — correction to R-48e from the second adversarial pass: the replay's numbers stand, its mechanism does not; the excess is the free slow relaxation leaking through the carrier's own slow component, and the minus-side asymmetry was a readout error
+From the 2026-09-05 audit of PRs 118-126 (a context-free agent on a
+scratch copy); reproduced by the integrator in
+scripts/experiments/a30_replay_check.py -> a30_replay_check.json
+before entry. Four corrections to R-48e. (1) The mechanism sentence is
+wrong. R-48e said the initial state "changes what the force IS,
+through the reference" and that the lock-in reads "the sideband-
+weighted transmission" of a phase-modulated drive. In a30_replay.py
+the force array and the reference are identical in runs (A) and (B);
+only the initial state differs, and least squares is linear in the
+series, so the drive-locked phasor of (B) is (A)'s plus the projection
+of the FREE motion - the undriven linear decay from the event state -
+on the carrier: |A| 2.66326e-01 / |B| 2.61512e-01 / |free| 5.04738e-03
+at site b+1 and 1.94061e-02 / 2.40061e-02 / 4.98909e-03 at b+2,
+additivity to 5.6e-17. The free motion's projection is 4.9992e-03 and
+4.9414e-03 from its SLOW part (the rest 5.0e-03), the same size at
+both sites, landing at -4.8184e-03 along the drive phasor at site 1
+(A_1 down 1.8 percent) and +4.5039e-03 at site 2 (A_2 up 23 percent):
+a ratio read at 7 percent turns a 2-percent leak into 27. It enters
+because the carrier cos(ref_b) has a slow component of its own - rms
+0.0745 over the window, from the rotor's and the neighbour's ripple in
+ref_b - onto which a slow velocity projects. The transmission of the
+recorded phase-modulated drive is what run (A) reads: +0.54 percent.
+So the excess is not a transmission at all; it is the estimator
+reading the free slow relaxation through a reference that carries the
+system's own state - L-14's rule, verbatim. A-30 stays closed, for
+this reason and not R-48e's. (2) The minus-side asymmetry (-7.37
+against +30.75) was a readout error: a30_replay.readout demodulated
+the b-1 side against the b+1 bond's phase. Against its own bond phase
+theta_b - theta_(b-1), reconstructed from the recorded velocities, the
+b-1 side reads +17.87 percent (real) and +19.75 (linear from the event
+state), -0.85 from rest. Both sides read positive; R-48e's "the twist
+puts the modulation in with the opposite sign" and the same clause in
+A-36's text are withdrawn. (3) Every excess in R-48e used the endpoint
+slope of ref_b as Omega (3.9660), which carries the neighbour's slow
+drift; P-49 and a30_clamp use the rotor's own phase advance (3.9142).
+Under the rotor's Omega the same window reads real +26.87, linear from
+the event state +22.90, from rest -2.45 percent; R-48e's "+26.84
+against P-49's +26.85" was two estimators four points apart meeting by
+chance. The Omega estimator is named with every excess from here on.
+(4) "The remaining 3.9 points are all the sine bonds contribute" is
+withdrawn: the residual sits inside the four-point estimator ambiguity
+of (3), and the linear replay does not carry the odd sector at all
+(its odd offset relaxes toward zero while the real ring's relaxes to
+-pi/2, the pi on the rotor's bond pair), so "the odd-sector content of
+A-34/A-35 is the same mechanism on the b-1 side" is withdrawn too -
+the even slow relaxation is linear (rate 0.0231 against 0.0230,
+amplitude 0.685 against 0.704); the odd sector is where the linear
+chain and the ring part, which is the first evidence for R-48c's
+"nonlinear" beyond assertion. Also on record from the same pass:
+R-48c's sector-0/sector-1 comparison is the same computation under the
+reflection j -> 2B - j (rms channels equal to 4e-14, odd traces
+negatives to 2e-12) and the untwisted odd zero is that symmetry on a
+symmetric initial state - a check of the integrator's symmetry,
+correctly labelled, not a measurement; R-48b's ripple identity holds
+to 1.8 and 7.6 percent at gamma 0.8 and 1.0, not "to 2 percent";
+R-48b's "the same rate at every gamma to a tenth" is the five-window
+fit, the first-three-window fits spread 28 percent. A-36 is re-
+specified around the free-motion projection. No registered clause
+fires; no status moves. Lessons: L-14 (the reference carries the
+state; here it carried it into the "mechanism"), L-12, and L-18
+(below).
+
+## R-48g — 2026-09-05 — corrections to R-48a, R-48b and R-48d from the second pass: a generalisation, a per-cell window, two denominators, a formula name, and the tail-law claim's pinned mutant and citation
+(1) R-48a item 2's header - "the readings that R-48 calls inside sit
+outside the band proper and inside by the self floor" - is true of
+four of its eight readings: the ratio at gamma 0.35 (+0.016 percent of
+the top) and 1.0 (+0.222) and A_1 at 0.35 and 0.5 (below the bottom by
+0.07 and 0.27); the ratio at 0.5 and 0.8 is inside the band proper
+(0.36 and 7.1 percent above the bottom) and A_1 at 0.8 and 1.0 is
+outside even with the floor (1.36 and 6.59 percent below the bottom;
+A1_in_band false in p49_results.json, as R-48 registered). The claim's
+coverage line had it right; the entry's sentence did not. (2) R-48d
+prescribed one window start, Delta >= 600, for both in-band cells,
+against L-16's own rule. Per cell by the exact overdamped rate at c =
+1 and at the cell's cmin: gamma 0.8 reaches e^-6 at Delta 491 / 514
+and reads exponent 7.3 / 7.0 at 600; gamma 1.0 reaches it at 617 / 732
+and reads 5.8 / 4.9 at 600. The re-registration guidance is now >= 520
+at gamma 0.8 and >= 740 at gamma 1.0, exponent written per cell. (3)
+The band widths "8 and 21 percent" (R-48a, R-48d, the claim) are
+relative to the band bottom; the readings in the same sentences
+(-1.11, +0.22) are of the top, where the widths are 7.7 and 17.4. One
+denominator per sentence from here on; the claim text now says "of the
+bottom". (4) The claim's null_system named the k = 1 rate as
+omega_1^2/gamma while every quoted exponent (9.0 / 6.0 / 3.7 / 2.9,
+R-47b's tau table, L-16's 0.24 to 1.2) uses the exact root gamma/2 -
+sqrt(gamma^2/4 - omega_1^2); the approximation gives 8.3 / 5.8 / 3.6 /
+2.9. The null_system now names the exact form. (5) The A-34 decided
+line's "to 2 percent at 0.8 and 1.0" is 1.8 and 7.6 percent; R-48b's
+raw pairs were right. (6) The claim's novelty citation still asserted
+the Miroshnichenko attribution LC-38b marked "attributed, not quoted";
+the citation now carries the LC-38b qualifier. (7) The gate runs only
+the claim's pinned falsifier line, and late-window-tail-law pinned
+smear-blind, which check (1) kills - the clause the statement itself
+calls the estimator's identity; the physical clause's mutant, band-
+blind, was never run by the gate. The pinned line is now band-blind; a
+gate that runs every known mutant is queued as A-38. (8) R-45b's "24x
+too large" is the gamma 0.02 cell's factor; at gamma 0.04, where the
+counter-figure was stated, it is 20x. No registered clause fires; no
+status moves. Lessons: L-16, L-12.

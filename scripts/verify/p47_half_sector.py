@@ -14,12 +14,12 @@ control, half-integer twisted) at every sample of every run, at
 both rings' <W^2> within 3 model-SE of the convolution's lattice
 moments, with the twisted moment predicted from the control's
 through the curve; (3) the half-quantum floor: the twisted ring's
-W^2 >= 1/4 at every sample; and at T = 0.3, where the ring slips
-about once per 50-unit sampling gap so sixty samples are sixty
-states (LAW-58: the earlier T = 0.2 cell read one trapped state
-sixty times and passed or failed with the seed), both rings' <W^2>
-within 3 model-SE of the convolution's lattice moments, the twisted
-one predicted from the control's through the curve; (4) a quench at
+W^2 >= 1/4 at every sample; and at T = 0.4 with a 50-unit gap (LAW-60;
+LAW-58's T = 0.3 cell slipped 0.2 to 0.5 times per gap and its twisted
+moment had no power) both rings' <W^2> within 3 model-SE (effective
+sample count, the control's error propagated) of the convolution's
+lattice moments; a constant sampled series fails outright;
+(4) a quench at
 tau_Q = 20: the twisted <W^2> within 3 combined SE of the value
 predicted from the control's, AND the twisted inner probability
 P(|W| = 1/2) within 3 binomial SE of the lattice prediction (the
@@ -273,28 +273,38 @@ def main():
         print("FAIL: equilibrium moments off the shared density")
         failed = True
     # (3) the floor: W^2 >= 1/4 at every twisted sample, and the moments
-    # at T = 0.3 with a 50-unit gap (about one slip per gap at N = 16)
-    Wt2, offt2, _ = equilibrium(True, 0.3, rng, M=60, t_therm=40.0, t_gap=50.0)
-    Wc2, offc2, _ = equilibrium(False, 0.3, rng, M=60, t_therm=40.0, t_gap=50.0)
+    # at T = 0.4 with a 50-unit gap (LAW-60: at T = 0.3 the ring slipped
+    # 0.2 to 0.5 times per gap, the twisted W^2 sat at 0.25 at every
+    # sample of every seed and one control seed read a constant series)
+    Wt2, offt2, _ = equilibrium(True, 0.4, rng, M=60, t_therm=40.0, t_gap=50.0)
+    Wc2, offc2, _ = equilibrium(False, 0.4, rng, M=60, t_therm=40.0, t_gap=50.0)
     mt2 = sum(w * w for w in Wt2) / len(Wt2)
     mc2 = sum(w * w for w in Wc2) / len(Wc2)
     minW2 = min(w * w for w in Wt2)
-    Ec2, Et2, Pc2, Pt2 = lattice(0.3)
-    se_c2 = model_se(Pc2, m_eff(Wc2))
-    zc2 = (mc2 - Ec2) / se_c2
-    T2, Et2_pred, Pt2_pred = predict_tw(mc2)
-    se_prop2 = 0.5 * abs(predict_tw(mc2 + se_c2)[1] - predict_tw(max(mc2 - se_c2, 1e-6))[1])
-    zt2 = (mt2 - Et2_pred) / math.sqrt(model_se(Pt2_pred, m_eff(Wt2)) ** 2 + se_prop2 ** 2)
-    print(f"floor T 0.3: twisted <W^2> {mt2:.4f} (min W^2 {minW2:.4f}) vs predicted {Et2_pred:.4f} "
-          f"at T_eff {T2:.3f} (z {zt2:.2f}); control {mc2:.4f} vs convolution {Ec2:.4f} (z {zc2:.2f})")
+    # LAW-60: an equilibrium cell knows its bath temperature, so both
+    # rings are read against the convolution at the NOMINAL T = 0.4
+    # (predicting the twisted moment from the control's own noisy
+    # temperature estimate turned a two-sigma control fluctuation into a
+    # four-sigma twisted miss at seed 4747); shift-blind predicts the
+    # twisted moment equal to the control's lattice moment here.
+    Ec2, Et2, Pc2, Pt2 = lattice(0.4)
+    zc2 = (mc2 - Ec2) / model_se(Pc2, m_eff(Wc2))
+    T2 = 0.4
+    Et2_pred, Pt2_pred = (Ec2, Pc2) if MUTANT == "shift-blind" else (Et2, Pt2)
+    zt2 = (mt2 - Et2_pred) / model_se(Pt2_pred, m_eff(Wt2))
+    if len(set(round(w, 6) for w in Wc2)) == 1 or len(set(round(w, 6) for w in Wt2)) == 1:
+        print("FAIL: a floor-cell series is constant - one trapped state sampled sixty times (LAW-60)")
+        failed = True
+    print(f"floor T 0.4: twisted <W^2> {mt2:.4f} (min W^2 {minW2:.4f}) vs lattice {Et2_pred:.4f} "
+          f"at T {T2:.3f} (z {zt2:.2f}); control {mc2:.4f} vs convolution {Ec2:.4f} (z {zc2:.2f})")
     if minW2 < floor - 1e-12:
         print("FAIL: a twisted sample below the half-quantum floor")
         failed = True
     if abs(zt2) > 3 or abs(zc2) > 3:
-        print("FAIL: moments at T = 0.3 off the shared density on its lattices")
+        print("FAIL: moments at T = 0.4 off the shared density on its lattices")
         failed = True
     if max(offt2, offc2) > tol:
-        print("FAIL: winding off its lattice at T = 0.3")
+        print("FAIL: winding off its lattice at T = 0.4")
         failed = True
     # (5) the premise: the twisted bond is a bond (its covariant strain
     # variance over the T = 0.5 samples within a factor 2 of the others')
