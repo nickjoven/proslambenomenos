@@ -4287,3 +4287,52 @@ in-band cell reads the same in-band instrument the scope line now
 calls reported. No registered clause fires; no number changes; status
 stays verified on the narrowed statement. Lessons: L-16 (the window
 criterion per cell), L-12.
+## R-48e — 2026-09-04 — A-30 executed by linear replay: the transient offset-2 excess is the linear transmission of a phase-modulated drive; the wall was the instrument's carrier
+scripts/experiments/a30_replay.py (a30_replay.json / .txt, 83 s),
+gamma 0.5, the registered twisted ring (sector 0, N = 64, f = fold +
+0.005, dt = 0.001). The real run records, from the event, the rotor's
+two bond forces on its neighbours (F_+ = -sin D_b, F_- = +sin
+D_(b-1)), the drive phase ref_b = theta_b - theta_(b+1), and the
+neighbours' velocities. A purely linear open chain of the other 63
+sites (stiffness c0 = cos(pi/N) = 0.9988, damping gamma) is then
+driven at its ends by those recorded forces, (A) from rest and (B)
+from the ring's state at the event (displacements from the ground
+state with the common drift removed, and velocities), and read with
+the same decomposition against the same recorded ref_b. Window [30,
+80], the P-48 window of the 27 percent: real excess over the band top
++30.75 percent on the b+1 side and -7.37 on the b-1 side; linear from
+the event state +26.84 and -7.38; linear from rest +0.68 and +1.01
+(A_1 2.6081e-01 / 2.6151e-01 / 2.6633e-01). Window [300, 380]: -0.13 /
+-0.52 / -0.40 percent. Three things follow. (1) The excess is linear.
+A chain with linear bonds reproduces 87 percent of it with the same
+sign asymmetry between the two sides, and the remaining 3.9 points are
+all the sine bonds contribute. (2) It is not a response to the drive's
+spectrum alone: from rest the same recorded forces give the linear
+response to a percent. What the event state adds is the slow
+relaxation, and the slow relaxation acts through the CARRIER: the
+drive on b+1 is exactly -sin(ref_b), and ref_b carries the neighbour's
+slow displacement (x_1 rms 0.77 rad in this window), so the force is a
+phase-modulated tone with sidebands at Omega +- the slow frequencies;
+the chain's transmission |w(omega)| differs across those sidebands
+(dw/d Omega ~ -2w/Omega), and a least-squares fundamental against the
+modulated carrier reads the sideband-weighted transmission - not
+|w(Omega)| - at each site. The excess and its sign asymmetry are that
+weighting, computable from the recorded ref_b and the linear response
+with no free parameter. By superposition the initial state cannot
+change a linear chain's response to a given force; it changes what the
+force IS, through the reference. (3) A-30's three "coupled
+contributions" (R-48a: two interventions and a remainder) were three
+ways of altering the carrier's modulation: clamping the rotor removed
+the ripple's part of ref_b's modulation and changed the launch; the
+ring's slow strain was the modulation itself. The odd-sector content
+of A-34/A-35 is the same mechanism on the b-1 side, where the twist
+puts the modulation in with the opposite sign. A-30 is closed as a
+derive-layer result: the transient excess is the linear transmission
+of a phase-modulated drive, and the late window is quiet because the
+modulation has died. What is NOT done here: the sideband derivation
+itself (the ratio as the integral of |w(Omega + omega)| against the
+carrier's modulation spectrum) and its registration with a falsifier;
+queued as A-36, and clause (2) of late-window-tail-law keeps its co-
+decay wording until that registration. No registered clause fires; no
+status moves. Lessons: L-9 (the anchor that disagreed was right: a
+linear chain was the instrument all along), L-12, L-14.
