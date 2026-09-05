@@ -4225,3 +4225,46 @@ gamma 1.0 the even channel rises again in the late window (0.0054 in
 Delta 300 by any channel, as R-48a said. No registered clause fires;
 no status moves. Lessons: L-12 (x_1 rms could not read below the
 ripple and read the ripple), L-16.
+
+## R-48c — 2026-09-04 — correction to R-48b from A-35: the odd channel is the twist's circulation, not the slip's asymmetry; the untwisted ring's odd channel is exactly zero
+A-35 (scripts/experiments/a35_odd_control.py, a35_untwisted.py, their
+.json / .txt; the A-34 runner and readout) ran the same slip on three
+rings at gamma 0.5 and 0.35: the registered twisted ring in winding
+sector 0, the twisted ring in sector 1, and the untwisted ring at its
+own fold (fold_fc(N, 0) + 0.005 = 2.0367; at the twisted fold's load
+the untwisted ring does not slip within 1500 units). (1) R-48b
+attributed the odd channel to "the slip is one bond's event and breaks
+the mirror at launch". Wrong. The P-48 and P-49 cells are
+ground_state(N, True, 0): the TWISTED pi ring, whose sector-0 state
+carries a covariant strain of -pi/N on every bond, a circulation, and
+a circulation is odd under the mirror through the rotor and the
+antipode. The two sectors are exact mirror images of each other: every
+rms channel identical to all digits (even 7.0444e-01 / 7.0444e-01, odd
+6.6195e-02 / 6.6195e-02 in [30, 80]) and the odd channel's signed mean
+flipping, -1.1999 against +1.1999 rad in [30, 80] and -1.5548 against
++1.5548 in [300, 380] - the half winding's pi/2 across the half-chain.
+The untwisted ring's odd channel is zero to the last digit at every
+window (0.0e+00 in [30, 80], 0.0e+00 in [300, 380]; the same at gamma
+0.35): the integrator's mirror is exact and the slip launches nothing
+odd on a ring that has no chirality. The odd seed of A-34 is the
+twist's circulation meeting the rotor's sense of rotation. (2) The
+estimator is not the source: the odd rms with the running mean over
+three rotor periods equals the one-period value (6.6212e-02 against
+6.6195e-02); a ripple residual would have shrunk. (3) The gamma-
+independent decay of the odd channel (0.0117 / 0.0124 at gamma 0.5 /
+0.35 here, as in A-34) stands measured and unexplained as a linear
+rate; on the twisted ring the odd sector is driven at Omega through
+the antiphase part of the rotor's two bond forces (D_b + D_(b-1) = pi
+after the event, R-45a), so its slow content is a driven nonlinear
+transient of the odd sector, not a free mode's decay, and the open
+chain's odd k = 1 rate was never the right expectation. That is the
+residue of A-30 in the other sector; it is folded into A-30's wording
+and A-35 closes. (4) The mirror argument written into A-34's queue
+text and into the companion figure page ("in sector zero the odd half-
+chain is never driven") assumed the untwisted ring. It holds there
+exactly, as (1) shows, and the registered cells are not there. Even-
+channel rates on the untwisted ring at its own fold: 0.0297 / 0.0303
+per unit at gamma 0.5 / 0.35 against the k = 2 prediction 0.0207 /
+0.0312. No registered clause fires; no status moves. Lessons: L-12 (a
+channel that reads zero on the control and a tenth on the cell is a
+property of the cell), L-16.

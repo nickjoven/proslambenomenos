@@ -1,0 +1,17 @@
+gamma 0.5 untwisted   event 327.0 (20 s)
+  win [ 30, 80] even 6.8757e-01 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 6.8800e-01 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [ 80,130] even 2.2932e-01 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 2.2941e-01 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [130,180] even 7.4477e-02 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 7.4507e-02 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [180,230] even 1.9593e-02 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 1.9603e-02 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [230,280] even 1.4179e-03 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 1.4181e-03 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [300,380] even 1.4323e-02 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 1.4274e-02 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  fits: even 0.0297 odd none (3-period none) | pred odd k1 0.0050 even k2 0.0207
+gamma 0.35 untwisted   event 278.0 (16 s)
+  win [ 30, 80] even 6.3307e-01 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 6.3334e-01 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [ 80,130] even 1.3162e-01 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 1.3167e-01 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [130,180] even 2.4946e-02 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 2.4957e-02 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [180,230] even 2.5815e-03 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 2.5837e-03 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [230,280] even 2.3449e-03 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 2.3444e-03 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  win [300,380] even 5.5938e-03 odd 0.0000e+00 (odd/even 0.000) | 3-period mean: even 5.5571e-03 odd 0.0000e+00 | odd signed mean +0.0000e+00
+  fits: even 0.0303 odd none (3-period none) | pred odd k1 0.0073 even k2 0.0312
+total 40 s
