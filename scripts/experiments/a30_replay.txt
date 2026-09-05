@@ -1,0 +1,10 @@
+real run: event 469.0 (23 s)
+linear from rest (11 s)
+linear from the event state (10 s)
+  win [ 30, 80] real               Omega 3.9660 A1 2.6081e-01 A2 2.4714e-02 ratio21 9.4759e-02 (side -: 6.7129e-02) band top 7.2472e-02 excess +30.75% (side -: -7.37%)
+  win [ 30, 80] linear_rest        Omega 3.9660 A1 2.6633e-01 A2 1.9406e-02 ratio21 7.2866e-02 (side -: 7.3103e-02) band top 7.2371e-02 excess +0.68% (side -: +1.01%)
+  win [ 30, 80] linear_event_state Omega 3.9660 A1 2.6151e-01 A2 2.4006e-02 ratio21 9.1797e-02 (side -: 6.7032e-02) band top 7.2371e-02 excess +26.84% (side -: -7.38%)
+  win [300,380] real               Omega 3.9169 A1 2.7122e-01 A2 2.0200e-02 ratio21 7.4476e-02 (side -: 7.4638e-02) band top 7.4574e-02 excess -0.13% (side -: +0.09%)
+  win [300,380] linear_rest        Omega 3.9169 A1 2.7128e-01 A2 2.0121e-02 ratio21 7.4171e-02 (side -: 7.4421e-02) band top 7.4470e-02 excess -0.40% (side -: -0.07%)
+  win [300,380] linear_event_state Omega 3.9169 A1 2.7130e-01 A2 2.0100e-02 ratio21 7.4086e-02 (side -: 7.4252e-02) band top 7.4470e-02 excess -0.52% (side -: -0.29%)
+total 83 s
