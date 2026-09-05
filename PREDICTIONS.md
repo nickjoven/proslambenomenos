@@ -4336,3 +4336,21 @@ queued as A-36, and clause (2) of late-window-tail-law keeps its co-
 decay wording until that registration. No registered clause fires; no
 status moves. Lessons: L-9 (the anchor that disagreed was right: a
 linear chain was the instrument all along), L-12, L-14.
+
+## R-46b — 2026-09-04 — the claim quench-counts-share-one-density narrowed to its clauses with power; status stays verified on LAW-58's falsifier
+The owner's call after R-46a and LAW-58, executed as a text change.
+The statement now asserts three physical clauses - the fast null on
+the ramp-end count, the inner probability P(|W| = 1/2) predicted from
+the control through the curve at all five rungs, and the ordering of
+fast over slow quenches - and moves the rest to "stated, not claimed":
+the lattice arithmetic (the count on its lattice, the half-quantum
+floor) and the variance sub-clause, which R-46a showed to be the
+identity map at every registered temperature and which a rigid half-
+flux on the control satisfies inside every band. Every number is
+unchanged. The status stays verified: LAW-58 gave the claim a
+falsifier that reads the inner probability at the quench (shift-blind
+dies there at z 4.4), decorrelates its floor cell, carries the
+control's error, and catches a cut seam (ratio 4.6), and it passes at
+seeds 4747, 2, 4, 7 and 11. What "verified" now asserts is the
+narrowed statement on that falsifier, which is what L-13 requires.
+Lessons: L-12, L-13.

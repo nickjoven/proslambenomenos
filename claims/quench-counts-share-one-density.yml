@@ -2,26 +2,31 @@ id: quench-counts-share-one-density
 statement: >
   On the P-35/P-36 free ring of N = 64 inertial sine-coupled phase
   oscillators with a Langevin bath (gamma = 1) ramped linearly from
-  T_i = 2 to 0 over tau_Q in {0, 5, 20, 80, 320}, the covariant
-  winding is an exact defect count (on its integer or half-integer
-  lattice at every sample, 9e-15 worst over 2000), the twisted
-  ring's W^2 never drops below the half-quantum floor 1/4, the
+  T_i = 2 to 0 over tau_Q in {0, 5, 20, 80, 320}: (1) the
   instantaneous quench's ramp-end count reproduces the equilibrium
-  variance N<u^2>_{T_i}/4 pi^2 for both rings, and at EVERY quench
-  rate the twisted ring's frozen counting statistics are the
-  control's density of the summed strain read on the half-integer
-  lattice: the twisted <W^2> and its probability of |W| = 1/2,
-  predicted from the control's <W^2> through the equilibrium
-  curve, land within their registered bands at all five rungs, worst
-  0.85 of a combined standard error (200 realizations per cell; R-46a:
-  the variance band is the identity map at these temperatures and
-  the lattice content is the inner probability's). The instantaneous quench holds more winding than the
-  slowest (1.94 vs 0.80, at 5.8 combined standard errors). Scope: no Kibble-Zurek exponent
-  is claimed - not registered in advance, four points; a weighted
+  variance N<u^2>_{T_i}/4 pi^2 for both rings (z -0.06 and 0.36; the
+  unburnt alternative reads 5.333, 4.2 SE away); (2) at every quench
+  rate the twisted ring's probability of freezing on the innermost
+  values |W| = 1/2 is the control's density read on the half-integer
+  lattice, predicted from the control's variance through the
+  equilibrium curve, within its registered band at all five rungs
+  (worst 0.85 of a combined standard error; 200 realizations per
+  cell); (3) the instantaneous quench holds more winding than the
+  slowest (1.94 vs 0.80, at 5.8 combined standard errors).
+  Stated, not claimed as results (R-46a): the covariant winding sits
+  on its integer or half-integer lattice at every sample (9e-15 worst
+  over 2000) and the twisted W^2 never drops below 1/4 - both
+  arithmetic; and the twisted ring's VARIANCE read beside the
+  control's through the curve at every rung, which is the identity
+  map at these temperatures (the lattice moves the variance only
+  below width 0.5, the coldest rung freezes at 0.89) and carries no
+  lattice content. Scope (R-46b): no Kibble-Zurek exponent is
+  claimed - not registered in advance, four points; a weighted
   log-log fit of the control's variance over tau_Q 5 to 320 reads
-  -0.178 +- 0.031 (R-46a); the local exponents 0.06 / 0.23 / 0.23 are
-  reported. One N; one gamma;
-  the unloaded ring.
+  -0.178 +- 0.031 (R-46a); the local exponents 0.06 / 0.23 / 0.23
+  are reported. One N; one gamma; the unloaded ring. The falsifier
+  (LAW-58) carries clause (2)'s inner probability at N = 16 and the
+  premise (the twisted bond is a bond) and passes at five seeds.
 premises: []
 prediction: P-47
 evidence:
