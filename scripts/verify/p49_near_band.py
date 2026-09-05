@@ -11,10 +11,11 @@ and the smear-blind mutant did not bite - recorded), the rotor-phase lock-in of
 the neighbour's velocity equals the bond-phase lock-in times the
 characteristic function |<e^{-i x_1}>| of the neighbour's own
 displacement about its window mean, within a tolerance of the slow
-part's own rotor-reference phasor plus twice the 2-Omega self floor
-(LAW-59: the earlier tolerance took the reading's whole remainder
-and passed on any series, R-48a; the harmonic rest is now bounded,
-not absorbed); (2) the late-window tail law in band: on
+part's rms times the reference's own mean resultant |<e^{-i theta_b}>|
+plus twice the 2-Omega self floor, capped at 5 percent of the
+fundamental (LAW-60: LAW-59's tolerance used the slow part's own
+rotor phasor and a DC offset inflated it; LAW-56's used the whole
+remainder and passed on any series); (2) the late-window tail law in band: on
 an own N = 16 ring at gamma = 1 (rotor at Omega ~ 1.7, band top 2),
 in a window starting 300 units after the slip, the drive-locked
 A_2/A_1 lies in the band of a direct complex tridiagonal solve at
@@ -199,9 +200,21 @@ def main():
     half = per // 2
     slow1 = [sum(rem[max(0, k - half):min(len(rem), k + half + 1)]) / (min(len(rem), k + half + 1) - max(0, k - half))
              for k in range(len(rem))]
-    z_slow = lockin_phasor(slow1, ref_r)
+    # LAW-60: the slow part's leak is bounded by a quantity of the
+    # REFERENCE alone - the window's mean resultant of the rotor phase,
+    # |<e^{-i theta_b}>|, times the slow part's rms - never by the slow
+    # part's own rotor phasor (LAW-59's tolerance was still the series'
+    # own and a DC offset inflated it). And the bound is capped: if the
+    # slow leak allowed exceeds 5 percent of the fundamental the cell
+    # cannot test the identity and the check fails as untestable.
+    slow_rms = math.sqrt(sum(x * x for x in slow1) / len(slow1))
+    ref_resultant = abs(sum(cmath.exp(-1j * r) for r in ref_r)) / len(ref_r)
+    slow_bound = 2.0 * slow_rms * ref_resultant / A1b
     meas = 2.0 * abs(z_tot) / A1b
-    tol = 2.0 * abs(z_slow) / A1b + 2.0 / (Om * T)
+    tol = slow_bound + 2.0 / (Om * T)
+    if slow_bound > 0.05:
+        print(f"FAIL: the slow part's allowed leak ({slow_bound:.4f} of the fundamental) is too large to test the smear identity")
+        failed = True
     print(f"smear identity (N = {n}, gamma 0.5, window [10, 50), Omega {Om:.3f}): x_1 rms "
           f"{math.sqrt(sum((x - m) ** 2 for x in x1) / len(x1)):.3f}; rotor/bond {meas:.4f} vs |<e^-ix1>| "
           f"{smear_pred:.4f}, tolerance {tol:.4f}")
