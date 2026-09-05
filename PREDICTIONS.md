@@ -4268,3 +4268,22 @@ per unit at gamma 0.5 / 0.35 against the k = 2 prediction 0.0207 /
 0.0312. No registered clause fires; no status moves. Lessons: L-12 (a
 channel that reads zero on the control and a tenth on the cell is a
 property of the cell), L-16.
+## R-48d — 2026-09-04 — scope of the claim late-window-tail-law narrowed to the quiet cells; the in-band cells move to reported
+Text change only, from R-48a (the e^{-6} statement holds at gamma 0.35
+and 0.5 and not at 0.8 and 1.0), R-48b (the late-window x_1 rms is the
+drive ripple; the slow displacement proper is 0.002 / 0.004 / 0.014 /
+0.056 rad at the four cells, rising again at gamma 1.0 in [300, 380])
+and R-48c (the odd sector is driven on the twisted ring). The claim's
+statement now asserts clause (1) at gamma 0.35 and 0.5 only, where the
+ring is quiet by its own criterion and the readings sit at +0.02 and
+-0.10 percent of the band top; the in-band cells at gamma 0.8 and 1.0
+(Omega 2.35 and 1.69) are moved to the scope line as reported, not
+claimed, with their numbers, pending a re-registration at Delta >= 600
+that no one has run. Clause (2) is reworded to co-decay and the
+ladder's last three values are labelled the ripple. Clause (3) is
+labelled the estimator's identity. The falsifier (LAW-56) is
+unchanged: its above-band cell at N = 16 carries clause (1) and its
+in-band cell reads the same in-band instrument the scope line now
+calls reported. No registered clause fires; no number changes; status
+stays verified on the narrowed statement. Lessons: L-16 (the window
+criterion per cell), L-12.
