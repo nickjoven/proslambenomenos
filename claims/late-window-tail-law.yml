@@ -1,30 +1,40 @@
 id: late-window-tail-law
 statement: >
   On the P-35/P-36 ring (twisted sector 0, N = 64, f = fold + 0.005,
-  kappa = 1), in a window 300 to 380 units after the slip, when the
-  slip's long-wavelength relaxation has decayed: (1) the drive-locked
-  offset-2 ratio A_2/A_1 of the rotor's footprint equals the driven
-  damped chain's root |w| (w + 1/w = 2 - (Omega^2 - i gamma Omega)/c,
-  exact discrete form) over the window's stiffness range, its lower
-  end reduced by the sine bond's describing-function factor
-  2 J_1(delta)/delta, within the 2-Omega self floor - at gamma 0.35,
-  0.5, 0.8 and 1.0, the rotor at Omega 5.62, 3.92, 2.35 and 1.69
-  against a band top of 2 (readings +0.02, -0.10, -1.11 and +0.22
-  percent of the band top), and A_1 equals the end-site response at
-  gamma 0.35 and 0.5; (2) the excess over that law which P-48 read in
-  early windows is the slow relaxation's: along windows starting at
-  30, 80, 130, 180, 230 and 300 units after the slip at gamma 0.5 the
-  neighbour's slow displacement falls 0.77, 0.28, 0.11, 0.06, 0.05,
-  0.05 rad rms and the excess falls 26.9, 4.1, 2.1, 0.9, 0.2, -0.1
-  percent, monotonically, to inside the floor; (3) the rotor-phase
-  lock-in of a site's drive-locked fundamental is that fundamental
-  times the characteristic function |<e^{-i x_1}>| of the
-  neighbour's displacement about its window mean, within the
-  reading's own slow and harmonic phasors plus the self floor, at all
-  ten cells (0.7500 read against 0.7305 predicted where the smear is
-  largest). Scope: N = 64 (the falsifier at 48 and 16); A_1 in band
-  and A_3 reported, not claimed; the mechanism of the transient
-  excess not claimed.
+  kappa = 1), in a window 300 to 380 units after the slip at gamma
+  0.35 and 0.5, where the slip's long-wavelength relaxation has
+  decayed (exponents 9.0 and 6.0 by LC-38's rate; the neighbour's
+  slow displacement 0.002 and 0.004 rad rms, R-48b): (1) the
+  drive-locked offset-2 ratio A_2/A_1 of the rotor's footprint equals
+  the driven damped chain's root |w| (w + 1/w = 2 - (Omega^2 -
+  i gamma Omega)/c, exact discrete form) over the window's stiffness
+  range, its lower end reduced by the sine bond's describing-function
+  factor 2 J_1(delta)/delta, within the 2-Omega self floor - the
+  rotor at Omega 5.62 and 3.92 against a band top of 2 (readings
+  +0.02 and -0.10 percent of the band top), and A_1 equals the
+  end-site response at both cells (below its band proper by 0.07 and
+  0.27 percent, inside by the self floor); (2) the excess over that
+  law which P-48 read in early windows falls with the slow
+  relaxation: along windows starting at 30, 80, 130, 180, 230 and
+  300 units after the slip at gamma 0.5 the neighbour's slow
+  displacement falls 0.77, 0.28, 0.11, 0.06, 0.05, 0.05 rad rms (the
+  last three the drive ripple, R-48b) and the excess falls 26.9, 4.1,
+  2.1, 0.9, 0.2, -0.1 percent, monotonically, to inside the floor -
+  co-decay, not attribution (R-48a); (3) the rotor-phase lock-in of a
+  site's drive-locked fundamental is that fundamental times the
+  characteristic function |<e^{-i x_1}>| of the neighbour's
+  displacement about its window mean, within the reading's own slow
+  and harmonic phasors plus the self floor, at all ten cells (0.7500
+  read against 0.7305 predicted where the smear is largest) - the
+  estimator's identity, stated, not a physical clause (R-48a).
+  Scope (R-48d): N = 64 (the falsifier at 48 and 16); the in-band
+  cells at gamma 0.8 and 1.0 (Omega 2.35 and 1.69; readings -1.11 and
+  +0.22 percent of the band top inside bands 8 and 21 percent wide,
+  the ring not quiet at Delta 300: exponents 3.7 and 2.9, slow
+  displacement 0.014 and 0.056 rad and rising at 1.0) are REPORTED,
+  not claimed, pending a re-registration at Delta >= 600; A_1 in
+  band and A_3 reported; the mechanism of the transient excess not
+  claimed (A-30).
 premises: []
 prediction: P-49
 evidence:
